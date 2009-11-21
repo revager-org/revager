@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.team-neos.de/site/sites/default/files/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description></description>
+    <aspects>
+        <aspect>
+            <id>1007</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist ein Deckblatt vorhanden, und ist es vollständig ausgefüllt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1008</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist das Dokument gut gegliedert, übersichtlich aufgebaut und leicht verständlich (Graphiken, Tabellen, ...)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1009</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Begriffe eindeutig definiert und durchgängig verwendet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1010</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Gibt es ein Inhalts-, Abkürzungs-, Definitions- und Quellenverzeichnis?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1011</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Stimmt das Inhaltsverzeichnis mit der Gliederung des Dokuments überein?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1012</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle nicht allgemein bekannten Begriffe und Abkürzungen definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1013</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Hat die Unterlage einen eindeutigen Versionsstand?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1014</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle Seiten numeriert und eindeutig als der Dokumentversion zugehörig zu identifizieren?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1015</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist das Dokument vollständig d.h. fehlen keine Textstellen, Seiten, Abbildungen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1016</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Querverweise eindeutig?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1017</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle Referenzdokumente aufgelistet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1018</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Bilder und graphische Darstellungen eine übersichtliche Ergänzung des Textes? Übersichtlich und nicht überladen? Verständlich bzgl. der verwendeten Symbole? Eindeutig den entsprechenden Kapiteln oder Textstellen zugeordnet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1019</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind allgemeine firmeninterne und/oder projektspezifische Richtlinen zur Unterlagenerstellung eingehalten worden?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1020</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Methoden, Werkzeuge und Standards berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1021</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Vertraulichkeitsstufen und Urherberrechte ausgewiesen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1022</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Sind alle Voraussetzungen für die Installation und Bedienung ausreichend beschreiben?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1023</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Wurden bei der Definition der Testfälle alle im Testkonzept festgelegten Ziele berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1024</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Wurde für jede zu testende Funktion mindestens ein Black-Box-Testfall definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1025</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Ist für jeden Testfall der Zweck festgestellt (welche Eigenschaften sollen geprüft werden)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1026</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Sind für jeden Testfall die Ergebnisse sowie Endkriterien festgelegt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1027</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Sind außer den erwarteten gültigen Eingabedaten auch unerwartete berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1028</id>
+            <category>Spezielle Fragen zur Testunterlage</category>
+            <directive>Sind alle Testfälle und Ergebnisse protkolliert?</directive>
+            <description></description>
+        </aspect>
+    </aspects>
+</catalog>

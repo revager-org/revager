@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.team-neos.de/site/sites/default/files/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description></description>
+    <aspects>
+        <aspect>
+            <id>983</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist ein Deckblatt vorhanden, und ist es vollständig ausgefüllt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>984</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist das Dokument gut gegliedert, übersichtlich aufgebaut und leicht verständlich (Graphiken, Tabellen, ...)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>985</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Begriffe eindeutig definiert und durchgängig verwendet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>986</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Gibt es ein Inhalts-, Abkürzungs-, Definitions- und Quellenverzeichnis?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>987</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Stimmt das Inhaltsverzeichnis mit der Gliederung des Dokuments überein?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>988</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle nicht allgemein bekannten Begriffe und Abkürzungen definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>989</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Hat die Unterlage einen eindeutigen Versionsstand?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>990</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle Seiten numeriert und eindeutig als der Dokumentversion zugehörig zu identifizieren?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>991</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist das Dokument vollständig d.h. fehlen keine Textstellen, Seiten, Abbildungen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>992</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Querverweise eindeutig?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>993</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle Referenzdokumente aufgelistet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>994</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Bilder und graphische Darstellungen eine übersichtliche Ergänzung des Textes? Übersichtlich und nicht überladen? Verständlich bzgl. der verwendeten Symbole? Eindeutig den entsprechenden Kapiteln oder Textstellen zugeordnet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>995</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind allgemeine firmeninterne und/oder projektspezifische Richtlinen zur Unterlagenerstellung eingehalten worden?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>996</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Methoden, Werkzeuge und Standards berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>997</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Vertraulichkeitsstufen und Urherberrechte ausgewiesen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>998</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind Testaufgaben für alle wichtigen ,,Funktionen'' definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>999</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind Testaufgaben für die Überprüfung der Qualitätsmerkmale angegeben?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1000</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind vernünftige Integerationsschritte definiert</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1001</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind Fehlerfälle genügend berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1002</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind alle definierten Testziele erreichbar und meßbar (z.B. 95% CO- Testabdeckung)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1003</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind alle notwendigen Hilfsmittel zur Durchführung der vorgegebenen Testverfahren definiert? (z.B. Testfallgeneratoren, Tools zum Nachweis der Testabdeckung)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1004</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind Anforderungen für Testwiederholungen (Regressionstests) berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1005</id>
+            <category>Inhalte des Testkonzepts</category>
+            <directive>Sind die Testaufgaben eindeutig gegenüber den Prüfaufgaben der Abnahme abgegrenzt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>1006</id>
+            <category>Exit-Kriterien</category>
+            <directive>Sind die Angaben im Testkonzept ausreichend, um Testfälle abzuleiten?</directive>
+            <description></description>
+        </aspect>
+    </aspects>
+</catalog>

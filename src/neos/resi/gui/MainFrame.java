@@ -65,8 +65,6 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.event.TreeExpansionEvent;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.TreeWillExpandListener;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableCellRenderer;

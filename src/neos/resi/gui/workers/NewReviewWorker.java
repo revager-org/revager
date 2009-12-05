@@ -24,12 +24,7 @@ import javax.swing.SwingWorker;
 import neos.resi.app.Application;
 import neos.resi.app.AspectManagement;
 import neos.resi.app.AttendeeManagement;
-import neos.resi.app.ReviewManagement;
 import neos.resi.app.model.Data;
-import neos.resi.app.model.ResiData;
-import neos.resi.app.model.schema.Aspect;
-import neos.resi.app.model.schema.Attendee;
-import neos.resi.app.model.schema.Role;
 import neos.resi.gui.MainFrame;
 import neos.resi.gui.UI;
 import neos.resi.tools.GUITools;
@@ -38,8 +33,9 @@ import neos.resi.tools.GUITools;
  * Worker for creating a new empty review.
  */
 public class NewReviewWorker extends SwingWorker<Void, Void> {
-	AttendeeManagement attMgmt=Application.getInstance().getAttendeeMgmt();
-	AspectManagement aspMgmt=Application.getInstance().getAspectMgmt();
+	AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
+	AspectManagement aspMgmt = Application.getInstance().getAspectMgmt();
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -60,8 +56,8 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
-			
-			if(Data.getInstance().getMode()=="instant"){
+
+			if (Data.getInstance().getMode() == "instant") {
 				UI.getInstance().getAttendeeDialog().setFromAssistant(true);
 				UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
 				UI.getInstance().getAttendeeDialog().setVisible(true);

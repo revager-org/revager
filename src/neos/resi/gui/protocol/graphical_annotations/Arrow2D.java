@@ -1,4 +1,4 @@
-package neos.resi.tools;
+package neos.resi.gui.protocol.graphical_annotations;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
@@ -20,24 +20,18 @@ public class Arrow2D extends RectangularShape {
 
 	private double sx = 2.0 / 3;
 
-	public Arrow2D()
-
-	{
+	public Arrow2D() {
 	}
 
 	public Arrow2D(final double x, final double y, final double width,
-			final double height)
-
-	{
+			final double height) {
 		this.minX = x;
 		this.minY = y;
 		this.length = width;
 		this.thickness = height;
 	}
 
-	public void setTailProportion(double sx, double sy1, double sy0)
-
-	{
+	public void setTailProportion(double sx, double sy1, double sy0) {
 		if (sy1 < 0)
 			sy1 = 0;
 		if (sy1 > 1)
@@ -50,44 +44,33 @@ public class Arrow2D extends RectangularShape {
 			sx = 0;
 		if (sx > 1)
 			sx = 1;
+
 		this.sy1 = sy1;
 		this.sy0 = sy0;
 		this.sx = sx;
 	}
 
-	public double getTailLength()
-
-	{
+	public double getTailLength() {
 		return sx * length;
 	}
 
-	public double getX()
-
-	{
+	public double getX() {
 		return minX;
 	}
 
-	public double getY()
-
-	{
+	public double getY() {
 		return minY;
 	}
 
-	public double getWidth()
-
-	{
+	public double getWidth() {
 		return length;
 	}
 
-	public double getHeight()
-
-	{
+	public double getHeight() {
 		return thickness;
 	}
 
-	public double getHeight(double x)
-
-	{
+	public double getHeight(double x) {
 		x = (x - minX) / (sx * length);
 		if (x < 0 || x > 1) {
 			return 0;
@@ -98,31 +81,23 @@ public class Arrow2D extends RectangularShape {
 		}
 	}
 
-	public boolean isEmpty()
-
-	{
+	public boolean isEmpty() {
 		return !(length > 0 && thickness > 0);
 	}
 
 	public void setFrame(final double x, final double y, final double width,
-			final double height)
-
-	{
+			final double height) {
 		this.minX = x;
 		this.minY = y;
 		this.length = width;
 		this.thickness = height;
 	}
 
-	public Rectangle2D getBounds2D()
-
-	{
+	public Rectangle2D getBounds2D() {
 		return new Rectangle2D.Double(minX, minY, length, thickness);
 	}
 
-	public boolean contains(final double x, double y)
-
-	{
+	public boolean contains(final double x, double y) {
 		if (x < minX) {
 			return false;
 		}
@@ -151,17 +126,13 @@ public class Arrow2D extends RectangularShape {
 	}
 
 	public boolean contains(final double x, final double y, final double width,
-			final double height)
-
-	{
+			final double height) {
 		return contains(x, y) && contains(x + width, y)
 				&& contains(x + width, y + height) && contains(x, y + height);
 	}
 
 	public boolean intersects(final double x, final double y,
-			final double width, final double height)
-
-	{
+			final double width, final double height) {
 		final double right = x + width;
 		final double maxX = minX + length;
 		if (x <= maxX && right >= minX) {
@@ -212,21 +183,15 @@ public class Arrow2D extends RectangularShape {
 	}
 
 	public PathIterator getPathIterator(final AffineTransform at,
-			final double flatness)
-
-	{
+			final double flatness) {
 		return new Iterator(at);
 	}
 
-	public PathIterator getPathIterator(final AffineTransform at)
-
-	{
+	public PathIterator getPathIterator(final AffineTransform at) {
 		return new Iterator(at);
 	}
 
-	private class Iterator implements PathIterator
-
-	{
+	private class Iterator implements PathIterator {
 
 		private final AffineTransform at;
 

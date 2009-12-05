@@ -37,7 +37,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -149,9 +148,9 @@ public abstract class AbstractDialog extends JDialog {
 	private JPanel panelHelp = new JPanel();
 
 	/**
-	 * The panel tool bar.
+	 * The top grid panel.
 	 */
-	private JPanel panelToolBar = new JPanel();
+	private JPanel panelGridTop = new JPanel();
 
 	/**
 	 * The panel description toolbar.
@@ -241,24 +240,18 @@ public abstract class AbstractDialog extends JDialog {
 	}
 
 	/**
-	 * Adds the top component.
+	 * Sets the top panel.
 	 * 
-	 * @param component
-	 *            the component
+	 * @param panel
+	 *            the panel
 	 */
-	public void addTopComponent(JComponent component) {
-		this.panelToolBar.add(component);
-		this.panelToolBar.revalidate();
-
-		panelDescTB.add(panelToolBar);
-	}
-
-	/**
-	 * Clear top components.
-	 */
-	public void clearTopComponents() {
-		this.panelGridContent.removeAll();
-		this.panelGridContent.revalidate();
+	public void setTopPanel(JPanel panel) {
+		panel.setBackground(Color.WHITE);
+		
+		panelTop.remove(panelGridTop);
+		panelTop.add(panel, BorderLayout.CENTER);
+		
+		panelTop.revalidate();
 	}
 
 	/**
@@ -437,7 +430,6 @@ public abstract class AbstractDialog extends JDialog {
 		Font fontText = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
 
 		GridBagLayout gblTop = new GridBagLayout();
-		JPanel panelGridTop = new JPanel();
 		panelGridTop.setLayout(gblTop);
 		panelGridTop.setBackground(Color.WHITE);
 

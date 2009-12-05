@@ -42,13 +42,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -103,6 +106,8 @@ import neos.resi.gui.helpers.ObservingTextField;
 import neos.resi.gui.models.FindingsTableModel;
 import neos.resi.gui.models.PresentAttendeesTableModel;
 import neos.resi.gui.models.RotateSpinnerNumberModel;
+import neos.resi.gui.protocol.graphical_annotations.ImageEditor;
+import neos.resi.gui.workers.ImageEditorWriteWorker;
 import neos.resi.gui.workers.ProtocolClockWorker;
 import neos.resi.tools.GUITools;
 
@@ -116,6 +121,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			"tabOk_24x24.png");
 	private final ImageIcon ICON_TAB_WARN = Data.getInstance().getIcon(
 			"tabWarning_24x24.png");
+
+	private Map<String, ImageEditor> imageEditors = new HashMap<String, ImageEditor>();
 
 	private boolean componentMarked = false;
 
@@ -425,30 +432,33 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		tbConfirmProt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (protCommTxtArea.getText().trim().equals(""))
+				if (protCommTxtArea.getText().trim().equals("")) {
 					currentProt.setComments("");
+				}
+
+				new ImageEditorWriteWorker().execute();
+
 				setVisible(false);
 			}
 		});
 
 		addTopComponent(tbConfirmProt);
-		
+
 		tbExitProt = GUITools.newImageButton(Data.getInstance().getIcon(
-		"exitProtocol_50x50_0.png"), Data.getInstance().getIcon(
-		"exitProtocol_50x50.png"));
-		tbExitProt.setToolTipText(Data.getInstance().getLocaleStr("menu.exitProt"));
-		tbExitProt.addActionListener(new ActionListener(){
+				"exitProtocol_50x50_0.png"), Data.getInstance().getIcon(
+				"exitProtocol_50x50.png"));
+		tbExitProt.setToolTipText(Data.getInstance().getLocaleStr(
+				"menu.exitProt"));
+		tbExitProt.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-
 				int option = JOptionPane.showConfirmDialog(neos.resi.gui.UI
 						.getInstance().getProtocolFrame(), GUITools
 						.getMessagePane(Data.getInstance().getLocaleStr(
-								"message.exitProtocol")), Data
-						.getInstance().getLocaleStr("question"),
-						JOptionPane.YES_NO_OPTION,
+								"message.exitProtocol")), Data.getInstance()
+						.getLocaleStr("question"), JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 
 				if (option == JOptionPane.YES_OPTION) {
@@ -457,8 +467,9 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					revMgmt.setRecommendation("");
 					UI.getInstance().getMainFrame().updateMeetingsTree();
 				}
-				
-			}});
+
+			}
+		});
 		addTopComponent(tbExitProt);
 
 		JButton sepBttn = GUITools.newImageButton();
@@ -819,7 +830,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		});
 
 		JLabel labelAttendees = new JLabel(Data.getInstance().getLocaleStr(
-		"editProtocol.reviewAtt"));
+				"editProtocol.reviewAtt"));
 		labelAttendees.setFont(UI.PROTOCOL_TITLE_FONT);
 
 		GUITools.addComponent(attPanel, gbl, labelAttendees, 0, 0, 2, 1, 1.0,
@@ -2176,6 +2187,24 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				}
 			}
 		}
+	}
+
+	public ImageEditor getImageEditor(File image) {
+		String imagePath = image.getAbsolutePath();
+
+		ImageEditor editor = imageEditors.get(imagePath);
+
+		if (editor == null) {
+			editor = new ImageEditor(UI.getInstance().getProtocolFrame(), image);
+
+			imageEditors.put(imagePath, editor);
+		}
+
+		return editor;
+	}
+	
+	public Map<String, ImageEditor> getImageEditors() {
+		return imageEditors;
 	}
 
 }

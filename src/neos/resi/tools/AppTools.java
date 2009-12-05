@@ -128,4 +128,53 @@ public class AppTools {
 		return file;
 	}
 
+	public static void writeBufferedImageToFile(BufferedImage image, File file) {
+		String filePath = file.getAbsolutePath();
+
+		String formatName = "png";
+
+		if (isWritableImageFile(file)) {
+			String[] filePathSplit = filePath.toLowerCase().split("\\.");
+			formatName = filePathSplit[filePathSplit.length - 1];
+		}
+
+		try {
+			ImageIO.write(image, formatName, file);
+		} catch (IOException e) {
+			// TODO Handle this!
+		}
+	}
+
+	public static boolean isReadableImageFile(File file) {
+		boolean isReadable = false;
+
+		String filePath = file.getAbsolutePath().toLowerCase();
+
+		for (String fileExtension : ImageIO.getReaderFileSuffixes()) {
+			if (filePath.endsWith("." + fileExtension.toLowerCase())) {
+				isReadable = true;
+			}
+		}
+
+		return isReadable;
+	}
+
+	public static boolean isWritableImageFile(File file) {
+		boolean isWritable = false;
+
+		String filePath = file.getAbsolutePath().toLowerCase();
+
+		for (String fileExtension : ImageIO.getWriterFileSuffixes()) {
+			if (filePath.endsWith("." + fileExtension.toLowerCase())) {
+				isWritable = true;
+			}
+		}
+
+		return isWritable;
+	}
+
+	public static boolean isReadableWritableImageFile(File file) {
+		return isReadableImageFile(file) && isWritableImageFile(file);
+	}
+
 }

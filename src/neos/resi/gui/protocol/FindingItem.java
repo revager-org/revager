@@ -771,14 +771,19 @@ public class FindingItem extends JPanel implements Observer {
 						File ref = findMgmt.getExtReferences(currentFinding)
 								.get(exRefTbl.getSelectedRow());
 
-						try {
-							Desktop.getDesktop().open(ref);
-						} catch (Exception exc) {
-							JOptionPane.showMessageDialog(UI.getInstance()
-									.getProtocolFrame(), GUITools
-									.getMessagePane(exc.getMessage()), Data
-									.getInstance().getLocaleStr("error"),
-									JOptionPane.ERROR_MESSAGE);
+						if (AppTools.isReadableWritableImageFile(ref)) {
+							UI.getInstance().getProtocolFrame().getImageEditor(
+									ref).setVisible(true);
+						} else {
+							try {
+								Desktop.getDesktop().open(ref);
+							} catch (Exception exc) {
+								JOptionPane.showMessageDialog(UI.getInstance()
+										.getProtocolFrame(), GUITools
+										.getMessagePane(exc.getMessage()), Data
+										.getInstance().getLocaleStr("error"),
+										JOptionPane.ERROR_MESSAGE);
+							}
 						}
 					}
 				}
@@ -988,5 +993,4 @@ public class FindingItem extends JPanel implements Observer {
 	public Finding getCurrentFinding() {
 		return currentFinding;
 	}
-
 }

@@ -26,7 +26,6 @@ import neos.resi.app.model.Data;
 import neos.resi.app.model.DataException;
 import neos.resi.app.model.appdata.AppSettingKey;
 import neos.resi.app.model.schema.Meeting;
-import neos.resi.gui.UI;
 
 /**
  * The Class TreeMeeting.
@@ -34,7 +33,7 @@ import neos.resi.gui.UI;
 public class TreeMeeting {
 
 	private ApplicationData appData = Data.getInstance().getAppData();
-	
+
 	private Meeting meeting;
 
 	/**
@@ -102,13 +101,14 @@ public class TreeMeeting {
 		String location = meeting.getPlannedLocation();
 
 		String clock = Data.getInstance().getLocaleStr("tree.clock");
-		String output=null;
+		String output = null;
 		try {
 
-			if(appData.getSetting(AppSettingKey.APP_LANGUAGE).equals("en")){
-				output=date + ", " + start + "-" + end + ", " + location;	
-			}else{
-				output=date + ", " + start + "-" + end + " " + clock + ", " + location;	
+			if (appData.getSetting(AppSettingKey.APP_LANGUAGE).equals("en")) {
+				output = date + ", " + start + "-" + end + ", " + location;
+			} else {
+				output = date + ", " + start + "-" + end + " " + clock + ", "
+						+ location;
 			}
 		} catch (DataException e) {
 			// TODO Auto-generated catch block

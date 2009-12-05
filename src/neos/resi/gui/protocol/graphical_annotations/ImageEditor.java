@@ -13,8 +13,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -135,13 +133,6 @@ public class ImageEditor extends AbstractDialog {
 		JScrollPane scrollImage = new JScrollPane(panelGbl);
 		scrollImage.getVerticalScrollBar().setUnitIncrement(12);
 		scrollImage.getHorizontalScrollBar().setUnitIncrement(12);
-		scrollImage.addMouseWheelListener(new MouseWheelListener() {
-			@Override
-			public void mouseWheelMoved(MouseWheelEvent e) {
-				// TODO Update panalImage
-				panelImage.revalidate();
-			}
-		});
 
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(scrollImage);

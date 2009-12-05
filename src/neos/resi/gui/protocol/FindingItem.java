@@ -70,6 +70,7 @@ import neos.resi.app.model.schema.Aspect;
 import neos.resi.app.model.schema.Finding;
 import neos.resi.app.model.schema.Protocol;
 import neos.resi.gui.UI;
+import neos.resi.gui.helpers.DefaultTableHeaderCellRenderer;
 import neos.resi.gui.helpers.FileChooser;
 import neos.resi.gui.models.FindAspTableModel;
 import neos.resi.gui.models.FindExRefTableModel;
@@ -77,7 +78,6 @@ import neos.resi.gui.models.FindRefTableModel;
 import neos.resi.gui.protocol.AddAspToFindPopupWindow.ButtonClicked;
 import neos.resi.tools.AppTools;
 import neos.resi.tools.GUITools;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  * The Class FindingItem.
@@ -686,7 +686,7 @@ public class FindingItem extends JPanel implements Observer {
 			}
 		};
 
-		DefaultTableCellHeaderRenderer headRend = new DefaultTableCellHeaderRenderer() {
+		DefaultTableHeaderCellRenderer headRend = new DefaultTableHeaderCellRenderer() {
 			@Override
 			public Font getFont() {
 				return UI.PROTOCOL_FONT;

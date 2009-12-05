@@ -436,7 +436,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					currentProt.setComments("");
 				}
 
-				new ImageEditorWriteWorker().execute();
+				new ImageEditorWriteWorker(currentProt).execute();
 
 				setVisible(false);
 			}

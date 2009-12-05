@@ -51,6 +51,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -404,8 +405,12 @@ public class FindingItem extends JPanel implements Observer {
 									new MatteBorder(1, 1, 1, 1,
 											UI.SEPARATOR_COLOR)));
 
+							JTextField inputField = new JTextField();
+							inputField.setText(Data.getInstance().getLocaleStr(
+									"editProtocol.finding.stdFileName"));
+
 							JPanel messagePane = new JPanel(new BorderLayout());
-							messagePane.add(labelImg, BorderLayout.CENTER);
+							messagePane.add(labelImg, BorderLayout.NORTH);
 							messagePane
 									.add(
 											new JLabel(
@@ -413,21 +418,39 @@ public class FindingItem extends JPanel implements Observer {
 															.getInstance()
 															.getLocaleStr(
 																	"editProtocol.message.askForFileName")),
-											BorderLayout.SOUTH);
+											BorderLayout.CENTER);
+							messagePane.add(inputField, BorderLayout.SOUTH);
 
-							String fileName = (String) JOptionPane
-									.showInputDialog(
-											UI.getInstance().getProtocolFrame(),
-											messagePane,
-											Data.getInstance().getLocaleStr(
-													"confirm"),
-											JOptionPane.DEFAULT_OPTION,
-											null,
-											null,
-											Data
-													.getInstance()
-													.getLocaleStr(
-															"editProtocol.finding.stdFileName"));
+							// String fileName = (String) JOptionPane
+							// .showInputDialog(
+							// UI.getInstance().getProtocolFrame(),
+							// messagePane,
+							// Data.getInstance().getLocaleStr(
+							// "confirm"),
+							// JOptionPane.DEFAULT_OPTION,
+							// null,
+							// null,
+							// Data
+							// .getInstance()
+							// .getLocaleStr(
+							// "editProtocol.finding.stdFileName"));
+
+							Object[] options = { "Speichern", "Bearbeiten",
+									"Abbrechen" };
+
+							int action = JOptionPane.showOptionDialog(UI
+									.getInstance().getProtocolFrame(),
+									messagePane, Data.getInstance()
+											.getLocaleStr("confirm"),
+									JOptionPane.YES_NO_CANCEL_OPTION,
+									JOptionPane.PLAIN_MESSAGE, null, options,
+									options[0]);
+
+							String fileName = null;
+
+							if (action != 2) {
+								fileName = inputField.getText();
+							}
 
 							if (fileName != null && !fileName.trim().equals("")) {
 								findingMgmt.addExtReference(img, fileName,
@@ -436,6 +459,20 @@ public class FindingItem extends JPanel implements Observer {
 								fertm.fireTableDataChanged();
 
 								updateTableButtons();
+							}
+
+							if (action == 1) {
+								int numberOfExtRefs = findingMgmt
+										.getExtReferences(currentFinding)
+										.size();
+
+								File extRef = findingMgmt.getExtReferences(
+										currentFinding)
+										.get(numberOfExtRefs - 1);
+
+								UI.getInstance().getProtocolFrame()
+										.getImageEditor(extRef)
+										.setVisible(true);
 							}
 						}
 

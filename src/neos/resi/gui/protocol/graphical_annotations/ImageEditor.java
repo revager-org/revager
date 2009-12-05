@@ -2,6 +2,7 @@ package neos.resi.gui.protocol.graphical_annotations;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -72,12 +73,14 @@ public class ImageEditor extends AbstractDialog {
 	private Color currentColor = Color.RED;
 	private int currentThickness = DEFAULT_THICKNESS;
 
-	private JButton buttonColor;
+	private JPanel buttonColor;
 	private JButton buttonCancel;
 	private JButton buttonConfirm;
 
 	public ImageEditor(Frame parent, File fileImage) {
 		super(parent);
+
+		setTitle(Data.getInstance().getLocaleStr("graphicalEditor.title"));
 
 		ImageAnnotation annotation = ImageAnnotation.newEllipseAnnotation(
 				currentColor, DEFAULT_THICKNESS);
@@ -164,6 +167,9 @@ public class ImageEditor extends AbstractDialog {
 				updateUndoRedoButtons();
 			}
 		});
+		buttonUndo.setToolTipText(Data.getInstance().getLocaleStr(
+				"graphicalEditor.undo"));
+
 		buttonRedo = GUITools.newImageButton(Data.getInstance().getIcon(
 				"redo_50x50_0.png"), Data.getInstance().getIcon(
 				"redo_50x50.png"));
@@ -174,6 +180,8 @@ public class ImageEditor extends AbstractDialog {
 				updateUndoRedoButtons();
 			}
 		});
+		buttonRedo.setToolTipText(Data.getInstance().getLocaleStr(
+				"graphicalEditor.redo"));
 
 		buttonGroup = new ButtonGroup();
 
@@ -303,11 +311,16 @@ public class ImageEditor extends AbstractDialog {
 		panelThickness.setBackground(Color.WHITE);
 		registerInToolTipManager(panelThickness);
 
-		buttonColor = new JButton();
+		buttonColor = new JPanel();
+		buttonColor.setToolTipText(Data.getInstance().getLocaleStr(
+				"graphicalEditor.color"));
 		buttonColor.setPreferredSize(new Dimension(30, 30));
 		buttonColor.setBackground(currentColor);
-		buttonColor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		buttonColor.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
+		buttonColor.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		buttonColor.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				Color selectedColor = JColorChooser.showDialog(
 						getImageEditorDialog(), Data.getInstance()
 								.getLocaleStr("graphicalEditor.chooseColor"),
@@ -402,8 +415,9 @@ public class ImageEditor extends AbstractDialog {
 				sliderThickness.getValue()));
 		panelThicknessPreview.revalidate();
 
-		String tooltip = "Thickness: "
-				+ Integer.toString(sliderThickness.getValue()) + " px";
+		String tooltip = Data.getInstance().getLocaleStr(
+				"graphicalEditor.thickness")
+				+ ": " + Integer.toString(sliderThickness.getValue()) + " px";
 
 		panelThickness.setToolTipText(tooltip);
 		sliderThickness.setToolTipText(tooltip);

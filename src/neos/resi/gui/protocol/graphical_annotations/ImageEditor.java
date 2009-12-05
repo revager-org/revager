@@ -314,9 +314,9 @@ public class ImageEditor extends AbstractDialog {
 		buttonColor = new JPanel();
 		buttonColor.setToolTipText(Data.getInstance().getLocaleStr(
 				"graphicalEditor.color"));
-		buttonColor.setPreferredSize(new Dimension(30, 30));
+		buttonColor.setPreferredSize(new Dimension(32, 32));
 		buttonColor.setBackground(currentColor);
-		buttonColor.setBorder(new MatteBorder(1, 1, 1, 1, Color.GRAY));
+		buttonColor.setBorder(new MatteBorder(2, 2, 2, 2, Color.GRAY));
 		buttonColor.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		buttonColor.addMouseListener(new MouseAdapter() {
 			@Override
@@ -330,10 +330,13 @@ public class ImageEditor extends AbstractDialog {
 					buttonColor.setBackground(selectedColor);
 					currentColor = selectedColor;
 
-					if (currentColor.equals(Color.WHITE)) {
-						panelThicknessPreview.setBackground(Color.LIGHT_GRAY);
-					} else {
-						panelThicknessPreview.setBackground(currentColor);
+					if (panelThicknessPreview.isEnabled()) {
+						if (currentColor.equals(Color.WHITE)) {
+							panelThicknessPreview
+									.setBackground(Color.LIGHT_GRAY);
+						} else {
+							panelThicknessPreview.setBackground(currentColor);
+						}
 					}
 
 					panelImage.getCurrentAnnotation().setColor(currentColor);
@@ -398,7 +401,7 @@ public class ImageEditor extends AbstractDialog {
 	private void enableThickness(boolean enable) {
 		sliderThickness.setEnabled(enable);
 
-		panelThicknessPreview.setEnabled(false);
+		panelThicknessPreview.setEnabled(enable);
 
 		if (enable) {
 			panelThicknessPreview.setBackground(currentColor);

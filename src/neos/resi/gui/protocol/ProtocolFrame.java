@@ -1637,9 +1637,9 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 							Data.getInstance().getLocaleStr("button.discard"),
 							Data.getInstance().getLocaleStr("button.abort") };
 
-					int option = JOptionPane.showOptionDialog(neos.resi.gui.UI
-							.getInstance().getProtocolFrame(), GUITools
-							.getMessagePane(Data.getInstance().getLocaleStr(
+					int option = JOptionPane.showOptionDialog(UI.getInstance()
+							.getProtocolFrame(), GUITools.getMessagePane(Data
+							.getInstance().getLocaleStr(
 									"message.confirmProtocol")), Data
 							.getInstance().getLocaleStr("question"),
 							JOptionPane.YES_NO_OPTION,
@@ -1647,6 +1647,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 							options[0]);
 
 					if (option == JOptionPane.YES_OPTION) {
+						new ImageEditorWriteWorker(currentProt).execute();
+						
 						UI.getInstance().getProtocolFrame().setVisible(false);
 					} else if (option == JOptionPane.NO_OPTION) {
 						UI.getInstance().getProtocolFrame().setVisible(false);
@@ -1655,8 +1657,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					}
 				} else {
 
-					int option = JOptionPane.showConfirmDialog(neos.resi.gui.UI
-							.getInstance().getProtocolFrame(), GUITools
+					int option = JOptionPane.showConfirmDialog(UI.getInstance()
+							.getProtocolFrame(), GUITools
 							.getMessagePane(Data.getInstance().getLocaleStr(
 									"message.exitProtocol")), Data
 							.getInstance().getLocaleStr("question"),
@@ -2202,7 +2204,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		return editor;
 	}
-	
+
 	public Map<String, ImageEditor> getImageEditors() {
 		return imageEditors;
 	}

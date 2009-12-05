@@ -435,8 +435,13 @@ public class FindingItem extends JPanel implements Observer {
 							// .getLocaleStr(
 							// "editProtocol.finding.stdFileName"));
 
-							Object[] options = { "Speichern", "Bearbeiten",
-									"Abbrechen" };
+							Object[] options = {
+									Data.getInstance().getLocaleStr(
+											"findingsItem.save"),
+									Data.getInstance().getLocaleStr(
+											"findingsItem.edit"),
+									Data.getInstance().getLocaleStr(
+											"findingsItem.abort") };
 
 							int action = JOptionPane.showOptionDialog(UI
 									.getInstance().getProtocolFrame(),

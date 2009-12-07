@@ -73,7 +73,8 @@ public class ConfirmMeetingAction extends AbstractAction {
 			newMeeting.setPlannedEnd(meetDialog.getEnd());
 			newMeeting.setPlannedLocation(meetDialog.getLocationTxt());
 			newMeeting.setCanceled(meetDialog.getCanceled());
-
+			Application.getInstance().getReviewMgmt().setRecommendation("");
+			
 			if (meetDialog.isNewMeeting()) {
 				Application.getInstance().getMeetingMgmt().addMeeting(
 						newMeeting);

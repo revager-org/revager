@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse.ant.import?>
 <project basedir="." default="dist" name="RevAger">
+	
+	<property file="src/neos/resi/resources/appResources.properties"/>
+	
 	<property environment="env" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.6" />
@@ -10,7 +13,6 @@
 	<property name="lib" location="lib" />
 	<property name="build" location="build" />
 	<property name="dist" location="dist" />
-	<property name="revager-version" value="1.2" />
 
 	<path id="RevAger.classpath">
 		<pathelement location="${build}" />
@@ -55,11 +57,11 @@
 
 	<target name="dist" depends="unzip-libs,build" description="generate the distribution">
 		<mkdir dir="${dist}" />
-		<jar jarfile="${dist}/revager_${revager-version}.jar" basedir="${build}" level="9">
+		<jar jarfile="${dist}/revager_${appVersion}.jar" basedir="${build}" level="9">
 			<manifest>
 				<attribute name="Main-Class" value="neos.resi.Main" />
-				<attribute name="Implementation-Title" value="RevAger" />
-				<attribute name="Implementation-Version" value="${revager-version} ${TODAY}" />
+				<attribute name="Implementation-Title" value="${appName}" />
+				<attribute name="Implementation-Version" value="${appVersion} (Build ${appBuild})" />
 				<attribute name="Implementation-Vendor" value="Team NEOS" />
 
 			</manifest>

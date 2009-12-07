@@ -82,18 +82,13 @@ public class ImageEditor extends AbstractDialog {
 	public ImageEditor(Frame parent, File fileImage) {
 		super(parent);
 
-		addWindowListener(new WindowListener(){
-
+		addWindowListener(new WindowListener() {
 			@Override
 			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
@@ -107,28 +102,21 @@ public class ImageEditor extends AbstractDialog {
 
 			@Override
 			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}});
-		
+			}
+		});
+
 		setTitle(Data.getInstance().getLocaleStr("graphicalEditor.title"));
 
 		ImageAnnotation annotation = ImageAnnotation.newEllipseAnnotation(

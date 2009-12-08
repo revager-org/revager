@@ -1,5 +1,9 @@
 ./bin
-#./.classpath
-#./.project
+./build
+./dist
+
+# ./.classpath
+# ./.project
+
 
 ./review-files

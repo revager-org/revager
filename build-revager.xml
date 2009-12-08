@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse.ant.import?>
+<project basedir="." default="dist" name="RevAger">
+
+	<property file="src/neos/resi/resources/appResources.properties" />
+
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+
+	<property name="src" location="src" />
+	<property name="lib" location="lib" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+
+	<path id="RevAger.classpath">
+		<pathelement location="${build}" />
+		<pathelement location="lib/derby.jar" />
+		<pathelement location="lib/iText-2.1.7.jar" />
+		<pathelement location="lib/junit-4.7.jar" />
+	</path>
+	<target name="init">
+		<mkdir dir="${build}" />
+		<copy includeemptydirs="false" todir="${build}">
+			<fileset dir="src">
+				<exclude name="**/*.launch" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}" />
+	</target>
+	<target depends="clean" name="cleanall" />
+	<target depends="build-subprojects,build-project" name="build" />
+	<target name="build-subprojects" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${build}" source="${source}" target="${target}">
+			<src path="${src}" />
+			<classpath refid="RevAger.classpath" />
+		</javac>
+	</target>
+
+
+	<target name="unzip-libs">
+		<echo> Unzip 3rd-party libs from ${lib} directory into ${build}</echo>
+		<unzip dest="${build}">
+			<fileset dir="${lib}">
+				<include name="**/*.jar" />
+			</fileset>
+		</unzip>
+	</target>
+
+
+	<target name="dist" depends="unzip-libs,build" description="generate the distribution">
+		<mkdir dir="${dist}" />
+		<jar jarfile="${dist}/revager_${appVersion}.jar" basedir="${build}" level="9">
+			<manifest>
+				<attribute name="Main-Class" value="neos.resi.Main" />
+				<attribute name="Implementation-Title" value="${appName}" />
+				<attribute name="Implementation-Version" value="${appVersion} (Build ${appBuild})" />
+				<attribute name="Implementation-Vendor" value="Team NEOS" />
+			</manifest>
+		</jar>
+	</target>
+
+</project>

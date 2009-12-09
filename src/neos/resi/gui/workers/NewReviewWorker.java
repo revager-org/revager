@@ -27,6 +27,7 @@ import neos.resi.app.AttendeeManagement;
 import neos.resi.app.model.Data;
 import neos.resi.gui.MainFrame;
 import neos.resi.gui.UI;
+import neos.resi.gui.actions.ActionRegistry;
 import neos.resi.tools.GUITools;
 
 /**
@@ -56,20 +57,15 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
+			
 
-			if (Data.getInstance().getMode() == "instant") {
-				UI.getInstance().getAttendeeDialog().setFromAssistant(true);
-				UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
-				UI.getInstance().getAttendeeDialog().setVisible(true);
-				UI.getInstance().getAttendeeDialog().setFromAssistant(false);
-			}
-
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
+				mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.createNewReviewSuccessful"), false);
 
 			mainframe.switchToEditMode();
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
+			
 		} catch (Exception e) {
 			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.noReviewInProcess"), false);

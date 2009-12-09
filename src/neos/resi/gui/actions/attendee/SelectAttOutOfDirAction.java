@@ -51,9 +51,12 @@ public class SelectAttOutOfDirAction extends AbstractAction {
 			if (popup.getAttendeeBx().getSelectedItem() != null) {
 				AppAttendee appAtt = ((AppAttendee) popup.getAttendeeBx()
 						.getSelectedItem());
-
+				
+				if(UI.getInstance().getAttendeeDialog().isVisible())
 				UI.getInstance().getAttendeeDialog().setCurrentAppAttendee(
 						appAtt);
+				else if(UI.getInstance().getAssistantDialog().isVisible())
+					UI.getInstance().getAssistantDialog().setCurrentAppAttendee(appAtt);
 			}
 		}
 	}

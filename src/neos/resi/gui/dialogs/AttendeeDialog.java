@@ -252,7 +252,8 @@ public class AttendeeDialog extends AbstractDialog {
 			if(fromAssistant){
 				setTitle(Data.getInstance().getLocaleStr("addYourself.title"));
 				setDescription(Data.getInstance().getLocaleStr("addYourself.description"));
-				cancelBttn.setEnabled(false);
+				cancelBttn.setText(Data.getInstance().getLocaleStr("back"));
+				//cancelBttn.setEnabled(false);
 				//closing operation has to be disabled, but how?
 				
 				
@@ -509,6 +510,9 @@ public class AttendeeDialog extends AbstractDialog {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				setVisible(false);
+				if(fromAssistant==true)
+					UI.getInstance().getAssistantDialog().setVisible(true);
+					
 			}
 		});
 

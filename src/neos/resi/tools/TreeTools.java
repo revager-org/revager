@@ -33,6 +33,8 @@ public class TreeTools {
 	/**
 	 * Checks if the first given path is descendant of the second given path.
 	 * 
+	 * @author http://www.javalobby.org/java/forums/t19857.html
+	 * 
 	 * @param path1
 	 *            the first path
 	 * @param path2
@@ -59,6 +61,8 @@ public class TreeTools {
 
 	/**
 	 * Gets the expansion state of the given tree.
+	 * 
+	 * @author http://www.javalobby.org/java/forums/t19857.html
 	 * 
 	 * @param tree
 	 *            the tree
@@ -91,6 +95,8 @@ public class TreeTools {
 	/**
 	 * Restore the expanstion state of the given tree.
 	 * 
+	 * @author http://www.javalobby.org/java/forums/t19857.html
+	 * 
 	 * @param tree
 	 *            the tree
 	 * @param row
@@ -110,6 +116,8 @@ public class TreeTools {
 
 	/**
 	 * Expands or collapses all elements of the given tree.
+	 * 
+	 * @author http://www.exampledepot.com/egs/javax.swing.tree/ExpandAll.html
 	 * 
 	 * @param tree
 	 *            the tree

@@ -13,13 +13,19 @@
 	<property name="lib" location="lib" />
 	<property name="build" location="build" />
 	<property name="dist" location="dist" />
+	<property name="test" location="${build}/neos/resi/test" />
+
+	<property name="derby" location="${lib}/derby.jar" />
+	<property name="iText" location="${lib}/iText-2.1.7.jar" />
+	<property name="junit" location="${lib}/junit-4.7.jar" />
 
 	<path id="RevAger.classpath">
 		<pathelement location="${build}" />
-		<pathelement location="lib/derby.jar" />
-		<pathelement location="lib/iText-2.1.7.jar" />
-		<pathelement location="lib/junit-4.7.jar" />
+		<pathelement location="${derby}" />
+		<pathelement location="${iText}" />
+		<pathelement location="${junit}" />
 	</path>
+
 	<target name="init">
 		<mkdir dir="${build}" />
 		<copy includeemptydirs="false" todir="${build}">
@@ -46,23 +52,27 @@
 
 
 	<target name="unzip-libs">
-		<echo> Unzip 3rd-party libs from ${lib} directory into ${build}</echo>
-		<unzip dest="${build}">
-			<fileset dir="${lib}">
-				<include name="**/*.jar" />
-			</fileset>
-		</unzip>
+		<echo>Unzip 3rd-party libs from ${lib} directory into ${build}</echo>
+		<unzip src="${derby}" dest="${build}" />
+		<unzip src="${iText}" dest="${build}" />
 	</target>
 
 
-	<target name="dist" depends="unzip-libs,build" description="generate the distribution">
+	<target name="remove-tests">
+		<delete dir="${test}" />
+	</target>
+
+
+	<target name="dist" depends="unzip-libs,build,remove-tests" description="generate the distribution">
 		<mkdir dir="${dist}" />
 		<jar jarfile="${dist}/revager_${appVersion}.jar" basedir="${build}" level="9">
 			<manifest>
 				<attribute name="Main-Class" value="neos.resi.Main" />
+				<attribute name="Class-Path" value="." />
 				<attribute name="Implementation-Title" value="${appName}" />
 				<attribute name="Implementation-Version" value="${appVersion} (Build ${appBuild})" />
-				<attribute name="Implementation-Vendor" value="Team NEOS" />
+				<attribute name="Implementation-Vendor" value="Team N.E.O.S." />
+				<attribute name="SplashScreen-Image" value="neos/resi/resources/splashScreen.gif" />
 			</manifest>
 		</jar>
 	</target>

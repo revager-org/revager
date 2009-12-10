@@ -46,7 +46,7 @@ import neos.resi.gui.TextPopupWindow.ButtonClicked;
 import neos.resi.tools.AppTools;
 import neos.resi.tools.GUITools;
 
-public class ImageEditor extends AbstractDialog {
+public class ImageEditorDialog extends AbstractDialog {
 	private static final long serialVersionUID = 1L;
 
 	private File fileImage = null;
@@ -79,7 +79,7 @@ public class ImageEditor extends AbstractDialog {
 	private JButton buttonCancel;
 	private JButton buttonConfirm;
 
-	public ImageEditor(Frame parent, File fileImage) {
+	public ImageEditorDialog(Frame parent, File fileImage) {
 		super(parent);
 
 		addWindowListener(new WindowListener() {
@@ -468,7 +468,7 @@ public class ImageEditor extends AbstractDialog {
 		buttonRedo.setEnabled(panelImage.isRedoPossible());
 	}
 
-	private ImageEditor getImageEditorDialog() {
+	private ImageEditorDialog getImageEditorDialog() {
 		return this;
 	}
 

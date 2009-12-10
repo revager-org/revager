@@ -343,6 +343,8 @@ public class FileTools {
 	 * Copies directly from one stream to another without knowing the size,
 	 * length or EOF of the source.
 	 * 
+	 * @author http://mindprod.com/
+	 * 
 	 * @param source
 	 *            Stream to copy from
 	 * @param target
@@ -406,6 +408,8 @@ public class FileTools {
 	/**
 	 * This helper method reads blocks of a given InputStream. It is used by the
 	 * copyStream method.
+	 * 
+	 * @author http://mindprod.com/
 	 * 
 	 * @param in
 	 *            the InputStream to read from

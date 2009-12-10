@@ -2,6 +2,8 @@
  * This class is inspired by the Java Swing Date Picker (version 0.99)
  * developed by javadao aka Mark. The Java Swing Date Picker is licensed
  * under the Academic Free License (AFL).
+ * 
+ * URL: https://sourceforge.net/projects/datepicker/
  */
 package neos.resi.gui.helpers;
 
@@ -56,14 +58,13 @@ public class DatePicker extends Observable implements Runnable,
 	/**
 	 * Internally used font with plain style
 	 */
-	protected static final Font FONT_PLAIN = new Font(Font.DIALOG,
-			Font.PLAIN, 12);
+	protected static final Font FONT_PLAIN = new Font(Font.DIALOG, Font.PLAIN,
+			12);
 
 	/**
 	 * Internally used font with bold style
 	 */
-	protected static final Font FONT_BOLD = new Font(Font.DIALOG,
-			Font.BOLD, 12);
+	protected static final Font FONT_BOLD = new Font(Font.DIALOG, Font.BOLD, 12);
 
 	/**
 	 * This sub-class represents a label for a single day.

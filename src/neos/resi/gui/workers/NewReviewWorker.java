@@ -53,8 +53,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 				"status.creatingNewReview"), true);
 
-		UI.getInstance().getAssistantDialog().setVisible(false);
-
+		
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
 			
@@ -65,6 +64,9 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.switchToEditMode();
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
+			
+			if(UI.getInstance().getAssistantDialog().getLevel().toString().toLowerCase().equals("level3"))
+				UI.getInstance().getAssistantDialog().updateInstantAtt();
 			
 		} catch (Exception e) {
 			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(

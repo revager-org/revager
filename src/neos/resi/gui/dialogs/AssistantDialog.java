@@ -154,7 +154,18 @@ public class AssistantDialog extends AbstractDialog {
 	private Attendee currentAttendee;
 	
 	
-	private enum Level {level1,level2,level3};
+	public enum Level {LEVEL1,LEVEL2,LEVEL3};
+
+	private boolean nameMissing;
+	
+	/**
+	 * Returns if name is missing or not
+	 * 
+	 * @return missing
+	 */
+	public boolean isNameMissing() {
+		return nameMissing;
+	}
 
 	/**
 	 * Gets the path.
@@ -179,6 +190,7 @@ public class AssistantDialog extends AbstractDialog {
 	 * Sets the select mode.
 	 */
 	public void setSelectMode() {
+		dialogLevel=Level.LEVEL1;
 		
 		setDescription(Data.getInstance().getLocaleStr(
 				"assistantDialog.selectModeDescription"));
@@ -188,6 +200,9 @@ public class AssistantDialog extends AbstractDialog {
 		basePanel.setLayout(gbl);
 
 		buttonConfirm.setEnabled(false);
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_16x16.png"));
+		buttonConfirm.setText(Data.getInstance().getLocaleStr("confirm"));
+		
 		buttonBack.setEnabled(false);
 
 		JButton moderator = GUITools.newImageButton();
@@ -246,8 +261,8 @@ public class AssistantDialog extends AbstractDialog {
 	 */
 	public void setSelectReview() {
 		
-		if(dialogLevel==Level.level1)
-			dialogLevel=Level.level2;
+		dialogLevel=Level.LEVEL2;
+
 		
 		setDescription(Data.getInstance().getLocaleStr(
 				"assistantDialog.selectReviewDescription"));
@@ -409,10 +424,10 @@ public class AssistantDialog extends AbstractDialog {
 	}
 	
 	/**
-	 * Changes to level3 of the dialog
+	 * Changes to level3 view of the dialog
 	 */
 	public void setAddAttToInstRev(){
-		dialogLevel = Level.level3;
+		dialogLevel = Level.LEVEL3;
 		
 		setDescription(Data.getInstance().getLocaleStr("addYourself.description"));
 		
@@ -421,6 +436,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		buttonBack.setEnabled(true);
 		buttonConfirm.setEnabled(true);
+
 		
 		nameLabel=new JLabel(Data.getInstance().getLocaleStr("attendee.name"));
 		contactLabel=new JLabel(Data.getInstance().getLocaleStr("attendee.contact"));
@@ -499,7 +515,7 @@ public class AssistantDialog extends AbstractDialog {
 					@Override
 					protected Void doInBackground() throws Exception {
 						StrengthPopupWindow popup = new StrengthPopupWindow(UI
-								.getInstance().getAttendeeDialog(), title);
+								.getInstance().getAssistantDialog(), title);
 
 						/*
 						 * Import the standard catalogs, if no catalogs exist in
@@ -609,7 +625,7 @@ public class AssistantDialog extends AbstractDialog {
 	public AssistantDialog(Frame parent) {
 		super(parent);
 
-		dialogLevel = Level.level1;
+		dialogLevel = Level.LEVEL1;
 		setTitle(Data.getInstance().getLocaleStr("assistantDialog.title"));
 		setIcon(Data.getInstance().getIcon("assistantDialog_64x64.png"));
 
@@ -668,13 +684,13 @@ public class AssistantDialog extends AbstractDialog {
 		buttonBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(dialogLevel==Level.level2){
+				if(dialogLevel==Level.LEVEL2){
 					UI.getInstance().getAssistantDialog().setSelectMode();
-					dialogLevel=Level.level1;
+					dialogLevel=Level.LEVEL1;
 				}
-				else if(dialogLevel==Level.level3){
+				else if(dialogLevel==Level.LEVEL3){
 					UI.getInstance().getAssistantDialog().setSelectReview();
-					dialogLevel=Level.level2;
+					dialogLevel=Level.LEVEL2;
 				}
 			}
 		});
@@ -694,124 +710,15 @@ public class AssistantDialog extends AbstractDialog {
 
 					return;
 				}
-				if(UI.getInstance().getAssistantDialog().getSelected() == AssistantDialog.Selection.NEW_REVIEW&&Data.getInstance().getMode().equals("instant")&&dialogLevel==Level.level2)
+				if(UI.getInstance().getAssistantDialog().getSelected() == AssistantDialog.Selection.NEW_REVIEW&&Data.getInstance().getMode().equals("instant")&&dialogLevel==Level.LEVEL2)
 					setAddAttToInstRev();
-				else if(UI.getInstance().getAssistantDialog().getSelected() == AssistantDialog.Selection.NEW_REVIEW&&Data.getInstance().getMode().equals("instant")&&dialogLevel==Level.level3){
-					ActionRegistry.getInstance().get(
-							InitializeMainFrameAction.class.getName())
-							.actionPerformed(e);
-
-					Role[] roles = Role.values();
-					String attContact;
-
-					nameTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
-					contactScrllPn.setBorder(UI.STANDARD_BORDER);
-
-					String attName = nameTxtFld.getText();
-					if(contactTxtArea.getText()!=null)
-						attContact = contactTxtArea.getText();
-					else
-						attContact = "";
-						
-					Role attRole = roles[roleCmbBx.getSelectedIndex()];
-
-					boolean nameMissing = false;
-
-					String message = "";
-
-					if (attName.trim().equals("")) {
-						nameMissing = true;
-					}
-
-
-					if (nameMissing) {
-						message = Data.getInstance().getLocaleStr(
-								"attendeeDialog.message.noName");
-
-						setMessage(message);
-						nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
-					} else {
-						
-						
-						/*
-						 * Update the app attendee in the database
-						 */
-						try {
-							if (currentAppAttendee == null) {
-								currentAppAttendee = Data.getInstance().getAppData().getAttendee(
-										attName, attContact);
-
-								if (currentAppAttendee == null) {
-									currentAppAttendee = Data.getInstance().getAppData()
-											.newAttendee(attName, attContact);
-								}
-							} else {
-								currentAppAttendee.setNameAndContact(attName, attContact);
-							}
-
-							for (String str : currentAppAttendee.getStrengths()) {
-								currentAppAttendee.removeStrength(str);
-							}
-
-							for (String str : strengthList) {
-								currentAppAttendee.addStrength(str);
-							}
-						} catch (DataException e1) {
-							JOptionPane.showMessageDialog(UI.getInstance().getAssistantDialog(), GUITools
-									.getMessagePane(e1.getMessage()), Data.getInstance()
-									.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
-						}
-
-						/*
-						 * update the review attendee
-						 */
-						Attendee newAtt = new Attendee();
-
-						newAtt.setName(attName);
-						newAtt.setContact(attContact);
-						newAtt.setRole(attRole);
-
-						if (currentAttendee == null) {
-							if (!Application.getInstance().getAttendeeMgmt().isAttendee(
-									newAtt)) {
-								Application.getInstance().getAttendeeMgmt().addAttendee(
-										attName, attContact, attRole, null);
-							} else {
-								setMessage(Data.getInstance().getLocaleStr(
-										"attendeeDialog.message.attendeeDupl"));
-
-								return;
-							}
-						} else {
-							newAtt.setAspects(currentAttendee.getAspects());
-
-							if (Application.getInstance().getAttendeeComp().compare(
-									currentAttendee, newAtt) != 0) {
-								if (!Application.getInstance().getAttendeeMgmt()
-										.editAttendee(currentAttendee, newAtt)) {
-									setMessage(Data.getInstance().getLocaleStr(
-											"attendeeDialog.message.attendeeDupl"));
-
-									return;
-								}
-							}
-						}
-
-						setVisible(false);
-
-						UI.getInstance().getMainFrame().updateAttendeesTable(false);
-						UI.getInstance().getMainFrame().updateButtons();
-
-						UI.getInstance().getAspectsManagerFrame().updateViews();
-					}
-				
-				}else{
+				else{
 				ActionRegistry.getInstance().get(
 						InitializeMainFrameAction.class.getName())
 						.actionPerformed(e);
 				}
-				if(dialogLevel==Level.level2)
-					dialogLevel=Level.level3;
+				if(dialogLevel==Level.LEVEL2&&Data.getInstance().getMode().equals("instant"))
+					dialogLevel=Level.LEVEL3;
 			}
 		});
 
@@ -878,6 +785,7 @@ public class AssistantDialog extends AbstractDialog {
 		public void focusLost(FocusEvent e) {
 		}
 	};
+	
 	
 	
 	/**
@@ -985,6 +893,102 @@ public class AssistantDialog extends AbstractDialog {
 		}
 
 		return strengthList;
+	}
+	
+	/**
+	 * Adds instant reviewer
+	 * 
+	 */
+	public void updateInstantAtt(){
+		
+
+		Role[] roles = Role.values();
+		String attContact;
+
+		nameTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
+		contactScrllPn.setBorder(UI.STANDARD_BORDER);
+
+		String attName = nameTxtFld.getText();
+		if(contactTxtArea.getText()!=null)
+			attContact = contactTxtArea.getText();
+		else
+			attContact = "";
+			
+		Role attRole = roles[roleCmbBx.getSelectedIndex()];
+
+		nameMissing = false;
+
+		String message = "";
+
+		if (attName.trim().equals("")) {
+			nameMissing = true;
+		}
+
+
+		if (nameMissing) {
+			message = Data.getInstance().getLocaleStr(
+					"attendeeDialog.message.noName");
+
+			setMessage(message);
+			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
+		} else {
+			
+			
+			/*
+			 * Update the app attendee in the database
+			 */
+			try {
+				if (currentAppAttendee == null) {
+					currentAppAttendee = Data.getInstance().getAppData().getAttendee(
+							attName, attContact);
+
+					if (currentAppAttendee == null) {
+						currentAppAttendee = Data.getInstance().getAppData()
+								.newAttendee(attName, attContact);
+					}
+				} else {
+					currentAppAttendee.setNameAndContact(attName, attContact);
+				}
+
+				for (String str : currentAppAttendee.getStrengths()) {
+					currentAppAttendee.removeStrength(str);
+				}
+
+				for (String str : strengthList) {
+					currentAppAttendee.addStrength(str);
+				}
+			} catch (DataException e1) {
+				JOptionPane.showMessageDialog(UI.getInstance().getAssistantDialog(), GUITools
+						.getMessagePane(e1.getMessage()), Data.getInstance()
+						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+			}
+			
+			/*
+			 * update the review attendee
+			 */
+			Attendee newAtt = new Attendee();
+
+			newAtt.setName(attName);
+			newAtt.setContact(attContact);
+			newAtt.setRole(attRole);
+
+			Application.getInstance().getAttendeeMgmt().addAttendee(attName, attContact, attRole, null);
+
+			setVisible(false);
+
+			UI.getInstance().getAspectsManagerFrame().updateViews();
+		}
+		
+	}
+
+	/**
+	 * Gets the dialog level
+	 * 
+	 * @return dialogLevel
+	 */
+	public Level getLevel() {
+		
+		return dialogLevel;
 	}
 	
 	

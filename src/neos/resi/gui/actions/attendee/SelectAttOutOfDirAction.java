@@ -32,7 +32,7 @@ import neos.resi.gui.UI;
  */
 @SuppressWarnings("serial")
 public class SelectAttOutOfDirAction extends AbstractAction {
-
+	private DirectoryPopupWindow popup;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -41,10 +41,14 @@ public class SelectAttOutOfDirAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		DirectoryPopupWindow popup = new DirectoryPopupWindow(UI.getInstance()
+		if(UI.getInstance().getAttendeeDialog().isVisible())
+			popup = new DirectoryPopupWindow(UI.getInstance()
 				.getAttendeeDialog(), Data.getInstance().getLocaleStr(
 				"popup.directory.title"));
-
+		else if(UI.getInstance().getAssistantDialog().isVisible())
+			popup = new DirectoryPopupWindow(UI.getInstance()
+					.getAssistantDialog(), Data.getInstance().getLocaleStr(
+					"popup.directory.title"));
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == DirectoryPopupWindow.ButtonClicked.OK) {

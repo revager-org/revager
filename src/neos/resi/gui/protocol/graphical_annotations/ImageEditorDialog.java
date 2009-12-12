@@ -46,7 +46,7 @@ import neos.resi.gui.TextPopupWindow.ButtonClicked;
 import neos.resi.tools.AppTools;
 import neos.resi.tools.GUITools;
 
-public class ImageEditor extends AbstractDialog {
+public class ImageEditorDialog extends AbstractDialog {
 	private static final long serialVersionUID = 1L;
 
 	private File fileImage = null;
@@ -79,21 +79,16 @@ public class ImageEditor extends AbstractDialog {
 	private JButton buttonCancel;
 	private JButton buttonConfirm;
 
-	public ImageEditor(Frame parent, File fileImage) {
+	public ImageEditorDialog(Frame parent, File fileImage) {
 		super(parent);
 
-		addWindowListener(new WindowListener(){
-
+		addWindowListener(new WindowListener() {
 			@Override
 			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
@@ -107,28 +102,21 @@ public class ImageEditor extends AbstractDialog {
 
 			@Override
 			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}});
-		
+			}
+		});
+
 		setTitle(Data.getInstance().getLocaleStr("graphicalEditor.title"));
 
 		ImageAnnotation annotation = ImageAnnotation.newEllipseAnnotation(
@@ -480,7 +468,7 @@ public class ImageEditor extends AbstractDialog {
 		buttonRedo.setEnabled(panelImage.isRedoPossible());
 	}
 
-	private ImageEditor getImageEditorDialog() {
+	private ImageEditorDialog getImageEditorDialog() {
 		return this;
 	}
 

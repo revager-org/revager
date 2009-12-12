@@ -72,6 +72,9 @@ public class AboutDialog extends AbstractDialog {
 		JLabel versionLbl = new JLabel(Data.getInstance().getLocaleStr(
 				"about.version"));
 		versionLbl.setFont(fontNormal);
+		JLabel buildLbl = new JLabel(Data.getInstance().getLocaleStr(
+				"about.build"));
+		buildLbl.setFont(fontNormal);
 		JLabel releaseLbl = new JLabel(Data.getInstance().getLocaleStr(
 				"about.release"));
 		releaseLbl.setFont(fontNormal);
@@ -89,6 +92,10 @@ public class AboutDialog extends AbstractDialog {
 		JLabel appReleaseLbl = new JLabel(Data.getInstance().getResource(
 				"appRelease"));
 		appReleaseLbl.setFont(fontNormal);
+
+		JLabel appBuildLbl = new JLabel(Data.getInstance().getResource(
+				"appBuild"));
+		appBuildLbl.setFont(fontNormal);
 
 		JLabel authorInternetLbl = new JLabel(Data.getInstance().getResource(
 				"authorInternet"));
@@ -174,18 +181,22 @@ public class AboutDialog extends AbstractDialog {
 				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(this, gbl, appVersionLbl, 1, 1, 1, 1, 1, 1, 0, 0,
 				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, releaseLbl, 0, 2, 1, 1, 1, 1, 0, 25,
+		GUITools.addComponent(this, gbl, buildLbl, 0, 2, 1, 1, 1, 1, 0, 25, 0,
+				0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, appBuildLbl, 1, 2, 1, 1, 1, 1, 0, 0,
 				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, appReleaseLbl, 1, 2, 1, 1, 1, 1, 0, 0,
+		GUITools.addComponent(this, gbl, releaseLbl, 0, 3, 1, 1, 1, 1, 0, 25,
 				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, homepageLbl, 0, 3, 1, 1, 1, 1, 0, 25,
+		GUITools.addComponent(this, gbl, appReleaseLbl, 1, 3, 1, 1, 1, 1, 0, 0,
 				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, authorInternetLbl, 1, 3, 1, 1, 1, 1,
+		GUITools.addComponent(this, gbl, homepageLbl, 0, 4, 1, 1, 1, 1, 0, 25,
+				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, authorInternetLbl, 1, 4, 1, 1, 1, 1,
 				0, 0, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, emailLbl, 0, 4, 1, 1, 1, 1, 0, 25, 0,
+		GUITools.addComponent(this, gbl, emailLbl, 0, 5, 1, 1, 1, 1, 0, 25, 0,
 				0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, authorEmailLbl, 1, 4, 1, 1, 1, 1, 0,
+		GUITools.addComponent(this, gbl, authorEmailLbl, 1, 5, 1, 1, 1, 1, 0,
 				0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 
 		setMinimumSize(new Dimension(350, 400));

@@ -106,7 +106,7 @@ import neos.resi.gui.helpers.ObservingTextField;
 import neos.resi.gui.models.FindingsTableModel;
 import neos.resi.gui.models.PresentAttendeesTableModel;
 import neos.resi.gui.models.RotateSpinnerNumberModel;
-import neos.resi.gui.protocol.graphical_annotations.ImageEditor;
+import neos.resi.gui.protocol.graphical_annotations.ImageEditorDialog;
 import neos.resi.gui.workers.ImageEditorWriteWorker;
 import neos.resi.gui.workers.ProtocolClockWorker;
 import neos.resi.tools.GUITools;
@@ -122,7 +122,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private final ImageIcon ICON_TAB_WARN = Data.getInstance().getIcon(
 			"tabWarning_24x24.png");
 
-	private Map<String, ImageEditor> imageEditors = new HashMap<String, ImageEditor>();
+	private Map<String, ImageEditorDialog> imageEditors = new HashMap<String, ImageEditorDialog>();
 
 	private boolean componentMarked = false;
 
@@ -2191,13 +2191,13 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		}
 	}
 
-	public ImageEditor getImageEditor(File image) {
+	public ImageEditorDialog getImageEditor(File image) {
 		String imagePath = image.getAbsolutePath();
 
-		ImageEditor editor = imageEditors.get(imagePath);
+		ImageEditorDialog editor = imageEditors.get(imagePath);
 
 		if (editor == null) {
-			editor = new ImageEditor(UI.getInstance().getProtocolFrame(), image);
+			editor = new ImageEditorDialog(UI.getInstance().getProtocolFrame(), image);
 
 			imageEditors.put(imagePath, editor);
 		}
@@ -2205,7 +2205,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		return editor;
 	}
 
-	public Map<String, ImageEditor> getImageEditors() {
+	public Map<String, ImageEditorDialog> getImageEditors() {
 		return imageEditors;
 	}
 

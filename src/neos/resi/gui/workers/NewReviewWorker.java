@@ -27,7 +27,6 @@ import neos.resi.app.AttendeeManagement;
 import neos.resi.app.model.Data;
 import neos.resi.gui.MainFrame;
 import neos.resi.gui.UI;
-import neos.resi.gui.actions.ActionRegistry;
 import neos.resi.tools.GUITools;
 
 /**
@@ -63,11 +62,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 
 			mainframe.switchToEditMode();
 
-			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
-			
-			if(UI.getInstance().getAssistantDialog().getLevel().toString().toLowerCase().equals("level3"))
-				UI.getInstance().getAssistantDialog().updateInstantAtt();
-			
+			UI.getInstance().setStatus(UI.Status.DATA_SAVED);			
 		} catch (Exception e) {
 			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.noReviewInProcess"), false);

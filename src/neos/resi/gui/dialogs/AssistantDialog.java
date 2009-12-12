@@ -20,7 +20,6 @@ package neos.resi.gui.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -140,24 +139,25 @@ public class AssistantDialog extends AbstractDialog {
 	private JTextArea contactTxtArea;
 	private JComboBox roleCmbBx;
 	private JTable strengthTbl;
-	
+
 	private JButton directoryBttn;
 	private JButton addStrength = null;
 	private JButton removeStrength = null;
-	
+
 	private StrengthTableModel stm = null;
 	private List<String> strengthList = null;
 	private JScrollPane contactScrllPn;
 	private JPanel buttonPanel = null;
-	
+
 	private AppAttendee currentAppAttendee;
-	private Attendee currentAttendee;
-	
-	
-	public enum Level {LEVEL1,LEVEL2,LEVEL3};
+	//private Attendee currentAttendee;
+
+	public enum Level {
+		LEVEL1, LEVEL2, LEVEL3
+	};
 
 	private boolean nameMissing;
-	
+
 	/**
 	 * Returns if name is missing or not
 	 * 
@@ -190,8 +190,8 @@ public class AssistantDialog extends AbstractDialog {
 	 * Sets the select mode.
 	 */
 	public void setSelectMode() {
-		dialogLevel=Level.LEVEL1;
-		
+		dialogLevel = Level.LEVEL1;
+
 		setDescription(Data.getInstance().getLocaleStr(
 				"assistantDialog.selectModeDescription"));
 
@@ -202,7 +202,7 @@ public class AssistantDialog extends AbstractDialog {
 		buttonConfirm.setEnabled(false);
 		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_16x16.png"));
 		buttonConfirm.setText(Data.getInstance().getLocaleStr("confirm"));
-		
+
 		buttonBack.setEnabled(false);
 
 		JButton moderator = GUITools.newImageButton();
@@ -221,33 +221,47 @@ public class AssistantDialog extends AbstractDialog {
 		scribe.addActionListener(ActionRegistry.getInstance().get(
 				OpenScribeModeAction.class.getName()));
 
-		JButton instantReview = GUITools.newImageButton(Data.getInstance().getIcon("instantReview_128x128_0.png"),
-				Data.getInstance().getIcon("instantReview_128x128.png"));
-		instantReview.addActionListener(new ActionListener(){
+		JButton instantReview = GUITools.newImageButton(Data.getInstance()
+				.getIcon("instantReview_128x128_0.png"), Data.getInstance()
+				.getIcon("instantReview_128x128.png"));
+		instantReview.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Data.getInstance().setMode("instant");
 				UI.getInstance().getAssistantDialog().setSelectReview();
-			}});
+			}
+		});
 		instantReview.setEnabled(true);
-		
+
 		JLabel scribeLabel = new JLabel(Data.getInstance().getLocaleStr(
 				"mode.scribe"));
 		JLabel moderatorLabel = new JLabel(Data.getInstance().getLocaleStr(
 				"mode.moderator"));
 		JLabel instantRevLabel = new JLabel(Data.getInstance().getLocaleStr(
-		"mode.instant"));
+				"mode.instant"));
 
 		buttonExit.addActionListener(ActionRegistry.getInstance().get(
 				ExitAction.class.getName()));
 
-		GUITools.addComponent(basePanel, gbl, moderator,      0, 0, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.SOUTH);
-		GUITools.addComponent(basePanel, gbl, moderatorLabel, 0, 1, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTH);
-		GUITools.addComponent(basePanel, gbl, instantReview,  1, 0, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.SOUTH);
-		GUITools.addComponent(basePanel, gbl, instantRevLabel,1, 1, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTH);
-		GUITools.addComponent(basePanel, gbl, scribe,         2, 0, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.SOUTH);
-		GUITools.addComponent(basePanel, gbl, scribeLabel,    2, 1, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTH);
+		GUITools
+				.addComponent(basePanel, gbl, moderator, 0, 0, 1, 1, 1.0, 1.0,
+						0, 20, 0, 20, GridBagConstraints.NONE,
+						GridBagConstraints.SOUTH);
+		GUITools.addComponent(basePanel, gbl, moderatorLabel, 0, 1, 1, 1, 1.0,
+				1.0, 0, 20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTH);
+		GUITools.addComponent(basePanel, gbl, instantReview, 1, 0, 1, 1, 1.0,
+				1.0, 0, 20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.SOUTH);
+		GUITools.addComponent(basePanel, gbl, instantRevLabel, 1, 1, 1, 1, 1.0,
+				1.0, 0, 20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTH);
+		GUITools.addComponent(basePanel, gbl, scribe, 2, 0, 1, 1, 1.0, 1.0, 0,
+				20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.SOUTH);
+		GUITools.addComponent(basePanel, gbl, scribeLabel, 2, 1, 1, 1, 1.0,
+				1.0, 0, 20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTH);
 
 		buttonConfirm.requestFocusInWindow();
 
@@ -260,10 +274,9 @@ public class AssistantDialog extends AbstractDialog {
 	 * Sets the select review.
 	 */
 	public void setSelectReview() {
-		
-		dialogLevel=Level.LEVEL2;
 
-		
+		dialogLevel = Level.LEVEL2;
+
 		setDescription(Data.getInstance().getLocaleStr(
 				"assistantDialog.selectReviewDescription"));
 
@@ -422,32 +435,33 @@ public class AssistantDialog extends AbstractDialog {
 
 		pack();
 	}
-	
+
 	/**
 	 * Changes to level3 view of the dialog
 	 */
-	public void setAddAttToInstRev(){
+	public void setAddAttToInstRev() {
 		dialogLevel = Level.LEVEL3;
-		
-		setDescription(Data.getInstance().getLocaleStr("addYourself.description"));
-		
+
+		setDescription(Data.getInstance().getLocaleStr(
+				"addYourself.description"));
 
 		basePanel.removeAll();
 
 		buttonBack.setEnabled(true);
 		buttonConfirm.setEnabled(true);
 
-		
-		nameLabel=new JLabel(Data.getInstance().getLocaleStr("attendee.name"));
-		contactLabel=new JLabel(Data.getInstance().getLocaleStr("attendee.contact"));
-		roleLabel=new JLabel(Data.getInstance().getLocaleStr("attendee.role"));
-		strengthLabel=new JLabel(Data.getInstance().getLocaleStr("attendee.priorities"));
+		nameLabel = new JLabel(Data.getInstance().getLocaleStr("attendee.name"));
+		contactLabel = new JLabel(Data.getInstance().getLocaleStr(
+				"attendee.contact"));
+		roleLabel = new JLabel(Data.getInstance().getLocaleStr("attendee.role"));
+		strengthLabel = new JLabel(Data.getInstance().getLocaleStr(
+				"attendee.priorities"));
 
-		nameTxtFld=new JTextField();
-		contactTxtArea=new JTextArea();
+		nameTxtFld = new JTextField();
+		contactTxtArea = new JTextArea();
 		contactTxtArea.addFocusListener(focusListener);
 		contactScrllPn = GUITools.setIntoScrllPn(contactTxtArea);
-		roleCmbBx=new JComboBox();
+		roleCmbBx = new JComboBox();
 		roleCmbBx.addFocusListener(focusListener);
 
 		for (Role x : Role.values()) {
@@ -461,19 +475,21 @@ public class AssistantDialog extends AbstractDialog {
 				updateStrengthTable();
 			}
 		});
-		
-		//roleCmbBx.setSelectedItem(Data.getInstance().getLocaleStr(
-		//		"role." + Role.REVIEWER.toString().toLowerCase()));
-		
-		strengthTbl=GUITools.newStandardTable(null, false);
-		
-		directoryBttn=GUITools.newImageButton(Data.getInstance().getIcon("directory_25x25_0.png"), Data.getInstance().getIcon("directory_25x25.png"));
+
+		// roleCmbBx.setSelectedItem(Data.getInstance().getLocaleStr(
+		// "role." + Role.REVIEWER.toString().toLowerCase()));
+
+		strengthTbl = GUITools.newStandardTable(null, false);
+
+		directoryBttn = GUITools.newImageButton(Data.getInstance().getIcon(
+				"directory_25x25_0.png"), Data.getInstance().getIcon(
+				"directory_25x25.png"));
 		directoryBttn.setToolTipText(Data.getInstance().getLocaleStr(
-		"attendee.directory"));
+				"attendee.directory"));
 		directoryBttn.addActionListener(ActionRegistry.getInstance().get(
-		SelectAttOutOfDirAction.class.getName()));
+				SelectAttOutOfDirAction.class.getName()));
 		buttonPanel = new JPanel(new GridLayout(3, 1));
-		
+
 		strengthTbl.addFocusListener(focusListener);
 		strengthTbl.addMouseListener(new MouseListener() {
 			@Override
@@ -497,7 +513,7 @@ public class AssistantDialog extends AbstractDialog {
 			public void mouseReleased(MouseEvent e) {
 			}
 		});
-		
+
 		addStrength = GUITools.newImageButton();
 		addStrength.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
 		addStrength
@@ -598,19 +614,39 @@ public class AssistantDialog extends AbstractDialog {
 
 		JScrollPane strScrllPn = GUITools.setIntoScrollPane(strengthTbl);
 
-		GUITools.addComponent(basePanel, gbl, nameLabel, 0, 0, 1, 1, 0, 0, 0, 20,  0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, nameTxtFld, 1, 0, 3, 1, 1.0, 0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, directoryBttn, 4, 0, 1, 1, 0, 0, 0, 5, 0, 20, GridBagConstraints.NONE,GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, contactLabel, 0, 1, 1, 1, 0, 0, 5, 20, 0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, contactScrllPn, 1, 1, 3, 3, 1.0, 0.5, 5, 20, 0, 0, GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, roleLabel, 0, 4, 1, 1, 0, 0, 10, 20,	0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, roleCmbBx, 1, 4, 3, 1, 1.0, 0,10, 20, 0, 0, GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, strengthLabel, 0, 5, 1, 1, 0, 0,17, 20, 0, 20, GridBagConstraints.NONE,GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, strScrllPn, 1, 5, 3, 2, 1.0, 0.5, 15, 20, 0, 0, GridBagConstraints.BOTH,GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, buttonPanel, 4, 5, 1, 2, 0, 0, 17, 5, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		
+		GUITools.addComponent(basePanel, gbl, nameLabel, 0, 0, 1, 1, 0, 0, 0,
+				20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, nameTxtFld, 1, 0, 3, 1, 1.0, 0,
+				0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, directoryBttn, 4, 0, 1, 1, 0, 0,
+				0, 5, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, contactLabel, 0, 1, 1, 1, 0, 0,
+				5, 20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, contactScrllPn, 1, 1, 3, 3, 1.0,
+				0.5, 5, 20, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, roleLabel, 0, 4, 1, 1, 0, 0, 10,
+				20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, roleCmbBx, 1, 4, 3, 1, 1.0, 0,
+				10, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, strengthLabel, 0, 5, 1, 1, 0, 0,
+				17, 20, 0, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, strScrllPn, 1, 5, 3, 2, 1.0, 0.5,
+				15, 20, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, buttonPanel, 4, 5, 1, 2, 0, 0,
+				17, 5, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+
 		setCurrentAttendee(null);
-		
+
 		basePanel.repaint();
 
 		pack();
@@ -684,13 +720,12 @@ public class AssistantDialog extends AbstractDialog {
 		buttonBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(dialogLevel==Level.LEVEL2){
+				if (dialogLevel == Level.LEVEL2) {
 					UI.getInstance().getAssistantDialog().setSelectMode();
-					dialogLevel=Level.LEVEL1;
-				}
-				else if(dialogLevel==Level.LEVEL3){
+					dialogLevel = Level.LEVEL1;
+				} else if (dialogLevel == Level.LEVEL3) {
 					UI.getInstance().getAssistantDialog().setSelectReview();
-					dialogLevel=Level.LEVEL2;
+					dialogLevel = Level.LEVEL2;
 				}
 			}
 		});
@@ -698,6 +733,7 @@ public class AssistantDialog extends AbstractDialog {
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// No review path
 				if (UI.getInstance().getAssistantDialog().getSelected() == AssistantDialog.Selection.LOAD_REVIEW
 						&& UI.getInstance().getAssistantDialog().getPath()
 								.equals("")) {
@@ -710,15 +746,34 @@ public class AssistantDialog extends AbstractDialog {
 
 					return;
 				}
-				if(UI.getInstance().getAssistantDialog().getSelected() == AssistantDialog.Selection.NEW_REVIEW&&Data.getInstance().getMode().equals("instant")&&dialogLevel==Level.LEVEL2)
+
+				// Set AddAttendee screen
+				if (UI.getInstance().getAssistantDialog().getSelected() == AssistantDialog.Selection.NEW_REVIEW
+						&& Data.getInstance().getMode().equals("instant")
+						&& dialogLevel == Level.LEVEL2) {
 					setAddAttToInstRev();
-				else{
+
+					dialogLevel = Level.LEVEL3;
+
+					return;
+				}
+
+				// Do some checks and updates on level 3
+				if (dialogLevel == Level.LEVEL3) {
+					updateInstantAtt();
+
+					if (!nameTxtFld.getText().trim().equals("")) {
+						ActionRegistry.getInstance().get(
+								InitializeMainFrameAction.class.getName())
+								.actionPerformed(e);
+					}
+
+					return;
+				}
+
 				ActionRegistry.getInstance().get(
 						InitializeMainFrameAction.class.getName())
 						.actionPerformed(e);
-				}
-				if(dialogLevel==Level.LEVEL2&&Data.getInstance().getMode().equals("instant"))
-					dialogLevel=Level.LEVEL3;
 			}
 		});
 
@@ -731,7 +786,6 @@ public class AssistantDialog extends AbstractDialog {
 		pack();
 	}
 
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -741,7 +795,7 @@ public class AssistantDialog extends AbstractDialog {
 	public void setVisible(boolean vis) {
 		if (vis) {
 			setLocationToCenter();
-			
+
 		}
 
 		super.setVisible(vis);
@@ -767,7 +821,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		return vecLastReviews;
 	}
-	
+
 	private FocusListener focusListener = new FocusListener() {
 		@Override
 		public void focusGained(FocusEvent e) {
@@ -785,9 +839,7 @@ public class AssistantDialog extends AbstractDialog {
 		public void focusLost(FocusEvent e) {
 		}
 	};
-	
-	
-	
+
 	/**
 	 * Update strength buttons.
 	 */
@@ -823,7 +875,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		updateStrengthTable();
 	}
-	
+
 	/**
 	 * Sets the current attendee.
 	 * 
@@ -831,17 +883,17 @@ public class AssistantDialog extends AbstractDialog {
 	 *            the new current attendee
 	 */
 	public void setCurrentAttendee(Attendee att) {
-		this.currentAttendee = att;
+		//currentAttendee = att;
 		currentAppAttendee = null;
 
-			nameTxtFld.setText(null);
-			contactTxtArea.setText(null);
-			roleCmbBx.setSelectedItem(Data.getInstance().getLocaleStr(
-					"role." + Role.REVIEWER.toString().toLowerCase()));
+		nameTxtFld.setText(null);
+		contactTxtArea.setText(null);
+		roleCmbBx.setSelectedItem(Data.getInstance().getLocaleStr(
+				"role." + Role.REVIEWER.toString().toLowerCase()));
 
 		updateStrengthTable();
 	}
-	
+
 	/**
 	 * Update strength table.
 	 */
@@ -881,7 +933,7 @@ public class AssistantDialog extends AbstractDialog {
 			strengthTbl.setForeground(Color.GRAY);
 		}
 	}
-	
+
 	/**
 	 * Gets the strength list.
 	 * 
@@ -894,13 +946,12 @@ public class AssistantDialog extends AbstractDialog {
 
 		return strengthList;
 	}
-	
+
 	/**
 	 * Adds instant reviewer
 	 * 
 	 */
-	public void updateInstantAtt(){
-		
+	public void updateInstantAtt() {
 
 		Role[] roles = Role.values();
 		String attContact;
@@ -909,11 +960,11 @@ public class AssistantDialog extends AbstractDialog {
 		contactScrllPn.setBorder(UI.STANDARD_BORDER);
 
 		String attName = nameTxtFld.getText();
-		if(contactTxtArea.getText()!=null)
+		if (contactTxtArea.getText() != null)
 			attContact = contactTxtArea.getText();
 		else
 			attContact = "";
-			
+
 		Role attRole = roles[roleCmbBx.getSelectedIndex()];
 
 		nameMissing = false;
@@ -924,7 +975,6 @@ public class AssistantDialog extends AbstractDialog {
 			nameMissing = true;
 		}
 
-
 		if (nameMissing) {
 			message = Data.getInstance().getLocaleStr(
 					"attendeeDialog.message.noName");
@@ -932,15 +982,14 @@ public class AssistantDialog extends AbstractDialog {
 			setMessage(message);
 			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
 		} else {
-			
-			
+
 			/*
 			 * Update the app attendee in the database
 			 */
 			try {
 				if (currentAppAttendee == null) {
-					currentAppAttendee = Data.getInstance().getAppData().getAttendee(
-							attName, attContact);
+					currentAppAttendee = Data.getInstance().getAppData()
+							.getAttendee(attName, attContact);
 
 					if (currentAppAttendee == null) {
 						currentAppAttendee = Data.getInstance().getAppData()
@@ -958,11 +1007,12 @@ public class AssistantDialog extends AbstractDialog {
 					currentAppAttendee.addStrength(str);
 				}
 			} catch (DataException e1) {
-				JOptionPane.showMessageDialog(UI.getInstance().getAssistantDialog(), GUITools
-						.getMessagePane(e1.getMessage()), Data.getInstance()
+				JOptionPane.showMessageDialog(UI.getInstance()
+						.getAssistantDialog(), GUITools.getMessagePane(e1
+						.getMessage()), Data.getInstance()
 						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 			/*
 			 * update the review attendee
 			 */
@@ -972,13 +1022,14 @@ public class AssistantDialog extends AbstractDialog {
 			newAtt.setContact(attContact);
 			newAtt.setRole(attRole);
 
-			Application.getInstance().getAttendeeMgmt().addAttendee(attName, attContact, attRole, null);
+			Application.getInstance().getAttendeeMgmt().addAttendee(attName,
+					attContact, attRole, null);
 
 			setVisible(false);
 
 			UI.getInstance().getAspectsManagerFrame().updateViews();
 		}
-		
+
 	}
 
 	/**
@@ -987,10 +1038,8 @@ public class AssistantDialog extends AbstractDialog {
 	 * @return dialogLevel
 	 */
 	public Level getLevel() {
-		
+
 		return dialogLevel;
 	}
-	
-	
 
 }

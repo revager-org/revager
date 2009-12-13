@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse.ant.import?>
-<project basedir="." default="dist" name="RevAger">
+<project basedir="." default="release" name="RevAger">
 
 	<property file="src/neos/resi/resources/appResources.properties" />
 
@@ -45,6 +45,7 @@
 
 	<target name="clean">
 		<delete dir="${build}" />
+		<delete dir="${dist}" />
 	</target>
 	<target depends="clean" name="cleanall" />
 	<target depends="build-subprojects,build-project" name="build" />
@@ -84,7 +85,9 @@
 				<attribute name="SplashScreen-Image" value="neos/resi/resources/splashScreen.gif" />
 			</manifest>
 		</jar>
+	</target>
 
+	<target name="release" depends="dist" description="generate a full release">
 		<!-- Build runnable EXE file -->
 		<launch4j configFile="${launch4j.conf}" jar="${dist}/revager_${appVersion}.jar" outfile="${dist}/revager_${appVersion}.exe" />
 	</target>

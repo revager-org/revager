@@ -13,11 +13,18 @@
 	<property name="lib" location="lib" />
 	<property name="build" location="build" />
 	<property name="dist" location="dist" />
-	<property name="test" location="${build}/neos/resi/test" />
+	<property name="build.test" location="${build}/neos/resi/test" />
 
 	<property name="derby" location="${lib}/derby.jar" />
 	<property name="iText" location="${lib}/iText-2.1.7.jar" />
 	<property name="junit" location="${lib}/junit-4.7.jar" />
+
+	<!-- BEGIN Launch4j configuration -->
+	<property name="launch4j.dir" location="${lib}/launch4j" />
+	<property name="launch4j.conf" location="launch4j-revager.xml" />
+	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar
+	        :${launch4j.dir}/lib/xstream.jar" />
+	<!-- END Launch4j configuration -->
 
 	<path id="RevAger.classpath">
 		<pathelement location="${build}" />
@@ -59,12 +66,14 @@
 
 
 	<target name="remove-tests">
-		<delete dir="${test}" />
+		<delete dir="${build.test}" />
 	</target>
 
 
 	<target name="dist" depends="unzip-libs,build,remove-tests" description="generate the distribution">
 		<mkdir dir="${dist}" />
+
+		<!-- Build runnable JAR file -->
 		<jar jarfile="${dist}/revager_${appVersion}.jar" basedir="${build}" level="9">
 			<manifest>
 				<attribute name="Main-Class" value="neos.resi.Main" />
@@ -75,6 +84,9 @@
 				<attribute name="SplashScreen-Image" value="neos/resi/resources/splashScreen.gif" />
 			</manifest>
 		</jar>
+
+		<!-- Build runnable EXE file -->
+		<launch4j configFile="${launch4j.conf}" jar="${dist}/revager_${appVersion}.jar" outfile="${dist}/revager_${appVersion}.exe" />
 	</target>
 
 </project>

@@ -69,7 +69,7 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 						"message.newVersionAvailable");
 
 				if (remoteBuild > localBuild) {
-					UI.getInstance().getMainFrame().setEnabled(false);
+					//UI.getInstance().getMainFrame().setEnabled(false);
 
 					newVersionAvail = newVersionAvail.replace(
 							"<remote_version>", remoteVersion);
@@ -92,7 +92,7 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 										"currVerBrowseURL")).toURI());
 					}
 
-					UI.getInstance().getMainFrame().setEnabled(true);
+					//UI.getInstance().getMainFrame().setEnabled(true);
 				}
 			}
 		} catch (Exception e) {

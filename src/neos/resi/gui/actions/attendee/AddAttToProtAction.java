@@ -55,7 +55,10 @@ public class AddAttToProtAction extends AbstractAction {
 			Attendee localAtt = new Attendee();
 			localAtt.setName(popup.getAttName());
 			localAtt.setAspects(null);
-			localAtt.setContact(popup.getAttContact());
+			if(popup.getAttContact()!=null)
+				localAtt.setContact(popup.getAttContact());
+			else
+				localAtt.setContact("");
 			localAtt.setRole(popup.getAttRole());
 			Protocol prot = UI.getInstance().getProtocolFrame()
 					.getCurrentProt();

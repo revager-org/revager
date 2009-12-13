@@ -42,6 +42,7 @@ import neos.resi.tools.GUITools;
 public class ConfirmAttendeeAction extends AbstractAction {
 
 	private Role[] roles = Role.values();
+	private String attContact;
 
 	/*
 	 * (non-Javadoc)
@@ -60,11 +61,14 @@ public class ConfirmAttendeeAction extends AbstractAction {
 		contactScrllPn.setBorder(UI.STANDARD_BORDER);
 
 		String attName = nameTxtFld.getText();
-		String attContact = attDialog.getContactTxtArea().getText();
+		if(attDialog.getContactTxtArea().getText()!=null)
+			attContact = attDialog.getContactTxtArea().getText();
+		else
+			attContact = "";
+			
 		Role attRole = roles[attDialog.getRoleBox().getSelectedIndex()];
 
 		boolean nameMissing = false;
-		boolean contactMissing = false;
 
 		String message = "";
 
@@ -72,30 +76,13 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			nameMissing = true;
 		}
 
-		if (attContact.trim().equals("")) {
-			contactMissing = true;
-		}
 
-		if (nameMissing && contactMissing) {
-			message = Data.getInstance().getLocaleStr(
-					"attendeeDialog.message.noNameNoContact");
-
-			attDialog.setMessage(message);
-			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
-			contactScrllPn.setBorder(UI.MARKED_BORDER);
-		} else if (nameMissing) {
+		if (nameMissing) {
 			message = Data.getInstance().getLocaleStr(
 					"attendeeDialog.message.noName");
 
 			attDialog.setMessage(message);
 			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
-
-		} else if (contactMissing) {
-			message = Data.getInstance().getLocaleStr(
-					"attendeeDialog.message.noContact");
-
-			attDialog.setMessage(message);
-			contactScrllPn.setBorder(UI.MARKED_BORDER);
 		} else {
 			AppAttendee currAppAtt = attDialog.getCurrentAppAttendee();
 			Attendee currAtt = attDialog.getCurrentAttendee();

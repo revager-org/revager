@@ -68,11 +68,6 @@ public class AddAttToProtPopupWindowAction extends AbstractAction {
 			isMissing = true;
 		}
 		
-		if (popupWindow.getAttContact().trim().equals("")) {
-			popupWindow.getScrllPn().setBorder(UI.MARKED_BORDER);
-			isMissing = true;
-		}
-		
 		if (!isMissing && buttonClick == ButtonClicked.OK
 				|| buttonClick == ButtonClicked.ABORT) {
 			popupWindow.setButtonClicked(buttonClick);

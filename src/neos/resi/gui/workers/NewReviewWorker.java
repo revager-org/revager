@@ -52,24 +52,17 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 				"status.creatingNewReview"), true);
 
-		UI.getInstance().getAssistantDialog().setVisible(false);
-
+		
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
+			
 
-			if (Data.getInstance().getMode() == "instant") {
-				UI.getInstance().getAttendeeDialog().setFromAssistant(true);
-				UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
-				UI.getInstance().getAttendeeDialog().setVisible(true);
-				UI.getInstance().getAttendeeDialog().setFromAssistant(false);
-			}
-
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
+				mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.createNewReviewSuccessful"), false);
 
 			mainframe.switchToEditMode();
 
-			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
+			UI.getInstance().setStatus(UI.Status.DATA_SAVED);			
 		} catch (Exception e) {
 			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.noReviewInProcess"), false);

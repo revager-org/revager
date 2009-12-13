@@ -145,6 +145,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private JPanel tabPanelOrg = new JPanel(gbl);
 	private JPanel bottomOrgPanel = new JPanel(gbl);
+	
+	private List<FindingItem> visibleFList=new ArrayList<FindingItem>();
 
 	private JButton tbPdfExport;
 	private JButton tbCsvExport;
@@ -407,6 +409,35 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				"editProtocol.commAndRec"), tabPanelCommAndRec);
 
 		tabbedPane.addChangeListener(tabChangeListener);
+		
+		tabbedPane.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				saveEditRefs();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}});
 
 		add(tabbedPane);
 
@@ -529,6 +560,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		tbFullscreen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				saveEditRefs();
 				UI.getInstance().getProtocolFrame(!isFullscreen()).setVisible(
 						true);
 			}
@@ -1177,6 +1209,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		buttonFindScrollUp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				saveEditRefs();
 				if (firstVisibleFinding > 0) {
 					firstVisibleFinding--;
 
@@ -1197,6 +1230,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		buttonFindScrollDown.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				saveEditRefs();
 				if (firstVisibleFinding < findMgmt
 						.getNumberOfFindings(currentProt)
 						- visibleFindingsCount) {
@@ -1220,14 +1254,14 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		buttonAddFinding.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				saveEditRefs();
 				int listIdLastFinding = findMgmt
 						.getNumberOfFindings(currentProt) - 1;
 
 				if (!findMgmt.isFindingEmpty(findMgmt.getFindings(currentProt)
 						.get(listIdLastFinding))) {
 					Finding newFind = new Finding();
-					int lastSev = sevMgmt.getNumberOfSeverities() - 1;
-					newFind.setSeverity(sevMgmt.getSeverities().get(lastSev));
+					newFind.setSeverity(sevMgmt.getSeverities().get(0));
 					editingFinding = findMgmt.addFinding(newFind, currentProt);
 					firstVisibleFinding = findMgmt
 							.getNumberOfFindings(currentProt)
@@ -1251,6 +1285,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		findTbl.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				saveEditRefs();
 				firstVisibleFinding = findTbl.getSelectedRow();
 				updatePanelFindings();
 
@@ -1332,6 +1367,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 */
 	public void updatePanelFindings() {
 		panelFindings.removeAll();
+		visibleFList.clear();
 
 		/*
 		 * Calculate number of shown findings from the window size
@@ -1405,6 +1441,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 							(2 * (i - firstVisibleFinding)) + 1, 1, 1, 1.0,
 							1.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
 							GridBagConstraints.NORTHWEST);
+			
+			visibleFList.add(fi);
 		}
 
 		updateFocus();
@@ -2207,6 +2245,12 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 	public Map<String, ImageEditorDialog> getImageEditors() {
 		return imageEditors;
+	}
+	
+	private void saveEditRefs(){
+		for (FindingItem findI:visibleFList)
+			if(tabPanelFindings.isVisible()&&findI.isCellEditing())
+				findI.saveRef();
 	}
 
 }

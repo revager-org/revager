@@ -62,7 +62,8 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 
 			mainframe.switchToEditMode();
 
-			UI.getInstance().setStatus(UI.Status.DATA_SAVED);			
+			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
+			UI.getInstance().getAssistantDialog().setVisible(false);
 		} catch (Exception e) {
 			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.noReviewInProcess"), false);

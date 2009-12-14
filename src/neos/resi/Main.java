@@ -18,15 +18,19 @@
  */
 package neos.resi;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import neos.resi.app.model.ApplicationData;
 import neos.resi.app.model.Data;
 import neos.resi.app.model.DataException;
 import neos.resi.app.model.appdata.AppSettingKey;
 import neos.resi.gui.UI;
+import neos.resi.tools.FileTools;
 import neos.resi.tools.GUITools;
 
 /**
@@ -56,6 +60,11 @@ public class Main {
 						args[1].trim());
 			}
 		}
+
+		/*
+		 * Try to migrate old RevAger data folder
+		 */
+		migrateOldData();
 
 		/*
 		 * Initialize application data and start the main UI in the thread that
@@ -105,6 +114,91 @@ public class Main {
 					JOptionPane.ERROR_MESSAGE);
 
 			System.err.println(e.getMessage());
+		}
+	}
+
+	/**
+	 * Migrate data from the 1.1 series of RevAger.
+	 */
+	private static void migrateOldData() {
+		boolean newDataPathExist = false;
+
+		boolean oldDataPathFound = false;
+		boolean newDataPathFound = false;
+
+		String oldDataPath = null;
+		String newDataPath = null;
+
+		String currentDirectory = new File(ApplicationData.class
+				.getProtectionDomain().getCodeSource().getLocation().getPath())
+				.getAbsolutePath();
+
+		int endIndex = currentDirectory.lastIndexOf(File.separator);
+
+		String[] possibleDirectories = {
+				System.getProperty("user.home") + File.separator,
+				currentDirectory = currentDirectory.substring(0, endIndex + 1),
+				System.getProperty("user.dir") + File.separator };
+
+		/*
+		 * Look for an existing old data path
+		 */
+		for (String dir : possibleDirectories) {
+			if (new File(dir
+					+ Data.getInstance().getResource("dataDirectoryNameOld"))
+					.exists()
+					&& oldDataPathFound == false) {
+				oldDataPathFound = true;
+
+				oldDataPath = dir
+						+ Data.getInstance()
+								.getResource("dataDirectoryNameOld");
+			}
+		}
+
+		/*
+		 * Look for an existing new data path
+		 */
+		for (String dir : possibleDirectories) {
+			if (new File(dir
+					+ Data.getInstance().getResource("dataDirectoryName"))
+					.exists()
+					&& newDataPathExist == false) {
+				newDataPathExist = true;
+			}
+		}
+
+		/*
+		 * Look for new data path to create
+		 */
+		for (String dir : possibleDirectories) {
+			if (new File(dir).canWrite() && newDataPathFound == false) {
+				newDataPathFound = true;
+
+				newDataPath = dir
+						+ Data.getInstance().getResource("dataDirectoryName");
+			}
+		}
+
+		/*
+		 * Ask user to migrate old data
+		 */
+		if (oldDataPathFound && newDataPathFound && !newDataPathExist) {
+			if (JOptionPane.showConfirmDialog(null, GUITools
+					.getMessagePane(Data.getInstance().getLocaleStr(
+							"migration.message")), Data.getInstance()
+					.getLocaleStr("question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				try {
+					FileTools.copyDirectory(new File(oldDataPath), new File(
+							newDataPath));
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, GUITools
+							.getMessagePane(e.getMessage()), Data.getInstance()
+							.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+
+					System.err.println(e.getMessage());
+				}
+			}
 		}
 	}
 

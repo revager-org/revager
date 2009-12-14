@@ -128,6 +128,38 @@ public class FileTools {
 	}
 
 	/**
+	 * Copies a given source directory to target directory. The target directory
+	 * will be overridden if it exists.
+	 * 
+	 * @param source
+	 *            source directory to copy
+	 * @param target
+	 *            target directory to copy to
+	 * 
+	 * @throws IOException
+	 *             if an error occurs while copying the directory
+	 */
+	public static void copyDirectory(File source, File target)
+			throws IOException {
+		if (!target.exists()) {
+			target.mkdir();
+		}
+
+		if (source.exists()) {
+			File[] files = source.listFiles();
+
+			for (File f : files) {
+
+				if (f.isDirectory()) {
+					copyDirectory(f, new File(target, f.getName()));
+				} else {
+					copyFile(f, new File(target, f.getName()));
+				}
+			}
+		}
+	}
+
+	/**
 	 * Returns the list of all files, which are directly in the given directory;
 	 * not recursivly.
 	 * 
@@ -199,7 +231,7 @@ public class FileTools {
 			}
 
 			existingFileNames.add(fileName);
-			
+
 			final ZipEntry entry = new ZipEntry(fileName);
 			entry.setTime(f.lastModified());
 

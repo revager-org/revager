@@ -98,21 +98,13 @@ public class ApplicationData extends Observable {
 					.getProtectionDomain().getCodeSource().getLocation()
 					.getPath()).getAbsolutePath();
 
-			int endIndex = currentDirectory.lastIndexOf("/");
-
-			if (endIndex < currentDirectory.lastIndexOf("\\")) {
-				/*
-				 * This statement is not part of the unit test, if you run it
-				 * under a platform different from Windows, because only Windows
-				 * uses backslashes in paths.
-				 */
-				endIndex = currentDirectory.lastIndexOf("\\");
-			}
+			int endIndex = currentDirectory.lastIndexOf(File.separator);
 
 			String[] possibleDirectories = {
-					System.getProperty("user.home") + "/",
+					System.getProperty("user.home") + File.separator,
 					currentDirectory = currentDirectory.substring(0,
-							endIndex + 1), System.getProperty("user.dir") + "/" };
+							endIndex + 1),
+					System.getProperty("user.dir") + File.separator };
 
 			/*
 			 * Check if a custom directory is given and valid
@@ -160,7 +152,8 @@ public class ApplicationData extends Observable {
 				}
 			}
 
-			System.setProperty("derby.system.home", appDataPath + "db/");
+			System.setProperty("derby.system.home", appDataPath + "db"
+					+ File.separator);
 
 			appDataInitialized = true;
 

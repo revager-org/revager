@@ -149,7 +149,6 @@ public class FileTools {
 			File[] files = source.listFiles();
 
 			for (File f : files) {
-
 				if (f.isDirectory()) {
 					copyDirectory(f, new File(target, f.getName()));
 				} else {

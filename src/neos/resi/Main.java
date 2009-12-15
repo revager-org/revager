@@ -27,7 +27,6 @@ import javax.swing.SwingUtilities;
 
 import neos.resi.app.model.ApplicationData;
 import neos.resi.app.model.Data;
-import neos.resi.app.model.DataException;
 import neos.resi.app.model.appdata.AppSettingKey;
 import neos.resi.gui.UI;
 import neos.resi.tools.FileTools;
@@ -79,23 +78,17 @@ public class Main {
 			/*
 			 * Set the language
 			 */
-			Locale loc = null;
+			String lang = Data.getInstance().getAppData().getSetting(
+					AppSettingKey.APP_LANGUAGE);
 
-			try {
-				String lang = Data.getInstance().getAppData().getSetting(
-						AppSettingKey.APP_LANGUAGE);
+			if (lang == null) {
+				lang = Data.getInstance().getResource("appDefaultLang");
 
-				if (lang != null) {
-					loc = new Locale(lang);
-				} else {
-					throw new DataException();
-				}
-			} catch (DataException e) {
-				loc = new Locale(Data.getInstance().getResource(
-						"appDefaultLang"));
+				Data.getInstance().getAppData().setSetting(
+						AppSettingKey.APP_LANGUAGE, lang);
 			}
 
-			Data.getInstance().setLocale(loc);
+			Data.getInstance().setLocale(new Locale(lang));
 
 			/*
 			 * Run the user interface

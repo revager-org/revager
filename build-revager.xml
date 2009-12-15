@@ -31,7 +31,9 @@
 		<pathelement location="${lib.junit}" />
 	</path>
 
-	<!-- Some conditions to get the current OS -->
+	<!--                                          -->
+	<!-- Some conditions to detect the current OS -->
+	<!--                                          -->
 	<condition property="isSolaris">
 		<or>
 			<os name="SunOS" />
@@ -61,8 +63,9 @@
 		<available file="${dir.lib.dev}/launch4j/launch4j" />
 	</condition>
 
-
+	<!--             -->
 	<!-- The targets -->
+	<!--             -->
 	<target name="init">
 		<mkdir dir="${dir.build}" />
 		<copy includeemptydirs="false" todir="${dir.build}">
@@ -78,9 +81,13 @@
 		<delete dir="${dir.dist}" />
 		<delete dir="${dir.lib.dev}/launch4j/launch4j" />
 	</target>
+
 	<target depends="clean" name="cleanall" />
+
 	<target depends="build-subprojects,build-project" name="build" />
+
 	<target name="build-subprojects" />
+
 	<target depends="init" name="build-project">
 		<echo message="${ant.project.name}: ${ant.file}" />
 		<javac debug="true" debuglevel="${debuglevel}" destdir="${dir.build}" source="${source}" target="${target}">
@@ -121,7 +128,7 @@
 	</target>
 
 	<!-- Platform-dependent targets to perpare Launch4j -->
-	<target name="unzip-launch4j-unix">
+	<target name="prepare-launch4j-unix">
 		<untar src="${dir.lib.dev}/launch4j/l4j.tar" dest="${dir.lib.dev}/launch4j" />
 
 		<delete file="${dir.lib.dev}/launch4j/l4j.tar" />
@@ -133,41 +140,52 @@
 		</chmod>
 	</target>
 
-	<target name="unzip-launch4j-linux" if="isLinux">
+	<target name="prepare-launch4j-linux" if="isLinux">
 		<gunzip src="${lib.launch4j.linux}" dest="${dir.lib.dev}/launch4j/l4j.tar" />
-		<antcall target="unzip-launch4j-unix" />
+		<antcall target="prepare-launch4j-unix" />
 	</target>
 
-	<target name="unzip-launch4j-solaris" if="isSolaris">
+	<target name="prepare-launch4j-solaris" if="isSolaris">
 		<gunzip src="${lib.launch4j.solaris}" dest="${dir.lib.dev}/launch4j/l4j.tar" />
-		<antcall target="unzip-launch4j-unix" />
+		<antcall target="prepare-launch4j-unix" />
 	</target>
 
-	<target name="unzip-launch4j-macosx" if="isMacOSX">
+	<target name="prepare-launch4j-macosx" if="isMacOSX">
 		<gunzip src="${lib.launch4j.macosx}" dest="${dir.lib.dev}/launch4j/l4j.tar" />
-		<antcall target="unzip-launch4j-unix" />
+		<antcall target="prepare-launch4j-unix" />
 	</target>
 
-	<target name="unzip-launch4j-windows" if="isWindows">
+	<target name="prepare-launch4j-windows" if="isWindows">
 		<unzip src="${lib.launch4j.windows}" dest="${dir.lib.dev}/launch4j" />
 	</target>
 
 
-	<target name="build-launch4j" depends="dist,unzip-launch4j-linux,unzip-launch4j-solaris,unzip-launch4j-macosx,unzip-launch4j-windows" if="isLaunch4jAvailable" description="generate runnable exe file for MS Windows">
-		<!-- Launch4j configuration -->
+	<target name="prepare-launch4j">
+		<!-- Remove old Launch4j library if there is one -->
+		<delete dir="${dir.lib.dev}/launch4j/launch4j" />
+
+		<antcall target="prepare-launch4j-linux" />
+		<antcall target="prepare-launch4j-windows" />
+		<antcall target="prepare-launch4j-macosx" />
+		<antcall target="prepare-launch4j-solaris" />
+	</target>
+
+
+	<target name="build-launch4j" if="isLaunch4jAvailable" description="generate runnable .exe file for MS Windows">
 		<property name="dir.launch4j" location="${dir.lib.dev}/launch4j/launch4j" />
 		<property name="conf.launch4j" location="launch4j-revager.xml" />
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${dir.launch4j}/launch4j.jar
 		        :${dir.launch4j}/lib/xstream.jar" />
 
-		<!-- Build runnable EXE file -->
 		<launch4j configFile="${conf.launch4j}" jar="${dir.dist}/revager_${appVersion}.jar" outfile="${dir.dist}/revager_${appVersion}.exe" />
-
-		<!-- Remove unzipped Launch4j libraries after building the EXE file -->
-		<delete dir="${dir.lib.dev}/launch4j/launch4j" />
 	</target>
 
 
-	<target name="release" depends="dist,build-launch4j" description="generate a full release" />
+	<target name="release" description="generate a full release">
+		<antcall target="dist" />
+
+		<antcall target="prepare-launch4j" />
+		<antcall target="build-launch4j" />
+	</target>
 
 </project>

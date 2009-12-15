@@ -20,6 +20,7 @@ package neos.resi.gui.workers;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -126,7 +127,12 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 							"pdfExport.expSuccessful"), false);
 				}
 
-				Desktop.getDesktop().open(expFile);
+				try {
+					Desktop.getDesktop().open(expFile);
+				} catch (IOException e) {
+					// do nothing if there's no PDF viewer available to show the
+					// protocol
+				}
 			} catch (Exception exc) {
 				UI.getInstance().getExportPDFProtocolDialog()
 						.switchToEditMode();

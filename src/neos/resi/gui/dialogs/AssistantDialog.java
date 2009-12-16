@@ -760,12 +760,20 @@ public class AssistantDialog extends AbstractDialog {
 
 				// Do some checks and updates on level 3
 				if (dialogLevel == Level.LEVEL3) {
-					updateInstantAtt();
+					
 
 					if (!nameTxtFld.getText().trim().equals("")) {
 						ActionRegistry.getInstance().get(
 								InitializeMainFrameAction.class.getName())
 								.actionPerformed(e);
+						updateInstantAtt();
+					}else{
+						String message="";
+						message = Data.getInstance().getLocaleStr(
+						"attendeeDialog.message.noName");
+
+						setMessage(message);
+						nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
 					}
 
 					return;
@@ -902,7 +910,7 @@ public class AssistantDialog extends AbstractDialog {
 		try {
 			strengthList = currentAppAttendee.getStrengths();
 		} catch (Exception e) {
-			strengthList = null;
+			strengthList = new ArrayList<String>();
 		}
 
 		if (stm == null) {
@@ -969,19 +977,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		nameMissing = false;
 
-		String message = "";
 
-		if (attName.trim().equals("")) {
-			nameMissing = true;
-		}
-
-		if (nameMissing) {
-			message = Data.getInstance().getLocaleStr(
-					"attendeeDialog.message.noName");
-
-			setMessage(message);
-			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
-		} else {
 
 			/*
 			 * Update the app attendee in the database
@@ -1028,7 +1024,7 @@ public class AssistantDialog extends AbstractDialog {
 			setVisible(false);
 
 			UI.getInstance().getAspectsManagerFrame().updateViews();
-		}
+		
 
 	}
 

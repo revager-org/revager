@@ -181,11 +181,20 @@
 	</target>
 
 
+	<target name="build-jarbundler" if="isMacOSX" description="generate runnable app file for Mac OS X">
+		<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${dir.lib.dev}/jarbundler-2.1.0.jar" />
+
+		<jarbundler dir="${dir.dist}" name="RevAger" mainclass="neos.resi.Main" jar="${dir.dist}/revager_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="neos.resi" icon="${dir.build}/neos/resi/gui/icons/frameIcon_128x128.icns" jvmversion="1.6+" shortname="RevAger" />
+	</target>
+
+
 	<target name="release" description="generate a full release">
 		<antcall target="dist" />
 
 		<antcall target="prepare-launch4j" />
 		<antcall target="build-launch4j" />
+
+		<antcall target="build-jarbundler" />
 	</target>
 
 </project>

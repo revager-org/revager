@@ -130,8 +130,11 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 				try {
 					Desktop.getDesktop().open(expFile);
 				} catch (IOException e) {
-					// do nothing if there's no PDF viewer available to show the
-					// protocol
+					JOptionPane.showMessageDialog(null, GUITools
+							.getMessagePane(Data.getInstance().getLocaleStr(
+									"message.openPdfFailed")), Data
+							.getInstance().getLocaleStr("error"),
+							JOptionPane.ERROR_MESSAGE);
 				}
 			} catch (Exception exc) {
 				UI.getInstance().getExportPDFProtocolDialog()

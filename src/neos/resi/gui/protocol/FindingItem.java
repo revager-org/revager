@@ -1035,4 +1035,12 @@ public class FindingItem extends JPanel implements Observer {
 	public Finding getCurrentFinding() {
 		return currentFinding;
 	}
+	
+	public boolean isCellEditing(){
+		return refTbl.isEditing();
+	}
+	
+	public void saveRef(){
+		refTbl.getCellEditor().stopCellEditing();
+	}
 }

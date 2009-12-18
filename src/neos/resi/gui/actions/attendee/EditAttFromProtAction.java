@@ -21,6 +21,7 @@ package neos.resi.gui.actions.attendee;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.xml.datatype.Duration;
 
 import neos.resi.app.Application;
 import neos.resi.app.model.Data;
@@ -63,9 +64,12 @@ public class EditAttFromProtAction extends AbstractAction {
 			localAtt.setRole(popup.getAttRole());
 			localAtt.setAspects(oldAtt.getAspects());
 
+			Duration dur=popup.getDuration();
+			Application.getInstance().getProtocolMgmt().setAttendeePrepTime(dur, oldAtt, prot);
+
 			Application.getInstance().getAttendeeMgmt().editAttendee(oldAtt,
 					localAtt);
-
+			
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);
 			UI.getInstance().getProtocolFrame().getPatm()
 					.fireTableDataChanged();

@@ -255,7 +255,17 @@ public class AddAttToProtPopupWindow extends JDialog {
 
 		panelBase.add(inputPanel, BorderLayout.CENTER);
 
-		Dimension popupSize = new Dimension(260, 300);
+		/*
+		 * adding duration to popup
+		 */
+		GUITools.addComponent(inputPanel, gbl, durLbl, 0, 4, 1, 1, 1.0, 0,
+				5, 10, 0, 0, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(inputPanel, gbl, spinnerPanel, 0, 5, 1, 1,
+				1.0, 0, 5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+
+		Dimension popupSize = new Dimension(260, 400);
 
 		if (editing) {
 			Protocol prot = UI.getInstance().getProtocolFrame()
@@ -269,19 +279,8 @@ public class AddAttToProtPopupWindow extends JDialog {
 			roleBx.setSelectedItem(Data.getInstance().getLocaleStr(
 					"role.".concat(selAtt.getRole().value())));
 			contactTxtArea.setText(selAtt.getContact());
-
-		} else {
-			/*
-			 * adding duration to popup
-			 */
-			GUITools.addComponent(inputPanel, gbl, durLbl, 0, 4, 1, 1, 1.0, 0,
-					5, 10, 0, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.WEST);
-			GUITools.addComponent(inputPanel, gbl, spinnerPanel, 0, 5, 1, 1,
-					1.0, 0, 5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
-
-			popupSize = new Dimension(260, 400);
+			durHSpinner.setValue(Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getHours());
+			durMSpinner.setValue(Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getMinutes());
 
 		}
 

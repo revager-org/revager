@@ -23,6 +23,7 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -939,17 +940,37 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				 */
 				PdfPCell cellPlanned;
 
-				if (meeting.getPlannedDate().equals(protocol.getDate())
-						&& meeting.getPlannedStart()
-								.equals(protocol.getStart())
-						&& meeting.getPlannedEnd().equals(protocol.getEnd())
-						&& meeting.getPlannedLocation().equals(
-								protocol.getLocation())) {
+				boolean plannedDateEqualsProtocolDate = meeting
+						.getPlannedDate().get(Calendar.DAY_OF_MONTH) == protocol
+						.getDate().get(Calendar.DAY_OF_MONTH)
+						&& meeting.getPlannedDate().get(Calendar.MONTH) == protocol
+								.getDate().get(Calendar.MONTH)
+						&& meeting.getPlannedDate().get(Calendar.YEAR) == protocol
+								.getDate().get(Calendar.YEAR);
+				boolean plannedStartEqualsProtocolStart = meeting
+						.getPlannedStart().get(Calendar.HOUR) == protocol
+						.getStart().get(Calendar.HOUR)
+						&& meeting.getPlannedStart().get(Calendar.MINUTE) == protocol
+								.getStart().get(Calendar.MINUTE)
+						&& meeting.getPlannedStart().get(Calendar.AM_PM) == protocol
+								.getStart().get(Calendar.AM_PM);
+				boolean plannedEndEqualsProtocolEnd = meeting.getPlannedEnd()
+						.get(Calendar.HOUR) == protocol.getEnd().get(
+						Calendar.HOUR)
+						&& meeting.getPlannedEnd().get(Calendar.MINUTE) == protocol
+								.getEnd().get(Calendar.MINUTE)
+						&& meeting.getPlannedEnd().get(Calendar.AM_PM) == protocol
+								.getEnd().get(Calendar.AM_PM);
+				boolean plannedLocationEqualsProtocolLocation = meeting
+						.getPlannedLocation().equals(protocol.getLocation());
+
+				if (plannedDateEqualsProtocolDate
+						&& plannedStartEqualsProtocolStart
+						&& plannedEndEqualsProtocolEnd
+						&& plannedLocationEqualsProtocolLocation) {
 					cellPlanned = new PdfPCell(
 							new Phrase(Data.getInstance().getLocaleStr(
 									"export.meetingAsPlanned"), plainFont));
-
-					tableMeeting.addCell(cellPlanned);
 				} else {
 					cellPlanned = new PdfPCell();
 
@@ -1316,7 +1337,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 							separator = ", ";
 						}
 
-						if (prepTime.getMinutes() > 0) {
+						if (prepTime.getMinutes() >= 0) {
 							prep = prep
 									+ separator
 									+ prepTime.getMinutes()

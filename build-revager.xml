@@ -115,6 +115,7 @@
 	<target name="dist" depends="unzip-libs,build,remove-tests" description="generate the distribution">
 		<mkdir dir="${dir.dist}" />
 
+		<!-- Build the runnable JAR file -->
 		<jar jarfile="${dir.dist}/revager_${appVersion}.jar" basedir="${dir.build}" level="9">
 			<manifest>
 				<attribute name="Main-Class" value="neos.resi.Main" />
@@ -125,6 +126,9 @@
 				<attribute name="SplashScreen-Image" value="neos/resi/resources/splashScreen.gif" />
 			</manifest>
 		</jar>
+
+		<!-- Build the ZIP file with the source code inside -->
+		<zip destfile="${dir.dist}/revager-src_${appVersion}.zip" basedir="src" level="9" />
 	</target>
 
 	<!-- Platform-dependent targets to perpare Launch4j -->

@@ -9,12 +9,23 @@
 	<property name="target" value="1.6" />
 	<property name="source" value="1.6" />
 
+	<!-- Application name -->
+    <property name="app.name" value="RevAger"/>
+
 	<property name="dir.src" location="src" />
 	<property name="dir.lib" location="lib" />
 	<property name="dir.lib.dev" location="lib-dev" />
 	<property name="dir.build" location="build" />
 	<property name="dir.dist" location="dist" />
 	<property name="dir.build.test" location="${dir.build}/neos/resi/test" />
+   
+	<!-- Directory where DMG images can be temporarily mounted -->
+    <property name="dir.build.dmg.mount" value="/tmp"/>
+	<!-- DMG background image -->
+	<property name="file.build.dmg.background" value="${dir.src}/neos/resi/resources/build/macosx/dmg_background.png" />
+	<!-- Applescript to layout DMG window -->
+	<property name="file.build.dmg.layoutscript" value="${dir.src}/neos/resi/resources/build/macosx/dmg_setlayout.applescript" />
+	
 
 	<property name="lib.derby" location="${dir.lib}/derby.jar" />
 	<property name="lib.iText" location="${dir.lib}/iText-2.1.7.jar" />
@@ -188,10 +199,67 @@
 	<target name="build-jarbundler" if="isMacOSX" description="generate runnable app file for Mac OS X">
 		<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${dir.lib.dev}/jarbundler-2.1.0.jar" />
 
-		<jarbundler dir="${dir.dist}" name="RevAger" mainclass="neos.resi.Main" jar="${dir.dist}/revager_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="neos.resi" icon="${dir.build}/neos/resi/gui/icons/frameIcon_128x128.icns" jvmversion="1.6+" shortname="RevAger" />
+		<jarbundler dir="${dir.dist}" name="${app.name}" mainclass="neos.resi.Main" jar="${dir.dist}/revager_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="neos.resi" icon="${dir.build}/neos/resi/gui/icons/frameIcon_128x128.icns" jvmversion="1.6+" shortname="${app.name}" />
 	</target>
 
+	<!-- MacOS X DMG build script adapted from Romain Kuntz (http://www.rkuntz.org/pmwiki.php?n=Code.AntDiskImage) -->
+	<target name="build-dmg" if="isMacOSX" description="build DMG image for MacOS X (requires hidutil, thus only works on MacOS X)">
+		
+	    <!-- Delete previously created DMG -->
+	    <delete file="${dir.dist}/${app.name}.dmg" verbose="true" failonerror="false"/>
 
+	    <!-- Create a temporary disk image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="create"/>
+	      <arg value="-srcfolder"/>
+	      <arg value="${dir.dist}/${app.name}.app"/>
+	      <arg value="-volname"/>
+	      <arg value="${app.name}"/>
+	      <arg value="-ov"/>
+	      <arg value="${dir.dist}/${app.name}-tmp.dmg"/>
+	      <arg value="-format"/>
+	      <arg value="UDRW"/>
+		  <arg value="-nospotlight"/>
+	    </exec>
+
+	    <!-- Attach the temporary image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="attach"/>
+	      <arg value="${dir.dist}/${app.name}-tmp.dmg"/>
+	      <arg value="-mountroot"/>
+	      <arg value="${dir.build.dmg.mount}/"/>
+	    </exec>
+
+	    <!-- Copy the background file -->
+	    <mkdir dir="${dir.build.dmg.mount}/${app.name}/.background"/>
+	    <copy file="${file.build.dmg.background}" tofile="${dir.build.dmg.mount}/${app.name}/.background/background.png" overwrite="true"/>
+
+		<!-- Layout Finder window (Set size, set background, arrange icons etc.) -->
+		<exec executable="/usr/bin/osascript" os="Mac OS X">
+			<arg value="${file.build.dmg.layoutscript}" />
+		</exec>
+		
+	    <!-- Detach the temporary image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="detach"/>
+	      <arg value="${dir.build.dmg.mount}/${app.name}"/>
+	    </exec>
+
+	    <!-- Compress it to a new image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="convert"/>
+	      <arg value="${dir.dist}/${app.name}-tmp.dmg"/>
+	      <arg value="-format"/>
+	      <arg value="UDZO"/>
+	      <arg value="-o"/>
+	      <arg value="${dir.dist}/${app.name}.dmg"/>
+	    </exec>
+
+	    <!-- Delete the temporary image -->
+	    <delete file="${dir.dist}/${app.name}-tmp.dmg"  verbose="true" failonerror="false"/>
+
+	</target>
+	
 	<target name="release" description="generate a full release">
 		<antcall target="dist" />
 
@@ -199,6 +267,7 @@
 		<antcall target="build-launch4j" />
 
 		<antcall target="build-jarbundler" />
+		<antcall target="build-dmg"/>
 	</target>
 
 </project>

@@ -16,6 +16,11 @@
 	<property name="dir.dist" location="dist" />
 	<property name="dir.build.test" location="${dir.build}/neos/resi/test" />
 
+	<!-- Directory where build resources (images etc.) can be found -->
+	<property name="dir.build.resources" value="${dir.src}/neos/resi/resources/build" />
+	<!-- Directory where DMG images can be temporarily mounted -->
+    <property name="dir.build.dmg.mount" value="/tmp"/>
+
 	<property name="lib.derby" location="${dir.lib}/derby.jar" />
 	<property name="lib.iText" location="${dir.lib}/iText-2.1.7.jar" />
 	<property name="lib.junit" location="${dir.lib.dev}/junit-4.7.jar" />
@@ -177,7 +182,7 @@
 
 	<target name="build-launch4j" if="isLaunch4jAvailable" description="generate runnable .exe file for MS Windows">
 		<property name="dir.launch4j" location="${dir.lib.dev}/launch4j/launch4j" />
-		<property name="conf.launch4j" location="launch4j-revager.xml" />
+		<property name="conf.launch4j" location="${dir.build.resources}/windows/launch4j-revager.xml" />
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${dir.launch4j}/launch4j.jar
 		        :${dir.launch4j}/lib/xstream.jar" />
 
@@ -188,10 +193,67 @@
 	<target name="build-jarbundler" if="isMacOSX" description="generate runnable app file for Mac OS X">
 		<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${dir.lib.dev}/jarbundler-2.1.0.jar" />
 
-		<jarbundler dir="${dir.dist}" name="RevAger" mainclass="neos.resi.Main" jar="${dir.dist}/revager_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="neos.resi" icon="${dir.build}/neos/resi/gui/icons/frameIcon_128x128.icns" jvmversion="1.6+" shortname="RevAger" />
+		<jarbundler dir="${dir.dist}" name="${appName}" mainclass="neos.resi.Main" jar="${dir.dist}/revager_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="neos.resi" icon="${dir.build}/neos/resi/gui/icons/frameIcon_128x128.icns" jvmversion="1.6+" shortname="${appName}" />
 	</target>
 
+	<!-- MacOS X DMG build script adapted from Romain Kuntz (http://www.rkuntz.org/pmwiki.php?n=Code.AntDiskImage) -->
+	<target name="build-dmg" if="isMacOSX" description="build DMG image for MacOS X (requires hdiutil, thus only works on MacOS X)">
+		
+	    <!-- Delete previously created DMG -->
+	    <delete file="${dir.dist}/${appName}_${appVersion}.dmg" verbose="true" failonerror="false"/>
 
+	    <!-- Create a temporary disk image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="create"/>
+	      <arg value="-srcfolder"/>
+	      <arg value="${dir.dist}/${appName}.app"/>
+	      <arg value="-volname"/>
+	      <arg value="${appName}"/>
+	      <arg value="-ov"/>
+	      <arg value="${dir.dist}/${appName}-tmp.dmg"/>
+	      <arg value="-format"/>
+	      <arg value="UDRW"/>
+		  <arg value="-nospotlight"/>
+	    </exec>
+
+	    <!-- Attach the temporary image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="attach"/>
+	      <arg value="${dir.dist}/${appName}-tmp.dmg"/>
+	      <arg value="-mountroot"/>
+	      <arg value="${dir.build.dmg.mount}/"/>
+	    </exec>
+
+	    <!-- Copy the background file -->
+	    <mkdir dir="${dir.build.dmg.mount}/${appName}/.background"/>
+	    <copy file="${dir.build.resources}/macosx/dmg_background.png" tofile="${dir.build.dmg.mount}/${appName}/.background/background.png" overwrite="true"/>
+
+		<!-- Layout Finder window (Set size, set background, arrange icons etc.) -->
+		<exec executable="/usr/bin/osascript" os="Mac OS X">
+			<arg value="${dir.build.resources}/macosx/dmg_setlayout.applescript" />
+		</exec>
+		
+	    <!-- Detach the temporary image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="detach"/>
+	      <arg value="${dir.build.dmg.mount}/${appName}"/>
+	    </exec>
+
+	    <!-- Compress it to a new image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="convert"/>
+	      <arg value="${dir.dist}/${appName}-tmp.dmg"/>
+	      <arg value="-format"/>
+	      <arg value="UDZO"/>
+	      <arg value="-o"/>
+	      <arg value="${dir.dist}/${appName}_${appVersion}.dmg"/>
+	    </exec>
+
+	    <!-- Delete the temporary image -->
+	    <delete file="${dir.dist}/${appName}-tmp.dmg"  verbose="true" failonerror="false"/>
+
+	</target>
+	
 	<target name="release" description="generate a full release">
 		<antcall target="dist" />
 
@@ -199,6 +261,7 @@
 		<antcall target="build-launch4j" />
 
 		<antcall target="build-jarbundler" />
+		<antcall target="build-dmg"/>
 	</target>
 
 </project>

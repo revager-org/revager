@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.team-neos.de/site/sites/default/files/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description></description>
+    <aspects>
+        <aspect>
+            <id>781</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist ein Deckblatt vorhanden, und ist es vollständig ausgefüllt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>782</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist das Dokument gut gegliedert, übersichtlich aufgebaut und leicht verständlich (Graphiken, Tabellen, ...)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>783</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Begriffe eindeutig definiert und durchgängig verwendet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>784</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Gibt es ein Inhalts-, Abkürzungs-, Definitions- und Quellenverzeichnis?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>785</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Stimmt das Inhaltsverzeichnis mit der Gliederung des Dokuments überein?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>786</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle nicht allgemein bekannten Begriffe und Abkürzungen definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>787</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Hat die Unterlage einen eindeutigen Versionsstand?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>788</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle Seiten numeriert und eindeutig als der Dokumentversion zugehörig zu identifizieren?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>789</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Ist das Dokument vollständig d.h. fehlen keine Textstellen, Seiten, Abbildungen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>790</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Querverweise eindeutig?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>791</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind alle Referenzdokumente aufgelistet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>792</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Bilder und graphische Darstellungen eine übersichtliche Ergänzung des Textes? Übersichtlich und nicht überladen? Verständlich bzgl. der verwendeten Symbole? Eindeutig den entsprechenden Kapiteln oder Textstellen zugeordnet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>793</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind allgemeine firmeninterne und/oder projektspezifische Richtlinen zur Unterlagenerstellung eingehalten worden?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>794</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Methoden, Werkzeuge und Standards berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>795</id>
+            <category>Allgemeine Fragen zur Unterlage</category>
+            <directive>Sind Vertraulichkeitsstufen und Urherberrechte ausgewiesen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>796</id>
+            <category>Abgleich der Entry-Unterlage Entwurfsunterlage für das Produkt</category>
+            <directive>Sind alle Schnittstellten (Inputs, Outputs) der Teilaufgaben vollständig auf die Schnittstellen zwischen den Komponenten abgebildet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>797</id>
+            <category>Abgleich der Entry-Unterlage Entwurfsunterlage für das Produkt</category>
+            <directive>Entsprechen die abgeleiteten Datenstrukturen denen in der Entwurfsunterlage?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>798</id>
+            <category>Abgleich der Entry-Unterlage Entwurfsunterlage für das Produkt</category>
+            <directive>Sind die Abweichungen zum Pflichtenheft aufgezeigt und begründet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>799</id>
+            <category>Funktion und Daten</category>
+            <directive>Sind bei der Festlegung der Funktionen für die gegliederten Komponente alle vorgegebenen Teilaufgaben berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>800</id>
+            <category>Funktion und Daten</category>
+            <directive>Sind die Abläufe der Teilfunktionen auseichend definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>801</id>
+            <category>Funktion und Daten</category>
+            <directive>Sind nur die Datenstrukturen übernommen, die relevant für die Komponente sind?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>802</id>
+            <category>Funktion und Daten</category>
+            <directive>Können die zugeordneten Teilfunktionen in den subkomponenten die geforderten Aufforderungen erfüllen (insbesondere Performance, Betriebsmittelverbrauch, Kompatibilität)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>803</id>
+            <category>Funktion und Daten</category>
+            <directive>Ist die Benutzerschnittstelle (Masken, Kommandos, Menues) den Auforderungen entsprechend komfortabel und leicht erlernbar?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>804</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Ist die Zuordnung der Teilfunktionen auf die Subkomponenten sinvoll? (funktionaler Zusammenhalt, Datenkapselung)</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>805</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Ergibt sich mit der Zuordnung von Aufgaben auf Komponenten eine vernünftige Aufrufstruktur? (Client-Server-Prinzip?)</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>806</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Ist jede Subkomponente in sich geschlossen und in ihrer Funktion unabhängig? (D.h. kann sie ohne Kenntnis des inneren Ablaufs andere Komponenten ihre Funktion erfüllen?)</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>807</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Sind die Teilfunktionen eindeutig zugeordnet (eindeutige Abgrenzung zu realisierender bzw. vorhandener Anteile)?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>808</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Sind ,,gleiche Funktionen'' zusammengefaßt und einer Subkomponente zugeordnet?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>809</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Ist die Wiederverwendbarkeit von Komponenten geprüft?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>810</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Gibt es af der Ziel-HW keine kollision mit anderen Programmpaketen?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>811</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Ist das vorgeschlagene System ausbau- und erweiterungsfähig?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>812</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Sind die  Schnittstellen zwischen den Subkomponenten, soweit gefordert, minimiert, effizient und erweiterbar?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>813</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Sind alle Parameter der Schnittstellen mit Wertebereichen und Standardwerten definiert?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>814</id>
+            <category>DV-technisches Feinkonzept</category>
+            <directive>Sind alle bestehenden Schnittstellen berücksichtigt?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>815</id>
+            <category>Exit-Kriterien</category>
+            <directive>Sind aus den Angaben in der Entwurfsunterlage Testfälle und -daten ableitbar?</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>816</id>
+            <category>Exit-Kriterien</category>
+            <directive>Sind die Aussagen in der Entwurfsunterlage ausreichend detailliert, um einen Entwurf der Subkomponenten durzuführen?</directive>
+            <description></description>
+        </aspect>
+    </aspects>
+</catalog>

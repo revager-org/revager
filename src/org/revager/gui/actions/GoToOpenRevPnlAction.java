@@ -24,13 +24,14 @@ import javax.swing.AbstractAction;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
+import org.revager.gui.dialogs.assistant.AssistantDialog;
 
 
 /**
  * The Class OpenModeratorModeAction.
  */
 @SuppressWarnings("serial")
-public class OpenModeratorModeAction extends AbstractAction {
+public class GoToOpenRevPnlAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -40,8 +41,9 @@ public class OpenModeratorModeAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Data.getInstance().setMode("moderator");
-		UI.getInstance().getAssistantDialog().setSelectReview();
+		UI.getInstance().getAssistantDialog().setCurrentPnl(AssistantDialog.VisiblePnls.OPEN_REVIEW);
+		UI.getInstance().getAssistantDialog().updateContents();
+		UI.getInstance().getAssistantDialog().updateWizardBttns();
 	}
 
 }

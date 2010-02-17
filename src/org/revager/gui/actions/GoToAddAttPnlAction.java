@@ -24,13 +24,14 @@ import javax.swing.AbstractAction;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
+import org.revager.gui.dialogs.assistant.AssistantDialog;
 
 
 /**
  * The Class OpenScribeModeAction.
  */
 @SuppressWarnings("serial")
-public class OpenScribeModeAction extends AbstractAction {
+public class GoToAddAttPnlAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -40,8 +41,9 @@ public class OpenScribeModeAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Data.getInstance().setMode("scribe");
-		UI.getInstance().getAssistantDialog().setSelectReview();
+		UI.getInstance().getAssistantDialog().setCurrentPnl(AssistantDialog.VisiblePnls.ADD_ATTENDEE);
+		UI.getInstance().getAssistantDialog().updateContents();
+		UI.getInstance().getAssistantDialog().updateWizardBttns();
 	}
 
 }

@@ -96,7 +96,7 @@ import org.revager.gui.actions.OpenInvitationsDialogAction;
 import org.revager.gui.actions.OpenProtocolFrameAction;
 import org.revager.gui.actions.SaveReviewAction;
 import org.revager.gui.actions.SaveReviewAsAction;
-import org.revager.gui.actions.SelectModeAction;
+import org.revager.gui.actions.GoToFirstScreenPnlAction;
 import org.revager.gui.actions.attendee.AddAttendeeAction;
 import org.revager.gui.actions.attendee.EditAttendeeAction;
 import org.revager.gui.actions.attendee.RemoveAttendeeAction;
@@ -964,7 +964,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		tbShowAssistant.setToolTipText(Data.getInstance().getLocaleStr(
 				"menu.showAssistant"));
 		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(
-				SelectModeAction.class.getName()));
+				GoToFirstScreenPnlAction.class.getName()));
 
 		addTopComponent(tbShowAssistant);
 
@@ -1110,7 +1110,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuFile.setText(Data.getInstance().getLocaleStr("menu.file"));
 
 		fileSelectModeItem = new JMenuItem(ActionRegistry.getInstance().get(
-				SelectModeAction.class.getName()));
+				GoToFirstScreenPnlAction.class.getName()));
 
 		menuFile.add(fileSelectModeItem);
 

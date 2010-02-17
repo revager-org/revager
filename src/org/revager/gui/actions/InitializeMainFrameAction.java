@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import org.revager.gui.UI;
-import org.revager.gui.dialogs.AssistantDialog;
+import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.workers.LoadReviewWorker;
 import org.revager.gui.workers.NewReviewWorker;
 

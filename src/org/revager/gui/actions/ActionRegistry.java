@@ -125,8 +125,8 @@ public class ActionRegistry {
 
 		register(new SaveReviewAsAction());
 		register(new SaveReviewAction());
-		register(new OpenScribeModeAction());
-		register(new OpenModeratorModeAction());
+		register(new GoToAddAttPnlAction());
+		register(new GoToOpenRevPnlAction());
 		register(new InitializeMainFrameAction());
 
 		register(new ManageSeveritiesAction());
@@ -154,7 +154,7 @@ public class ActionRegistry {
 		register(new OpenAspectsManagerAction());
 
 		register(new CommentMeetingAction());
-		register(new SelectModeAction());
+		register(new GoToFirstScreenPnlAction());
 		register(new SelectAttOutOfDirAction());
 		register(new OpenProtocolFrameAction());
 		register(new AddResiAttToProtAction());

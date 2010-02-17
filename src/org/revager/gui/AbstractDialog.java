@@ -37,6 +37,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -318,6 +319,7 @@ public abstract class AbstractDialog extends JDialog {
 	public Component add(Component comp) {
 		return this.panelContent.add(comp);
 	}
+
 
 	/**
 	 * Adds the button.

@@ -28,18 +28,19 @@ import javax.swing.KeyStroke;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
+import org.revager.gui.dialogs.assistant.AssistantDialog;
 
 
 /**
  * The Class SelectModeAction.
  */
 @SuppressWarnings("serial")
-public class SelectModeAction extends AbstractAction {
+public class GoToFirstScreenPnlAction extends AbstractAction {
 
 	/**
 	 * Instantiates a new select mode action.
 	 */
-	public SelectModeAction() {
+	public GoToFirstScreenPnlAction() {
 		super();
 
 		putValue(Action.SMALL_ICON, Data.getInstance().getIcon(
@@ -58,7 +59,9 @@ public class SelectModeAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setSelectMode();
+		UI.getInstance().getAssistantDialog().setCurrentPnl(AssistantDialog.VisiblePnls.FIRST_SCREEN);
+		UI.getInstance().getAssistantDialog().updateContents();
+		UI.getInstance().getAssistantDialog().updateWizardBttns();
 		UI.getInstance().getAssistantDialog().setVisible(true);
 	}
 

@@ -47,6 +47,7 @@ import org.revager.gui.actions.severities.PushSeverityDownAction;
 import org.revager.gui.actions.severities.PushSeverityTopAction;
 import org.revager.gui.actions.severities.PushSeverityUpAction;
 import org.revager.gui.actions.severities.RemoveSeverityAction;
+import org.revager.gui.dialogs.assistant.SelectLanguageAction;
 
 
 /**
@@ -127,7 +128,7 @@ public class ActionRegistry {
 		register(new SaveReviewAction());
 		register(new GoToAddAttPnlAction());
 		register(new GoToOpenRevPnlAction());
-		register(new InitializeMainFrameAction());
+		register(new InitializeNewReviewAction());
 
 		register(new ManageSeveritiesAction());
 		register(new EditMeetingAction());
@@ -164,5 +165,6 @@ public class ActionRegistry {
 		register(new EditAttFromProtAction());
 		register(new OpenExpPDFDialogAction());
 		register(new OpenExpCSVDialogAction());
+		register(new SelectLanguageAction());
 	}
 }

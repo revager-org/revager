@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import org.revager.app.model.Data;
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.workers.LoadReviewWorker;
@@ -32,7 +33,7 @@ import org.revager.gui.workers.NewReviewWorker;
  * The Class InitializeMainFrameAction.
  */
 @SuppressWarnings("serial")
-public class InitializeMainFrameAction extends AbstractAction {
+public class InitializeNewReviewAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -42,19 +43,18 @@ public class InitializeMainFrameAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AssistantDialog.Selection sel = UI.getInstance().getAssistantDialog()
-				.getSelected();
-
-		if (sel == AssistantDialog.Selection.NEW_REVIEW) {
+		if(Data.getInstance().getMode().equals("moderator")){
 			new NewReviewWorker().execute();
-		} else if (sel == AssistantDialog.Selection.LOAD_REVIEW) {
-			new LoadReviewWorker(UI.getInstance().getAssistantDialog()
-					.getPath()).execute();
-		} else if (sel == AssistantDialog.Selection.MANAGE_ASPECTS) {
-			UI.getInstance().setStatus(UI.Status.NO_FILE_LOADED);
-
 			UI.getInstance().getAssistantDialog().setVisible(false);
-			UI.getInstance().getAspectsManagerFrame().setVisible(true);
+		}else if(Data.getInstance().getMode().equals("instant")){
+			AssistantDialog assistant=UI.getInstance().getAssistantDialog();
+			
+
+			if (!assistant.nameTxtFld.getText().trim().equals("")) {
+				new NewReviewWorker().execute();
+				UI.getInstance().getAssistantDialog().setVisible(false);
+				assistant.updateInstantAtt();
+			}
 		}
 	}
 

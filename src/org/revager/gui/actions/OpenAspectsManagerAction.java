@@ -57,7 +57,7 @@ public class OpenAspectsManagerAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		UI.getInstance().getAspectsManagerFrame().setSelectedReviewer(
 				UI.getInstance().getMainFrame().getSelectedAttendee());
-
+		UI.getInstance().getAssistantDialog().setVisible(false);
 		UI.getInstance().getAspectsManagerFrame().setVisible(true);
 	}
 

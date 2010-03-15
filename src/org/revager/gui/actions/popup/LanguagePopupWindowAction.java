@@ -1,12 +1,11 @@
-package org.revager.gui.dialogs.assistant;
+package org.revager.gui.actions.popup;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import org.revager.gui.dialogs.assistant.LanguagePopupWindow;
 import org.revager.gui.dialogs.assistant.LanguagePopupWindow.ButtonClicked;
-
-
 
 @SuppressWarnings("serial")
 public class LanguagePopupWindowAction extends AbstractAction {
@@ -15,9 +14,8 @@ public class LanguagePopupWindowAction extends AbstractAction {
 
 	private ButtonClicked buttonClick = null;
 
-
-	public LanguagePopupWindowAction(
-			LanguagePopupWindow popupWin, ButtonClicked buttonClk) {
+	public LanguagePopupWindowAction(LanguagePopupWindow popupWin,
+			ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

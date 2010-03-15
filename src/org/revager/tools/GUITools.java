@@ -25,8 +25,6 @@ import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -35,7 +33,6 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.MouseEvent;
-import java.awt.font.LineMetrics;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -71,9 +68,6 @@ import javax.swing.text.JTextComponent;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-import org.revager.gui.helpers.HLink;
-import org.revager.gui.helpers.VLink;
-
 
 /**
  * The Class GUITools.
@@ -687,5 +681,5 @@ public class GUITools {
 						scrollPane.getVerticalScrollBar().getMaximum());
 			}
 		});
-	}	
+	}
 }

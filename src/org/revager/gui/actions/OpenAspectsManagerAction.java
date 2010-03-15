@@ -28,7 +28,6 @@ import javax.swing.KeyStroke;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
-
 /**
  * The Class OpenAspectsManagerAction.
  */

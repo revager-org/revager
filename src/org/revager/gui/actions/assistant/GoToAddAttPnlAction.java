@@ -16,22 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.actions;
+package org.revager.gui.actions.assistant;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import org.revager.app.model.Data;
 import org.revager.gui.UI;
-import org.revager.gui.dialogs.assistant.AssistantDialog;
-
 
 /**
- * The Class OpenModeratorModeAction.
+ * The Class GoToAddAttPnlAction. Calling this action will set the assistant to
+ * the AddAttendeePanel.
+ * 
+ * @author D.Casciato
+ *
  */
 @SuppressWarnings("serial")
-public class GoToOpenRevPnlAction extends AbstractAction {
+public class GoToAddAttPnlAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -41,7 +42,9 @@ public class GoToOpenRevPnlAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setCurrentPnl(AssistantDialog.VisiblePnls.OPEN_REVIEW);
+		UI.getInstance().getAssistantDialog().setCurrentPnl(
+				UI.getInstance().getAssistantDialog().getAddAttendeePanel());
+		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
 	}

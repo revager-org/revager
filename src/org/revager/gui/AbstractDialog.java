@@ -51,7 +51,6 @@ import org.revager.gui.helpers.ProgressGlassPane;
 import org.revager.gui.workers.LoadEmbeddedHelpWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * This class is the superclass for all dialogs in Resi.
  */
@@ -248,10 +247,10 @@ public abstract class AbstractDialog extends JDialog {
 	 */
 	public void setTopPanel(JPanel panel) {
 		panel.setBackground(Color.WHITE);
-		
+
 		panelTop.remove(panelGridTop);
 		panelTop.add(panel, BorderLayout.CENTER);
-		
+
 		panelTop.revalidate();
 	}
 
@@ -318,7 +317,6 @@ public abstract class AbstractDialog extends JDialog {
 	public Component add(Component comp) {
 		return this.panelContent.add(comp);
 	}
-
 
 	/**
 	 * Adds the button.

@@ -16,22 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.actions;
+package org.revager.gui.actions.assistant;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import org.revager.app.model.Data;
 import org.revager.gui.UI;
-import org.revager.gui.dialogs.assistant.AssistantDialog;
-
 
 /**
- * The Class OpenScribeModeAction.
+ * The Class GoToOpenReviewPanel. Calling this action will set the assistant to
+ * the OpenReviewPanel.
+ * 
+ * @author D.Casciato
+ *
  */
 @SuppressWarnings("serial")
-public class GoToAddAttPnlAction extends AbstractAction {
+public class GoToOpenRevPnlAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -41,7 +42,9 @@ public class GoToAddAttPnlAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setCurrentPnl(AssistantDialog.VisiblePnls.ADD_ATTENDEE);
+		UI.getInstance().getAssistantDialog().setCurrentPnl(
+				UI.getInstance().getAssistantDialog().getOpenReviewPanel());
+		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
 	}

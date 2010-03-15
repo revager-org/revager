@@ -25,9 +25,7 @@ import javax.swing.AbstractAction;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
-import org.revager.gui.workers.LoadReviewWorker;
 import org.revager.gui.workers.NewReviewWorker;
-
 
 /**
  * The Class InitializeMainFrameAction.
@@ -43,17 +41,16 @@ public class InitializeNewReviewAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(Data.getInstance().getMode().equals("moderator")){
+		if (Data.getInstance().getMode().equals("moderator")) {
 			new NewReviewWorker().execute();
 			UI.getInstance().getAssistantDialog().setVisible(false);
-		}else if(Data.getInstance().getMode().equals("instant")){
-			AssistantDialog assistant=UI.getInstance().getAssistantDialog();
-			
+		} else if (Data.getInstance().getMode().equals("instant")) {
+			AssistantDialog assistant = UI.getInstance().getAssistantDialog();
 
-			if (!assistant.nameTxtFld.getText().trim().equals("")) {
+			if (!assistant.getAddAttendeePanel().nameTxtFld.getText().trim().equals("")) {
 				new NewReviewWorker().execute();
 				UI.getInstance().getAssistantDialog().setVisible(false);
-				assistant.updateInstantAtt();
+				assistant.getAddAttendeePanel().updateInstantAtt();
 			}
 		}
 	}

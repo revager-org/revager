@@ -46,10 +46,7 @@ public class StrengthTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		if(UI.getInstance().getAttendeeDialog().isVisible())
-			return UI.getInstance().getAttendeeDialog().getStrengthList().size();
-		else
-			return UI.getInstance().getAssistantDialog().getStrengthList().size();
+			return UI.getInstance().getAssistantDialog().getAddAttendeePanel().getStrengthList().size();
 	}
 
 	/*
@@ -59,10 +56,8 @@ public class StrengthTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		if(UI.getInstance().getAttendeeDialog().isVisible())
-			return UI.getInstance().getAttendeeDialog().getStrengthList().get(rowIndex);
-		else
-			return UI.getInstance().getAssistantDialog().getStrengthList().get(rowIndex);
+
+			return UI.getInstance().getAssistantDialog().getAddAttendeePanel().getStrengthList().get(rowIndex);
 		
 	}
 
@@ -78,7 +73,7 @@ public class StrengthTableModel extends AbstractTableModel {
 					(String) insertion);
 
 		}else{
-			UI.getInstance().getAssistantDialog().getStrengthList().set(row,
+			UI.getInstance().getAssistantDialog().getAddAttendeePanel().getStrengthList().set(row,
 					(String) insertion);
 
 		}

@@ -16,40 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.actions;
+package org.revager.gui.actions.assistant;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.KeyStroke;
 
-import org.revager.app.model.Data;
 import org.revager.gui.UI;
-import org.revager.gui.dialogs.assistant.AssistantDialog;
-
 
 /**
- * The Class SelectModeAction.
+ * The Class GoToFirstScreenPnlAction. Calling this action will set the assistant to
+ * the FirstScreenPanel.
+ * 
+ * @author D.Casciato
+ *
  */
 @SuppressWarnings("serial")
 public class GoToFirstScreenPnlAction extends AbstractAction {
-
-	/**
-	 * Instantiates a new select mode action.
-	 */
-	public GoToFirstScreenPnlAction() {
-		super();
-
-		putValue(Action.SMALL_ICON, Data.getInstance().getIcon(
-				"menuAssistant_16x16.png"));
-		putValue(Action.NAME, Data.getInstance().getLocaleStr(
-				"menu.showAssistant"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -59,10 +42,11 @@ public class GoToFirstScreenPnlAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setCurrentPnl(AssistantDialog.VisiblePnls.FIRST_SCREEN);
+		UI.getInstance().getAssistantDialog().setCurrentPnl(
+				UI.getInstance().getAssistantDialog().getFirstScreenPanel());
+		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
-		UI.getInstance().getAssistantDialog().setVisible(true);
 	}
 
 }

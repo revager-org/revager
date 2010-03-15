@@ -23,6 +23,11 @@ import java.util.Map;
 
 import javax.swing.Action;
 
+import org.revager.gui.actions.assistant.GoToAddAttPnlAction;
+import org.revager.gui.actions.assistant.GoToFirstScreenPnlAction;
+import org.revager.gui.actions.assistant.GoToOpenRevPnlAction;
+import org.revager.gui.actions.assistant.OpenAssistantAction;
+import org.revager.gui.actions.assistant.SelectLanguageAction;
 import org.revager.gui.actions.attendee.AddAttToProtAction;
 import org.revager.gui.actions.attendee.AddAttendeeAction;
 import org.revager.gui.actions.attendee.AddResiAttToProtAction;
@@ -47,8 +52,6 @@ import org.revager.gui.actions.severities.PushSeverityDownAction;
 import org.revager.gui.actions.severities.PushSeverityTopAction;
 import org.revager.gui.actions.severities.PushSeverityUpAction;
 import org.revager.gui.actions.severities.RemoveSeverityAction;
-import org.revager.gui.dialogs.assistant.SelectLanguageAction;
-
 
 /**
  * The action registry contains all actions of this application, so they can
@@ -166,5 +169,6 @@ public class ActionRegistry {
 		register(new OpenExpPDFDialogAction());
 		register(new OpenExpCSVDialogAction());
 		register(new SelectLanguageAction());
+		register(new OpenAssistantAction());
 	}
 }

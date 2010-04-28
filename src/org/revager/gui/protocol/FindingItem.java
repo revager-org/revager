@@ -74,7 +74,7 @@ import org.revager.gui.UI;
 import org.revager.gui.helpers.DefaultTableHeaderCellRenderer;
 import org.revager.gui.helpers.FileChooser;
 import org.revager.gui.models.FindAspTableModel;
-import org.revager.gui.models.FindExRefTableModel;
+import org.revager.gui.models.FindExtRefTableModel;
 import org.revager.gui.models.FindRefTableModel;
 import org.revager.gui.protocol.AddAspToFindPopupWindow.ButtonClicked;
 import org.revager.tools.AppTools;
@@ -103,7 +103,7 @@ public class FindingItem extends JPanel implements Observer {
 	private GridLayout gl = new GridLayout(3, 1);
 
 	private FindRefTableModel frtm;
-	private FindExRefTableModel fertm;
+	private FindExtRefTableModel fertm;
 	private FindAspTableModel fatm;
 
 	private JTable refTbl;
@@ -709,7 +709,7 @@ public class FindingItem extends JPanel implements Observer {
 		 */
 		fatm = new FindAspTableModel(currentFinding);
 		frtm = new FindRefTableModel(currentFinding);
-		fertm = new FindExRefTableModel(currentFinding);
+		fertm = new FindExtRefTableModel(currentFinding);
 
 		DefaultTableCellRenderer cellRend = new DefaultTableCellRenderer() {
 			@Override

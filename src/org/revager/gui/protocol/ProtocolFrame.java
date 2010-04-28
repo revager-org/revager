@@ -405,7 +405,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				tabPanelOrg);
 		tabbedPane.add(
 				Data.getInstance().getLocaleStr("editProtocol.findings"),
-				tabPanelFindings);
+				new FindingsTab(currentProt));
 		tabbedPane.add(Data.getInstance().getLocaleStr(
 				"editProtocol.commAndRec"), tabPanelCommAndRec);
 

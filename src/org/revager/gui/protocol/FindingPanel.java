@@ -3,6 +3,7 @@ package org.revager.gui.protocol;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,6 +17,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -34,7 +37,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -59,29 +61,29 @@ import org.revager.tools.GUITools;
 
 public class FindingPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+
 	public enum Type {
 		EDIT_VIEW, COMPACT_VIEW
 	}
 
-	private static final int CONTROL_BUTTONS_PADDING = 5;
+	private static final int CONTROL_BUTTONS_PADDING = 2;
 
-	private static final Dimension EDIT_VIEW_SIZE = new Dimension(100, 280);
-	private static final Dimension COMPACT_VIEW_SIZE = new Dimension(100, 50);
+	public static final Dimension EDIT_VIEW_SIZE = new Dimension(100, 280);
+	public static final Dimension COMPACT_VIEW_SIZE = new Dimension(100, 45);
 
 	private static final Color EDIT_VIEW_BG = new Color(255, 255, 204);
 	private static final Color COMPACT_VIEW_BG = new Color(229, 226, 226);
 
-	private static final long serialVersionUID = 1L;
-
 	private Type type = Type.EDIT_VIEW;
 
-	protected Finding finding = null;
+	private Finding finding = null;
 
-	protected FindingsTab findingsTab = null;
+	private FindingsTab findingsTab = null;
 
-	protected Protocol protocol = null;
+	private Protocol protocol = null;
 
-	protected GridBagLayout layout = new GridBagLayout();
+	private GridBagLayout layout = new GridBagLayout();
 
 	private FindingManagement findMgmt = Application.getInstance()
 			.getFindingMgmt();
@@ -197,8 +199,7 @@ public class FindingPanel extends JPanel {
 	private FocusListener focusListener = new FocusListener() {
 		@Override
 		public void focusGained(FocusEvent e) {
-			UI.getInstance().getProtocolFrame().updateFocus(finding,
-					e.getSource());
+			updateFocus(e.getSource());
 
 			updateTableButtons();
 		}
@@ -362,8 +363,7 @@ public class FindingPanel extends JPanel {
 		buttonAddExtReference.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getProtocolFrame().updateFocus(finding,
-						tableExtReferences);
+				updateFocus(tableExtReferences);
 
 				new AddExternalReferenceWorker().execute();
 			}
@@ -389,8 +389,7 @@ public class FindingPanel extends JPanel {
 		buttonPasteExtReference.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getProtocolFrame().updateFocus(finding,
-						tableExtReferences);
+				updateFocus(tableExtReferences);
 
 				new PasteImageFromClipboardWorker().execute();
 			}
@@ -415,8 +414,7 @@ public class FindingPanel extends JPanel {
 		buttonAddAspect.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getProtocolFrame().updateFocus(finding,
-						tableAspects);
+				updateFocus(tableAspects);
 
 				AddAspToFindPopupWindow popup = new AddAspToFindPopupWindow(UI
 						.getInstance().getProtocolFrame());
@@ -554,18 +552,23 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Create content panel
 		 */
-		panelEditView.setBorder(new LineBorder(Color.GRAY, 1, false));
+		panelEditView.setBorder(UI.STANDARD_BORDER);
 		panelEditView.setBackground(EDIT_VIEW_BG);
 
-		panelCompactView.setBorder(new LineBorder(Color.GRAY, 1, false));
+		panelCompactView.setBorder(UI.STANDARD_BORDER);
 		panelCompactView.setBackground(COMPACT_VIEW_BG);
 
-		labelFindingNumber.setFont(new Font(labelFindingNumber.getFont()
-				.getName(), Font.BOLD, labelFindingNumber.getFont().getSize()));
+		labelFindingDescription.setFont(UI.PROTOCOL_FONT);
 
-		labelFindingSeverity.setFont(new Font(labelFindingSeverity.getFont()
-				.getName(), Font.ITALIC, labelFindingSeverity.getFont()
-				.getSize()));
+		labelFindingNumber.setFont(UI.PROTOCOL_FONT_BOLD);
+
+		labelFindingSeverity.setFont(new Font(UI.PROTOCOL_FONT.getName(),
+				Font.ITALIC, UI.PROTOCOL_FONT.getSize()));
+
+		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
+		labelFindingTitle.setText(Data.getInstance().getLocaleStr(
+				"editProtocol.finding.number")
+				+ " " + finding.getId());
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
 		GUITools.scrollToTop(scrollDescription);
@@ -573,6 +576,26 @@ public class FindingPanel extends JPanel {
 		textDescription.setText(finding.getDescription());
 		textDescription.addFocusListener(focusListener);
 		textDescription.setFont(UI.PROTOCOL_FONT);
+		textDescription.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				findingsTab.updateTab();
+
+				if (findMgmt.isFindingNotComplete(finding)) {
+					scrollDescription.setBorder(UI.MARKED_BORDER);
+				} else {
+					scrollDescription.setBorder(UI.STANDARD_BORDER);
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 
 		comboSeverity.setFont(UI.PROTOCOL_FONT_BOLD);
 		for (String sev : sevMgmt.getSeverities()) {
@@ -604,6 +627,40 @@ public class FindingPanel extends JPanel {
 				findingsTab.removeCurrentFinding();
 			}
 		});
+		buttonPushUp.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				findingsTab.pushUpCurrentFinding();
+			}
+		});
+		buttonPushDown.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				findingsTab.pushDownCurrentFinding();
+			}
+		});
+		buttonPushTop.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				findingsTab.pushTopCurrentFinding();
+			}
+		});
+		buttonPushBottom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				findingsTab.pushBottomCurrentFinding();
+			}
+		});
+
+		/*
+		 * Register focus listener
+		 */
+		textDescription.addFocusListener(focusListener);
+		comboSeverity.addFocusListener(focusListener);
+
+		tableAspects.addFocusListener(focusListener);
+		tableExtReferences.addFocusListener(focusListener);
+		tableReferences.addFocusListener(focusListener);
 
 		/*
 		 * Add components to compact view panel
@@ -623,35 +680,38 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Add components to edit view panel
 		 */
+		JPanel panelStrut = new JPanel();
+		panelStrut.setBackground(EDIT_VIEW_BG);
+
 		GUITools.addComponent(panelEditView, layoutEditView, labelFindingTitle,
-				0, 0, 2, 1, 0.0, 0.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
+				0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView, comboSeverity, 1,
-				0, 2, 1, 0.0, 0.0, 5, 5, 5, 5, GridBagConstraints.NONE,
+				0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHEAST);
 		GUITools.addComponent(panelEditView, layoutEditView, scrollDescription,
-				0, 1, 1, 1, 1.0, 1.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
+				0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, new JPanel(), 1,
-				1, 1, 1, 0.0, 0.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
+		GUITools.addComponent(panelEditView, layoutEditView, panelStrut, 1, 1,
+				1, 1, 0.0, 0.0, 10, 0, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView, scrollReferences,
-				2, 1, 1, 1, 1.0, 0.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
+				2, 1, 1, 1, 1.0, 0.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView,
-				panelButtonsReferences, 3, 1, 1, 1, 0.0, 0.0, 5, 5, 5, 5,
+				panelButtonsReferences, 3, 1, 1, 1, 0.0, 0.0, 10, 0, 0, 10,
 				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView, scrollAspects, 0,
-				2, 1, 1, 1.0, 0.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
+				2, 1, 1, 1.0, 0.0, 10, 10, 10, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView,
-				panelButtonsAspects, 1, 2, 1, 1, 0.0, 0.0, 5, 5, 5, 5,
+				panelButtonsAspects, 1, 2, 1, 1, 0.0, 0.0, 10, 0, 10, 20,
 				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView,
-				scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
+				scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView,
-				panelButtonsExtReferences, 3, 2, 1, 1, 0.0, 0.0, 5, 5, 5, 5,
+				panelButtonsExtReferences, 3, 2, 1, 1, 0.0, 0.0, 10, 0, 10, 10,
 				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 
 		setEditView();
@@ -674,6 +734,16 @@ public class FindingPanel extends JPanel {
 		this.removeAll();
 
 		this.removeMouseListener(mouseListenerCompact);
+
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+		if (findMgmt.isFindingNotComplete(finding)) {
+			scrollDescription.setBorder(UI.MARKED_BORDER);
+		} else {
+			scrollDescription.setBorder(UI.STANDARD_BORDER);
+		}
+
+		updateFindingButtons();
 
 		/*
 		 * Create finding control buttons like push etc.
@@ -708,9 +778,13 @@ public class FindingPanel extends JPanel {
 		 * Add content panel to root panel
 		 */
 		GUITools.addComponent(this, layout, panelEditView, 1, 0, 1, 6, 1.0,
-				0.0, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+				0.0, 0, 0, 0, 20, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+
+		/*
+		 * Get the focus
+		 */
+		textDescription.requestFocusInWindow();
 	}
 
 	private void setCompactView() {
@@ -722,6 +796,21 @@ public class FindingPanel extends JPanel {
 
 		this.addMouseListener(mouseListenerCompact);
 
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		if (findMgmt.isFindingNotComplete(finding)) {
+			panelCompactView.setBorder(UI.MARKED_BORDER);
+			panelCompactView.setBackground(UI.MARKED_COLOR.brighter());
+		} else {
+			panelCompactView.setBorder(UI.STANDARD_BORDER);
+			panelCompactView.setBackground(COMPACT_VIEW_BG);
+		}
+
+		storeFindingData();
+
+		/*
+		 * Update labels
+		 */
 		labelFindingNumber.setText(Data.getInstance().getLocaleStr(
 				"editProtocol.finding.number")
 				+ " " + finding.getId());
@@ -741,7 +830,7 @@ public class FindingPanel extends JPanel {
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 
 		GUITools.addComponent(this, layout, panelCompactView, 1, 0, 1, 1, 1.0,
-				0.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				0.0, 0, 0, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 	}
 
@@ -844,6 +933,14 @@ public class FindingPanel extends JPanel {
 
 	public Finding getFinding() {
 		return finding;
+	}
+
+	public void storeFindingData() {
+		finding.setDescription(textDescription.getText());
+
+		if (tableReferences.isEditing()) {
+			tableReferences.getCellEditor().stopCellEditing();
+		}
 	}
 
 	private class FindingPanelCellRenderer extends DefaultTableCellRenderer {

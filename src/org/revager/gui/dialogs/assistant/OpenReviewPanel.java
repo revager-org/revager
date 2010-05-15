@@ -193,7 +193,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getAssistantDialog().setLocalMode("moderator");
+				//UI.getInstance().getAssistantDialog().setLocalMode("moderator");
 				Data.getInstance().setMode("moderator");
 			}
 		});
@@ -202,7 +202,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getAssistantDialog().setLocalMode("scribe");
+				//UI.getInstance().getAssistantDialog().setLocalMode("scribe");
 				Data.getInstance().setMode("scribe");
 			}
 		});

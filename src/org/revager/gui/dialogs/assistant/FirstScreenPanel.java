@@ -45,6 +45,7 @@ import org.revager.tools.GUITools;
  * @author D.Casciato
  *
  */
+
 @SuppressWarnings("serial")
 public class FirstScreenPanel extends AbstractDialogPanel {
 

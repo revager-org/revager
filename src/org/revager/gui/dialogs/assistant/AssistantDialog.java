@@ -101,21 +101,6 @@ public class AssistantDialog extends AbstractDialog {
 			"buttonExit_16x16.png");
 	
 
-	/**
-	 * Returns the localMode.
-	 * @return
-	 */
-	public String getLocalMode() {
-		return localMode;
-	}
-
-	/**
-	 * Sets the localMode.
-	 * @param localMode
-	 */
-	public void setLocalMode(String localMode) {
-		this.localMode = localMode;
-	}
 
 	/**
 	 * Returns the currentPanel.
@@ -177,7 +162,7 @@ public class AssistantDialog extends AbstractDialog {
 		super(parent);
 
 		defineWizardBttns();
-		setLocalMode("moderator");
+		Data.getInstance().setMode("moderator");
 		setIcon(revagerIcon);
 		setCurrentPnl(firstScreenPanel);
 		getContentPane().setLayout(new BorderLayout());

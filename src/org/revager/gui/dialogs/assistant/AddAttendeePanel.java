@@ -68,6 +68,7 @@ import org.revager.tools.GUITools;
  * @author D.Casciato
  *
  */
+
 @SuppressWarnings("serial")
 public class AddAttendeePanel extends AbstractDialogPanel {
 

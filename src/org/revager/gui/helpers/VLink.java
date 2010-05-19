@@ -86,7 +86,7 @@ public class VLink extends JPanel {
 			localLbl.setForeground(Color.BLACK);
 			localBttn.setSelected(false);
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			setBold(false);
+//			setBold(false);
 		}
 
 		@Override
@@ -94,7 +94,7 @@ public class VLink extends JPanel {
 			localLbl.setForeground(Color.BLUE);
 			localBttn.setSelected(true);
 			setCursor(new Cursor(Cursor.HAND_CURSOR));
-			setBold(true);
+//			setBold(true);
 			localLbl.revalidate();
 		}
 
@@ -103,7 +103,7 @@ public class VLink extends JPanel {
 			localLbl.setForeground(Color.BLACK);
 			localBttn.setSelected(false);
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			setBold(false);
+//			setBold(false);
 		}
 
 		@Override

@@ -193,7 +193,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//UI.getInstance().getAssistantDialog().setLocalMode("moderator");
+				UI.getInstance().getAssistantDialog().setLocalMode("moderator");
 				Data.getInstance().setMode("moderator");
 			}
 		});
@@ -202,7 +202,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//UI.getInstance().getAssistantDialog().setLocalMode("scribe");
+				UI.getInstance().getAssistantDialog().setLocalMode("scribe");
 				Data.getInstance().setMode("scribe");
 			}
 		});
@@ -278,6 +278,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 		}
 		anotherReviewLnk = new HLink(anotherRevStrng, browseIcon,
 				browseRolloverIcon, null);
+		anotherReviewLnk.setUnderlined(true);
 		anotherReviewLnk.addActionListener(openAnotherRev);
 		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1,
 				1, 1.0, 1.0, 30, 30, 0, 0, GridBagConstraints.HORIZONTAL,

@@ -31,7 +31,6 @@ import javax.swing.JDialog;
 import org.revager.app.model.Data;
 import org.revager.gui.AbstractDialog;
 import org.revager.gui.AbstractDialogPanel;
-import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.InitializeNewReviewAction;
 import org.revager.gui.actions.assistant.GoToFirstScreenPnlAction;
@@ -84,7 +83,7 @@ public class AssistantDialog extends AbstractDialog {
 			"addYourself.description");
 	private String openRevStrng = Data.getInstance().getLocaleStr(
 			"assistantDialog.openReview");
-	private String localMode;
+	private String localMode="moderator";
 
 	/*
 	 * 
@@ -101,7 +100,15 @@ public class AssistantDialog extends AbstractDialog {
 			"buttonExit_16x16.png");
 	
 
-
+	/**
+	 * Sets the localMode parameter
+	 * @param string
+	 */
+	public void setLocalMode(String string) {
+		this.localMode=string;
+		
+	}
+	
 	/**
 	 * Returns the currentPanel.
 	 * @return
@@ -173,7 +180,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
-		setMinimumSize(new Dimension(600, 500));
+		setMinimumSize(new Dimension(650, 500));
 
 		pack();
 	}
@@ -219,19 +226,14 @@ public class AssistantDialog extends AbstractDialog {
 			finishBttn.setEnabled(true);
 			finishBttn.setText(confirmString);
 			finishBttn.setIcon(confirmIcon);
-			finishBttn.addActionListener(initQuickRev);
-
-			if (!UI.getInstance().getAssistantDialog().getAddAttendeePanel().nameTxtFld
-					.getText().trim().equals(""))
-
-				finishBttn.setEnabled(true);
+			finishBttn.addActionListener(initQuickRev);	
 
 		} else if (currentPnl == openReviewPanel) {
 
 			backBttn.setEnabled(true);
 			finishBttn.setEnabled(true);
 			finishBttn.setText(openRevStrng);
-			finishBttn.setIcon(finishIcon);
+			finishBttn.setIcon(confirmIcon);
 			finishBttn.addActionListener(openReviewPanel.openExistRev);
 			if (openReviewPanel.getLastRevsVector().size() == 0)
 				finishBttn.setEnabled(false);

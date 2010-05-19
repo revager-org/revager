@@ -42,11 +42,13 @@ public class GoToOpenRevPnlAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		UI.getInstance().getAssistantDialog().setCurrentPnl(
 				UI.getInstance().getAssistantDialog().getOpenReviewPanel());
 		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
+		
 	}
 
 }

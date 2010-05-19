@@ -51,6 +51,13 @@ public class InitializeNewReviewAction extends AbstractAction {
 				new NewReviewWorker().execute();
 				UI.getInstance().getAssistantDialog().setVisible(false);
 				assistant.getAddAttendeePanel().updateInstantAtt();
+			}else{
+				String message="";
+				message = Data.getInstance().getLocaleStr(
+				"attendeeDialog.message.noName");
+				assistant.setMessage(message);
+				assistant.getAddAttendeePanel().nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
+				
 			}
 		}
 	}

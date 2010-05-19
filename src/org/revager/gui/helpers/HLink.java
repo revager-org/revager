@@ -139,7 +139,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLUE);
 				localBttn.setSelected(true);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
-				setBold(true);
+				//setBold(true);
 			} else {
 				localGroup.resetAllLinks();
 				localBttn.setIcon(localSelIcon);
@@ -147,7 +147,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLUE);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				setSelected(true);
-				setBold(true);
+				//setBold(true);
 			}
 
 		}
@@ -158,7 +158,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLUE);
 				localBttn.setSelected(true);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
-				setBold(true);
+				//setBold(true);
 			} else {
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				setUnderlined(true);
@@ -171,7 +171,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLACK);
 				localBttn.setSelected(false);
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				setBold(false);
+				//setBold(false);
 			} else {
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				setUnderlined(false);

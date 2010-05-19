@@ -45,7 +45,7 @@ public class LinkGroup {
 	 */
 	public void resetAllLinks() {
 		for (HLink link : hLinksList) {
-			link.setBold(false);
+			//link.setBold(false);
 			link.setColor(Color.BLACK);
 			link.setLocalRolloverIcon(link.getLocalDisIcon());
 			link.setLocalIcon(link.getLocalDisIcon());
@@ -61,13 +61,13 @@ public class LinkGroup {
 	public void selectLink(HLink selLink) {
 		for (HLink link : hLinksList) {
 			if (link == selLink) {
-				link.setBold(true);
+				//link.setBold(true);
 				link.setColor(Color.BLUE);
 				link.setLocalRolloverIcon(link.getLocalSelIcon());
 				link.setLocalIcon(link.getLocalSelIcon());
 				link.setSelected(true);
 			} else {
-				link.setBold(false);
+				//link.setBold(false);
 				link.setColor(Color.BLACK);
 				link.setLocalRolloverIcon(link.getLocalDisIcon());
 				link.setLocalIcon(link.getLocalDisIcon());

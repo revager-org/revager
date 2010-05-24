@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
+import javax.swing.SwingWorker;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
@@ -68,43 +69,62 @@ public class OpenProtocolFrameAction extends AbstractAction {
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		Meeting editMeet;
-		Protocol currentProt;
+	public void actionPerformed(ActionEvent e) {
+		new OpenProtocolFrameWorker().execute();
+	}
 
-		TreePath path = UI.getInstance().getMainFrame().getMeetingsTree()
-				.getSelectionPath();
+	private class OpenProtocolFrameWorker extends SwingWorker<Void, Void> {
+		@Override
+		protected Void doInBackground() throws Exception {
+			try {
+				UI.getInstance().getMainFrame().switchToProgressMode();
 
-		if (path.getPathCount() == 3)
-			editMeet = ((TreeProtocol) ((DefaultMutableTreeNode) path
-					.getLastPathComponent()).getUserObject()).getMeeting();
-		else
-			editMeet = ((TreeMeeting) ((DefaultMutableTreeNode) path
-					.getLastPathComponent()).getUserObject()).getMeeting();
+				Meeting editMeet;
+				Protocol currentProt;
 
-		currentProt = Application.getInstance().getProtocolMgmt().getProtocol(
-				editMeet);
-		if (currentProt == null) {
-			currentProt = new Protocol();
-			currentProt.setDate(editMeet.getPlannedDate());
-			currentProt.setLocation(editMeet.getPlannedLocation());
-			currentProt.setStart(editMeet.getPlannedStart());
-			currentProt.setEnd(editMeet.getPlannedEnd());
-			currentProt.setComments("");
+				TreePath path = UI.getInstance().getMainFrame()
+						.getMeetingsTree().getSelectionPath();
 
-			Finding newFind = new Finding();
-			newFind.setSeverity(sevMgmt.getSeverities().get(0));
+				if (path.getPathCount() == 3)
+					editMeet = ((TreeProtocol) ((DefaultMutableTreeNode) path
+							.getLastPathComponent()).getUserObject())
+							.getMeeting();
+				else
+					editMeet = ((TreeMeeting) ((DefaultMutableTreeNode) path
+							.getLastPathComponent()).getUserObject())
+							.getMeeting();
 
-			findingMgmt.addFinding(newFind, currentProt);
+				currentProt = Application.getInstance().getProtocolMgmt()
+						.getProtocol(editMeet);
+				if (currentProt == null) {
+					currentProt = new Protocol();
+					currentProt.setDate(editMeet.getPlannedDate());
+					currentProt.setLocation(editMeet.getPlannedLocation());
+					currentProt.setStart(editMeet.getPlannedStart());
+					currentProt.setEnd(editMeet.getPlannedEnd());
+					currentProt.setComments("");
+
+					Finding newFind = new Finding();
+					newFind.setSeverity(sevMgmt.getSeverities().get(0));
+
+					findingMgmt.addFinding(newFind, currentProt);
+				}
+
+				Application.getInstance().getProtocolMgmt().setProtocol(
+						currentProt, editMeet);
+
+				UI.getInstance().getProtocolFrame().resetClock();
+				UI.getInstance().getProtocolFrame().setMeeting(editMeet);
+				UI.getInstance().getProtocolFrame().setVisible(true);
+				UI.getInstance().getMainFrame().updateMeetingsTree();
+
+				UI.getInstance().getMainFrame().switchToEditMode();
+			} catch (Exception e) {
+				UI.getInstance().getMainFrame().switchToEditMode();
+			}
+
+			return null;
 		}
-		Application.getInstance().getProtocolMgmt().setProtocol(currentProt,
-				editMeet);
-
-		UI.getInstance().getProtocolFrame().resetClock();
-		UI.getInstance().getProtocolFrame().setMeeting(editMeet);
-		UI.getInstance().getProtocolFrame().setVisible(true);
-		UI.getInstance().getMainFrame().updateMeetingsTree();
-
 	}
 
 }

@@ -29,6 +29,7 @@ import javax.swing.tree.TreePath;
 
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
+import org.revager.app.SeverityManagement;
 import org.revager.app.model.Data;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
@@ -36,7 +37,6 @@ import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 import org.revager.gui.helpers.TreeMeeting;
 import org.revager.gui.helpers.TreeProtocol;
-
 
 /**
  * The Class OpenProtocolFrameAction.
@@ -46,6 +46,8 @@ public class OpenProtocolFrameAction extends AbstractAction {
 
 	private FindingManagement findingMgmt = Application.getInstance()
 			.getFindingMgmt();
+	private SeverityManagement sevMgmt = Application.getInstance()
+			.getSeverityMgmt();
 
 	/**
 	 * Instantiates a new open protocol frame action.
@@ -89,7 +91,11 @@ public class OpenProtocolFrameAction extends AbstractAction {
 			currentProt.setStart(editMeet.getPlannedStart());
 			currentProt.setEnd(editMeet.getPlannedEnd());
 			currentProt.setComments("");
-			findingMgmt.addFinding(new Finding(), currentProt);
+
+			Finding newFind = new Finding();
+			newFind.setSeverity(sevMgmt.getSeverities().get(0));
+
+			findingMgmt.addFinding(newFind, currentProt);
 		}
 		Application.getInstance().getProtocolMgmt().setProtocol(currentProt,
 				editMeet);

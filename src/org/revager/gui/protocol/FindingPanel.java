@@ -285,6 +285,22 @@ public class FindingPanel extends JPanel {
 		panelButtonsAspects.setOpaque(false);
 
 		/*
+		 * Set tooltips for buttons
+		 */
+		buttonCloseFinding.setToolTipText(Data.getInstance().getLocaleStr(
+				"findingsList.close"));
+		buttonRemoveFinding.setToolTipText(Data.getInstance().getLocaleStr(
+				"findingsList.remove"));
+		buttonPushUp.setToolTipText(Data.getInstance().getLocaleStr(
+				"findingsList.pushUp"));
+		buttonPushDown.setToolTipText(Data.getInstance().getLocaleStr(
+				"findingsList.pushDown"));
+		buttonPushTop.setToolTipText(Data.getInstance().getLocaleStr(
+				"findingsList.pushTop"));
+		buttonPushBottom.setToolTipText(Data.getInstance().getLocaleStr(
+				"findingsList.pushBottom"));
+
+		/*
 		 * Buttons for references table
 		 */
 		buttonAddReference.addActionListener(new ActionListener() {
@@ -603,6 +619,8 @@ public class FindingPanel extends JPanel {
 		}
 		comboSeverity.addFocusListener(focusListener);
 
+		comboSeverity.setSelectedItem(finding.getSeverity());
+
 		comboSeverity.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -613,7 +631,6 @@ public class FindingPanel extends JPanel {
 				}
 			}
 		});
-		comboSeverity.setSelectedItem(finding.getSeverity());
 
 		buttonCloseFinding.addActionListener(new ActionListener() {
 			@Override
@@ -624,7 +641,14 @@ public class FindingPanel extends JPanel {
 		buttonRemoveFinding.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				findingsTab.removeCurrentFinding();
+				if (JOptionPane.showConfirmDialog(UI.getInstance()
+						.getProtocolFrame(), GUITools.getMessagePane(Data
+						.getInstance().getLocaleStr(
+								"findingsList.confirmRemoval")), Data
+						.getInstance().getLocaleStr("question"),
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					findingsTab.removeCurrentFinding();
+				}
 			}
 		});
 		buttonPushUp.addActionListener(new ActionListener() {
@@ -731,6 +755,8 @@ public class FindingPanel extends JPanel {
 
 		this.setPreferredSize(EDIT_VIEW_SIZE);
 
+		this.setToolTipText(null);
+
 		this.removeAll();
 
 		this.removeMouseListener(mouseListenerCompact);
@@ -792,6 +818,13 @@ public class FindingPanel extends JPanel {
 
 		this.setPreferredSize(COMPACT_VIEW_SIZE);
 
+		this.setToolTipText(finding.getAspects().size() + " "
+				+ Data.getInstance().getLocaleStr("findingsList.aspects")
+				+ ", " + finding.getReferences().size() + " "
+				+ Data.getInstance().getLocaleStr("findingsList.references")
+				+ ", " + finding.getExternalReferences().size()
+				+ Data.getInstance().getLocaleStr("findingsList.files"));
+
 		this.removeAll();
 
 		this.addMouseListener(mouseListenerCompact);
@@ -836,13 +869,13 @@ public class FindingPanel extends JPanel {
 
 	public void updateFindingButtons() {
 		if (findMgmt.getNumberOfFindings(protocol) == 1) {
-			buttonRemoveFinding.setEnabled(false);
+			// buttonRemoveFinding.setEnabled(false);
 			buttonPushUp.setEnabled(false);
 			buttonPushDown.setEnabled(false);
 			buttonPushTop.setEnabled(false);
 			buttonPushBottom.setEnabled(false);
 		} else {
-			buttonRemoveFinding.setEnabled(true);
+			// buttonRemoveFinding.setEnabled(true);
 
 			if (findMgmt.isTopFinding(finding, protocol)) {
 				buttonPushUp.setEnabled(false);

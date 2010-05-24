@@ -42,6 +42,10 @@ public class FindingsTab extends JPanel {
 	private JPanel panelFindingsList = new JPanel(layoutFindingsList);
 	private JScrollPane scrollFindingsList = new JScrollPane(panelFindingsList);
 
+	private int gblAlignment = GridBagConstraints.BOTH;
+
+	private JPanel panelStrut = new JPanel();
+
 	private JButton buttonAddFinding = new JButton(Data.getInstance()
 			.getLocaleStr("editProtocol.newFinding"));
 	private JLabel labelNumOfFindings = new JLabel();
@@ -59,6 +63,7 @@ public class FindingsTab extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		panelFindingsList.setBackground(Color.WHITE);
+		panelStrut.setBackground(Color.WHITE);
 
 		scrollFindingsList.getVerticalScrollBar().setUnitIncrement(12);
 		scrollFindingsList.getHorizontalScrollBar().setUnitIncrement(12);
@@ -177,10 +182,18 @@ public class FindingsTab extends JPanel {
 		gridBagPositions.put(finding, currentGridBagPosition);
 		findingPanels.put(finding, currentFindingPanel);
 
+		panelFindingsList.remove(panelStrut);
+
 		GUITools.addComponent(panelFindingsList, layoutFindingsList,
 				currentFindingPanel, 0, currentGridBagPosition, 1, 1, 1.0, 0.0,
-				5, 5, 5, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
+				5, 5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
+
+		/*
+		 * Update position of strut panel
+		 */
+		GUITools.addComponent(panelFindingsList, layoutFindingsList,
+				panelStrut, 0, currentGridBagPosition + 1, 1, 1, 1.0, 1.0, 0,
+				0, 0, 0, gblAlignment, GridBagConstraints.NORTHWEST);
 
 		currentGridBagPosition++;
 
@@ -235,6 +248,17 @@ public class FindingsTab extends JPanel {
 			panelFindingsList.revalidate();
 		}
 
+		/*
+		 * Add new finding, if there are no findings present
+		 */
+		if (findMgmt.getNumberOfFindings(protocol) == 0) {
+			Finding newFind = new Finding();
+			newFind.setSeverity(sevMgmt.getSeverities().get(0));
+			newFind = findMgmt.addFinding(newFind, protocol);
+
+			addFinding(newFind);
+		}
+
 		updateTab();
 	}
 
@@ -265,10 +289,10 @@ public class FindingsTab extends JPanel {
 
 			GUITools.addComponent(panelFindingsList, layoutFindingsList,
 					currentFindingPanel, 0, predecPos, 1, 1, 1.0, 0.0, 5, 5, 5,
-					5, GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+					5, gblAlignment, GridBagConstraints.NORTHWEST);
 			GUITools.addComponent(panelFindingsList, layoutFindingsList,
 					predecFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-					GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+					gblAlignment, GridBagConstraints.NORTHWEST);
 
 			findMgmt.pushUpFinding(currentFindingPanel.getFinding(), protocol);
 
@@ -316,10 +340,10 @@ public class FindingsTab extends JPanel {
 
 			GUITools.addComponent(panelFindingsList, layoutFindingsList,
 					currentFindingPanel, 0, succPos, 1, 1, 1.0, 0.0, 5, 5, 5,
-					5, GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+					5, gblAlignment, GridBagConstraints.NORTHWEST);
 			GUITools.addComponent(panelFindingsList, layoutFindingsList,
 					succFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-					GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+					gblAlignment, GridBagConstraints.NORTHWEST);
 
 			findMgmt
 					.pushDownFinding(currentFindingPanel.getFinding(), protocol);

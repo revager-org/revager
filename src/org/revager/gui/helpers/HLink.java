@@ -20,6 +20,7 @@ package org.revager.gui.helpers;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -139,7 +140,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLUE);
 				localBttn.setSelected(true);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
-				//setBold(true);
+				// setBold(true);
 			} else {
 				localGroup.resetAllLinks();
 				localBttn.setIcon(localSelIcon);
@@ -147,7 +148,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLUE);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				setSelected(true);
-				//setBold(true);
+				// setBold(true);
 			}
 
 		}
@@ -158,7 +159,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLUE);
 				localBttn.setSelected(true);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
-				//setBold(true);
+				// setBold(true);
 			} else {
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				setUnderlined(true);
@@ -171,7 +172,7 @@ public class HLink extends JPanel {
 				localLbl.setForeground(Color.BLACK);
 				localBttn.setSelected(false);
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				//setBold(false);
+				// setBold(false);
 			} else {
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				setUnderlined(false);
@@ -272,9 +273,9 @@ public class HLink extends JPanel {
 	 */
 	public void setUnderlined(Boolean isUnderlined) {
 		if (isUnderlined)
-			localLbl.setText("<html><U>" + localTextStrng + "</html>");
+			localLbl.setText("<html><u>" + localTextStrng + "</u></html>");
 		else
-			localLbl.setText(localTextStrng);
+			localLbl.setText("<html>" + localTextStrng + "</html>");
 	}
 
 	/**
@@ -345,7 +346,7 @@ public class HLink extends JPanel {
 			localBttn = GUITools.newImageButton(localIcon, localIcon);
 
 		localTextStrng = text;
-		localLbl = new JLabel(localTextStrng);
+		localLbl = new JLabel("<html>" + localTextStrng + "</html>");
 
 		this.addMouseListener(localListener);
 		localLbl.addMouseListener(localListener);
@@ -353,14 +354,17 @@ public class HLink extends JPanel {
 		localBttn.addMouseListener(selectionListener);
 		localLbl.addMouseListener(selectionListener);
 
-		GUITools.addComponent(localPnl, gbl, localBttn, 0, 0, 1, 1, 0.0, 0.0,
-				0, 0, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(localPnl, gbl, localBttn, 0, 0, 1, 1, 0.0, 1.0,
+				0, 0, 0, 0, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 		GUITools
-				.addComponent(localPnl, gbl, localLbl, 1, 0, 1, 1, 1.0, 0.0, 0,
-						5, 0, 0, GridBagConstraints.HORIZONTAL,
-						GridBagConstraints.WEST);
+				.addComponent(localPnl, gbl, localLbl, 1, 0, 1, 1, 1.0, 1.0, 0,
+						5, 0, 0, GridBagConstraints.BOTH,
+						GridBagConstraints.NORTHWEST);
 
+		Dimension size = new Dimension(10, 50);
+		setMinimumSize(size);
+		setPreferredSize(size);
 	}
 
 	/**

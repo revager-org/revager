@@ -22,7 +22,6 @@ import javax.swing.table.AbstractTableModel;
 
 import org.revager.gui.UI;
 
-
 /**
  * The Class StrengthTableModel.
  */
@@ -46,7 +45,7 @@ public class StrengthTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-			return UI.getInstance().getAssistantDialog().getAddAttendeePanel().getStrengthList().size();
+		return UI.getInstance().getAttendeeDialog().getStrengthList().size();
 	}
 
 	/*
@@ -56,9 +55,8 @@ public class StrengthTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-
-			return UI.getInstance().getAssistantDialog().getAddAttendeePanel().getStrengthList().get(rowIndex);
-		
+		return UI.getInstance().getAttendeeDialog().getStrengthList().get(
+				rowIndex);
 	}
 
 	/*
@@ -68,17 +66,10 @@ public class StrengthTableModel extends AbstractTableModel {
 	 * int, int)
 	 */
 	public void setValueAt(Object insertion, int row, int column) {
-		if(UI.getInstance().getAttendeeDialog().isVisible()){
-			UI.getInstance().getAttendeeDialog().getStrengthList().set(row,
-					(String) insertion);
+		UI.getInstance().getAttendeeDialog().getStrengthList().set(row,
+				(String) insertion);
 
-		}else{
-			UI.getInstance().getAssistantDialog().getAddAttendeePanel().getStrengthList().set(row,
-					(String) insertion);
-
-		}
 		fireTableDataChanged();
-		
 	}
 
 	/*

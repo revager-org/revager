@@ -212,10 +212,10 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 		modeGrp.selectLink(moderatorLnk);
 
 		GUITools.addComponent(this, gbl2, moderatorLnk, 0, 0, 1, 1,
-				1.0, 0.0, 0, 20, 0, 84, GridBagConstraints.HORIZONTAL,
+				0.5, 0.0, 0, 20, 0, 20, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(this, gbl2, scribeSingleRevLnk, 0, 1,
-				1, 1, 1.0, 0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+				1, 2, 0.5, 0.0, 20, 20, 0, 20, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(this, gbl2, new JSeparator(
 				SwingConstants.VERTICAL), 1, 0, 1, 6, 0.0, 1.0, 0, 0, 0, 0,
@@ -269,7 +269,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 			lastRevsGrp.addLink(fourthReviewLnk);
 			GUITools
 					.addComponent(this, gbl2, fourthReviewLnk, 2, 3,
-							1, 1, 1.0, 0.0, 10, 40, 0, 0,
+							1, 1, 1.0, 0.0, 0, 40, 0, 0,
 							GridBagConstraints.HORIZONTAL,
 							GridBagConstraints.NORTHWEST);
 
@@ -281,7 +281,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 		anotherReviewLnk.setUnderlined(true);
 		anotherReviewLnk.addActionListener(openAnotherRev);
 		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1,
-				1, 1.0, 1.0, 30, 30, 0, 0, GridBagConstraints.HORIZONTAL,
+				1, 1.0, 1.0, 30, 40, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.SOUTHWEST);
 
 	}

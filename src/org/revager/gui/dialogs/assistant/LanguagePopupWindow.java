@@ -45,7 +45,7 @@ import org.revager.tools.GUITools;
  * The Class LanguagePopupWindow.
  * 
  * @author D.Casciato
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class LanguagePopupWindow extends JDialog {
@@ -88,7 +88,7 @@ public class LanguagePopupWindow extends JDialog {
 	private ImageIcon englishRolloverIcon = Data.getInstance().getIcon(
 			"english_31x20.png");
 	private String currentLang;
-	
+
 	/*
 	 * Links and LinkGroup
 	 */
@@ -97,21 +97,18 @@ public class LanguagePopupWindow extends JDialog {
 			germanRolloverIcon, languageGrp);
 	private HLink englishHLnk = new HLink(englishStrng, englishIcon,
 			englishRolloverIcon, languageGrp);
-	
 
 	/**
 	 * Returns the selected language.
+	 * 
 	 * @return
 	 */
 	public String getSelectedLanguage() {
-		if (languageGrp.getSelectedLinkText().equals(
+		if (languageGrp.getSelectedLinkText().contains(
 				Data.getInstance().getLocaleStr("popup.language.german")))
 			return "de";
-		else if (languageGrp.getSelectedLinkText().equals(
-				Data.getInstance().getLocaleStr("popup.language.english")))
-			return "en";
 		else
-			return null;
+			return "en";
 	}
 
 	/**
@@ -155,10 +152,6 @@ public class LanguagePopupWindow extends JDialog {
 
 		panelBase.add(inputPnl, BorderLayout.CENTER);
 
-		Dimension popupSize;
-
-		popupSize = new Dimension(110, 160);
-
 		/*
 		 * The buttons to abort and confirm the input
 		 */
@@ -198,8 +191,11 @@ public class LanguagePopupWindow extends JDialog {
 		/*
 		 * Set size and location
 		 */
+		Dimension popupSize = new Dimension(130, 170);
+
 		setMinimumSize(popupSize);
 		setSize(popupSize);
+		setPreferredSize(popupSize);
 
 		pack();
 

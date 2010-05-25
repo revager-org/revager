@@ -24,6 +24,8 @@ import javax.swing.AbstractAction;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
+import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
+import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.workers.NewReviewWorker;
 
@@ -43,21 +45,29 @@ public class InitializeNewReviewAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		if (Data.getInstance().getMode().equals("moderator")) {
 			new NewReviewWorker().execute();
+			
 			UI.getInstance().getAssistantDialog().setVisible(false);
 		} else if (Data.getInstance().getMode().equals("instant")) {
 			AssistantDialog assistant = UI.getInstance().getAssistantDialog();
+			AttendeeDialog attDiag = UI.getInstance().getAttendeeDialog();
 
-			if (!assistant.getAddAttendeePanel().nameTxtFld.getText().trim().equals("")) {
-				new NewReviewWorker().execute();
+			if (!attDiag.getNameTxtFld().getText().trim().equals("")) {
 				UI.getInstance().getAssistantDialog().setVisible(false);
-				assistant.getAddAttendeePanel().updateInstantAtt();
-			}else{
-				String message="";
-				message = Data.getInstance().getLocaleStr(
-				"attendeeDialog.message.noName");
-				assistant.setMessage(message);
-				assistant.getAddAttendeePanel().nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
+
+				ActionRegistry.getInstance().get(
+						ConfirmAttendeeAction.class.getName()).actionPerformed(
+						null);
 				
+				new NewReviewWorker().execute();
+			} else {
+				String message = "";
+				
+				message = Data.getInstance().getLocaleStr(
+						"attendeeDialog.message.noName");
+
+				assistant.setMessage(message);
+
+				attDiag.getNameTxtFld().setBorder(UI.MARKED_BORDER_INLINE);
 			}
 		}
 	}

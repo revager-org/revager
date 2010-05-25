@@ -29,7 +29,7 @@ import org.revager.gui.UI;
  * the AddAttendeePanel.
  * 
  * @author D.Casciato
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class GoToAddAttPnlAction extends AbstractAction {

@@ -19,6 +19,7 @@
 package org.revager.gui.dialogs.assistant;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -30,7 +31,7 @@ import javax.swing.JDialog;
 
 import org.revager.app.model.Data;
 import org.revager.gui.AbstractDialog;
-import org.revager.gui.AbstractDialogPanel;
+import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.InitializeNewReviewAction;
 import org.revager.gui.actions.assistant.GoToFirstScreenPnlAction;
@@ -39,15 +40,16 @@ import org.revager.gui.actions.assistant.GoToFirstScreenPnlAction;
  * The class AssistantDialog.
  * 
  * @author D.Casciato
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class AssistantDialog extends AbstractDialog {
 
-	private AbstractDialogPanel currentPnl;
+	private Container currentPnl;
 	private FirstScreenPanel firstScreenPanel = new FirstScreenPanel(this);
 	private OpenReviewPanel openReviewPanel = new OpenReviewPanel(this);
-	private AddAttendeePanel addAttendeePanel = new AddAttendeePanel(this);
+	private Container addAttendeePanel = UI.getInstance().getAttendeeDialog()
+			.getContentPane();
 
 	private ImageIcon revagerIcon = Data.getInstance().getIcon(
 			"revager_50x50.png");
@@ -63,7 +65,7 @@ public class AssistantDialog extends AbstractDialog {
 		}
 
 	};
-	
+
 	/**
 	 * Action to initialize a new review.
 	 */
@@ -81,9 +83,7 @@ public class AssistantDialog extends AbstractDialog {
 
 	private String addAttDescStrng = Data.getInstance().getLocaleStr(
 			"addYourself.description");
-	private String openRevStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.openReview");
-	private String localMode="moderator";
+	private String localMode = "moderator";
 
 	/*
 	 * 
@@ -94,26 +94,23 @@ public class AssistantDialog extends AbstractDialog {
 	private ImageIcon confirmIcon = Data.getInstance().getIcon(
 			"buttonOk_16x16.png");
 	private String confirmString = Data.getInstance().getLocaleStr("confirm");
-	private String finishString = Data.getInstance().getLocaleStr(
-			"closeApplication");
-	private ImageIcon finishIcon = Data.getInstance().getIcon(
-			"buttonExit_16x16.png");
-	
 
 	/**
 	 * Sets the localMode parameter
+	 * 
 	 * @param string
 	 */
 	public void setLocalMode(String string) {
-		this.localMode=string;
-		
+		this.localMode = string;
+
 	}
-	
+
 	/**
 	 * Returns the currentPanel.
+	 * 
 	 * @return
 	 */
-	public AbstractDialogPanel getCurrentPnl() {
+	public Container getCurrentPnl() {
 		return currentPnl;
 	}
 
@@ -122,14 +119,15 @@ public class AssistantDialog extends AbstractDialog {
 	 * 
 	 * @param currentPnl
 	 */
-	public void setCurrentPnl(AbstractDialogPanel currentPnl) {
+	public void setCurrentPnl(Container currentPnl) {
 
 		this.currentPnl = currentPnl;
 
 	}
-	
+
 	/**
 	 * Returns the FirstScreenPanel.
+	 * 
 	 * @return
 	 */
 	public FirstScreenPanel getFirstScreenPanel() {
@@ -138,6 +136,7 @@ public class AssistantDialog extends AbstractDialog {
 
 	/**
 	 * Returns the OpenReviewPanel.
+	 * 
 	 * @return
 	 */
 	public OpenReviewPanel getOpenReviewPanel() {
@@ -146,14 +145,16 @@ public class AssistantDialog extends AbstractDialog {
 
 	/**
 	 * Returns the AddAttendeePanel.
+	 * 
 	 * @return
 	 */
-	public AddAttendeePanel getAddAttendeePanel() {
+	public Container getAddAttendeePanel() {
 		return addAttendeePanel;
 	}
 
 	/**
 	 * Returns the BackButton.
+	 * 
 	 * @return
 	 */
 	public JButton getBackBttn() {
@@ -193,14 +194,14 @@ public class AssistantDialog extends AbstractDialog {
 		backBttn.setText(Data.getInstance().getLocaleStr("back"));
 		backBttn.setIcon(Data.getInstance().getIcon("buttonBack_16x16.png"));
 
-		finishBttn.setText(finishString);
-		finishBttn.setIcon(finishIcon);
-		finishBttn.addActionListener(exitApp);
+		finishBttn.setText(confirmString);
+		finishBttn.setIcon(confirmIcon);
 
 		this.addButton(backBttn);
 		this.addButton(finishBttn);
 
 		backBttn.setEnabled(false);
+		finishBttn.setEnabled(false);
 	}
 
 	/**
@@ -215,25 +216,18 @@ public class AssistantDialog extends AbstractDialog {
 		if (currentPnl == firstScreenPanel) {
 
 			backBttn.setEnabled(false);
-			finishBttn.setEnabled(true);
-			finishBttn.setText(finishString);
-			finishBttn.setIcon(finishIcon);
-			finishBttn.addActionListener(exitApp);
+			finishBttn.setEnabled(false);
 
 		} else if (currentPnl == addAttendeePanel) {
 
 			backBttn.setEnabled(true);
 			finishBttn.setEnabled(true);
-			finishBttn.setText(confirmString);
-			finishBttn.setIcon(confirmIcon);
-			finishBttn.addActionListener(initQuickRev);	
+			finishBttn.addActionListener(initQuickRev);
 
 		} else if (currentPnl == openReviewPanel) {
 
 			backBttn.setEnabled(true);
 			finishBttn.setEnabled(true);
-			finishBttn.setText(openRevStrng);
-			finishBttn.setIcon(confirmIcon);
 			finishBttn.addActionListener(openReviewPanel.openExistRev);
 			if (openReviewPanel.getLastRevsVector().size() == 0)
 				finishBttn.setEnabled(false);
@@ -256,6 +250,10 @@ public class AssistantDialog extends AbstractDialog {
 		} else if (currentPnl == addAttendeePanel) {
 			this.getContentPane().add(addAttendeePanel, BorderLayout.CENTER);
 			Data.getInstance().setMode("instant");
+
+			UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
+			UI.getInstance().getAttendeeDialog().getNameTxtFld().setText(
+					System.getProperty("user.name"));
 		} else if (currentPnl == openReviewPanel) {
 			this.getContentPane().add(openReviewPanel, BorderLayout.CENTER);
 			Data.getInstance().setMode(localMode);
@@ -267,7 +265,8 @@ public class AssistantDialog extends AbstractDialog {
 	}
 
 	/**
-	 * Updates the description of the assistant, depending from the currentPanel. 
+	 * Updates the description of the assistant, depending from the
+	 * currentPanel.
 	 */
 	public void updateMessage() {
 

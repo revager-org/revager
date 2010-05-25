@@ -19,13 +19,13 @@
 
 package org.revager.gui;
 
-import java.awt.Panel;
+import javax.swing.JPanel;
 
 /**
  * This class is the superclass for the assistant panels.
  */
 @SuppressWarnings("serial")
-public abstract class AbstractDialogPanel extends Panel {
+public abstract class AbstractDialogPanel extends JPanel {
 
 	private AbstractDialog parent;
 
@@ -35,9 +35,10 @@ public abstract class AbstractDialogPanel extends Panel {
 	public AbstractDialog getParent() {
 		return parent;
 	}
-	
+
 	/**
 	 * Sets the hint message in the parent.
+	 * 
 	 * @param hintText
 	 */
 	public void setHint(String hintText) {
@@ -45,9 +46,10 @@ public abstract class AbstractDialogPanel extends Panel {
 		parent.setMessage(hintText);
 
 	}
-	
+
 	/**
 	 * Constructor with it's parent as parameter
+	 * 
 	 * @param parent
 	 */
 	public AbstractDialogPanel(AbstractDialog parent) {
@@ -57,7 +59,5 @@ public abstract class AbstractDialogPanel extends Panel {
 		this.parent = parent;
 
 	}
-
-	
 
 }

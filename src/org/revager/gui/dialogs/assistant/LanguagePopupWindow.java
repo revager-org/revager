@@ -144,10 +144,10 @@ public class LanguagePopupWindow extends JDialog {
 			languageGrp.selectLink(englishHLnk);
 
 		GUITools.addComponent(inputPnl, gbl, germanHLnk, 0, 0, 1, 1, 1.0, 1.0,
-				10, 10, 0, 10, GridBagConstraints.NONE,
+				10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
 		GUITools.addComponent(inputPnl, gbl, englishHLnk, 0, 1, 1, 1, 1.0, 1.0,
-				10, 10, 10, 10, GridBagConstraints.NONE,
+				10, 10, 10, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
 
 		panelBase.add(inputPnl, BorderLayout.CENTER);

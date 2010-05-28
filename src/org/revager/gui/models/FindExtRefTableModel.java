@@ -30,7 +30,7 @@ import org.revager.app.model.schema.Finding;
  * The Class FindExRefTableModel.
  */
 @SuppressWarnings("serial")
-public class FindExRefTableModel extends AbstractTableModel {
+public class FindExtRefTableModel extends AbstractTableModel {
 	
 	private FindingManagement findingMgmt = Application.getInstance()
 			.getFindingMgmt();
@@ -42,7 +42,7 @@ public class FindExRefTableModel extends AbstractTableModel {
 	 * @param currentFinding
 	 *            the current finding
 	 */
-	public FindExRefTableModel(Finding currentFinding) {
+	public FindExtRefTableModel(Finding currentFinding) {
 		localFind = currentFinding;
 	}
 

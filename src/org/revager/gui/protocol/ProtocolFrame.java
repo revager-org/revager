@@ -19,7 +19,6 @@
 package org.revager.gui.protocol;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -32,8 +31,6 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -71,10 +68,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
-import javax.swing.UIManager;
 import javax.swing.JSpinner.NumberEditor;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellRenderer;
@@ -84,13 +79,11 @@ import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.ProtocolManagement;
 import org.revager.app.ReviewManagement;
-import org.revager.app.SeverityManagement;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.app.model.schema.Attendee;
-import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.AbstractFrame;
@@ -103,14 +96,12 @@ import org.revager.gui.actions.attendee.RemAttFromProtAction;
 import org.revager.gui.helpers.DatePicker;
 import org.revager.gui.helpers.HintItem;
 import org.revager.gui.helpers.ObservingTextField;
-import org.revager.gui.models.FindingsTableModel;
 import org.revager.gui.models.PresentAttendeesTableModel;
 import org.revager.gui.models.RotateSpinnerNumberModel;
 import org.revager.gui.protocol.graphical_annotations.ImageEditorDialog;
 import org.revager.gui.workers.ImageEditorWriteWorker;
 import org.revager.gui.workers.ProtocolClockWorker;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class ProtocolFrame.
@@ -130,9 +121,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private boolean fullscreen = false;
 	private boolean nativeFullscrSupported = false;
 
-	private int visibleFindingsCount = 1;
-
-	private int firstVisibleFinding = 0;
+	private boolean bodyCreated = false;
 
 	private GraphicsDevice gd = GraphicsEnvironment
 			.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -140,14 +129,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private FindingManagement findMgmt = Application.getInstance()
 			.getFindingMgmt();
 
-	private Finding editingFinding = null;
-
 	private GridBagLayout gbl = new GridBagLayout();
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private JPanel tabPanelOrg = new JPanel(gbl);
 	private JPanel bottomOrgPanel = new JPanel(gbl);
-	
-	private List<FindingItem> visibleFList=new ArrayList<FindingItem>();
 
 	private JButton tbPdfExport;
 	private JButton tbCsvExport;
@@ -180,15 +165,9 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	/*
 	 * things for finding tab
 	 */
-	private GridBagLayout gblBaseFindings = new GridBagLayout();
-	private GridBagLayout gblFindings = new GridBagLayout();
-	private JPanel tabPanelFindings = new JPanel(gblBaseFindings);
-	private JPanel panelFindings = new JPanel(gblFindings);
-	private JButton buttonFindScrollUp;
-	private JButton buttonFindScrollDown;
-	private JLabel labelFindTop = new JLabel();
-	private JLabel labelFindBottom = new JLabel();
-	private ColoredTableCellRenderer ctcr;
+	private Protocol currentProt;
+
+	private FindingsTab tabPanelFindings;
 
 	private SimpleDateFormat sdfCurrentTime = new SimpleDateFormat(
 			"d. MMMM yyyy | HH:mm");
@@ -200,14 +179,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private JButton clockButtonReset;
 
 	private PresentAttendeesTableModel patm;
-	private FindingsTableModel ftm;
 
 	private JTable presentAttTable;
-	private JTable findTbl;
-	private JScrollPane findScrllPn;
 
 	private List<Attendee> presentAttList;
-	private Protocol currentProt;
 
 	private Meeting currentMeet = null;
 	private JSpinner beginMSpinner;
@@ -219,7 +194,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private JTextArea impTxtArea;
 	private JTextArea meetCommTxtArea;
 	private JTextArea protCommTxtArea;
-	private JButton buttonAddFinding;
 	private JScrollPane impScrllPn;
 	private JScrollPane meetCommScrllPn;
 	private JScrollPane protCommScrllPn;
@@ -236,9 +210,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	private JButton removeAttendee;
 	private JButton editAttendee;
 
-	private SeverityManagement sevMgmt = Application.getInstance()
-			.getSeverityMgmt();
-
 	private DateFormat dateF = SimpleDateFormat
 			.getDateInstance(DateFormat.LONG);
 
@@ -251,52 +222,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			updateHints();
 		}
 	};
-
-	/**
-	 * Gets the ftm.
-	 * 
-	 * @return the ftm
-	 */
-	public FindingsTableModel getFtm() {
-		return ftm;
-	}
-
-	/**
-	 * Gets the find tbl.
-	 * 
-	 * @return the find tbl
-	 */
-	public JTable getFindTbl() {
-		return findTbl;
-	}
-
-	/**
-	 * Gets the first visible finding.
-	 * 
-	 * @return the first visible finding
-	 */
-	public int getFirstVisibleFinding() {
-		return firstVisibleFinding;
-	}
-
-	/**
-	 * Gets the visible findings count.
-	 * 
-	 * @return the visible findings count
-	 */
-	public int getVisibleFindingsCount() {
-		return visibleFindingsCount;
-	}
-
-	/**
-	 * Sets the first visible finding.
-	 * 
-	 * @param firstVisibleFinding
-	 *            the new first visible finding
-	 */
-	public void setFirstVisibleFinding(int firstVisibleFinding) {
-		this.firstVisibleFinding = firstVisibleFinding;
-	}
 
 	/**
 	 * Gets the patm.
@@ -396,6 +321,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		createCommAndRatePanel();
 		tabPanelCommAndRec.validate();
 
+		tabPanelFindings = new FindingsTab(currentProt);
+
 		tabbedPane.removeAll();
 		tabbedPane.removeChangeListener(tabChangeListener);
 
@@ -410,42 +337,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				"editProtocol.commAndRec"), tabPanelCommAndRec);
 
 		tabbedPane.addChangeListener(tabChangeListener);
-		
-		tabbedPane.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				saveEditRefs();
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}});
 
 		add(tabbedPane);
 
-		tabPanelFindings.removeAll();
-
-		createPanelFindings();
-		updatePanelFindings();
+		bodyCreated = true;
 	}
 
 	/*
@@ -561,7 +456,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		tbFullscreen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				saveEditRefs();
 				UI.getInstance().getProtocolFrame(!isFullscreen()).setVisible(
 						true);
 			}
@@ -1199,292 +1093,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	}
 
 	/**
-	 * Creates the panel findings.
-	 */
-	private void createPanelFindings() {
-		buttonFindScrollUp = GUITools.newImageButton(Data.getInstance()
-				.getIcon("findingUp_32x32_0.png"), Data.getInstance().getIcon(
-				"findingUp_32x32.png"));
-		buttonFindScrollUp.setToolTipText(Data.getInstance().getLocaleStr(
-				"editProtocol.scrollUp"));
-		buttonFindScrollUp.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				saveEditRefs();
-				if (firstVisibleFinding > 0) {
-					firstVisibleFinding--;
-
-					updatePanelFindings();
-					ftm.fireTableDataChanged();
-					findTbl.setRowSelectionInterval(firstVisibleFinding,
-							firstVisibleFinding);
-					updateTable();
-				}
-			}
-		});
-
-		buttonFindScrollDown = GUITools.newImageButton(Data.getInstance()
-				.getIcon("findingDown_32x32_0.png"), Data.getInstance()
-				.getIcon("findingDown_32x32.png"));
-		buttonFindScrollDown.setToolTipText(Data.getInstance().getLocaleStr(
-				"editProtocol.scrollDown"));
-		buttonFindScrollDown.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				saveEditRefs();
-				if (firstVisibleFinding < findMgmt
-						.getNumberOfFindings(currentProt)
-						- visibleFindingsCount) {
-					firstVisibleFinding++;
-
-					updatePanelFindings();
-
-					ftm.fireTableDataChanged();
-					findTbl.setRowSelectionInterval(firstVisibleFinding,
-							firstVisibleFinding);
-					updateTable();
-				}
-			}
-		});
-
-		buttonAddFinding = GUITools.newImageButton(Data.getInstance().getIcon(
-				"findingAdd_32x32_0.png"), Data.getInstance().getIcon(
-				"findingAdd_32x32.png"));
-		buttonAddFinding.setToolTipText(Data.getInstance().getLocaleStr(
-				"editProtocol.newFinding"));
-		buttonAddFinding.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				saveEditRefs();
-				int listIdLastFinding = findMgmt
-						.getNumberOfFindings(currentProt) - 1;
-
-				if (!findMgmt.isFindingEmpty(findMgmt.getFindings(currentProt)
-						.get(listIdLastFinding))) {
-					Finding newFind = new Finding();
-					newFind.setSeverity(sevMgmt.getSeverities().get(0));
-					editingFinding = findMgmt.addFinding(newFind, currentProt);
-					firstVisibleFinding = findMgmt
-							.getNumberOfFindings(currentProt)
-							- visibleFindingsCount;
-
-					updatePanelFindings();
-					ftm.fireTableDataChanged();
-					findTbl.setRowSelectionInterval(firstVisibleFinding,
-							firstVisibleFinding);
-					updateTable();
-				}
-			}
-		});
-
-		ftm = new FindingsTableModel(currentProt);
-		findTbl = GUITools.newStandardTable(ftm, false);
-		findTbl.setRowHeight(36);
-		ctcr = new ColoredTableCellRenderer(currentProt);
-		findTbl.getColumnModel().getColumn(0).setCellRenderer(ctcr);
-		findTbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		findTbl.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				saveEditRefs();
-				firstVisibleFinding = findTbl.getSelectedRow();
-				updatePanelFindings();
-
-				ftm.fireTableDataChanged();
-				findTbl.setRowSelectionInterval(firstVisibleFinding,
-						firstVisibleFinding);
-
-				updateTable();
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-		});
-
-		findScrllPn = new JScrollPane(findTbl);
-		findScrllPn
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-		labelFindTop.setFont(UI.PROTOCOL_FONT);
-		labelFindBottom.setFont(UI.PROTOCOL_FONT);
-
-		labelFindTop.setForeground(Color.GRAY);
-		labelFindBottom.setForeground(Color.GRAY);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings, labelFindTop,
-				0, 0, 1, 1, 0.0, 0.0, 5, 10, 5, 10, GridBagConstraints.NONE,
-				GridBagConstraints.WEST);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings,
-				buttonFindScrollUp, 1, 0, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-				GridBagConstraints.NONE, GridBagConstraints.CENTER);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings,
-				new JSeparator(JSeparator.HORIZONTAL), 0, 1, 3, 1, 1.0, 0.0, 0,
-				10, 5, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.CENTER);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings, panelFindings,
-				0, 2, 3, 1, 0.9, 1.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings,
-				new JSeparator(JSeparator.HORIZONTAL), 0, 3, 3, 1, 1.0, 0.0, 5,
-				10, 0, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.CENTER);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings,
-				labelFindBottom, 0, 4, 1, 1, 0.0, 0.0, 5, 10, 5, 10,
-				GridBagConstraints.NONE, GridBagConstraints.WEST);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings,
-				buttonFindScrollDown, 1, 4, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-				GridBagConstraints.NONE, GridBagConstraints.CENTER);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings,
-				buttonAddFinding, 2, 4, 1, 1, 0.0, 0.0, 5, 5, 5, 10,
-				GridBagConstraints.NONE, GridBagConstraints.EAST);
-
-		GUITools.addComponent(tabPanelFindings, gblBaseFindings, findScrllPn,
-				3, 0, 1, 5, 0.0, 1.0, 5, 0, 5, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-	}
-
-	/**
-	 * Update panel findings.
-	 */
-	public void updatePanelFindings() {
-		panelFindings.removeAll();
-		visibleFList.clear();
-
-		/*
-		 * Calculate number of shown findings from the window size
-		 */
-		visibleFindingsCount = (int) ((panelFindings.getSize().getHeight()) / 270);
-
-		if (visibleFindingsCount < 1) {
-			visibleFindingsCount = 1;
-		}
-
-		/*
-		 * Check validity of first visible finding
-		 */
-		if (firstVisibleFinding > findMgmt.getNumberOfFindings(currentProt)
-				- visibleFindingsCount) {
-			firstVisibleFinding = findMgmt.getNumberOfFindings(currentProt)
-					- visibleFindingsCount;
-		}
-
-		if (firstVisibleFinding < 0) {
-			firstVisibleFinding = 0;
-		}
-
-		/*
-		 * Update labels at bottom and top
-		 */
-		labelFindTop.setText(firstVisibleFinding
-				+ " "
-				+ Data.getInstance()
-						.getLocaleStr("editProtocol.findingsBefore"));
-
-		labelFindBottom
-				.setText(findMgmt.getNumberOfFindings(currentProt)
-						- firstVisibleFinding
-						- visibleFindingsCount
-						+ " "
-						+ Data.getInstance().getLocaleStr(
-								"editProtocol.findingsAfter"));
-
-		/*
-		 * If no finding exist
-		 */
-		while (findMgmt.getNumberOfFindings(currentProt) < visibleFindingsCount) {
-			findMgmt.addFinding(new Finding(), currentProt);
-		}
-
-		int lastVisibleFinding = firstVisibleFinding + visibleFindingsCount;
-
-		if (lastVisibleFinding > findMgmt.getNumberOfFindings(currentProt)) {
-			lastVisibleFinding = findMgmt.getNumberOfFindings(currentProt) - 1;
-		}
-
-		for (int i = firstVisibleFinding; i < lastVisibleFinding; i++) {
-			Finding find = findMgmt.getFindings(currentProt).get(i);
-
-			FindingItem fi = new FindingItem(find, currentProt);
-
-			/*
-			 * Separator
-			 */
-			if (i > firstVisibleFinding) {
-				GUITools.addComponent(panelFindings, gblFindings,
-						new JSeparator(JSeparator.HORIZONTAL), 0,
-						2 * (i - firstVisibleFinding), 1, 1, 1.0, 0.0, 5, 5, 5,
-						5, GridBagConstraints.HORIZONTAL,
-						GridBagConstraints.NORTHWEST);
-			}
-
-			GUITools
-					.addComponent(panelFindings, gblFindings, fi, 0,
-							(2 * (i - firstVisibleFinding)) + 1, 1, 1, 1.0,
-							1.0, 5, 5, 5, 5, GridBagConstraints.BOTH,
-							GridBagConstraints.NORTHWEST);
-			
-			visibleFList.add(fi);
-		}
-
-		updateFocus();
-
-		/*
-		 * Update buttons
-		 */
-		if (firstVisibleFinding == 0) {
-			buttonFindScrollUp.setEnabled(false);
-		} else {
-			buttonFindScrollUp.setEnabled(true);
-		}
-
-		if (findMgmt.getNumberOfFindings(currentProt) - visibleFindingsCount == firstVisibleFinding) {
-			buttonFindScrollDown.setEnabled(false);
-		} else {
-			buttonFindScrollDown.setEnabled(true);
-		}
-
-		updateAddFindBttn();
-
-		tabPanelFindings.revalidate();
-		panelFindings.revalidate();
-
-		tabPanelFindings.repaint();
-		panelFindings.repaint();
-
-		/*
-		 * Fit the size of the scroll pane with the findings
-		 */
-		int lastIdLength = Integer.toString(
-				Application.getInstance().getFindingMgmt().getLastId())
-				.length();
-
-		Dimension dim = new Dimension(34 + (lastIdLength * 12), 100);
-
-		findScrllPn.setMinimumSize(dim);
-		findScrllPn.setPreferredSize(dim);
-	}
-
-	/**
 	 * Resets the clock.
 	 */
 	public void resetClock() {
@@ -1640,25 +1248,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		createHints();
 
-		panelFindings.addComponentListener(new ComponentListener() {
-			@Override
-			public void componentHidden(ComponentEvent e) {
-			}
-
-			@Override
-			public void componentMoved(ComponentEvent e) {
-			}
-
-			@Override
-			public void componentResized(ComponentEvent e) {
-				updatePanelFindings();
-			}
-
-			@Override
-			public void componentShown(ComponentEvent e) {
-			}
-		});
-
 		addWindowListener(new WindowListener() {
 			@Override
 			public void windowActivated(WindowEvent e) {
@@ -1687,7 +1276,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 					if (option == JOptionPane.YES_OPTION) {
 						new ImageEditorWriteWorker(currentProt).execute();
-						
+
 						UI.getInstance().getProtocolFrame().setVisible(false);
 					} else if (option == JOptionPane.NO_OPTION) {
 						UI.getInstance().getProtocolFrame().setVisible(false);
@@ -1746,25 +1335,26 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		updateHints();
-		updateAddFindBttn();
+		if (bodyCreated) {
+			updateHints();
 
-		if (protMgmt.isProtocolComplete(currentProt)) {
-			tbCsvExport.setEnabled(true);
-			tbPdfExport.setEnabled(true);
-			tbConfirmProt.setVisible(true);
-			tbExitProt.setVisible(false);
-		} else {
-			tbCsvExport.setEnabled(false);
-			tbPdfExport.setEnabled(false);
-			tbConfirmProt.setVisible(false);
-			tbExitProt.setVisible(true);
-		}
+			if (protMgmt.isProtocolComplete(currentProt)) {
+				tbCsvExport.setEnabled(true);
+				tbPdfExport.setEnabled(true);
+				tbConfirmProt.setVisible(true);
+				tbExitProt.setVisible(false);
+			} else {
+				tbCsvExport.setEnabled(false);
+				tbPdfExport.setEnabled(false);
+				tbConfirmProt.setVisible(false);
+				tbExitProt.setVisible(true);
+			}
 
-		if (revMgmt.isReviewConfirmable()) {
-			recBx.setEnabled(true);
-		} else {
-			recBx.setEnabled(false);
+			if (revMgmt.isReviewConfirmable()) {
+				recBx.setEnabled(true);
+			} else {
+				recBx.setEnabled(false);
+			}
 		}
 	}
 
@@ -1840,25 +1430,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Update add find bttn.
-	 */
-	public void updateAddFindBttn() {
-
-		boolean isNotComplete = false;
-
-		for (Finding find : findMgmt.getFindings(currentProt))
-			if (findMgmt.isFindingNotComplete(find))
-				isNotComplete = true;
-
-		if (isNotComplete) {
-			buttonAddFinding.setEnabled(false);
-		} else {
-			buttonAddFinding.setEnabled(true);
-		}
-
 	}
 
 	private long updateTime = System.currentTimeMillis();
@@ -2173,70 +1744,14 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		setHints(hints);
 	}
 
-	/**
-	 * Update table.
-	 */
-	public void updateTable() {
-		int selRow = findTbl.getSelectedRow();
-
-		findTbl.scrollRectToVisible(findTbl.getCellRect(selRow, 0, false));
-	}
-
-	/**
-	 * Sets the selection row.
-	 */
-	public void setSelectionRow() {
-		findTbl.setRowSelectionInterval(firstVisibleFinding,
-				firstVisibleFinding);
-	}
-
-	/**
-	 * Updates the focus of the findings.
-	 */
-	public void updateFocus() {
-		updateFocus(null, null);
-	}
-
-	/**
-	 * Updates the focus of the findings.
-	 */
-	public void updateFocus(Finding focusedFinding, Object eventSource) {
-		if (eventSource != null && eventSource instanceof Component) {
-			((Component) eventSource).requestFocusInWindow();
-		}
-
-		if (focusedFinding != null) {
-			editingFinding = focusedFinding;
-		}
-
-		for (Component comp : panelFindings.getComponents()) {
-			if (comp instanceof FindingItem) {
-				FindingItem fi = ((FindingItem) comp);
-
-				fi.updateFocus(eventSource);
-
-				if (visibleFindingsCount > 1
-						&& editingFinding != null
-						&& fi.getCurrentFinding().getId() == editingFinding
-								.getId()) {
-					fi.setBorder(new MatteBorder(1, 5, 1, 5, new Color(0, 132,
-							209)));
-					fi.setBackground(UI.TABLE_ALT_COLOR);
-				} else {
-					fi.setBorder(new EmptyBorder(1, 5, 1, 5));
-					fi.setBackground(UIManager.getColor("JPanel.background"));
-				}
-			}
-		}
-	}
-
 	public ImageEditorDialog getImageEditor(File image) {
 		String imagePath = image.getAbsolutePath();
 
 		ImageEditorDialog editor = imageEditors.get(imagePath);
 
 		if (editor == null) {
-			editor = new ImageEditorDialog(UI.getInstance().getProtocolFrame(), image);
+			editor = new ImageEditorDialog(UI.getInstance().getProtocolFrame(),
+					image);
 
 			imageEditors.put(imagePath, editor);
 		}
@@ -2246,12 +1761,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 	public Map<String, ImageEditorDialog> getImageEditors() {
 		return imageEditors;
-	}
-	
-	private void saveEditRefs(){
-		for (FindingItem findI:visibleFList)
-			if(tabPanelFindings.isVisible()&&findI.isCellEditing())
-				findI.saveRef();
 	}
 
 }

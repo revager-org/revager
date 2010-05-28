@@ -36,7 +36,6 @@ import org.revager.io.ResiIOException;
 import org.revager.io.ResiIOFactory;
 import org.revager.tools.FileTools;
 
-
 /**
  * The Class ApplicationControl.
  */
@@ -147,6 +146,8 @@ public class ApplicationControl {
 		Data.getInstance().getResiData().getReview().setRecommendation("");
 		Data.getInstance().getResiData().getReview().setImpression("");
 
+		Application.getInstance().getAspectMgmt().addDummyAspect();
+
 		Data.getInstance().getResiData().fireDataChanged();
 	}
 
@@ -177,10 +178,6 @@ public class ApplicationControl {
 
 		if (revMgmt.getNumberOfAttendees() == 0) {
 			return Data.getInstance().getLocaleStr("message.missingAttendee");
-		}
-
-		if (revMgmt.getNumberOfAspects() == 0) {
-			return Data.getInstance().getLocaleStr("message.missingAspect");
 		}
 
 		return null;
@@ -278,6 +275,8 @@ public class ApplicationControl {
 		}
 
 		Application.getInstance().getReviewMgmt().refactorReview();
+
+		Application.getInstance().getAspectMgmt().addDummyAspect();
 
 		Application.getInstance().getAttendeeMgmt().updateAttendeesDirectory();
 

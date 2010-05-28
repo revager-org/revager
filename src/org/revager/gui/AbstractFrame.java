@@ -57,7 +57,6 @@ import org.revager.gui.helpers.ProgressGlassPane;
 import org.revager.gui.workers.LoadHelpWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * This class is the superclass for all frames in Resi.
  */
@@ -748,8 +747,9 @@ public class AbstractFrame extends JFrame {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							new LoadHelpWorker(HINT.getHelpChapter(), HINT
-									.getHelpChapterAnchor()).execute();
+							GUITools.executeSwingWorker(new LoadHelpWorker(HINT
+									.getHelpChapter(), HINT
+									.getHelpChapterAnchor()));
 						}
 
 					});

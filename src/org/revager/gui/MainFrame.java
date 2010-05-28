@@ -1725,7 +1725,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				updateMenu();
 				updateToolBar();
 
-				updateWorker.execute();
+				GUITools.executeSwingWorker(updateWorker);
 
 				splitPanel.revalidate();
 			}

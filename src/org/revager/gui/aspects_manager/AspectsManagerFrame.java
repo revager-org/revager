@@ -100,7 +100,6 @@ import org.revager.gui.workers.LoadStdCatalogsWorker;
 import org.revager.tools.GUITools;
 import org.revager.tools.TreeTools;
 
-
 import com.lowagie.text.Font;
 
 /**
@@ -373,7 +372,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					}
 				};
 
-				removeWorker.execute();
+				GUITools.executeSwingWorker(removeWorker);
 			}
 		});
 		addTopComponent(tbRemoveAll);
@@ -441,7 +440,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		tbAutoAllocation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AutoAspAllocWorker(getCheckedAspects()).execute();
+				GUITools.executeSwingWorker(new AutoAspAllocWorker(
+						getCheckedAspects()));
 			}
 		});
 
@@ -463,8 +463,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						.showDialog(UI.getInstance().getAspectsManagerFrame(),
 								FileChooser.MODE_OPEN_FILE,
 								ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
-					new ImportCatalogWorker(fc.getFile().getAbsolutePath())
-							.execute();
+					GUITools.executeSwingWorker(new ImportCatalogWorker(fc
+							.getFile().getAbsolutePath()));
 				}
 			}
 		});
@@ -488,8 +488,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 							UI.getInstance().getAspectsManagerFrame(),
 							FileChooser.MODE_SAVE_FILE,
 							ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
-						new ExportCatalogWorker(fc.getFile().getAbsolutePath(),
-								getSelectedCatalog()).execute();
+						GUITools.executeSwingWorker(new ExportCatalogWorker(fc
+								.getFile().getAbsolutePath(),
+								getSelectedCatalog()));
 					}
 				}
 			}
@@ -515,8 +516,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 							UI.getInstance().getAspectsManagerFrame(),
 							FileChooser.MODE_OPEN_FILE,
 							ResiFileFilter.TYPE_ASPECTS) == FileChooser.SELECTED_APPROVE) {
-						new ImportAspectsWorker(fc.getFile().getAbsolutePath(),
-								getSelectedCatalog()).execute();
+						GUITools.executeSwingWorker(new ImportAspectsWorker(fc
+								.getFile().getAbsolutePath(),
+								getSelectedCatalog()));
 					}
 				}
 			}
@@ -541,8 +543,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 							UI.getInstance().getAspectsManagerFrame(),
 							FileChooser.MODE_SAVE_FILE,
 							ResiFileFilter.TYPE_ASPECTS) == FileChooser.SELECTED_APPROVE) {
-						new ExportAspectsWorker(fc.getFile().getAbsolutePath(),
-								getCheckedAspects()).execute();
+						GUITools.executeSwingWorker(new ExportAspectsWorker(fc
+								.getFile().getAbsolutePath(),
+								getCheckedAspects()));
 					}
 				}
 			}
@@ -558,7 +561,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		tbLoadStdCatalogs.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new LoadStdCatalogsWorker().execute();
+				GUITools.executeSwingWorker(new LoadStdCatalogsWorker());
 			}
 		});
 
@@ -995,7 +998,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					}
 				};
 
-				allocWorker.execute();
+				GUITools.executeSwingWorker(allocWorker);
 			}
 
 		});
@@ -1056,7 +1059,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					}
 				};
 
-				allocWorker.execute();
+				GUITools.executeSwingWorker(allocWorker);
 			}
 		});
 
@@ -1330,18 +1333,23 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		pack();
 
 		add(splitPane, BorderLayout.CENTER);
-		GridBagLayout gbl=new GridBagLayout();
+		GridBagLayout gbl = new GridBagLayout();
 		JPanel closePanel = new JPanel(gbl);
-		JButton closeButton= new JButton(Data.getInstance().getLocaleStr("close"));
-		closeButton.setToolTipText(Data.getInstance().getLocaleStr("aspectsManager.close"));
-		closeButton.addActionListener(new ActionListener(){
+		JButton closeButton = new JButton(Data.getInstance().getLocaleStr(
+				"close"));
+		closeButton.setToolTipText(Data.getInstance().getLocaleStr(
+				"aspectsManager.close"));
+		closeButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UI.getInstance().getAspectsManagerFrame().setVisible(false);
-			}});
-		
-		GUITools.addComponent(closePanel, gbl, closeButton, 0, 0, 1, 1, 1.0, 1.0, 10, 20, 10, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHEAST);
+			}
+		});
+
+		GUITools.addComponent(closePanel, gbl, closeButton, 0, 0, 1, 1, 1.0,
+				1.0, 10, 20, 10, 20, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHEAST);
 		add(closePanel, BorderLayout.SOUTH);
 		Data.getInstance().getResiData().addObserver(this);
 
@@ -1392,7 +1400,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			 */
 			try {
 				if (appData.getNumberOfCatalogs() == 0) {
-					new LoadStdCatalogsWorker().execute();
+					GUITools.executeSwingWorker(new LoadStdCatalogsWorker());
 				}
 			} catch (DataException e) {
 				JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e

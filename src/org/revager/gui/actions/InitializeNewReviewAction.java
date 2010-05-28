@@ -28,6 +28,7 @@ import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.workers.NewReviewWorker;
+import org.revager.tools.GUITools;
 
 /**
  * The Class InitializeMainFrameAction.
@@ -44,8 +45,8 @@ public class InitializeNewReviewAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (Data.getInstance().getMode().equals("moderator")) {
-			new NewReviewWorker().execute();
-			
+			GUITools.executeSwingWorker(new NewReviewWorker());
+
 			UI.getInstance().getAssistantDialog().setVisible(false);
 		} else if (Data.getInstance().getMode().equals("instant")) {
 			AssistantDialog assistant = UI.getInstance().getAssistantDialog();
@@ -57,11 +58,11 @@ public class InitializeNewReviewAction extends AbstractAction {
 				ActionRegistry.getInstance().get(
 						ConfirmAttendeeAction.class.getName()).actionPerformed(
 						null);
-				
-				new NewReviewWorker().execute();
+
+				GUITools.executeSwingWorker(new NewReviewWorker());
 			} else {
 				String message = "";
-				
+
 				message = Data.getInstance().getLocaleStr(
 						"attendeeDialog.message.noName");
 

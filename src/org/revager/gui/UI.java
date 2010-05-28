@@ -55,7 +55,6 @@ import org.revager.gui.workers.ProtocolClockWorker;
 import org.revager.gui.workers.RestoreReviewWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * This class is the interface of the graphical user interface.
  */
@@ -355,7 +354,7 @@ public class UI implements Observer {
 	public AutoBackupWorker getAutoBackupWorker() {
 		if (autoBackupWorker == null) {
 			autoBackupWorker = new AutoBackupWorker();
-			autoBackupWorker.execute();
+			GUITools.executeSwingWorker(autoBackupWorker);
 		}
 
 		return autoBackupWorker;
@@ -369,7 +368,7 @@ public class UI implements Observer {
 	public AutoSaveWorker getAutoSaveWorker() {
 		if (autoSaveWorker == null) {
 			autoSaveWorker = new AutoSaveWorker();
-			autoSaveWorker.execute();
+			GUITools.executeSwingWorker(autoSaveWorker);
 		}
 
 		return autoSaveWorker;
@@ -638,7 +637,7 @@ public class UI implements Observer {
 			protocolClockWorker = new ProtocolClockWorker();
 		}
 
-		protocolClockWorker.execute();
+		GUITools.executeSwingWorker(protocolClockWorker);
 
 		return protocolClockWorker;
 	}
@@ -754,7 +753,7 @@ public class UI implements Observer {
 					JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION) {
 				// getMainFrame().setEnabled(true);
 
-				new RestoreReviewWorker().execute();
+				GUITools.executeSwingWorker(new RestoreReviewWorker());
 			} else {
 				Application.getInstance().getApplicationCtl().clearReview();
 
@@ -769,7 +768,7 @@ public class UI implements Observer {
 		/*
 		 * Check for new version of RevAger
 		 */
-		new CheckForNewVersionWorker().execute();
+		GUITools.executeSwingWorker(new CheckForNewVersionWorker());
 	}
 
 	/*

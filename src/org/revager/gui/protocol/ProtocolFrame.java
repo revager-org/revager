@@ -363,7 +363,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					currentProt.setComments("");
 				}
 
-				new ImageEditorWriteWorker(currentProt).execute();
+				GUITools.executeSwingWorker(new ImageEditorWriteWorker(
+						currentProt));
 
 				setVisible(false);
 			}
@@ -1275,7 +1276,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 							options[0]);
 
 					if (option == JOptionPane.YES_OPTION) {
-						new ImageEditorWriteWorker(currentProt).execute();
+						GUITools.executeSwingWorker(new ImageEditorWriteWorker(
+								currentProt));
 
 						UI.getInstance().getProtocolFrame().setVisible(false);
 					} else if (option == JOptionPane.NO_OPTION) {
@@ -1325,7 +1327,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		updateWorker.execute();
+		GUITools.executeSwingWorker(updateWorker);
 	}
 
 	/*

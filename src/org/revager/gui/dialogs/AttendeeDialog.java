@@ -64,7 +64,6 @@ import org.revager.gui.models.StrengthTableModel;
 import org.revager.gui.workers.LoadStdCatalogsWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class AttendeeDialog.
  */
@@ -97,7 +96,7 @@ public class AttendeeDialog extends AbstractDialog {
 	private JLabel role = null;
 	private JLabel strengthLbl = null;
 	private JPanel buttonPanel = null;
-	
+
 	private boolean fromAssistant;
 
 	public boolean isFromAssistant() {
@@ -125,7 +124,6 @@ public class AttendeeDialog extends AbstractDialog {
 		public void focusLost(FocusEvent e) {
 		}
 	};
-	
 
 	/**
 	 * Gets the contact scrll pn.
@@ -249,15 +247,15 @@ public class AttendeeDialog extends AbstractDialog {
 			contactTxtArea.setText(null);
 			roleBox.setSelectedItem(Data.getInstance().getLocaleStr(
 					"role." + Role.REVIEWER.toString().toLowerCase()));
-			
-			if(fromAssistant){
+
+			if (fromAssistant) {
 				setTitle(Data.getInstance().getLocaleStr("addYourself.title"));
-				setDescription(Data.getInstance().getLocaleStr("addYourself.description"));
+				setDescription(Data.getInstance().getLocaleStr(
+						"addYourself.description"));
 				cancelBttn.setText(Data.getInstance().getLocaleStr("back"));
-				//cancelBttn.setEnabled(false);
-				//closing operation has to be disabled, but how?
-				
-				
+				// cancelBttn.setEnabled(false);
+				// closing operation has to be disabled, but how?
+
 			}
 		} else {
 			setTitle(Data.getInstance().getLocaleStr("editAttendee.title"));
@@ -407,7 +405,7 @@ public class AttendeeDialog extends AbstractDialog {
 
 								LoadStdCatalogsWorker catalogWorker = new LoadStdCatalogsWorker();
 
-								catalogWorker.execute();
+								GUITools.executeSwingWorker(catalogWorker);
 
 								while (!catalogWorker.isDone()
 										&& !catalogWorker.isCancelled()) {
@@ -443,7 +441,7 @@ public class AttendeeDialog extends AbstractDialog {
 					}
 				};
 
-				showPopupWorker.execute();
+				GUITools.executeSwingWorker(showPopupWorker);
 			}
 		});
 
@@ -505,23 +503,22 @@ public class AttendeeDialog extends AbstractDialog {
 				17, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 
-		cancelBttn = new JButton(Data.getInstance().getLocaleStr("abort"),
-				Data.getInstance().getIcon("buttonCancel_16x16.png"));
+		cancelBttn = new JButton(Data.getInstance().getLocaleStr("abort"), Data
+				.getInstance().getIcon("buttonCancel_16x16.png"));
 		cancelBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				setVisible(false);
-				if(fromAssistant==true)
+				if (fromAssistant == true)
 					UI.getInstance().getAssistantDialog().setVisible(true);
-					
+
 			}
 		});
 
 		addButton(cancelBttn);
 
-		confirmBttn = new JButton(Data.getInstance()
-				.getLocaleStr("confirm"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
+		confirmBttn = new JButton(Data.getInstance().getLocaleStr("confirm"),
+				Data.getInstance().getIcon("buttonOk_16x16.png"));
 		confirmBttn.addActionListener(ActionRegistry.getInstance().get(
 				ConfirmAttendeeAction.class.getName()));
 

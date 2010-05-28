@@ -59,7 +59,6 @@ import org.revager.gui.actions.help.ResetHelpAction;
 import org.revager.gui.actions.help.SearchHelpAction;
 import org.revager.tools.GUITools;
 
-
 /**
  * This class represents the help browser frame.
  */
@@ -334,7 +333,8 @@ public class HelpBrowserFrame extends AbstractFrame {
 							// resetBodyPane();
 							// setHelpChapter(link[0]);
 							setHelpChapterAnchor(link[1]);
-							// new LoadHelpWorker(link[0], link[1]).execute();
+							// GUITools.executeSwingWorker(new
+							// LoadHelpWorker(link[0], link[1]));
 						}
 					}
 				}

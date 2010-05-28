@@ -145,7 +145,8 @@ public class SettingsDialog extends AbstractDialog {
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SettingsWorker(Mode.STORE_APPDATA).execute();
+				GUITools.executeSwingWorker(new SettingsWorker(
+						Mode.STORE_APPDATA));
 				setVisible(false);
 			}
 		});
@@ -387,7 +388,8 @@ public class SettingsDialog extends AbstractDialog {
 					logoPathProtocol = UI.getInstance().getFileChooser()
 							.getFile().getAbsolutePath();
 
-					new SettingsWorker(Mode.UPDATE_LOGO_VIEWS).execute();
+					GUITools.executeSwingWorker(new SettingsWorker(
+							Mode.UPDATE_LOGO_VIEWS));
 				}
 			}
 		});
@@ -402,7 +404,8 @@ public class SettingsDialog extends AbstractDialog {
 			public void actionPerformed(ActionEvent e) {
 				logoPathProtocol = null;
 
-				new SettingsWorker(Mode.UPDATE_LOGO_VIEWS).execute();
+				GUITools.executeSwingWorker(new SettingsWorker(
+						Mode.UPDATE_LOGO_VIEWS));
 			}
 		});
 
@@ -459,7 +462,8 @@ public class SettingsDialog extends AbstractDialog {
 					logoPathInvitation = UI.getInstance().getFileChooser()
 							.getFile().getAbsolutePath();
 
-					new SettingsWorker(Mode.UPDATE_LOGO_VIEWS).execute();
+					GUITools.executeSwingWorker(new SettingsWorker(
+							Mode.UPDATE_LOGO_VIEWS));
 				}
 			}
 		});
@@ -474,7 +478,8 @@ public class SettingsDialog extends AbstractDialog {
 			public void actionPerformed(ActionEvent e) {
 				logoPathInvitation = null;
 
-				new SettingsWorker(Mode.UPDATE_LOGO_VIEWS).execute();
+				GUITools.executeSwingWorker(new SettingsWorker(
+						Mode.UPDATE_LOGO_VIEWS));
 			}
 		});
 
@@ -814,7 +819,7 @@ public class SettingsDialog extends AbstractDialog {
 	@Override
 	public void setVisible(boolean vis) {
 		if (vis) {
-			new SettingsWorker(Mode.LOAD_APPDATA).execute();
+			GUITools.executeSwingWorker(new SettingsWorker(Mode.LOAD_APPDATA));
 		}
 
 		super.setVisible(vis);

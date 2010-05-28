@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import org.revager.gui.workers.LoadHelpWorker;
-
+import org.revager.tools.GUITools;
 
 /**
  * The Class OpenHelpAction.
@@ -39,7 +39,7 @@ public class OpenHelpAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new LoadHelpWorker().execute();
+		GUITools.executeSwingWorker(new LoadHelpWorker());
 	}
 
 }

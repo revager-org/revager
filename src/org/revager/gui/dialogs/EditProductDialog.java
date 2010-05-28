@@ -359,7 +359,7 @@ public class EditProductDialog extends AbstractDialog {
 					}
 				};
 
-				addExtRefWorker.execute();
+				GUITools.executeSwingWorker(addExtRefWorker);
 			}
 		});
 		buttonPanelD.add(addData);
@@ -394,7 +394,7 @@ public class EditProductDialog extends AbstractDialog {
 
 				if (selRow != -1) {
 					if (reviewMgmt.isExtProdReferenceRemovable(ref)) {
-						removeExtRefWorker.execute();
+						GUITools.executeSwingWorker(removeExtRefWorker);
 					} else {
 						setMessage(Data.getInstance().getLocaleStr(
 								"editProduct.message.remRef"));
@@ -438,7 +438,7 @@ public class EditProductDialog extends AbstractDialog {
 		/*
 		 * Run the update worker
 		 */
-		updateWorker.execute();
+		GUITools.executeSwingWorker(updateWorker);
 	}
 
 	/*

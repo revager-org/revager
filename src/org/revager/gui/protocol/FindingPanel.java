@@ -381,7 +381,7 @@ public class FindingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				updateFocus(tableExtReferences);
 
-				new AddExternalReferenceWorker().execute();
+				GUITools.executeSwingWorker(new AddExternalReferenceWorker());
 			}
 		});
 
@@ -407,7 +407,8 @@ public class FindingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				updateFocus(tableExtReferences);
 
-				new PasteImageFromClipboardWorker().execute();
+				GUITools
+						.executeSwingWorker(new PasteImageFromClipboardWorker());
 			}
 		});
 

@@ -31,7 +31,6 @@ import org.revager.gui.UI;
 import org.revager.gui.workers.NewReviewWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class NewReviewAction.
  */
@@ -71,15 +70,15 @@ public class NewReviewAction extends AbstractAction {
 						SaveReviewAction.class.getName()).actionPerformed(null);
 
 				if (UI.getInstance().getStatus() == UI.Status.DATA_SAVED) {
-					new NewReviewWorker().execute();
+					GUITools.executeSwingWorker(new NewReviewWorker());
 				}
 			} else if (option == JOptionPane.NO_OPTION) {
-				new NewReviewWorker().execute();
+				GUITools.executeSwingWorker(new NewReviewWorker());
 			} else if (option == JOptionPane.CANCEL_OPTION) {
 				return;
 			}
 		} else {
-			new NewReviewWorker().execute();
+			GUITools.executeSwingWorker(new NewReviewWorker());
 		}
 	}
 

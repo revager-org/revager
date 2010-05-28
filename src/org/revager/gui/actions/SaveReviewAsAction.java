@@ -33,7 +33,6 @@ import org.revager.gui.helpers.FileChooser;
 import org.revager.gui.workers.SaveReviewWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class SaveReviewAsAction.
  */
@@ -119,7 +118,8 @@ public class SaveReviewAsAction extends AbstractAction {
 
 				return;
 			} else {
-				new SaveReviewWorker(reviewPath, exitApp).execute();
+				GUITools.executeSwingWorker(new SaveReviewWorker(reviewPath,
+						exitApp));
 			}
 		}
 	}

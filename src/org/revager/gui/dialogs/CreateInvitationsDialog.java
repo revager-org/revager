@@ -60,7 +60,6 @@ import org.revager.gui.helpers.TreeMeeting;
 import org.revager.gui.workers.CreateInvitationsWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class CreateInvitationsDialog.
  */
@@ -253,17 +252,17 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		ButtonGroup buttonG = new ButtonGroup();
 		pdfRB = new JRadioButton(Data.getInstance().getLocaleStr(
-		"invitationsDialog.asPDF"), true);
+				"invitationsDialog.asPDF"), true);
 		rbPanel.add(pdfRB);
 		buttonG.add(pdfRB);
 
 		zipRB = new JRadioButton(Data.getInstance().getLocaleStr(
-		"invitationsDialog.asZIP"));
+				"invitationsDialog.asZIP"));
 		rbPanel.add(zipRB);
 		buttonG.add(zipRB);
 
 		dirRB = new JRadioButton(Data.getInstance().getLocaleStr(
-		"invitationsDialog.asDirectory"));
+				"invitationsDialog.asDirectory"));
 		rbPanel.add(dirRB);
 		buttonG.add(dirRB);
 
@@ -403,7 +402,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 		confirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CreateInvitationsWorker().execute();
+				GUITools.executeSwingWorker(new CreateInvitationsWorker());
 			}
 		});
 

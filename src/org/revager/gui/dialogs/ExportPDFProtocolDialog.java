@@ -196,7 +196,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 		exportBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ExportPDFProtocolWorker().execute();
+				GUITools.executeSwingWorker(new ExportPDFProtocolWorker());
 			}
 		});
 

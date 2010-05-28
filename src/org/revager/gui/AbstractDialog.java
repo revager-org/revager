@@ -611,7 +611,7 @@ public abstract class AbstractDialog extends JDialog {
 			LoadEmbeddedHelpWorker worker = new LoadEmbeddedHelpWorker(
 					panelHelp, helpChapter, helpChapterAnchor);
 
-			worker.execute();
+			GUITools.executeSwingWorker(worker);
 		} else {
 			helpOpened = false;
 

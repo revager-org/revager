@@ -30,7 +30,7 @@ import org.revager.app.model.Data;
 import org.revager.gui.UI;
 import org.revager.gui.helpers.FileChooser;
 import org.revager.gui.workers.LoadReviewWorker;
-
+import org.revager.tools.GUITools;
 
 /**
  * The Class LoadReviewAction.
@@ -66,7 +66,7 @@ public class LoadReviewAction extends AbstractAction {
 				FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 			String reviewPath = fileChooser.getFile().getAbsolutePath();
 
-			new LoadReviewWorker(reviewPath).execute();
+			GUITools.executeSwingWorker(new LoadReviewWorker(reviewPath));
 		}
 	}
 

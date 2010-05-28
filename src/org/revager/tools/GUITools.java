@@ -57,6 +57,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.MouseInputAdapter;
@@ -80,6 +81,15 @@ public class GUITools {
 	private static Map<Integer, Integer> rollOverRowIndex = new HashMap<Integer, Integer>();
 
 	private static int lastRolloverKey = 0;
+
+	/**
+	 * Execute the given SwingWorker class.
+	 * 
+	 * @param worker
+	 */
+	public static void executeSwingWorker(SwingWorker<?, ?> worker) {
+		java.util.concurrent.Executors.newCachedThreadPool().execute(worker);
+	}
 
 	/**
 	 * Adds the given component to the given container with GridBagLayout.

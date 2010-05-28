@@ -38,6 +38,7 @@ import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 import org.revager.gui.helpers.TreeMeeting;
 import org.revager.gui.helpers.TreeProtocol;
+import org.revager.tools.GUITools;
 
 /**
  * The Class OpenProtocolFrameAction.
@@ -70,7 +71,7 @@ public class OpenProtocolFrameAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new OpenProtocolFrameWorker().execute();
+		GUITools.executeSwingWorker(new OpenProtocolFrameWorker());
 	}
 
 	private class OpenProtocolFrameWorker extends SwingWorker<Void, Void> {

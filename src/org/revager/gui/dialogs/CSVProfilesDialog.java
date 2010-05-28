@@ -71,7 +71,6 @@ import org.revager.gui.models.CSVColumnsComboBoxModel;
 import org.revager.gui.workers.CSVProfilesWorker;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class CSVProfilesDialog.
  */
@@ -140,8 +139,8 @@ public class CSVProfilesDialog extends AbstractDialog {
 		buttonClose.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CSVProfilesWorker(listProfiles.getSelectedIndex())
-						.execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker(listProfiles
+						.getSelectedIndex()));
 				setVisible(false);
 			}
 		});
@@ -167,7 +166,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 
 			@Override
 			public void windowClosed(WindowEvent e) {
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 
 			@Override
@@ -256,7 +255,8 @@ public class CSVProfilesDialog extends AbstractDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				new CSVProfilesWorker(textProfileName.getText()).execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker(
+						textProfileName.getText()));
 			}
 		});
 
@@ -290,7 +290,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				updateColumnOrder(boxColumn1, textColumn1);
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 
 			@Override
@@ -303,7 +303,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				updateColumnOrder(boxColumn2, textColumn2);
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 		});
 
@@ -312,7 +312,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				updateColumnOrder(boxColumn3, textColumn3);
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 		});
 
@@ -321,7 +321,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				updateColumnOrder(boxColumn4, textColumn4);
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 		});
 
@@ -357,7 +357,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 		};
 
@@ -401,7 +401,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 		ChangeListener boxChangeListener = new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				new CSVProfilesWorker().execute();
+				GUITools.executeSwingWorker(new CSVProfilesWorker());
 			}
 		};
 
@@ -453,7 +453,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 
 				@Override
 				public void focusLost(FocusEvent e) {
-					new CSVProfilesWorker().execute();
+					GUITools.executeSwingWorker(new CSVProfilesWorker());
 				}
 			});
 
@@ -531,7 +531,8 @@ public class CSVProfilesDialog extends AbstractDialog {
 					try {
 						appData.newCSVProfile(popup.getInput());
 
-						new CSVProfilesWorker(popup.getInput()).execute();
+						GUITools.executeSwingWorker(new CSVProfilesWorker(popup
+								.getInput()));
 					} catch (DataException exc) {
 						JOptionPane.showMessageDialog(UI.getInstance()
 								.getCSVProfilesDialog(), GUITools
@@ -577,7 +578,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 
 						appData.removeCSVProfile(profName);
 
-						new CSVProfilesWorker(0).execute();
+						GUITools.executeSwingWorker(new CSVProfilesWorker(0));
 					}
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()

@@ -286,7 +286,7 @@ public class ExportCSVDialog extends AbstractDialog {
 		exportBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ExportCSVWorker().execute();
+				GUITools.executeSwingWorker(new ExportCSVWorker());
 			}
 		});
 

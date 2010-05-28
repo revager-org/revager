@@ -49,13 +49,12 @@ import org.revager.tools.GUITools;
  * The class OpenReviewPanel.
  * 
  * @author D.Casciato
- *
+ * 
  */
 @SuppressWarnings("serial")
-public class OpenReviewPanel extends AbstractDialogPanel{
+public class OpenReviewPanel extends AbstractDialogPanel {
 
 	private GridBagLayout gbl2 = new GridBagLayout();
-	
 
 	/*
 	 * Strings
@@ -129,7 +128,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 						.getLastReviews();
 				int index = lastRevsGrp.getSelectedLinkIndex();
 				String revPath = lastRevs.get(index);
-				new LoadReviewWorker(revPath).execute();
+				GUITools.executeSwingWorker(new LoadReviewWorker(revPath));
 			} catch (DataException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -140,7 +139,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 	};
 
 	/**
-	 * Action to open another review. 
+	 * Action to open another review.
 	 */
 	private ActionListener openAnotherRev = new ActionListener() {
 
@@ -151,13 +150,14 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 			if (fileChooser.showDialog(UI.getInstance().getAssistantDialog(),
 					FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 				String reviewPath = fileChooser.getFile().getAbsolutePath();
-				new LoadReviewWorker(reviewPath).execute();
+				GUITools.executeSwingWorker(new LoadReviewWorker(reviewPath));
 			}
 		}
 	};
-	
+
 	/**
 	 * Returns the group of the recent reviews.
+	 * 
 	 * @return
 	 */
 	public LinkGroup getLastRevsGrp() {
@@ -165,7 +165,8 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 	}
 
 	/**
-	 * Returns the vector of the recent reviews. 
+	 * Returns the vector of the recent reviews.
+	 * 
 	 * @return
 	 */
 	public Vector<String> getLastRevsVector() {
@@ -181,7 +182,7 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 		super(parent);
 		createOpenReviewPnl();
 	}
-	
+
 	/**
 	 * Method which creates and locates the component of this panel.
 	 */
@@ -211,11 +212,11 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 		modeGrp.addLink(scribeSingleRevLnk);
 		modeGrp.selectLink(moderatorLnk);
 
-		GUITools.addComponent(this, gbl2, moderatorLnk, 0, 0, 1, 1,
-				0.5, 0.0, 0, 20, 0, 20, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl2, moderatorLnk, 0, 0, 1, 1, 0.5, 0.0,
+				0, 20, 0, 20, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl2, scribeSingleRevLnk, 0, 1,
-				1, 2, 0.5, 0.0, 20, 20, 0, 20, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl2, scribeSingleRevLnk, 0, 1, 1, 2, 0.5,
+				0.0, 20, 20, 0, 20, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(this, gbl2, new JSeparator(
 				SwingConstants.VERTICAL), 1, 0, 1, 6, 0.0, 1.0, 0, 0, 0, 0,
@@ -227,14 +228,14 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(firstReviewLnk);
 			lastRevsGrp.selectLink(firstReviewLnk);
-			GUITools.addComponent(this, gbl2, firstReviewLnk, 2, 0,
-					1, 1, 1.0, 0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+			GUITools.addComponent(this, gbl2, firstReviewLnk, 2, 0, 1, 1, 1.0,
+					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 			noRevsLbl.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 12));
-			GUITools.addComponent(this, gbl2, noRevsLbl, 2, 0, 1, 1,
-					1.0, 0.0, 15, 80, 0, 0, GridBagConstraints.HORIZONTAL,
+			GUITools.addComponent(this, gbl2, noRevsLbl, 2, 0, 1, 1, 1.0, 0.0,
+					15, 80, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 		}
 		try {
@@ -242,8 +243,8 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 			secondReviewLnk = new HLink(secondRevStrng, reviewIcon,
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(secondReviewLnk);
-			GUITools.addComponent(this, gbl2, secondReviewLnk, 2, 1,
-					1, 1, 1.0, 0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+			GUITools.addComponent(this, gbl2, secondReviewLnk, 2, 1, 1, 1, 1.0,
+					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
@@ -254,8 +255,8 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 			thirdReviewLnk = new HLink(thirdRevStrng, reviewIcon,
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(thirdReviewLnk);
-			GUITools.addComponent(this, gbl2, thirdReviewLnk, 2, 2,
-					1, 1, 1.0, 0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+			GUITools.addComponent(this, gbl2, thirdReviewLnk, 2, 2, 1, 1, 1.0,
+					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
@@ -267,11 +268,9 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 			fourthReviewLnk = new HLink(fourthRevStrng, reviewIcon,
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(fourthReviewLnk);
-			GUITools
-					.addComponent(this, gbl2, fourthReviewLnk, 2, 3,
-							1, 1, 1.0, 0.0, 0, 40, 0, 0,
-							GridBagConstraints.HORIZONTAL,
-							GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(this, gbl2, fourthReviewLnk, 2, 3, 1, 1, 1.0,
+					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 
@@ -280,12 +279,12 @@ public class OpenReviewPanel extends AbstractDialogPanel{
 				browseRolloverIcon, null);
 		anotherReviewLnk.setUnderlined(true);
 		anotherReviewLnk.addActionListener(openAnotherRev);
-		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1,
-				1, 1.0, 1.0, 30, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1, 1, 1.0,
+				1.0, 30, 40, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.SOUTHWEST);
 
 	}
-	
+
 	/**
 	 * Gets the last reviews.
 	 * 

@@ -16,23 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.actions;
+package org.revager.gui.actions.assistant;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
 import org.revager.gui.UI;
-import org.revager.gui.dialogs.AssistantDialog;
-import org.revager.gui.workers.LoadReviewWorker;
-import org.revager.gui.workers.NewReviewWorker;
-
 
 /**
- * The Class InitializeMainFrameAction.
+ * The Class GoToAddAttPnlAction. Calling this action will set the assistant to
+ * the AddAttendeePanel.
+ * 
+ * @author D.Casciato
+ * 
  */
 @SuppressWarnings("serial")
-public class InitializeMainFrameAction extends AbstractAction {
+public class GoToAddAttPnlAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -42,20 +42,11 @@ public class InitializeMainFrameAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AssistantDialog.Selection sel = UI.getInstance().getAssistantDialog()
-				.getSelected();
-
-		if (sel == AssistantDialog.Selection.NEW_REVIEW) {
-			new NewReviewWorker().execute();
-		} else if (sel == AssistantDialog.Selection.LOAD_REVIEW) {
-			new LoadReviewWorker(UI.getInstance().getAssistantDialog()
-					.getPath()).execute();
-		} else if (sel == AssistantDialog.Selection.MANAGE_ASPECTS) {
-			UI.getInstance().setStatus(UI.Status.NO_FILE_LOADED);
-
-			UI.getInstance().getAssistantDialog().setVisible(false);
-			UI.getInstance().getAspectsManagerFrame().setVisible(true);
-		}
+		UI.getInstance().getAssistantDialog().setCurrentPnl(
+				UI.getInstance().getAssistantDialog().getAddAttendeePanel());
+		UI.getInstance().getAssistantDialog().updateMessage();
+		UI.getInstance().getAssistantDialog().updateContents();
+		UI.getInstance().getAssistantDialog().updateWizardBttns();
 	}
 
 }

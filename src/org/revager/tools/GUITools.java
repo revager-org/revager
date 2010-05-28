@@ -69,7 +69,6 @@ import javax.swing.text.JTextComponent;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
-
 /**
  * The Class GUITools.
  */
@@ -683,5 +682,4 @@ public class GUITools {
 			}
 		});
 	}
-
 }

@@ -16,32 +16,48 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.actions;
 
-import java.awt.event.ActionEvent;
+package org.revager.gui;
 
-import javax.swing.AbstractAction;
-
-import org.revager.app.model.Data;
-import org.revager.gui.UI;
-
+import javax.swing.JPanel;
 
 /**
- * The Class OpenModeratorModeAction.
+ * This class is the superclass for the assistant panels.
  */
 @SuppressWarnings("serial")
-public class OpenModeratorModeAction extends AbstractAction {
+public abstract class AbstractDialogPanel extends JPanel {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	private AbstractDialog parent;
+
+	/**
+	 * Returns the parent of this component.
 	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Data.getInstance().setMode("moderator");
-		UI.getInstance().getAssistantDialog().setSelectReview();
+	public AbstractDialog getParent() {
+		return parent;
+	}
+
+	/**
+	 * Sets the hint message in the parent.
+	 * 
+	 * @param hintText
+	 */
+	public void setHint(String hintText) {
+
+		parent.setMessage(hintText);
+
+	}
+
+	/**
+	 * Constructor with it's parent as parameter
+	 * 
+	 * @param parent
+	 */
+	public AbstractDialogPanel(AbstractDialog parent) {
+
+		super();
+
+		this.parent = parent;
+
 	}
 
 }

@@ -36,7 +36,7 @@ import org.revager.app.Application;
 import org.revager.app.model.Data;
 import org.revager.gui.aspects_manager.AspectsManagerFrame;
 import org.revager.gui.dialogs.AboutDialog;
-import org.revager.gui.dialogs.AssistantDialog;
+import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.gui.dialogs.CSVProfilesDialog;
 import org.revager.gui.dialogs.CreateInvitationsDialog;

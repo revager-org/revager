@@ -16,35 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.actions;
+package org.revager.gui.actions.assistant;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.KeyStroke;
 
-import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
 /**
- * The Class OpenAspectsManagerAction.
+ * The Class GoToOpenReviewPanel. Calling this action will set the assistant to
+ * the OpenReviewPanel.
+ * 
+ * @author D.Casciato
+ *
  */
 @SuppressWarnings("serial")
-public class OpenAspectsManagerAction extends AbstractAction {
-
-	/**
-	 * Instantiates a new open aspects manager action.
-	 */
-	public OpenAspectsManagerAction() {
-		super();
-
-		putValue(SMALL_ICON, Data.getInstance().getIcon("menuAspMan_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.manageAspects"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
-	}
+public class GoToOpenRevPnlAction extends AbstractAction {
 
 	/*
 	 * (non-Javadoc)
@@ -54,10 +42,13 @@ public class OpenAspectsManagerAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAspectsManagerFrame().setSelectedReviewer(
-				UI.getInstance().getMainFrame().getSelectedAttendee());
-		UI.getInstance().getAssistantDialog().setVisible(false);
-		UI.getInstance().getAspectsManagerFrame().setVisible(true);
+		
+		UI.getInstance().getAssistantDialog().setCurrentPnl(
+				UI.getInstance().getAssistantDialog().getOpenReviewPanel());
+		UI.getInstance().getAssistantDialog().updateMessage();
+		UI.getInstance().getAssistantDialog().updateContents();
+		UI.getInstance().getAssistantDialog().updateWizardBttns();
+		
 	}
 
 }

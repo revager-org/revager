@@ -41,7 +41,6 @@ import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.tools.FileTools;
 
-
 /**
  * This class is a sub-class of Data an handles the application data, internally
  * stored in a JavaDB.

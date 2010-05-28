@@ -96,7 +96,7 @@ import org.revager.gui.actions.OpenInvitationsDialogAction;
 import org.revager.gui.actions.OpenProtocolFrameAction;
 import org.revager.gui.actions.SaveReviewAction;
 import org.revager.gui.actions.SaveReviewAsAction;
-import org.revager.gui.actions.SelectModeAction;
+import org.revager.gui.actions.assistant.OpenAssistantAction;
 import org.revager.gui.actions.attendee.AddAttendeeAction;
 import org.revager.gui.actions.attendee.EditAttendeeAction;
 import org.revager.gui.actions.attendee.RemoveAttendeeAction;
@@ -112,7 +112,6 @@ import org.revager.gui.helpers.TreeProtocol;
 import org.revager.gui.models.AttendeeTableModel;
 import org.revager.tools.GUITools;
 import org.revager.tools.TreeTools;
-
 
 /**
  * This class represents the main frame.
@@ -220,7 +219,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JButton editProtocol;
 	private JButton commentMeeting;
 	private JButton removeMeeting;
-
 
 	/*
 	 * Hint items
@@ -605,7 +603,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		meetingsTree.getSelectionModel().setSelectionMode(
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
-		
+
 		treeScrollPane = new JScrollPane(meetingsTree);
 
 		/*
@@ -638,7 +636,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				"meeting.edit"));
 		editMeeting.addActionListener(ActionRegistry.getInstance().get(
 				EditMeetingAction.class.getName()));
-		
+
 		meetingButtons.add(editMeeting);
 
 		commentMeeting = GUITools.newImageButton();
@@ -653,21 +651,22 @@ public class MainFrame extends AbstractFrame implements Observer {
 		meetingButtons.add(commentMeeting);
 
 		editProtocol = GUITools.newImageButton();
-		editProtocol.setIcon(Data.getInstance().getIcon("protocolFrame_25x25_0.png"));
-		editProtocol.setRolloverIcon(Data.getInstance()
-				.getIcon("protocolFrame_25x25.png"));
+		editProtocol.setIcon(Data.getInstance().getIcon(
+				"protocolFrame_25x25_0.png"));
+		editProtocol.setRolloverIcon(Data.getInstance().getIcon(
+				"protocolFrame_25x25.png"));
 		editProtocol.setToolTipText(Data.getInstance().getLocaleStr(
 				"mainFrame.protocolMode"));
 		editProtocol.addActionListener(ActionRegistry.getInstance().get(
 				OpenProtocolFrameAction.class.getName()));
-		
+
 		meetingButtons.add(editProtocol);
-		
+
 		commentMeeting.setEnabled(false);
 		editMeeting.setEnabled(false);
 		removeMeeting.setEnabled(false);
 		editProtocol.setEnabled(false);
-		
+
 		attendees = new JLabel(Data.getInstance().getLocaleStr(
 				"mainFrame.meetings.attendees"));
 		attendees.setBorder(labelBorder);
@@ -964,7 +963,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		tbShowAssistant.setToolTipText(Data.getInstance().getLocaleStr(
 				"menu.showAssistant"));
 		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(
-				SelectModeAction.class.getName()));
+				OpenAssistantAction.class.getName()));
 
 		addTopComponent(tbShowAssistant);
 
@@ -1007,11 +1006,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 				AddAttendeeAction.class.getName()));
 
 		addTopComponent(tbNewAttendee);
-		
+
 		tbNewMeeting = GUITools.newImageButton(Data.getInstance().getIcon(
-		"addMeeting_50x50_0.png"), Data.getInstance().getIcon(
-		"addMeeting_50x50.png"), ActionRegistry.getInstance().get(
-		AddMeetingAction.class.getName()));
+				"addMeeting_50x50_0.png"), Data.getInstance().getIcon(
+				"addMeeting_50x50.png"), ActionRegistry.getInstance().get(
+				AddMeetingAction.class.getName()));
 
 		addTopComponent(tbNewMeeting);
 
@@ -1110,7 +1109,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuFile.setText(Data.getInstance().getLocaleStr("menu.file"));
 
 		fileSelectModeItem = new JMenuItem(ActionRegistry.getInstance().get(
-				SelectModeAction.class.getName()));
+				OpenAssistantAction.class.getName()));
 
 		menuFile.add(fileSelectModeItem);
 
@@ -2002,21 +2001,22 @@ public class MainFrame extends AbstractFrame implements Observer {
 			editAttendee.setEnabled(false);
 		}
 
-		if(Data.getInstance().getMode().equals("instant")){
-			List<Meeting> meetingsList=Application.getInstance().getMeetingMgmt().getMeetings();
-			for(Meeting meet:meetingsList){
-				if(meet.isSetProtocol()==false && meetingsList.size()!=0){
+		if (Data.getInstance().getMode().equals("instant")) {
+			List<Meeting> meetingsList = Application.getInstance()
+					.getMeetingMgmt().getMeetings();
+			for (Meeting meet : meetingsList) {
+				if (meet.isSetProtocol() == false && meetingsList.size() != 0) {
 					addMeeting.setEnabled(false);
 					tbNewMeeting.setEnabled(false);
 					newMeetingItem.setEnabled(false);
-				}else{
+				} else {
 					addMeeting.setEnabled(true);
 					tbNewMeeting.setEnabled(true);
 					newMeetingItem.setEnabled(true);
 				}
 			}
 		}
-			
+
 		if (getSelectedMeeting() != null) {
 			commentMeeting.setEnabled(true);
 			editMeeting.setEnabled(true);
@@ -2181,7 +2181,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		addAttendee.setEnabled(enabled);
 		attendeesTable.setEnabled(enabled);
 		editAspects.setEnabled(enabled);
-		
+
 		tbNewMeeting.setEnabled(enabled);
 		tbNewAttendee.setEnabled(enabled);
 		tbManageSeverities.setEnabled(enabled);

@@ -63,7 +63,6 @@ import org.revager.gui.workers.SettingsWorker.Mode;
 import org.revager.tools.FileTools;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class SettingsDialog.
  */
@@ -314,8 +313,8 @@ public class SettingsDialog extends AbstractDialog {
 				if (currentLang.equals(selectedLang)) {
 					setMessage(null);
 				} else {
-					setMessage(Data.getInstance()
-				.getLocaleStr("settingsDialog.general.langHintRestart"));
+					setMessage(Data.getInstance().getLocaleStr(
+							"settingsDialog.general.langHintRestart"));
 				}
 			}
 		});

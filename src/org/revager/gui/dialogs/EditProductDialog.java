@@ -55,7 +55,6 @@ import org.revager.gui.models.ExRefTableModel;
 import org.revager.gui.models.ReferenceTableModel;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class EditProductDialog.
  */

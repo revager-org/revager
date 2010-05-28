@@ -29,7 +29,6 @@ import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 import org.revager.gui.protocol.AddResiAttToProtPopupWindow;
 
-
 /**
  * The Class AddResiAttToProtAction.
  */
@@ -59,7 +58,7 @@ public class AddResiAttToProtAction extends AbstractAction {
 
 			localAtt = Application.getInstance().getAttendeeMgmt().getAttendee(
 					Integer.parseInt(attId));
-			
+
 			Application.getInstance().getProtocolMgmt().addAttendee(localAtt,
 					prep, prot);
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);

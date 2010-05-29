@@ -42,7 +42,6 @@ import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.tools.PDFTools;
 
-
 import com.lowagie.text.Anchor;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Font;
@@ -255,6 +254,11 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 * Review meeting date and location
 			 */
 			if (meetings.size() == 1) {
+				sdfDate.setTimeZone(meetings.get(0).getProtocol().getDate()
+						.getTimeZone());
+				sdfTime.setTimeZone(meetings.get(0).getProtocol().getDate()
+						.getTimeZone());
+
 				String meetingDate = sdfDate.format(meetings.get(0)
 						.getProtocol().getDate().getTime());
 
@@ -262,7 +266,10 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						.getProtocol().getStart().getTime())
 						+ " - "
 						+ sdfTime.format(meetings.get(0).getProtocol().getEnd()
-								.getTime());
+								.getTime())
+						+ " ["
+						+ meetings.get(0).getProtocol().getEnd().getTimeZone()
+								.getDisplayName() + "]";
 
 				Phrase phraseMeeting = new Phrase(
 						meetingDate
@@ -531,7 +538,11 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						String meetingTime = sdfTime.format(protocol.getStart()
 								.getTime())
 								+ " - "
-								+ sdfTime.format(protocol.getEnd().getTime());
+								+ sdfTime.format(protocol.getEnd().getTime())
+								+ " ["
+								+ protocol.getEnd().getTimeZone()
+										.getDisplayName() + "]";
+						;
 
 						Phrase phraseMeet = new Phrase(Data.getInstance()
 								.getLocaleStr("export.date")
@@ -899,18 +910,15 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 				String meetingTime = sdfTime.format(protocol.getStart()
 						.getTime())
-						+ " - " + sdfTime.format(protocol.getEnd().getTime());
+						+ " - "
+						+ sdfTime.format(protocol.getEnd().getTime())
+						+ " ["
+						+ protocol.getEnd().getTimeZone().getDisplayName()
+						+ "]";
 
-				Anchor anchorTitle = new Anchor(
-						Data.getInstance().getLocaleStr(
-								"export.reviewMeetingAt")
-								+ " "
-								+ meetingDate
-								+ " ("
-								+ meetingTime
-								+ " "
-								+ Data.getInstance().getLocaleStr(
-										"export.clock") + ")", boldFontTitle);
+				Anchor anchorTitle = new Anchor(Data.getInstance()
+						.getLocaleStr("export.reviewMeetingAt")
+						+ " " + meetingDate, boldFontTitle);
 				anchorTitle.setName(Long.toString(protocol.getDate()
 						.getTimeInMillis()
 						+ protocol.getStart().getTimeInMillis()));
@@ -924,6 +932,17 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				cellTitle.setPaddingBottom(padding * 2);
 
 				tableMeeting.addCell(cellTitle);
+
+				PdfPCell cellTime = new PdfPCell(new Phrase(meetingTime + " "
+						+ Data.getInstance().getLocaleStr("export.clock"),
+						italicFontTitle));
+				cellTime.setColspan(2);
+				cellTime.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellTime.setPadding(0);
+				cellTime.setBorderWidth(0);
+				cellTime.setPaddingBottom(padding * 2);
+
+				tableMeeting.addCell(cellTime);
 
 				PdfPCell cellLocation = new PdfPCell(new Phrase(Data
 						.getInstance().getLocaleStr("export.location")
@@ -987,7 +1006,10 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					String plannedTime = sdfTime.format(meeting
 							.getPlannedStart().getTime())
 							+ " - "
-							+ sdfTime.format(meeting.getPlannedEnd().getTime());
+							+ sdfTime.format(meeting.getPlannedEnd().getTime())
+							+ " ["
+							+ meeting.getPlannedEnd().getTimeZone()
+									.getDisplayName() + "]";
 
 					Phrase phrasePlanned = new Phrase(plannedDate
 							+ " ("
@@ -1521,12 +1543,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				String meetingDate = sdfDate.format(protocol.getDate()
 						.getTime());
 
-				String meetingTime = sdfTime.format(protocol.getStart()
-						.getTime())
-						+ " - " + sdfTime.format(protocol.getEnd().getTime());
-
-				PdfPCell cellMeeting = new PdfPCell(new Phrase(meetingDate
-						+ "  |  " + meetingTime, plainFontTitle));
+				PdfPCell cellMeeting = new PdfPCell(new Phrase(meetingDate,
+						plainFontTitle));
 				cellMeeting.setBackgroundColor(bgColorTitle);
 				cellMeeting.setBorderWidth(0);
 				cellMeeting.setPadding(padding);

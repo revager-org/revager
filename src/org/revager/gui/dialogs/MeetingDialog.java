@@ -63,7 +63,6 @@ import org.revager.gui.helpers.TreeMeeting;
 import org.revager.gui.models.RotateSpinnerNumberModel;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class MeetingDialog.
  */
@@ -257,6 +256,7 @@ public class MeetingDialog extends AbstractDialog {
 
 			DateFormat dateF = SimpleDateFormat
 					.getDateInstance(DateFormat.LONG);
+
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.DAY_OF_WEEK, 7);
 			Date startDate = cal.getTime();
@@ -292,8 +292,10 @@ public class MeetingDialog extends AbstractDialog {
 			Object obj = ((DefaultMutableTreeNode) path.getLastPathComponent())
 					.getUserObject();
 			editMeet = ((TreeMeeting) obj).getMeeting();
+
 			DateFormat dateF = SimpleDateFormat
 					.getDateInstance(DateFormat.LONG);
+			dateF.setTimeZone(currentMeeting.getPlannedDate().getTimeZone());
 
 			dateTxtFld.setText(dateF
 					.format(editMeet.getPlannedDate().getTime()));

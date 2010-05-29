@@ -51,7 +51,7 @@ public class AspectManagement {
 
 		DUMMY_ASPECT.setId("");
 		DUMMY_ASPECT.setDirective("");
-		DUMMY_ASPECT.setDescription("DUMMY ASPECT");
+		DUMMY_ASPECT.setDescription("");
 		DUMMY_ASPECT.setCategory("");
 	}
 
@@ -63,9 +63,9 @@ public class AspectManagement {
 	private int getLastId() {
 		int lastId = 0;
 
-		for (Aspect a : resiData.getReview().getAspects()) {
-			if (Integer.parseInt(a.getId()) > lastId) {
-				lastId = Integer.parseInt(a.getId());
+		for (Aspect asp : resiData.getReview().getAspects()) {
+			if (asp != DUMMY_ASPECT && Integer.parseInt(asp.getId()) > lastId) {
+				lastId = Integer.parseInt(asp.getId());
 			}
 		}
 

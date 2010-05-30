@@ -482,6 +482,17 @@ public class UI implements Observer {
 	};
 
 	/**
+	 * Resets the attendee dialog.
+	 * 
+	 * @return the new attendee dialog
+	 */
+	public AttendeeDialog resetAttendeeDialog() {
+		attendeeDialog = new AttendeeDialog(UI.getInstance().getMainFrame());
+
+		return attendeeDialog;
+	};
+
+	/**
 	 * Gets the aspects manager frame.
 	 * 
 	 * @return the aspects manager frame

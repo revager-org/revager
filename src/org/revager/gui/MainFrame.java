@@ -43,7 +43,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -254,7 +253,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JTextArea impressionTxtArea = new JTextArea();
 	private JScrollPane scrollImpression;
 	private JComboBox recommendationBx = new JComboBox();
-	private JButton clearRec;
 
 	private long updateTime = System.currentTimeMillis();
 	private MouseListener productMouseListener = new MouseListener() {
@@ -840,36 +838,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		});
 
 		recommendationBx.addItemListener(updItemListener);
-		recommendationBx.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED
-						&& !recommendationBx.getSelectedItem().toString()
-								.trim().equals("")) {
 
-					setEnabledAllComp(false);
-				} else {
-					setEnabledAllComp(true);
-				}
-			}
-		});
-
-		ImageIcon clearRecIcon = Data.getInstance()
-				.getIcon("clear_22x22_0.png");
-		ImageIcon clearRecRollOverIcon = Data.getInstance().getIcon(
-				"clear_22x22.png");
-
-		clearRec = GUITools.newImageButton(clearRecIcon, clearRecRollOverIcon);
-		clearRec.setToolTipText(Data.getInstance().getLocaleStr(
-				"mainFrame.clearRec"));
-		clearRec.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				recommendationBx.setSelectedItem(null);
-				revMgmt.setRecommendation("");
-			}
-		});
 	}
 
 	/**
@@ -922,9 +891,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 			GUITools.addComponent(rightPanel, gbl, recommendationBx, 0, 8, 1,
 					1, 1.0, 0, 10, padding, 0, 20,
 					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTH);
-			GUITools.addComponent(rightPanel, gbl, clearRec, 2, 8, 1, 1, 0, 0,
-					10, 0, 0, 20, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTH);
 		}
 
 	}
@@ -2156,67 +2122,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Sets the enabled all comp.
-	 * 
-	 * @param enabled
-	 *            the new enabled all comp
-	 */
-	private void setEnabledAllComp(boolean enabled) {
-		Color textColor = new JTextField().getForeground();
-		Cursor productCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
-
-		if (!enabled) {
-			textColor = Color.GRAY;
-			productCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-		}
-
-		addMeeting.setEnabled(enabled);
-		meetingsTree.setEnabled(enabled);
-		if (!enabled) {
-			meetingsTree.setSelectionPath(null);
-		}
-		addAttendee.setEnabled(enabled);
-		attendeesTable.setEnabled(enabled);
-		editAspects.setEnabled(enabled);
-
-		tbNewMeeting.setEnabled(enabled);
-		tbNewAttendee.setEnabled(enabled);
-		tbManageSeverities.setEnabled(enabled);
-		tbCreateInvitations.setEnabled(enabled);
-		tbAspectsManager.setEnabled(enabled);
-		tbProtocolMode.setEnabled(enabled);
-
-		newMeetingItem.setEnabled(enabled);
-		newAttendeeItem.setEnabled(enabled);
-		protocolModeItem.setEnabled(enabled);
-		createInvitationsItem.setEnabled(enabled);
-		manageSeveritiesItem.setEnabled(enabled);
-		aspectsManagerItem.setEnabled(enabled);
-
-		textProduct.setCursor(productCursor);
-		textProduct.setForeground(textColor);
-
-		textRevName.setFocusable(enabled);
-		textRevName.setForeground(textColor);
-
-		textRevDesc.setFocusable(enabled);
-		textRevDesc.setForeground(textColor);
-
-		textRevComm.setFocusable(enabled);
-		textRevComm.setForeground(textColor);
-
-		impressionTxtArea.setFocusable(enabled);
-		impressionTxtArea.setForeground(textColor);
-
-		clearRec.setEnabled(!enabled);
-
-		if (enabled) {
-			updateLeftPane();
-			updateRightPane();
-		}
 	}
 
 	/*

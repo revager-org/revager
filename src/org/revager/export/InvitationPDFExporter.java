@@ -40,7 +40,6 @@ import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Role;
 import org.revager.tools.PDFTools;
 
-
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Font;
 import com.lowagie.text.Phrase;
@@ -150,6 +149,9 @@ public class InvitationPDFExporter extends PDFExporter {
 		this.meeting = meeting;
 		this.attendee = attendee;
 		this.attachProdExtRefs = attachProdExtRefs;
+
+		sdfDate.setTimeZone(meeting.getPlannedDate().getTimeZone());
+		sdfTime.setTimeZone(meeting.getPlannedDate().getTimeZone());
 	}
 
 	/**
@@ -201,7 +203,12 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			String meetingTime = sdfTime.format(meeting.getPlannedStart()
 					.getTime())
-					+ " - " + sdfTime.format(meeting.getPlannedEnd().getTime());
+					+ " - "
+					+ sdfTime.format(meeting.getPlannedEnd().getTime())
+					+ " ["
+					+ meeting.getPlannedEnd().getTimeZone().getDisplayName()
+					+ "]";
+			;
 
 			/*
 			 * Base table

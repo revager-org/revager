@@ -38,7 +38,6 @@ import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.tools.FileTools;
 
-
 /**
  * This class manages the review.
  */
@@ -415,12 +414,12 @@ public class ReviewManagement {
 		setProductName(getProductName().trim());
 		setProductVersion(getProductVersion().trim());
 
-		List<String> prodRefs = new ArrayList<String>();
 		for (String ref : getProductReferences()) {
-			prodRefs.add(ref.trim());
+			String trimmedRef = ref.trim();
+
+			removeProductReference(ref);
+			addProductReference(trimmedRef);
 		}
-		resiData.getReview().getProduct().getReferences().clear();
-		resiData.getReview().getProduct().getReferences().addAll(prodRefs);
 
 		/*
 		 * Trim the strings of the severities.

@@ -280,4 +280,17 @@ public class AssistantDialog extends AbstractDialog {
 
 	}
 
+	@Override
+	public void setVisible(boolean vis) {
+		/*
+		 * Create new instance of attendee dialog when assistant dialog is being
+		 * closed
+		 */
+		if (!vis) {
+			UI.getInstance().resetAttendeeDialog();
+		}
+
+		super.setVisible(vis);
+	}
+
 }

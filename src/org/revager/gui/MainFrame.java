@@ -1718,26 +1718,28 @@ public class MainFrame extends AbstractFrame implements Observer {
 				pdfExportItem.setEnabled(true);
 			}
 
-			boolean prodNameNotEmpty = !Application.getInstance()
-					.getReviewMgmt().getProductName().trim().equals("");
-			boolean prodVersionNotEmpty = !Application.getInstance()
+			boolean prodNameEmpty = Application.getInstance().getReviewMgmt()
+					.getProductName().trim().equals("");
+			boolean prodVersionEmpty = Application.getInstance()
 					.getReviewMgmt().getProductVersion().trim().equals("");
-			boolean prodRefsNotEmpty = !Application.getInstance()
-					.getReviewMgmt().getProductReferences().isEmpty();
-			boolean revNameNotEmpty = !Application.getInstance()
-					.getReviewMgmt().getReviewName().trim().equals("");
-			boolean revDescNotEmpty = !Application.getInstance()
-					.getReviewMgmt().getReviewDescription().trim().equals("");
-			boolean attendeesNotEmpty = !Application.getInstance()
+			boolean prodRefsEmpty = Application.getInstance().getReviewMgmt()
+					.getProductReferences().isEmpty()
+					&& Application.getInstance().getReviewMgmt()
+							.getExtProdReferences().isEmpty();
+			boolean revNameEmpty = Application.getInstance().getReviewMgmt()
+					.getReviewName().trim().equals("");
+			boolean revDescEmpty = Application.getInstance().getReviewMgmt()
+					.getReviewDescription().trim().equals("");
+			boolean attendeesEmpty = Application.getInstance()
 					.getAttendeeMgmt().getAttendees().isEmpty();
-			boolean meetingsNotEmpty = !Application.getInstance()
-					.getMeetingMgmt().getMeetings().isEmpty();
-			boolean aspectsNotEmpty = !Application.getInstance()
-					.getAspectMgmt().getAspects().isEmpty();
+			boolean meetingsEmpty = Application.getInstance().getMeetingMgmt()
+					.getMeetings().isEmpty();
+			boolean aspectsEmpty = Application.getInstance().getAspectMgmt()
+					.getAspects().isEmpty();
 
-			if (prodNameNotEmpty && prodVersionNotEmpty && prodRefsNotEmpty
-					&& revNameNotEmpty && revDescNotEmpty && attendeesNotEmpty
-					&& meetingsNotEmpty && aspectsNotEmpty) {
+			if (!prodNameEmpty && !prodVersionEmpty && !prodRefsEmpty
+					&& !revNameEmpty && !revDescEmpty && !attendeesEmpty
+					&& !meetingsEmpty && !aspectsEmpty) {
 				tbCreateInvitations.setEnabled(true);
 				createInvitationsItem.setEnabled(true);
 			} else {

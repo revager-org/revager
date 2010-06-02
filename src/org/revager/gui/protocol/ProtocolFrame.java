@@ -869,6 +869,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		GUITools.formatSpinner(beginHSpinner);
 		GUITools.formatSpinner(beginMSpinner);
 
+		dateF.setTimeZone(currentProt.getDate().getTimeZone());
 		dateTxtFld.setText(dateF.format(currentProt.getDate().getTime()));
 
 		int beginHours = currentProt.getStart().get(Calendar.HOUR_OF_DAY);

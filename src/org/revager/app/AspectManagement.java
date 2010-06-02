@@ -28,23 +28,32 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Attendee;
 import org.revager.tools.AppTools;
 
-
 /**
  * This class is for management of aspects.
  */
 public class AspectManagement {
 
 	/**
-	 * Instantiates a new aspect management.
+	 * Dummy aspect
 	 */
-	AspectManagement() {
-		super();
-	}
+	public final Aspect DUMMY_ASPECT = new Aspect();
 
 	/**
 	 * The Resi data.
 	 */
 	private ResiData resiData = Data.getInstance().getResiData();
+
+	/**
+	 * Instantiates a new aspect management.
+	 */
+	AspectManagement() {
+		super();
+
+		DUMMY_ASPECT.setId("");
+		DUMMY_ASPECT.setDirective("");
+		DUMMY_ASPECT.setDescription("");
+		DUMMY_ASPECT.setCategory("");
+	}
 
 	/**
 	 * Gets the last id.
@@ -54,9 +63,9 @@ public class AspectManagement {
 	private int getLastId() {
 		int lastId = 0;
 
-		for (Aspect a : resiData.getReview().getAspects()) {
-			if (Integer.parseInt(a.getId()) > lastId) {
-				lastId = Integer.parseInt(a.getId());
+		for (Aspect asp : resiData.getReview().getAspects()) {
+			if (asp != DUMMY_ASPECT && Integer.parseInt(asp.getId()) > lastId) {
+				lastId = Integer.parseInt(asp.getId());
 			}
 		}
 
@@ -130,12 +139,27 @@ public class AspectManagement {
 	 */
 	public void refactorIds() {
 		/*
+		 * Remove dummy and empty aspects
+		 */
+		int i = 0;
+
+		while (resiData.getReview().getAspects().size() > i) {
+			Aspect asp = resiData.getReview().getAspects().get(i);
+
+			if (asp.getId().trim().equals("")) {
+				resiData.getReview().getAspects().remove(asp);
+			}
+
+			i++;
+		}
+
+		/*
 		 * Remove duplicate references
 		 */
 		for (Attendee a : resiData.getReview().getAttendees()) {
 			List<String> idList = new ArrayList<String>();
 
-			int i = 0;
+			i = 0;
 
 			if (a.getAspects() != null) {
 				while (a.getAspects().getAspectIds().size() > i) {
@@ -157,7 +181,7 @@ public class AspectManagement {
 		 * Remove wrong references
 		 */
 		for (Attendee a : resiData.getReview().getAttendees()) {
-			int i = 0;
+			i = 0;
 
 			if (a.getAspects() != null) {
 				while (a.getAspects().getAspectIds().size() > i) {
@@ -199,16 +223,39 @@ public class AspectManagement {
 			id++;
 		}
 
+		/*
+		 * Add dummy aspect
+		 */
+		resiData.getReview().getAspects().add(DUMMY_ASPECT);
+
 		resiData.fireDataChanged();
 	}
 
 	/**
-	 * Returns a list of aspects of the current review.
+	 * Add dummy aspect
+	 */
+	public void addDummyAspect() {
+		if (!resiData.getReview().getAspects().contains(DUMMY_ASPECT)) {
+			resiData.getReview().getAspects().add(DUMMY_ASPECT);
+		}
+	}
+
+	/**
+	 * Returns a list of aspects of the current review (without the dummy
+	 * aspect).
 	 * 
 	 * @return aspects
 	 */
 	public List<Aspect> getAspects() {
-		return resiData.getReview().getAspects();
+		List<Aspect> aspects = new ArrayList<Aspect>();
+
+		for (Aspect asp : resiData.getReview().getAspects()) {
+			if (asp != DUMMY_ASPECT) {
+				aspects.add(asp);
+			}
+		}
+
+		return aspects;
 	}
 
 	/**

@@ -28,7 +28,6 @@ import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.schema.Attendee;
 
-
 /**
  * Instances of this class represent attendees in the database.
  */
@@ -79,7 +78,11 @@ public class AppAttendee {
 			contact = contact.substring(0, 20) + "...";
 		}
 
-		return this.name + " (" + contact + ")";
+		if (!contact.trim().equals("")) {
+			contact = " (" + contact + ")";
+		}
+
+		return this.name + contact;
 	}
 
 	/**

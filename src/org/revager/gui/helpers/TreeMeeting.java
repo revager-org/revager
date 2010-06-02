@@ -21,19 +21,12 @@ package org.revager.gui.helpers;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import org.revager.app.model.ApplicationData;
-import org.revager.app.model.Data;
-import org.revager.app.model.DataException;
-import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Meeting;
-
 
 /**
  * The Class TreeMeeting.
  */
 public class TreeMeeting {
-
-	private ApplicationData appData = Data.getInstance().getAppData();
 
 	private Meeting meeting;
 
@@ -93,28 +86,24 @@ public class TreeMeeting {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		String date = SimpleDateFormat.getDateInstance(DateFormat.LONG).format(
-				meeting.getPlannedDate().getTime());
-		String start = SimpleDateFormat.getTimeInstance(DateFormat.SHORT)
-				.format(meeting.getPlannedStart().getTime());
-		String end = SimpleDateFormat.getTimeInstance(DateFormat.SHORT).format(
-				meeting.getPlannedEnd().getTime());
+		DateFormat dfDateLong = SimpleDateFormat
+				.getDateInstance(DateFormat.LONG);
+		dfDateLong.setTimeZone(meeting.getPlannedDate().getTimeZone());
+
+		DateFormat dfTimeShort = SimpleDateFormat
+				.getTimeInstance(DateFormat.SHORT);
+		dfTimeShort.setTimeZone(meeting.getPlannedDate().getTimeZone());
+
+		String date = dfDateLong.format(meeting.getPlannedDate().getTime());
+		String start = dfTimeShort.format(meeting.getPlannedStart().getTime());
+		String end = dfTimeShort.format(meeting.getPlannedEnd().getTime());
+		String timezone = meeting.getPlannedEnd().getTimeZone()
+				.getDisplayName();
 		String location = meeting.getPlannedLocation();
 
-		String clock = Data.getInstance().getLocaleStr("tree.clock");
-		String output = null;
-		try {
+		String output = date + " | " + start + " - " + end + " (" + timezone
+				+ ")" + " | " + location;
 
-			if (appData.getSetting(AppSettingKey.APP_LANGUAGE).equals("en")) {
-				output = date + ", " + start + "-" + end + ", " + location;
-			} else {
-				output = date + ", " + start + "-" + end + " " + clock + ", "
-						+ location;
-			}
-		} catch (DataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return output;
 	}
 

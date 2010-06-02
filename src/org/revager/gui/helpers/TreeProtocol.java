@@ -21,20 +21,14 @@ package org.revager.gui.helpers;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
-import org.revager.app.model.DataException;
-import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Meeting;
-
 
 /**
  * The Class TreeProtocol.
  */
 public class TreeProtocol {
 
-	private ApplicationData appData = Data.getInstance().getAppData();
-	
 	private Meeting meeting;
 
 	/**
@@ -93,44 +87,34 @@ public class TreeProtocol {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		String clock = Data.getInstance().getLocaleStr("tree.clock");
 		try {
-			String date = SimpleDateFormat.getDateInstance(DateFormat.LONG)
-					.format(meeting.getProtocol().getDate().getTime());
-			String start = SimpleDateFormat.getTimeInstance(DateFormat.SHORT)
-					.format(meeting.getProtocol().getStart().getTime());
-			String end = SimpleDateFormat.getTimeInstance(DateFormat.SHORT)
-					.format(meeting.getProtocol().getEnd().getTime());
+			DateFormat dfDateLong = SimpleDateFormat
+					.getDateInstance(DateFormat.LONG);
+			dfDateLong.setTimeZone(meeting.getProtocol().getDate()
+					.getTimeZone());
+
+			DateFormat dfTimeShort = SimpleDateFormat
+					.getTimeInstance(DateFormat.SHORT);
+			dfTimeShort.setTimeZone(meeting.getProtocol().getDate()
+					.getTimeZone());
+
+			String date = dfDateLong.format(meeting.getProtocol().getDate()
+					.getTime());
+			String start = dfTimeShort.format(meeting.getProtocol().getStart()
+					.getTime());
+			String end = dfTimeShort.format(meeting.getProtocol().getEnd()
+					.getTime());
+			String timezone = meeting.getProtocol().getEnd().getTimeZone()
+					.getDisplayName();
 			String location = meeting.getProtocol().getLocation();
 
 			String protFrom = Data.getInstance().getLocaleStr("tree.protFrom");
-			String protocolName = protFrom + " " + date + ", " + start + "-"
-					+ end + " " + clock + ", " + location;
+			String protocolName = protFrom + " " + date + " | " + start + " - "
+					+ end + " (" + timezone + ")" + " | " + location;
 
 			return protocolName;
-
 		} catch (Exception e) {
-			String date = SimpleDateFormat.getDateInstance(DateFormat.LONG)
-					.format(meeting.getPlannedDate().getTime());
-			String start = SimpleDateFormat.getTimeInstance(DateFormat.SHORT)
-					.format(meeting.getPlannedStart().getTime());
-			String end = SimpleDateFormat.getTimeInstance(DateFormat.SHORT)
-					.format(meeting.getPlannedEnd().getTime());
-			String location = meeting.getPlannedLocation();
-
-			String output=null;
-			try {
-				System.out.println(appData.getSetting(AppSettingKey.APP_LANGUAGE));
-				if(appData.getSetting(AppSettingKey.APP_LANGUAGE).equals("en")){
-					output=date + ", " + start + "-" + end + ", " + location;	
-				}else{
-					output=date + ", " + start + "-" + end + " " + clock + ", " + location;	
-				}
-			} catch (DataException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			return output;
+			return new TreeMeeting(meeting).toString();
 		}
 	}
 

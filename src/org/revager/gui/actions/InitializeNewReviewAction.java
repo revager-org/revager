@@ -24,9 +24,9 @@ import javax.swing.AbstractAction;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
+import org.revager.gui.workers.NewInstantReviewWorker;
 import org.revager.gui.workers.NewReviewWorker;
 import org.revager.tools.GUITools;
 
@@ -55,15 +55,9 @@ public class InitializeNewReviewAction extends AbstractAction {
 			if (!attDiag.getNameTxtFld().getText().trim().equals("")) {
 				UI.getInstance().getAssistantDialog().setVisible(false);
 
-				ActionRegistry.getInstance().get(
-						ConfirmAttendeeAction.class.getName()).actionPerformed(
-						null);
-
-				GUITools.executeSwingWorker(new NewReviewWorker());
+				GUITools.executeSwingWorker(new NewInstantReviewWorker());
 			} else {
-				String message = "";
-
-				message = Data.getInstance().getLocaleStr(
+				String message = Data.getInstance().getLocaleStr(
 						"attendeeDialog.message.noName");
 
 				assistant.setMessage(message);

@@ -4,7 +4,7 @@
 ./lib-dev/launch4j/launch4j
 ./lib-dev/launch4j/l4j.tar
 
-# ./.classpath
-# ./.project
+./.classpath
+./.project
 
 ./review-files

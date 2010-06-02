@@ -18,6 +18,7 @@
  */
 package org.revager.gui.workers;
 
+import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 
@@ -25,6 +26,10 @@ import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
  * Worker for creating a new empty review.
  */
 public class NewInstantReviewWorker extends NewReviewWorker {
+
+	public NewInstantReviewWorker() {
+		super(false);
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -37,6 +42,8 @@ public class NewInstantReviewWorker extends NewReviewWorker {
 
 		ActionRegistry.getInstance().get(ConfirmAttendeeAction.class.getName())
 				.actionPerformed(null);
+
+		UI.getInstance().getAssistantDialog().setVisible(false);
 
 		return null;
 	}

@@ -22,20 +22,27 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.AspectManagement;
-import org.revager.app.AttendeeManagement;
 import org.revager.app.model.Data;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
-
 /**
  * Worker for creating a new empty review.
  */
 public class NewReviewWorker extends SwingWorker<Void, Void> {
-	AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
-	AspectManagement aspMgmt = Application.getInstance().getAspectMgmt();
+
+	private boolean closeAssistantDialog = true;
+
+	public NewReviewWorker(boolean closeAssistantDialog) {
+		super();
+
+		this.closeAssistantDialog = closeAssistantDialog;
+	}
+
+	public NewReviewWorker() {
+		super();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -53,18 +60,17 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 				"status.creatingNewReview"), true);
 
-		
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
-			
 
-				mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
+			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.createNewReviewSuccessful"), false);
 
 			mainframe.switchToEditMode();
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
-			UI.getInstance().getAssistantDialog().setVisible(false);
+			UI.getInstance().getAssistantDialog().setVisible(
+					!closeAssistantDialog);
 		} catch (Exception e) {
 			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
 					"status.noReviewInProcess"), false);

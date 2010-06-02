@@ -45,16 +45,14 @@ public class InitializeNewReviewAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (Data.getInstance().getMode().equals("moderator")) {
-			GUITools.executeSwingWorker(new NewReviewWorker());
-
 			UI.getInstance().getAssistantDialog().setVisible(false);
+
+			GUITools.executeSwingWorker(new NewReviewWorker());
 		} else if (Data.getInstance().getMode().equals("instant")) {
 			AssistantDialog assistant = UI.getInstance().getAssistantDialog();
 			AttendeeDialog attDiag = UI.getInstance().getAttendeeDialog();
 
 			if (!attDiag.getNameTxtFld().getText().trim().equals("")) {
-				UI.getInstance().getAssistantDialog().setVisible(false);
-
 				GUITools.executeSwingWorker(new NewInstantReviewWorker());
 			} else {
 				String message = Data.getInstance().getLocaleStr(

@@ -284,10 +284,13 @@ public class AssistantDialog extends AbstractDialog {
 	public void setVisible(boolean vis) {
 		/*
 		 * Create new instance of attendee dialog when assistant dialog is being
-		 * closed
+		 * closed; else: update panel reference
 		 */
 		if (!vis) {
 			UI.getInstance().resetAttendeeDialog();
+		} else {
+			addAttendeePanel = UI.getInstance().getAttendeeDialog()
+					.getContentPane();
 		}
 
 		super.setVisible(vis);

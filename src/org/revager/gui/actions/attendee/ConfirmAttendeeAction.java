@@ -35,7 +35,6 @@ import org.revager.gui.UI;
 import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class ConfirmAttendeeAction.
  */
@@ -62,11 +61,11 @@ public class ConfirmAttendeeAction extends AbstractAction {
 		contactScrllPn.setBorder(UI.STANDARD_BORDER);
 
 		String attName = nameTxtFld.getText();
-		if(attDialog.getContactTxtArea().getText()!=null)
+		if (attDialog.getContactTxtArea().getText() != null)
 			attContact = attDialog.getContactTxtArea().getText();
 		else
 			attContact = "";
-			
+
 		Role attRole = roles[attDialog.getRoleBox().getSelectedIndex()];
 
 		boolean nameMissing = false;
@@ -76,7 +75,6 @@ public class ConfirmAttendeeAction extends AbstractAction {
 		if (attName.trim().equals("")) {
 			nameMissing = true;
 		}
-
 
 		if (nameMissing) {
 			message = Data.getInstance().getLocaleStr(
@@ -160,5 +158,5 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			UI.getInstance().getAspectsManagerFrame().updateViews();
 		}
 	}
-	
+
 }

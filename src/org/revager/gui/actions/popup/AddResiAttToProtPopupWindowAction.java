@@ -58,7 +58,10 @@ public class AddResiAttToProtPopupWindowAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		popupWindow.commitSpinnerValues();
+		
 		popupWindow.setButtonClicked(buttonClick);
+		
 		popupWindow.setVisible(false);
 	}
 

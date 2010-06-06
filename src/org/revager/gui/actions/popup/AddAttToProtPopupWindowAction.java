@@ -64,6 +64,8 @@ public class AddAttToProtPopupWindowAction extends AbstractAction {
 		popupWindow.getNameTxtFld().setBorder(UI.STANDARD_BORDER_INLINE);
 		popupWindow.getScrllPn().setBorder(UI.STANDARD_BORDER);
 		
+		popupWindow.commitSpinnerValues();
+		
 		if (popupWindow.getAttName().trim().equals("")) {
 			popupWindow.getNameTxtFld().setBorder(UI.MARKED_BORDER_INLINE);
 			isMissing = true;

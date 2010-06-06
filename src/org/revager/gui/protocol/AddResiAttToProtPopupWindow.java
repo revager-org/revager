@@ -24,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Window;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,6 @@ import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 import org.revager.gui.actions.popup.AddResiAttToProtPopupWindowAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class AddResiAttToProtPopupWindow.
@@ -251,7 +251,7 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 						"role." + att.getRole().value());
 
 				attendeeBx.addItem(att.getName() + " (" + role + ")");
-				
+
 				attendeeIds.add(att.getId());
 			}
 		}
@@ -281,6 +281,22 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 	 */
 	public void setButtonClicked(ButtonClicked buttonClicked) {
 		this.buttonClicked = buttonClicked;
+	}
+
+	public void commitSpinnerValues() {
+		try {
+			((NumberEditor) durHSpinner.getEditor()).getTextField()
+					.commitEdit();
+		} catch (ParseException e) {
+			durHSpinner.setValue(0);
+		}
+
+		try {
+			((NumberEditor) durMSpinner.getEditor()).getTextField()
+					.commitEdit();
+		} catch (ParseException e) {
+			durMSpinner.setValue(0);
+		}
 	}
 
 }

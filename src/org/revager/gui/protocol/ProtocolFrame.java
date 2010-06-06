@@ -1139,8 +1139,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 			if (seconds > warningTime * 60 && showWarning
 					&& !clockWorker.isWarningDisplayed()) {
-				clockWorker.stopClock();
-
 				String message = Data.getInstance().getLocaleStr(
 						"editProtocol.message.protWarn");
 				message = message.replace("<minutes>", Integer
@@ -1150,8 +1148,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 						.getProtocolFrame(), GUITools.getMessagePane(message),
 						Data.getInstance().getLocaleStr("info"),
 						JOptionPane.INFORMATION_MESSAGE);
-
-				clockWorker.startClock();
 
 				clockWorker.setWarningDisplayed(true);
 			}

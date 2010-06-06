@@ -24,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Window;
+import java.text.ParseException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -49,7 +50,6 @@ import org.revager.app.model.schema.Role;
 import org.revager.gui.UI;
 import org.revager.gui.actions.popup.AddAttToProtPopupWindowAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class AddAttToProtPopupWindow.
@@ -259,11 +259,11 @@ public class AddAttToProtPopupWindow extends JDialog {
 		/*
 		 * adding duration to popup
 		 */
-		GUITools.addComponent(inputPanel, gbl, durLbl, 0, 4, 1, 1, 1.0, 0,
-				5, 10, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(inputPanel, gbl, durLbl, 0, 4, 1, 1, 1.0, 0, 5,
+				10, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.WEST);
-		GUITools.addComponent(inputPanel, gbl, spinnerPanel, 0, 5, 1, 1,
-				1.0, 0, 5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(inputPanel, gbl, spinnerPanel, 0, 5, 1, 1, 1.0,
+				0, 5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
 
 		Dimension popupSize = new Dimension(260, 400);
@@ -280,8 +280,10 @@ public class AddAttToProtPopupWindow extends JDialog {
 			roleBx.setSelectedItem(Data.getInstance().getLocaleStr(
 					"role.".concat(selAtt.getRole().value())));
 			contactTxtArea.setText(selAtt.getContact());
-			durHSpinner.setValue(Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getHours());
-			durMSpinner.setValue(Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getMinutes());
+			durHSpinner.setValue(Application.getInstance().getProtocolMgmt()
+					.getAttendeePrepTime(selAtt, prot).getHours());
+			durMSpinner.setValue(Application.getInstance().getProtocolMgmt()
+					.getAttendeePrepTime(selAtt, prot).getMinutes());
 
 		}
 
@@ -352,6 +354,22 @@ public class AddAttToProtPopupWindow extends JDialog {
 	 */
 	public void setButtonClicked(ButtonClicked buttonClicked) {
 		this.buttonClicked = buttonClicked;
+	}
+
+	public void commitSpinnerValues() {
+		try {
+			((NumberEditor) durHSpinner.getEditor()).getTextField()
+					.commitEdit();
+		} catch (ParseException e) {
+			durHSpinner.setValue(0);
+		}
+
+		try {
+			((NumberEditor) durMSpinner.getEditor()).getTextField()
+					.commitEdit();
+		} catch (ParseException e) {
+			durMSpinner.setValue(0);
+		}
 	}
 
 }

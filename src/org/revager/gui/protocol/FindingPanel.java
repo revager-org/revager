@@ -517,11 +517,11 @@ public class FindingPanel extends JPanel {
 				updateTableButtons();
 
 				if (e.getClickCount() == 2) {
-					int selRow = tableReferences.getSelectedRow();
+					int selRow = tableExtReferences.getSelectedRow();
 
 					if (selRow != -1) {
 						File ref = findMgmt.getExtReferences(finding).get(
-								tableReferences.getSelectedRow());
+								tableExtReferences.getSelectedRow());
 
 						if (AppTools.isReadableWritableImageFile(ref)) {
 							UI.getInstance().getProtocolFrame().getImageEditor(

@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.revager.app.Application;
+import org.revager.app.AspectManagement;
 import org.revager.app.AttendeeManagement;
 import org.revager.app.MeetingManagement;
 import org.revager.app.model.ApplicationData;
@@ -74,6 +75,12 @@ public class InvitationPDFExporter extends PDFExporter {
 	 */
 	private static MeetingManagement meetMgmt = Application.getInstance()
 			.getMeetingMgmt();
+
+	/**
+	 * Reference to meeting management.
+	 */
+	private static AspectManagement aspMgmt = Application.getInstance()
+			.getAspectMgmt();
 
 	/**
 	 * The padding used for tables.
@@ -590,7 +597,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			if (attendee.getRole() == Role.REVIEWER) {
 				aspects = attMgmt.getAspects(attendee);
 			} else {
-				aspects = resiData.getReview().getAspects();
+				aspects = aspMgmt.getAspects();
 			}
 
 			for (Aspect asp : aspects) {

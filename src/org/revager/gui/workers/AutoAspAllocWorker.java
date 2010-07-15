@@ -26,11 +26,11 @@ import javax.swing.SwingWorker;
 import org.revager.app.Application;
 import org.revager.app.AttendeeManagement;
 import org.revager.app.model.Data;
+import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppAspect;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Role;
 import org.revager.gui.UI;
-
 
 /**
  * Worker for auto allocation of aspects.
@@ -47,6 +47,11 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 	 * The aspects to allocate.
 	 */
 	private List<AppAspect> aspects = null;
+
+	/**
+	 * The reviewers
+	 */
+	private List<Attendee> reviewers = null;
 
 	/**
 	 * Instantiates a new allocation worker.
@@ -72,7 +77,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 
 		UI.getInstance().getAspectsManagerFrame().observeResiData(false);
 
-		List<Attendee> reviewers = new ArrayList<Attendee>();
+		reviewers = new ArrayList<Attendee>();
 
 		for (Attendee att : attMgmt.getAttendees()) {
 			if (att.getRole().equals(Role.REVIEWER)) {
@@ -81,50 +86,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		}
 
 		if (reviewers.size() > 0 && aspects.size() > 0) {
-			int aspectsPerAttendee = (int) ((aspects.size() / reviewers.size()) * 1.5);
-
-			for (int i = 0; reviewers.size() > i; i++) {
-				Attendee rev = reviewers.get(i);
-
-				int aspectsAddCount = aspectsPerAttendee
-						- attMgmt.getNumberOfAspects(rev);
-
-				if (aspectsAddCount < 0) {
-					aspectsAddCount = 0;
-				}
-
-				int index = 0;
-
-				/*
-				 * Allocating aspects by strengths
-				 */
-				while (aspectsAddCount > 0 && index < aspects.size()) {
-					AppAspect asp = aspects.get(index);
-
-					if (attMgmt.getAttendeeStrengths(rev).contains(
-							asp.getCategory())) {
-						attMgmt.addAspect(asp.getAsResiAspect(), rev);
-
-						aspectsAddCount--;
-					}
-
-					index++;
-				}
-
-				index = aspects.size() - 1;
-
-				/*
-				 * Allocating the rest of aspects
-				 */
-				while (aspectsAddCount > 0 && index >= 0) {
-					AppAspect asp = aspects.get(index);
-
-					attMgmt.addAspect(asp.getAsResiAspect(), rev);
-					aspectsAddCount--;
-
-					index--;
-				}
-			}
+			allocateAspects();
 
 			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
 					Data.getInstance().getLocaleStr("status.aspectsAllocated"),
@@ -142,4 +104,39 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		return null;
 	}
 
+	/**
+	 * Allocate the aspects in a way, so that each aspect is allocated to at
+	 * least one attendee.
+	 * 
+	 * @throws DataException
+	 */
+	private void allocateAspects() throws DataException {
+		for (AppAspect asp : aspects) {
+			Attendee rev1 = getReviewerWithLeastAspects(null);
+
+			attMgmt.addAspect(asp.getAsResiAspect(), rev1);
+
+			Attendee rev2 = getReviewerWithLeastAspects(rev1);
+
+			attMgmt.addAspect(asp.getAsResiAspect(), rev2);
+		}
+	}
+
+	private Attendee getReviewerWithLeastAspects(Attendee exception) {
+		Attendee reviewer = reviewers.get(0);
+
+		if (reviewers.size() > 1 && reviewer == exception) {
+			reviewer = reviewers.get(1);
+		}
+
+		for (Attendee rev : reviewers) {
+			if (attMgmt.getNumberOfAspects(rev) < attMgmt
+					.getNumberOfAspects(reviewer)
+					&& rev != exception) {
+				reviewer = rev;
+			}
+		}
+
+		return reviewer;
+	}
 }

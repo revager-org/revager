@@ -46,7 +46,7 @@ import org.revager.export.ReviewProtocolPDFExporter;
 import org.revager.io.ResiIO;
 import org.revager.io.ResiIOException;
 import org.revager.io.ResiIOFactory;
-
+import org.revager.tools.FileTools;
 
 /**
  * This class implements the control for import and export processes.
@@ -407,6 +407,8 @@ public class ImportExportControl {
 					+ Data.getInstance().getLocaleStr(
 							"role." + att.getRole().toString().toLowerCase())
 					+ ")";
+
+			invitationPackName = FileTools.validateFileName(invitationPackName);
 
 			switch (type) {
 			case PDF:

@@ -159,6 +159,29 @@ public class FileTools {
 	}
 
 	/**
+	 * Validates the given file name. For certain operating systems, some
+	 * special characters are not allowed in file names. These characters will
+	 * be replaced.
+	 * 
+	 * @param fileName the given file name
+	 * @return the corrected file name
+	 */
+	public static String validateFileName(String fileName) {
+		fileName = fileName.replace('/', '-');
+		fileName = fileName.replace('\\', '-');
+		fileName = fileName.replace('?', '-');
+		fileName = fileName.replace('%', '-');
+		fileName = fileName.replace('*', '-');
+		fileName = fileName.replace(':', '-');
+		fileName = fileName.replace('|', '-');
+		fileName = fileName.replace('"', '-');
+		fileName = fileName.replace('<', '-');
+		fileName = fileName.replace('>', '-');
+
+		return fileName;
+	}
+
+	/**
 	 * Returns the list of all files, which are directly in the given directory;
 	 * not recursivly.
 	 * 

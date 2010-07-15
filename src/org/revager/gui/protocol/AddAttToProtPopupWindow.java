@@ -330,6 +330,7 @@ public class AddAttToProtPopupWindow extends JDialog {
 		 */
 		setMinimumSize(popupSize);
 		setSize(popupSize);
+		setPreferredSize(popupSize);
 
 		setAlwaysOnTop(true);
 		toFront();

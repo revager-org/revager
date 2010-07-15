@@ -230,6 +230,7 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 		 */
 		setMinimumSize(popupSize);
 		setSize(popupSize);
+		setPreferredSize(popupSize);
 
 		pack();
 

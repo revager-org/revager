@@ -156,6 +156,7 @@ public class TextPopupWindow extends JDialog {
 		 */
 		setMinimumSize(popupSize);
 		setSize(popupSize);
+		setPreferredSize(popupSize);
 
 		setAlwaysOnTop(true);
 		toFront();

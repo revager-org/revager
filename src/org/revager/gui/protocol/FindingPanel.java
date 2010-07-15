@@ -823,7 +823,7 @@ public class FindingPanel extends JPanel {
 				+ Data.getInstance().getLocaleStr("findingsList.aspects")
 				+ ", " + finding.getReferences().size() + " "
 				+ Data.getInstance().getLocaleStr("findingsList.references")
-				+ ", " + finding.getExternalReferences().size()
+				+ ", " + finding.getExternalReferences().size() + " "
 				+ Data.getInstance().getLocaleStr("findingsList.files"));
 
 		this.removeAll();

@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,7 +39,6 @@ import javax.swing.text.JTextComponent;
 import org.revager.app.model.Data;
 import org.revager.gui.actions.popup.TextPopupWindowAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * This class represents a general popup window for simple text input. It is
@@ -121,7 +122,7 @@ public class TextPopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new TextPopupWindowAction(this,
 				ButtonClicked.ABORT));
 
@@ -130,15 +131,14 @@ public class TextPopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new TextPopupWindowAction(this,
 				ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons
-				.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(
+				panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -26,9 +28,7 @@ import java.util.Map.Entry;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppCSVColumnName;
-
 
 /**
  * The Class CSVColumnsComboBoxModel.
@@ -39,14 +39,10 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements
 
 	private Map<String, AppCSVColumnName> columns = new HashMap<String, AppCSVColumnName>();
 
-	private final String DESCRIPTION = Data.getInstance().getLocaleStr(
-			"csvProfDialog.col.description");
-	private final String REFERENCE = Data.getInstance().getLocaleStr(
-			"csvProfDialog.col.reference");
-	private final String SEVERITY = Data.getInstance().getLocaleStr(
-			"csvProfDialog.col.severity");
-	private final String REPORTER = Data.getInstance().getLocaleStr(
-			"csvProfDialog.col.reporter");
+	private final String DESCRIPTION = _("Description");
+	private final String REFERENCE = _("Reference");
+	private final String SEVERITY = _("Severity");
+	private final String REPORTER = _("Bug Reporter");
 
 	private String selection = null;
 

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,6 @@ import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.gui.AbstractFrame;
 import org.revager.gui.UI;
-
 
 /**
  * Worker to automatically save the review in background.
@@ -77,25 +78,25 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 				reviewPath = Data.getInstance().getResiData().getReviewPath();
 
 				intervalInMinutes = Long.parseLong(Data.getInstance()
-						.getAppData().getSetting(
-								AppSettingKey.APP_AUTO_SAVE_INTERVAL));
+						.getAppData()
+						.getSetting(AppSettingKey.APP_AUTO_SAVE_INTERVAL));
 
 				Thread.sleep(intervalInMinutes * 60 * 1000);
 
-				if (Data.getInstance().getAppData().getSettingValue(
-						AppSettingKey.APP_DO_AUTO_SAVE) == AppSettingValue.TRUE
+				if (Data.getInstance().getAppData()
+						.getSettingValue(AppSettingKey.APP_DO_AUTO_SAVE) == AppSettingValue.TRUE
 						&& reviewPath != null
 						&& UI.getInstance().getStatus() == UI.Status.UNSAVED_CHANGES) {
 
-					Application.getInstance().getApplicationCtl().storeReview(
-							reviewPath);
+					Application.getInstance().getApplicationCtl()
+							.storeReview(reviewPath);
 
 					/*
 					 * Set done message
 					 */
 					for (AbstractFrame af : obsFrames) {
-						af.setStatusMessage(Data.getInstance().getLocaleStr(
-								"status.saveReviewSuccessful"), false);
+						af.setStatusMessage(_("Review stored successfully."),
+								false);
 					}
 
 					UI.getInstance().setStatus(UI.Status.DATA_SAVED);
@@ -105,8 +106,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 				 * Set failed message
 				 */
 				for (AbstractFrame af : obsFrames) {
-					af.setStatusMessage(Data.getInstance().getLocaleStr(
-							"status.autoSaveFailed"), false);
+					af.setStatusMessage(_("Review couldn't be stored!"), false);
 				}
 			}
 		}

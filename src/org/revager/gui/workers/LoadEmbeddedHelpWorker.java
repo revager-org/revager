@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JEditorPane;
@@ -32,7 +34,6 @@ import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.gui.AbstractDialog;
 import org.revager.gui.UI;
-
 
 /**
  * Worker to load the embedded help for the dialogs in this software.
@@ -106,15 +107,15 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 					if (ev.getDescription().startsWith("#")) {
 						src.scrollToReference(ev.getDescription().substring(1));
 					} else if (ev.getDescription().startsWith("?")) {
-						String[] link = ev.getDescription().substring(1).split(
-								"#");
+						String[] link = ev.getDescription().substring(1)
+								.split("#");
 
 						if (link.length > 1) {
-							UI.getInstance().getHelpBrowserFrame().showHelp(
-									link[0], link[1]);
+							UI.getInstance().getHelpBrowserFrame()
+									.showHelp(link[0], link[1]);
 						} else {
-							UI.getInstance().getHelpBrowserFrame().showHelp(
-									link[0]);
+							UI.getInstance().getHelpBrowserFrame()
+									.showHelp(link[0]);
 						}
 					}
 				}
@@ -126,15 +127,13 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 		 */
 		try {
 			htmlString = "<h1>"
-					+ Data.getInstance().getHelpData().getChapterTitle(
-							this.helpChapter) + "</h1>";
+					+ Data.getInstance().getHelpData()
+							.getChapterTitle(this.helpChapter) + "</h1>";
 			htmlString = htmlString
-					+ Data.getInstance().getHelpData().getChapterContent(
-							this.helpChapter);
+					+ Data.getInstance().getHelpData()
+							.getChapterContent(this.helpChapter);
 		} catch (DataException exc) {
-			htmlString = "<h1>"
-					+ Data.getInstance().getLocaleStr("message.helpLoadFailed")
-					+ "</h1>";
+			htmlString = "<h1>" + _("Cannot load help information.") + "</h1>";
 		}
 
 		helpPane.setText(htmlString);

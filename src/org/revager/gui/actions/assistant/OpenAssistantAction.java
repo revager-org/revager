@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions.assistant;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -29,13 +31,12 @@ import javax.swing.KeyStroke;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
-
 @SuppressWarnings("serial")
 /**
  * The class OpenAssistantAction.
  * 
  */
-public class OpenAssistantAction extends AbstractAction{
+public class OpenAssistantAction extends AbstractAction {
 
 	/**
 	 * Opens the AssistantDialog.
@@ -43,10 +44,9 @@ public class OpenAssistantAction extends AbstractAction{
 	public OpenAssistantAction() {
 		super();
 
-		putValue(Action.SMALL_ICON, Data.getInstance().getIcon(
-				"menuAssistant_16x16.png"));
-		putValue(Action.NAME, Data.getInstance().getLocaleStr(
-				"menu.showAssistant"));
+		putValue(Action.SMALL_ICON,
+				Data.getInstance().getIcon("menuAssistant_16x16.png"));
+		putValue(Action.NAME, _("Open RevAger Assistant"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
@@ -59,8 +59,11 @@ public class OpenAssistantAction extends AbstractAction{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setCurrentPnl(
-		UI.getInstance().getAssistantDialog().getFirstScreenPanel());
+		UI.getInstance()
+				.getAssistantDialog()
+				.setCurrentPnl(
+						UI.getInstance().getAssistantDialog()
+								.getFirstScreenPanel());
 		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();

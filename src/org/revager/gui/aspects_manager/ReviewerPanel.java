@@ -18,6 +18,8 @@
  */
 package org.revager.gui.aspects_manager;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -44,7 +46,6 @@ import org.revager.app.model.schema.Attendee;
 import org.revager.gui.UI;
 import org.revager.gui.models.ReviewerTableModel;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class ReviewerPanel.
@@ -151,11 +152,10 @@ public class ReviewerPanel extends JPanel implements Observer {
 		table.getColumnModel().getColumn(0).setCellRenderer(cellRend);
 		table.getColumnModel().getColumn(1).setCellRenderer(cellRend);
 
-		buttonRemove = GUITools.newImageButton(Data.getInstance().getIcon(
-				"remove_25x25_0.png"), Data.getInstance().getIcon(
-				"remove_25x25.png"));
-		buttonRemove.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.removeAspect"));
+		buttonRemove = GUITools.newImageButton(
+				Data.getInstance().getIcon("remove_25x25_0.png"), Data
+						.getInstance().getIcon("remove_25x25.png"));
+		buttonRemove.setToolTipText(_("Remove selected aspect"));
 		buttonRemove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -178,18 +178,16 @@ public class ReviewerPanel extends JPanel implements Observer {
 			}
 		});
 
-		buttonEdit = GUITools.newImageButton(Data.getInstance().getIcon(
-				"edit_25x25_0.png"), Data.getInstance().getIcon(
-				"edit_25x25.png"));
-		buttonEdit.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.editAspect"));
+		buttonEdit = GUITools.newImageButton(
+				Data.getInstance().getIcon("edit_25x25_0.png"), Data
+						.getInstance().getIcon("edit_25x25.png"));
+		buttonEdit.setToolTipText(_("Edit selected aspect"));
 		buttonEdit.addActionListener(editAction);
 
-		buttonPushUp = GUITools.newImageButton(Data.getInstance().getIcon(
-				"upArrow_25x25_0.png"), Data.getInstance().getIcon(
-				"upArrow_25x25.png"));
-		buttonPushUp.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.pushUp"));
+		buttonPushUp = GUITools.newImageButton(
+				Data.getInstance().getIcon("upArrow_25x25_0.png"), Data
+						.getInstance().getIcon("upArrow_25x25.png"));
+		buttonPushUp.setToolTipText(_("Push up item"));
 		buttonPushUp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -208,11 +206,10 @@ public class ReviewerPanel extends JPanel implements Observer {
 			}
 		});
 
-		buttonPushDown = GUITools.newImageButton(Data.getInstance().getIcon(
-				"downArrow_25x25_0.png"), Data.getInstance().getIcon(
-				"downArrow_25x25.png"));
-		buttonPushDown.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.pushDown"));
+		buttonPushDown = GUITools.newImageButton(
+				Data.getInstance().getIcon("downArrow_25x25_0.png"), Data
+						.getInstance().getIcon("downArrow_25x25.png"));
+		buttonPushDown.setToolTipText(_("Push down item"));
 		buttonPushDown.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -27,7 +27,7 @@ import org.revager.app.Application;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
-import org.revager.gui.protocol.AddResiAttToProtPopupWindow;
+import org.revager.gui.findings_list.AddResiAttToFLPopupWindow;
 
 /**
  * The Class AddResiAttToProtAction.
@@ -43,11 +43,11 @@ public class AddResiAttToProtAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AddResiAttToProtPopupWindow popup = new AddResiAttToProtPopupWindow(UI
+		AddResiAttToFLPopupWindow popup = new AddResiAttToFLPopupWindow(UI
 				.getInstance().getProtocolFrame());
 		popup.setVisible(true);
 
-		if (popup.getButtonClicked() == AddResiAttToProtPopupWindow.ButtonClicked.OK) {
+		if (popup.getButtonClicked() == AddResiAttToFLPopupWindow.ButtonClicked.OK) {
 			Attendee localAtt;
 			Duration prep = popup.getDuration();
 			Protocol prot = UI.getInstance().getProtocolFrame()

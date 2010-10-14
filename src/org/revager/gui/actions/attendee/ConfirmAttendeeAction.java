@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions.attendee;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -77,8 +79,7 @@ public class ConfirmAttendeeAction extends AbstractAction {
 		}
 
 		if (nameMissing) {
-			message = Data.getInstance().getLocaleStr(
-					"attendeeDialog.message.noName");
+			message = _("Please enter the name of the attendee.");
 
 			attDialog.setMessage(message);
 			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
@@ -91,8 +92,8 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			 */
 			try {
 				if (currAppAtt == null) {
-					currAppAtt = Data.getInstance().getAppData().getAttendee(
-							attName, attContact);
+					currAppAtt = Data.getInstance().getAppData()
+							.getAttendee(attName, attContact);
 
 					if (currAppAtt == null) {
 						currAppAtt = Data.getInstance().getAppData()
@@ -110,9 +111,9 @@ public class ConfirmAttendeeAction extends AbstractAction {
 					currAppAtt.addStrength(str);
 				}
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(attDialog, GUITools
-						.getMessagePane(e.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(attDialog,
+						GUITools.getMessagePane(e.getMessage()), _("Error"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 			/*
@@ -125,25 +126,25 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			newAtt.setRole(attRole);
 
 			if (currAtt == null) {
-				if (!Application.getInstance().getAttendeeMgmt().isAttendee(
-						newAtt)) {
-					Application.getInstance().getAttendeeMgmt().addAttendee(
-							attName, attContact, attRole, null);
+				if (!Application.getInstance().getAttendeeMgmt()
+						.isAttendee(newAtt)) {
+					Application.getInstance().getAttendeeMgmt()
+							.addAttendee(attName, attContact, attRole, null);
 				} else {
-					attDialog.setMessage(Data.getInstance().getLocaleStr(
-							"attendeeDialog.message.attendeeDupl"));
+					attDialog
+							.setMessage(_("There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
 
 					return;
 				}
 			} else {
 				newAtt.setAspects(currAtt.getAspects());
 
-				if (Application.getInstance().getAttendeeComp().compare(
-						currAtt, newAtt) != 0) {
+				if (Application.getInstance().getAttendeeComp()
+						.compare(currAtt, newAtt) != 0) {
 					if (!Application.getInstance().getAttendeeMgmt()
 							.editAttendee(currAtt, newAtt)) {
-						attDialog.setMessage(Data.getInstance().getLocaleStr(
-								"attendeeDialog.message.attendeeDupl"));
+						attDialog
+								.setMessage(_("There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
 
 						return;
 					}

@@ -18,16 +18,16 @@
  */
 package org.revager.gui.actions.meeting;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import org.revager.app.model.Data;
 import org.revager.gui.MainFrame;
 import org.revager.gui.TextPopupWindow;
-import org.revager.gui.UI;
 import org.revager.gui.TextPopupWindow.ButtonClicked;
-
+import org.revager.gui.UI;
 
 /**
  * The Class CommentMeetingAction.
@@ -59,8 +59,8 @@ public class CommentMeetingAction extends AbstractAction {
 		}
 
 		TextPopupWindow popup = new TextPopupWindow(UI.getInstance()
-				.getMainFrame(), Data.getInstance().getLocaleStr(
-				"popup.commentMeeting"), comments, true);
+				.getMainFrame(), _("Comments on the selected meeting:"),
+				comments, true);
 
 		popup.setVisible(true);
 

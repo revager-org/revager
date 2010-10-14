@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Observable;
@@ -36,7 +38,6 @@ import org.revager.app.Application;
 import org.revager.app.model.Data;
 import org.revager.gui.aspects_manager.AspectsManagerFrame;
 import org.revager.gui.dialogs.AboutDialog;
-import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.gui.dialogs.CSVProfilesDialog;
 import org.revager.gui.dialogs.CreateInvitationsDialog;
@@ -46,8 +47,9 @@ import org.revager.gui.dialogs.ExportPDFProtocolDialog;
 import org.revager.gui.dialogs.ManageSeveritiesDialog;
 import org.revager.gui.dialogs.MeetingDialog;
 import org.revager.gui.dialogs.SettingsDialog;
+import org.revager.gui.dialogs.assistant.AssistantDialog;
+import org.revager.gui.findings_list.FindingsListFrame;
 import org.revager.gui.helpers.FileChooser;
-import org.revager.gui.protocol.ProtocolFrame;
 import org.revager.gui.workers.AutoBackupWorker;
 import org.revager.gui.workers.AutoSaveWorker;
 import org.revager.gui.workers.CheckForNewVersionWorker;
@@ -212,12 +214,12 @@ public class UI implements Observer {
 	/**
 	 * The protocol frame.
 	 */
-	private ProtocolFrame protocolFrame = null;
+	private FindingsListFrame protocolFrame = null;
 
 	/**
 	 * The protocol fullscreen.
 	 */
-	private ProtocolFrame protocolFullscreen = null;
+	private FindingsListFrame protocolFullscreen = null;
 
 	/**
 	 * The export csv dialog.
@@ -511,7 +513,7 @@ public class UI implements Observer {
 	 * 
 	 * @return the protocol frame
 	 */
-	public ProtocolFrame getProtocolFrame() {
+	public FindingsListFrame getProtocolFrame() {
 		return getProtocolFrame(protocolFrameFullscreen);
 	}
 
@@ -523,12 +525,12 @@ public class UI implements Observer {
 	 * 
 	 * @return the protocol frame
 	 */
-	public ProtocolFrame getProtocolFrame(boolean fullscreen) {
-		ProtocolFrame returnFrame = null;
+	public FindingsListFrame getProtocolFrame(boolean fullscreen) {
+		FindingsListFrame returnFrame = null;
 
 		if (fullscreen) {
 			if (protocolFullscreen == null) {
-				protocolFullscreen = new ProtocolFrame(true);
+				protocolFullscreen = new FindingsListFrame(true);
 			}
 
 			if (protocolFrame != null && fullscreen != protocolFrameFullscreen) {
@@ -539,7 +541,7 @@ public class UI implements Observer {
 			returnFrame = protocolFullscreen;
 		} else {
 			if (protocolFrame == null) {
-				protocolFrame = new ProtocolFrame(false);
+				protocolFrame = new FindingsListFrame(false);
 			}
 
 			if (protocolFullscreen != null
@@ -753,15 +755,15 @@ public class UI implements Observer {
 
 			// getMainFrame().setEnabled(false);
 
-			Object[] options = {
-					Data.getInstance().getLocaleStr("button.restore"),
-					Data.getInstance().getLocaleStr("button.discard") };
+			Object[] options = { _("Restore"), _("Discard") };
 
-			if (JOptionPane.showOptionDialog(mainFrame, GUITools
-					.getMessagePane(Data.getInstance().getLocaleStr(
-							"message.reviewRestorable")), Data.getInstance()
-					.getLocaleStr("question"), JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION) {
+			if (JOptionPane
+					.showOptionDialog(
+							mainFrame,
+							GUITools.getMessagePane(_("RevAger didn't shut down correctly. Thus some review data might have got lost.\n\nWould you like to restore the recent review?")),
+							_("Question"), JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options,
+							options[0]) == JOptionPane.YES_OPTION) {
 				// getMainFrame().setEnabled(true);
 
 				GUITools.executeSwingWorker(new RestoreReviewWorker());

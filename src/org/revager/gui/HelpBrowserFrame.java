@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -97,7 +99,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 		setStatusBarVisible(false);
 
-		setTitle(Data.getInstance().getLocaleStr("help.title"));
+		setTitle(_("RevAger Online Help"));
 
 		getContentPane().setLayout(new BorderLayout());
 
@@ -118,12 +120,12 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				ActionRegistry.getInstance().get(
-						SearchHelpAction.class.getName()).actionPerformed(null);
+				ActionRegistry.getInstance()
+						.get(SearchHelpAction.class.getName())
+						.actionPerformed(null);
 			}
 		});
-		srchTxtFld.setToolTipText(Data.getInstance().getLocaleStr(
-				"help.searchField"));
+		srchTxtFld.setToolTipText(_("Filter/Search - Enter search item ..."));
 		srchTxtFld.setColumns(30);
 		srchTxtFld.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 		srchTxtFld.setBackground(new Color(254, 255, 193));
@@ -131,13 +133,12 @@ public class HelpBrowserFrame extends AbstractFrame {
 		JButton reset = GUITools.newImageButton();
 		reset.setIcon(Data.getInstance().getIcon("undo_22x22_0.png"));
 		reset.setRolloverIcon(Data.getInstance().getIcon("undo_22x22.png"));
-		reset.setToolTipText(Data.getInstance()
-				.getLocaleStr("help.resetButton"));
+		reset.setToolTipText(_("Reset filter"));
 		reset.addActionListener(ActionRegistry.getInstance().get(
 				ResetHelpAction.class.getName()));
 
-		JTextArea descText = new JTextArea(Data.getInstance().getLocaleStr(
-				"help.description"));
+		JTextArea descText = new JTextArea(
+				_("Please enter a search item into the input field to filter the contents:"));
 		descText.setEditable(false);
 		descText.setFont(FONT_TEXT);
 		descText.setForeground(Color.DARK_GRAY);
@@ -153,14 +154,13 @@ public class HelpBrowserFrame extends AbstractFrame {
 		addTopComponent(panelTop);
 
 		try {
-			helpStartTitle = Data.getInstance().getHelpData().getChapterTitle(
-					"start");
+			helpStartTitle = Data.getInstance().getHelpData()
+					.getChapterTitle("start");
 			helpStartContent = Data.getInstance().getHelpData()
 					.getChapterContent("start");
 		} catch (DataException startMissingError) {
-			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(), Data
-					.getInstance().getLocaleStr("message.helpStartMissing"),
-					Data.getInstance().getLocaleStr("errorOccurred"),
+			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
+					_("Cannot load the start page."), _("Error occured"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -223,8 +223,8 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 				String titleHtml = "<H1>" + path + "</H1>";
 
-				String[] helpChapters = Data.getInstance().getResource(
-						"helpChapters").split(",");
+				String[] helpChapters = Data.getInstance()
+						.getResource("helpChapters").split(",");
 
 				for (int nodeCnt = 0; nodeCnt < helpChapters.length; nodeCnt++) {
 					try {
@@ -234,19 +234,18 @@ public class HelpBrowserFrame extends AbstractFrame {
 									& nodeCnt != 0) {
 								String searchString = HelpBrowserFrame
 										.getSrchTxtFld().getText();
-								bodyPane
-										.setText(SearchHelpAction
-												.getLocalString(
-														searchString,
-														titleHtml
-																+ Data
-																		.getInstance()
-																		.getHelpData()
-																		.getChapterContent(
-																				helpChapters[nodeCnt])));
+								bodyPane.setText(SearchHelpAction
+										.getLocalString(
+												searchString,
+												titleHtml
+														+ Data.getInstance()
+																.getHelpData()
+																.getChapterContent(
+																		helpChapters[nodeCnt])));
 							} else {
 								bodyPane.setText(titleHtml
-										+ Data.getInstance().getHelpData()
+										+ Data.getInstance()
+												.getHelpData()
 												.getChapterContent(
 														helpChapters[nodeCnt]));
 							}
@@ -323,8 +322,8 @@ public class HelpBrowserFrame extends AbstractFrame {
 					if (ev.getDescription().startsWith("#")) {
 						src.scrollToReference(ev.getDescription().substring(1));
 					} else if (ev.getDescription().startsWith("?")) {
-						String[] link = ev.getDescription().substring(1).split(
-								"#");
+						String[] link = ev.getDescription().substring(1)
+								.split("#");
 
 						setHelpChapter(link[0]);
 
@@ -354,11 +353,8 @@ public class HelpBrowserFrame extends AbstractFrame {
 	 * Sets the error page.
 	 */
 	private void setErrorPage() {
-		bodyPane
-				.setText("<H1>" + Data.getInstance().getLocaleStr("help.error")
-						+ "</H1>" + "<P>"
-						+ Data.getInstance().getLocaleStr("help.errorMessage")
-						+ "</P>");
+		bodyPane.setText("<H1>" + _("Error") + "</H1>" + "<P>"
+				+ _("Cannot find help page.") + "</P>");
 	}
 
 	/**
@@ -533,8 +529,8 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 		for (int nodeCnt = 1; nodeCnt < chapters.length; nodeCnt++) {
 			try {
-				helpTitle = Data.getInstance().getHelpData().getChapterTitle(
-						chapters[nodeCnt]);
+				helpTitle = Data.getInstance().getHelpData()
+						.getChapterTitle(chapters[nodeCnt]);
 			} catch (DataException e) {
 				System.err
 						.println("Error: can't read ChapterTitel in HelpBrowserFrame");

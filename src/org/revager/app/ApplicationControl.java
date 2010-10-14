@@ -18,6 +18,8 @@
  */
 package org.revager.app;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -120,14 +122,12 @@ public class ApplicationControl {
 		/*
 		 * Set standard severities
 		 */
-		Data.getInstance().getResiData().getReview().setSeverities(
-				new Severities());
+		Data.getInstance().getResiData().getReview()
+				.setSeverities(new Severities());
 
-		for (String sev : Data.getInstance().getLocaleStr("standardSeverities")
-				.split(",")) {
-			Data.getInstance().getResiData().getReview().getSeverities()
-					.getSeverities().add(sev);
-		}
+		List<String> stdSev = Data.getStandardSeverities();
+		Data.getInstance().getResiData().getReview().getSeverities()
+				.getSeverities().addAll(stdSev);
 
 		/*
 		 * Set empty product
@@ -169,15 +169,15 @@ public class ApplicationControl {
 		if (revMgmt.getNumberOfProdRefs() == 0
 				|| revMgmt.getProductName().trim().equals("")
 				|| revMgmt.getProductVersion().trim().equals("")) {
-			return Data.getInstance().getLocaleStr("message.missingProduct");
+			return _("Missing product information. You have to put in the name, version and at least one reference or file.");
 		}
 
 		if (revMgmt.getNumberOfMeetings() == 0) {
-			return Data.getInstance().getLocaleStr("message.missingMeeting");
+			return _("Missing meeting information. You have to add at least one meeting.");
 		}
 
 		if (revMgmt.getNumberOfAttendees() == 0) {
-			return Data.getInstance().getLocaleStr("message.missingAttendee");
+			return _("Missing attendee information. You have to add at least one attendee.");
 		}
 
 		return null;
@@ -213,8 +213,8 @@ public class ApplicationControl {
 			IOException, ApplicationException {
 		if (filePath.startsWith(Data.getInstance().getAppData()
 				.getAppDataPath())) {
-			throw new ApplicationException(Data.getInstance().getLocaleStr(
-					"message.loadStoreFileInAppDataDir"));
+			throw new ApplicationException(
+					_("It is not possible to store and open application data. Please choose another location."));
 		}
 
 		if (!isReviewStorable()) {
@@ -264,8 +264,8 @@ public class ApplicationControl {
 			IOException, ApplicationException {
 		if (filePath.startsWith(Data.getInstance().getAppData()
 				.getAppDataPath())) {
-			throw new ApplicationException(Data.getInstance().getLocaleStr(
-					"message.loadStoreFileInAppDataDir"));
+			throw new ApplicationException(
+					_("It is not possible to store and open application data. Please choose another location."));
 		}
 
 		if (filePath.toLowerCase().trim().endsWith(ENDING_ZIP)) {
@@ -381,8 +381,10 @@ public class ApplicationControl {
 	public void backupReview() throws ResiIOException, DataException {
 		io.storeReviewBackup();
 
-		Data.getInstance().getAppData().setSetting(AppSettingKey.APP_LAST_MODE,
-				Data.getInstance().getMode());
+		Data.getInstance()
+				.getAppData()
+				.setSetting(AppSettingKey.APP_LAST_MODE,
+						Data.getInstance().getMode());
 	}
 
 	/**
@@ -398,8 +400,8 @@ public class ApplicationControl {
 			Data.getInstance().getResiData().clearReview();
 
 			Data.getInstance().setMode(
-					Data.getInstance().getAppData().getSetting(
-							AppSettingKey.APP_LAST_MODE));
+					Data.getInstance().getAppData()
+							.getSetting(AppSettingKey.APP_LAST_MODE));
 
 			io.loadReviewBackup();
 
@@ -429,22 +431,21 @@ public class ApplicationControl {
 
 		String reviewName = revMgmt.getReviewName().trim().replace(" ", "_");
 		String productName = revMgmt.getProductName().trim().replace(" ", "_");
-		String productVersion = revMgmt.getProductVersion().trim().replace(" ",
-				"_");
+		String productVersion = revMgmt.getProductVersion().trim()
+				.replace(" ", "_");
 
 		String reviewFileName = sdf.format(new Date().getTime()) + "_";
 
 		if (!reviewName.equals("")) {
 			reviewFileName += reviewName;
 		} else if (!productName.equals("")) {
-			reviewFileName += Data.getInstance().getLocaleStr("review") + "_"
-					+ productName;
+			reviewFileName += _("Review") + "_" + productName;
 
 			if (!productVersion.equals("")) {
 				reviewFileName += "_" + productVersion;
 			}
 		} else {
-			reviewFileName += Data.getInstance().getLocaleStr("review");
+			reviewFileName += _("Review");
 		}
 
 		return reviewFileName;

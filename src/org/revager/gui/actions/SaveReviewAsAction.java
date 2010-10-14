@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -52,8 +54,7 @@ public class SaveReviewAsAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuSaveAs_16x16.png"));
-		putValue(NAME, Data.getInstance()
-				.getLocaleStr("menu.file.saveReviewAs"));
+		putValue(NAME, _("Save Review as..."));
 	}
 
 	/*
@@ -70,15 +71,13 @@ public class SaveReviewAsAction extends AbstractAction {
 		this.exitApplication = false;
 
 		if (!Application.getInstance().getApplicationCtl().isReviewStorable()) {
-			String messageText = Data.getInstance().getLocaleStr(
-					"message.notStorable")
+			String messageText = _("Cannot save review file. Reason:")
 					+ "\n\n"
 					+ Application.getInstance().getApplicationCtl()
 							.getReasonForRevNotStorable();
 
 			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(messageText), Data.getInstance()
-							.getLocaleStr("info"),
+					GUITools.getMessagePane(messageText), _("Information"),
 					JOptionPane.INFORMATION_MESSAGE);
 
 			return;
@@ -98,21 +97,18 @@ public class SaveReviewAsAction extends AbstractAction {
 				FileChooser.MODE_SAVE_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 			String reviewPath = fileChooser.getFile().getAbsolutePath();
 
-			Object[] options = {
-					Data.getInstance().getLocaleStr("button.ignore"),
-					Data.getInstance().getLocaleStr("button.correct") };
+			Object[] options = { _("Ignore"), _("Correct") };
 
 			if (revMgmt.hasExtRefs()
 					&& (reviewPath.trim().toLowerCase().endsWith(ENDING_XML) || reviewPath
 							.trim().toLowerCase().endsWith(".xml"))
-					&& JOptionPane.showOptionDialog(UI.getInstance()
-							.getMainFrame(), GUITools.getMessagePane(Data
-							.getInstance().getLocaleStr(
-									"message.hasExtRefsXMLWarn")), Data
-							.getInstance().getLocaleStr("question"),
-							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[0]) == JOptionPane.NO_OPTION) {
+					&& JOptionPane
+							.showOptionDialog(
+									UI.getInstance().getMainFrame(),
+									GUITools.getMessagePane(_("This review contains attachments. It is not possible to store them inside the XML file, so they'll get lost.")),
+									_("Question"), JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null,
+									options, options[0]) == JOptionPane.NO_OPTION) {
 				this.setExitApplication(exitApp);
 				this.actionPerformed(e);
 

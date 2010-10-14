@@ -22,8 +22,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import org.revager.gui.protocol.AddResiAttToProtPopupWindow;
-import org.revager.gui.protocol.AddResiAttToProtPopupWindow.ButtonClicked;
+import org.revager.gui.findings_list.AddResiAttToFLPopupWindow;
+import org.revager.gui.findings_list.AddResiAttToFLPopupWindow.ButtonClicked;
 
 
 /**
@@ -32,7 +32,7 @@ import org.revager.gui.protocol.AddResiAttToProtPopupWindow.ButtonClicked;
 @SuppressWarnings("serial")
 public class AddResiAttToProtPopupWindowAction extends AbstractAction {
 
-	private AddResiAttToProtPopupWindow popupWindow = null;
+	private AddResiAttToFLPopupWindow popupWindow = null;
 
 	private ButtonClicked buttonClick = null;
 
@@ -45,7 +45,7 @@ public class AddResiAttToProtPopupWindowAction extends AbstractAction {
 	 *            the button clk
 	 */
 	public AddResiAttToProtPopupWindowAction(
-			AddResiAttToProtPopupWindow popupWin, ButtonClicked buttonClk) {
+			AddResiAttToFLPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,7 +47,6 @@ import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppAttendee;
 import org.revager.gui.actions.popup.DirectoryPopupWindowAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * This class represents the popup window to choose an attendee from the
@@ -108,15 +109,12 @@ public class DirectoryPopupWindow extends JDialog {
 
 		inputPanel.setBackground(Color.WHITE);
 
-		filterLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.directory.filter"));
-		attFilterLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.directory.attendeeFilter"));
-		deleteBttn = GUITools.newImageButton(Data.getInstance().getIcon(
-				"remove_25x25_0.png"), Data.getInstance().getIcon(
-				"remove_25x25.png"));
-		deleteBttn.setToolTipText(Data.getInstance().getLocaleStr(
-				"popup.directory.removeAtt"));
+		filterLbl = new JLabel(_("Filter:"));
+		attFilterLbl = new JLabel(_("Filtered attendees:"));
+		deleteBttn = GUITools.newImageButton(
+				Data.getInstance().getIcon("remove_25x25_0.png"), Data
+						.getInstance().getIcon("remove_25x25.png"));
+		deleteBttn.setToolTipText(_("Remove attendee from address book"));
 		deleteBttn.addActionListener(new ActionListener() {
 
 			@Override
@@ -124,8 +122,10 @@ public class DirectoryPopupWindow extends JDialog {
 				try {
 					AppAttendee localAtt = (AppAttendee) attendeeBx
 							.getSelectedItem();
-					Data.getInstance().getAppData().removeAttendee(
-							localAtt.getName(), localAtt.getContact());
+					Data.getInstance()
+							.getAppData()
+							.removeAttendee(localAtt.getName(),
+									localAtt.getContact());
 					if (attendeeBx.getItemCount() > 1)
 						attendeeBx.removeItem(attendeeBx.getSelectedItem());
 					else
@@ -149,8 +149,8 @@ public class DirectoryPopupWindow extends JDialog {
 				attendeeBx = new JComboBox();
 
 				try {
-					filteredAtt = Data.getInstance().getAppData().getAttendees(
-							filterTxtFld.getText());
+					filteredAtt = Data.getInstance().getAppData()
+							.getAttendees(filterTxtFld.getText());
 				} catch (DataException e) {
 					filteredAtt = new ArrayList<AppAttendee>();
 				}
@@ -204,7 +204,7 @@ public class DirectoryPopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new DirectoryPopupWindowAction(this,
 				ButtonClicked.ABORT));
 
@@ -213,15 +213,14 @@ public class DirectoryPopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new DirectoryPopupWindowAction(this,
 				ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons
-				.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(
+				panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

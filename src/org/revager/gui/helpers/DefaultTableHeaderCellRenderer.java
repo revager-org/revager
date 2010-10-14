@@ -10,6 +10,7 @@ import javax.swing.SortOrder;
 import javax.swing.UIManager;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 
 /**
  * A default cell renderer for a JTableHeader.
@@ -104,14 +105,13 @@ public class DefaultTableHeaderCellRenderer extends DefaultTableCellRenderer {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected SortKey getSortKey(JTable table, int column) {
-		RowSorter rowSorter = table.getRowSorter();
+		RowSorter<? extends TableModel> rowSorter = table.getRowSorter();
 		if (rowSorter == null) {
 			return null;
 		}
 
-		List sortedColumns = rowSorter.getSortKeys();
+		List<? extends SortKey> sortedColumns = rowSorter.getSortKeys();
 		if (sortedColumns.size() > 0) {
 			return (SortKey) sortedColumns.get(0);
 		}

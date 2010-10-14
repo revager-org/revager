@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -185,11 +187,11 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			JCheckBox attendee = new JCheckBox();
 			attendee.setBackground(Color.WHITE);
 			allAttendeesBx.add(attendee);
-			String roleString = "role.".concat(attMgmt.getAttendees()
-					.get(index).getRole().value());
+			String roleString = attMgmt.getAttendees().get(index).getRole()
+					.toString();
 
 			String attendeeName = attMgmt.getAttendees().get(index).getName()
-					+ ", " + Data.getInstance().getLocaleStr(roleString);
+					+ ", " + _(roleString);
 
 			int endIndex = 23;
 			if (attendeeName.length() - 1 < endIndex) {
@@ -232,8 +234,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			attPanel.add(attendee);
 		}
 
-		JLabel meetingLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"invitationsDialog.meeting"));
+		JLabel meetingLbl = new JLabel(_("Selected meeting:"));
 
 		meetingsBx = new JComboBox();
 		for (Meeting meet : Application.getInstance().getMeetingMgmt()
@@ -245,39 +246,32 @@ public class CreateInvitationsDialog extends AbstractDialog {
 		}
 
 		productBx = new JCheckBox();
-		productBx.setText(Data.getInstance().getLocaleStr(
-				"invitationsDialog.addProduct"));
+		productBx.setText(_("Attach product to invitation packages"));
 
 		JPanel rbPanel = new JPanel(new GridLayout(3, 1));
 
 		ButtonGroup buttonG = new ButtonGroup();
-		pdfRB = new JRadioButton(Data.getInstance().getLocaleStr(
-				"invitationsDialog.asPDF"), true);
+		pdfRB = new JRadioButton(_("Package as PDF file"), true);
 		rbPanel.add(pdfRB);
 		buttonG.add(pdfRB);
 
-		zipRB = new JRadioButton(Data.getInstance().getLocaleStr(
-				"invitationsDialog.asZIP"));
+		zipRB = new JRadioButton(_("Package as ZIP file"));
 		rbPanel.add(zipRB);
 		buttonG.add(zipRB);
 
-		dirRB = new JRadioButton(Data.getInstance().getLocaleStr(
-				"invitationsDialog.asDirectory"));
+		dirRB = new JRadioButton(_("Package as sub directory"));
 		rbPanel.add(dirRB);
 		buttonG.add(dirRB);
 
 		scrllPn = new JScrollPane(attPanel);
 		scrllPn.getViewport().setBackground(Color.WHITE);
-		scrllPn
-				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrllPn.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrllPn.setPreferredSize(new Dimension(230, 300));
 		scrllPn.setMinimumSize(new Dimension(230, 300));
 
-		JLabel attendeeLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"invitationsDialog.attendees"));
+		JLabel attendeeLbl = new JLabel(_("Attendees:"));
 
-		selectAll = new JToggleButton(Data.getInstance().getLocaleStr(
-				"invitationsDialog.selectNothing"));
+		selectAll = new JToggleButton(_("Select All"));
 		selectAll.setFocusable(false);
 		selectAll.addItemListener(new ItemListener() {
 
@@ -288,8 +282,6 @@ public class CreateInvitationsDialog extends AbstractDialog {
 					for (JCheckBox bx : allAttendeesBx)
 						bx.setSelected(true);
 
-					selectAll.setText(Data.getInstance().getLocaleStr(
-							"invitationsDialog.selectAll"));
 					selectedAttendees.clear();
 					selectedBx.clear();
 
@@ -301,23 +293,18 @@ public class CreateInvitationsDialog extends AbstractDialog {
 				} else {
 					for (JCheckBox bx : allAttendeesBx)
 						bx.setSelected(false);
-					selectAll.setText(Data.getInstance().getLocaleStr(
-							"invitationsDialog.selectNothing"));
-
 					selectedAttendees.clear();
 					selectedBx.clear();
 				}
 			}
 		});
 
-		JLabel directory = new JLabel(Data.getInstance().getLocaleStr(
-				"invitationsDialog.directory"));
+		JLabel directory = new JLabel(_("Directory:"));
 		pathTxtFld = new JTextField();
-		JButton browse = GUITools.newImageButton(Data.getInstance().getIcon(
-				"buttonBrowse_22x22_0.png"), Data.getInstance().getIcon(
-				"buttonBrowse_22x22.png"));
-		browse.setToolTipText(Data.getInstance().getLocaleStr(
-				"invitationsDialog.browseToolTip"));
+		JButton browse = GUITools.newImageButton(
+				Data.getInstance().getIcon("buttonBrowse_22x22_0.png"), Data
+						.getInstance().getIcon("buttonBrowse_22x22.png"));
+		browse.setToolTipText(_("Select directory where to store the packages"));
 		browse.setMargin(new Insets(1, 1, 1, 1));
 		browse.addActionListener(new ActionListener() {
 
@@ -376,17 +363,16 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		pack();
 
-		setTitle(Data.getInstance().getLocaleStr("invitationsDialog.title"));
-		setDescription(Data.getInstance().getLocaleStr(
-				"invitationsDialog.description"));
+		setTitle(_("Create Invitations"));
+		setDescription(_("Here you can create invitations for the attendees."));
 		setIcon(Data.getInstance().getIcon("createInvitations_64x64.png"));
 
 		setHelpChapter("invitations_management", "1");
 		c.setLayout(gbl);
 		clearInvitationsDialog();
 
-		JButton cancel = new JButton(Data.getInstance().getLocaleStr("abort"),
-				Data.getInstance().getIcon("buttonCancel_16x16.png"));
+		JButton cancel = new JButton(_("Abort"), Data.getInstance().getIcon(
+				"buttonCancel_16x16.png"));
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -396,8 +382,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		addButton(cancel);
 
-		JButton confirm = new JButton(Data.getInstance()
-				.getLocaleStr("confirm"), Data.getInstance().getIcon(
+		JButton confirm = new JButton(_("Confirm"), Data.getInstance().getIcon(
 				"buttonOk_16x16.png"));
 		confirm.addActionListener(new ActionListener() {
 			@Override

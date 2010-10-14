@@ -18,11 +18,12 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
@@ -57,34 +58,32 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 
 		mainframe.switchToProgressMode();
 
-		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-				"status.creatingNewReview"), true);
+		mainframe.setStatusMessage(_("Creating new review ..."), true);
 
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
 
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.createNewReviewSuccessful"), false);
+			mainframe.setStatusMessage(_("New review created successfully."),
+					false);
 
 			mainframe.switchToEditMode();
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
-			UI.getInstance().getAssistantDialog().setVisible(
-					!closeAssistantDialog);
+			UI.getInstance().getAssistantDialog()
+					.setVisible(!closeAssistantDialog);
 		} catch (Exception e) {
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.noReviewInProcess"), false);
+			mainframe.setStatusMessage(_("No review in process."), false);
 
 			mainframe.switchToClearMode();
 
-			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(Data.getInstance().getLocaleStr(
-							"message.createNewReviewFailed")
-							+ "\n\n" + e.getMessage()), Data.getInstance()
-							.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(_("Cannot create new review file.")
+							+ "\n\n" + e.getMessage()), _("Error"),
+					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAssistantDialog().setVisible(
-					showAssistantDialog);
+			UI.getInstance().getAssistantDialog()
+					.setVisible(showAssistantDialog);
 		}
 
 		return null;

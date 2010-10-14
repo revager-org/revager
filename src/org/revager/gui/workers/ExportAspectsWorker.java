@@ -18,19 +18,19 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppAspect;
 import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Aspects;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for exporting aspects to a XML file.
@@ -69,8 +69,8 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame().switchToProgressMode(
-				Data.getInstance().getLocaleStr("status.exportingAspects"));
+		UI.getInstance().getAspectsManagerFrame()
+				.switchToProgressMode(_("Exporting aspects ..."));
 
 		try {
 			Aspects asps = new Aspects();
@@ -85,20 +85,22 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 				asps.getAspects().add(asp);
 			}
 
-			Application.getInstance().getImportExportCtl().exportAspectsXML(
-					this.filePath, asps);
+			Application.getInstance().getImportExportCtl()
+					.exportAspectsXML(this.filePath, asps);
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr("status.aspectsExported"),
-					false);
+			UI.getInstance()
+					.getAspectsManagerFrame()
+					.setStatusMessage(_("Aspects exported successfully."),
+							false);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr(
-							"status.exportingAspectsFailed"), false);
+			UI.getInstance()
+					.getAspectsManagerFrame()
+					.setStatusMessage(_("Cannot export the selected aspects!"),
+							false);
 		}
 
 		UI.getInstance().getAspectsManagerFrame().switchToEditMode();

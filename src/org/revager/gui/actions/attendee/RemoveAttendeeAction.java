@@ -18,20 +18,21 @@
  */
 package org.revager.gui.actions.attendee;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
+import java.text.MessageFormat;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 
 import org.revager.app.Application;
 import org.revager.app.AttendeeManagement;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Meeting;
 import org.revager.gui.UI;
 import org.revager.gui.helpers.TreeMeeting;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class RemoveAttendeeAction.
@@ -61,10 +62,6 @@ public class RemoveAttendeeAction extends AbstractAction {
 
 			UI.getInstance().getAspectsManagerFrame().updateViews();
 		} else {
-			String beginTxt = Data.getInstance().getLocaleStr(
-					"message.attNotRemovableF");
-			String endTxt = Data.getInstance().getLocaleStr(
-					"message.attNotRemovableL");
 			String nameTxt = attendee.getName();
 			String meetTxt = "";
 
@@ -77,13 +74,13 @@ public class RemoveAttendeeAction extends AbstractAction {
 				meetTxt = meetTxt.concat(treeMeet.toString());
 			}
 
-			String compTxt = beginTxt.concat(nameTxt).concat(endTxt).concat(
-					meetTxt);
+			String compTxt = MessageFormat
+					.format(_("Cannot remove the selected attendee ({0}) from the current review because he/she is part of at least one meeting: {1}"),
+							nameTxt, meetTxt);
 
 			JOptionPane.showMessageDialog(org.revager.gui.UI.getInstance()
-					.getMainFrame(), GUITools.getMessagePane(compTxt), Data
-					.getInstance().getLocaleStr("warningDialog.title"),
-					JOptionPane.OK_OPTION);
+					.getMainFrame(), GUITools.getMessagePane(compTxt),
+					_("Attention!"), JOptionPane.OK_OPTION);
 		}
 	}
 

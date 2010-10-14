@@ -30,7 +30,7 @@
  *             Institut Maurice-Lamontagne
  *             mailto:osl@osl.gc.ca
  */
-package org.revager.gui.protocol.graphical_annotations;
+package org.revager.gui.findings_list.graphical_annotations;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;

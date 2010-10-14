@@ -18,7 +18,10 @@
  */
 package org.revager.export;
 
-import org.revager.app.model.Data;
+import static org.revager.app.model.Data._;
+
+import java.text.MessageFormat;
+
 import org.revager.tools.PDFTools;
 
 import com.lowagie.text.Document;
@@ -228,8 +231,8 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 
 			if (headLogoPath != null) {
 				Image headLogo = Image.getInstance(headLogoPath);
-				headLogo.scaleToFit(PDFTools.cmToPt(5.0f), PDFTools
-						.cmToPt(1.1f));
+				headLogo.scaleToFit(PDFTools.cmToPt(5.0f),
+						PDFTools.cmToPt(1.1f));
 
 				PdfPCell cellLogo = new PdfPCell(headLogo);
 				cellLogo.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
@@ -251,10 +254,12 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			head.addCell(cellFill);
 
 			head.setTotalWidth(pageWidth);
-			head.writeSelectedRows(0, -1, document.leftMargin(), page
-					.getHeight()
-					- document.topMargin() + head.getTotalHeight(), writer
-					.getDirectContent());
+			head.writeSelectedRows(
+					0,
+					-1,
+					document.leftMargin(),
+					page.getHeight() - document.topMargin()
+							+ head.getTotalHeight(), writer.getDirectContent());
 
 			/*
 			 * Write foot
@@ -286,9 +291,10 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			 */
 			PdfContentByte contentByte = writer.getDirectContent();
 			contentByte.saveState();
-			String text = Data.getInstance().getLocaleStr("export.page") + " "
-					+ writer.getPageNumber() + " "
-					+ Data.getInstance().getLocaleStr("export.ofPages") + " ";
+
+			String text = MessageFormat.format(_("Page {0} of") + " ",
+					writer.getPageNumber());
+
 			float textSize = footBaseFont.getWidthPoint(text, footFontSize);
 			float textBase = document.bottom() - PDFTools.cmToPt(1.26f);
 			contentByte.beginText();
@@ -312,8 +318,8 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			contentByte.restoreState();
 
 			foot.setTotalWidth(pageWidth);
-			foot.writeSelectedRows(0, -1, document.leftMargin(), document
-					.bottomMargin(), writer.getDirectContent());
+			foot.writeSelectedRows(0, -1, document.leftMargin(),
+					document.bottomMargin(), writer.getDirectContent());
 		} catch (Exception e) {
 			/*
 			 * Not part of unit testing because this exception is only thrown if

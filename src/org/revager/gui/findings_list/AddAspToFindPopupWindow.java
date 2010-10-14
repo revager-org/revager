@@ -16,7 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.protocol;
+package org.revager.gui.findings_list;
+
+import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -48,7 +50,6 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.gui.UI;
 import org.revager.gui.actions.popup.AddAspToFindPopupWindowAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class AddAspToFindPopupWindow.
@@ -111,8 +112,8 @@ public class AddAspToFindPopupWindow extends JDialog {
 
 		JPanel panelBase = GUITools.newPopupBasePanel();
 
-		JTextArea textTitle = GUITools.newPopupTitleArea(Data.getInstance()
-				.getLocaleStr("editProtocol.finding.addAspTitle"));
+		JTextArea textTitle = GUITools
+				.newPopupTitleArea(_("Please select the aspects which should be added to the finding:"));
 
 		panelBase.add(textTitle, BorderLayout.NORTH);
 
@@ -125,8 +126,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 		resiAspList = aspectMgmt.getAspects();
 		selAspList = new ArrayList<Aspect>();
 
-		JLabel aspFilLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.finding.filter"));
+		JLabel aspFilLbl = new JLabel(_("Filter:"));
 		filterTxtFld = new JTextField();
 
 		filterTxtFld.addKeyListener(new KeyListener() {
@@ -178,7 +178,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new AddAspToFindPopupWindowAction(this,
 				ButtonClicked.ABORT));
 
@@ -187,15 +187,14 @@ public class AddAspToFindPopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new AddAspToFindPopupWindowAction(this,
 				ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons
-				.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(
+				panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

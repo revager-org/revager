@@ -18,8 +18,11 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Desktop;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -30,7 +33,6 @@ import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for checking if a new version of this software is available.
@@ -47,8 +49,8 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 		try {
 			Thread.sleep(1000);
 
-			if (Data.getInstance().getAppData().getSettingValue(
-					AppSettingKey.APP_CHECK_VERSION) == AppSettingValue.TRUE) {
+			if (Data.getInstance().getAppData()
+					.getSettingValue(AppSettingKey.APP_CHECK_VERSION) == AppSettingValue.TRUE) {
 				Properties versionProp = new Properties();
 
 				URL versionUrl = new URL(Data.getInstance().getResource(
@@ -66,25 +68,16 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 				String remoteVersion = versionProp.getProperty("version",
 						localVersion);
 
-				String newVersionAvail = Data.getInstance().getLocaleStr(
-						"message.newVersionAvailable");
+				String newVersionAvail = MessageFormat
+						.format(_("A new version of RevAger is available!\n\nLatest version: {0}\nYour version: {1}\n\nPlease choose 'Update' to get the latest version. If you don't like to see this message again, you can turn it off in the application settings."),
+								remoteVersion, localVersion);
 
 				if (remoteBuild > localBuild) {
-					//UI.getInstance().getMainFrame().setEnabled(false);
-
-					newVersionAvail = newVersionAvail.replace(
-							"<remote_version>", remoteVersion);
-					newVersionAvail = newVersionAvail.replace(
-							"<local_version>", localVersion);
-
-					Object[] options = {
-							Data.getInstance().getLocaleStr("button.update"),
-							Data.getInstance().getLocaleStr("button.ignore") };
+					Object[] options = { _("Update RevAger"), _("Ignore") };
 
 					if (JOptionPane.showOptionDialog(UI.getInstance()
 							.getMainFrame(), GUITools
-							.getMessagePane(newVersionAvail), Data
-							.getInstance().getLocaleStr("question"),
+							.getMessagePane(newVersionAvail), _("Question"),
 							JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[0]) == JOptionPane.YES_OPTION) {
@@ -93,7 +86,7 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 										"currVerBrowseURL")).toURI());
 					}
 
-					//UI.getInstance().getMainFrame().setEnabled(true);
+					// UI.getInstance().getMainFrame().setEnabled(true);
 				}
 			}
 		} catch (Exception e) {

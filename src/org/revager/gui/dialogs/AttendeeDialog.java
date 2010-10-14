@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -55,8 +57,8 @@ import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Role;
 import org.revager.gui.AbstractDialog;
 import org.revager.gui.StrengthPopupWindow;
-import org.revager.gui.UI;
 import org.revager.gui.StrengthPopupWindow.ButtonClicked;
+import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 import org.revager.gui.actions.attendee.SelectAttOutOfDirAction;
@@ -112,8 +114,8 @@ public class AttendeeDialog extends AbstractDialog {
 		public void focusGained(FocusEvent e) {
 			if (e.getSource() != strengthTbl) {
 				if (strengthTbl.getRowCount() > 0) {
-					strengthTbl.removeRowSelectionInterval(0, strengthTbl
-							.getRowCount() - 1);
+					strengthTbl.removeRowSelectionInterval(0,
+							strengthTbl.getRowCount() - 1);
 
 					updateStrengthButtons();
 				}
@@ -160,8 +162,8 @@ public class AttendeeDialog extends AbstractDialog {
 		try {
 			contactTxtArea.setText(currentAppAttendee.getContact());
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(this,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -237,46 +239,41 @@ public class AttendeeDialog extends AbstractDialog {
 
 		if (currentAttendee == null) {
 
-			setTitle(Data.getInstance().getLocaleStr("addAttendee.title"));
-			setDescription(Data.getInstance().getLocaleStr(
-					"addAttendee.description"));
+			setTitle(_("Add Attendee"));
+			setDescription(_("Here you can manage all required information of the attendee."));
 			setIcon(Data.getInstance().getIcon("addAttendee_50x50.png"));
 			setHelpChapter("attendees_management", "1");
 
 			nameTxtFld.setText(null);
 			contactTxtArea.setText(null);
-			roleBox.setSelectedItem(Data.getInstance().getLocaleStr(
-					"role." + Role.REVIEWER.toString().toLowerCase()));
+			roleBox.setSelectedItem(_(Role.REVIEWER.toString()));
 
 			if (fromAssistant) {
-				setTitle(Data.getInstance().getLocaleStr("addYourself.title"));
-				setDescription(Data.getInstance().getLocaleStr(
-						"addYourself.description"));
-				cancelBttn.setText(Data.getInstance().getLocaleStr("back"));
+				cancelBttn.setText(_("Back"));
 				// cancelBttn.setEnabled(false);
 				// closing operation has to be disabled, but how?
 
 			}
 		} else {
-			setTitle(Data.getInstance().getLocaleStr("editAttendee.title"));
-			setDescription(Data.getInstance().getLocaleStr(
-					"editAttendee.description"));
+			setTitle(_("Edit Attendee"));
+			setDescription(_("Here you can manage all required information of the attendee."));
 			setIcon(Data.getInstance().getIcon("editAttendee_50x50.png"));
 			setHelpChapter("attendees_management", "2");
 
 			nameTxtFld.setText(currentAttendee.getName());
 			contactTxtArea.setText(currentAttendee.getContact());
-			roleBox.setSelectedItem(Data.getInstance().getLocaleStr(
-					"role." + currentAttendee.getRole().value()));
+			roleBox.setSelectedItem(_(currentAttendee.getRole().toString()));
 
 			try {
-				currentAppAttendee = Data.getInstance().getAppData()
+				currentAppAttendee = Data
+						.getInstance()
+						.getAppData()
 						.getAttendee(currentAttendee.getName(),
 								currentAttendee.getContact());
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this,
+						GUITools.getMessagePane(e.getMessage()), _("Error"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		}
@@ -309,7 +306,7 @@ public class AttendeeDialog extends AbstractDialog {
 		contentPane = getContentPane();
 		contentPane.setLayout(gbl);
 
-		name = new JLabel(Data.getInstance().getLocaleStr("attendee.name"));
+		name = new JLabel(_("Name:"));
 		nameTxtFld = new JTextField();
 		nameTxtFld.addFocusListener(focusListener);
 
@@ -317,24 +314,22 @@ public class AttendeeDialog extends AbstractDialog {
 		directory.setIcon(Data.getInstance().getIcon("directory_25x25_0.png"));
 		directory.setRolloverIcon(Data.getInstance().getIcon(
 				"directory_25x25.png"));
-		directory.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.directory"));
+		directory.setToolTipText(_("Open Attendee Directory"));
 		directory.addActionListener(ActionRegistry.getInstance().get(
 				SelectAttOutOfDirAction.class.getName()));
-		contact = new JLabel(Data.getInstance()
-				.getLocaleStr("attendee.contact"));
+		contact = new JLabel(_("Contact information:"));
 
 		contactTxtArea = new JTextArea();
 		contactTxtArea.addFocusListener(focusListener);
 		contactScrllPn = GUITools.setIntoScrllPn(contactTxtArea);
 
-		role = new JLabel(Data.getInstance().getLocaleStr("attendee.role"));
+		role = new JLabel(_("Role:"));
 		roleBox = new JComboBox();
 		roleBox.addFocusListener(focusListener);
 
 		for (Role x : Role.values()) {
-			String roleString = "role.".concat(x.value());
-			roleBox.addItem(Data.getInstance().getLocaleStr(roleString));
+			String roleString = x.toString();
+			roleBox.addItem(_(roleString));
 		}
 
 		roleBox.addItemListener(new ItemListener() {
@@ -344,8 +339,7 @@ public class AttendeeDialog extends AbstractDialog {
 			}
 		});
 
-		strengthLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"attendee.priorities"));
+		strengthLbl = new JLabel(_("Priorities:"));
 
 		buttonPanel = new JPanel(new GridLayout(3, 1));
 		strengthTbl = GUITools.newStandardTable(null, false);
@@ -377,14 +371,12 @@ public class AttendeeDialog extends AbstractDialog {
 		addStrength.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
 		addStrength
 				.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
-		addStrength.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendeeDialog.addStrength"));
+		addStrength.setToolTipText(_("Add Strength"));
 
 		addStrength.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
-				final String title = Data.getInstance().getLocaleStr(
-						"popup.addStrength.title");
+				final String title = _("Please select at least one strength for the reviewer:");
 
 				SwingWorker<Void, Void> showPopupWorker = new SwingWorker<Void, Void>() {
 					@Override
@@ -399,9 +391,7 @@ public class AttendeeDialog extends AbstractDialog {
 						try {
 							if (Data.getInstance().getAppData()
 									.getNumberOfCatalogs() == 0) {
-								switchToProgressMode(Data
-										.getInstance()
-										.getLocaleStr("status.importingCatalog"));
+								switchToProgressMode(_("Importing catalog ..."));
 
 								LoadStdCatalogsWorker catalogWorker = new LoadStdCatalogsWorker();
 
@@ -452,8 +442,7 @@ public class AttendeeDialog extends AbstractDialog {
 				.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
 		removeStrength.setRolloverIcon(Data.getInstance().getIcon(
 				"remove_25x25.png"));
-		removeStrength.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendeeDialog.remStrength"));
+		removeStrength.setToolTipText(_("Remove Strength"));
 		removeStrength.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -478,10 +467,8 @@ public class AttendeeDialog extends AbstractDialog {
 		GUITools.addComponent(contentPane, gbl, nameTxtFld, 1, 0, 3, 1, 1.0, 0,
 				0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools
-				.addComponent(contentPane, gbl, directory, 4, 0, 1, 1, 0, 0, 0,
-						5, 0, 20, GridBagConstraints.NONE,
-						GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(contentPane, gbl, directory, 4, 0, 1, 1, 0, 0, 0,
+				5, 0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(contentPane, gbl, contact, 0, 1, 1, 1, 0, 0, 5,
 				20, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
@@ -503,8 +490,8 @@ public class AttendeeDialog extends AbstractDialog {
 				17, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 
-		cancelBttn = new JButton(Data.getInstance().getLocaleStr("abort"), Data
-				.getInstance().getIcon("buttonCancel_16x16.png"));
+		cancelBttn = new JButton(_("Abort"), Data.getInstance().getIcon(
+				"buttonCancel_16x16.png"));
 		cancelBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -517,8 +504,8 @@ public class AttendeeDialog extends AbstractDialog {
 
 		addButton(cancelBttn);
 
-		confirmBttn = new JButton(Data.getInstance().getLocaleStr("confirm"),
-				Data.getInstance().getIcon("buttonOk_16x16.png"));
+		confirmBttn = new JButton(_("Confirm"), Data.getInstance().getIcon(
+				"buttonOk_16x16.png"));
 		confirmBttn.addActionListener(ActionRegistry.getInstance().get(
 				ConfirmAttendeeAction.class.getName()));
 
@@ -558,8 +545,8 @@ public class AttendeeDialog extends AbstractDialog {
 		 */
 		boolean enable = false;
 
-		if (((String) roleBox.getSelectedItem()).equals(Data.getInstance()
-				.getLocaleStr("role.reviewer"))) {
+		if (((String) roleBox.getSelectedItem()).equals(_(Role.REVIEWER
+				.toString()))) {
 			enable = true;
 		}
 

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.util.HashMap;
@@ -35,10 +37,9 @@ import org.revager.app.model.appdata.AppCSVProfile;
 import org.revager.app.model.schema.Meeting;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
+import org.revager.gui.findings_list.FindingsListFrame;
 import org.revager.gui.helpers.FileChooser;
-import org.revager.gui.protocol.ProtocolFrame;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker to export a CSV file with findings.
@@ -56,7 +57,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				.getSeverityMgmt();
 
 		MainFrame mainFrame = UI.getInstance().getMainFrame();
-		ProtocolFrame protFrame = UI.getInstance().getProtocolFrame();
+		FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
 
 		FileChooser fileChooser = UI.getInstance().getFileChooser();
 		fileChooser.setFile(null);
@@ -80,8 +81,8 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 						.getExportCSVDialog().getSelColNameList();
 
 				for (int index = 0; index < sevMgmt.getSeverities().size(); index++) {
-					sevMaps.put(sevMgmt.getSeverities().get(index), mappingList
-							.get(index));
+					sevMaps.put(sevMgmt.getSeverities().get(index),
+							mappingList.get(index));
 				}
 
 				String reporter = UI.getInstance().getExportCSVDialog()
@@ -90,11 +91,15 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				File expFile = null;
 
 				if (UI.getInstance().getExportCSVDialog().exportRev()) {
-					expFile = Application.getInstance().getImportExportCtl()
+					expFile = Application
+							.getInstance()
+							.getImportExportCtl()
 							.exportReviewFindingsCSV(dir, profile, sevMaps,
 									reporter);
 				} else {
-					expFile = Application.getInstance().getImportExportCtl()
+					expFile = Application
+							.getInstance()
+							.getImportExportCtl()
 							.exportMeetingFindingsCSV(dir, profile, meet,
 									sevMaps, reporter);
 				}
@@ -103,11 +108,15 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				UI.getInstance().getExportCSVDialog().switchToEditMode();
 
 				if (protFrame.isVisible()) {
-					protFrame.setStatusMessage(Data.getInstance().getLocaleStr(
-							"csvExport.expSuccessful"), false);
+					protFrame
+							.setStatusMessage(
+									_("The findings have been exported into a CSV file successfully."),
+									false);
 				} else {
-					mainFrame.setStatusMessage(Data.getInstance().getLocaleStr(
-							"csvExport.expSuccessful"), false);
+					mainFrame
+							.setStatusMessage(
+									_("The findings have been exported into a CSV file successfully."),
+									false);
 				}
 
 				Desktop.getDesktop().open(expFile.getParentFile());
@@ -116,8 +125,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getExportCSVDialog(), GUITools.getMessagePane(e
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
 		}

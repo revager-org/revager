@@ -18,13 +18,14 @@
  */
 package org.revager.app;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
+import java.io.FilenameFilter;
+
 import javax.swing.filechooser.FileFilter;
 
 import org.revager.app.model.Data;
-
-
-import java.io.FilenameFilter;
 
 /**
  * This class filters files by a given type.
@@ -206,18 +207,15 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 
 		switch (type) {
 		case TYPE_ALL:
-			description = Data.getInstance()
-					.getLocaleStr("fileChooser.typeAll");
+			description = _("All files");
 			break;
 
 		case TYPE_DIRECTORY:
-			description = Data.getInstance().getLocaleStr(
-					"fileChooser.typeDirectory");
+			description = _("Directory");
 			break;
 
 		case TYPE_REVIEW:
-			description = Data.getInstance().getLocaleStr(
-					"fileChooser.typeReview")
+			description = _("Review files")
 					+ " (*"
 					+ ENDING_REVIEW_ZIP
 					+ " *"
@@ -226,44 +224,37 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 			break;
 
 		case TYPE_CATALOG:
-			description = Data.getInstance().getLocaleStr(
-					"fileChooser.typeCatalog")
+			description = _("Catalog files")
 					+ " (*" + ENDING_CATALOG + " *.xml)";
 			break;
 
 		case TYPE_ASPECTS:
-			description = Data.getInstance().getLocaleStr(
-					"fileChooser.typeAspects")
+			description = _("Aspect files")
 					+ " (*" + ENDING_ASPECTS + " *.xml)";
 			break;
 
 		case TYPE_PDF:
-			description = Data.getInstance()
-					.getLocaleStr("fileChooser.typePDF")
+			description = _("PDF files")
 					+ " (*.pdf)";
 			break;
 
 		case TYPE_CSV:
-			description = Data.getInstance()
-					.getLocaleStr("fileChooser.typeCSV")
+			description = _("CSV files")
 					+ " (*.csv *.txt)";
 			break;
 
 		case TYPE_ZIP:
-			description = Data.getInstance()
-					.getLocaleStr("fileChooser.typeZIP")
+			description = _("ZIP files")
 					+ " (*.zip)";
 			break;
 
 		case TYPE_IMAGES:
-			description = Data.getInstance().getLocaleStr(
-					"fileChooser.typeImages")
+			description = _("Image files")
 					+ " (*.jpg *.jpeg *.gif *.png)";
 			break;
 
 		default:
-			description = Data.getInstance()
-					.getLocaleStr("fileChooser.typeAll");
+			description = _("All files");
 			break;
 		}
 

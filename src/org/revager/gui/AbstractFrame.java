@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -210,8 +212,7 @@ public class AbstractFrame extends JFrame {
 	/**
 	 * The format time.
 	 */
-	private DateFormat formatTime = new SimpleDateFormat(Data.getInstance()
-			.getLocaleStr("format.time"));
+	private DateFormat formatTime = new SimpleDateFormat(_("HH:mm"));
 
 	/**
 	 * The number of hints.
@@ -531,8 +532,7 @@ public class AbstractFrame extends JFrame {
 		/*
 		 * Construct the button to toggle the hints
 		 */
-		buttonHints
-				.setToolTipText(Data.getInstance().getLocaleStr("showHints"));
+		buttonHints.setToolTipText(_("Show/hide hints"));
 		buttonHints.setIcon(ICON_CLOSE_HINTS);
 		buttonHints.setRolloverIcon(ICON_CLOSE_HINTS_ROLLOVER);
 		buttonHints.setRolloverSelectedIcon(ICON_OPEN_HINTS_ROLLOVER);
@@ -549,8 +549,7 @@ public class AbstractFrame extends JFrame {
 		 */
 		statusMessage.setFont(FONT_TEXT);
 		statusMessage.setForeground(Color.DARK_GRAY);
-		setStatusMessage(Data.getInstance().getLocaleStr(
-				"status.noReviewInProcess"), false);
+		setStatusMessage(_("No review in process."), false);
 
 		GridBagLayout gblBottom = new GridBagLayout();
 		panelBottom.setLayout(gblBottom);
@@ -756,10 +755,10 @@ public class AbstractFrame extends JFrame {
 
 					try {
 						helpButton
-								.setToolTipText(Data.getInstance()
-										.getLocaleStr("showHelpChapter")
+								.setToolTipText(_("Open help chapters")
 										+ " "
-										+ Data.getInstance().getHelpData()
+										+ Data.getInstance()
+												.getHelpData()
 												.getChapterTitle(
 														HINT.getHelpChapter()));
 					} catch (DataException e) {
@@ -785,8 +784,8 @@ public class AbstractFrame extends JFrame {
 			 */
 			if (!hintsOpened && currentHints == null) {
 				try {
-					if (Data.getInstance().getAppData().getSettingValue(
-							AppSettingKey.APP_SHOW_HINTS) == AppSettingValue.TRUE) {
+					if (Data.getInstance().getAppData()
+							.getSettingValue(AppSettingKey.APP_SHOW_HINTS) == AppSettingValue.TRUE) {
 						toggleHints();
 					} else {
 						buttonHints.setSelected(true);
@@ -834,8 +833,7 @@ public class AbstractFrame extends JFrame {
 	 * Switch to progress mode.
 	 */
 	public void switchToProgressMode() {
-		switchToProgressMode(Data.getInstance().getLocaleStr(
-				"message.inProgress"));
+		switchToProgressMode(_("Work in progress ..."));
 	}
 
 	/**

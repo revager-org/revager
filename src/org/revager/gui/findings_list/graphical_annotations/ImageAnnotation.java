@@ -1,4 +1,4 @@
-package org.revager.gui.protocol.graphical_annotations;
+package org.revager.gui.findings_list.graphical_annotations;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

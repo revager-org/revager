@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
@@ -42,7 +44,6 @@ import org.revager.gui.AbstractDialog;
 import org.revager.gui.helpers.TreeProtocol;
 import org.revager.gui.workers.ExportPDFProtocolWorker;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class ExportPDFProtocolDialog.
@@ -114,8 +115,8 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 	public ExportPDFProtocolDialog(Frame parent) {
 		super(parent);
 
-		setTitle(Data.getInstance().getLocaleStr("pdfExport.title"));
-		setDescription(Data.getInstance().getLocaleStr("pdfExport.description"));
+		setTitle(_("Export Findings as PDF File"));
+		setDescription(_("Here you can export the findings as a PDF file."));
 		setIcon(Data.getInstance().getIcon("PDFExport_50x50.png"));
 
 		setHelpChapter("protocol", "9");
@@ -130,22 +131,18 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 		setLocationToCenter();
 
 		ButtonGroup radioBttnGrp = new ButtonGroup();
-		compRevRB = new JRadioButton(Data.getInstance().getLocaleStr(
-				"pdfExport.compRev"), true);
+		compRevRB = new JRadioButton(_("All findings of the review"), true);
 		radioBttnGrp.add(compRevRB);
 
-		String fieldsStr = Data.getInstance().getLocaleStr(
-				"pdfExport.showFields");
-		String addFindRStr = Data.getInstance().getLocaleStr(
-				"pdfExport.addFindRef");
-		String addProExRefStr = Data.getInstance().getLocaleStr(
-				"pdfExport.addExProRef");
+		String fieldsStr = _("Include signing fields for the present attendees.");
+		String addFindRStr = _("Attach files which belong to the findings.");
+		String addProExRefStr = _("Attach file(s) of the product");
 
 		showFieldsChBx = new JCheckBox(fieldsStr);
 		addExFindRefChBx = new JCheckBox(addFindRStr);
 		addExProRefChBx = new JCheckBox(addProExRefStr);
 
-		String locMeetStr = Data.getInstance().getLocaleStr("pdfExport.meet");
+		String locMeetStr = _("Export the findings of a certain meeting only: ");
 		JRadioButton localMeetRB = new JRadioButton(locMeetStr);
 		localMeetRB.addItemListener(new ItemListener() {
 			@Override
@@ -181,8 +178,8 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 				20, 10, 0, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
 
-		abortBttn = new JButton(Data.getInstance().getLocaleStr("abort"), Data
-				.getInstance().getIcon("buttonCancel_16x16.png"));
+		abortBttn = new JButton(_("Abort"), Data.getInstance().getIcon(
+				"buttonCancel_16x16.png"));
 		abortBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -190,8 +187,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 			}
 		});
 
-		exportBttn = new JButton(Data.getInstance().getLocaleStr(
-				"pdfExport.exp"), Data.getInstance().getIcon(
+		exportBttn = new JButton(_("Export"), Data.getInstance().getIcon(
 				"buttonOk_16x16.png"));
 		exportBttn.addActionListener(new ActionListener() {
 			@Override

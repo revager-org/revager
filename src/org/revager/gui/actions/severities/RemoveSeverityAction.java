@@ -18,17 +18,17 @@
  */
 package org.revager.gui.actions.severities;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
 import org.revager.app.Application;
 import org.revager.app.SeverityManagement;
-import org.revager.app.model.Data;
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.WarningDialog;
 import org.revager.gui.dialogs.WarningDialog.ButtonClicked;
-
 
 /**
  * The Class RemoveSeverityAction.
@@ -36,8 +36,7 @@ import org.revager.gui.dialogs.WarningDialog.ButtonClicked;
 @SuppressWarnings("serial")
 public class RemoveSeverityAction extends AbstractAction {
 
-	private String message = Data.getInstance().getLocaleStr(
-			"warningDialog.sev.message");
+	private String message = _("If you remove a severity, this will affect the whole review. Removed severities will be replaced by the next higher one. Would you really like to remove the selected severity?");
 
 	/*
 	 * (non-Javadoc)
@@ -64,8 +63,8 @@ public class RemoveSeverityAction extends AbstractAction {
 				removeSev();
 			}
 
-			UI.getInstance().getManageSeveritiesDialog().setDontShowAgain(
-					remSevDialog.isDontShowAgain());
+			UI.getInstance().getManageSeveritiesDialog()
+					.setDontShowAgain(remSevDialog.isDontShowAgain());
 		} else if (UI.getInstance().getManageSeveritiesDialog()
 				.isDontShowAgain()) {
 			/*

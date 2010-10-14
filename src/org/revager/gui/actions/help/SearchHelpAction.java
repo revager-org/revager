@@ -19,6 +19,7 @@
 package org.revager.gui.actions.help;
 
 import java.awt.event.ActionEvent;
+
 import javax.swing.AbstractAction;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -120,7 +121,6 @@ public class SearchHelpAction extends AbstractAction {
 		String[] chapters = null;
 		String helpTitle = null;
 		String helpChapter = null;
-		String localString = null;
 
 		try {
 			chapters = Data.getInstance().getHelpData().getChapters();
@@ -178,9 +178,6 @@ public class SearchHelpAction extends AbstractAction {
 				}
 			}
 
-		}
-		if (localString != null) {
-			System.out.println(localString);
 		}
 
 		HelpBrowserFrame.setTree(root);

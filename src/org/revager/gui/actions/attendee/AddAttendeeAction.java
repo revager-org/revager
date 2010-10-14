@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions.attendee;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -27,7 +29,6 @@ import javax.swing.KeyStroke;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-
 
 /**
  * The Class AddAttendeeAction.
@@ -42,7 +43,7 @@ public class AddAttendeeAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuNewAtt_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.newAttendee"));
+		putValue(NAME, _("Add Attendee"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_T, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}

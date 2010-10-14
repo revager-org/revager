@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -55,8 +57,7 @@ public class InitializeNewReviewAction extends AbstractAction {
 			if (!attDiag.getNameTxtFld().getText().trim().equals("")) {
 				GUITools.executeSwingWorker(new NewInstantReviewWorker());
 			} else {
-				String message = Data.getInstance().getLocaleStr(
-						"attendeeDialog.message.noName");
+				String message = _("Please enter the name of the attendee.");
 
 				assistant.setMessage(message);
 

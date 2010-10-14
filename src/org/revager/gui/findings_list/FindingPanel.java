@@ -1,4 +1,6 @@
-package org.revager.gui.protocol;
+package org.revager.gui.findings_list;
+
+import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -50,12 +52,12 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
+import org.revager.gui.findings_list.AddAspToFindPopupWindow.ButtonClicked;
 import org.revager.gui.helpers.DefaultTableHeaderCellRenderer;
 import org.revager.gui.helpers.FileChooser;
 import org.revager.gui.models.FindAspTableModel;
 import org.revager.gui.models.FindExtRefTableModel;
 import org.revager.gui.models.FindRefTableModel;
-import org.revager.gui.protocol.AddAspToFindPopupWindow.ButtonClicked;
 import org.revager.tools.AppTools;
 import org.revager.tools.GUITools;
 
@@ -287,18 +289,12 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Set tooltips for buttons
 		 */
-		buttonCloseFinding.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsList.close"));
-		buttonRemoveFinding.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsList.remove"));
-		buttonPushUp.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsList.pushUp"));
-		buttonPushDown.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsList.pushDown"));
-		buttonPushTop.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsList.pushTop"));
-		buttonPushBottom.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsList.pushBottom"));
+		buttonCloseFinding.setToolTipText(_("Close Edit View of this Finding"));
+		buttonRemoveFinding.setToolTipText(_("Remove this Finding"));
+		buttonPushUp.setToolTipText(_("Push up Finding"));
+		buttonPushDown.setToolTipText(_("Push down Finding"));
+		buttonPushTop.setToolTipText(_("Push Finding to the top"));
+		buttonPushBottom.setToolTipText(_("Push Finding to the bottom"));
 
 		/*
 		 * Buttons for references table
@@ -313,8 +309,7 @@ public class FindingPanel extends JPanel {
 					tableReferences.getCellEditor().stopCellEditing();
 				}
 
-				String ref = Data.getInstance().getLocaleStr(
-						"editProtocol.finding.newRef");
+				String ref = _("Please enter a reference");
 				findMgmt.addReference(ref, finding);
 				modelReferences.fireTableDataChanged();
 
@@ -359,12 +354,9 @@ public class FindingPanel extends JPanel {
 			}
 		});
 
-		buttonAddReference.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.addRef"));
-		buttonRemoveReference.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.remRef"));
-		buttonEditReference.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.ediRef"));
+		buttonAddReference.setToolTipText(_("Add Reference"));
+		buttonRemoveReference.setToolTipText(_("Remove Reference"));
+		buttonEditReference.setToolTipText(_("Edit Reference"));
 
 		buttonRemoveReference.setEnabled(false);
 		buttonEditReference.setEnabled(false);
@@ -407,17 +399,13 @@ public class FindingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				updateFocus(tableExtReferences);
 
-				GUITools
-						.executeSwingWorker(new PasteImageFromClipboardWorker());
+				GUITools.executeSwingWorker(new PasteImageFromClipboardWorker());
 			}
 		});
 
-		buttonAddExtReference.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.addExRef"));
-		buttonRemoveExtReference.setToolTipText(Data.getInstance()
-				.getLocaleStr("findingsItem.remExRef"));
-		buttonPasteExtReference.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.pasteExRef"));
+		buttonAddExtReference.setToolTipText(_("Add File"));
+		buttonRemoveExtReference.setToolTipText(_("Remove file"));
+		buttonPasteExtReference.setToolTipText(_("Paste Image from Clipboard"));
 
 		buttonRemoveExtReference.setEnabled(false);
 
@@ -469,10 +457,8 @@ public class FindingPanel extends JPanel {
 			}
 		});
 
-		buttonAddAspect.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.addAsp"));
-		buttonRemoveAspect.setToolTipText(Data.getInstance().getLocaleStr(
-				"findingsItem.remAsp"));
+		buttonAddAspect.setToolTipText(_("Add Aspect(s)"));
+		buttonRemoveAspect.setToolTipText(_("Remove Aspect(s)"));
 
 		buttonRemoveAspect.setEnabled(false);
 
@@ -487,19 +473,19 @@ public class FindingPanel extends JPanel {
 		tableExtReferences = GUITools
 				.newStandardTable(modelExtReferences, true);
 
-		tableAspects.getColumnModel().getColumn(0).setHeaderRenderer(
-				new FindingPanelHeadRenderer());
-		tableReferences.getColumnModel().getColumn(0).setHeaderRenderer(
-				new FindingPanelHeadRenderer());
-		tableExtReferences.getColumnModel().getColumn(0).setHeaderRenderer(
-				new FindingPanelHeadRenderer());
+		tableAspects.getColumnModel().getColumn(0)
+				.setHeaderRenderer(new FindingPanelHeadRenderer());
+		tableReferences.getColumnModel().getColumn(0)
+				.setHeaderRenderer(new FindingPanelHeadRenderer());
+		tableExtReferences.getColumnModel().getColumn(0)
+				.setHeaderRenderer(new FindingPanelHeadRenderer());
 
-		tableAspects.getColumnModel().getColumn(0).setCellRenderer(
-				new FindingPanelCellRenderer());
-		tableReferences.getColumnModel().getColumn(0).setCellRenderer(
-				new FindingPanelCellRenderer());
-		tableExtReferences.getColumnModel().getColumn(0).setCellRenderer(
-				new FindingPanelCellRenderer());
+		tableAspects.getColumnModel().getColumn(0)
+				.setCellRenderer(new FindingPanelCellRenderer());
+		tableReferences.getColumnModel().getColumn(0)
+				.setCellRenderer(new FindingPanelCellRenderer());
+		tableExtReferences.getColumnModel().getColumn(0)
+				.setCellRenderer(new FindingPanelCellRenderer());
 
 		tableAspects.setRowHeight(29);
 		tableReferences.setRowHeight(29);
@@ -524,17 +510,16 @@ public class FindingPanel extends JPanel {
 								tableExtReferences.getSelectedRow());
 
 						if (AppTools.isReadableWritableImageFile(ref)) {
-							UI.getInstance().getProtocolFrame().getImageEditor(
-									ref).setVisible(true);
+							UI.getInstance().getProtocolFrame()
+									.getImageEditor(ref).setVisible(true);
 						} else {
 							try {
 								Desktop.getDesktop().open(ref);
 							} catch (Exception exc) {
 								JOptionPane.showMessageDialog(UI.getInstance()
 										.getProtocolFrame(), GUITools
-										.getMessagePane(exc.getMessage()), Data
-										.getInstance().getLocaleStr("error"),
-										JOptionPane.ERROR_MESSAGE);
+										.getMessagePane(exc.getMessage()),
+										_("Error"), JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					}
@@ -583,9 +568,7 @@ public class FindingPanel extends JPanel {
 				Font.ITALIC, UI.PROTOCOL_FONT.getSize()));
 
 		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
-		labelFindingTitle.setText(Data.getInstance().getLocaleStr(
-				"editProtocol.finding.number")
-				+ " " + finding.getId());
+		labelFindingTitle.setText(_("Finding") + " " + finding.getId());
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
 		GUITools.scrollToTop(scrollDescription);
@@ -642,12 +625,10 @@ public class FindingPanel extends JPanel {
 		buttonRemoveFinding.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(UI.getInstance()
-						.getProtocolFrame(), GUITools.getMessagePane(Data
-						.getInstance().getLocaleStr(
-								"findingsList.confirmRemoval")), Data
-						.getInstance().getLocaleStr("question"),
-						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				if (JOptionPane.showConfirmDialog(
+						UI.getInstance().getProtocolFrame(),
+						GUITools.getMessagePane(_("Are you sure you want to remove the selected finding permanently?")),
+						_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					findingsTab.removeCurrentFinding();
 				}
 			}
@@ -819,12 +800,10 @@ public class FindingPanel extends JPanel {
 
 		this.setPreferredSize(COMPACT_VIEW_SIZE);
 
-		this.setToolTipText(finding.getAspects().size() + " "
-				+ Data.getInstance().getLocaleStr("findingsList.aspects")
+		this.setToolTipText(finding.getAspects().size() + " " + _("Aspect(s)")
 				+ ", " + finding.getReferences().size() + " "
-				+ Data.getInstance().getLocaleStr("findingsList.references")
-				+ ", " + finding.getExternalReferences().size() + " "
-				+ Data.getInstance().getLocaleStr("findingsList.files"));
+				+ _("Reference(s)") + ", "
+				+ finding.getExternalReferences().size() + " " + _("File(s)"));
 
 		this.removeAll();
 
@@ -845,9 +824,7 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Update labels
 		 */
-		labelFindingNumber.setText(Data.getInstance().getLocaleStr(
-				"editProtocol.finding.number")
-				+ " " + finding.getId());
+		labelFindingNumber.setText(_("Finding") + " " + finding.getId());
 
 		labelFindingSeverity.setText(finding.getSeverity());
 
@@ -929,8 +906,8 @@ public class FindingPanel extends JPanel {
 			}
 
 			if (tableReferences.getRowCount() > 0) {
-				tableReferences.removeRowSelectionInterval(0, tableReferences
-						.getRowCount() - 1);
+				tableReferences.removeRowSelectionInterval(0,
+						tableReferences.getRowCount() - 1);
 			}
 		}
 
@@ -943,8 +920,8 @@ public class FindingPanel extends JPanel {
 
 		if (evSource != tableAspects) {
 			if (tableAspects.getRowCount() > 0) {
-				tableAspects.removeRowSelectionInterval(0, tableAspects
-						.getRowCount() - 1);
+				tableAspects.removeRowSelectionInterval(0,
+						tableAspects.getRowCount() - 1);
 			}
 		}
 	}
@@ -1039,19 +1016,19 @@ public class FindingPanel extends JPanel {
 	private class PasteImageFromClipboardWorker extends SwingWorker<Void, Void> {
 		@Override
 		protected Void doInBackground() throws Exception {
-			UI.getInstance().getProtocolFrame().switchToProgressMode(
-					Data.getInstance().getLocaleStr(
-							"editProtocol.message.imgLoading"));
+			UI.getInstance()
+					.getProtocolFrame()
+					.switchToProgressMode(_("Getting image from clipboard ..."));
 
 			Image img = AppTools.getImageFromClipboard();
 
 			if (img == null) {
-				JOptionPane.showMessageDialog(UI.getInstance()
-						.getProtocolFrame(), GUITools.getMessagePane(Data
-						.getInstance().getLocaleStr(
-								"editProtocol.message.noImgInCb")), Data
-						.getInstance().getLocaleStr("info"),
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane
+						.showMessageDialog(
+								UI.getInstance().getProtocolFrame(),
+								GUITools.getMessagePane(_("Unfortunately there isn't any image in the clipboard which can be included as a reference.")),
+								_("Information"),
+								JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				Image scalImg = img.getScaledInstance(-1, 250,
 						Image.SCALE_SMOOTH);
@@ -1061,24 +1038,19 @@ public class FindingPanel extends JPanel {
 						0), new MatteBorder(1, 1, 1, 1, UI.SEPARATOR_COLOR)));
 
 				JTextField inputField = new JTextField();
-				inputField.setText(Data.getInstance().getLocaleStr(
-						"editProtocol.finding.stdFileName"));
+				inputField.setText(_("Screenshot"));
 
 				JPanel messagePane = new JPanel(new BorderLayout());
 				messagePane.add(labelImg, BorderLayout.NORTH);
-				messagePane.add(new JLabel(Data.getInstance().getLocaleStr(
-						"editProtocol.message.askForFileName")),
+				messagePane.add(new JLabel(
+						_("Please enter a name for the image:")),
 						BorderLayout.CENTER);
 				messagePane.add(inputField, BorderLayout.SOUTH);
 
-				Object[] options = {
-						Data.getInstance().getLocaleStr("findingsItem.save"),
-						Data.getInstance().getLocaleStr("findingsItem.edit"),
-						Data.getInstance().getLocaleStr("findingsItem.abort") };
+				Object[] options = { _("Save"), _("Edit"), _("Cancel") };
 
 				int action = JOptionPane.showOptionDialog(UI.getInstance()
-						.getProtocolFrame(), messagePane, Data.getInstance()
-						.getLocaleStr("confirm"),
+						.getProtocolFrame(), messagePane, _("Confirm"),
 						JOptionPane.YES_NO_CANCEL_OPTION,
 						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 

@@ -18,6 +18,8 @@
  */
 package org.revager.app;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -65,8 +67,8 @@ public class ReviewManagement {
 	/**
 	 * The review info document file name.
 	 */
-	private final String REVIEW_INFO_DOC = Data.getInstance().getLocaleStr(
-			"export.reviewInfoDocumentName");
+	private final String REVIEW_INFO_DOC = _(
+			"Review_Information.pdf");
 
 	/**
 	 * The prefix to store external references in XML file.

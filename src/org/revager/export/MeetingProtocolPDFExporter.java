@@ -18,6 +18,8 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
+
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -87,11 +89,9 @@ public class MeetingProtocolPDFExporter extends ProtocolPDFExporter {
 	public MeetingProtocolPDFExporter(String filePath, Meeting meeting,
 			boolean showSignFields, boolean attachProdExtRefs,
 			boolean attachFindExtRefs) throws ExportException, DataException {
-		super(filePath, Data.getInstance().getLocaleStr(
-				"export.reviewProtocolTitle")
-				+ " · " + review.getName(), appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
+		super(filePath, _("List of Findings") + " · " + review.getName(),
+				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
+						.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
 		this.meeting = meeting;
 		this.showSignFields = showSignFields;
@@ -123,8 +123,7 @@ public class MeetingProtocolPDFExporter extends ProtocolPDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.pdfWriteProtocolFailed"));
+			throw new ExportException(_("Cannot create PDF document."));
 		}
 	}
 

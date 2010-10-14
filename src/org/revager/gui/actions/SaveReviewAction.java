@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -55,7 +57,7 @@ public class SaveReviewAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuSave_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.file.saveReview"));
+		putValue(NAME, _("Save Review"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
@@ -74,15 +76,13 @@ public class SaveReviewAction extends AbstractAction {
 		this.exitApplication = false;
 
 		if (!Application.getInstance().getApplicationCtl().isReviewStorable()) {
-			String messageText = Data.getInstance().getLocaleStr(
-					"message.notStorable")
+			String messageText = _("Cannot save review file. Reason:")
 					+ "\n\n"
 					+ Application.getInstance().getApplicationCtl()
 							.getReasonForRevNotStorable();
 
 			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(messageText), Data.getInstance()
-							.getLocaleStr("info"),
+					GUITools.getMessagePane(messageText), _("Information"),
 					JOptionPane.INFORMATION_MESSAGE);
 
 			return;
@@ -102,23 +102,21 @@ public class SaveReviewAction extends AbstractAction {
 		}
 
 		if (reviewPath != null) {
-			Object[] options = {
-					Data.getInstance().getLocaleStr("button.ignore"),
-					Data.getInstance().getLocaleStr("button.correct") };
+			Object[] options = { _("Ignore"), _("Correct") };
 
 			if (revMgmt.hasExtRefs()
 					&& (reviewPath.trim().toLowerCase().endsWith(ENDING_XML) || reviewPath
 							.trim().toLowerCase().endsWith(".xml"))
-					&& JOptionPane.showOptionDialog(UI.getInstance()
-							.getMainFrame(), GUITools.getMessagePane(Data
-							.getInstance().getLocaleStr(
-									"message.hasExtRefsXMLWarn")), Data
-							.getInstance().getLocaleStr("question"),
-							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[0]) == JOptionPane.NO_OPTION) {
-				ActionRegistry.getInstance().get(
-						SaveReviewAsAction.class.getName()).actionPerformed(e);
+					&& JOptionPane
+							.showOptionDialog(
+									UI.getInstance().getMainFrame(),
+									_("This review contains attachments. It is not possible to store them inside the XML file, so they'll get lost."),
+									_("Question"), JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null,
+									options, options[0]) == JOptionPane.NO_OPTION) {
+				ActionRegistry.getInstance()
+						.get(SaveReviewAsAction.class.getName())
+						.actionPerformed(e);
 
 				return;
 			} else {

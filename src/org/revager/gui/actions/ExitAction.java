@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -32,7 +34,6 @@ import org.revager.gui.UI;
 import org.revager.gui.UI.Status;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class ExitAction.
  */
@@ -46,7 +47,7 @@ public class ExitAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuExit_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("closeApplication"));
+		putValue(NAME, _("Close Application"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
@@ -62,19 +63,20 @@ public class ExitAction extends AbstractAction {
 		Status status = org.revager.gui.UI.getInstance().getStatus();
 
 		if (status == Status.UNSAVED_CHANGES) {
-			int option = JOptionPane.showConfirmDialog(org.revager.gui.UI
-					.getInstance().getMainFrame(), GUITools.getMessagePane(Data
-					.getInstance().getLocaleStr("message.unsavedChanges")),
-					Data.getInstance().getLocaleStr("question"),
-					JOptionPane.YES_NO_CANCEL_OPTION,
-					JOptionPane.QUESTION_MESSAGE);
+			int option = JOptionPane
+					.showConfirmDialog(
+							org.revager.gui.UI.getInstance().getMainFrame(),
+							GUITools.getMessagePane(_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
+							_("Question"), JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
 			if (option == JOptionPane.YES_OPTION) {
 				((SaveReviewAction) ActionRegistry.getInstance().get(
 						SaveReviewAction.class.getName()))
 						.setExitApplication(true);
 
-				ActionRegistry.getInstance().get(
-						SaveReviewAction.class.getName()).actionPerformed(e);
+				ActionRegistry.getInstance()
+						.get(SaveReviewAction.class.getName())
+						.actionPerformed(e);
 			}
 
 			if (option == JOptionPane.NO_OPTION) {

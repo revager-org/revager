@@ -18,20 +18,20 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Finding;
-
 
 /**
  * The Class FindExRefTableModel.
  */
 @SuppressWarnings("serial")
 public class FindExtRefTableModel extends AbstractTableModel {
-	
+
 	private FindingManagement findingMgmt = Application.getInstance()
 			.getFindingMgmt();
 	private Finding localFind;
@@ -82,6 +82,6 @@ public class FindExtRefTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
 	public String getColumnName(int column) {
-		return Data.getInstance().getLocaleStr("findExRefTM.title");
+		return _("Files");
 	}
 }

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -27,7 +29,6 @@ import javax.swing.KeyStroke;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-
 
 /**
  * The Class OpenInvitationsDialogAction.
@@ -41,10 +42,9 @@ public class OpenInvitationsDialogAction extends AbstractAction {
 	public OpenInvitationsDialogAction() {
 		super();
 
-		putValue(SMALL_ICON, Data.getInstance().getIcon(
-				"menuCreateInv_16x16.png"));
-		putValue(NAME, Data.getInstance()
-				.getLocaleStr("menu.createInvitations"));
+		putValue(SMALL_ICON,
+				Data.getInstance().getIcon("menuCreateInv_16x16.png"));
+		putValue(NAME, _("Create Invitations"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}

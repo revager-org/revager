@@ -18,6 +18,7 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -27,7 +28,6 @@ import javax.swing.KeyStroke;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-
 
 /**
  * The Class OpenExpPDFDialogAction.
@@ -41,9 +41,9 @@ public class OpenExpPDFDialogAction extends AbstractAction {
 	public OpenExpPDFDialogAction() {
 		super();
 
-		putValue(SMALL_ICON, Data.getInstance().getIcon(
-				"menuPdfExport_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.pdfExport"));
+		putValue(SMALL_ICON,
+				Data.getInstance().getIcon("menuPdfExport_16x16.png"));
+		putValue(NAME, _("Export Findings List as PDF File"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs.assistant;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
@@ -43,7 +45,7 @@ import org.revager.tools.GUITools;
  * The class FirstScreenPanel.
  * 
  * @author D.Casciato
- *
+ * 
  */
 
 @SuppressWarnings("serial")
@@ -52,7 +54,6 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	private JSeparator dottedSprtr = new JSeparator(SwingConstants.HORIZONTAL);
 
 	private GridBagLayout gbl1 = new GridBagLayout();
-
 
 	/**
 	 * Action to select a language.
@@ -68,31 +69,21 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	/*
 	 * Strings
 	 */
-	private String quickRevTooltipStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.quickRev.rollover");
-	private String newRevTooltipStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.newRev.rollover");
-	private String openRevTooltipStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.openRev.rollover");
-	private String selectLanguageTooltipStrng = Data.getInstance()
-			.getLocaleStr("assistantDialog.selectLanguage.rollover");
-	private String openAspectsMngrTooltipStrng = Data.getInstance()
-			.getLocaleStr("assistantDialog.openAspectsMngr.rollover");
+	private String quickRevTooltipStrng = _("Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections.");
+	private String newRevTooltipStrng = _("Select this if you would like to organize a review as moderator. ");
+	private String openRevTooltipStrng = _("Select this if you would like to open an existing review.");
+	private String selectLanguageTooltipStrng = _("Select this if you want to change the language of the application.");
+	private String openAspectsMngrTooltipStrng = _("Select this if you would like to manage the catalogs and aspects in the Aspects Manager.");
 
-	private String openRevStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.openReview");
+	private String openRevStrng = _("Open existing review");
 
-	private String languageStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.selectLanguage");
-	private String aspectsManagerStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.aspectsManager");
-	private String newReviewStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.newReview");
-	private String quickstartStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.quickstart");
+	private String languageStrng = _("Select language");
+	private String aspectsManagerStrng = _("Open Aspects Manager");
+	private String newReviewStrng = _("Schedule new review");
+	private String quickstartStrng = _("Quickstart");
 
 	/*
-	 *ImageIcons 
+	 * ImageIcons
 	 */
 	private ImageIcon moderatorIcon = Data.getInstance().getIcon(
 			"moderator_128x128_0.png");
@@ -137,8 +128,8 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	public FirstScreenPanel(AbstractDialog parent) {
 		super(parent);
 		createFirstScreenPnl();
-	} 
-	
+	}
+
 	/**
 	 * Method which creates and locates the components of the panel.
 	 */
@@ -153,8 +144,10 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 		newReviewLnk.addActionListener(ActionRegistry.getInstance().get(
 				InitializeNewReviewAction.class.getName()));
 
-		openReviewLnk.addActionListener(ActionRegistry.getInstance().get(GoToOpenRevPnlAction.class.getName()));
-		quickstartLnk.addActionListener(ActionRegistry.getInstance().get(GoToAddAttPnlAction.class.getName()));
+		openReviewLnk.addActionListener(ActionRegistry.getInstance().get(
+				GoToOpenRevPnlAction.class.getName()));
+		quickstartLnk.addActionListener(ActionRegistry.getInstance().get(
+				GoToAddAttPnlAction.class.getName()));
 		selectLanguageLnk.addActionListener(selectLanguageAction);
 		openAspManagerLnk.addActionListener(openAspMngrAction);
 
@@ -169,23 +162,23 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 		openAspManagerLnk.addRolloverText(openAspectsMngrTooltipStrng);
 
 		this.setLayout(gbl1);
-		GUITools.addComponent(this, gbl1, newReviewLnk, 0, 0, 1, 1,
-				1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl1, newReviewLnk, 0, 0, 1, 1, 1.0, 1.0,
+				0, 20, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, quickstartLnk, 1, 0, 1,
-				1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl1, quickstartLnk, 1, 0, 1, 1, 1.0, 1.0,
+				0, 20, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, openReviewLnk, 2, 0, 1,
-				1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl1, openReviewLnk, 2, 0, 1, 1, 1.0, 1.0,
+				0, 20, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, dottedSprtr, 0, 1, 3, 1,
-				1.0, 0.0, 20, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl1, dottedSprtr, 0, 1, 3, 1, 1.0, 0.0,
+				20, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(this, gbl1, selectLanguageLnk, 0, 2,
-				1, 1, 1.0, 0.0, 20, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl1, selectLanguageLnk, 0, 2, 1, 1, 1.0,
+				0.0, 20, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(this, gbl1, openAspManagerLnk, 2, 2,
-				1, 1, 1.0, 0.0, 20, 0, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl1, openAspManagerLnk, 2, 2, 1, 1, 1.0,
+				0.0, 20, 0, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.CENTER);
 
 	}

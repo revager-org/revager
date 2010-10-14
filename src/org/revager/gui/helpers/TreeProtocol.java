@@ -18,10 +18,11 @@
  */
 package org.revager.gui.helpers;
 
+import static org.revager.app.model.Data._;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Meeting;
 
 /**
@@ -108,7 +109,7 @@ public class TreeProtocol {
 					.getDisplayName();
 			String location = meeting.getProtocol().getLocation();
 
-			String protFrom = Data.getInstance().getLocaleStr("tree.protFrom");
+			String protFrom = _("Findings List of");
 			String protocolName = protFrom + " " + date + " | " + start + " - "
 					+ end + " (" + timezone + ")" + " | " + location;
 

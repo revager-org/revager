@@ -18,15 +18,15 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Attendee;
-
 
 /**
  * The Class ReviewerTableModel.
@@ -63,8 +63,8 @@ public class ReviewerTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		return Application.getInstance().getAttendeeMgmt().getNumberOfAspects(
-				reviewer);
+		return Application.getInstance().getAttendeeMgmt()
+				.getNumberOfAspects(reviewer);
 	}
 
 	/*
@@ -95,10 +95,9 @@ public class ReviewerTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		if (column == 1) {
-			return Data.getInstance()
-					.getLocaleStr("aspectsManager.aspCategory");
+			return _("Category");
 		} else {
-			return Data.getInstance().getLocaleStr("aspectsManager.aspect");
+			return _("Aspect");
 		}
 	}
 

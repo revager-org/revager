@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
 
 import java.util.Locale;
 
-
 import org.junit.Test;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -93,8 +92,8 @@ public class DataTest {
 	public void getResource() {
 		data = Data.getInstance();
 
-		assertEquals("/org/revager/resources/appLogo.png", data
-				.getResource("path.appLogo"));
+		assertEquals("/org/revager/resources/appLogo.png",
+				data.getResource("path.appLogo"));
 	}
 
 	@Test
@@ -103,23 +102,6 @@ public class DataTest {
 
 		System.err.println("\nSHOW ERROR MESSAGE BECAUSE OF INVALID RESOURCE:");
 		data.getResource("dieseResourceGibtsNicht");
-	}
-
-	@Test
-	public void getLocaleStr() {
-		data = Data.getInstance();
-
-		data.setLocale(Locale.GERMANY);
-
-		assertEquals("Neues Review", data.getLocaleStr("newReview"));
-	}
-
-	@Test
-	public void getInvalidLocaleStr() {
-		data = Data.getInstance();
-
-		assertEquals(data.getLocaleStr("noLocaleString"), data
-				.getLocaleStr("diesenLocaleStrGibtsNicht"));
 	}
 
 	@Test

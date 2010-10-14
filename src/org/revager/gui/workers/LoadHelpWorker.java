@@ -22,7 +22,6 @@ import javax.swing.SwingWorker;
 
 import org.revager.gui.UI;
 
-
 /**
  * Worker to load the help at the given chapter and anchor
  */
@@ -78,8 +77,8 @@ public class LoadHelpWorker extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {
 		try {
 			if (helpChapter != null && helpChapterAnchor != null) {
-				UI.getInstance().getHelpBrowserFrame().showHelp(helpChapter,
-						helpChapterAnchor);
+				UI.getInstance().getHelpBrowserFrame()
+						.showHelp(helpChapter, helpChapterAnchor);
 			} else if (helpChapter != null && helpChapterAnchor == null) {
 				UI.getInstance().getHelpBrowserFrame().showHelp(helpChapter);
 			} else {

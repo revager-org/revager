@@ -18,12 +18,25 @@
  */
 package org.revager.app.model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import javax.swing.ImageIcon;
+
+import org.revager.app.model.schema.Role;
+import org.revager.tools.AppTools;
 
 /**
  * This class is the interface for the complete data model.
@@ -64,7 +77,7 @@ public class Data {
 	/**
 	 * Bundle for the locale strings.
 	 */
-	private ResourceBundle localeBundle = null;
+	private static ResourceBundle langBundle = null;
 
 	/**
 	 * The only instance of this class.
@@ -136,11 +149,6 @@ public class Data {
 		}
 
 		/*
-		 * Set default locale
-		 */
-		setLocale(new Locale(getResource("appDefaultLang")));
-
-		/*
 		 * Set default mode
 		 */
 		setMode("default");
@@ -206,15 +214,27 @@ public class Data {
 
 		Locale.setDefault(locale);
 
-		try {
-			localeBundle = ResourceBundle.getBundle(getResource("path.locale"));
-		} catch (Exception e) {
-			/*
-			 * Not part of unit testing because this code will only be reached
-			 * if an internal error occurs.
-			 */
-			System.err.println("Error while loading locale data from the"
-					+ " following path: " + getResource("path.locale"));
+		/* Load the language file */
+		InputStream inputStream = null;
+
+		if (!locale.equals(Locale.ENGLISH)) {
+			inputStream = getClass().getResourceAsStream(
+					getResource("path.lang") + locale.getLanguage()
+							+ ".properties");
+
+			/* Finally load the resource */
+			if (inputStream != null) {
+				try {
+					langBundle = new PropertyResourceBundle(inputStream);
+					inputStream.close();
+				} catch (IOException e) {
+					System.err
+							.println("Error while loading language data from the"
+									+ " following path: "
+									+ getResource("path.lang")
+									+ locale.getLanguage() + ".properties");
+				}
+			}
 		}
 	}
 
@@ -281,26 +301,6 @@ public class Data {
 	}
 
 	/**
-	 * Get a localized string by key.
-	 * 
-	 * @param key
-	 *            the key
-	 * 
-	 * @return localized string
-	 */
-	public String getLocaleStr(String key) {
-		String localeStr = null;
-
-		try {
-			localeStr = localeBundle.getString(key);
-		} catch (Exception exc) {
-			localeStr = getLocaleStr("noLocaleString");
-		}
-
-		return localeStr;
-	}
-
-	/**
 	 * Get a parameter of the current mode.
 	 * 
 	 * @param key
@@ -327,5 +327,125 @@ public class Data {
 		}
 
 		return parameter;
+	}
+
+	/**
+	 * Returns the translation of the specified string from the bundle.
+	 * 
+	 * @param id
+	 *            the string to translate
+	 * @return translated string or the id
+	 */
+	public static String _(String id) {
+		/*
+		 * Some special handling of the roles
+		 */
+		if (id.equals(Role.MODERATOR.toString())) {
+			return _("Moderator");
+		} else if (id.equals(Role.AUTHOR.toString())) {
+			return _("Author");
+		} else if (id.equals(Role.CUSTOMER.toString())) {
+			return _("Customer");
+		} else if (id.equals(Role.REVIEWER.toString())) {
+			return _("Reviewer");
+		} else if (id.equals(Role.SCRIBE.toString())) {
+			return _("Scribe");
+		}
+
+		try {
+			return langBundle.getString(id);
+		} catch (Exception e) {
+			/*
+			 * If the string is not translated in the bundle, or the bundle
+			 * cannot be found, just return the original string.
+			 */
+			return id;
+		}
+	}
+
+	/**
+	 * Returns list of standard severities.
+	 * 
+	 * @return list of standard severities
+	 */
+	public static List<String> getStandardSeverities() {
+		List<String> list = new ArrayList<String>();
+
+		for (String sev : _("Critical error; Main error; Minor error; Good")
+				.split(";")) {
+			list.add(sev.trim());
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns list of standard recommendations.
+	 * 
+	 * @return list of standard recommendations
+	 */
+	public static List<String> getStandardRecommendations() {
+		List<String> list = new ArrayList<String>();
+
+		for (String sev : _(
+				"Accepted; Accepted (changes required); Not accepted; Not finished; Not finished (changes required); Not finished (complete revision required)")
+				.split(";")) {
+			list.add(sev.trim());
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns list of standard catalogs.
+	 * 
+	 * @return list of standard catalogs
+	 */
+	public static List<String> getStandardCatalogs() {
+		List<String> list = new ArrayList<String>();
+
+		for (String sev : _(
+				"Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; Quellcode; Testkonzept; Testunterlage")
+				.split(";")) {
+			list.add(sev.trim());
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns a list of all languages installed on the system. The format is 0
+	 * => short, 1 => long language name.
+	 * 
+	 * @return list of all available languages
+	 */
+	public Map<String, String> getLanguages() {
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		String jarLocation = AppTools.getJarLocation();
+
+		/* Add English as standard language */
+		map.put(Locale.ENGLISH.getLanguage(),
+				Locale.ENGLISH.getDisplayLanguage());
+
+		/* Search all translations in the JAR file */
+		try {
+			JarFile jf = new JarFile(jarLocation);
+			Enumeration<JarEntry> ress = jf.entries();
+
+			while (ress.hasMoreElements()) {
+				JarEntry je = (JarEntry) ress.nextElement();
+
+				if (je.getName().matches(getResource("path.searchLang"))) {
+					int idx = je.getName().indexOf(".properties");
+					String lang = je.getName().substring(idx - 2, idx);
+
+					map.put(lang, new Locale(lang).getDisplayLanguage());
+				}
+			}
+		} catch (IOException e) {
+		}
+
+		return map;
 	}
 }

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs.assistant;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -75,14 +77,11 @@ public class AssistantDialog extends AbstractDialog {
 	/*
 	 * Strings
 	 */
-	private String firstScreenDescStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.firstDesc");
+	private String firstScreenDescStrng = _("Welcome to RevAger!");
 
-	private String openRevDescStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.openDesc");
+	private String openRevDescStrng = _("You can select a mode and a review from the list of reviews. If your review isn't in the list, you can load it by choosing 'Select another review...'.");
 
-	private String addAttDescStrng = Data.getInstance().getLocaleStr(
-			"addYourself.description");
+	private String addAttDescStrng = _("Here you can manage some personal details. They will be used during the review.");
 	private String localMode = "moderator";
 
 	/*
@@ -93,7 +92,7 @@ public class AssistantDialog extends AbstractDialog {
 	private JButton finishBttn = new JButton();
 	private ImageIcon confirmIcon = Data.getInstance().getIcon(
 			"buttonOk_16x16.png");
-	private String confirmString = Data.getInstance().getLocaleStr("confirm");
+	private String confirmString = _("Confirm");
 
 	/**
 	 * Sets the localMode parameter
@@ -191,7 +190,7 @@ public class AssistantDialog extends AbstractDialog {
 	 */
 	private void defineWizardBttns() {
 
-		backBttn.setText(Data.getInstance().getLocaleStr("back"));
+		backBttn.setText(_("Back"));
 		backBttn.setIcon(Data.getInstance().getIcon("buttonBack_16x16.png"));
 
 		finishBttn.setText(confirmString);
@@ -252,8 +251,8 @@ public class AssistantDialog extends AbstractDialog {
 			Data.getInstance().setMode("instant");
 
 			UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
-			UI.getInstance().getAttendeeDialog().getNameTxtFld().setText(
-					System.getProperty("user.name"));
+			UI.getInstance().getAttendeeDialog().getNameTxtFld()
+					.setText(System.getProperty("user.name"));
 		} else if (currentPnl == openReviewPanel) {
 			this.getContentPane().add(openReviewPanel, BorderLayout.CENTER);
 			Data.getInstance().setMode(localMode);

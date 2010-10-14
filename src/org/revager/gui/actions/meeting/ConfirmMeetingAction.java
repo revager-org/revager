@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions.meeting;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,12 +30,10 @@ import javax.swing.AbstractAction;
 import javax.swing.JTextField;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Meeting;
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.MeetingDialog;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class ConfirmMeetingAction.
@@ -75,16 +75,16 @@ public class ConfirmMeetingAction extends AbstractAction {
 			newMeeting.setPlannedLocation(meetDialog.getLocationTxt());
 			newMeeting.setCanceled(meetDialog.getCanceled());
 			Application.getInstance().getReviewMgmt().setRecommendation("");
-			
+
 			if (meetDialog.isNewMeeting()) {
-				Application.getInstance().getMeetingMgmt().addMeeting(
-						newMeeting);
+				Application.getInstance().getMeetingMgmt()
+						.addMeeting(newMeeting);
 				newMeeting.setComments("");
 			} else {
 				newMeeting.setComments(currentMeeting.getComments());
 				newMeeting.setProtocol(currentMeeting.getProtocol());
-				Application.getInstance().getMeetingMgmt().editMeeting(
-						currentMeeting, newMeeting);
+				Application.getInstance().getMeetingMgmt()
+						.editMeeting(currentMeeting, newMeeting);
 
 			}
 
@@ -94,8 +94,7 @@ public class ConfirmMeetingAction extends AbstractAction {
 		} else {
 			locTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
 
-			String message = Data.getInstance().getLocaleStr(
-					"meeting.message.loc");
+			String message = _("Please enter the location of the review.");
 
 			meetDialog.setMessage(message);
 		}

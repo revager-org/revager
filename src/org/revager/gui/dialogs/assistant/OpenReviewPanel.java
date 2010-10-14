@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs.assistant;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -59,14 +61,10 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 	/*
 	 * Strings
 	 */
-	private String moderatorStrng = Data.getInstance().getLocaleStr(
-			"mode.moderator");
-	private String scribeStrng = Data.getInstance().getLocaleStr(
-			"mode.scribeOrSingle");
-	private String anotherRevStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.selectAnotherRev");
-	private String noRevsStrng = Data.getInstance().getLocaleStr(
-			"assistantDialog.noRevs");;
+	private String moderatorStrng = _("Moderator");
+	private String scribeStrng = _("Scribe or Singe Reviewer");
+	private String anotherRevStrng = _("Select another review...");
+	private String noRevsStrng = _("No reviews available");
 	private String firstRevStrng;
 	private String secondRevStrng;
 	private String thirdRevStrng;
@@ -298,8 +296,8 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 				vecLastReviews.add(new File(rev).getName());
 			}
 		} catch (DataException exc) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(exc.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 

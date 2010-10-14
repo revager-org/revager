@@ -160,7 +160,7 @@ public class ActionRegistry {
 		register(new CommentMeetingAction());
 		register(new GoToFirstScreenPnlAction());
 		register(new SelectAttOutOfDirAction());
-		register(new OpenProtocolFrameAction());
+		register(new OpenFindingsListAction());
 		register(new AddResiAttToProtAction());
 
 		register(new RemAttFromProtAction());

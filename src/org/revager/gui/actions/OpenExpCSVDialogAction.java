@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -27,7 +29,6 @@ import javax.swing.KeyStroke;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-
 
 /**
  * The Class OpenExpCSVDialogAction.
@@ -41,9 +42,9 @@ public class OpenExpCSVDialogAction extends AbstractAction {
 	public OpenExpCSVDialogAction() {
 		super();
 
-		putValue(SMALL_ICON, Data.getInstance().getIcon(
-				"menuCsvExport_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.csvExport"));
+		putValue(SMALL_ICON,
+				Data.getInstance().getIcon("menuCsvExport_16x16.png"));
+		putValue(NAME, _("Export Findings into a CSV File"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}

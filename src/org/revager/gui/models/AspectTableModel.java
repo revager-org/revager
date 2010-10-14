@@ -18,17 +18,17 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Role;
-
 
 /**
  * The Class AspectTableModel.
@@ -142,9 +142,9 @@ public class AspectTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		if (column == 0) {
-			return Data.getInstance().getLocaleStr("aspectsManager.aspect");
+			return _("Aspect");
 		} else {
-			return Data.getInstance().getLocaleStr("aspectsManager.reviewers");
+			return _("Reviewers");
 		}
 	}
 

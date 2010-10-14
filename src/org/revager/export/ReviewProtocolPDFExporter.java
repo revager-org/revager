@@ -18,6 +18,7 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -87,11 +88,9 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 	public ReviewProtocolPDFExporter(String filePath, boolean showSignFields,
 			boolean attachProdExtRefs, boolean attachFindExtRefs)
 			throws ExportException, DataException {
-		super(filePath, Data.getInstance().getLocaleStr(
-				"export.reviewProtocolTitle")
-				+ " · " + review.getName(), appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
+		super(filePath, _("List of Findings") + " · " + review.getName(),
+				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
+						.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
 		this.showSignFields = showSignFields;
 		this.attachProdExtRefs = attachProdExtRefs;
@@ -124,9 +123,10 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 				PdfPTable table = new PdfPTable(1);
 				table.setWidthPercentage(100);
 
-				PdfPCell cellSignIntro = new PdfPCell(new Phrase(Data
-						.getInstance().getLocaleStr(
-								"export.reviewAttendeesIntro"), introFont));
+				PdfPCell cellSignIntro = new PdfPCell(
+						new Phrase(
+								_("The following persons participated in the whole review:"),
+								introFont));
 				cellSignIntro.setBorderWidth(0);
 				cellSignIntro.setPadding(padding);
 				cellSignIntro.setPaddingBottom(PDFTools.cmToPt(0.8f));
@@ -156,8 +156,7 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.pdfWriteProtocolFailed"));
+			throw new ExportException(_("Cannot create PDF document."));
 		}
 	}
 

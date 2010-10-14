@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 
 import javax.swing.JOptionPane;
@@ -31,7 +33,6 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Catalog;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for importing a catalog with aspects from a XML file.
@@ -67,8 +68,8 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		UI.getInstance().getAspectsManagerFrame().switchToProgressMode(
-				Data.getInstance().getLocaleStr("status.importingCatalog"));
+		UI.getInstance().getAspectsManagerFrame()
+				.switchToProgressMode(_("Importing catalog ..."));
 
 		AppCatalog appCat = null;
 
@@ -76,20 +77,18 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 			String catalogName = new File(this.filePath).getName();
 
 			if (catalogName.lastIndexOf(".") != -1) {
-				catalogName = catalogName.substring(0, catalogName
-						.lastIndexOf("."));
+				catalogName = catalogName.substring(0,
+						catalogName.lastIndexOf("."));
 			}
 
 			boolean firstTime = true;
 
 			while (firstTime || appData.getCatalog(catalogName) != null
 					|| catalogName.trim().equals("")) {
-				String title = Data.getInstance().getLocaleStr(
-						"aspectsManager.askForCatalogName");
+				String title = _("Please enter a new name for the catalog:");
 
 				if (!firstTime) {
-					title = Data.getInstance().getLocaleStr(
-							"aspectsManager.catalogNameExists")
+					title = _("There is a catalog with the given name already existing. Please enter a new one.")
 							+ "\n\n" + title;
 				}
 
@@ -100,50 +99,44 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 				firstTime = false;
 			}
 
-			if (catalogName != null) {
-				Catalog cat = Application.getInstance().getImportExportCtl()
-						.importCatalogXML(this.filePath);
+			Catalog cat = Application.getInstance().getImportExportCtl()
+					.importCatalogXML(this.filePath);
 
-				appCat = appData.newCatalog(catalogName);
-				appCat.setDescription(cat.getDescription());
+			appCat = appData.newCatalog(catalogName);
+			appCat.setDescription(cat.getDescription());
 
-				for (Aspect asp : cat.getAspects().getAspects()) {
-					String cate = asp.getCategory();
-					String dir = asp.getDirective();
+			for (Aspect asp : cat.getAspects().getAspects()) {
+				String cate = asp.getCategory();
+				String dir = asp.getDirective();
 
-					if (cate.trim().equals("")) {
-						cate = Data.getInstance().getLocaleStr(
-								"aspectsManager.stdCategory");
-					}
-
-					if (dir.trim().equals("")) {
-						dir = Data.getInstance().getLocaleStr(
-								"aspectsManager.stdDirective");
-					}
-
-					appCat.newAspect(dir, asp.getDescription(), cate);
+				if (cate.trim().equals("")) {
+					cate = _("(No Category)");
 				}
 
-				UI.getInstance().getAspectsManagerFrame().updateTree();
+				if (dir.trim().equals("")) {
+					dir = _("(No Directive)");
+				}
 
-				UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-						Data.getInstance().getLocaleStr(
-								"status.catalogImported"), false);
-			} else {
-				UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-						Data.getInstance().getLocaleStr(
-								"status.catalogImportCanceled"), false);
+				appCat.newAspect(dir, asp.getDescription(), cate);
 			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(UI.getInstance()
-					.getAspectsManagerFrame(), GUITools.getMessagePane(Data
-					.getInstance().getLocaleStr("message.importFailed")
-					+ "\n\n" + e.getMessage()), Data.getInstance()
-					.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr(
-							"status.importingCatalogFailed"), false);
+			UI.getInstance().getAspectsManagerFrame().updateTree();
+
+			UI.getInstance()
+					.getAspectsManagerFrame()
+					.setStatusMessage(_("Catalog imported successfully."),
+							false);
+
+		} catch (Exception e) {
+			JOptionPane
+					.showMessageDialog(
+							UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
+									+ "\n\n" + e.getMessage()), _("Error"),
+							JOptionPane.ERROR_MESSAGE);
+
+			UI.getInstance().getAspectsManagerFrame()
+					.setStatusMessage(_("Cannot import catalog!"), false);
 		}
 
 		UI.getInstance().getAspectsManagerFrame()

@@ -18,11 +18,12 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
+
 import java.io.FileOutputStream;
 
 import org.revager.app.model.Data;
 import org.revager.tools.PDFTools;
-
 
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
@@ -74,8 +75,9 @@ public abstract class PDFExporter {
 	 */
 	protected PDFExporter(String filePath, String headTitle,
 			String headLogoPath, String footText) throws ExportException {
-		pdfDoc = new Document(PageSize.A4, PDFTools.cmToPt(2), PDFTools
-				.cmToPt(2), PDFTools.cmToPt(3.5f), PDFTools.cmToPt(3.2f));
+		pdfDoc = new Document(PageSize.A4, PDFTools.cmToPt(2),
+				PDFTools.cmToPt(2), PDFTools.cmToPt(3.5f),
+				PDFTools.cmToPt(3.2f));
 
 		try {
 			pdfWriter = PdfWriter.getInstance(pdfDoc, new FileOutputStream(
@@ -85,8 +87,8 @@ public abstract class PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.pdfWriteToFileFailed"));
+			throw new ExportException(
+					_("Cannot store PDF file. Either you don't have write permissions or the PDF file cannot be created."));
 		}
 
 		pdfWriter.setPageEvent(new PDFPageEventHelper(headTitle, headLogoPath,

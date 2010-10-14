@@ -7,6 +7,8 @@
  */
 package org.revager.gui.helpers;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -48,7 +50,6 @@ import javax.swing.event.MouseInputListener;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * This class is inspirated by.
@@ -542,8 +543,8 @@ public class DatePicker extends Observable implements Runnable,
 				if (src == monthBox) {
 					c.set(Calendar.MONTH, jcb.getSelectedIndex());
 				} else if (e.getSource() == yearBox) {
-					c.set(Calendar.YEAR, years[jcb.getSelectedIndex()]
-							.intValue());
+					c.set(Calendar.YEAR,
+							years[jcb.getSelectedIndex()].intValue());
 					setYearComboBox(c);
 				}
 
@@ -666,8 +667,7 @@ public class DatePicker extends Observable implements Runnable,
 				"datePickerClose_18x18_0.png"));
 		buttonClose.setRolloverIcon(Data.getInstance().getIcon(
 				"datePickerClose_18x18.png"));
-		buttonClose.setToolTipText(Data.getInstance().getLocaleStr(
-				"datePicker.close"));
+		buttonClose.setToolTipText(getString("close"));
 		buttonClose.setBorder(BorderFactory.createLineBorder(screen
 				.getContentPane().getBackground(), 4));
 		buttonClose.addActionListener(new DatePickerCloseAction(screen));
@@ -677,7 +677,7 @@ public class DatePicker extends Observable implements Runnable,
 		 */
 		JTextField hint = new JTextField();
 		hint.setBorder(BorderFactory.createLineBorder(UI.POPUP_BACKGROUND, 5));
-		hint.setText(Data.getInstance().getLocaleStr("datePicker.hint"));
+		hint.setText(getString("hint"));
 		hint.setFont(FONT_PLAIN.deriveFont(Font.BOLD));
 		hint.setFocusable(false);
 		hint.setEditable(false);
@@ -939,7 +939,61 @@ public class DatePicker extends Observable implements Runnable,
 	 * @return the string
 	 */
 	public String getString(String key) {
-		return Data.getInstance().getLocaleStr("datePicker." + key);
+		if (key.equals("month.0")) {
+			return _("January");
+		} else if (key.equals("month.1")) {
+			return _("February");
+		} else if (key.equals("month.2")) {
+			return _("March");
+		} else if (key.equals("month.3")) {
+			return _("April");
+		} else if (key.equals("month.4")) {
+			return _("May");
+		} else if (key.equals("month.5")) {
+			return _("June");
+		} else if (key.equals("month.6")) {
+			return _("July");
+		} else if (key.equals("month.7")) {
+			return _("August");
+		} else if (key.equals("month.8")) {
+			return _("September");
+		} else if (key.equals("month.9")) {
+			return _("October");
+		} else if (key.equals("month.10")) {
+			return _("November");
+		} else if (key.equals("month.11")) {
+			return _("December");
+		} else if (key.equals("week.0")) {
+			return _("Mon");
+		} else if (key.equals("week.1")) {
+			return _("Tue");
+		} else if (key.equals("week.2")) {
+			return _("Wed");
+		} else if (key.equals("week.3")) {
+			return _("Thu");
+		} else if (key.equals("week.4")) {
+			return _("Fri");
+		} else if (key.equals("week.5")) {
+			return _("Sat");
+		} else if (key.equals("week.6")) {
+			return _("Sun");
+		} else if (key.equals("prevMonth")) {
+			return _("Previous month");
+		} else if (key.equals("nextMonth")) {
+			return _("Next month");
+		} else if (key.equals("prevYear")) {
+			return _("Previous year");
+		} else if (key.equals("nextYear")) {
+			return _("Next year");
+		} else if (key.equals("close")) {
+			return _("Close");
+		} else if (key.equals("hint")) {
+			return _("Please choose a date...");
+		} else if (key.equals("tooltip")) {
+			return _("Calendar");
+		}
+
+		return _(key);
 	}
 
 	/**

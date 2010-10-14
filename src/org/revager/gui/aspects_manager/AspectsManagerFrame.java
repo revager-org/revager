@@ -18,6 +18,8 @@
  */
 package org.revager.gui.aspects_manager;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -83,8 +85,8 @@ import org.revager.app.model.schema.Review;
 import org.revager.app.model.schema.Role;
 import org.revager.gui.AbstractFrame;
 import org.revager.gui.TextPopupWindow;
-import org.revager.gui.UI;
 import org.revager.gui.TextPopupWindow.ButtonClicked;
+import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.attendee.AddAttendeeAction;
 import org.revager.gui.helpers.ExtendedFlowLayout;
@@ -120,8 +122,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	private int dividerLocation = 0;
 
 	private JTree tree;
-	private CheckNode root = new CheckNode(Data.getInstance().getLocaleStr(
-			"aspectsManager.allCatalogs"));
+	private CheckNode root = new CheckNode(_("All catalogs"));
 	private DefaultTreeModel dtm = new DefaultTreeModel(root);
 
 	private AspectTableModel aspTabModel;
@@ -178,8 +179,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				"addCatalog_50x50_0.png"));
 		tbAddCatalog.setRolloverIcon(Data.getInstance().getIcon(
 				"addCatalog_50x50.png"));
-		tbAddCatalog.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.addCatalog"));
+		tbAddCatalog.setToolTipText(_("Add Catalog"));
 		tbAddCatalog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -197,8 +197,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -210,8 +209,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				"copyCatalog_50x50_0.png"));
 		tbCopyCatalog.setRolloverIcon(Data.getInstance().getIcon(
 				"copyCatalog_50x50.png"));
-		tbCopyCatalog.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.copyCatalog"));
+		tbCopyCatalog.setToolTipText(_("Copy selected Catalog"));
 		tbCopyCatalog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -231,8 +229,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -244,16 +241,15 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				.setIcon(Data.getInstance().getIcon("addAspect_50x50_0.png"));
 		tbAddAspect.setRolloverIcon(Data.getInstance().getIcon(
 				"addAspect_50x50.png"));
-		tbAddAspect.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.addAspect"));
+		tbAddAspect
+				.setToolTipText(_("Add a new Aspect to the selected Catalog"));
 		tbAddAspect.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AppCatalog catalog = getSelectedCatalog();
 				AppAspect selAsp = getSelectedAspect();
 
-				String category = Data.getInstance().getLocaleStr(
-						"aspectsManager.stdCategory");
+				String category = _("(No Category)");
 
 				try {
 					if (catalog == null && selAsp != null) {
@@ -277,29 +273,25 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		addTopComponent(tbAddAspect);
 
-		tbNewAttendee = GUITools.newImageButton(Data.getInstance().getIcon(
-				"addAttendee_50x50_0.png"), Data.getInstance().getIcon(
-				"addAttendee_50x50.png"));
-		tbNewAttendee.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.newAttendee"));
+		tbNewAttendee = GUITools.newImageButton(
+				Data.getInstance().getIcon("addAttendee_50x50_0.png"), Data
+						.getInstance().getIcon("addAttendee_50x50.png"));
+		tbNewAttendee.setToolTipText(_("Add Attendee"));
 		tbNewAttendee.addActionListener(ActionRegistry.getInstance().get(
 				AddAttendeeAction.class.getName()));
 		addTopComponent(tbNewAttendee);
 
 		tbRemove = GUITools.newImageButton();
 		tbRemove.setIcon(Data.getInstance().getIcon("remove_50x50_0.png"));
-		tbRemove
-				.setRolloverIcon(Data.getInstance().getIcon("remove_50x50.png"));
-		tbRemove.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.removeItem"));
+		tbRemove.setRolloverIcon(Data.getInstance().getIcon("remove_50x50.png"));
+		tbRemove.setToolTipText(_("Remove selected Item"));
 		tbRemove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -313,14 +305,13 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					} else if (selCategory != null) {
 						selCatalog.removeCategory(selCategory);
 					} else if (selCatalog != null) {
-						Data.getInstance().getAppData().removeCatalog(
-								selCatalog);
+						Data.getInstance().getAppData()
+								.removeCatalog(selCatalog);
 					}
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -334,8 +325,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				.setIcon(Data.getInstance().getIcon("removeAll_50x50_0.png"));
 		tbRemoveAll.setRolloverIcon(Data.getInstance().getIcon(
 				"removeAll_50x50.png"));
-		tbRemoveAll.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.removeSelItems"));
+		tbRemoveAll.setToolTipText(_("Remove selected Items"));
 		tbRemoveAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -359,9 +349,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						} catch (DataException exc) {
 							JOptionPane.showMessageDialog(UI.getInstance()
 									.getAspectsManagerFrame(), GUITools
-									.getMessagePane(exc.getMessage()), Data
-									.getInstance().getLocaleStr("error"),
-									JOptionPane.ERROR_MESSAGE);
+									.getMessagePane(exc.getMessage()),
+									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
 						updateTree();
@@ -381,8 +370,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		tbEditItem.setIcon(Data.getInstance().getIcon("editItem_50x50_0.png"));
 		tbEditItem.setRolloverIcon(Data.getInstance().getIcon(
 				"editItem_50x50.png"));
-		tbEditItem.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.editItem"));
+		tbEditItem.setToolTipText(_("Edit selected Item"));
 		tbEditItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -399,9 +387,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 					popup.setVisible(true);
 				} else if (selCategory != null) {
-					TextPopupWindow popup = new TextPopupWindow(aspMan, Data
-							.getInstance().getLocaleStr(
-									"popup.editAspect.askForCategoryName"),
+					TextPopupWindow popup = new TextPopupWindow(aspMan,
+							_("Please enter a name for the category."),
 							selCategory, false);
 
 					popup.setVisible(true);
@@ -416,10 +403,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 							updateTree(selCatalog, newCategory, null,
 									selCategory);
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(aspMan, GUITools
-									.getMessagePane(exc.getMessage()), Data
-									.getInstance().getLocaleStr("error"),
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(aspMan,
+									GUITools.getMessagePane(exc.getMessage()),
+									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				} else if (selCatalog != null) {
@@ -432,11 +418,11 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		addTopComponent(tbEditItem);
 
-		tbAutoAllocation = GUITools.newImageButton(Data.getInstance().getIcon(
-				"autoAllocation_50x50_0.png"), Data.getInstance().getIcon(
-				"autoAllocation_50x50.png"));
-		tbAutoAllocation.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.autoAllocation"));
+		tbAutoAllocation = GUITools.newImageButton(
+				Data.getInstance().getIcon("autoAllocation_50x50_0.png"), Data
+						.getInstance().getIcon("autoAllocation_50x50.png"));
+		tbAutoAllocation
+				.setToolTipText(_("Assign selected Aspects to the Reviewers automatically"));
 		tbAutoAllocation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -447,11 +433,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopComponent(tbAutoAllocation);
 
-		tbImportCatalog = GUITools.newImageButton(Data.getInstance().getIcon(
-				"importCatalog_50x50_0.png"), Data.getInstance().getIcon(
-				"importCatalog_50x50.png"));
-		tbImportCatalog.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.importCatalog"));
+		tbImportCatalog = GUITools.newImageButton(
+				Data.getInstance().getIcon("importCatalog_50x50_0.png"), Data
+						.getInstance().getIcon("importCatalog_50x50.png"));
+		tbImportCatalog.setToolTipText(_("Import Catalog"));
 		tbImportCatalog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -459,10 +444,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 				fc.setFile(null);
 
-				if (fc
-						.showDialog(UI.getInstance().getAspectsManagerFrame(),
-								FileChooser.MODE_OPEN_FILE,
-								ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
+				if (fc.showDialog(UI.getInstance().getAspectsManagerFrame(),
+						FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
 					GUITools.executeSwingWorker(new ImportCatalogWorker(fc
 							.getFile().getAbsolutePath()));
 				}
@@ -471,11 +454,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbImportCatalog);
 
-		tbExportCatalog = GUITools.newImageButton(Data.getInstance().getIcon(
-				"exportCatalog_50x50_0.png"), Data.getInstance().getIcon(
-				"exportCatalog_50x50.png"));
-		tbExportCatalog.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.exportCatalog"));
+		tbExportCatalog = GUITools.newImageButton(
+				Data.getInstance().getIcon("exportCatalog_50x50_0.png"), Data
+						.getInstance().getIcon("exportCatalog_50x50.png"));
+		tbExportCatalog.setToolTipText(_("Export selected Catalog"));
 		tbExportCatalog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -498,11 +480,11 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbExportCatalog);
 
-		tbImportAspects = GUITools.newImageButton(Data.getInstance().getIcon(
-				"importAspects_50x50_0.png"), Data.getInstance().getIcon(
-				"importAspects_50x50.png"));
-		tbImportAspects.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.importAspects"));
+		tbImportAspects = GUITools.newImageButton(
+				Data.getInstance().getIcon("importAspects_50x50_0.png"), Data
+						.getInstance().getIcon("importAspects_50x50.png"));
+		tbImportAspects
+				.setToolTipText(_("Import Aspects into the selected Catalog"));
 		tbImportAspects.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -526,11 +508,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbImportAspects);
 
-		tbExportAspects = GUITools.newImageButton(Data.getInstance().getIcon(
-				"exportAspects_50x50_0.png"), Data.getInstance().getIcon(
-				"exportAspects_50x50.png"));
-		tbExportAspects.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.exportAspects"));
+		tbExportAspects = GUITools.newImageButton(
+				Data.getInstance().getIcon("exportAspects_50x50_0.png"), Data
+						.getInstance().getIcon("exportAspects_50x50.png"));
+		tbExportAspects.setToolTipText(_("Export selected Aspects"));
 		tbExportAspects.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -553,11 +534,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbExportAspects);
 
-		tbLoadStdCatalogs = GUITools.newImageButton(Data.getInstance().getIcon(
-				"loadStdCatalogs_50x50_0.png"), Data.getInstance().getIcon(
-				"loadStdCatalogs_50x50.png"));
-		tbLoadStdCatalogs.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.loadStdCatalogs"));
+		tbLoadStdCatalogs = GUITools.newImageButton(
+				Data.getInstance().getIcon("loadStdCatalogs_50x50_0.png"), Data
+						.getInstance().getIcon("loadStdCatalogs_50x50.png"));
+		tbLoadStdCatalogs.setToolTipText(_("Load Standard Catalogs"));
 		tbLoadStdCatalogs.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -602,14 +582,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					AppCatalog cat = ((AppCatalog) obj);
 
 					try {
-						return GUITools.getTextAsHtml("<b>"
-								+ cat.getName()
-								+ "</b>\n("
-								+ cat.getNumberOfAspects()
-								+ " "
-								+ Data.getInstance().getLocaleStr(
-										"aspectsManager.aspects") + ")"
-								+ "\n\n" + cat.getDescription());
+						return GUITools.getTextAsHtml("<b>" + cat.getName()
+								+ "</b>\n(" + cat.getNumberOfAspects() + " "
+								+ _("Aspects") + ")" + "\n\n"
+								+ cat.getDescription());
 					} catch (DataException e) {
 						return null;
 					}
@@ -663,11 +639,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
 
-		pushTop = GUITools.newImageButton(Data.getInstance().getIcon(
-				"pushTop_25x25_0.png"), Data.getInstance().getIcon(
-				"pushTop_25x25.png"));
-		pushTop.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.pushTop"));
+		pushTop = GUITools.newImageButton(
+				Data.getInstance().getIcon("pushTop_25x25_0.png"), Data
+						.getInstance().getIcon("pushTop_25x25.png"));
+		pushTop.setToolTipText(_("Push Item to the top"));
 		pushTop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -686,8 +661,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -696,11 +670,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(pushTop);
 
-		pushUp = GUITools.newImageButton(Data.getInstance().getIcon(
-				"upArrow_25x25_0.png"), Data.getInstance().getIcon(
-				"upArrow_25x25.png"));
-		pushUp.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.pushUp"));
+		pushUp = GUITools.newImageButton(
+				Data.getInstance().getIcon("upArrow_25x25_0.png"), Data
+						.getInstance().getIcon("upArrow_25x25.png"));
+		pushUp.setToolTipText(_("Push Item up"));
 		pushUp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -719,8 +692,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -729,11 +701,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(pushUp);
 
-		pushDown = GUITools.newImageButton(Data.getInstance().getIcon(
-				"downArrow_25x25_0.png"), Data.getInstance().getIcon(
-				"downArrow_25x25.png"));
-		pushDown.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.pushDown"));
+		pushDown = GUITools.newImageButton(
+				Data.getInstance().getIcon("downArrow_25x25_0.png"), Data
+						.getInstance().getIcon("downArrow_25x25.png"));
+		pushDown.setToolTipText(_("Push Item down"));
 		pushDown.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -752,8 +723,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -762,11 +732,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(pushDown);
 
-		pushBottom = GUITools.newImageButton(Data.getInstance().getIcon(
-				"pushBottom_25x25_0.png"), Data.getInstance().getIcon(
-				"pushBottom_25x25.png"));
-		pushBottom.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.pushBottom"));
+		pushBottom = GUITools.newImageButton(
+				Data.getInstance().getIcon("pushBottom_25x25_0.png"), Data
+						.getInstance().getIcon("pushBottom_25x25.png"));
+		pushBottom.setToolTipText(_("Push Item to the bottom"));
 		pushBottom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -785,8 +754,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -799,8 +767,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		 * Strut button
 		 */
 		JButton strutButton = GUITools.newImageButton(Data.getInstance()
-				.getIcon("blank_25x25.png"), Data.getInstance().getIcon(
-				"blank_25x25.png"));
+				.getIcon("blank_25x25.png"),
+				Data.getInstance().getIcon("blank_25x25.png"));
 		strutButton.setEnabled(false);
 		buttonPanel.add(strutButton);
 
@@ -808,20 +776,18 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		 * Button for sorting the tree
 		 */
 		JButton buttonSort = GUITools.newImageButton(Data.getInstance()
-				.getIcon("sort_22x22_0.png"), Data.getInstance().getIcon(
-				"sort_22x22.png"));
-		buttonSort.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.sortCatalogs"));
+				.getIcon("sort_22x22_0.png"),
+				Data.getInstance().getIcon("sort_22x22.png"));
+		buttonSort.setToolTipText(_("Sort Catalogs in ABC order"));
 		buttonSort.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Data.getInstance().getAppData().sortCatalogsAlphabetical();
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(null, GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							GUITools.getMessagePane(exc.getMessage()),
+							_("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -833,10 +799,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		 * Buttons for collapsing and expanding the whole tree
 		 */
 		JButton buttonExpandAll = GUITools.newImageButton(Data.getInstance()
-				.getIcon("expandTree_25x25_0.png"), Data.getInstance().getIcon(
-				"expandTree_25x25.png"));
-		buttonExpandAll.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.expandAll"));
+				.getIcon("expandTree_25x25_0.png"),
+				Data.getInstance().getIcon("expandTree_25x25.png"));
+		buttonExpandAll.setToolTipText(_("Expand whole tree"));
 		buttonExpandAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -848,8 +813,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		JButton buttonCollapseAll = GUITools.newImageButton(Data.getInstance()
 				.getIcon("collapseTree_25x25_0.png"), Data.getInstance()
 				.getIcon("collapseTree_25x25.png"));
-		buttonCollapseAll.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.collapseAll"));
+		buttonCollapseAll.setToolTipText(_("Collapse whole tree"));
 		buttonCollapseAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -880,13 +844,11 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		GridBagLayout gblView = new GridBagLayout();
 		final JPanel panelView = new JPanel(gblView);
 
-		rbReviewersView = new JRadioButton(Data.getInstance().getLocaleStr(
-				"aspectsManager.attendeeView"), Data.getInstance().getIcon(
-				"reviewers_16x16.png"));
+		rbReviewersView = new JRadioButton(_("Show Reviewers"), Data
+				.getInstance().getIcon("reviewers_16x16.png"));
 
-		rbAspectsView = new JRadioButton(Data.getInstance().getLocaleStr(
-				"aspectsManager.aspectView"), Data.getInstance().getIcon(
-				"aspects_16x16.png"));
+		rbAspectsView = new JRadioButton(_("Show assigned Aspects"), Data
+				.getInstance().getIcon("aspects_16x16.png"));
 
 		rbReviewersView.setFont(UI.STANDARD_FONT.deriveFont(Font.BOLD));
 		rbReviewersView.setCursor(Cursor
@@ -955,19 +917,18 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Button to allocate aspects to all reviewers
 		 */
-		buttonAllocAll = GUITools.newImageButton(Data.getInstance().getIcon(
-				"allocAspAll_32x32_0.png"), Data.getInstance().getIcon(
-				"allocAspAll_32x32.png"));
-		buttonAllocAll.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.addAspsToAll"));
+		buttonAllocAll = GUITools.newImageButton(
+				Data.getInstance().getIcon("allocAspAll_32x32_0.png"), Data
+						.getInstance().getIcon("allocAspAll_32x32.png"));
+		buttonAllocAll
+				.setToolTipText(_("Assign selected Aspects to all Reviewers"));
 		buttonAllocAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SwingWorker<Void, Void> allocWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode(Data.getInstance().getLocaleStr(
-								"status.allocatingAspects"));
+						switchToProgressMode(_("Allocating aspects ..."));
 
 						observeResiData(false);
 
@@ -981,14 +942,13 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 								}
 							}
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(null, GUITools
-									.getMessagePane(exc.getMessage()), Data
-									.getInstance().getLocaleStr("error"),
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,
+									GUITools.getMessagePane(exc.getMessage()),
+									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
-						setStatusMessage(Data.getInstance().getLocaleStr(
-								"status.aspectsAllocated"), false);
+						setStatusMessage(_("Aspects allocated successfully."),
+								false);
 
 						observeResiData(true);
 
@@ -1020,19 +980,18 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Button to allocate aspects to the selected reviewer
 		 */
-		buttonAlloc = GUITools.newImageButton(Data.getInstance().getIcon(
-				"allocAsp_32x32_0.png"), Data.getInstance().getIcon(
-				"allocAsp_32x32.png"));
-		buttonAlloc.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.addAspsToRev"));
+		buttonAlloc = GUITools.newImageButton(
+				Data.getInstance().getIcon("allocAsp_32x32_0.png"), Data
+						.getInstance().getIcon("allocAsp_32x32.png"));
+		buttonAlloc
+				.setToolTipText(_("Assign selected Aspects to the displayed Reviewer"));
 		buttonAlloc.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SwingWorker<Void, Void> allocWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode(Data.getInstance().getLocaleStr(
-								"status.allocatingAspects"));
+						switchToProgressMode(_("Cannot allocate aspects!"));
 
 						observeResiData(false);
 
@@ -1042,14 +1001,13 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 										selectedReviewer);
 							}
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(null, GUITools
-									.getMessagePane(exc.getMessage()), Data
-									.getInstance().getLocaleStr("error"),
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,
+									GUITools.getMessagePane(exc.getMessage()),
+									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
-						setStatusMessage(Data.getInstance().getLocaleStr(
-								"status.aspectsAllocated"), false);
+						setStatusMessage(_("Aspects allocated successfully."),
+								false);
 
 						observeResiData(true);
 
@@ -1258,7 +1216,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	public AspectsManagerFrame(Frame parent) {
 		super();
 
-		setTitle(Data.getInstance().getLocaleStr("aspectsManager.title"));
+		setTitle(_("Aspects Manager"));
 		getContentPane().setLayout(new BorderLayout());
 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -1321,8 +1279,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		setLocationToCenter();
 
-		setStatusMessage(Data.getInstance().getLocaleStr(
-				"status.aspectsManagerLoaded"), false);
+		setStatusMessage(_("Aspects Manager loaded successfully."), false);
 
 		setLayout(new BorderLayout());
 
@@ -1335,10 +1292,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		add(splitPane, BorderLayout.CENTER);
 		GridBagLayout gbl = new GridBagLayout();
 		JPanel closePanel = new JPanel(gbl);
-		JButton closeButton = new JButton(Data.getInstance().getLocaleStr(
-				"close"));
-		closeButton.setToolTipText(Data.getInstance().getLocaleStr(
-				"aspectsManager.close"));
+		JButton closeButton = new JButton(_("Close"));
+		closeButton.setToolTipText(_("Close Aspects Manager"));
 		closeButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -1403,9 +1358,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					GUITools.executeSwingWorker(new LoadStdCatalogsWorker());
 				}
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this,
+						GUITools.getMessagePane(e.getMessage()), _("Error"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 			rbReviewersView.setSelected(true);
@@ -1582,8 +1537,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			 */
 			updateToolBar();
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(this,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1662,21 +1617,21 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
-		hintMinOneAsp = new HintItem(Data.getInstance().getLocaleStr(
-				"aspectsManager.hintMinOneAsp"), HintItem.WARNING,
-				"aspects_management");
+		hintMinOneAsp = new HintItem(
+				_("You have to assign at least one aspect to a reviewer."),
+				HintItem.WARNING, "aspects_management");
 
-		hintMinOneRev = new HintItem(Data.getInstance().getLocaleStr(
-				"aspectsManager.hintMinOneRev"), HintItem.WARNING,
-				"aspects_management");
+		hintMinOneRev = new HintItem(
+				_("In order to assign aspects to reviewers you have to add at least one reviewer to the review."),
+				HintItem.WARNING, "aspects_management");
 
-		hintInfoAlloc = new HintItem(Data.getInstance().getLocaleStr(
-				"aspectsManager.hintInfoAlloc"), HintItem.INFO,
-				"aspects_management");
+		hintInfoAlloc = new HintItem(
+				_("You can assign catalogs, categories or aspects to the reviewers after selecting them by double click."),
+				HintItem.INFO, "aspects_management");
 
-		hintInfoImpExp = new HintItem(Data.getInstance().getLocaleStr(
-				"aspectsManager.hintInfoImpExp"), HintItem.INFO,
-				"aspects_management");
+		hintInfoImpExp = new HintItem(
+				_("You can import complete catalogs or selected aspects by using the provided buttons in the tool bar."),
+				HintItem.INFO, "aspects_management");
 	}
 
 	/**
@@ -1710,8 +1665,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		if (UI.getInstance().getStatus() == UI.Status.NO_FILE_LOADED) {
 			rightPanel.removeAll();
 
-			JLabel labelDesc = GUITools.getMessagePane(Data.getInstance()
-					.getLocaleStr("aspectsManager.noReviewLoaded"));
+			JLabel labelDesc = GUITools
+					.getMessagePane(_("No review is loaded. Therefore you can only work in the library with its catalogs and aspects."));
 			labelDesc.setHorizontalAlignment(JLabel.CENTER);
 			labelDesc.setForeground(Color.GRAY);
 
@@ -1719,8 +1674,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		} else if (!existReviewers()) {
 			rightPanel.removeAll();
 
-			JLabel labelDesc = GUITools.getMessagePane(Data.getInstance()
-					.getLocaleStr("aspectsManager.noReviewers"));
+			JLabel labelDesc = GUITools
+					.getMessagePane(_("There aren't any reviewers existing in the review. After adding at least one reviewer by using the 'Add Attendee' button you can assign them aspects from the existing catalogs."));
 			labelDesc.setHorizontalAlignment(JLabel.CENTER);
 			labelDesc.setForeground(Color.GRAY);
 

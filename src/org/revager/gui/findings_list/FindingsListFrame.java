@@ -16,7 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.protocol;
+package org.revager.gui.findings_list;
+
+import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -41,6 +43,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,12 +66,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.NumberEditor;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
-import javax.swing.JSpinner.NumberEditor;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -93,12 +96,12 @@ import org.revager.gui.actions.attendee.AddAttToProtAction;
 import org.revager.gui.actions.attendee.AddResiAttToProtAction;
 import org.revager.gui.actions.attendee.EditAttFromProtAction;
 import org.revager.gui.actions.attendee.RemAttFromProtAction;
+import org.revager.gui.findings_list.graphical_annotations.ImageEditorDialog;
 import org.revager.gui.helpers.DatePicker;
 import org.revager.gui.helpers.HintItem;
 import org.revager.gui.helpers.ObservingTextField;
 import org.revager.gui.models.PresentAttendeesTableModel;
 import org.revager.gui.models.RotateSpinnerNumberModel;
-import org.revager.gui.protocol.graphical_annotations.ImageEditorDialog;
 import org.revager.gui.workers.ImageEditorWriteWorker;
 import org.revager.gui.workers.ProtocolClockWorker;
 import org.revager.tools.GUITools;
@@ -107,7 +110,7 @@ import org.revager.tools.GUITools;
  * The Class ProtocolFrame.
  */
 @SuppressWarnings("serial")
-public class ProtocolFrame extends AbstractFrame implements Observer {
+public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private final ImageIcon ICON_TAB_OK = Data.getInstance().getIcon(
 			"tabOk_24x24.png");
@@ -328,13 +331,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		tabbedPane.setTabPlacement(JTabbedPane.TOP);
 
-		tabbedPane.add(Data.getInstance().getLocaleStr("editProtocol.org"),
-				tabPanelOrg);
-		tabbedPane.add(
-				Data.getInstance().getLocaleStr("editProtocol.findings"),
-				tabPanelFindings);
-		tabbedPane.add(Data.getInstance().getLocaleStr(
-				"editProtocol.commAndRec"), tabPanelCommAndRec);
+		tabbedPane.add(_("Organizational"), tabPanelOrg);
+		tabbedPane.add(_("Findings"), tabPanelFindings);
+		tabbedPane.add(_("Impression · Comments · Recommendation"),
+				tabPanelCommAndRec);
 
 		tabbedPane.addChangeListener(tabChangeListener);
 
@@ -351,11 +351,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 */
 	private void createToolBar() {
 
-		tbConfirmProt = GUITools.newImageButton(Data.getInstance().getIcon(
-				"confirmProtocol_50x50_0.png"), Data.getInstance().getIcon(
-				"confirmProtocol_50x50.png"));
-		tbConfirmProt.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.confirmProt"));
+		tbConfirmProt = GUITools.newImageButton(
+				Data.getInstance().getIcon("confirmProtocol_50x50_0.png"), Data
+						.getInstance().getIcon("confirmProtocol_50x50.png"));
+		tbConfirmProt.setToolTipText(_("Confirm and close list of findings"));
 		tbConfirmProt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -372,21 +371,19 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		addTopComponent(tbConfirmProt);
 
-		tbExitProt = GUITools.newImageButton(Data.getInstance().getIcon(
-				"exitProtocol_50x50_0.png"), Data.getInstance().getIcon(
-				"exitProtocol_50x50.png"));
-		tbExitProt.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.exitProt"));
+		tbExitProt = GUITools.newImageButton(
+				Data.getInstance().getIcon("exitProtocol_50x50_0.png"), Data
+						.getInstance().getIcon("exitProtocol_50x50.png"));
+		tbExitProt.setToolTipText(_("Close list of findings"));
 		tbExitProt.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int option = JOptionPane.showConfirmDialog(org.revager.gui.UI
-						.getInstance().getProtocolFrame(), GUITools
-						.getMessagePane(Data.getInstance().getLocaleStr(
-								"message.exitProtocol")), Data.getInstance()
-						.getLocaleStr("question"), JOptionPane.YES_NO_OPTION,
+				int option = JOptionPane.showConfirmDialog(
+						org.revager.gui.UI.getInstance().getProtocolFrame(),
+						GUITools.getMessagePane(_("You didn't enter all the required information. If you close the list of findings all the findings will be lost. Would you really like to continue?")),
+						_("Question"), JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 
 				if (option == JOptionPane.YES_OPTION) {
@@ -405,11 +402,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		sepBttn.setEnabled(false);
 		addTopComponent(sepBttn);
 
-		tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon(
-				"PDFExport_50x50_0.png"), Data.getInstance().getIcon(
-				"PDFExport_50x50.png"));
-		tbPdfExport.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.pdfExport"));
+		tbPdfExport = GUITools.newImageButton(
+				Data.getInstance().getIcon("PDFExport_50x50_0.png"), Data
+						.getInstance().getIcon("PDFExport_50x50.png"));
+		tbPdfExport.setToolTipText(_("Export List of Findings as PDF File"));
 		tbPdfExport.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -421,11 +417,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		addTopComponent(tbPdfExport);
 
-		tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon(
-				"CSVExport_50x50_0.png"), Data.getInstance().getIcon(
-				"CSVExport_50x50.png"));
-		tbCsvExport.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.csvExport"));
+		tbCsvExport = GUITools.newImageButton(
+				Data.getInstance().getIcon("CSVExport_50x50_0.png"), Data
+						.getInstance().getIcon("CSVExport_50x50.png"));
+		tbCsvExport.setToolTipText(_("Export List of Findings as CSV File"));
 		tbCsvExport.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -444,21 +439,19 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					"fullscreenClose_50x50_0.png"));
 			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
 					"fullscreenClose_50x50.png"));
-			tbFullscreen.setToolTipText(Data.getInstance().getLocaleStr(
-					"editProtocol.closeFullscreen"));
+			tbFullscreen.setToolTipText(_("Exit Fullscreen"));
 		} else {
 			tbFullscreen.setIcon(Data.getInstance().getIcon(
 					"fullscreen_50x50_0.png"));
 			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
 					"fullscreen_50x50.png"));
-			tbFullscreen.setToolTipText(Data.getInstance().getLocaleStr(
-					"editProtocol.openFullscreen"));
+			tbFullscreen.setToolTipText(_("Change to Fullscreen mode"));
 		}
 		tbFullscreen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getProtocolFrame(!isFullscreen()).setVisible(
-						true);
+				UI.getInstance().getProtocolFrame(!isFullscreen())
+						.setVisible(true);
 			}
 		});
 
@@ -496,11 +489,10 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		clockButtonReset = GUITools.newImageButton(Data.getInstance().getIcon(
-				"clockReset_24x24_0.png"), Data.getInstance().getIcon(
-				"clockReset_24x24.png"));
-		clockButtonReset.setToolTipText(Data.getInstance().getLocaleStr(
-				"editProtocol.clock.reset"));
+		clockButtonReset = GUITools.newImageButton(
+				Data.getInstance().getIcon("clockReset_24x24_0.png"), Data
+						.getInstance().getIcon("clockReset_24x24.png"));
+		clockButtonReset.setToolTipText(_("Reset Stop Watch"));
 		clockButtonReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -531,15 +523,13 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					"clockPause_24x24_0.png"));
 			clockButtonStart.setRolloverIcon(Data.getInstance().getIcon(
 					"clockPause_24x24.png"));
-			clockButtonStart.setToolTipText(Data.getInstance().getLocaleStr(
-					"editProtocol.clock.pause"));
+			clockButtonStart.setToolTipText(_("Pause Stop Watch"));
 		} else {
 			clockButtonStart.setIcon(Data.getInstance().getIcon(
 					"clockStart_24x24_0.png"));
 			clockButtonStart.setRolloverIcon(Data.getInstance().getIcon(
 					"clockStart_24x24.png"));
-			clockButtonStart.setToolTipText(Data.getInstance().getLocaleStr(
-					"editProtocol.clock.start"));
+			clockButtonStart.setToolTipText(_("Start Stop Watch"));
 		}
 	}
 
@@ -557,8 +547,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				.setIcon(Data.getInstance().getIcon("addResiAtt_25x25_0.png"));
 		addResiAtt.setRolloverIcon(Data.getInstance().getIcon(
 				"addResiAtt_25x25.png"));
-		addResiAtt.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.resi.add"));
+		addResiAtt.setToolTipText(_("Add Attendee from the Attendee Pool"));
 		addResiAtt.addActionListener(ActionRegistry.getInstance().get(
 				AddResiAttToProtAction.class.getName()));
 		attendeeButtons.add(addResiAtt);
@@ -568,8 +557,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				"addAttendee_25x25_0.png"));
 		addAttendee.setRolloverIcon(Data.getInstance().getIcon(
 				"addAttendee_25x25.png"));
-		addAttendee.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.add"));
+		addAttendee.setToolTipText(_("Add Attendee"));
 		addAttendee.addActionListener(ActionRegistry.getInstance().get(
 				AddAttToProtAction.class.getName()));
 		attendeeButtons.add(addAttendee);
@@ -579,8 +567,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				"removeAttendee_25x25_0.png"));
 		removeAttendee.setRolloverIcon(Data.getInstance().getIcon(
 				"removeAttendee_25x25.png"));
-		removeAttendee.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.remove"));
+		removeAttendee.setToolTipText(_("Remove Attendee"));
 		removeAttendee.addActionListener(ActionRegistry.getInstance().get(
 				RemAttFromProtAction.class.getName()));
 		attendeeButtons.add(removeAttendee);
@@ -590,8 +577,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 				"editAttendee_25x25_0.png"));
 		editAttendee.setRolloverIcon(Data.getInstance().getIcon(
 				"editAttendee_25x25.png"));
-		editAttendee.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.edit"));
+		editAttendee.setToolTipText(_("Edit Attendee"));
 		editAttendee.addActionListener(ActionRegistry.getInstance().get(
 				EditAttFromProtAction.class.getName()));
 		attendeeButtons.add(editAttendee);
@@ -608,8 +594,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					ActionRegistry.getInstance().get(
-							EditAttFromProtAction.class.getName())
+					ActionRegistry.getInstance()
+							.get(EditAttFromProtAction.class.getName())
 							.actionPerformed(null);
 				}
 			}
@@ -664,8 +650,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		};
 
 		for (int i = 1; i <= 4; i++) {
-			presentAttTable.getColumnModel().getColumn(i).setCellRenderer(
-					renderer);
+			presentAttTable.getColumnModel().getColumn(i)
+					.setCellRenderer(renderer);
 		}
 
 		TableColumn col = presentAttTable.getColumnModel().getColumn(0);
@@ -724,18 +710,17 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		scrllP = GUITools.setIntoScrollPane(presentAttTable);
 		scrllP.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		scrllP.setToolTipText(Data.getInstance().getLocaleStr(
-				"editProtocol.addAttToMeet"));
+		scrllP.setToolTipText(_("Add Attendee to Meeting"));
 		scrllP.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (isAddResiAttPossible()) {
-					ActionRegistry.getInstance().get(
-							AddResiAttToProtAction.class.getName())
+					ActionRegistry.getInstance()
+							.get(AddResiAttToProtAction.class.getName())
 							.actionPerformed(null);
 				} else {
-					ActionRegistry.getInstance().get(
-							AddAttToProtAction.class.getName())
+					ActionRegistry.getInstance()
+							.get(AddAttToProtAction.class.getName())
 							.actionPerformed(null);
 				}
 			}
@@ -757,8 +742,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		JLabel labelAttendees = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.reviewAtt"));
+		JLabel labelAttendees = new JLabel(
+				_("Attendees of the current meeting:"));
 		labelAttendees.setFont(UI.PROTOCOL_TITLE_FONT);
 
 		GUITools.addComponent(attPanel, gbl, labelAttendees, 0, 0, 2, 1, 1.0,
@@ -776,24 +761,18 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 * Creates the bottom org panel.
 	 */
 	private void createBottomOrgPanel() {
-		JLabel locationLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.location"));
+		JLabel locationLbl = new JLabel(_("Location:"));
 		locationLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel dateLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.date"));
+		JLabel dateLbl = new JLabel(_("Date:"));
 		dateLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel beginLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.time"));
+		JLabel beginLbl = new JLabel(_("Period of time:"));
 		beginLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel tillLabel = new JLabel(Data.getInstance().getLocaleStr(
-				"editMeeting.period.till"));
+		JLabel tillLabel = new JLabel(_("to"));
 		tillLabel.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel clockLabel = new JLabel(Data.getInstance().getLocaleStr(
-				"editMeeting.period.clock"));
 		clockLabel.setFont(UI.PROTOCOL_FONT_BOLD);
 
 		dateTxtFld = new ObservingTextField();
@@ -936,9 +915,6 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		GUITools.addComponent(spinnerPanel, gbl, endMSpinner, 6, 0, 1, 1, 0, 0,
 				0, 5, 0, 0, GridBagConstraints.VERTICAL,
 				GridBagConstraints.NORTHEAST);
-		GUITools.addComponent(spinnerPanel, gbl, clockLabel, 7, 0, 1, 1, 1.0,
-				0, 0, 10, 0, 0, GridBagConstraints.VERTICAL,
-				GridBagConstraints.CENTER);
 
 		/*
 		 * adding created components to orgpanel
@@ -971,20 +947,16 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 * Creates the comm and rate panel.
 	 */
 	private void createCommAndRatePanel() {
-		JLabel impLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.imp"));
+		JLabel impLbl = new JLabel(_("General impression of the product:"));
 		impLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel recLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.rec"));
+		JLabel recLbl = new JLabel(_("Final recommendation for the product:"));
 		recLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel meetCommLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.meetComm"));
+		JLabel meetCommLbl = new JLabel(_("Comments on the meeting:"));
 		meetCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel protCommLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"editProtocol.protComm"));
+		JLabel protCommLbl = new JLabel(_("Comments on the list of findings:"));
 		protCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
 		KeyListener tabKeyListener = new KeyListener() {
@@ -1041,8 +1013,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		protCommTxtArea.addKeyListener(updateListener);
 		protCommTxtArea.addKeyListener(tabKeyListener);
 
-		for (String rec : Data.getInstance()
-				.getLocaleStr("standardImpressions").split(",")) {
+		for (String rec : Data.getStandardRecommendations()) {
 			recBx.addItem(rec);
 		}
 		recBx.setSelectedIndex(0);
@@ -1139,15 +1110,13 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 			if (seconds > warningTime * 60 && showWarning
 					&& !clockWorker.isWarningDisplayed()) {
-				String message = Data.getInstance().getLocaleStr(
-						"editProtocol.message.protWarn");
-				message = message.replace("<minutes>", Integer
-						.toString(warningTime));
+				String message = MessageFormat
+						.format(_("This review meeting is running for {0} minutes already. Therefore it is recommended to finalize the meeting now and continue the review at a later point in time."),
+								Integer.toString(warningTime));
 
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getProtocolFrame(), GUITools.getMessagePane(message),
-						Data.getInstance().getLocaleStr("info"),
-						JOptionPane.INFORMATION_MESSAGE);
+						_("Information"), JOptionPane.INFORMATION_MESSAGE);
 
 				clockWorker.setWarningDisplayed(true);
 			}
@@ -1172,7 +1141,7 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 * @param fullscreen
 	 *            the fullscreen
 	 */
-	public ProtocolFrame(boolean fullscreen) {
+	public FindingsListFrame(boolean fullscreen) {
 		super();
 
 		this.fullscreen = fullscreen;
@@ -1189,9 +1158,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 
 		UI.getInstance().getProtocolClockWorker().addObserverFrame(this);
 
-		setTitle(Data.getInstance().getLocaleStr("editProtocol.title"));
-		setStatusMessage(Data.getInstance().getLocaleStr(
-				"editProtocol.startStatus"), false);
+		setTitle(_("List of Findings"));
+		setStatusMessage(_("List of findings successfully loaded."), false);
 
 		getContentPane().setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -1258,19 +1226,15 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (tbConfirmProt.isVisible()) {
-					Object[] options = {
-							Data.getInstance().getLocaleStr("button.close"),
-							Data.getInstance().getLocaleStr("button.discard"),
-							Data.getInstance().getLocaleStr("button.abort") };
+					Object[] options = { _("Close"), _("Discard"), _("Cancel") };
 
-					int option = JOptionPane.showOptionDialog(UI.getInstance()
-							.getProtocolFrame(), GUITools.getMessagePane(Data
-							.getInstance().getLocaleStr(
-									"message.confirmProtocol")), Data
-							.getInstance().getLocaleStr("question"),
-							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[0]);
+					int option = JOptionPane
+							.showOptionDialog(
+									UI.getInstance().getProtocolFrame(),
+									GUITools.getMessagePane(_("Would you like to complete or discard the current findings list?")),
+									_("Question"), JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null,
+									options, options[0]);
 
 					if (option == JOptionPane.YES_OPTION) {
 						GUITools.executeSwingWorker(new ImageEditorWriteWorker(
@@ -1284,13 +1248,12 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 					}
 				} else {
 
-					int option = JOptionPane.showConfirmDialog(UI.getInstance()
-							.getProtocolFrame(), GUITools
-							.getMessagePane(Data.getInstance().getLocaleStr(
-									"message.exitProtocol")), Data
-							.getInstance().getLocaleStr("question"),
-							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE);
+					int option = JOptionPane
+							.showConfirmDialog(
+									UI.getInstance().getProtocolFrame(),
+									GUITools.getMessagePane(_("You didn't enter all the required information. If you close the list of findings all the findings will be lost. Would you really like to continue?")),
+									_("Question"), JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE);
 
 					if (option == JOptionPane.YES_OPTION) {
 						UI.getInstance().getProtocolFrame().setVisible(false);
@@ -1422,8 +1385,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	public boolean isAddResiAttPossible() {
 		for (Attendee att : Application.getInstance().getAttendeeMgmt()
 				.getAttendees()) {
-			if (!Application.getInstance().getProtocolMgmt().isAttendee(att,
-					currentProt)) {
+			if (!Application.getInstance().getProtocolMgmt()
+					.isAttendee(att, currentProt)) {
 				return true;
 			}
 		}
@@ -1495,8 +1458,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	public void updateResiData() {
 
 		try {
-			currentProt.setDate(GUITools.dateString2Calendar(dateTxtFld
-					.getText(), dateF));
+			currentProt.setDate(GUITools.dateString2Calendar(
+					dateTxtFld.getText(), dateF));
 		} catch (ParseException e) {
 
 			currentProt.setDate(null);
@@ -1505,24 +1468,24 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		currentProt.setLocation(locationTxtFld.getText());
 
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MINUTE, Integer.parseInt(beginMSpinner.getValue()
-				.toString()));
-		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(beginHSpinner.getValue()
-				.toString()));
+		cal.set(Calendar.MINUTE,
+				Integer.parseInt(beginMSpinner.getValue().toString()));
+		cal.set(Calendar.HOUR_OF_DAY,
+				Integer.parseInt(beginHSpinner.getValue().toString()));
 		currentProt.setStart(cal);
 
 		Calendar calEnd = Calendar.getInstance();
-		calEnd.set(Calendar.MINUTE, Integer.parseInt(endMSpinner.getValue()
-				.toString()));
-		calEnd.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endHSpinner
-				.getValue().toString()));
+		calEnd.set(Calendar.MINUTE,
+				Integer.parseInt(endMSpinner.getValue().toString()));
+		calEnd.set(Calendar.HOUR_OF_DAY,
+				Integer.parseInt(endHSpinner.getValue().toString()));
 		currentProt.setEnd(calEnd);
 
 		revMgmt.setImpression(impTxtArea.getText());
 
 		String comm = meetCommTxtArea.getText();
-		Application.getInstance().getMeetingMgmt().setMeetingComment(comm,
-				currentMeet);
+		Application.getInstance().getMeetingMgmt()
+				.setMeetingComment(comm, currentMeet);
 
 		revMgmt.setRecommendation((String) recBx.getSelectedItem());
 
@@ -1558,8 +1521,8 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 		boolean mark = false;
 
 		try {
-			if (Data.getInstance().getAppData().getSettingValue(
-					AppSettingKey.APP_HIGHLIGHT_FIELDS) == AppSettingValue.TRUE) {
+			if (Data.getInstance().getAppData()
+					.getSettingValue(AppSettingKey.APP_HIGHLIGHT_FIELDS) == AppSettingValue.TRUE) {
 				mark = true;
 			}
 		} catch (DataException e) {
@@ -1581,47 +1544,61 @@ public class ProtocolFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
-		hintAtt = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintAtt"), HintItem.WARNING);
+		hintAtt = new HintItem(
+				_("Please add at least one attendee to the meeting by choosing one from the attendee pool or create a new one."),
+				HintItem.WARNING);
 
-		hintLoc = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintLoc"), HintItem.WARNING);
+		hintLoc = new HintItem(
+				_("Please enter the location of the meeting into the provided text field."),
+				HintItem.WARNING);
 
-		hintDate = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintDate"), HintItem.WARNING);
+		hintDate = new HintItem(
+				_("Please enter the date of the meeting into the provided text field."),
+				HintItem.WARNING);
 
-		hintImpr = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintImp"), HintItem.WARNING);
+		hintImpr = new HintItem(
+				_("Please enter the general impression of the product into the provided text field."),
+				HintItem.WARNING);
 
-		hintRec = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintRec"), HintItem.WARNING);
+		hintRec = new HintItem(
+				_("In order to complete the current review select a final recommendation for the product or enter your an individual one and confirm it by pressing the enter key."),
+				HintItem.WARNING);
 
-		hintRevConf = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintRevConf"), HintItem.WARNING);
+		hintRevConf = new HintItem(
+				_("In order to complete the current review all required information have to be entered. Meetings which haven't been canceled, aborted or this one which do not have a list of findings have to be removed."),
+				HintItem.WARNING);
 
-		hintFind = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintFind"), HintItem.WARNING);
+		hintFind = new HintItem(
+				_("For every finding enter at least a description."),
+				HintItem.WARNING);
 
-		hintOk = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintOk"), HintItem.OK);
+		hintOk = new HintItem(
+				_("The meeting data and its list of findings is complete."),
+				HintItem.OK);
 
-		hintFindOk = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintFindOk"), HintItem.OK);
+		hintFindOk = new HintItem(
+				_("All the findings are complete. If you would like to finalize the list of findings click on the tab 'Impression · Comments · Recommendation'."),
+				HintItem.OK);
 
-		hintOrgOk = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintOrgOk"), HintItem.OK);
+		hintOrgOk = new HintItem(
+				_("The organizational information is complete. If you like to continue click on the tab 'Findings'."),
+				HintItem.OK);
 
-		hintCommAndRecOk = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintCommAndRecOk"), HintItem.OK);
+		hintCommAndRecOk = new HintItem(
+				_("The information on 'Impression · Comments · Recommendation' is complete. Once you have completed all the required information, you can finalize the list of findings."),
+				HintItem.OK);
 
-		hintInfoFind = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintInfoFind"), HintItem.INFO);
+		hintInfoFind = new HintItem(
+				_("As soon as you have completed the list of findings you can continue by clicking on the tab 'Impression · Comments · Recommendation'"),
+				HintItem.INFO);
 
-		hintInfoNewFinding = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintInfoNewFinding"), HintItem.INFO);
+		hintInfoNewFinding = new HintItem(
+				_("In order to add a new finding to the list of findings use the 'Add Finding' button"),
+				HintItem.INFO);
 
-		hintInfoAddAttendee = new HintItem(Data.getInstance().getLocaleStr(
-				"editProtocol.hintInfoAddAtt"), HintItem.INFO);
+		hintInfoAddAttendee = new HintItem(
+				_("In order to add a new attendee to the current meeting use the 'Add Attendee' or 'Add Attendee from the Attendee Pool' button."),
+				HintItem.INFO);
 
 	}
 

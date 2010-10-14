@@ -18,13 +18,13 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Finding;
-
 
 /**
  * The Class FindRefTableModel.
@@ -102,7 +102,7 @@ public class FindRefTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
 	public String getColumnName(int column) {
-		return Data.getInstance().getLocaleStr("findRefTM.title");
+		return _("References");
 	}
 
 }

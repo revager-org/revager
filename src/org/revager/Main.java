@@ -18,6 +18,8 @@
  */
 package org.revager;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
@@ -31,7 +33,6 @@ import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.gui.UI;
 import org.revager.tools.FileTools;
 import org.revager.tools.GUITools;
-
 
 /**
  * Starts the Resi application.
@@ -56,8 +57,8 @@ public class Main {
 		 */
 		if (args.length >= 2) {
 			if (args[0].trim().equals("-data")) {
-				Data.getInstance().getAppData().setCustomAppDataDirectory(
-						args[1].trim());
+				Data.getInstance().getAppData()
+						.setCustomAppDataDirectory(args[1].trim());
 			}
 		}
 
@@ -79,14 +80,14 @@ public class Main {
 			/*
 			 * Set the language
 			 */
-			String lang = Data.getInstance().getAppData().getSetting(
-					AppSettingKey.APP_LANGUAGE);
+			String lang = Data.getInstance().getAppData()
+					.getSetting(AppSettingKey.APP_LANGUAGE);
 
 			if (lang == null) {
-				lang = Data.getInstance().getResource("appDefaultLang");
+				lang = Locale.getDefault().getLanguage();
 
-				Data.getInstance().getAppData().setSetting(
-						AppSettingKey.APP_LANGUAGE, lang);
+				Data.getInstance().getAppData()
+						.setSetting(AppSettingKey.APP_LANGUAGE, lang);
 			}
 
 			Data.getInstance().setLocale(new Locale(lang));
@@ -103,8 +104,8 @@ public class Main {
 
 			SwingUtilities.invokeLater(ui);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			System.err.println(e.getMessage());
@@ -140,8 +141,7 @@ public class Main {
 		for (String dir : possibleDirectories) {
 			if (new File(dir
 					+ Data.getInstance().getResource("dataDirectoryNameOld"))
-					.exists()
-					&& oldDataPathFound == false) {
+					.exists() && oldDataPathFound == false) {
 				oldDataPathFound = true;
 
 				oldDataPath = dir
@@ -156,8 +156,7 @@ public class Main {
 		for (String dir : possibleDirectories) {
 			if (new File(dir
 					+ Data.getInstance().getResource("dataDirectoryName"))
-					.exists()
-					&& newDataPathExist == false) {
+					.exists() && newDataPathExist == false) {
 				newDataPathExist = true;
 			}
 		}
@@ -178,17 +177,18 @@ public class Main {
 		 * Ask user to migrate old data
 		 */
 		if (oldDataPathFound && newDataPathFound && !newDataPathExist) {
-			if (JOptionPane.showConfirmDialog(null, GUITools
-					.getMessagePane(Data.getInstance().getLocaleStr(
-							"migration.message")), Data.getInstance()
-					.getLocaleStr("question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if (JOptionPane
+					.showConfirmDialog(
+							null,
+							GUITools.getMessagePane(_("RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?")),
+							_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				try {
 					FileTools.copyDirectory(new File(oldDataPath), new File(
 							newDataPath));
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, GUITools
-							.getMessagePane(e.getMessage()), Data.getInstance()
-							.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							GUITools.getMessagePane(e.getMessage()),
+							_("Error"), JOptionPane.ERROR_MESSAGE);
 
 					System.err.println(e.getMessage());
 				}

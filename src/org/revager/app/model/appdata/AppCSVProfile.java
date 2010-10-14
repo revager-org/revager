@@ -18,6 +18,8 @@
  */
 package org.revager.app.model.appdata;
 
+import static org.revager.app.model.Data._;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +30,6 @@ import java.util.Set;
 
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
-
 
 /**
  * Instances of this class represent CSV profiles in the database.
@@ -43,9 +44,8 @@ public class AppCSVProfile {
 	/**
 	 * This exception is thrown if the CSV profile could not be found.
 	 */
-	private DataException notFoundExc = new DataException(Data.getInstance()
-			.getLocaleStr("message.appCSVProfileNotFound")
-			+ " [NAME = " + this.name + "]");
+	private DataException notFoundExc = new DataException(
+			_("CSV profile does not exist!") + " [NAME = " + this.name + "]");
 
 	/**
 	 * Internally used constructor to create a new instance of this class.
@@ -158,8 +158,7 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.newInstAppCSVProfileFailed")
+			throw new DataException(_("Cannot add or get CSV profile.")
 					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
@@ -232,9 +231,10 @@ public class AppCSVProfile {
 					throw new DataException();
 				}
 			} catch (Exception e) {
-				throw new DataException(Data.getInstance().getLocaleStr(
-						"message.setAppCSVProfileNameFailed")
-						+ " [NAME = " + this.name + "] " + e.getMessage());
+				throw new DataException(
+						_("Cannot store name of the CSV profile.")
+								+ " [NAME = " + this.name + "] "
+								+ e.getMessage());
 			}
 		}
 	}
@@ -275,9 +275,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfileColumnOrderFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get column order of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return colList;
@@ -343,9 +343,9 @@ public class AppCSVProfile {
 				throw new DataException();
 			}
 		} catch (Exception e) {
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppCSVProfileColumnOrderFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot set column order of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 	}
 
@@ -383,9 +383,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the requested property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return cfl;
@@ -424,9 +424,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 	}
 
@@ -463,9 +463,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the requested property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return ec;
@@ -504,9 +504,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 	}
 
@@ -549,9 +549,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the requested property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return mapping;
@@ -595,9 +595,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the requested property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return existMapping;
@@ -650,9 +650,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 	}
 
@@ -694,9 +694,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 	}
 
@@ -735,9 +735,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the requested property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return mappings;
@@ -814,9 +814,9 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppCSVProfilePropertyFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store property of the selected CSV profile.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 	}
 

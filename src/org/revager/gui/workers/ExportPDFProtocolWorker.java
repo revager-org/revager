@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -31,14 +33,12 @@ import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
 import org.revager.app.ResiFileFilter;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Meeting;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
+import org.revager.gui.findings_list.FindingsListFrame;
 import org.revager.gui.helpers.FileChooser;
-import org.revager.gui.protocol.ProtocolFrame;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for creating protocols.
@@ -53,7 +53,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 	@Override
 	protected Void doInBackground() {
 		MainFrame mainFrame = UI.getInstance().getMainFrame();
-		ProtocolFrame protFrame = UI.getInstance().getProtocolFrame();
+		FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
 
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -72,8 +72,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 		String fileName = null;
 
 		if (UI.getInstance().getExportPDFProtocolDialog().exportRev()) {
-			fileName = sdf.format(new Date()) + "_"
-					+ Data.getInstance().getLocaleStr("pdfExport.reviewProt");
+			fileName = sdf.format(new Date()) + "_" + _("Review_Findings_List");
 		} else {
 			int year = meet.getProtocol().getDate().get(Calendar.YEAR);
 			int month = meet.getProtocol().getDate().get(Calendar.MONTH) + 1;
@@ -91,7 +90,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 			}
 
 			fileName = year + "-" + monthStr + "-" + dayStr + "_"
-					+ Data.getInstance().getLocaleStr("pdfExport.meetingProt");
+					+ _("Review_Meeting_Findings_List");
 		}
 
 		fileChooser.setFile(new File(fileName));
@@ -107,11 +106,15 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 
 			try {
 				if (UI.getInstance().getExportPDFProtocolDialog().exportRev()) {
-					expFile = Application.getInstance().getImportExportCtl()
+					expFile = Application
+							.getInstance()
+							.getImportExportCtl()
 							.exportReviewProtocolPDF(filePath, showFields,
 									addExProRef, addExFindRef);
 				} else {
-					expFile = Application.getInstance().getImportExportCtl()
+					expFile = Application
+							.getInstance()
+							.getImportExportCtl()
 							.exportMeetingProtocolPDF(filePath, meet,
 									showFields, addExProRef, addExFindRef);
 				}
@@ -121,29 +124,33 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 						.switchToEditMode();
 
 				if (protFrame.isVisible()) {
-					protFrame.setStatusMessage(Data.getInstance().getLocaleStr(
-							"pdfExport.expSuccessful"), false);
+					protFrame
+							.setStatusMessage(
+									_("The findings list has been exported as a PDF file successfully."),
+									false);
 				} else {
-					mainFrame.setStatusMessage(Data.getInstance().getLocaleStr(
-							"pdfExport.expSuccessful"), false);
+					mainFrame
+							.setStatusMessage(
+									_("The findings list has been exported as a PDF file successfully."),
+									false);
 				}
 
 				try {
 					Desktop.getDesktop().open(expFile);
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, GUITools
-							.getMessagePane(Data.getInstance().getLocaleStr(
-									"message.openPdfFailed")), Data
-							.getInstance().getLocaleStr("error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(
+									null,
+									GUITools.getMessagePane(_("RevAger cannot find a PDF viewer on your machine. Please install a PDF Viewer, and open the findings list manually.")),
+									_("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 			} catch (Exception exc) {
 				UI.getInstance().getExportPDFProtocolDialog()
 						.switchToEditMode();
 
-				JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						GUITools.getMessagePane(exc.getMessage()), _("Error"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		}

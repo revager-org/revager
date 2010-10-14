@@ -18,11 +18,14 @@
  */
 package org.revager.gui.dialogs.assistant;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Window;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -71,10 +74,8 @@ public class LanguagePopupWindow extends JDialog {
 	/*
 	 * Strings
 	 */
-	private String germanStrng = Data.getInstance().getLocaleStr(
-			"popup.language.german");
-	private String englishStrng = Data.getInstance().getLocaleStr(
-			"popup.language.english");
+	private String germanStrng = Locale.GERMAN.getDisplayLanguage();
+	private String englishStrng = Locale.ENGLISH.getDisplayLanguage();
 
 	/*
 	 * ImageIcons
@@ -105,10 +106,10 @@ public class LanguagePopupWindow extends JDialog {
 	 */
 	public String getSelectedLanguage() {
 		if (languageGrp.getSelectedLinkText().contains(
-				Data.getInstance().getLocaleStr("popup.language.german")))
-			return "de";
+				Locale.GERMAN.getDisplayLanguage()))
+			return Locale.GERMAN.getLanguage();
 		else
-			return "en";
+			return Locale.ENGLISH.getLanguage();
 	}
 
 	/**
@@ -138,9 +139,9 @@ public class LanguagePopupWindow extends JDialog {
 		languageGrp.addLink(germanHLnk);
 		languageGrp.addLink(englishHLnk);
 
-		if (currentLang.equals("de"))
+		if (currentLang.equals(Locale.GERMAN.getLanguage()))
 			languageGrp.selectLink(germanHLnk);
-		else if (currentLang.equals("en"))
+		else if (currentLang.equals(Locale.ENGLISH.getLanguage()))
 			languageGrp.selectLink(englishHLnk);
 
 		GUITools.addComponent(inputPnl, gbl, germanHLnk, 0, 0, 1, 1, 1.0, 1.0,
@@ -160,7 +161,7 @@ public class LanguagePopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new LanguagePopupWindowAction(this,
 				ButtonClicked.ABORT));
 
@@ -169,15 +170,14 @@ public class LanguagePopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new LanguagePopupWindowAction(this,
 				ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons
-				.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(
+				panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

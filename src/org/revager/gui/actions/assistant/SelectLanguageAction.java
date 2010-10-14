@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions.assistant;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -35,7 +37,7 @@ import org.revager.gui.dialogs.assistant.LanguagePopupWindow;
  * activate the language changes.
  * 
  * @author D.Casciato
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class SelectLanguageAction extends AbstractAction {
@@ -54,17 +56,17 @@ public class SelectLanguageAction extends AbstractAction {
 
 		if (UI.getInstance().getAssistantDialog().isVisible())
 			popup = new LanguagePopupWindow(UI.getInstance()
-					.getAssistantDialog(), Data.getInstance().getLocaleStr(
-					"assistantDialog.selectLanguage"));
+					.getAssistantDialog(), _("Select Language"));
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == LanguagePopupWindow.ButtonClicked.OK) {
 			try {
-				appData.setSetting(AppSettingKey.APP_LANGUAGE, popup
-						.getSelectedLanguage());
-				UI.getInstance().getAssistantDialog().setMessage(
-						Data.getInstance().getLocaleStr(
-								"settingsDialog.general.langHintRestart"));
+				appData.setSetting(AppSettingKey.APP_LANGUAGE,
+						popup.getSelectedLanguage());
+				UI.getInstance()
+						.getAssistantDialog()
+						.setMessage(
+								_("You have to restart the application in order finalize the change of language!"));
 			} catch (DataException e) {
 				e.printStackTrace();
 			}

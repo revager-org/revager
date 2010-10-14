@@ -18,17 +18,17 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppCatalog;
 import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Aspects;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for importing aspects from a XML file.
@@ -67,8 +67,8 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame().switchToProgressMode(
-				Data.getInstance().getLocaleStr("status.importingAspects"));
+		UI.getInstance().getAspectsManagerFrame()
+				.switchToProgressMode(_("Importing aspects ..."));
 
 		try {
 			Aspects asps = Application.getInstance().getImportExportCtl()
@@ -79,34 +79,34 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 				String dir = asp.getDirective();
 
 				if (cate.trim().equals("")) {
-					cate = Data.getInstance().getLocaleStr(
-							"aspectsManager.stdCategory");
+					cate = _("(No Category)");
 				}
 
 				if (dir.trim().equals("")) {
-					dir = Data.getInstance().getLocaleStr(
-							"aspectsManager.stdDirective");
+					dir = _("(No Directive)");
 				}
 
 				catalog.newAspect(dir, asp.getDescription(), cate);
 			}
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr("status.aspectsImported"),
-					false);
+			UI.getInstance()
+					.getAspectsManagerFrame()
+					.setStatusMessage(_("Aspects imported successfully."),
+							false);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(Data
-					.getInstance().getLocaleStr("message.importFailed")
-					+ "\n\n" + e.getMessage()), Data.getInstance()
-					.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							null,
+							GUITools.getMessagePane(_("Cannot import selected file. The content isn't conform to the expected format (Resi XML Schema).")
+									+ "\n\n" + e.getMessage()), _("Error"),
+							JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr(
-							"status.importingAspectsFailed"), false);
+			UI.getInstance().getAspectsManagerFrame()
+					.setStatusMessage(_("Cannot import aspects!"), false);
 		}
 
-		UI.getInstance().getAspectsManagerFrame().updateTree(catalog, null,
-				null);
+		UI.getInstance().getAspectsManagerFrame()
+				.updateTree(catalog, null, null);
 
 		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 

@@ -18,6 +18,8 @@
  */
 package org.revager.app.model;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -126,8 +128,7 @@ public class ApplicationData extends Observable {
 			for (String dir : possibleDirectories) {
 				if (new File(dir
 						+ Data.getInstance().getResource("dataDirectoryName"))
-						.exists()
-						&& dbLocationFound == false) {
+						.exists() && dbLocationFound == false) {
 					dbLocationFound = true;
 
 					appDataPath = dir
@@ -168,12 +169,10 @@ public class ApplicationData extends Observable {
 				 * thrown if there occurs an internal error while creating the
 				 * tables.
 				 */
-				throw new DataException(Data.getInstance().getLocaleStr(
-						"message.sqlTableCreationFailed")
-						+ " [ERROR = "
-						+ e.getErrorCode()
-						+ " "
-						+ e.getMessage() + "]");
+				throw new DataException(
+						_("Cannot create tables in the database.")
+								+ " [ERROR = " + e.getErrorCode() + " "
+								+ e.getMessage() + "]");
 			}
 
 			fireDataChanged();
@@ -207,8 +206,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.dbOpenFailed"));
+			throw new DataException(
+					_("Cannot open or create the database for storing application data. Maybe RevAger is running already."));
 		}
 
 		return c;
@@ -530,8 +529,9 @@ public class ApplicationData extends Observable {
 		ps.executeUpdate();
 
 		ps.setString(1, AppSettingKey.PDF_INVITATION_TEXT.toString());
-		ps.setString(2, Data.getInstance().getLocaleStr(
-				"export.standardInvitationText"));
+		ps.setString(
+				2,
+				_("You are invited to the review meeting. Please consider the information which are part of this document."));
 		ps.executeUpdate();
 
 		/*
@@ -695,9 +695,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppSettingFailed")
-					+ " [SETTING = " + key + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot retrieve the requested application settings.")
+							+ " [SETTING = " + key + "] " + e.getMessage());
 		}
 
 		return setting;
@@ -769,8 +769,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.setAppSettingFailed")
+			throw new DataException(_("Cannot store application settings.")
 					+ " [SETTING = " + key + "] " + e.getMessage());
 		}
 	}
@@ -830,9 +829,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getLastReviewsFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot load the list of recent reviews.") + " "
+							+ e.getMessage());
 		}
 
 		return lastReviews;
@@ -895,9 +894,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.addLastReviewFailed")
-					+ " (" + filePath + ") " + e.getMessage());
+			throw new DataException(
+					_("Cannot add the current review to the list of recent reviews.")
+							+ " (" + filePath + ") " + e.getMessage());
 		}
 	}
 
@@ -931,9 +930,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.removeLastReviewFailed")
-					+ " (" + filePath + ") " + e.getMessage());
+			throw new DataException(
+					_("Cannot remove the review from the list of recent reviews.")
+							+ " (" + filePath + ") " + e.getMessage());
 		}
 	}
 
@@ -970,9 +969,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCatalogsFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot load catalogs from the catalog library.") + " "
+							+ e.getMessage());
 		}
 
 		return catalogs;
@@ -1041,8 +1040,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCatalogFailed")
+			throw new DataException(_("Cannot find requested catalog.")
 					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
@@ -1099,8 +1097,8 @@ public class ApplicationData extends Observable {
 
 		for (String category : origCatalog.getCategories()) {
 			for (AppAspect aspect : origCatalog.getAspects(category)) {
-				newCatalog.newAspect(aspect.getDirective(), aspect
-						.getDescription(), aspect.getCategory());
+				newCatalog.newAspect(aspect.getDirective(),
+						aspect.getDescription(), aspect.getCategory());
 			}
 		}
 
@@ -1125,8 +1123,11 @@ public class ApplicationData extends Observable {
 
 			for (int j = 0; j <= length - 1; j++, length--)
 				for (int i = 0; i < length - 1; i++) {
-					if (getCatalogs().get(i).getName().compareToIgnoreCase(
-							getCatalogs().get(i + 1).getName()) > 0) {
+					if (getCatalogs()
+							.get(i)
+							.getName()
+							.compareToIgnoreCase(
+									getCatalogs().get(i + 1).getName()) > 0) {
 						getCatalogs().get(i).pushDown();
 
 						count++;
@@ -1182,9 +1183,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.removeAppCatalogFailed")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(
+					_("An error occured while removing a catalog.")
+							+ " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1232,9 +1233,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getNumberOfAppCatalogsFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the number of catalogs in the library.")
+							+ " " + e.getMessage());
 		}
 
 		return numberOfCatalogs;
@@ -1273,9 +1274,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getFirstSortPosOfAppCatalogsFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the first sorting position of the catalogs.")
+							+ " " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1314,9 +1315,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getLastSortPosOfAppCatalogsFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the last sorting position of the catalogs.")
+							+ " " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1355,9 +1356,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppAttendeesFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot load attendees from the database.") + " "
+							+ e.getMessage());
 		}
 
 		return attendees;
@@ -1428,8 +1429,8 @@ public class ApplicationData extends Observable {
 			ResultSet res = ps.executeQuery();
 
 			if (res.next()) {
-				attendee = AppAttendee.newInstance(res.getString("name"), res
-						.getString("contact"));
+				attendee = AppAttendee.newInstance(res.getString("name"),
+						res.getString("contact"));
 			}
 
 			res.close();
@@ -1440,9 +1441,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppAttendeeFailed")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot find requested attendee. The requested attendee may not be existing.")
+							+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return attendee;
@@ -1526,9 +1527,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.removeAppAttendeeFailed")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(
+					_("An error occurred while removing an attendee.")
+							+ " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1576,9 +1577,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getNumberOfAppAttendeesFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the number of attendees in the database.")
+							+ " " + e.getMessage());
 		}
 
 		return numberOfAttendees;
@@ -1616,9 +1617,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfilesFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot load any CSV profile from the database.") + " "
+							+ e.getMessage());
 		}
 
 		return profiles;
@@ -1687,8 +1688,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCSVProfileFailed")
+			throw new DataException(_("Cannot load the requested CSV profile.")
 					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
@@ -1768,8 +1768,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.removeAppCSVProfileFailed")
+			throw new DataException(_("Cannot remove the CSV profile.")
 					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
@@ -1818,9 +1817,9 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getNumberOfAppCatalogsFailed")
-					+ " " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the number of catalogs in the library.")
+							+ " " + e.getMessage());
 		}
 
 		return numberOfCSVProfiles;

@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -44,7 +46,7 @@ import org.revager.tools.GUITools;
  * The Class OpenProtocolFrameAction.
  */
 @SuppressWarnings("serial")
-public class OpenProtocolFrameAction extends AbstractAction {
+public class OpenFindingsListAction extends AbstractAction {
 
 	private FindingManagement findingMgmt = Application.getInstance()
 			.getFindingMgmt();
@@ -54,11 +56,11 @@ public class OpenProtocolFrameAction extends AbstractAction {
 	/**
 	 * Instantiates a new open protocol frame action.
 	 */
-	public OpenProtocolFrameAction() {
+	public OpenFindingsListAction() {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuProt_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.protocolMode"));
+		putValue(NAME, _("Open/Create Findings List"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
@@ -111,8 +113,8 @@ public class OpenProtocolFrameAction extends AbstractAction {
 					findingMgmt.addFinding(newFind, currentProt);
 				}
 
-				Application.getInstance().getProtocolMgmt().setProtocol(
-						currentProt, editMeet);
+				Application.getInstance().getProtocolMgmt()
+						.setProtocol(currentProt, editMeet);
 
 				UI.getInstance().getProtocolFrame().resetClock();
 				UI.getInstance().getProtocolFrame().setMeeting(editMeet);

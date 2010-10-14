@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -65,8 +67,8 @@ import org.revager.app.model.appdata.AppCSVColumnName;
 import org.revager.app.model.appdata.AppCSVProfile;
 import org.revager.gui.AbstractDialog;
 import org.revager.gui.TextPopupWindow;
-import org.revager.gui.UI;
 import org.revager.gui.TextPopupWindow.ButtonClicked;
+import org.revager.gui.UI;
 import org.revager.gui.models.CSVColumnsComboBoxModel;
 import org.revager.gui.workers.CSVProfilesWorker;
 import org.revager.tools.GUITools;
@@ -125,17 +127,16 @@ public class CSVProfilesDialog extends AbstractDialog {
 	public CSVProfilesDialog(Frame parent) {
 		super(parent);
 
-		setTitle(Data.getInstance().getLocaleStr("csvProfDialog.title"));
+		setTitle(_("CSV Profiles for Finding Export"));
 		setIcon(Data.getInstance().getIcon("CSVProfiles_64x64.png"));
-		setDescription(Data.getInstance().getLocaleStr(
-				"csvProfDialog.description"));
+		setDescription(_("Here you can configure the CSV Profiles for exporting findings."));
 
 		setHelpChapter("csv_profiles", "1");
 		/*
 		 * Close button
 		 */
-		JButton buttonClose = new JButton(Data.getInstance().getLocaleStr(
-				"close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
+		JButton buttonClose = new JButton(_("Close"), Data.getInstance()
+				.getIcon("buttonClose_16x16.png"));
 		buttonClose.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -235,8 +236,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getCSVProfilesDialog(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -260,10 +260,9 @@ public class CSVProfilesDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(panelContent, gblContent, new JLabel(Data
-				.getInstance().getLocaleStr("csvProfDialog.profName")), 0,
-				gblRow, 2, 1, 1.0, 0.0, 0, 5, 0, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.WEST);
+		GUITools.addComponent(panelContent, gblContent, new JLabel(
+				_("Name of the CSV Profile:")), 0, gblRow, 2, 1, 1.0, 0.0, 0,
+				5, 0, 5, GridBagConstraints.BOTH, GridBagConstraints.WEST);
 
 		gblRow++;
 
@@ -325,10 +324,9 @@ public class CSVProfilesDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(panelContent, gblContent, new JLabel(Data
-				.getInstance().getLocaleStr("csvProfDialog.columnsTitle")), 0,
-				gblRow, 4, 1, 1.0, 0.0, 15, 5, 0, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.WEST);
+		GUITools.addComponent(panelContent, gblContent, new JLabel(
+				_("Column order in the CSV file:")), 0, gblRow, 4, 1, 1.0, 0.0,
+				15, 5, 0, 5, GridBagConstraints.BOTH, GridBagConstraints.WEST);
 
 		gblRow++;
 
@@ -373,10 +371,9 @@ public class CSVProfilesDialog extends AbstractDialog {
 		textColumn4 = new JTextField();
 		textColumn4.addFocusListener(textColFocusListener);
 
-		GUITools.addComponent(panelContent, gblContent, new JLabel(Data
-				.getInstance().getLocaleStr("csvProfDialog.columnsMappings")),
-				0, gblRow, 4, 1, 1.0, 0.0, 15, 5, 0, 5,
-				GridBagConstraints.BOTH, GridBagConstraints.WEST);
+		GUITools.addComponent(panelContent, gblContent, new JLabel(
+				_("Column names in the CSV file:")), 0, gblRow, 4, 1, 1.0, 0.0,
+				15, 5, 0, 5, GridBagConstraints.BOTH, GridBagConstraints.WEST);
 
 		gblRow++;
 
@@ -405,12 +402,12 @@ public class CSVProfilesDialog extends AbstractDialog {
 			}
 		};
 
-		boxColsInFirstLine = new JCheckBox(Data.getInstance().getLocaleStr(
-				"csvProfDialog.boxColsInFirstLine"));
+		boxColsInFirstLine = new JCheckBox(
+				_("Put the given column names into the CSV file (first row)."));
 		boxColsInFirstLine.addChangeListener(boxChangeListener);
 
-		boxEncapsContent = new JCheckBox(Data.getInstance().getLocaleStr(
-				"csvProfDialog.boxEncapsContent"));
+		boxEncapsContent = new JCheckBox(
+				_("Protect the content of individual cells in the CSV file with quotes."));
 		boxEncapsContent.addChangeListener(boxChangeListener);
 
 		GUITools.addComponent(panelContent, gblContent, boxColsInFirstLine, 0,
@@ -460,8 +457,8 @@ public class CSVProfilesDialog extends AbstractDialog {
 			validSevMaps.add(text);
 		}
 
-		GUITools.addComponent(panelContent, gblContent, new JLabel(Data
-				.getInstance().getLocaleStr("csvProfDialog.validSevMaps")), 0,
+		GUITools.addComponent(panelContent, gblContent, new JLabel(
+				_("Valid severities of the findings for this profile:")), 0,
 				gblRow, 4, 1, 1.0, 0.0, 25, 5, 0, 5, GridBagConstraints.BOTH,
 				GridBagConstraints.WEST);
 
@@ -495,10 +492,9 @@ public class CSVProfilesDialog extends AbstractDialog {
 		/*
 		 * Build content pane with vertical separator
 		 */
-		GUITools.addComponent(getContentPane(), gblBase, new JLabel(Data
-				.getInstance().getLocaleStr("csvProfDialog.listTitle")), 0, 0,
-				2, 1, 1.0, 0.0, 0, 0, 5, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.WEST);
+		GUITools.addComponent(getContentPane(), gblBase, new JLabel(
+				_("CSV Profile:")), 0, 0, 2, 1, 1.0, 0.0, 0, 0, 5, 5,
+				GridBagConstraints.BOTH, GridBagConstraints.WEST);
 
 		JScrollPane scrollList = new JScrollPane(listProfiles,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -513,17 +509,17 @@ public class CSVProfilesDialog extends AbstractDialog {
 		/*
 		 * Add and remove button
 		 */
-		buttonAdd = GUITools
-				.newImageButton(Data.getInstance().getIcon("add_25x25_0.png"),
-						Data.getInstance().getIcon("add_25x25.png"));
-		buttonAdd.setToolTipText(Data.getInstance().getLocaleStr(
-				"csvProfDialog.add"));
+		buttonAdd = GUITools.newImageButton(
+				Data.getInstance().getIcon("add_25x25_0.png"), Data
+						.getInstance().getIcon("add_25x25.png"));
+		buttonAdd.setToolTipText(_("Add a new CSV Profile"));
 		buttonAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TextPopupWindow popup = new TextPopupWindow(UI.getInstance()
-						.getCSVProfilesDialog(), Data.getInstance()
-						.getLocaleStr("csvProfDialog.popupNew"), null, false);
+						.getCSVProfilesDialog(),
+						_("Please enter a name for the new CSV Profile:"),
+						null, false);
 
 				popup.setVisible(true);
 
@@ -536,45 +532,33 @@ public class CSVProfilesDialog extends AbstractDialog {
 					} catch (DataException exc) {
 						JOptionPane.showMessageDialog(UI.getInstance()
 								.getCSVProfilesDialog(), GUITools
-								.getMessagePane(exc.getMessage()), Data
-								.getInstance().getLocaleStr("error"),
+								.getMessagePane(exc.getMessage()), _("Error"),
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 		});
 
-		buttonRemove = GUITools.newImageButton(Data.getInstance().getIcon(
-				"remove_25x25_0.png"), Data.getInstance().getIcon(
-				"remove_25x25.png"));
-		buttonRemove.setToolTipText(Data.getInstance().getLocaleStr(
-				"csvProfDialog.remove"));
+		buttonRemove = GUITools.newImageButton(
+				Data.getInstance().getIcon("remove_25x25_0.png"), Data
+						.getInstance().getIcon("remove_25x25.png"));
+		buttonRemove.setToolTipText(_("Remove selected CSV Profile"));
 		buttonRemove.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object[] options = {
-						Data.getInstance().getLocaleStr("button.remove"),
-						Data.getInstance().getLocaleStr("button.abort") };
+				Object[] options = { _("Remove"), _("Cancel") };
 
 				String profName = (String) listProfiles.getSelectedValue();
 
 				try {
 					if (appData.getNumberOfCSVProfiles() > 1
-							&& JOptionPane
-									.showOptionDialog(
-											UI.getInstance()
-													.getCSVProfilesDialog(),
-											GUITools
-													.getMessagePane(Data
-															.getInstance()
-															.getLocaleStr(
-																	"message.confirmRemoveCSVProf")
-															+ "\n\n" + profName),
-											Data.getInstance().getLocaleStr(
-													"question"),
-											JOptionPane.YES_NO_OPTION,
-											JOptionPane.QUESTION_MESSAGE, null,
-											options, options[0]) == JOptionPane.YES_OPTION) {
+							&& JOptionPane.showOptionDialog(
+									UI.getInstance().getCSVProfilesDialog(),
+									GUITools.getMessagePane(_("You are going to delete the selected CSV Profile. Do you really want to continue?")
+											+ "\n\n" + profName),
+									_("Question"), JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null,
+									options, options[0]) == JOptionPane.YES_OPTION) {
 
 						appData.removeCSVProfile(profName);
 
@@ -583,8 +567,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(UI.getInstance()
 							.getCSVProfilesDialog(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -865,14 +848,18 @@ public class CSVProfilesDialog extends AbstractDialog {
 					/*
 					 * Column mappings
 					 */
-					currentProfile.setColumnMapping(modelColumn1
-							.getSelectedColumn(), textColumn1.getText());
-					currentProfile.setColumnMapping(modelColumn2
-							.getSelectedColumn(), textColumn2.getText());
-					currentProfile.setColumnMapping(modelColumn3
-							.getSelectedColumn(), textColumn3.getText());
-					currentProfile.setColumnMapping(modelColumn4
-							.getSelectedColumn(), textColumn4.getText());
+					currentProfile.setColumnMapping(
+							modelColumn1.getSelectedColumn(),
+							textColumn1.getText());
+					currentProfile.setColumnMapping(
+							modelColumn2.getSelectedColumn(),
+							textColumn2.getText());
+					currentProfile.setColumnMapping(
+							modelColumn3.getSelectedColumn(),
+							textColumn3.getText());
+					currentProfile.setColumnMapping(
+							modelColumn4.getSelectedColumn(),
+							textColumn4.getText());
 
 					/*
 					 * Severity mappings
@@ -889,8 +876,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 						/*
 						 * Load standard severities as mappings
 						 */
-						for (String sev : Data.getInstance().getLocaleStr(
-								"standardSeverities").split(",")) {
+						for (String sev : Data.getStandardSeverities()) {
 							mappings.add(sev);
 						}
 					}
@@ -924,8 +910,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 			} catch (DataException e) {
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getCSVProfilesDialog(), GUITools.getMessagePane(e
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
 			updatingAppData = false;
@@ -948,8 +933,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 		} catch (DataException exc) {
 			JOptionPane.showMessageDialog(UI.getInstance()
 					.getCSVProfilesDialog(), GUITools.getMessagePane(exc
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
-					JOptionPane.ERROR_MESSAGE);
+					.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 		}
 
 		return vecProfiles;
@@ -974,8 +958,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 			} catch (DataException exc) {
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getCSVProfilesDialog(), GUITools.getMessagePane(exc
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
 			dialogContentCreated = true;

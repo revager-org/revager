@@ -22,8 +22,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import org.revager.gui.protocol.AddAspToFindPopupWindow;
-import org.revager.gui.protocol.AddAspToFindPopupWindow.ButtonClicked;
+import org.revager.gui.findings_list.AddAspToFindPopupWindow;
+import org.revager.gui.findings_list.AddAspToFindPopupWindow.ButtonClicked;
 
 
 /**

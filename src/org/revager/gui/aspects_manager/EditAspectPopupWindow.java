@@ -18,6 +18,8 @@
  */
 package org.revager.gui.aspects_manager;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -50,7 +52,6 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
-
 /**
  * The Class EditAspectPopupWindow.
  */
@@ -71,8 +72,7 @@ public class EditAspectPopupWindow extends JDialog {
 		RESI_ASPECT, APP_ASPECT, APP_CATALOG;
 	}
 
-	private static final String STANDARD_CATEGORY = Data.getInstance()
-			.getLocaleStr("aspectsManager.stdCategory");
+	private static final String STANDARD_CATEGORY = _("(No Category)");
 
 	private AspectManagement aspMgmt = Application.getInstance()
 			.getAspectMgmt();
@@ -183,10 +183,8 @@ public class EditAspectPopupWindow extends JDialog {
 		try {
 			switch (mode) {
 			case RESI_ASPECT:
-				title = Data.getInstance().getLocaleStr(
-						"popup.editAspect.titleAspect");
-				labelTitle.setText(Data.getInstance().getLocaleStr(
-						"popup.editAspect.directive"));
+				title = _("Please enter the required information of the aspect into the provided text fields.");
+				labelTitle.setText(_("Directive of the aspect:"));
 
 				textFieldTitle.setText(aspect.getDirective());
 				textAreaDescription.setText(aspect.getDescription());
@@ -199,10 +197,8 @@ public class EditAspectPopupWindow extends JDialog {
 
 				break;
 			case APP_ASPECT:
-				title = Data.getInstance().getLocaleStr(
-						"popup.editAspect.titleAspect");
-				labelTitle.setText(Data.getInstance().getLocaleStr(
-						"popup.editAspect.directive"));
+				title = _("Please enter the required information of the aspect into the provided text fields.");
+				labelTitle.setText(_("Directive of the aspect:"));
 
 				textFieldTitle.setText(appAspect.getDirective());
 				textAreaDescription.setText(appAspect.getDescription());
@@ -230,10 +226,8 @@ public class EditAspectPopupWindow extends JDialog {
 
 				break;
 			case APP_CATALOG:
-				title = Data.getInstance().getLocaleStr(
-						"popup.editAspect.titleCatalog");
-				labelTitle.setText(Data.getInstance().getLocaleStr(
-						"popup.editAspect.catalogName"));
+				title = _("Please enter the required information of the catalog into the provided text fields.");
+				labelTitle.setText(_("Name of the catalog:"));
 
 				textFieldTitle.setText(appCatalog.getName());
 				textAreaDescription.setText(appCatalog.getDescription());
@@ -246,8 +240,8 @@ public class EditAspectPopupWindow extends JDialog {
 				break;
 			}
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(this,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			return;
@@ -262,12 +256,9 @@ public class EditAspectPopupWindow extends JDialog {
 
 		panelBase.add(textTitle, BorderLayout.NORTH);
 
-		JLabel labelDescription = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.editAspect.description"));
-		JLabel labelCatalog = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.editAspect.catalog"));
-		JLabel labelCategory = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.editAspect.category"));
+		JLabel labelDescription = new JLabel(_("Description:"));
+		JLabel labelCatalog = new JLabel(_("Catalog:"));
+		JLabel labelCategory = new JLabel(_("Category:"));
 
 		int ins = 5;
 
@@ -285,29 +276,21 @@ public class EditAspectPopupWindow extends JDialog {
 				GridBagConstraints.NORTHWEST);
 
 		if (mode == Mode.APP_ASPECT || mode == Mode.RESI_ASPECT) {
-			GUITools
-					.addComponent(panelContent, gblContent, labelCategory, 0,
-							4, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
-							GridBagConstraints.HORIZONTAL,
-							GridBagConstraints.NORTHWEST);
-			GUITools
-					.addComponent(panelContent, gblContent, boxCategory, 0, 5,
-							1, 1, 1.0, 0.0, 0, ins, ins, ins,
-							GridBagConstraints.HORIZONTAL,
-							GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelContent, gblContent, labelCategory, 0,
+					4, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelContent, gblContent, boxCategory, 0, 5,
+					1, 1, 1.0, 0.0, 0, ins, ins, ins,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 
 		if (mode == Mode.APP_ASPECT) {
-			GUITools
-					.addComponent(panelContent, gblContent, labelCatalog, 0, 6,
-							1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
-							GridBagConstraints.HORIZONTAL,
-							GridBagConstraints.NORTHWEST);
-			GUITools
-					.addComponent(panelContent, gblContent, boxCatalog, 0, 7,
-							1, 1, 1.0, 0.0, 0, ins, ins * 2, ins,
-							GridBagConstraints.HORIZONTAL,
-							GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelContent, gblContent, labelCatalog, 0, 6,
+					1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelContent, gblContent, boxCatalog, 0, 7,
+					1, 1, 1.0, 0.0, 0, ins, ins * 2, ins,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 
 		panelBase.add(panelContent, BorderLayout.CENTER);
@@ -320,7 +303,7 @@ public class EditAspectPopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -335,8 +318,7 @@ public class EditAspectPopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -395,8 +377,8 @@ public class EditAspectPopupWindow extends JDialog {
 									description, category);
 						}
 
-						UI.getInstance().getAspectsManagerFrame().updateTree(
-								null, null, appAspect);
+						UI.getInstance().getAspectsManagerFrame()
+								.updateTree(null, null, appAspect);
 
 						break;
 					case APP_CATALOG:
@@ -404,8 +386,8 @@ public class EditAspectPopupWindow extends JDialog {
 						appCatalog.setDescription(textAreaDescription.getText()
 								.trim());
 
-						UI.getInstance().getAspectsManagerFrame().updateTree(
-								appCatalog, null, null);
+						UI.getInstance().getAspectsManagerFrame()
+								.updateTree(appCatalog, null, null);
 
 						break;
 
@@ -415,8 +397,7 @@ public class EditAspectPopupWindow extends JDialog {
 				} catch (DataException exc) {
 					JOptionPane.showMessageDialog(((JButton) e.getSource())
 							.getParent().getParent(), GUITools
-							.getMessagePane(exc.getMessage()), Data
-							.getInstance().getLocaleStr("error"),
+							.getMessagePane(exc.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 
 					return;
@@ -428,8 +409,8 @@ public class EditAspectPopupWindow extends JDialog {
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons
-				.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(
+				panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

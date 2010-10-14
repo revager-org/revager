@@ -16,7 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Resi. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.revager.gui.protocol;
+package org.revager.gui.findings_list;
+
+import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,9 +37,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.NumberEditor;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.JSpinner.NumberEditor;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.Duration;
@@ -54,7 +56,7 @@ import org.revager.tools.GUITools;
  * The Class AddResiAttToProtPopupWindow.
  */
 @SuppressWarnings("serial")
-public class AddResiAttToProtPopupWindow extends JDialog {
+public class AddResiAttToFLPopupWindow extends JDialog {
 
 	private JComboBox attendeeBx;
 	private GridBagLayout gbl = new GridBagLayout();
@@ -107,11 +109,11 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 	 * @param titleText
 	 *            the title text
 	 */
-	public AddResiAttToProtPopupWindow(Window parent) {
+	public AddResiAttToFLPopupWindow(Window parent) {
 		super(parent);
 
-		if (parent instanceof ProtocolFrame) {
-			this.protocol = ((ProtocolFrame) parent).getCurrentProt();
+		if (parent instanceof FindingsListFrame) {
+			this.protocol = ((FindingsListFrame) parent).getCurrentProt();
 		}
 
 		setLayout(new BorderLayout());
@@ -122,16 +124,15 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 
 		JPanel panelBase = GUITools.newPopupBasePanel();
 
-		JTextArea textTitle = GUITools.newPopupTitleArea(Data.getInstance()
-				.getLocaleStr("popup.attToProt.title"));
+		JTextArea textTitle = GUITools
+				.newPopupTitleArea(_("Please select the attendee you would like to add to the current meeting:"));
 
 		attendeeBx = new JComboBox();
 		createAttendeeBx();
 
 		panelBase.add(textTitle, BorderLayout.NORTH);
 
-		JLabel durLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.attToProt.dur"));
+		JLabel durLbl = new JLabel(_("Preparation time:"));
 
 		durHSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
 		durMSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
@@ -152,10 +153,8 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 		JPanel spinnerPanel = new JPanel(gbl);
 		spinnerPanel.setBackground(null);
 
-		JLabel hoursLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.attToProt.hours"));
-		JLabel minLbl = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.attToProt.minutes"));
+		JLabel hoursLbl = new JLabel(_("Hour(s)"));
+		JLabel minLbl = new JLabel(_("Minute(s)"));
 
 		GUITools.addComponent(spinnerPanel, gbl, durHSpinner, 1, 0, 1, 1, 0.0,
 				0, 5, 0, 0, 0, GridBagConstraints.HORIZONTAL,
@@ -166,10 +165,8 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 		GUITools.addComponent(spinnerPanel, gbl, durMSpinner, 3, 0, 1, 1, 0.0,
 				0, 5, 5, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.WEST);
-		GUITools
-				.addComponent(spinnerPanel, gbl, minLbl, 4, 0, 1, 1, 1.0, 0, 5,
-						5, 0, 0, GridBagConstraints.HORIZONTAL,
-						GridBagConstraints.WEST);
+		GUITools.addComponent(spinnerPanel, gbl, minLbl, 4, 0, 1, 1, 1.0, 0, 5,
+				5, 0, 0, GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
 
 		inputPanel.setBackground(Color.WHITE);
 
@@ -197,7 +194,7 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new AddResiAttToProtPopupWindowAction(
 				this, ButtonClicked.ABORT));
 
@@ -206,15 +203,14 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new AddResiAttToProtPopupWindowAction(
 				this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons
-				.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(
+				panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 
@@ -246,10 +242,9 @@ public class AddResiAttToProtPopupWindow extends JDialog {
 	private void createAttendeeBx() {
 		for (Attendee att : Data.getInstance().getResiData().getReview()
 				.getAttendees()) {
-			if (!Application.getInstance().getProtocolMgmt().isAttendee(att,
-					protocol)) {
-				String role = Data.getInstance().getLocaleStr(
-						"role." + att.getRole().value());
+			if (!Application.getInstance().getProtocolMgmt()
+					.isAttendee(att, protocol)) {
+				String role = _(att.getRole().toString());
 
 				attendeeBx.addItem(att.getName() + " (" + role + ")");
 

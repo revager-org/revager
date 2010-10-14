@@ -18,6 +18,8 @@
  */
 package org.revager.app.model;
 
+import static org.revager.app.model.Data._;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -98,9 +100,9 @@ public class HelpData {
 		/*
 		 * Customizing path of images
 		 */
-		htmlStr = Pattern.compile("<img \\p{Blank}*src=\"",
-				Pattern.CASE_INSENSITIVE).matcher(htmlStr).replaceAll(
-				"<img src=\"" + helpPath);
+		htmlStr = Pattern
+				.compile("<img \\p{Blank}*src=\"", Pattern.CASE_INSENSITIVE)
+				.matcher(htmlStr).replaceAll("<img src=\"" + helpPath);
 
 		return htmlStr;
 	}
@@ -158,8 +160,7 @@ public class HelpData {
 			 * Not part of unit testing because this exception only is thrown if
 			 * an internal error occurs which cannot be provoked.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.helpLoadFailed"));
+			throw new DataException(_("Cannot load help information."));
 		}
 
 		/*
@@ -194,16 +195,14 @@ public class HelpData {
 					 * Not part of unit testing because normally you don't have
 					 * any chapters without a title.
 					 */
-					helpChaptersTitle[i] = Data.getInstance().getLocaleStr(
-							"noTitle");
+					helpChaptersTitle[i] = _("<no title>");
 				}
 			} catch (Exception e) {
 				/*
 				 * Not part of unit testing because this exception only is
 				 * thrown if an internal error occurs which cannot be provoked.
 				 */
-				throw new DataException(Data.getInstance().getLocaleStr(
-						"message.helpLoadFailed"));
+				throw new DataException(_("Cannot load help information."));
 			}
 
 		}
@@ -289,8 +288,7 @@ public class HelpData {
 		}
 
 		if (title == null) {
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.helpChapterNotFound")
+			throw new DataException(_("Cannot find requested help chapter.")
 					+ " [CHAPTER = " + chapter + "]");
 		}
 
@@ -322,8 +320,7 @@ public class HelpData {
 		}
 
 		if (htmlCode == null) {
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.helpChapterNotFound")
+			throw new DataException(_("Cannot find requested help chapter.")
 					+ " [CHAPTER = " + chapter + "]");
 		}
 

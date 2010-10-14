@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.net.URL;
 
@@ -33,7 +35,6 @@ import org.revager.app.model.schema.Catalog;
 import org.revager.gui.UI;
 import org.revager.tools.FileTools;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for loading the default catalogs.
@@ -52,8 +53,8 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		UI.getInstance().getAspectsManagerFrame().switchToProgressMode(
-				Data.getInstance().getLocaleStr("status.importingCatalog"));
+		UI.getInstance().getAspectsManagerFrame()
+				.switchToProgressMode(_("Importing catalog ..."));
 
 		String fileEnding = Data.getInstance().getResource("fileEndingCatalog");
 		String pathCatalogs = Data.getInstance().getResource("path.catalogs")
@@ -64,8 +65,7 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 		new File(pathWorkDir).mkdir();
 		AppCatalog appCatalog = null;
 
-		for (String catalogName : Data.getInstance().getLocaleStr(
-				"standardCatalogs").split(",")) {
+		for (String catalogName : Data.getStandardCatalogs()) {
 			try {
 				/*
 				 * Import catalog from file
@@ -75,16 +75,16 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 				File catalogFile = new File(pathWorkDir + "catalog."
 						+ fileEnding);
 
-				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(
-						Data.getInstance().getLocaleStr(
-								"status.importingCatalog")
-								+ " " + catalogName);
+				UI.getInstance()
+						.getAspectsManagerFrame()
+						.switchToProgressMode(
+								_("Importing catalog ...") + " " + catalogName);
 
 				FileTools.copyFile(catalog, catalogFile);
 
 				Catalog resiCatalog = Application.getInstance()
-						.getImportExportCtl().importCatalogXML(
-								catalogFile.getAbsolutePath());
+						.getImportExportCtl()
+						.importCatalogXML(catalogFile.getAbsolutePath());
 
 				catalogFile.delete();
 
@@ -102,30 +102,31 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 				appCatalog.setDescription(resiCatalog.getDescription());
 
 				for (Aspect asp : resiCatalog.getAspects().getAspects()) {
-					appCatalog.newAspect(asp.getDirective(), asp
-							.getDescription(), asp.getCategory());
+					appCatalog.newAspect(asp.getDirective(),
+							asp.getDescription(), asp.getCategory());
 				}
 
 				UI.getInstance().getAspectsManagerFrame().updateTree();
 
-				UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-						Data.getInstance().getLocaleStr(
-								"status.catalogImported"), false);
+				UI.getInstance()
+						.getAspectsManagerFrame()
+						.setStatusMessage(_("Catalog imported successfully."),
+								false);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(UI.getInstance()
-						.getAspectsManagerFrame(), GUITools.getMessagePane(Data
-						.getInstance().getLocaleStr("message.importFailed")
-						+ "\n\n" + e.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane
+						.showMessageDialog(
+								UI.getInstance().getAspectsManagerFrame(),
+								GUITools.getMessagePane(_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
+										+ "\n\n" + e.getMessage()), _("Error"),
+								JOptionPane.ERROR_MESSAGE);
 
-				UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-						Data.getInstance().getLocaleStr(
-								"status.importingCatalogFailed"), false);
+				UI.getInstance().getAspectsManagerFrame()
+						.setStatusMessage(_("Cannot import catalog!"), false);
 			}
 		}
 
-		UI.getInstance().getAspectsManagerFrame().updateTree(appCatalog, null,
-				null);
+		UI.getInstance().getAspectsManagerFrame()
+				.updateTree(appCatalog, null, null);
 
 		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 

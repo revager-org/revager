@@ -18,12 +18,13 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
 import org.revager.app.model.Data;
-
 
 /**
  * The Class AttendeeTableModel.
@@ -63,11 +64,11 @@ public class AttendeeTableModel extends AbstractTableModel {
 	 */
 	public String getColumnName(int column) {
 		if (column == 1)
-			return Data.getInstance().getLocaleStr("attendeeTM.name");
+			return _("Name");
 		else if (column == 2)
-			return Data.getInstance().getLocaleStr("attendeeTM.role");
+			return _("Role");
 		else if (column == 3)
-			return Data.getInstance().getLocaleStr("attendeeTM.value");
+			return _("Aspects");
 		else
 			return null;
 	}
@@ -87,18 +88,16 @@ public class AttendeeTableModel extends AbstractTableModel {
 
 			return name + "\n\n" + contact;
 		} else if (columnIndex == 2) {
-			String roleString = "role.".concat(Application.getInstance()
-					.getAttendeeMgmt().getAttendees().get(rowIndex).getRole()
-					.value());
+			String roleString = Application.getInstance().getAttendeeMgmt()
+					.getAttendees().get(rowIndex).getRole().toString();
 
-			return Data.getInstance().getLocaleStr(roleString);
+			return _(roleString);
 		} else if (columnIndex == 3) {
 			try {
 				String value = String.valueOf(Application.getInstance()
 						.getAttendeeMgmt().getAttendees().get(rowIndex)
 						.getAspects().getAspectIds().size());
-				return value.concat(" ").concat(
-						Data.getInstance().getLocaleStr("findAspTM.title"));
+				return value.concat(" ").concat(_("Aspect(s)"));
 			} catch (Exception e) {
 				return "";
 			}

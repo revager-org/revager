@@ -18,6 +18,8 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Desktop;
 import java.io.File;
 
@@ -26,13 +28,11 @@ import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
 import org.revager.app.ImportExportControl.InvitationType;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Meeting;
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.CreateInvitationsDialog;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for creating invitations.
@@ -53,8 +53,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 
 		if (!dialog.getSelectedPath().trim().equals("")
 				&& !dialog.getSelectedAttendees().isEmpty()) {
-			dialog.switchToProgressMode(Data.getInstance().getLocaleStr(
-					"invitationsDialog.creating"));
+			dialog.switchToProgressMode(_("Creating invitation(s) ..."));
 
 			boolean attachProdRefs = dialog.isProdSelected();
 			Meeting meeting = dialog.getSelectedMeeting();
@@ -71,7 +70,9 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 						type = InvitationType.ZIP;
 					}
 
-					Application.getInstance().getImportExportCtl()
+					Application
+							.getInstance()
+							.getImportExportCtl()
 							.exportInvitations(dialog.getSelectedPath(), type,
 									meeting, att, attachProdRefs);
 				}
@@ -80,30 +81,29 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getExportCSVDialog(), GUITools.getMessagePane(exc
-						.getMessage()), Data.getInstance()
-						.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
 			dialog.setVisible(false);
 			dialog.switchToEditMode();
-			UI.getInstance().getMainFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr(
-							"invitationsDialog.successful"), false);
+			UI.getInstance()
+					.getMainFrame()
+					.setStatusMessage(
+							_("The invitations have been created successfully."),
+							false);
 
 			Desktop.getDesktop().open(new File(dialog.getSelectedPath()));
 		} else {
 			if (dialog.getSelectedAttendees().isEmpty()) {
 				dialog.markAttScrollPane();
-				dialog.setMessage(Data.getInstance().getLocaleStr(
-						"invitationsDialog.message.att"));
+				dialog.setMessage(_("You have to choose at least one attendee in order to create an invitation."));
 
 				return null;
 			}
 
 			if (dialog.getSelectedPath().trim().equals("")) {
 				dialog.markPathTxtField();
-				dialog.setMessage(Data.getInstance().getLocaleStr(
-						"invitationsDialog.message.path"));
+				dialog.setMessage(_("Please choose a directory where to store the invitation(s)."));
 
 				return null;
 			}

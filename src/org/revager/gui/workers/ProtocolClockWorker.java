@@ -23,7 +23,7 @@ import java.util.List;
 
 import javax.swing.SwingWorker;
 
-import org.revager.gui.protocol.ProtocolFrame;
+import org.revager.gui.findings_list.FindingsListFrame;
 
 
 /**
@@ -54,7 +54,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	/**
 	 * The protocol frames.
 	 */
-	private List<ProtocolFrame> protocolFrames = new ArrayList<ProtocolFrame>();
+	private List<FindingsListFrame> protocolFrames = new ArrayList<FindingsListFrame>();
 
 	/**
 	 * Adds the given protocol frame as observer to the clock.
@@ -62,7 +62,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	 * @param pf
 	 *            the protocol frame
 	 */
-	public void addObserverFrame(ProtocolFrame pf) {
+	public void addObserverFrame(FindingsListFrame pf) {
 		protocolFrames.add(pf);
 	}
 
@@ -72,7 +72,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	 * @param pf
 	 *            the protocol frame
 	 */
-	public void removeObserverFrame(ProtocolFrame pf) {
+	public void removeObserverFrame(FindingsListFrame pf) {
 		protocolFrames.remove(pf);
 	}
 
@@ -106,7 +106,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 		this.clockRunning = false;
 		this.warningDisplayed = false;
 
-		for (ProtocolFrame pf : protocolFrames) {
+		for (FindingsListFrame pf : protocolFrames) {
 			pf.updateClock(0);
 		}
 	}
@@ -143,7 +143,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {
 		while (true) {
 
-			for (ProtocolFrame pf : protocolFrames) {
+			for (FindingsListFrame pf : protocolFrames) {
 				if (clockRunning) {
 					pf
 							.updateClock((int) ((System.currentTimeMillis() - startingPoint) / 1000));

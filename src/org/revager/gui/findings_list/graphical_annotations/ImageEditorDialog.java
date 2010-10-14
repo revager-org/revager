@@ -1,4 +1,6 @@
-package org.revager.gui.protocol.graphical_annotations;
+package org.revager.gui.findings_list.graphical_annotations;
+
+import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -41,11 +43,10 @@ import javax.swing.event.ChangeListener;
 import org.revager.app.model.Data;
 import org.revager.gui.AbstractDialog;
 import org.revager.gui.TextPopupWindow;
-import org.revager.gui.UI;
 import org.revager.gui.TextPopupWindow.ButtonClicked;
+import org.revager.gui.UI;
 import org.revager.tools.AppTools;
 import org.revager.tools.GUITools;
-
 
 public class ImageEditorDialog extends AbstractDialog {
 	private static final long serialVersionUID = 1L;
@@ -118,7 +119,7 @@ public class ImageEditorDialog extends AbstractDialog {
 			}
 		});
 
-		setTitle(Data.getInstance().getLocaleStr("graphicalEditor.title"));
+		setTitle(_("Image Editor"));
 
 		ImageAnnotation annotation = ImageAnnotation.newEllipseAnnotation(
 				currentColor, DEFAULT_THICKNESS);
@@ -195,9 +196,9 @@ public class ImageEditorDialog extends AbstractDialog {
 	}
 
 	private void createToolbar() {
-		buttonUndo = GUITools.newImageButton(Data.getInstance().getIcon(
-				"undo_50x50_0.png"), Data.getInstance().getIcon(
-				"undo_50x50.png"));
+		buttonUndo = GUITools.newImageButton(
+				Data.getInstance().getIcon("undo_50x50_0.png"), Data
+						.getInstance().getIcon("undo_50x50.png"));
 		buttonUndo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -205,12 +206,11 @@ public class ImageEditorDialog extends AbstractDialog {
 				updateUndoRedoButtons();
 			}
 		});
-		buttonUndo.setToolTipText(Data.getInstance().getLocaleStr(
-				"graphicalEditor.undo"));
+		buttonUndo.setToolTipText(_("Undo"));
 
-		buttonRedo = GUITools.newImageButton(Data.getInstance().getIcon(
-				"redo_50x50_0.png"), Data.getInstance().getIcon(
-				"redo_50x50.png"));
+		buttonRedo = GUITools.newImageButton(
+				Data.getInstance().getIcon("redo_50x50_0.png"), Data
+						.getInstance().getIcon("redo_50x50.png"));
 		buttonRedo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -218,23 +218,22 @@ public class ImageEditorDialog extends AbstractDialog {
 				updateUndoRedoButtons();
 			}
 		});
-		buttonRedo.setToolTipText(Data.getInstance().getLocaleStr(
-				"graphicalEditor.redo"));
+		buttonRedo.setToolTipText(_("Redo"));
 
 		buttonGroup = new ButtonGroup();
 
 		buttonRectangle = GUITools.newImageToggleButton(Data.getInstance()
-				.getIcon("rectangle_50x50_0.png"), Data.getInstance().getIcon(
-				"rectangle_50x50.png"), null);
+				.getIcon("rectangle_50x50_0.png"),
+				Data.getInstance().getIcon("rectangle_50x50.png"), null);
 		buttonEllipse = GUITools.newImageToggleButton(Data.getInstance()
-				.getIcon("ellipse_50x50_0.png"), Data.getInstance().getIcon(
-				"ellipse_50x50.png"), null);
-		buttonArrow = GUITools.newImageToggleButton(Data.getInstance().getIcon(
-				"arrow_50x50_0.png"), Data.getInstance().getIcon(
-				"arrow_50x50.png"), null);
-		buttonText = GUITools.newImageToggleButton(Data.getInstance().getIcon(
-				"text_50x50_0.png"), Data.getInstance().getIcon(
-				"text_50x50.png"), null);
+				.getIcon("ellipse_50x50_0.png"),
+				Data.getInstance().getIcon("ellipse_50x50.png"), null);
+		buttonArrow = GUITools.newImageToggleButton(
+				Data.getInstance().getIcon("arrow_50x50_0.png"), Data
+						.getInstance().getIcon("arrow_50x50.png"), null);
+		buttonText = GUITools.newImageToggleButton(
+				Data.getInstance().getIcon("text_50x50_0.png"), Data
+						.getInstance().getIcon("text_50x50.png"), null);
 
 		ActionListener thiknessEnActionL = new ActionListener() {
 			@Override
@@ -258,10 +257,8 @@ public class ImageEditorDialog extends AbstractDialog {
 		buttonRectangle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelImage
-						.setCurrentAnnotation(ImageAnnotation
-								.newRectangleAnnotation(currentColor,
-										currentThickness));
+				panelImage.setCurrentAnnotation(ImageAnnotation
+						.newRectangleAnnotation(currentColor, currentThickness));
 			}
 		});
 
@@ -285,8 +282,7 @@ public class ImageEditorDialog extends AbstractDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TextPopupWindow popup = new TextPopupWindow(
-						getImageEditorDialog(), Data.getInstance()
-								.getLocaleStr("graphicalEditor.enterText"),
+						getImageEditorDialog(), _("Please enter some text"),
 						currentText, false);
 
 				popup.setVisible(true);
@@ -350,8 +346,7 @@ public class ImageEditorDialog extends AbstractDialog {
 		registerInToolTipManager(panelThickness);
 
 		buttonColor = new JPanel();
-		buttonColor.setToolTipText(Data.getInstance().getLocaleStr(
-				"graphicalEditor.color"));
+		buttonColor.setToolTipText(_("Color"));
 		buttonColor.setPreferredSize(new Dimension(32, 32));
 		buttonColor.setBackground(currentColor);
 		buttonColor.setBorder(new MatteBorder(2, 2, 2, 2, Color.GRAY));
@@ -360,8 +355,7 @@ public class ImageEditorDialog extends AbstractDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Color selectedColor = JColorChooser.showDialog(
-						getImageEditorDialog(), Data.getInstance()
-								.getLocaleStr("graphicalEditor.chooseColor"),
+						getImageEditorDialog(), _("Please choose a color"),
 						currentColor);
 
 				if (selectedColor != null) {
@@ -409,8 +403,8 @@ public class ImageEditorDialog extends AbstractDialog {
 		panelTop.add(panelTopRight, BorderLayout.EAST);
 		setTopPanel(panelTop);
 
-		buttonCancel = new JButton(Data.getInstance().getLocaleStr("abort"),
-				Data.getInstance().getIcon("buttonCancel_16x16.png"));
+		buttonCancel = new JButton(_("Abort"), Data.getInstance().getIcon(
+				"buttonCancel_16x16.png"));
 		buttonCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -424,8 +418,8 @@ public class ImageEditorDialog extends AbstractDialog {
 
 		addButton(buttonCancel);
 
-		buttonConfirm = new JButton(Data.getInstance().getLocaleStr("confirm"),
-				Data.getInstance().getIcon("buttonOk_16x16.png"));
+		buttonConfirm = new JButton(_("Confirm"), Data.getInstance().getIcon(
+				"buttonOk_16x16.png"));
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -456,9 +450,8 @@ public class ImageEditorDialog extends AbstractDialog {
 				sliderThickness.getValue()));
 		panelThicknessPreview.revalidate();
 
-		String tooltip = Data.getInstance().getLocaleStr(
-				"graphicalEditor.thickness")
-				+ ": " + Integer.toString(sliderThickness.getValue()) + " px";
+		String tooltip = _("Thickness") + ": "
+				+ Integer.toString(sliderThickness.getValue()) + " px";
 
 		panelThickness.setToolTipText(tooltip);
 		sliderThickness.setToolTipText(tooltip);

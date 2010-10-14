@@ -70,11 +70,11 @@ public class CheckNode extends DefaultMutableTreeNode {
 	 * @param isSelected
 	 *            the new selected
 	 */
-	@SuppressWarnings("unchecked")
 	public void setSelected(boolean isSelected) {
 		this.isSelected = isSelected;
 		if (isSelected) {
 			if (children != null) {
+				@SuppressWarnings("rawtypes")
 				Enumeration e = children.elements();
 
 				while (e.hasMoreElements()) {

@@ -18,15 +18,15 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for restoring a review file.
@@ -44,27 +44,25 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 
 		mainframe.switchToProgressMode();
 
-		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-				"status.restoringBackup"), true);
+		mainframe.setStatusMessage(_("Restoring backup ..."), true);
 
 		try {
 			Application.getInstance().getApplicationCtl().restoreReview();
 
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.restoreReviewSuccessful"), false);
+			mainframe.setStatusMessage(_("Review restored successfully."),
+					false);
 
 			mainframe.switchToEditMode();
 		} catch (Exception e) {
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.noReviewInProcess"), false);
+			mainframe.setStatusMessage(_("No review in process."), false);
 
 			mainframe.switchToClearMode();
 
-			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(Data.getInstance().getLocaleStr(
-							"message.restoreReviewFailed")
-							+ "\n\n" + e.getMessage()), Data.getInstance()
-							.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(_("Cannot restore review.")
+							+ "\n\n" + e.getMessage()), _("Error"),
+					JOptionPane.ERROR_MESSAGE);
 		}
 
 		return null;

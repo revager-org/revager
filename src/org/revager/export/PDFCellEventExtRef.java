@@ -18,11 +18,10 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.io.IOException;
-
-import org.revager.app.model.Data;
-
 
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfAnnotation;
@@ -74,18 +73,16 @@ public class PDFCellEventExtRef implements PdfPCellEvent {
 
 		// cb.reset();
 
-		Rectangle attachmentRect = new Rectangle(rect.getLeft() - 25, rect
-				.getTop() - 25, rect.getRight() - rect.getWidth() - 40, rect
-				.getTop() - 10);
+		Rectangle attachmentRect = new Rectangle(rect.getLeft() - 25,
+				rect.getTop() - 25, rect.getRight() - rect.getWidth() - 40,
+				rect.getTop() - 10);
 
-		String fileDesc = file.getName() + " ("
-				+ Data.getInstance().getLocaleStr("export.fileAttachment")
-				+ ")";
+		String fileDesc = file.getName() + " (" + _("File Attachment") + ")";
 
 		try {
 			PdfAnnotation attachment = PdfAnnotation.createFileAttachment(
-					writer, attachmentRect, fileDesc, null, file
-							.getAbsolutePath(), file.getName());
+					writer, attachmentRect, fileDesc, null,
+					file.getAbsolutePath(), file.getName());
 			writer.addAnnotation(attachment);
 		} catch (IOException e) {
 			/*

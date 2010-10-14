@@ -18,15 +18,15 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for loading a review file.
@@ -61,33 +61,31 @@ public class LoadReviewWorker extends SwingWorker<Void, Void> {
 
 		mainframe.switchToProgressMode();
 
-		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-				"status.loadingReview"), true);
+		mainframe.setStatusMessage(_("Loading review ..."), true);
 
 		UI.getInstance().getAssistantDialog().setVisible(false);
 
 		try {
 			Application.getInstance().getApplicationCtl().loadReview(filePath);
 
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.loadReviewSuccessful"), false);
+			mainframe.setStatusMessage(_("Review loaded successfully."), false);
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
 
 			mainframe.switchToEditMode();
 		} catch (Exception e) {
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.noReviewInProcess"), false);
+			mainframe.setStatusMessage(_("No review in process."), false);
 
 			mainframe.switchToClearMode();
 
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(Data
-					.getInstance().getLocaleStr("message.loadReviewFailed")
-					+ "\n\n" + e.getMessage()), Data.getInstance()
-					.getLocaleStr("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					null,
+					GUITools.getMessagePane(_("Cannot load review file.")
+							+ "\n\n" + e.getMessage()), _("Error"),
+					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAssistantDialog().setVisible(
-					showAssistantDialog);
+			UI.getInstance().getAssistantDialog()
+					.setVisible(showAssistantDialog);
 		}
 
 		return null;

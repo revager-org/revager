@@ -18,15 +18,15 @@
  */
 package org.revager.gui.actions.severities;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.JTable;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.gui.UI;
-
 
 /**
  * The Class AddSeverityAction.
@@ -42,8 +42,7 @@ public class AddSeverityAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String placeHolder = Data.getInstance().getLocaleStr(
-				"manageSeverities.placeholder");
+		String placeHolder = _("New severity");
 
 		Application.getInstance().getSeverityMgmt().addSeverity(placeHolder);
 

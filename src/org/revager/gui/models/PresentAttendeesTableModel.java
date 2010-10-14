@@ -18,16 +18,16 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 import javax.xml.datatype.Duration;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Protocol;
-
 
 /**
  * The Class PresentAttendeesTableModel.
@@ -97,18 +97,14 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 
 			return "<html><b>" + name + "</b><br>" + contact + "</html>";
 		} else if (column == 2) {
-			String roleString = "role.".concat(localAttList.get(row).getRole()
-					.value());
-			return Data.getInstance().getLocaleStr(roleString);
+			String roleString = localAttList.get(row).getRole().toString();
+			return _(roleString);
 		} else if (column == 3) {
 			int aspNumber = Application.getInstance().getAttendeeMgmt()
 					.getNumberOfAspects(localAttList.get(row));
 
 			if (aspNumber > 0) {
-				return aspNumber
-						+ " "
-						+ Data.getInstance().getLocaleStr(
-								"editProtocol.aspects");
+				return aspNumber + " " + _("Aspects");
 			} else {
 				return "";
 			}
@@ -118,8 +114,7 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 			String hours = String.format("%02d", localDur.getHours());
 			String mins = String.format("%02d", localDur.getMinutes());
 
-			return Data.getInstance().getLocaleStr("editProtocol.preparation")
-					+ ": " + hours + ":" + mins;
+			return _("Preparation time") + ": " + hours + ":" + mins;
 		} else
 			return null;
 	}

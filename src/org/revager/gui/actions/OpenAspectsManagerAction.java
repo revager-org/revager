@@ -18,6 +18,8 @@
  */
 package org.revager.gui.actions;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -41,7 +43,7 @@ public class OpenAspectsManagerAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuAspMan_16x16.png"));
-		putValue(NAME, Data.getInstance().getLocaleStr("menu.manageAspects"));
+		putValue(NAME, _("Manage Aspects"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
@@ -54,8 +56,10 @@ public class OpenAspectsManagerAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAspectsManagerFrame().setSelectedReviewer(
-				UI.getInstance().getMainFrame().getSelectedAttendee());
+		UI.getInstance()
+				.getAspectsManagerFrame()
+				.setSelectedReviewer(
+						UI.getInstance().getMainFrame().getSelectedAttendee());
 		UI.getInstance().getAssistantDialog().setVisible(false);
 		UI.getInstance().getAspectsManagerFrame().setVisible(true);
 	}

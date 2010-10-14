@@ -126,12 +126,11 @@ public class TreeTools {
 	 * @param expand
 	 *            true if the tree should be expanded; false for collapsing
 	 */
-	@SuppressWarnings("unchecked")
 	public static void expandAll(JTree tree, TreePath parent, boolean expand) {
 		// Traverse children
 		TreeNode node = (TreeNode) parent.getLastPathComponent();
 		if (node.getChildCount() >= 0) {
-			for (Enumeration e = node.children(); e.hasMoreElements();) {
+			for (Enumeration<?> e = node.children(); e.hasMoreElements();) {
 				TreeNode n = (TreeNode) e.nextElement();
 				TreePath path = parent.pathByAddingChild(n);
 				expandAll(tree, path, expand);

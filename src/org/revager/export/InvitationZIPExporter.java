@@ -18,6 +18,8 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +32,6 @@ import org.revager.app.model.DataException;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Meeting;
 import org.revager.tools.FileTools;
-
 
 /**
  * This class implements the functionality to export review meeting invitations
@@ -54,8 +55,8 @@ public class InvitationZIPExporter {
 	/**
 	 * The review info document.
 	 */
-	private static final File REVIEW_INFO_DOC = new File(WORK_DIRECTORY, Data
-			.getInstance().getLocaleStr("export.reviewInfoDocumentName"));
+	private static final File REVIEW_INFO_DOC = new File(WORK_DIRECTORY,
+			_("Review_Information.pdf"));
 
 	/**
 	 * The meeting.
@@ -139,8 +140,7 @@ public class InvitationZIPExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.invitationZipFileWriteFailed"));
+			throw new ExportException(_("Cannot store invitation as ZIP file."));
 		}
 	}
 }

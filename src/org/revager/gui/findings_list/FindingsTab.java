@@ -1,4 +1,6 @@
-package org.revager.gui.protocol;
+package org.revager.gui.findings_list;
+
+import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -46,8 +48,7 @@ public class FindingsTab extends JPanel {
 
 	private JPanel panelStrut = new JPanel();
 
-	private JButton buttonAddFinding = new JButton(Data.getInstance()
-			.getLocaleStr("editProtocol.newFinding"));
+	private JButton buttonAddFinding = new JButton(_("Add Finding"));
 	private JLabel labelNumOfFindings = new JLabel();
 
 	private Map<Finding, Integer> gridBagPositions = new HashMap<Finding, Integer>();
@@ -124,7 +125,7 @@ public class FindingsTab extends JPanel {
 		}
 
 		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " "
-				+ Data.getInstance().getLocaleStr("editProtocol.findings"));
+				+ _("Findings"));
 
 		/*
 		 * Update the tooltip
@@ -135,8 +136,8 @@ public class FindingsTab extends JPanel {
 			if (findingsSev.get(f.getSeverity()) == null) {
 				findingsSev.put(f.getSeverity(), 1);
 			} else {
-				findingsSev.put(f.getSeverity(), findingsSev.get(f
-						.getSeverity()) + 1);
+				findingsSev.put(f.getSeverity(),
+						findingsSev.get(f.getSeverity()) + 1);
 			}
 		}
 
@@ -345,8 +346,7 @@ public class FindingsTab extends JPanel {
 					succFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
 					gblAlignment, GridBagConstraints.NORTHWEST);
 
-			findMgmt
-					.pushDownFinding(currentFindingPanel.getFinding(), protocol);
+			findMgmt.pushDownFinding(currentFindingPanel.getFinding(), protocol);
 
 			panelFindingsList.revalidate();
 

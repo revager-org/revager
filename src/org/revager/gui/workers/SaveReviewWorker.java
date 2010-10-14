@@ -18,17 +18,17 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.ExitAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker for storing the current review to a file
@@ -63,14 +63,12 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 	protected Void doInBackground() {
 		MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-				"status.savingReview"), true);
+		mainframe.setStatusMessage(_("Saving review ..."), true);
 
 		try {
 			Application.getInstance().getApplicationCtl().storeReview(filePath);
 
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.saveReviewSuccessful"), false);
+			mainframe.setStatusMessage(_("Review saved successfully."), false);
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
 
@@ -79,15 +77,13 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 						ExitAction.class.getName())).exitApplication();
 			}
 		} catch (Exception e) {
-			mainframe.setStatusMessage(Data.getInstance().getLocaleStr(
-					"status.saveReviewFailed"), false);
+			mainframe.setStatusMessage(_("Cannot save review file."), false);
 
-			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(Data.getInstance().getLocaleStr(
-							"message.saveReviewFailed")
+			JOptionPane.showMessageDialog(
+					UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(_("Cannot save review file.")
 							+ "\n\n" + filePath + "\n\n" + e.getMessage()),
-					Data.getInstance().getLocaleStr("error"),
-					JOptionPane.ERROR_MESSAGE);
+					_("Error"), JOptionPane.ERROR_MESSAGE);
 		}
 
 		return null;

@@ -18,11 +18,12 @@
  */
 package org.revager.gui.actions.attendee;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppAttendee;
 import org.revager.gui.DirectoryPopupWindow;
 import org.revager.gui.UI;
@@ -44,12 +45,10 @@ public class SelectAttOutOfDirAction extends AbstractAction {
 	public void actionPerformed(ActionEvent ev) {
 		if (UI.getInstance().getAttendeeDialog().isVisible())
 			popup = new DirectoryPopupWindow(UI.getInstance()
-					.getAttendeeDialog(), Data.getInstance().getLocaleStr(
-					"popup.directory.title"));
+					.getAttendeeDialog(), _("Directory"));
 		else if (UI.getInstance().getAssistantDialog().isVisible())
 			popup = new DirectoryPopupWindow(UI.getInstance()
-					.getAssistantDialog(), Data.getInstance().getLocaleStr(
-					"popup.directory.title"));
+					.getAssistantDialog(), _("Directory"));
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == DirectoryPopupWindow.ButtonClicked.OK) {
@@ -57,8 +56,8 @@ public class SelectAttOutOfDirAction extends AbstractAction {
 				AppAttendee appAtt = ((AppAttendee) popup.getAttendeeBx()
 						.getSelectedItem());
 
-				UI.getInstance().getAttendeeDialog().setCurrentAppAttendee(
-						appAtt);
+				UI.getInstance().getAttendeeDialog()
+						.setCurrentAppAttendee(appAtt);
 			}
 		}
 	}

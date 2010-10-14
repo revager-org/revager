@@ -18,6 +18,9 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
+
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +28,9 @@ import java.util.Map;
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.ReviewManagement;
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppCSVColumnName;
 import org.revager.app.model.appdata.AppCSVProfile;
 import org.revager.app.model.schema.Finding;
-
 
 /**
  * This class is a concrete exporter class to export findings.
@@ -149,24 +150,17 @@ public class FindingsCSVExporter extends CSVExporter {
 			for (AppCSVColumnName col : columnOrder) {
 				switch (col) {
 				case DESCRIPTION:
-					csvLine[index] = f.getDescription()
-							+ " ("
-							+ Data.getInstance().getLocaleStr(
-									"export.csvReviewFinding") + " "
-							+ f.getId() + ")";
+					csvLine[index] = f.getDescription() + " ("
+							+ _("Review Findings") + " " + f.getId() + ")";
 					break;
 
 				case REFERENCE:
-					String references = Data.getInstance().getLocaleStr(
-							"export.csvReferenceText");
-					references = references.replace("<findingId>", Integer
-							.toString(f.getId()));
-					references = references.replace("<reviewTitle>", revMgmt
-							.getReviewName());
-					references = references.replace("<productName>", revMgmt
-							.getProductName());
-					references = references.replace("<productVersion>", revMgmt
-							.getProductVersion());
+					String references = MessageFormat
+							.format(_("Findings {0} out of the review \"{1}\" ** Product: {2} (Version: {3}) ****"),
+									Integer.toString(f.getId()),
+									revMgmt.getReviewName(),
+									revMgmt.getProductName(),
+									revMgmt.getProductVersion());
 
 					String refSep = "";
 					String refs = "";

@@ -25,6 +25,7 @@
 	<property name="lib.derby" location="${dir.lib}/derby.jar" />
 	<property name="lib.iText" location="${dir.lib}/iText-2.1.7.jar" />
 	<property name="lib.junit" location="${dir.lib.dev}/junit-4.7.jar" />
+	<property name="lib.gettexttasks" location="${dir.lib.dev}/gettext-ant-tasks-0.9.7.jar" />
 	<property name="lib.launch4j.linux" location="${dir.lib.dev}/launch4j/launch4j-3.0.1-linux.tgz" />
 	<property name="lib.launch4j.windows" location="${dir.lib.dev}/launch4j/launch4j-3.0.1-win32.zip" />
 	<property name="lib.launch4j.macosx" location="${dir.lib.dev}/launch4j/launch4j-3.0.1-macosx.tgz" />
@@ -69,9 +70,30 @@
 		<available file="${dir.lib.dev}/launch4j/launch4j" />
 	</condition>
 
-	<!--             -->
-	<!-- The targets -->
-	<!--             -->
+	<!--                                                                       -->
+	<!-- Gettext-related targets                                               -->
+	<!-- (http://code.google.com/p/gettext-commons/wiki/GettextAntTasksManual) -->
+	<!--                                                                       -->
+	<target name="lang-init" description="Load the gettext tasks">
+		<taskdef name="gettext-extract" classname="org.xnap.commons.ant.gettext.GettextExtractKeysTask" classpath="${lib.gettexttasks}" />
+		<taskdef name="gettext-merge" classname="org.xnap.commons.ant.gettext.GettextMergeKeysTask" classpath="${lib.gettexttasks}" />
+		<taskdef name="gettext-generate-default" classname="org.xnap.commons.ant.gettext.GenerateDefaultBundleTask" classpath="${lib.gettexttasks}" />
+		<taskdef name="gettext-dist" classname="org.xnap.commons.ant.gettext.GettextDistTask" classpath="${lib.gettexttasks}" />
+	</target>
+
+	<target name="lang-update" description="Extract and merge the language files" depends="lang-init">
+		<!-- Extract strings from Java sources and store them inside a .pot file -->
+		<gettext-extract keysFile="lang.pot" poDirectory="lang" keywords="-k -k_ --from-code=UTF-8 --no-wrap">
+			<fileset dir="${dir.src}" includes="**/*.java" />
+		</gettext-extract>
+
+		<!-- Generate properties files -->
+		<gettext-dist targetBundle="org.revager.resources.lang" outputFormat="properties" poDirectory="lang" outputDirectory="${dir.src}" percentage="75" />
+	</target>
+
+	<!--                       -->
+	<!-- Build-related targets -->
+	<!--                       -->
 	<target name="init">
 		<mkdir dir="${dir.build}" />
 		<copy includeemptydirs="false" todir="${dir.build}">
@@ -88,8 +110,6 @@
 		<delete dir="${dir.lib.dev}/launch4j/launch4j" />
 	</target>
 
-	<target depends="clean" name="cleanall" />
-
 	<target depends="build-subprojects,build-project" name="build" />
 
 	<target name="build-subprojects" />
@@ -104,7 +124,7 @@
 
 
 	<target name="unzip-libs">
-		<echo> Unzip 3rd-party libs from ${lib} directory into ${build}</echo>
+		<echo>Unzip 3rd-party libs from ${lib} directory into ${build}</echo>
 		<unzip dest="${dir.build}">
 			<fileset dir="${dir.lib}">
 				<include name="**/*.jar" />
@@ -113,7 +133,7 @@
 	</target>
 
 
-	<target name="dist" depends="unzip-libs,build" description="generate the distribution">
+	<target name="dist" depends="unzip-libs,build" description="Generate the distribution">
 		<delete dir="${dir.build.test}" />
 		<delete dir="${dir.build.resources.build}" />
 
@@ -179,7 +199,7 @@
 	</target>
 
 
-	<target name="build-launch4j" if="isLaunch4jAvailable" description="generate runnable .exe file for MS Windows">
+	<target name="build-launch4j" if="isLaunch4jAvailable" description="Generate runnable .exe file for MS Windows">
 		<property name="dir.launch4j" location="${dir.lib.dev}/launch4j/launch4j" />
 		<property name="conf.launch4j" location="${dir.src.resources.build}/windows/launch4j-config.xml" />
 
@@ -190,7 +210,7 @@
 	</target>
 
 
-	<target name="build-jarbundler" if="isMacOSX" description="generate runnable app file for Mac OS X">
+	<target name="build-jarbundler" if="isMacOSX" description="Generate runnable app file for Mac OS X">
 		<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${dir.lib.dev}/jarbundler-2.1.0.jar" />
 
 		<jarbundler dir="${dir.dist}" name="${appName}" mainclass="org.revager.Main" jar="${dir.dist}/${appFileName}_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="org.revager" icon="${dir.src}/org/revager/resources/build/macosx/appIcon.icns" jvmversion="1.6+" shortname="${appName}" />
@@ -198,7 +218,7 @@
 
 
 	<!-- MacOS X DMG build script adapted from Romain Kuntz (http://www.rkuntz.org/pmwiki.php?n=Code.AntDiskImage) -->
-	<target name="build-dmg" if="isMacOSX" description="build DMG image for MacOS X (requires hdiutil, thus only works on MacOS X)">
+	<target name="build-dmg" if="isMacOSX" description="Build DMG image for MacOS X (requires hdiutil, thus only works on MacOS X)">
 
 		<!-- Delete previously created DMG -->
 		<delete file="${dir.dist}/${appFileName}_${appVersion}.dmg" verbose="true" failonerror="false" />
@@ -255,14 +275,19 @@
 
 	</target>
 
-	<target name="release" description="generate a full release">
+	<target name="release" description="Generate a full release">
 		<antcall target="dist" />
 
-		<antcall target="prepare-launch4j" />
-		<antcall target="build-launch4j" />
+		<!-- Update language stuff -->
+		<antcall target="lang-update" />
 
+		<!-- Mac OS X binary -->
 		<antcall target="build-jarbundler" />
 		<antcall target="build-dmg" />
+
+		<!-- Windows binary -->
+		<antcall target="prepare-launch4j" />
+		<antcall target="build-launch4j" />
 	</target>
 
 </project>

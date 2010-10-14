@@ -18,6 +18,8 @@
  */
 package org.revager.gui.dialogs;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Window;
@@ -27,10 +29,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
-import org.revager.app.model.Data;
 import org.revager.gui.actions.WarningAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * The Class WarningDialog.
@@ -38,8 +38,7 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class WarningDialog extends JDialog {
 
-	private String dontShowAgainString = Data.getInstance().getLocaleStr(
-			"warningDialog.dontShowAgain");
+	private String dontShowAgainString = _("Don't show this dialog during the current session again.");
 
 	private JCheckBox dontShowAgainBx = new JCheckBox(dontShowAgainString);
 
@@ -98,14 +97,14 @@ public class WarningDialog extends JDialog {
 		super(parent);
 		setLayout(gbl);
 		setModal(true);
-		setTitle(Data.getInstance().getLocaleStr("warningDialog.title"));
+		setTitle(_("Attention!"));
 
 		JLabel messageLabel = GUITools.getMessagePane(message);
 
-		JButton canceleBttn = new JButton(Data.getInstance().getLocaleStr("no"));
+		JButton canceleBttn = new JButton(_("No"));
 		canceleBttn
 				.addActionListener(new WarningAction(this, ButtonClicked.NO));
-		JButton acceptBttn = new JButton(Data.getInstance().getLocaleStr("yes"));
+		JButton acceptBttn = new JButton(_("Yes"));
 		acceptBttn
 				.addActionListener(new WarningAction(this, ButtonClicked.YES));
 

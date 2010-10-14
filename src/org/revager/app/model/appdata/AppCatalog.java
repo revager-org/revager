@@ -18,16 +18,17 @@
  */
 package org.revager.app.model.appdata;
 
+import static org.revager.app.model.Data._;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.revager.app.model.ApplicationData.PushMode;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
-import org.revager.app.model.ApplicationData.PushMode;
-
 
 /**
  * Instances of this class represent catalogs in the database.
@@ -42,9 +43,8 @@ public class AppCatalog {
 	/**
 	 * This exception is thrown if the catalog could not be found.
 	 */
-	private DataException notFoundExc = new DataException(Data.getInstance()
-			.getLocaleStr("message.appCatalogNotFound")
-			+ " [NAME = " + this.name + "]");
+	private DataException notFoundExc = new DataException(
+			_("Catalog doesn't exists!") + " [NAME = " + this.name + "]");
 
 	/**
 	 * Internally used contructor.
@@ -150,8 +150,7 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.newInstAppCatalogFailed")
+			throw new DataException(_("Cannot add or get catalog.")
 					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
@@ -244,8 +243,7 @@ public class AppCatalog {
 					throw new DataException();
 				}
 			} catch (Exception e) {
-				throw new DataException(Data.getInstance().getLocaleStr(
-						"message.setAppCatalogNameFailed")
+				throw new DataException(_("Cannot set catalog name.")
 						+ " [NAME = " + this.name + "]");
 			}
 		}
@@ -384,8 +382,7 @@ public class AppCatalog {
 				 * Not part of the unit testing, because this exception is only
 				 * thrown if there occurs an internal error.
 				 */
-				throw new DataException(Data.getInstance().getLocaleStr(
-						"message.pushAppCatalogFailed")
+				throw new DataException(_("Cannot move the selected catalog.")
 						+ " [NAME = " + this.name + "] " + e.getMessage());
 			}
 		}
@@ -470,9 +467,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getSortPosOfAppCatalogFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the sorting position of the catalogs.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -512,9 +509,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getSortPosOfAppCatalogFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the sorting position of the catalogs.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -554,9 +551,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getSortPosOfAppCatalogFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get the sorting position of the catalogs.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -599,9 +596,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getSortPosOfAppCategoryFailed")
-					+ " [NAME = " + category + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get sorting position of the category.")
+							+ " [NAME = " + category + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -646,9 +643,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getSortPosOfAppCategoryFailed")
-					+ " [NAME = " + category + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get sorting position of the category.")
+							+ " [NAME = " + category + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -693,9 +690,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getSortPosOfAppCategoryFailed")
-					+ " [NAME = " + category + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get sorting position of the category.")
+							+ " [NAME = " + category + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -735,9 +732,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getFirstSortPosOfAppCategoriesFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get first sorting position of the categories.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -778,9 +775,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getLastSortPosOfAppCategoriesFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get last sorting position of the categories.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -853,8 +850,7 @@ public class AppCatalog {
 				 * Not part of the unit testing, because this exception is only
 				 * thrown if there occurs an internal error.
 				 */
-				throw new DataException(Data.getInstance().getLocaleStr(
-						"message.pushAppCategoryFailed")
+				throw new DataException(_("Cannot move the selected category.")
 						+ " [NAME = " + category + "] " + e.getMessage());
 			}
 		}
@@ -948,8 +944,7 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getNumberOfAppCategoriesFailed")
+			throw new DataException(_("Cannot get the number of categories.")
 					+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
@@ -989,9 +984,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppCategoriesFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get category of the selected catalog.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return categories;
@@ -1058,9 +1053,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.isAppCategoryFailed")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot detect wether the given category exists or not.")
+							+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return isCat;
@@ -1118,9 +1113,8 @@ public class AppCatalog {
 				throw new DataException();
 			}
 		} catch (Exception e) {
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.editAppCategoryFailed")
-					+ " [NAME = " + oldName + "] " + e.getMessage());
+			throw new DataException(_("Cannot change category.") + " [NAME = "
+					+ oldName + "] " + e.getMessage());
 		}
 	}
 
@@ -1163,9 +1157,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getFirstSortPosOfAppAspectsFailed")
-					+ " [NAME = " + category + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get first sorting position of the aspects.")
+							+ " [NAME = " + category + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1210,9 +1204,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getLastSortPosOfAppAspectsFailed")
-					+ " [NAME = " + category + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get last sorting position of the aspects.")
+							+ " [NAME = " + category + "] " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1262,8 +1256,7 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getNumberOfAppAspectsFailed")
+			throw new DataException(_("Cannot get the number of aspects.")
 					+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
@@ -1320,9 +1313,9 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.getAppAspectsFailed")
-					+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot get aspects of the selected catalog / category.")
+							+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return aspects;
@@ -1349,8 +1342,8 @@ public class AppCatalog {
 
 		for (AppAspect asp : aspects) {
 			if (asp.getDirective().toLowerCase().contains(filter.toLowerCase())
-					|| asp.getDescription().toLowerCase().contains(
-							filter.toLowerCase())) {
+					|| asp.getDescription().toLowerCase()
+							.contains(filter.toLowerCase())) {
 				aspectsFiltered.add(asp);
 			}
 		}
@@ -1438,8 +1431,7 @@ public class AppCatalog {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(Data.getInstance().getLocaleStr(
-					"message.removeAppAspectFailed")
+			throw new DataException(_("Cannot remove aspect.")
 					+ " [ASPECT_ID = " + aspect.getId() + "] " + e.getMessage());
 		}
 	}

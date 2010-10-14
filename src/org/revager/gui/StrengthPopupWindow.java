@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -49,7 +51,6 @@ import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppCatalog;
 import org.revager.gui.actions.popup.StrengthPopupWindowAction;
 import org.revager.tools.GUITools;
-
 
 /**
  * The popup window provides the possibility to give strengths to an attendee.
@@ -129,15 +130,14 @@ public class StrengthPopupWindow extends JDialog {
 				}
 			}
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
 		selCateList = new ArrayList<String>();
 
-		JLabel labelFilter = new JLabel(Data.getInstance().getLocaleStr(
-				"popup.addStrength.filter"));
+		JLabel labelFilter = new JLabel(_("Filter:"));
 
 		filterTxtFld = new JTextField();
 		filterTxtFld.addKeyListener(new KeyListener() {
@@ -156,10 +156,9 @@ public class StrengthPopupWindow extends JDialog {
 		});
 
 		JButton buttonClear = GUITools.newImageButton(Data.getInstance()
-				.getIcon("clear_22x22_0.png"), Data.getInstance().getIcon(
-				"clear_22x22.png"));
-		buttonClear.setToolTipText(Data.getInstance().getLocaleStr(
-				"popup.addStrength.resetFilter"));
+				.getIcon("clear_22x22_0.png"),
+				Data.getInstance().getIcon("clear_22x22.png"));
+		buttonClear.setToolTipText(_("Reset filter"));
 		buttonClear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -198,7 +197,7 @@ public class StrengthPopupWindow extends JDialog {
 				"buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(Data.getInstance().getLocaleStr("abort"));
+		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new StrengthPopupWindowAction(this,
 				ButtonClicked.ABORT));
 
@@ -207,8 +206,7 @@ public class StrengthPopupWindow extends JDialog {
 				.getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
 				"buttonOk_24x24.png"));
-		buttonConfirm
-				.setToolTipText(Data.getInstance().getLocaleStr("confirm"));
+		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new StrengthPopupWindowAction(this,
 				ButtonClicked.OK));
 
@@ -288,8 +286,8 @@ public class StrengthPopupWindow extends JDialog {
 				}
 			}
 		} catch (Exception exc) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(exc.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 

@@ -18,18 +18,18 @@
  */
 package org.revager.gui.actions.attendee;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.xml.datatype.Duration;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
-import org.revager.gui.protocol.AddAttToProtPopupWindow;
-
+import org.revager.gui.findings_list.AddAttToFLPopupWindow;
 
 /**
  * The Class EditAttFromProtAction.
@@ -44,12 +44,11 @@ public class EditAttFromProtAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AddAttToProtPopupWindow popup = new AddAttToProtPopupWindow(UI
-				.getInstance().getProtocolFrame(), Data.getInstance()
-				.getLocaleStr("attendee.edit"), true);
+		AddAttToFLPopupWindow popup = new AddAttToFLPopupWindow(UI
+				.getInstance().getProtocolFrame(), _("Edit Attendee"), true);
 		popup.setVisible(true);
 
-		if (popup.getButtonClicked() == AddAttToProtPopupWindow.ButtonClicked.OK) {
+		if (popup.getButtonClicked() == AddAttToFLPopupWindow.ButtonClicked.OK) {
 
 			Protocol prot = UI.getInstance().getProtocolFrame()
 					.getCurrentProt();
@@ -65,12 +64,13 @@ public class EditAttFromProtAction extends AbstractAction {
 			localAtt.setRole(popup.getAttRole());
 			localAtt.setAspects(oldAtt.getAspects());
 
-			Duration dur=popup.getDuration();
-			Application.getInstance().getProtocolMgmt().setAttendeePrepTime(dur, oldAtt, prot);
+			Duration dur = popup.getDuration();
+			Application.getInstance().getProtocolMgmt()
+					.setAttendeePrepTime(dur, oldAtt, prot);
 
-			Application.getInstance().getAttendeeMgmt().editAttendee(oldAtt,
-					localAtt);
-			
+			Application.getInstance().getAttendeeMgmt()
+					.editAttendee(oldAtt, localAtt);
+
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);
 			UI.getInstance().getProtocolFrame().getPatm()
 					.fireTableDataChanged();

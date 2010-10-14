@@ -18,18 +18,18 @@
  */
 package org.revager.gui.actions.attendee;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.xml.datatype.Duration;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
-import org.revager.gui.protocol.AddAttToProtPopupWindow;
-
+import org.revager.gui.findings_list.AddAttToFLPopupWindow;
 
 /**
  * The Class AddAttToProtAction.
@@ -45,18 +45,17 @@ public class AddAttToProtAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AddAttToProtPopupWindow popup = new AddAttToProtPopupWindow(UI
-				.getInstance().getProtocolFrame(), Data.getInstance()
-				.getLocaleStr("addAttendee.title"), false);
+		AddAttToFLPopupWindow popup = new AddAttToFLPopupWindow(UI
+				.getInstance().getProtocolFrame(), _("Add Attendee"), false);
 		popup.setVisible(true);
 
-		if (popup.getButtonClicked() == AddAttToProtPopupWindow.ButtonClicked.OK) {
+		if (popup.getButtonClicked() == AddAttToFLPopupWindow.ButtonClicked.OK) {
 			Duration dur = popup.getDuration();
 
 			Attendee localAtt = new Attendee();
 			localAtt.setName(popup.getAttName());
 			localAtt.setAspects(null);
-			if(popup.getAttContact()!=null)
+			if (popup.getAttContact() != null)
 				localAtt.setContact(popup.getAttContact());
 			else
 				localAtt.setContact("");
@@ -65,8 +64,8 @@ public class AddAttToProtAction extends AbstractAction {
 					.getCurrentProt();
 			Attendee newAtt = Application.getInstance().getAttendeeMgmt()
 					.addAttendee(localAtt);
-			Application.getInstance().getProtocolMgmt().addAttendee(newAtt,
-					dur, prot);
+			Application.getInstance().getProtocolMgmt()
+					.addAttendee(newAtt, dur, prot);
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);
 			UI.getInstance().getProtocolFrame().getPatm()
 					.fireTableDataChanged();

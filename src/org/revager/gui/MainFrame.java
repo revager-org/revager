@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -92,7 +94,7 @@ import org.revager.gui.actions.OpenAspectsManagerAction;
 import org.revager.gui.actions.OpenExpCSVDialogAction;
 import org.revager.gui.actions.OpenExpPDFDialogAction;
 import org.revager.gui.actions.OpenInvitationsDialogAction;
-import org.revager.gui.actions.OpenProtocolFrameAction;
+import org.revager.gui.actions.OpenFindingsListAction;
 import org.revager.gui.actions.SaveReviewAction;
 import org.revager.gui.actions.SaveReviewAsAction;
 import org.revager.gui.actions.assistant.OpenAssistantAction;
@@ -134,7 +136,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JButton editAttendee;
 
 	private DefaultMutableTreeNode nodeMeetingRoot = new DefaultMutableTreeNode(
-			Data.getInstance().getLocaleStr("mainFrame.meetings.tree.node"));
+			_("All meetings"));
 	private DefaultTreeModel meetingsTreeModel = new DefaultTreeModel(
 			nodeMeetingRoot);
 	private JTree meetingsTree;
@@ -227,7 +229,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private HintItem hintRevDesc;
 	private HintItem hintMeet;
 	private HintItem hintAtt;
-	private HintItem hintAsp;
 	private HintItem hintImpr;
 	private HintItem hintRec;
 	private HintItem hintOk;
@@ -383,26 +384,22 @@ public class MainFrame extends AbstractFrame implements Observer {
 		/*
 		 * creating the left panel
 		 */
-		product = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.product"));
+		product = new JLabel(_("Product:"));
 
 		textProduct.setFocusable(false);
 
-		reviewName = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.review.name"));
+		reviewName = new JLabel(_("Title of the review:"));
 		reviewName.setBorder(labelBorder);
 		textRevName.addKeyListener(updKeyListener);
 
-		reviewDescription = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.review.description"));
+		reviewDescription = new JLabel(_("Description of the review:"));
 		reviewDescription.setBorder(labelBorder);
 		textRevDesc.addKeyListener(updKeyListener);
 
 		scrollRevDesc = GUITools.setIntoScrllPn(textRevDesc);
 		scrollRevComm = GUITools.setIntoScrllPn(textRevComm);
 
-		reviewComment = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.review.comments"));
+		reviewComment = new JLabel(_("Comments on the review:"));
 		reviewComment.setBorder(labelBorder);
 		textRevComm.addKeyListener(updKeyListener);
 		textRevComm.setRows(5);
@@ -483,8 +480,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 */
 		rightPanel.setBorder(new MatteBorder(0, 1, 0, 0, UI.SEPARATOR_COLOR));
 
-		meetings = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.meetings"));
+		meetings = new JLabel(_("Review Meetings:"));
 
 		MeetingsTreeRenderer renderer = new MeetingsTreeRenderer();
 
@@ -552,14 +548,14 @@ public class MainFrame extends AbstractFrame implements Observer {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					if (getSelectedMeeting() != null) {
-						ActionRegistry.getInstance().get(
-								EditMeetingAction.class.getName())
+						ActionRegistry.getInstance()
+								.get(EditMeetingAction.class.getName())
 								.actionPerformed(null);
 					} else if (getSelectedProtocol() != null
 							&& Data.getInstance().getModeParam(
 									"ableToUseProtocolMode")) {
-						ActionRegistry.getInstance().get(
-								OpenProtocolFrameAction.class.getName())
+						ActionRegistry.getInstance()
+								.get(OpenFindingsListAction.class.getName())
 								.actionPerformed(null);
 					}
 				}
@@ -610,9 +606,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 */
 		meetingButtons = new JPanel(new GridLayout(5, 1));
 
-		addMeeting = GUITools.newImageButton(Data.getInstance().getIcon(
-				"add_25x25_0.png"),
-				Data.getInstance().getIcon("add_25x25.png"), ActionRegistry
+		addMeeting = GUITools.newImageButton(
+				Data.getInstance().getIcon("add_25x25_0.png"), Data
+						.getInstance().getIcon("add_25x25.png"), ActionRegistry
 						.getInstance().get(AddMeetingAction.class.getName()));
 		meetingButtons.add(addMeeting);
 
@@ -620,8 +616,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		removeMeeting.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
 		removeMeeting.setRolloverIcon(Data.getInstance().getIcon(
 				"remove_25x25.png"));
-		removeMeeting.setToolTipText(Data.getInstance().getLocaleStr(
-				"button.remove"));
+		removeMeeting.setToolTipText(_("Remove"));
 		removeMeeting.addActionListener(ActionRegistry.getInstance().get(
 				RemoveMeetingAction.class.getName()));
 		meetingButtons.add(removeMeeting);
@@ -630,8 +625,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		editMeeting.setIcon(Data.getInstance().getIcon("edit_25x25_0.png"));
 		editMeeting.setRolloverIcon(Data.getInstance()
 				.getIcon("edit_25x25.png"));
-		editMeeting.setToolTipText(Data.getInstance().getLocaleStr(
-				"meeting.edit"));
+		editMeeting.setToolTipText(_("Modify meeting"));
 		editMeeting.addActionListener(ActionRegistry.getInstance().get(
 				EditMeetingAction.class.getName()));
 
@@ -642,8 +636,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				.getIcon("comment_25x25_0.png"));
 		commentMeeting.setRolloverIcon(Data.getInstance().getIcon(
 				"comment_25x25.png"));
-		commentMeeting.setToolTipText(Data.getInstance().getLocaleStr(
-				"meeting.comment"));
+		commentMeeting.setToolTipText(_("Comment meeting"));
 		commentMeeting.addActionListener(ActionRegistry.getInstance().get(
 				CommentMeetingAction.class.getName()));
 		meetingButtons.add(commentMeeting);
@@ -653,10 +646,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 				"protocolFrame_25x25_0.png"));
 		editProtocol.setRolloverIcon(Data.getInstance().getIcon(
 				"protocolFrame_25x25.png"));
-		editProtocol.setToolTipText(Data.getInstance().getLocaleStr(
-				"mainFrame.protocolMode"));
+		editProtocol.setToolTipText(_("Open/create list of findings"));
 		editProtocol.addActionListener(ActionRegistry.getInstance().get(
-				OpenProtocolFrameAction.class.getName()));
+				OpenFindingsListAction.class.getName()));
 
 		meetingButtons.add(editProtocol);
 
@@ -665,8 +657,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		removeMeeting.setEnabled(false);
 		editProtocol.setEnabled(false);
 
-		attendees = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.meetings.attendees"));
+		attendees = new JLabel(_("Attendees of the review:"));
 		attendees.setBorder(labelBorder);
 		attendeesTable = GUITools.newStandardTable(attendeesTableModel, false);
 		attendeesTable.getColumnModel().getColumn(2).setPreferredWidth(50);
@@ -737,8 +728,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					ActionRegistry.getInstance().get(
-							EditAttendeeAction.class.getName())
+					ActionRegistry.getInstance()
+							.get(EditAttendeeAction.class.getName())
 							.actionPerformed(null);
 				}
 			}
@@ -773,10 +764,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		attendeeButtons = new JPanel(grid);
 
-		addAttendee = GUITools.newImageButton(Data.getInstance().getIcon(
-				"addAttendee_25x25_0.png"), Data.getInstance().getIcon(
-				"addAttendee_25x25.png"), ActionRegistry.getInstance().get(
-				AddAttendeeAction.class.getName()));
+		addAttendee = GUITools.newImageButton(
+				Data.getInstance().getIcon("addAttendee_25x25_0.png"),
+				Data.getInstance().getIcon("addAttendee_25x25.png"),
+				ActionRegistry.getInstance().get(
+						AddAttendeeAction.class.getName()));
 		attendeeButtons.add(addAttendee);
 
 		removeAttendee = GUITools.newImageButton();
@@ -784,8 +776,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				"removeAttendee_25x25_0.png"));
 		removeAttendee.setRolloverIcon(Data.getInstance().getIcon(
 				"removeAttendee_25x25.png"));
-		removeAttendee.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.remove"));
+		removeAttendee.setToolTipText(_("Remove attendee"));
 		removeAttendee.addActionListener(ActionRegistry.getInstance().get(
 				RemoveAttendeeAction.class.getName()));
 		attendeeButtons.add(removeAttendee);
@@ -795,8 +786,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				"editAttendee_25x25_0.png"));
 		editAttendee.setRolloverIcon(Data.getInstance().getIcon(
 				"editAttendee_25x25.png"));
-		editAttendee.setToolTipText(Data.getInstance().getLocaleStr(
-				"attendee.edit"));
+		editAttendee.setToolTipText(_("Modify attendee"));
 		editAttendee.addActionListener(ActionRegistry.getInstance().get(
 				EditAttendeeAction.class.getName()));
 		attendeeButtons.add(editAttendee);
@@ -807,19 +797,16 @@ public class MainFrame extends AbstractFrame implements Observer {
 		removeAttendee.setEnabled(false);
 		editAttendee.setEnabled(false);
 
-		generalImpression = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.impression"));
+		generalImpression = new JLabel(_("General impression of the product:"));
 		generalImpression.setBorder(labelBorder);
 
 		scrollImpression = GUITools.setIntoScrllPn(impressionTxtArea);
 		impressionTxtArea.addKeyListener(updKeyListener);
 
-		recommendation = new JLabel(Data.getInstance().getLocaleStr(
-				"mainFrame.recommendation"));
+		recommendation = new JLabel(_("Final recommendation for the product:"));
 		recommendation.setBorder(labelBorder);
 		recommendationBx.setEditable(true);
-		for (String rec : Data.getInstance()
-				.getLocaleStr("standardImpressions").split(",")) {
+		for (String rec : Data.getStandardRecommendations()) {
 			recommendationBx.addItem(rec);
 		}
 		recommendationBx.addPopupMenuListener(new PopupMenuListener() {
@@ -902,108 +889,117 @@ public class MainFrame extends AbstractFrame implements Observer {
 		/*
 		 * Create the toolbar and its components
 		 */
-		tbNewReview = GUITools.newImageButton(Data.getInstance().getIcon(
-				"new_50x50_0.png"),
-				Data.getInstance().getIcon("new_50x50.png"), ActionRegistry
+		tbNewReview = GUITools.newImageButton(
+				Data.getInstance().getIcon("new_50x50_0.png"), Data
+						.getInstance().getIcon("new_50x50.png"), ActionRegistry
 						.getInstance().get(NewReviewAction.class.getName()));
 
 		addTopComponent(tbNewReview);
 
-		tbOpenReview = GUITools.newImageButton(Data.getInstance().getIcon(
-				"open_50x50_0.png"), Data.getInstance().getIcon(
-				"open_50x50.png"), ActionRegistry.getInstance().get(
-				LoadReviewAction.class.getName()));
+		tbOpenReview = GUITools.newImageButton(
+				Data.getInstance().getIcon("open_50x50_0.png"),
+				Data.getInstance().getIcon("open_50x50.png"),
+				ActionRegistry.getInstance().get(
+						LoadReviewAction.class.getName()));
 
 		addTopComponent(tbOpenReview);
 
-		tbSaveReview = GUITools.newImageButton(Data.getInstance().getIcon(
-				"save_50x50_0.png"), Data.getInstance().getIcon(
-				"save_50x50.png"), ActionRegistry.getInstance().get(
-				SaveReviewAction.class.getName()));
+		tbSaveReview = GUITools.newImageButton(
+				Data.getInstance().getIcon("save_50x50_0.png"),
+				Data.getInstance().getIcon("save_50x50.png"),
+				ActionRegistry.getInstance().get(
+						SaveReviewAction.class.getName()));
 
 		addTopComponent(tbSaveReview);
 
-		tbShowAssistant = GUITools.newImageButton(Data.getInstance().getIcon(
-				"tbShowAssistant_50x50_0.png"), Data.getInstance().getIcon(
-				"tbShowAssistant_50x50.png"));
-		tbShowAssistant.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.showAssistant"));
+		tbShowAssistant = GUITools.newImageButton(
+				Data.getInstance().getIcon("tbShowAssistant_50x50_0.png"), Data
+						.getInstance().getIcon("tbShowAssistant_50x50.png"));
+		tbShowAssistant.setToolTipText(_("Open RevAger Assistant"));
 		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(
 				OpenAssistantAction.class.getName()));
 
 		addTopComponent(tbShowAssistant);
 
-		tbShowHelp = GUITools.newImageButton(Data.getInstance().getIcon(
-				"tbShowHelp_50x50_0.png"), Data.getInstance().getIcon(
-				"tbShowHelp_50x50.png"));
-		tbShowHelp.setToolTipText(Data.getInstance().getLocaleStr(
-				"menu.showHelp"));
+		tbShowHelp = GUITools.newImageButton(
+				Data.getInstance().getIcon("tbShowHelp_50x50_0.png"), Data
+						.getInstance().getIcon("tbShowHelp_50x50.png"));
+		tbShowHelp.setToolTipText(_("Open RevAger Help"));
 		tbShowHelp.addActionListener(ActionRegistry.getInstance().get(
 				OpenHelpAction.class.getName()));
 
 		addTopComponent(tbShowHelp);
 
-		tbManageSeverities = GUITools.newImageButton(Data.getInstance()
-				.getIcon("severities_50x50_0.png"), Data.getInstance().getIcon(
-				"severities_50x50.png"), ActionRegistry.getInstance().get(
-				ManageSeveritiesAction.class.getName()));
+		tbManageSeverities = GUITools.newImageButton(
+				Data.getInstance().getIcon("severities_50x50_0.png"),
+				Data.getInstance().getIcon("severities_50x50.png"),
+				ActionRegistry.getInstance().get(
+						ManageSeveritiesAction.class.getName()));
 
 		addTopComponent(tbManageSeverities);
 
-		tbAspectsManager = GUITools.newImageButton(Data.getInstance().getIcon(
-				"aspectsManager_50x50_0.png"), Data.getInstance().getIcon(
-				"aspectsManager_50x50.png"), ActionRegistry.getInstance().get(
-				OpenAspectsManagerAction.class.getName()));
+		tbAspectsManager = GUITools.newImageButton(
+				Data.getInstance().getIcon("aspectsManager_50x50_0.png"),
+				Data.getInstance().getIcon("aspectsManager_50x50.png"),
+				ActionRegistry.getInstance().get(
+						OpenAspectsManagerAction.class.getName()));
 
 		addTopComponent(tbAspectsManager);
 
 		tbCreateInvitations = GUITools
-				.newImageButton(Data.getInstance().getIcon(
-						"createInvitations_50x50_0.png"), Data.getInstance()
-						.getIcon("createInvitations_50x50.png"), ActionRegistry
-						.getInstance().get(
+				.newImageButton(
+						Data.getInstance().getIcon(
+								"createInvitations_50x50_0.png"),
+						Data.getInstance().getIcon(
+								"createInvitations_50x50.png"),
+						ActionRegistry.getInstance().get(
 								OpenInvitationsDialogAction.class.getName()));
 
 		addTopComponent(tbCreateInvitations);
 
-		tbNewAttendee = GUITools.newImageButton(Data.getInstance().getIcon(
-				"addAttendee_50x50_0.png"), Data.getInstance().getIcon(
-				"addAttendee_50x50.png"), ActionRegistry.getInstance().get(
-				AddAttendeeAction.class.getName()));
+		tbNewAttendee = GUITools.newImageButton(
+				Data.getInstance().getIcon("addAttendee_50x50_0.png"),
+				Data.getInstance().getIcon("addAttendee_50x50.png"),
+				ActionRegistry.getInstance().get(
+						AddAttendeeAction.class.getName()));
 
 		addTopComponent(tbNewAttendee);
 
-		tbNewMeeting = GUITools.newImageButton(Data.getInstance().getIcon(
-				"addMeeting_50x50_0.png"), Data.getInstance().getIcon(
-				"addMeeting_50x50.png"), ActionRegistry.getInstance().get(
-				AddMeetingAction.class.getName()));
+		tbNewMeeting = GUITools.newImageButton(
+				Data.getInstance().getIcon("addMeeting_50x50_0.png"),
+				Data.getInstance().getIcon("addMeeting_50x50.png"),
+				ActionRegistry.getInstance().get(
+						AddMeetingAction.class.getName()));
 
 		addTopComponent(tbNewMeeting);
 
-		tbProtocolMode = GUITools.newImageButton(Data.getInstance().getIcon(
-				"protocolFrame_50x50_0.png"), Data.getInstance().getIcon(
-				"protocolFrame_50x50.png"), ActionRegistry.getInstance().get(
-				OpenProtocolFrameAction.class.getName()));
+		tbProtocolMode = GUITools.newImageButton(
+				Data.getInstance().getIcon("protocolFrame_50x50_0.png"),
+				Data.getInstance().getIcon("protocolFrame_50x50.png"),
+				ActionRegistry.getInstance().get(
+						OpenFindingsListAction.class.getName()));
 
 		addTopComponent(tbProtocolMode);
 
-		tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon(
-				"PDFExport_50x50_0.png"), Data.getInstance().getIcon(
-				"PDFExport_50x50.png"), ActionRegistry.getInstance().get(
-				OpenExpPDFDialogAction.class.getName()));
+		tbPdfExport = GUITools.newImageButton(
+				Data.getInstance().getIcon("PDFExport_50x50_0.png"),
+				Data.getInstance().getIcon("PDFExport_50x50.png"),
+				ActionRegistry.getInstance().get(
+						OpenExpPDFDialogAction.class.getName()));
 
 		addTopComponent(tbPdfExport);
 
-		tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon(
-				"CSVExport_50x50_0.png"), Data.getInstance().getIcon(
-				"CSVExport_50x50.png"), ActionRegistry.getInstance().get(
-				OpenExpCSVDialogAction.class.getName()));
+		tbCsvExport = GUITools.newImageButton(
+				Data.getInstance().getIcon("CSVExport_50x50_0.png"),
+				Data.getInstance().getIcon("CSVExport_50x50.png"),
+				ActionRegistry.getInstance().get(
+						OpenExpCSVDialogAction.class.getName()));
 
 		addTopComponent(tbCsvExport);
 
-		tbBlank = GUITools.newImageButton(Data.getInstance().getIcon(
-				"blank_50x50.png"), Data.getInstance().getIcon(
-				"blank_50x50.png"));
+		tbBlank = GUITools.newImageButton(
+				Data.getInstance().getIcon("blank_50x50.png"), Data
+						.getInstance().getIcon("blank_50x50.png"));
 		tbBlank.setEnabled(false);
 
 		addTopComponent(tbBlank);
@@ -1072,7 +1068,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 * File menu
 		 */
 		menuFile = new JMenu();
-		menuFile.setText(Data.getInstance().getLocaleStr("menu.file"));
+		menuFile.setText(_("File"));
 
 		fileSelectModeItem = new JMenuItem(ActionRegistry.getInstance().get(
 				OpenAssistantAction.class.getName()));
@@ -1112,7 +1108,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 * Edit menu
 		 */
 		menuEdit = new JMenu();
-		menuEdit.setText(Data.getInstance().getLocaleStr("menu.edit"));
+		menuEdit.setText(_("Edit"));
 
 		newMeetingItem = new JMenuItem(ActionRegistry.getInstance().get(
 				AddMeetingAction.class.getName()));
@@ -1135,7 +1131,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuEdit.add(manageSeveritiesItem);
 
 		protocolModeItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenProtocolFrameAction.class.getName()));
+				OpenFindingsListAction.class.getName()));
 
 		menuEdit.add(protocolModeItem);
 
@@ -1162,11 +1158,10 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 * Extras menu
 		 */
 		menuSettings = new JMenu();
-		menuSettings.setText(Data.getInstance().getLocaleStr("menu.settings"));
+		menuSettings.setText(_("Settings"));
 
 		appSettings = new JMenuItem();
-		appSettings
-				.setText(Data.getInstance().getLocaleStr("menu.appSettings"));
+		appSettings.setText(_("Application Settings"));
 		appSettings.setIcon(Data.getInstance().getIcon(
 				"menuAppSettings_16x16.png"));
 		appSettings.addActionListener(new ActionListener() {
@@ -1179,8 +1174,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuSettings.add(appSettings);
 
 		csvProfiles = new JMenuItem();
-		csvProfiles
-				.setText(Data.getInstance().getLocaleStr("menu.csvProfiles"));
+		csvProfiles.setText(_("CSV Profiles"));
 		csvProfiles.setIcon(Data.getInstance().getIcon(
 				"menuCsvSettings_16x16.png"));
 		csvProfiles.addActionListener(new ActionListener() {
@@ -1198,10 +1192,10 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 * Help menu
 		 */
 		menuHelp = new JMenu();
-		menuHelp.setText(Data.getInstance().getLocaleStr("menu.help"));
+		menuHelp.setText(_("Help"));
 
 		openHelp = new JMenuItem();
-		openHelp.setText(Data.getInstance().getLocaleStr("menu.help.openHelp"));
+		openHelp.setText(_("Open Help Broweser"));
 		openHelp.setIcon(Data.getInstance().getIcon("menuHelp_16x16.png"));
 		openHelp.addActionListener(ActionRegistry.getInstance().get(
 				OpenHelpAction.class.getName()));
@@ -1209,8 +1203,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuHelp.add(openHelp);
 
 		aboutHelp = new JMenuItem();
-		aboutHelp
-				.setText(Data.getInstance().getLocaleStr("menu.help.infoHelp"));
+		aboutHelp.setText(_("About RevAger"));
 		aboutHelp.setIcon(Data.getInstance().getIcon("menuAbout_16x16.png"));
 		aboutHelp.addActionListener(new ActionListener() {
 
@@ -1355,9 +1348,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		String product = productName;
 
 		if (!productVersion.trim().equals("") && !productName.trim().equals("")) {
-			product += " ("
-					+ Data.getInstance().getLocaleStr("mainFrame.version")
-					+ ": " + productVersion + ")";
+			product += " (" + _("Version:") + " " + productVersion + ")";
 		}
 
 		textProduct.setText(product);
@@ -1401,58 +1392,59 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
-		hintProduct = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintProduct"), HintItem.WARNING,
-				"review_management", "7");
+		hintProduct = new HintItem(
+				_("Please specify the product including its name, version and references of the current review by clicking on the 'Product' text field."),
+				HintItem.WARNING, "review_management", "7");
 
-		hintRevName = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintRevName"), HintItem.WARNING,
-				"review_management", "4");
+		hintRevName = new HintItem(
+				_("Please enter a title for the current review."),
+				HintItem.WARNING, "review_management", "4");
 
-		hintRevDesc = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintRevDesc"), HintItem.WARNING,
-				"review_management", "5");
+		hintRevDesc = new HintItem(
+				_("Please enter a description for the current review."),
+				HintItem.WARNING, "review_management", "5");
 
-		hintMeet = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintMeet"), HintItem.WARNING, "meetings_management",
-				"1");
+		hintMeet = new HintItem(
+				_("Please add at least one meeting to the review by clicking on the 'Add meeting' button next to the list of meetings."),
+				HintItem.WARNING, "meetings_management", "1");
 
-		hintAtt = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintAtt"), HintItem.WARNING, "attendees_management",
-				"1");
+		hintAtt = new HintItem(
+				_("Please add at least one attendee to the review by clicking on the 'Add attendee' button next to the list of attendees."),
+				HintItem.WARNING, "attendees_management", "1");
 
-		hintAsp = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintAsp"), HintItem.WARNING, "aspects_management",
-				"1");
+		hintRevConf = new HintItem(
+				_("In order to finalize the current review all required information have to be available. Meetings which haven't been canceled, aborted or the ones which do not own a findings list have to be removed."),
+				HintItem.WARNING);
 
-		hintRevConf = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintRevConf"), HintItem.WARNING);
+		hintImpr = new HintItem(
+				_("Please enter the general impression into the provided text field."),
+				HintItem.WARNING, "protocol", "4");
 
-		hintImpr = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintImpr"), HintItem.WARNING, "protocol", "4");
+		hintRec = new HintItem(
+				_("In order to complete the review you have to enter the final recommendation for the product."),
+				HintItem.WARNING, "protocol", "5");
 
-		hintRec = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintRec"), HintItem.WARNING, "protocol", "5");
+		hintOk = new HintItem(
+				_("All required information for the review is present."),
+				HintItem.OK);
 
-		hintOk = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintOk"), HintItem.OK);
+		hintRev = new HintItem(_("The review has been completed."), HintItem.OK);
 
-		hintRev = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintRev"), HintItem.OK);
+		hintInfoNewMeeting = new HintItem(
+				_("In order to add a new meeting use the 'Add meeting' button in the tool bar."),
+				HintItem.INFO, "meetings_management", "1");
 
-		hintInfoNewMeeting = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintInfoNewMeeting"), HintItem.INFO,
-				"meetings_management", "1");
+		hintInfoProtocol = new HintItem(
+				_("You can create/open the list of findings by selecting the corresponding meeting and clicking the 'Open findings list' button."),
+				HintItem.INFO);
 
-		hintInfoProtocol = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintInfoProtocol"), HintItem.INFO);
+		hintInfoNewAttendee = new HintItem(
+				_("In order to add a new attendee use the 'Add attendee' button in the tool bar."),
+				HintItem.INFO, "attendees_management", "1");
 
-		hintInfoNewAttendee = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintInfoNewAttendee"), HintItem.INFO,
-				"attendees_management", "1");
-
-		hintInfoAssistant = new HintItem(Data.getInstance().getLocaleStr(
-				"mainFrame.hintInfoAssistant"), HintItem.INFO);
+		hintInfoAssistant = new HintItem(
+				_("You can open the RevAger Assistant by clicking on the 'Open Assistant' button."),
+				HintItem.INFO);
 	}
 
 	/**
@@ -1478,8 +1470,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 				"ableToManageMeetings");
 		boolean ableToManageAttendees = Data.getInstance().getModeParam(
 				"ableToManageAttendees");
-		boolean ableToUseAspectsManager = Data.getInstance().getModeParam(
-				"ableToUseAspectsManager");
 		boolean ableToEditImpression = Data.getInstance().getModeParam(
 				"ableToEditImpression");
 		boolean ableToEditRecommendation = Data.getInstance().getModeParam(
@@ -1535,13 +1525,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 					warningErrorHints = true;
 
 					markComponent(tableScrollBar);
-				}
-
-				if (revMgmt.getNumberOfAspects() == 0
-						&& ableToUseAspectsManager) {
-					hints.add(hintAsp);
-
-					warningErrorHints = true;
 				}
 
 				if (revMgmt.getImpression().trim().equals("")
@@ -1759,20 +1742,20 @@ public class MainFrame extends AbstractFrame implements Observer {
 	public void updateResiData() {
 		observeResiData(false);
 
-		Application.getInstance().getReviewMgmt().setReviewName(
-				getTextRevName());
+		Application.getInstance().getReviewMgmt()
+				.setReviewName(getTextRevName());
 
-		Application.getInstance().getReviewMgmt().setReviewDescription(
-				getTextRevDesc());
+		Application.getInstance().getReviewMgmt()
+				.setReviewDescription(getTextRevDesc());
 
-		Application.getInstance().getReviewMgmt().setReviewComments(
-				getTextRevComm());
+		Application.getInstance().getReviewMgmt()
+				.setReviewComments(getTextRevComm());
 
-		Application.getInstance().getReviewMgmt().setImpression(
-				impressionTxtArea.getText());
+		Application.getInstance().getReviewMgmt()
+				.setImpression(impressionTxtArea.getText());
 
-		Application.getInstance().getReviewMgmt().setRecommendation(
-				(String) recommendationBx.getSelectedItem());
+		Application.getInstance().getReviewMgmt()
+				.setRecommendation((String) recommendationBx.getSelectedItem());
 
 		observeResiData(true);
 	}
@@ -1793,23 +1776,32 @@ public class MainFrame extends AbstractFrame implements Observer {
 				if (UI.getInstance().getStatus() != Status.NO_FILE_LOADED) {
 					if (revName != null) {
 						if (revName.trim().equals("")) {
-							title = Data.getInstance().getLocaleStr(
-									"unnamedReview");
+							title = _("New Review");
 						} else {
 							title = revName;
 						}
 					} else {
-						title = Data.getInstance().getLocaleStr("newReview");
+						title = _("New Review");
 					}
 
 					title += " - ";
 				}
 
-				title += Data.getInstance().getResource("appName")
-						+ " ("
-						+ Data.getInstance().getLocaleStr(
-								"mode.".concat(Data.getInstance().getMode()
-										.toString().toLowerCase())) + ")";
+				/*
+				 * Current mode
+				 */
+				String mode = _("Moderator Mode");
+
+				if (Data.getInstance().getMode().toString().toLowerCase()
+						.equals("instant")) {
+					mode = _("Instant Review");
+				} else if (Data.getInstance().getMode().toString()
+						.toLowerCase().equals("scribe")) {
+					mode = _("Scribe Mode");
+				}
+
+				title += Data.getInstance().getResource("appName") + " ("
+						+ mode + ")";
 			}
 
 			if (UI.getInstance().getStatus() == UI.Status.UNSAVED_CHANGES) {
@@ -1994,8 +1986,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				enableProtocolMode(true);
 			}
 
-			removeMeeting.setToolTipText(Data.getInstance().getLocaleStr(
-					"meeting.remove"));
+			removeMeeting.setToolTipText(_("Remove meeting"));
 		} else if (getSelectedProtocol() != null) {
 			commentMeeting.setEnabled(false);
 			editMeeting.setEnabled(false);
@@ -2005,8 +1996,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				enableProtocolMode(true);
 			}
 
-			removeMeeting.setToolTipText(Data.getInstance().getLocaleStr(
-					"protocol.remove"));
+			removeMeeting.setToolTipText(_("Remove list of findings"));
 		} else {
 			commentMeeting.setEnabled(false);
 			editMeeting.setEnabled(false);
@@ -2016,8 +2006,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				enableProtocolMode(false);
 			}
 
-			removeMeeting.setToolTipText(Data.getInstance().getLocaleStr(
-					"button.remove"));
+			removeMeeting.setToolTipText(_("Remove"));
 		}
 	}
 

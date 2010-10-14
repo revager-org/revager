@@ -18,15 +18,15 @@
  */
 package org.revager.gui.models;
 
+import static org.revager.app.model.Data._;
+
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
 import org.revager.app.SeverityManagement;
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppCSVProfile;
-
 
 /**
  * The Class CSVProfileTableModel.
@@ -134,9 +134,9 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	 */
 	public String getColumnName(int column) {
 		if (column == 0)
-			return Data.getInstance().getLocaleStr("csvExport.severity");
+			return _("Review Severity");
 		else
-			return Data.getInstance().getLocaleStr("csvExport.mapping");
+			return _("Mapping");
 
 	}
 

@@ -18,9 +18,12 @@
  */
 package org.revager.export;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.Color;
 import java.io.File;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -83,8 +86,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 	/**
 	 * The date formatter for times.
 	 */
-	protected DateFormat sdfTime = new SimpleDateFormat(Data.getInstance()
-			.getLocaleStr("format.time"));
+	protected DateFormat sdfTime = new SimpleDateFormat(_("HH:mm"));
 
 	/**
 	 * The cell background for tables.
@@ -179,9 +181,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			Font plainFontSmall = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 8);
 
-			Font boldFont = new Font(BaseFont
-					.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252,
-							BaseFont.EMBEDDED), 11);
+			Font boldFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
+							BaseFont.CP1252, BaseFont.EMBEDDED), 11);
 
 			Font italicFont = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
@@ -199,9 +201,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252,
 					BaseFont.EMBEDDED), 8);
 
-			Font protocolFontTitle = new Font(BaseFont
-					.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252,
-							BaseFont.EMBEDDED), 20);
+			Font protocolFontTitle = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
+							BaseFont.CP1252, BaseFont.EMBEDDED), 20);
 
 			Font reviewFontTitle = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
@@ -219,12 +221,10 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			tableTitlePage.getDefaultCell().setBorder(0);
 			tableTitlePage.getDefaultCell().setPadding(0);
 
-			String protocolTitle = Data.getInstance().getLocaleStr(
-					"export.reviewProtocol");
+			String protocolTitle = _("Findings List of the entire review");
 
 			if (meetings.size() == 1) {
-				protocolTitle = Data.getInstance().getLocaleStr(
-						"export.meetingProtocol");
+				protocolTitle = _("Findings List of the review meeting");
 			}
 
 			PdfPCell cellProtocol = new PdfPCell(new Phrase(protocolTitle,
@@ -271,13 +271,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						+ meetings.get(0).getProtocol().getEnd().getTimeZone()
 								.getDisplayName() + "]";
 
-				Phrase phraseMeeting = new Phrase(
-						meetingDate
-								+ " ("
-								+ meetingTime
-								+ " "
-								+ Data.getInstance().getLocaleStr(
-										"export.clock") + ")", meetingFontTitle);
+				Phrase phraseMeeting = new Phrase(meetingDate + " ("
+						+ meetingTime + " " + _("o'clock") + ")",
+						meetingFontTitle);
 
 				PdfPCell cellMeeting = new PdfPCell(phraseMeeting);
 				cellMeeting.setColspan(2);
@@ -287,9 +283,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 				tableTitlePage.addCell(cellMeeting);
 
-				cellMeeting = new PdfPCell(new Phrase(Data.getInstance()
-						.getLocaleStr("export.location")
-						+ ": " + meetings.get(0).getProtocol().getLocation(),
+				cellMeeting = new PdfPCell(new Phrase(_("Location") + ": "
+						+ meetings.get(0).getProtocol().getLocation(),
 						meetingFontTitle));
 				cellMeeting.setColspan(2);
 				cellMeeting.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
@@ -304,15 +299,15 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			/*
 			 * Review description and comments
 			 */
-			PdfPCell cellRevDesc = new PdfPCell(new Phrase(Data.getInstance()
-					.getLocaleStr("export.reviewDescription"), boldItalicFont));
+			PdfPCell cellRevDesc = new PdfPCell(new Phrase(
+					_("Review Description:"), boldItalicFont));
 			cellRevDesc.setBorderWidth(0);
 			cellRevDesc.setPadding(padding);
 
 			tableTitlePage.addCell(cellRevDesc);
 
-			cellRevDesc = new PdfPCell(new Phrase(Data.getInstance()
-					.getLocaleStr("export.reviewComments"), boldFont));
+			cellRevDesc = new PdfPCell(new Phrase(_("Review Comments"),
+					boldFont));
 			cellRevDesc.setBorderWidth(0);
 			cellRevDesc.setPadding(padding);
 			cellRevDesc.setBackgroundColor(cellBackground);
@@ -364,8 +359,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			tableProduct.getDefaultCell().setBorderWidth(0);
 			tableProduct.getDefaultCell().setPadding(0);
 
-			PdfPCell cellProdTitle = new PdfPCell(new Phrase(Data.getInstance()
-					.getLocaleStr("export.reviewProduct"), boldItalicFont));
+			PdfPCell cellProdTitle = new PdfPCell(new Phrase(
+					_("Reviewed Product:"), boldItalicFont));
 			cellProdTitle.setColspan(2);
 			cellProdTitle.setPadding(padding);
 			cellProdTitle.setBorder(0);
@@ -388,8 +383,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			/*
 			 * Write name and version of the reviewed product
 			 */
-			Phrase phrName = new Phrase(Data.getInstance().getLocaleStr(
-					"export.productName")
+			Phrase phrName = new Phrase(_("Product Name")
 					+ ": "
 					+ Data.getInstance().getResiData().getReview().getProduct()
 							.getName(), plainFont);
@@ -405,8 +399,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 			tableProduct.addCell(cellName);
 
-			Phrase phrVersion = new Phrase(Data.getInstance().getLocaleStr(
-					"export.productVersion")
+			Phrase phrVersion = new Phrase(_("Product Version")
 					+ ": "
 					+ Data.getInstance().getResiData().getReview().getProduct()
 							.getVersion(), plainFont);
@@ -425,8 +418,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			/*
 			 * Table of product references
 			 */
-			PdfPCell cellRefTitle = new PdfPCell(new Phrase(Data.getInstance()
-					.getLocaleStr("export.productReferences"), boldItalicFont));
+			PdfPCell cellRefTitle = new PdfPCell(new Phrase(
+					_("Product References:"), boldItalicFont));
 			cellRefTitle.setBorderWidth(0);
 			cellRefTitle.setPadding(padding);
 			cellRefTitle.setPaddingTop(padding * 4);
@@ -460,9 +453,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					.getExtProdReferences()) {
 				Phrase phraseRef = new Phrase();
 				phraseRef.add(new Chunk(ref.getName(), plainFont));
-				phraseRef.add(new Chunk(" ("
-						+ Data.getInstance().getLocaleStr(
-								"export.fileAttachment") + ")", italicFont));
+				phraseRef.add(new Chunk(" (" + _("File Attachment") + ")",
+						italicFont));
 				phraseRef.setFont(plainFont);
 				phraseRef.setLeading(leading);
 
@@ -475,8 +467,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				tableProduct.addCell(cellListPoint);
 
 				if (attachProdExtRefs) {
-					cellRef
-							.setCellEvent(new PDFCellEventExtRef(pdfWriter, ref));
+					cellRef.setCellEvent(new PDFCellEventExtRef(pdfWriter, ref));
 				}
 
 				tableProduct.addCell(cellRef);
@@ -507,12 +498,10 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			tableInfos.getDefaultCell().setBorderWidth(0);
 			tableInfos.getDefaultCell().setPadding(0);
 
-			String title = Data.getInstance().getLocaleStr(
-					"export.meetingInfos");
+			String title = _("Meeting Information:");
 
 			if (meetings.size() > 1) {
-				title = Data.getInstance().getLocaleStr(
-						"export.protocolReviewMeetings");
+				title = _("Findings Lists of the Review Meetings:");
 			}
 
 			PdfPCell cellInfosTitle = new PdfPCell(new Phrase(title, boldFont));
@@ -544,34 +533,21 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 										.getDisplayName() + "]";
 						;
 
-						Phrase phraseMeet = new Phrase(Data.getInstance()
-								.getLocaleStr("export.date")
-								+ ": "
-								+ meetingDate
-								+ "\n"
-								+ Data.getInstance()
-										.getLocaleStr("export.time")
-								+ ": "
-								+ meetingTime
-								+ " "
-								+ Data.getInstance().getLocaleStr(
-										"export.clock")
-								+ "\n"
-								+ Data.getInstance().getLocaleStr(
-										"export.location")
-								+ ": "
-								+ protocol.getLocation(), italicFont);
+						Phrase phraseMeet = new Phrase(
+								_("Date") + ": " + meetingDate + "\n"
+										+ _("Time") + ": " + meetingTime + " "
+										+ _("o'clock") + "\n" + _("Location")
+										+ ": " + protocol.getLocation(),
+								italicFont);
 
 						Paragraph paraMeet = new Paragraph();
 						paraMeet.setLeading(leading);
 
 						Anchor anchor = new Anchor(phraseMeet);
 						anchor.setReference("#"
-								+ Long
-										.toString(protocol.getDate()
-												.getTimeInMillis()
-												+ protocol.getStart()
-														.getTimeInMillis()));
+								+ Long.toString(protocol.getDate()
+										.getTimeInMillis()
+										+ protocol.getStart().getTimeInMillis()));
 
 						paraMeet.add(anchor);
 
@@ -600,16 +576,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						prot.getEnd().getTimeInMillis()
 								- prot.getStart().getTimeInMillis());
 
-				Phrase phraseMeetInfo = new Phrase(Data.getInstance()
-						.getLocaleStr("export.meetingDuration")
-						+ ":\n"
-						+ meetDur.getHours()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.hours")
-						+ ", "
-						+ meetDur.getMinutes()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.minutes"),
+				Phrase phraseMeetInfo = new Phrase(_("Duration of the meeting")
+						+ ":\n" + meetDur.getHours() + " " + _("Hour(s)")
+						+ ", " + meetDur.getMinutes() + " " + _("Minute(s)"),
 						italicFont);
 				phraseMeetInfo.setLeading(leading);
 
@@ -625,9 +594,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * meeting number of findings
 				 */
-				phraseMeetInfo = new Phrase(Data.getInstance().getLocaleStr(
-						"export.meetingNumberOfFindings")
-						+ ": " + prot.getFindings().size(), italicFont);
+				phraseMeetInfo = new Phrase(_("Number of findings") + ": "
+						+ prot.getFindings().size(), italicFont);
 				phraseMeetInfo.setLeading(leading);
 
 				cellMeetInfo = new PdfPCell();
@@ -642,10 +610,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * meeting number of attendees
 				 */
-				phraseMeetInfo = new Phrase(Data.getInstance().getLocaleStr(
-						"export.meetingNumberOfAttendees")
-						+ ": " + prot.getAttendeeReferences().size(),
-						italicFont);
+				phraseMeetInfo = new Phrase(_("Number of attendees") + ": "
+						+ prot.getAttendeeReferences().size(), italicFont);
 				phraseMeetInfo.setLeading(leading);
 
 				cellMeetInfo = new PdfPCell();
@@ -684,8 +650,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 */
 			tableRevInfo.addCell(createVerticalStrut(PDFTools.cmToPt(0.5f), 2));
 
-			PdfPCell cellImpr = new PdfPCell(new Phrase(Data.getInstance()
-					.getLocaleStr("export.impression"), boldFont));
+			PdfPCell cellImpr = new PdfPCell(new Phrase(
+					_("General impressions of the product:"), boldFont));
 			cellImpr.setBorderWidth(0);
 			cellImpr.setPadding(padding);
 			cellImpr.setBorderColor(verticalBorderColor);
@@ -693,8 +659,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 			tableRevInfo.addCell(cellImpr);
 
-			PdfPCell cellReco = new PdfPCell(new Phrase(Data.getInstance()
-					.getLocaleStr("export.recommendation"), boldFont));
+			PdfPCell cellReco = new PdfPCell(new Phrase(
+					_("Final recommendation for the product:"), boldFont));
 			cellReco.setBorderWidth(0);
 			cellReco.setPadding(padding);
 			cellReco.setBorderColor(verticalBorderColor);
@@ -755,8 +721,10 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			}
 
 			Phrase phrSeverities = new Phrase();
-			phrSeverities.add(new Chunk(Data.getInstance().getLocaleStr(
-					"export.possibleSeverities"), italicFontSmall));
+			phrSeverities
+					.add(new Chunk(
+							_("You should map each finding to exactly one severity (descending order of importance):"),
+							italicFontSmall));
 			phrSeverities.add(new Chunk(" " + severities, boldItalicFontSmall));
 			phrSeverities.setLeading(leading);
 			PdfPCell cellSevs = new PdfPCell();
@@ -771,29 +739,17 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 * Short review statistics
 			 */
 			if (meetings.size() > 1) {
-				Phrase phrRevStat = new Phrase(Data.getInstance().getLocaleStr(
-						"export.reviewInNumbers")
-						+ ": "
-						+ Application.getInstance().getReviewMgmt()
-								.getNumberOfAttendees()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.attendees")
-						+ ", "
-						+ Application.getInstance().getReviewMgmt()
-								.getNumberOfFindings()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.findings")
-						+ ", "
-						+ Application.getInstance().getReviewMgmt()
-								.getNumberOfMeetings()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.meetings")
-						+ ", "
-						+ Application.getInstance().getReviewMgmt()
-								.getNumberOfAspects()
-						+ " "
-						+ Data.getInstance().getLocaleStr(
-								"export.reviewAspects"), italicFontSmall);
+				Phrase phrRevStat = new Phrase(
+						MessageFormat.format(
+								_("This review consists of: {0} attendees, {1} findings, {2} meetings and {3} aspects."),
+								Application.getInstance().getReviewMgmt()
+										.getNumberOfAttendees(), Application
+										.getInstance().getReviewMgmt()
+										.getNumberOfFindings(), Application
+										.getInstance().getReviewMgmt()
+										.getNumberOfMeetings(), Application
+										.getInstance().getReviewMgmt()
+										.getNumberOfAspects()), italicFontSmall);
 				phrRevStat.setLeading(leading);
 				PdfPCell cellRevStat = new PdfPCell();
 				cellRevStat.setColspan(2);
@@ -810,12 +766,12 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 * Write the date of creation
 			 */
 			String creationDate = sdfDate.format(new Date().getTime()) + " ("
-					+ sdfTime.format(new Date().getTime()) + " "
-					+ Data.getInstance().getLocaleStr("export.clock") + ")";
+					+ sdfTime.format(new Date().getTime()) + " " + _("o'clock")
+					+ ")";
 
-			Phrase phrCreationDate = new Phrase(Data.getInstance()
-					.getLocaleStr("export.protocolCreated")
-					+ " " + creationDate, plainFontSmall);
+			Phrase phrCreationDate = new Phrase(
+					_("This finding has been created with RevAger on") + " "
+							+ creationDate, plainFontSmall);
 			phrCreationDate.setLeading(leading);
 			PdfPCell cellCrDate = new PdfPCell();
 			cellCrDate.setColspan(2);
@@ -845,8 +801,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.pdfCreateTitlePageFailed"));
+			throw new ExportException(
+					_("Cannot generate front page of the PDF document."));
 		}
 	}
 
@@ -916,9 +872,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						+ protocol.getEnd().getTimeZone().getDisplayName()
 						+ "]";
 
-				Anchor anchorTitle = new Anchor(Data.getInstance()
-						.getLocaleStr("export.reviewMeetingAt")
-						+ " " + meetingDate, boldFontTitle);
+				Anchor anchorTitle = new Anchor(_("Review Meeting on") + " "
+						+ meetingDate, boldFontTitle);
 				anchorTitle.setName(Long.toString(protocol.getDate()
 						.getTimeInMillis()
 						+ protocol.getStart().getTimeInMillis()));
@@ -934,8 +889,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				tableMeeting.addCell(cellTitle);
 
 				PdfPCell cellTime = new PdfPCell(new Phrase(meetingTime + " "
-						+ Data.getInstance().getLocaleStr("export.clock"),
-						italicFontTitle));
+						+ _("o'clock"), italicFontTitle));
 				cellTime.setColspan(2);
 				cellTime.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 				cellTime.setPadding(0);
@@ -944,8 +898,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 				tableMeeting.addCell(cellTime);
 
-				PdfPCell cellLocation = new PdfPCell(new Phrase(Data
-						.getInstance().getLocaleStr("export.location")
+				PdfPCell cellLocation = new PdfPCell(new Phrase(_("Location")
 						+ ": " + protocol.getLocation(), italicFontTitle));
 				cellLocation.setColspan(2);
 				cellLocation.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
@@ -989,13 +942,16 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						&& plannedEndEqualsProtocolEnd
 						&& plannedLocationEqualsProtocolLocation) {
 					cellPlanned = new PdfPCell(
-							new Phrase(Data.getInstance().getLocaleStr(
-									"export.meetingAsPlanned"), plainFont));
+							new Phrase(
+									_("The meeting took place as it has been planned."),
+									plainFont));
 				} else {
 					cellPlanned = new PdfPCell();
 
-					cellPlanned.addElement(new Phrase(Data.getInstance()
-							.getLocaleStr("export.plannedMeeting"), plainFont));
+					cellPlanned
+							.addElement(new Phrase(
+									_("The meeting didn't take place as it has been planned. The meeting was planned:"),
+									plainFont));
 
 					/*
 					 * Planned date, time and location
@@ -1011,14 +967,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 							+ meeting.getPlannedEnd().getTimeZone()
 									.getDisplayName() + "]";
 
-					Phrase phrasePlanned = new Phrase(plannedDate
-							+ " ("
-							+ plannedTime
-							+ " "
-							+ Data.getInstance().getLocaleStr("export.clock")
-							+ "); "
-							+ Data.getInstance()
-									.getLocaleStr("export.location") + ": "
+					Phrase phrasePlanned = new Phrase(plannedDate + " ("
+							+ plannedTime + " " + _("o'clock") + "); "
+							+ _("Location") + ": "
 							+ meeting.getPlannedLocation(), italicFont);
 
 					cellPlanned.addElement(phrasePlanned);
@@ -1034,8 +985,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * Comments of the meeting and protocol
 				 */
-				Phrase phraseComments = new Phrase(Data.getInstance()
-						.getLocaleStr("export.meetingComments"), boldFont);
+				Phrase phraseComments = new Phrase(
+						_("Comments on the Meeting:"), boldFont);
 				PdfPCell cellComments = new PdfPCell(phraseComments);
 				cellComments.setBorderWidth(0);
 				cellComments.setPadding(padding);
@@ -1044,8 +995,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 				tableMeeting.addCell(cellComments);
 
-				phraseComments = new Phrase(Data.getInstance().getLocaleStr(
-						"export.protocolComments"), boldFont);
+				phraseComments = new Phrase(
+						_("Comments on the Findings List:"), boldFont);
 				cellComments = new PdfPCell(phraseComments);
 				cellComments.setBorderWidth(0);
 				cellComments.setPadding(padding);
@@ -1097,13 +1048,10 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * Write attendees
 				 */
-				PdfPCell cellAtt = new PdfPCell(new Phrase(Data.getInstance()
-						.getLocaleStr("export.presentAttendees")
-						+ " ("
-						+ protocol.getAttendeeReferences().size()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.attendees")
-						+ "):", boldItalicFont));
+				PdfPCell cellAtt = new PdfPCell(new Phrase(
+						_("The following attendees participated") + " ("
+								+ protocol.getAttendeeReferences().size() + " "
+								+ _("attendees") + "):", boldItalicFont));
 				cellAtt.setColspan(2);
 				cellAtt.setPadding(0);
 				cellAtt.setBorderWidth(0);
@@ -1124,13 +1072,12 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				PdfPTable tableFindIntro = new PdfPTable(1);
 				tableFindIntro.setWidthPercentage(100);
 
-				Phrase phraseFindIntro = new Phrase(Data.getInstance()
-						.getLocaleStr("export.findingsIntro")
-						+ " ("
-						+ protocol.getFindings().size()
-						+ " "
-						+ Data.getInstance().getLocaleStr("export.findings")
-						+ "): ", boldItalicFont);
+				Phrase phraseFindIntro = new Phrase(
+						_("The following findings were recorded by the participating reviewers:")
+								+ " ("
+								+ protocol.getFindings().size()
+								+ " "
+								+ _("findings") + "): ", boldItalicFont);
 				phraseFindIntro.setLeading(leading);
 
 				PdfPCell cellFindIntro = new PdfPCell();
@@ -1149,8 +1096,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				 * Not part of unit testing because this exception is only
 				 * thrown if an internal error occurs.
 				 */
-				throw new ExportException(Data.getInstance().getLocaleStr(
-						"message.pdfWriteMeetingFailed"));
+				throw new ExportException(
+						_("Cannot put the selected review meeting in the PDF document."));
 			}
 		}
 	}
@@ -1232,9 +1179,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			Font contactFont = new Font(BaseFont.createFont(BaseFont.HELVETICA,
 					BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font nameFont = new Font(BaseFont
-					.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252,
-							BaseFont.EMBEDDED), 10);
+			Font nameFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
+							BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
 			Font roleFont = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
@@ -1296,9 +1243,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 						cell.addElement(phraseStrut);
 
-						cell.addElement(new Phrase(Data.getInstance()
-								.getLocaleStr("export.attendeeAspects")
-								+ ": ", aspectsTitleFont));
+						cell.addElement(new Phrase(
+								_("Assigned aspects:") + " ", aspectsTitleFont));
 
 						Phrase phraseAspects = new Phrase();
 						phraseAspects.setLeading(leading);
@@ -1328,9 +1274,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					if (prepTime != null && showAttendeesPrepTime) {
 						cell.addElement(phraseStrut);
 
-						cell.addElement(new Phrase(Data.getInstance()
-								.getLocaleStr("export.attendeePrepTime")
-								+ ": ", aspectsTitleFont));
+						cell.addElement(new Phrase(
+								_("Preparation time:") + " ", aspectsTitleFont));
 
 						Phrase phrasePrepTime = new Phrase();
 						phrasePrepTime.setLeading(leading);
@@ -1340,33 +1285,22 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						String separator = "";
 
 						if (prepTime.getDays() > 0) {
-							prep = prep
-									+ prepTime.getDays()
-									+ " "
-									+ Data.getInstance().getLocaleStr(
-											"export.days");
+							prep = prep + prepTime.getDays() + " "
+									+ _("Day(s)");
 
 							separator = ", ";
 						}
 
 						if (prepTime.getHours() > 0) {
-							prep = prep
-									+ separator
-									+ prepTime.getHours()
-									+ " "
-									+ Data.getInstance().getLocaleStr(
-											"export.hours");
+							prep = prep + separator + prepTime.getHours() + " "
+									+ _("Hour(s)");
 
 							separator = ", ";
 						}
 
 						if (prepTime.getMinutes() >= 0) {
-							prep = prep
-									+ separator
-									+ prepTime.getMinutes()
-									+ " "
-									+ Data.getInstance().getLocaleStr(
-											"export.minutes");
+							prep = prep + separator + prepTime.getMinutes()
+									+ " " + _("Minute(s)");
 
 							separator = ", ";
 						}
@@ -1389,9 +1323,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 								"________________________________________",
 								aspectsFont));
 
-						cell.addElement(new Phrase(Data.getInstance()
-								.getLocaleStr("export.attendeeSignature")
-								+ " (" + att.getName() + ")", aspectsFont));
+						cell.addElement(new Phrase(_("Date, Signature") + " ("
+								+ att.getName() + ")", aspectsFont));
 					}
 
 					tableAttendee.addCell(cell);
@@ -1399,11 +1332,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					/*
 					 * role of the attendee
 					 */
-					cell = new PdfPCell(new Phrase(Data.getInstance()
-							.getLocaleStr(
-									"role."
-											+ att.getRole().toString()
-													.toLowerCase()), roleFont));
+					cell = new PdfPCell(new Phrase(_(att.getRole().toString()),
+							roleFont));
 					cell.setBorderWidth(0);
 					cell.setPadding(padding * 0.4f);
 					cell.setPaddingTop(padding * 1.1f);
@@ -1447,8 +1377,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.pdfWriteAttendeesFailed"));
+			throw new ExportException(
+					_("Cannot put attendees into the PDF document."));
 		}
 	}
 
@@ -1470,16 +1400,17 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 9,
 					Font.NORMAL, Color.WHITE);
 
-			Font boldFontTitle = new Font(BaseFont
-					.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252,
-							BaseFont.EMBEDDED), 10, Font.NORMAL, Color.WHITE);
+			Font boldFontTitle = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
+							BaseFont.CP1252, BaseFont.EMBEDDED), 10,
+					Font.NORMAL, Color.WHITE);
 
 			Font plainFont = new Font(BaseFont.createFont(BaseFont.HELVETICA,
 					BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font boldFont = new Font(BaseFont
-					.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252,
-							BaseFont.EMBEDDED), 10);
+			Font boldFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
+							BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
 			Font italicFont = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
@@ -1508,9 +1439,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * Print title of the finding
 				 */
-				Phrase phraseTitle = new Phrase(Data.getInstance()
-						.getLocaleStr("export.finding")
-						+ " " + f.getId(), boldFontTitle);
+				Phrase phraseTitle = new Phrase(_("Finding") + " " + f.getId(),
+						boldFontTitle);
 
 				PdfPCell cellTitle = new PdfPCell(phraseTitle);
 				cellTitle.setBackgroundColor(bgColorTitle);
@@ -1524,9 +1454,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * Print severity of the finding
 				 */
-				Phrase phraseSeverity = new Phrase(Data.getInstance()
-						.getLocaleStr("export.severity")
-						+ ": " + f.getSeverity(), plainFontTitle);
+				Phrase phraseSeverity = new Phrase(f.getSeverity(),
+						plainFontTitle);
 
 				PdfPCell cellSeverity = new PdfPCell(phraseSeverity);
 				cellSeverity.setBackgroundColor(bgColorTitle);
@@ -1590,9 +1519,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 							0.96f });
 					tableRefs.setWidthPercentage(100);
 
-					PdfPCell cellRefTitle = new PdfPCell(new Phrase(Data
-							.getInstance().getLocaleStr("export.references")
-							+ ":", boldItalicFont));
+					PdfPCell cellRefTitle = new PdfPCell(new Phrase(
+							_("References:"), boldItalicFont));
 					cellRefTitle.setBorderWidth(0);
 					cellRefTitle.setPadding(padding);
 					cellRefTitle.setPaddingTop(padding * 3);
@@ -1625,10 +1553,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 						for (File ref : findMgmt.getExtReferences(f)) {
 							Phrase phraseRef = new Phrase();
 							phraseRef.add(new Chunk(ref.getName(), plainFont));
-							phraseRef.add(new Chunk(" ("
-									+ Data.getInstance().getLocaleStr(
-											"export.fileAttachment") + ")",
-									italicFont));
+							phraseRef.add(new Chunk(" (" + _("File Attachment")
+									+ ")", italicFont));
 							phraseRef.setFont(plainFont);
 							phraseRef.setLeading(leading);
 
@@ -1657,9 +1583,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 							0.96f });
 					tableAspects.setWidthPercentage(100);
 
-					PdfPCell cellAspTitle = new PdfPCell(new Phrase(Data
-							.getInstance().getLocaleStr("export.aspects")
-							+ ":", boldItalicFont));
+					PdfPCell cellAspTitle = new PdfPCell(new Phrase(
+							_("Aspects:"), boldItalicFont));
 					cellAspTitle.setBorderWidth(0);
 					cellAspTitle.setPadding(padding);
 					cellAspTitle.setPaddingTop(padding * 3);
@@ -1703,8 +1628,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(Data.getInstance().getLocaleStr(
-					"message.pdfWriteFindingsFailed"));
+			throw new ExportException(
+					_("Cannot put findings into the PDF document."));
 		}
 	}
 

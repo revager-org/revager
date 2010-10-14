@@ -18,11 +18,12 @@
  */
 package org.revager.gui.workers;
 
+import static org.revager.app.model.Data._;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
-import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppAspect;
 import org.revager.app.model.appdata.AppCatalog;
 import org.revager.app.model.schema.Aspect;
@@ -30,7 +31,6 @@ import org.revager.app.model.schema.Aspects;
 import org.revager.app.model.schema.Catalog;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
-
 
 /**
  * Worker to export a catalog with aspects to a XML file.
@@ -69,8 +69,8 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame().switchToProgressMode(
-				Data.getInstance().getLocaleStr("status.exportingCatalog"));
+		UI.getInstance().getAspectsManagerFrame()
+				.switchToProgressMode(_("Exporting catalog ..."));
 
 		try {
 			Catalog cat = new Catalog();
@@ -95,25 +95,26 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 				}
 			}
 
-			Application.getInstance().getImportExportCtl().exportCatalogXML(
-					this.filePath, cat);
+			Application.getInstance().getImportExportCtl()
+					.exportCatalogXML(this.filePath, cat);
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr("status.catalogExported"),
-					false);
+			UI.getInstance()
+					.getAspectsManagerFrame()
+					.setStatusMessage(_("Catalog exported successfully."),
+							false);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e
-					.getMessage()), Data.getInstance().getLocaleStr("error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAspectsManagerFrame().setStatusMessage(
-					Data.getInstance().getLocaleStr(
-							"status.exportingCatalogFailed"), false);
+			UI.getInstance()
+					.getAspectsManagerFrame()
+					.setStatusMessage(_("Cannot export selected catalog!"),
+							false);
 		}
 
 		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 
 		return null;
 	}
-
 }

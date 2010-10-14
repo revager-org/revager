@@ -18,6 +18,8 @@
  */
 package org.revager.gui;
 
+import static org.revager.app.model.Data._;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -469,7 +471,7 @@ public abstract class AbstractDialog extends JDialog {
 		helpButtonLayout.setVgap(10);
 
 		buttonHelp = GUITools.newImageToggleButton();
-		buttonHelp.setToolTipText(Data.getInstance().getLocaleStr("showHelp"));
+		buttonHelp.setToolTipText(_("Show/hide help"));
 		buttonHelp.setIcon(ICON_OPEN_HELP);
 		buttonHelp.setSelectedIcon(ICON_CLOSE_HELP);
 		buttonHelp.setRolloverIcon(ICON_OPEN_HELP_ROLLOVER);
@@ -550,8 +552,7 @@ public abstract class AbstractDialog extends JDialog {
 	 * Switch to progress mode.
 	 */
 	public void switchToProgressMode() {
-		switchToProgressMode(Data.getInstance().getLocaleStr(
-				"message.inProgress"));
+		switchToProgressMode(_("Work in progress ..."));
 	}
 
 	/**
@@ -576,8 +577,8 @@ public abstract class AbstractDialog extends JDialog {
 			/*
 			 * Show "wait..." as label
 			 */
-			JLabel wait = new JLabel(Data.getInstance().getLocaleStr(
-					"message.helpIsLoading"), ICON_WAIT, SwingConstants.CENTER);
+			JLabel wait = new JLabel(_("Loading help ..."), ICON_WAIT,
+					SwingConstants.CENTER);
 
 			panelHelp.setLayout(new BorderLayout());
 			panelHelp.add(wait, BorderLayout.CENTER);

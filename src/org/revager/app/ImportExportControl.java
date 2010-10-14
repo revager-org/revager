@@ -18,6 +18,8 @@
  */
 package org.revager.app;
 
+import static org.revager.app.model.Data._;
+
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,7 @@ import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Catalog;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
+import org.revager.app.model.schema.Role;
 import org.revager.export.CSVExporter;
 import org.revager.export.ExportException;
 import org.revager.export.FindingsCSVExporter;
@@ -278,8 +281,8 @@ public class ImportExportControl {
 
 			exporter.writeToFile(filePath);
 		} else {
-			throw new ApplicationException(Data.getInstance().getLocaleStr(
-					"message.csvNoFindingsExist"));
+			throw new ApplicationException(
+					_("There aren't any findings to export into a CSV file."));
 		}
 
 		return new File(filePath);
@@ -326,8 +329,8 @@ public class ImportExportControl {
 
 			exporter.writeToFile(filePath);
 		} else {
-			throw new ApplicationException(Data.getInstance().getLocaleStr(
-					"message.csvNoFindingsExist"));
+			throw new ApplicationException(
+					_("There aren't any findings to export into a CSV file."));
 		}
 
 		return new File(filePath);
@@ -396,17 +399,16 @@ public class ImportExportControl {
 		String invitationPackName;
 		String invitationPackPath;
 
+		/*
+		 * Prepare list of roles
+		 */
+
+		Role.values();
+
 		for (Attendee att : attendees) {
-			invitationPackName = Data.getInstance().getLocaleStr(
-					"export.invitationPackPrefix")
-					+ " "
-					+ sdf.format(new Date().getTime())
-					+ " "
-					+ att.getName()
-					+ " ("
-					+ Data.getInstance().getLocaleStr(
-							"role." + att.getRole().toString().toLowerCase())
-					+ ")";
+			invitationPackName = _("Review Invitation") + " "
+					+ sdf.format(new Date().getTime()) + " " + att.getName()
+					+ " (" + _(att.getRole().toString()) + ")";
 
 			invitationPackName = FileTools.validateFileName(invitationPackName);
 

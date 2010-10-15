@@ -56,7 +56,7 @@ public class SelectLanguageAction extends AbstractAction {
 
 		if (UI.getInstance().getAssistantDialog().isVisible())
 			popup = new LanguagePopupWindow(UI.getInstance()
-					.getAssistantDialog(), _("Select Language"));
+					.getAssistantDialog(), _("Select language"));
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == LanguagePopupWindow.ButtonClicked.OK) {

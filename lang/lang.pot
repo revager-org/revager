@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-15 13:44+0200\n"
+"POT-Creation-Date: 2010-10-15 14:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/org/revager/Main.java:108 src/org/revager/Main.java:191
+#: src/org/revager/Main.java:112 src/org/revager/Main.java:195
 #: src/org/revager/gui/HelpBrowserFrame.java:356
 #: src/org/revager/gui/StrengthPopupWindow.java:134
 #: src/org/revager/gui/StrengthPopupWindow.java:290
@@ -74,11 +74,11 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: src/org/revager/Main.java:183
+#: src/org/revager/Main.java:187
 msgid "RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?"
 msgstr ""
 
-#: src/org/revager/Main.java:184 src/org/revager/gui/UI.java:764
+#: src/org/revager/Main.java:188 src/org/revager/gui/UI.java:764
 #: src/org/revager/gui/actions/ExitAction.java:70
 #: src/org/revager/gui/actions/NewReviewAction.java:67
 #: src/org/revager/gui/actions/SaveReviewAction.java:114
@@ -1319,7 +1319,8 @@ msgid "Save Review as..."
 msgstr ""
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:59
-msgid "Select Language"
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:80
+msgid "Select language"
 msgstr ""
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:69
@@ -2123,10 +2124,6 @@ msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
 msgid "Open existing review"
-msgstr ""
-
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:80
-msgid "Select language"
 msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81

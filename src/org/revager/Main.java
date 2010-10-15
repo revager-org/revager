@@ -85,10 +85,14 @@ public class Main {
 
 			if (lang == null) {
 				lang = Locale.getDefault().getLanguage();
-
-				Data.getInstance().getAppData()
-						.setSetting(AppSettingKey.APP_LANGUAGE, lang);
 			}
+			
+			if (!Data.getInstance().isLanguageAvailable(lang)) {
+				lang = Locale.ENGLISH.getLanguage();
+			}
+
+			Data.getInstance().getAppData()
+					.setSetting(AppSettingKey.APP_LANGUAGE, lang);
 
 			Data.getInstance().setLocale(new Locale(lang));
 

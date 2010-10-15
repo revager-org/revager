@@ -88,7 +88,10 @@
 		</gettext-extract>
 
 		<!-- Generate properties files -->
-		<gettext-dist targetBundle="org.revager.resources.lang" outputFormat="properties" poDirectory="lang" outputDirectory="${dir.src}" percentage="75" />
+		<gettext-dist targetBundle="${path.lang}" outputFormat="properties" poDirectory="lang" outputDirectory="${dir.src}" percentage="75" />
+
+		<!-- Some clean-up -->
+		<delete file="./messages.mo" />
 	</target>
 
 	<!--                       -->

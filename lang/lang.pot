@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-14 23:06+0200\n"
+"POT-Creation-Date: 2010-10-15 13:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -273,36 +273,36 @@ msgstr ""
 #.
 #. * Strings
 #.
-#: src/org/revager/app/model/Data.java:349
+#: src/org/revager/app/model/Data.java:340
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:64
 msgid "Moderator"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:351
+#: src/org/revager/app/model/Data.java:342
 msgid "Author"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:353
+#: src/org/revager/app/model/Data.java:344
 msgid "Customer"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:355
+#: src/org/revager/app/model/Data.java:346
 msgid "Reviewer"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:357
+#: src/org/revager/app/model/Data.java:348
 msgid "Scribe"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:379
+#: src/org/revager/app/model/Data.java:370
 msgid "Critical error; Main error; Minor error; Good"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:396
+#: src/org/revager/app/model/Data.java:387
 msgid "Accepted; Accepted (changes required); Not accepted; Not finished; Not finished (changes required); Not finished (complete revision required)"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:413
+#: src/org/revager/app/model/Data.java:404
 msgid "Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; Quellcode; Testkonzept; Testunterlage"
 msgstr ""
 

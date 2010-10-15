@@ -18,8 +18,8 @@
  */
 package org.revager.app.model;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -75,7 +74,12 @@ public class Data {
 	private Properties resourcesProp = new Properties();
 
 	/**
-	 * Bundle for the locale strings.
+	 * Map for the available languages
+	 */
+	private HashMap<String, String> langMap = null;
+
+	/**
+	 * Bundle for the language strings.
 	 */
 	private static ResourceBundle langBundle = null;
 
@@ -209,31 +213,23 @@ public class Data {
 	 * @param locale
 	 *            the locale to set
 	 */
-	public void setLocale(Locale locale) {
+	public void setLocale(Locale locale) {		
 		this.locale = locale;
 
 		Locale.setDefault(locale);
 
-		/* Load the language file */
-		InputStream inputStream = null;
+		langBundle = null;
 
 		if (!locale.equals(Locale.ENGLISH)) {
-			inputStream = getClass().getResourceAsStream(
-					getResource("path.lang") + locale.getLanguage()
-							+ ".properties");
-
-			/* Finally load the resource */
-			if (inputStream != null) {
-				try {
-					langBundle = new PropertyResourceBundle(inputStream);
-					inputStream.close();
-				} catch (IOException e) {
-					System.err
-							.println("Error while loading language data from the"
-									+ " following path: "
-									+ getResource("path.lang")
-									+ locale.getLanguage() + ".properties");
-				}
+			try {
+				langBundle = ResourceBundle.getBundle(getResource("path.lang"));
+			} catch (Exception e) {
+				/*
+				 * Not part of unit testing because this code will only be
+				 * reached if an internal error occurs.
+				 */
+				System.err.println("Error while loading locale data from the"
+						+ " following path: " + getResource("path.lang"));
 			}
 		}
 	}
@@ -420,32 +416,74 @@ public class Data {
 	 * @return list of all available languages
 	 */
 	public Map<String, String> getLanguages() {
-		HashMap<String, String> map = new HashMap<String, String>();
+		if (langMap == null) {
+			langMap = new HashMap<String, String>();
 
-		String jarLocation = AppTools.getJarLocation();
+			String jarLocation = AppTools.getJarLocation();
 
-		/* Add English as standard language */
-		map.put(Locale.ENGLISH.getLanguage(),
-				Locale.ENGLISH.getDisplayLanguage());
+			int lastIdx = getResource("path.lang").lastIndexOf(".");
+			String bundleBaseName = getResource("path.lang").substring(
+					lastIdx + 1);
+			int bundleBaseNameLen = bundleBaseName.length();
 
-		/* Search all translations in the JAR file */
-		try {
-			JarFile jf = new JarFile(jarLocation);
-			Enumeration<JarEntry> ress = jf.entries();
+			/* Add English as standard language */
+			langMap.put(Locale.ENGLISH.getLanguage(),
+					Locale.ENGLISH.getDisplayLanguage());
 
-			while (ress.hasMoreElements()) {
-				JarEntry je = (JarEntry) ress.nextElement();
+			try {
+				/* Search translations in the JAR file */
+				JarFile jf = new JarFile(jarLocation);
+				Enumeration<JarEntry> ress = jf.entries();
 
-				if (je.getName().matches(getResource("path.searchLang"))) {
-					int idx = je.getName().indexOf(".properties");
-					String lang = je.getName().substring(idx - 2, idx);
+				String path = getResource("path.searchLang").substring(1);
+				int pathLen = path.length();
 
-					map.put(lang, new Locale(lang).getDisplayLanguage());
+				while (ress.hasMoreElements()) {
+					JarEntry je = (JarEntry) ress.nextElement();
+
+					if (je.getName().matches(
+							path + bundleBaseName + "_[a-z]+.properties")) {
+						int idx = je.getName().indexOf(".properties");
+						String lang = je.getName().substring(
+								pathLen + bundleBaseNameLen + 1, idx);
+
+						langMap.put(lang, new Locale(lang).getDisplayLanguage());
+					}
+				}
+			} catch (IOException e) {
+				/* Search files in the lang directory and add them */
+				String absLangDir = new File(Data.class.getProtectionDomain()
+						.getCodeSource().getLocation().getPath()).getAbsolutePath()
+						.replace("\\", "/") + getResource("path.searchLang");
+
+				File[] files = (new File(absLangDir)).listFiles();
+
+				if (files != null) {
+					for (File file : files) {
+						String filename = file.getName();
+						int idx = filename.indexOf(".properties");
+						if (idx > -1) {
+							String lang = filename.substring(bundleBaseNameLen + 1,
+									idx);
+
+							langMap.put(lang, new Locale(lang).getDisplayLanguage());
+						}
+					}
 				}
 			}
-		} catch (IOException e) {
+
 		}
 
-		return map;
+		return langMap;
+	}
+	
+	public boolean isLanguageAvailable(String lang) {		
+		for (String langId : getLanguages().keySet()) {
+			if (lang.equals(langId)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

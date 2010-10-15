@@ -155,13 +155,6 @@ public class FindingsCSVExporter extends CSVExporter {
 					break;
 
 				case REFERENCE:
-					String references = MessageFormat
-							.format(_("Findings {0} out of the review \"{1}\" ** Product: {2} (Version: {3}) ****"),
-									Integer.toString(f.getId()),
-									revMgmt.getReviewName(),
-									revMgmt.getProductName(),
-									revMgmt.getProductVersion());
-
 					String refSep = "";
 					String refs = "";
 					for (String ref : findMgmt.getReferences(f)) {
@@ -173,8 +166,12 @@ public class FindingsCSVExporter extends CSVExporter {
 						refs = "--";
 					}
 
-					references = references
-							.replace("<productReferences>", refs);
+					String references = MessageFormat
+							.format(_("Finding {0} of Review \"{1}\" ** Product: {2} (Version: {3}) **** {4}"),
+									Integer.toString(f.getId()),
+									revMgmt.getReviewName(),
+									revMgmt.getProductName(),
+									revMgmt.getProductVersion(), refs);
 
 					csvLine[index] = references;
 					break;

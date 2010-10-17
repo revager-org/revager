@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-10-15 14:25+0200\n"
-"PO-Revision-Date: 2010-10-15 21:05+0000\n"
+"PO-Revision-Date: 2010-10-16 18:06+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-10-16 04:54+0000\n"
+"X-Launchpad-Export-Date: 2010-10-17 04:59+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/org/revager/Main.java:112 src/org/revager/Main.java:195
@@ -1300,6 +1300,10 @@ msgid ""
 "available. Meetings which haven't been canceled, aborted or the ones which "
 "do not own a findings list have to be removed."
 msgstr ""
+"Um das aktuelle Review abzuschließen müssen alle benötigten Informationen "
+"eingegeben werden. Alle Sitzungen, die nicht abgesagt oder abgebrochen "
+"wurden bzw. jene Sitzungen, zu denen kein Review-Protokoll existiert, müssen "
+"entfernt werden."
 
 #: src/org/revager/gui/MainFrame.java:1420
 msgid "Please enter the general impression into the provided text field."
@@ -1491,6 +1495,8 @@ msgid ""
 "This review contains attachments. It is not possible to store them inside "
 "the XML file, so they'll get lost."
 msgstr ""
+"Dieses Review enthält Datei-Anhänge. Diese können nicht in die XML-Datei "
+"gespeichert werden und gehen daher verloren."
 
 #: src/org/revager/gui/actions/SaveReviewAsAction.java:57
 msgid "Save Review as..."
@@ -1523,6 +1529,9 @@ msgid ""
 "change the name, the contact information or the role of the attendee you "
 "would like to add."
 msgstr ""
+"Es existiert bereits ein Teilnehmer mit den eingegebenen Daten. Bitte ändern "
+"Sie den Namen, die Kontaktinformationen oder die Rolle des Teilnehmers, den "
+"Sie hinzufügen möchten."
 
 #: src/org/revager/gui/actions/attendee/EditAttFromProtAction.java:48
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:258
@@ -1536,6 +1545,8 @@ msgid ""
 "Cannot remove the selected attendee ({0}) from the current review because "
 "he/she is part of at least one meeting: {1}"
 msgstr ""
+"Der gewählte Teilnehmer ({0}) konnte nicht entfernt werden, da er/sie an "
+"mindestens einer Sitzung beteiligt ist: {1}"
 
 #: src/org/revager/gui/actions/attendee/RemoveAttendeeAction.java:83
 #: src/org/revager/gui/dialogs/WarningDialog.java:100
@@ -1565,6 +1576,9 @@ msgid ""
 "severities will be replaced by the next higher one. Would you really like to "
 "remove the selected severity?"
 msgstr ""
+"Wenn Sie eine Gewichtung entfernen wirkt sich diese Aktion auf das gesamte "
+"Review aus. Entfernte Gewichtungen werden durch die jeweils nächsthöhere "
+"Gewichtung ersetzt. Wollen Sie die gewählte Gewichtung wirklich entfernen?"
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:125
 msgid "All catalogs"
@@ -1736,18 +1750,25 @@ msgid ""
 "You can assign catalogs, categories or aspects to the reviewers after "
 "selecting them by double click."
 msgstr ""
+"Sie können Fragenkataloge, Kategorien oder Prüfaspekte den Gutachtern "
+"zuteilen, indem Sie diese mit einem Doppelklick ausgewählt haben."
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1633
 msgid ""
 "You can import complete catalogs or selected aspects by using the provided "
 "buttons in the tool bar."
 msgstr ""
+"Sie können komplette Fragenkataloge oder ausgewählte Prüfaspekte "
+"importieren, indem Sie die entsprechenden Buttons in der Werkzeugleiste "
+"verwenden."
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1669
 msgid ""
 "No review is loaded. Therefore you can only work in the library with its "
 "catalogs and aspects."
 msgstr ""
+"Es ist keine Review geladen. Daher können Sie ausschließlich in der "
+"Fragenkatalog-Bibliothek arbeiten."
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1678
 msgid ""
@@ -1755,6 +1776,9 @@ msgid ""
 "reviewer by using the 'Add Attendee' button you can assign them aspects from "
 "the existing catalogs."
 msgstr ""
+"Es gibt keine Gutachter in diesem Review. Nachdem Sie mindestens einen "
+"Gutachter zum Review hinzugefügt haben, können Sie diesen die ausgewählten "
+"Prüfaspekte zuweisen."
 
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:186
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:200
@@ -1762,21 +1786,25 @@ msgid ""
 "Please enter the required information of the aspect into the provided text "
 "fields."
 msgstr ""
+"Bitte geben Sie alle benötigten Informationen des Prüfaspekts in die dafür "
+"vorgesehene Textfelder ein."
 
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:187
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:201
 msgid "Directive of the aspect:"
-msgstr ""
+msgstr "Direktive des Prüfaspekts:"
 
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:229
 msgid ""
 "Please enter the required information of the catalog into the provided text "
 "fields."
 msgstr ""
+"Bitte geben Sie alle nötigen Informationen für den Fragenkatalog in die "
+"dafür vorgesehenen Eingabefelder ein."
 
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:230
 msgid "Name of the catalog:"
-msgstr ""
+msgstr "Name des Fragenkatalogs:"
 
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:259
 msgid "Description:"
@@ -1883,6 +1911,7 @@ msgstr "CSV-Profile für den Export von Befunden"
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:132
 msgid "Here you can configure the CSV Profiles for exporting findings."
 msgstr ""
+"Hier können Sie die CSV-Profile für den Export von Befunden konfigurieren."
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:264
 msgid "Name of the CSV Profile:"
@@ -1980,7 +2009,7 @@ msgstr "Verzeichnis auswählen, in dem die Pakete gespeichert werden"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:367
 msgid "Here you can create invitations for the attendees."
-msgstr ""
+msgstr "Hier können Sie Einladungspakete für die Teilnehmer erstellen."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:82
 msgid "Product reference(s):"
@@ -2018,6 +2047,8 @@ msgid ""
 "The removal of this reference is not possible because at least one reference "
 "or file has to exist for a product."
 msgstr ""
+"Das Entfernen dieser Referenz ist nicht möglich, da mindestens eine Referenz "
+"oder Datei vorhanden sein muss, um den Prüfling zu repräsentieren."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:258
 #: src/org/revager/gui/findings_list/FindingPanel.java:359
@@ -2064,10 +2095,12 @@ msgstr "Prüfling festlegen"
 #: src/org/revager/gui/dialogs/EditProductDialog.java:489
 msgid "Here you can set the name, version and references of the product."
 msgstr ""
+"Hier können Sie den Namen, die Version sowie Referenzen zum Prüfling "
+"festlegen."
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:153
 msgid "Here you can export the findings into a CSV file."
-msgstr ""
+msgstr "Hier können Sie die Befunde in eine CSV-Datei exportieren."
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:222
 msgid "All findigs of this review"
@@ -2092,94 +2125,97 @@ msgstr "Befunde als PDF-Datei exportieren"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:119
 msgid "Here you can export the findings as a PDF file."
-msgstr ""
+msgstr "Hier können Sie die Befunde in eine PDF-Datei exportieren."
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:134
 msgid "All findings of the review"
-msgstr ""
+msgstr "Alle Befunde des Reviews"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:137
 msgid "Include signing fields for the present attendees."
-msgstr ""
+msgstr "Unterschriftenfelder für die anwesenden Teilnehmer einbinden."
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:138
 msgid "Attach files which belong to the findings."
-msgstr ""
+msgstr "Datei-Anhänge der Befunde einbinden."
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:139
 msgid "Attach file(s) of the product"
-msgstr ""
+msgstr "Datei(en) des Prüflings einbinden"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:145
 msgid "Export the findings of a certain meeting only: "
-msgstr ""
+msgstr "Nur Befunde einer bestimmten Sitzung exportieren: "
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:71
 msgid "Severities for the findings in this review:"
-msgstr ""
+msgstr "Gewichtungen für die Befunde in diesem Review:"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:142
 msgid "Add Severity"
-msgstr ""
+msgstr "Gewichtung hinzufügen"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:152
 msgid "Remove Severity"
-msgstr ""
+msgstr "Gewichtung entfernen"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:161
 msgid "Edit Severity"
-msgstr ""
+msgstr "Gewichtung bearbeiten"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:170
 msgid "Push to the top"
-msgstr ""
+msgstr "Ganz nach oben verschieben"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:179
 msgid "Push up"
-msgstr ""
+msgstr "Nach oben verschieben"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:189
 msgid "Push down"
-msgstr ""
+msgstr "Nach unten verschieben"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:199
 msgid "Push to the bottom"
-msgstr ""
+msgstr "Ganz nach unten verschieben"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:255
 msgid ""
 "The order of the severities for the findings affects the entire review and "
 "represents their relevance (decreasing from top to bottom in the list)."
 msgstr ""
+"Die Reihenfolge der Gewichtungen betrifft das gesamte Review und "
+"repräsentiert ihre Wichtigkeit (abnehmend von oben nach unten)."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:254
 msgid "Here you can enter all information for the new review meeting."
 msgstr ""
+"Hier können Sie alle Informationen in Bezug auf die Review-Sitzung eingeben."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:276
 #: src/org/revager/gui/dialogs/MeetingDialog.java:400
 msgid "Please enter the reason for canceling the meeting..."
-msgstr ""
+msgstr "Bitte geben Sie einen Grund für die Absage der Sitzung ein..."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:278
 #: src/org/revager/gui/dialogs/MeetingDialog.java:348
 msgid "Edit Meeting"
-msgstr ""
+msgstr "Sitzung bearbeiten"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:279
 #: src/org/revager/gui/dialogs/MeetingDialog.java:349
 msgid "Here you can edit all information of the selected meeting."
-msgstr ""
+msgstr "Hier können Sie alle Informationen der gewählten Sitzung bearbeiten."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:365
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:770
 msgid "Period of time:"
-msgstr ""
+msgstr "Zeitraum:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:368
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:773
 msgid "to"
-msgstr ""
+msgstr "bis"
 
 #. 
 #. *
@@ -2188,7 +2224,7 @@ msgstr ""
 #: src/org/revager/gui/dialogs/MeetingDialog.java:396
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:764
 msgid "Location:"
-msgstr ""
+msgstr "Ort:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:404
 msgid "editMeeting.canceled"
@@ -2201,19 +2237,19 @@ msgstr ""
 #: src/org/revager/gui/dialogs/MeetingDialog.java:425
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:767
 msgid "Date:"
-msgstr ""
+msgstr "Datum:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:455
 msgid "Select date"
-msgstr ""
+msgstr "Datum wählen"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:129
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:134
 msgid "PDF Export"
-msgstr ""
+msgstr "PDF-Export"
 
 #. 
 #. * Auto save
@@ -2221,20 +2257,22 @@ msgstr ""
 #: src/org/revager/gui/dialogs/SettingsDialog.java:195
 #, java-format
 msgid "Save review every {0} minutes automatically."
-msgstr ""
+msgstr "Das Review alle {0} Minuten automatisch speichern."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:235
 msgid ""
 "Check if a new version of RevAger is available during application start."
 msgstr ""
+"Beim Start von RevAger prüfen, ob eine neue Version der Anwendung verfügbar "
+"ist."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:249
 msgid "Show hints in dialogs by default."
-msgstr ""
+msgstr "Hinweise in den Dialogen standardmäßig anzeigen."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:263
 msgid "Highlight obligatory input fields."
-msgstr ""
+msgstr "Pflicht-Eingabefelder visuell kenntlich machen."
 
 #. 
 #. * Protocol warning
@@ -2242,53 +2280,55 @@ msgstr ""
 #: src/org/revager/gui/dialogs/SettingsDialog.java:276
 #, java-format
 msgid "Show warning while creating a findings list after {0} minutes."
-msgstr ""
+msgstr "Nach {0} Minuten Arbeit an einem Protokoll eine Warnung einblenden."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:342
 msgid "You have to restart the application!"
-msgstr ""
+msgstr "Sie müssen die Anwendung neustarten!"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:351
 msgid "Language:"
-msgstr ""
+msgstr "Sprache:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:391
 msgid "Findings list as PDF file"
-msgstr ""
+msgstr "Review-Protokoll als PDF-Datei"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:401
 #: src/org/revager/gui/dialogs/SettingsDialog.java:471
 msgid "Choose an Image..."
-msgstr ""
+msgstr "Bild auswählen..."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:422
 #: src/org/revager/gui/dialogs/SettingsDialog.java:492
 msgid "Remove Image"
-msgstr ""
+msgstr "Bild entfernen"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:434
 #: src/org/revager/gui/dialogs/SettingsDialog.java:504
 msgid "Displayed image:"
-msgstr ""
+msgstr "Angezeigtes Bild:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:449
 #: src/org/revager/gui/dialogs/SettingsDialog.java:532
 msgid "Displayed foot text:"
-msgstr ""
+msgstr "Angezeigter Fußtext:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:461
 msgid "Invitations as PDF file:"
-msgstr ""
+msgstr "Einladungspakete als PDF-Datei:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:522
 msgid "Text of invitations:"
-msgstr ""
+msgstr "Einladungstext:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:571
 msgid ""
 "Here you can set some application options. They will be saved in the "
 "database independently of any particular review."
 msgstr ""
+"Hier können sie einige Anwendungseinstellungen vornehmen. Diese werden in "
+"der Datenbank unabhängig von einem bestimmten Review gespeichert."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:573
 msgid ""
@@ -2298,22 +2338,22 @@ msgstr ""
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:41
 msgid "Don't show this dialog during the current session again."
-msgstr ""
+msgstr "Diesen Dialog während der aktuellen Sitzung nicht mehr anzeigen."
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:104
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:107
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #. 
 #. * Strings
 #. 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:80
 msgid "Welcome to RevAger!"
-msgstr ""
+msgstr "Willkommen bei RevAger!"
 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:82
 msgid ""
@@ -2326,6 +2366,8 @@ msgid ""
 "Here you can manage some personal details. They will be used during the "
 "review."
 msgstr ""
+"Hier können Sie einige persönliche Informationen verwalten, welche während "
+"des Reviews verwendet werden."
 
 #. 
 #. * Strings
@@ -2343,11 +2385,11 @@ msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74
 msgid "Select this if you would like to open an existing review."
-msgstr ""
+msgstr "Wählen Sie diese Option, um ein existierendes Review zu öffnen."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
 msgid "Select this if you want to change the language of the application."
-msgstr ""
+msgstr "Wählen Sie diese Option, um die Sprache der Anwendung zu ändern."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
 msgid ""
@@ -2357,31 +2399,31 @@ msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
 msgid "Open existing review"
-msgstr ""
+msgstr "Existierendes Review öffnen"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
 msgid "Open Aspects Manager"
-msgstr ""
+msgstr "Prüfaspekte-Manager öffnen"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
 msgid "Schedule new review"
-msgstr ""
+msgstr "Neues Review planen"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
 msgid "Quickstart"
-msgstr ""
+msgstr "Sofortiges Review"
 
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:65
 msgid "Scribe or Singe Reviewer"
-msgstr ""
+msgstr "Notar oder einzelner Gutachter"
 
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:66
 msgid "Select another review..."
-msgstr ""
+msgstr "Ein anderes Review wählen..."
 
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:67
 msgid "No reviews available"
-msgstr ""
+msgstr "Keine Reviews verfügbar"
 
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:116
 msgid "Please select the aspects which should be added to the finding:"
@@ -2397,47 +2439,47 @@ msgstr ""
 #. 
 #: src/org/revager/gui/findings_list/FindingPanel.java:292
 msgid "Close Edit View of this Finding"
-msgstr ""
+msgstr "Bearbeitungsansicht des Befunds schließen"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:293
 msgid "Remove this Finding"
-msgstr ""
+msgstr "Befund entfernen"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:294
 msgid "Push up Finding"
-msgstr ""
+msgstr "Befund nach oben verschieben"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:295
 msgid "Push down Finding"
-msgstr ""
+msgstr "Befund nach unten verschieben"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:296
 msgid "Push Finding to the top"
-msgstr ""
+msgstr "Befund ganz nach oben verschieben"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:297
 msgid "Push Finding to the bottom"
-msgstr ""
+msgstr "Befund ganz nach unten verschieben"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:312
 msgid "Please enter a reference"
-msgstr ""
+msgstr "Bitte geben Sie eine Referenz ein"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:407
 msgid "Remove file"
-msgstr ""
+msgstr "Datei entfernen"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:408
 msgid "Paste Image from Clipboard"
-msgstr ""
+msgstr "Bild aus der Zwischenablage einfügen"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:460
 msgid "Add Aspect(s)"
-msgstr ""
+msgstr "Prüfaspekt(e) hinzufügen"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:461
 msgid "Remove Aspect(s)"
-msgstr ""
+msgstr "Prüfaspekt(e) entfernen"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:630
 msgid "Are you sure you want to remove the selected finding permanently?"
@@ -2447,19 +2489,19 @@ msgstr ""
 #: src/org/revager/gui/models/AttendeeTableModel.java:100
 #: src/org/revager/gui/models/FindAspTableModel.java:84
 msgid "Aspect(s)"
-msgstr ""
+msgstr "Prüfaspekt(e)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:805
 msgid "Reference(s)"
-msgstr ""
+msgstr "Referenz(en)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:806
 msgid "File(s)"
-msgstr ""
+msgstr "Datei(en)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1021
 msgid "Getting image from clipboard ..."
-msgstr ""
+msgstr "Bild wird aus der Zwischenablage geladen ..."
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1029
 msgid ""
@@ -2469,36 +2511,36 @@ msgstr ""
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1041
 msgid "Screenshot"
-msgstr ""
+msgstr "Bildschirmfoto"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1046
 msgid "Please enter a name for the image:"
-msgstr ""
+msgstr "Bitte geben Sie einen Namen für das Bild ein:"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1050
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:334
 msgid "Organizational"
-msgstr ""
+msgstr "Organisatorisch"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:335
 #: src/org/revager/gui/findings_list/FindingsTab.java:128
 msgid "Findings"
-msgstr ""
+msgstr "Befunde"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:336
 msgid "Impression · Comments · Recommendation"
-msgstr ""
+msgstr "Eindruck · Kommentare · Bewertung"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:357
 msgid "Confirm and close list of findings"
-msgstr ""
+msgstr "Bestätigen und Protokoll schließen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:377
 msgid "Close list of findings"
-msgstr ""
+msgstr "Protokoll schließen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:385
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1254
@@ -2509,15 +2551,15 @@ msgstr ""
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:408
 msgid "Export List of Findings as PDF File"
-msgstr ""
+msgstr "Review-Protokoll als PDF-Datei exportieren"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:423
 msgid "Export List of Findings as CSV File"
-msgstr ""
+msgstr "Review-Protokoll als CSV-Datei exportieren"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:442
 msgid "Exit Fullscreen"
-msgstr ""
+msgstr "Vollbildansicht verlassen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:448
 msgid "Change to Fullscreen mode"

@@ -142,7 +142,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 		addExFindRefChBx = new JCheckBox(addFindRStr);
 		addExProRefChBx = new JCheckBox(addProExRefStr);
 
-		String locMeetStr = _("Export the findings of a certain meeting only: ");
+		String locMeetStr = _("Export the findings of a certain meeting only:");
 		JRadioButton localMeetRB = new JRadioButton(locMeetStr);
 		localMeetRB.addItemListener(new ItemListener() {
 			@Override

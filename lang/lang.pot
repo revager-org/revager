@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-15 14:25+0200\n"
+"POT-Creation-Date: 2010-10-17 11:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1894,7 +1894,7 @@ msgid "Attach file(s) of the product"
 msgstr ""
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:145
-msgid "Export the findings of a certain meeting only: "
+msgid "Export the findings of a certain meeting only:"
 msgstr ""
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:71
@@ -1972,7 +1972,7 @@ msgid "Location:"
 msgstr ""
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:404
-msgid "editMeeting.canceled"
+msgid "Canceled"
 msgstr ""
 
 #.
@@ -2107,7 +2107,7 @@ msgid "Select this if you would like to start a review immediately as a single r
 msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:73
-msgid "Select this if you would like to organize a review as moderator. "
+msgid "Select this if you would like to organize a review as moderator."
 msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74

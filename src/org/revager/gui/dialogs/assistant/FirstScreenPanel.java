@@ -70,7 +70,7 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	 * Strings
 	 */
 	private String quickRevTooltipStrng = _("Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections.");
-	private String newRevTooltipStrng = _("Select this if you would like to organize a review as moderator. ");
+	private String newRevTooltipStrng = _("Select this if you would like to organize a review as moderator.");
 	private String openRevTooltipStrng = _("Select this if you would like to open an existing review.");
 	private String selectLanguageTooltipStrng = _("Select this if you want to change the language of the application.");
 	private String openAspectsMngrTooltipStrng = _("Select this if you would like to manage the catalogs and aspects in the Aspects Manager.");

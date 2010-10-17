@@ -401,7 +401,7 @@ public class MeetingDialog extends AbstractDialog {
 		canceledTxtArea.setEnabled(false);
 
 		JScrollPane canceledScrllPn = GUITools.setIntoScrllPn(canceledTxtArea);
-		canceled = new JCheckBox(_("editMeeting.canceled"));
+		canceled = new JCheckBox(_("Canceled"));
 		canceled.setHorizontalTextPosition(SwingConstants.LEFT);
 		canceled.setMargin(new Insets(0, 0, 0, 0));
 		canceled.setBorder(new EmptyBorder(0, 0, 0, 0));

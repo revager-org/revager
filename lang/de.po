@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2010-10-15 14:25+0200\n"
-"PO-Revision-Date: 2010-10-16 18:06+0000\n"
+"POT-Creation-Date: 2010-10-17 11:59+0200\n"
+"PO-Revision-Date: 2010-10-17 15:44+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-10-17 04:59+0000\n"
+"X-Launchpad-Export-Date: 2010-10-18 05:01+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: src/org/revager/Main.java:112 src/org/revager/Main.java:195
@@ -2144,8 +2144,8 @@ msgid "Attach file(s) of the product"
 msgstr "Datei(en) des Prüflings einbinden"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:145
-msgid "Export the findings of a certain meeting only: "
-msgstr "Nur Befunde einer bestimmten Sitzung exportieren: "
+msgid "Export the findings of a certain meeting only:"
+msgstr "Nur die Befunde einer bestimmten Sitzung exportieren:"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:71
 msgid "Severities for the findings in this review:"
@@ -2227,8 +2227,8 @@ msgid "Location:"
 msgstr "Ort:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:404
-msgid "editMeeting.canceled"
-msgstr ""
+msgid "Canceled"
+msgstr "Abgesagt"
 
 #. 
 #. *
@@ -2380,7 +2380,7 @@ msgid ""
 msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:73
-msgid "Select this if you would like to organize a review as moderator. "
+msgid "Select this if you would like to organize a review as moderator."
 msgstr ""
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74

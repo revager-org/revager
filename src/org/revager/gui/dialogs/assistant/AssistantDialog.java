@@ -53,6 +53,8 @@ public class AssistantDialog extends AbstractDialog {
 	private Container addAttendeePanel = UI.getInstance().getAttendeeDialog()
 			.getContentPane();
 
+	private boolean instantReview = false;
+
 	private ImageIcon revagerIcon = Data.getInstance().getIcon(
 			"revager_50x50.png");
 
@@ -82,7 +84,6 @@ public class AssistantDialog extends AbstractDialog {
 	private String openRevDescStrng = _("You can select a mode and a review from the list of reviews. If your review isn't in the list, you can load it by choosing 'Select another review...'.");
 
 	private String addAttDescStrng = _("Here you can manage some personal details. They will be used during the review.");
-	private String localMode = "moderator";
 
 	/*
 	 * 
@@ -93,16 +94,6 @@ public class AssistantDialog extends AbstractDialog {
 	private ImageIcon confirmIcon = Data.getInstance().getIcon(
 			"buttonOk_16x16.png");
 	private String confirmString = _("Confirm");
-
-	/**
-	 * Sets the localMode parameter
-	 * 
-	 * @param string
-	 */
-	public void setLocalMode(String string) {
-		this.localMode = string;
-
-	}
 
 	/**
 	 * Returns the currentPanel.
@@ -169,7 +160,6 @@ public class AssistantDialog extends AbstractDialog {
 		super(parent);
 
 		defineWizardBttns();
-		Data.getInstance().setMode("moderator");
 		setIcon(revagerIcon);
 		setCurrentPnl(firstScreenPanel);
 		getContentPane().setLayout(new BorderLayout());
@@ -245,17 +235,14 @@ public class AssistantDialog extends AbstractDialog {
 
 		if (currentPnl == firstScreenPanel) {
 			this.getContentPane().add(firstScreenPanel, BorderLayout.CENTER);
-			Data.getInstance().setMode("moderator");
 		} else if (currentPnl == addAttendeePanel) {
 			this.getContentPane().add(addAttendeePanel, BorderLayout.CENTER);
-			Data.getInstance().setMode("instant");
 
 			UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
 			UI.getInstance().getAttendeeDialog().getNameTxtFld()
 					.setText(System.getProperty("user.name"));
 		} else if (currentPnl == openReviewPanel) {
 			this.getContentPane().add(openReviewPanel, BorderLayout.CENTER);
-			Data.getInstance().setMode(localMode);
 		}
 
 		this.getContentPane().validate();
@@ -293,6 +280,20 @@ public class AssistantDialog extends AbstractDialog {
 		}
 
 		super.setVisible(vis);
+	}
+	
+	/**
+	 * @return the instantReview
+	 */
+	public boolean isInstantReview() {
+		return instantReview;
+	}
+
+	/**
+	 * @param instantReview the instantReview to set
+	 */
+	public void setInstantReview(boolean instantReview) {
+		this.instantReview = instantReview;
 	}
 
 }

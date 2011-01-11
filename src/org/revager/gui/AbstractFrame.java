@@ -41,7 +41,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,7 +55,6 @@ import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.gui.helpers.HintItem;
 import org.revager.gui.helpers.ProgressGlassPane;
-import org.revager.gui.workers.LoadHelpWorker;
 import org.revager.tools.GUITools;
 
 /**
@@ -735,7 +733,8 @@ public class AbstractFrame extends JFrame {
 						10, 15, 5, 15), GridBagConstraints.BOTH,
 						GridBagConstraints.WEST, 1.0, 1.0);
 
-				if (HINT.getHelpChapter() != null) {
+				// TODO HELP IS CURRENTLY DISABLED!
+				/* if (HINT.getHelpChapter() != null) {
 					JButton helpButton = GUITools.newImageButton();
 					helpButton.setIcon(ICON_HELP);
 					helpButton.setRolloverIcon(ICON_HELP_ROLLOVER);
@@ -755,7 +754,7 @@ public class AbstractFrame extends JFrame {
 
 					try {
 						helpButton
-								.setToolTipText(_("Open help chapters")
+								.setToolTipText(_("Open help chapter")
 										+ " "
 										+ Data.getInstance()
 												.getHelpData()
@@ -765,16 +764,14 @@ public class AbstractFrame extends JFrame {
 						helpButton.setVisible(false);
 					}
 
-					/*
-					 * Minor margin for Mac
-					 */
+					//Minor margin for Mac
 					int ins = 15;
 
 					gblAdd(gblHints, panelHints, helpButton, 2, 2 * i, 1, 1,
 							new Insets(ins / 2, 0, ins, 8),
 							GridBagConstraints.EAST, GridBagConstraints.EAST,
 							0.0, 1.0);
-				}
+				} */
 
 				i++;
 			}

@@ -512,6 +512,10 @@ public class ApplicationData extends Observable {
 		ps.setString(2, AppSettingValue.TRUE.toString());
 		ps.executeUpdate();
 
+		ps.setString(1, AppSettingKey.APP_ALLOW_FULLSCREEN.toString());
+		ps.setString(2, AppSettingValue.FALSE.toString());
+		ps.executeUpdate();
+
 		ps.setString(1, AppSettingKey.APP_SHOW_PROTOCOL_WARNING.toString());
 		ps.setString(2, AppSettingValue.TRUE.toString());
 		ps.executeUpdate();

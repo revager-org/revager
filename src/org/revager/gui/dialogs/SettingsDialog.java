@@ -86,6 +86,7 @@ public class SettingsDialog extends AbstractDialog {
 	private JCheckBox checkboxAutoSave = null;
 	private JCheckBox checkboxCheckUpdates = null;
 	private JCheckBox checkboxShowHints = null;
+	private JCheckBox checkboxFullscreen = null;
 	private JCheckBox checkboxProtWarn = null;
 	private JCheckBox checkboxHighlightFields = null;
 
@@ -173,8 +174,8 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Set window properties
 		 */
-		setMinimumSize(new Dimension(650, 650));
-		setPreferredSize(new Dimension(650, 650));
+		setMinimumSize(new Dimension(700, 650));
+		setPreferredSize(new Dimension(700, 650));
 
 		setLocationToCenter();
 
@@ -272,6 +273,20 @@ public class SettingsDialog extends AbstractDialog {
 
 		GUITools.addComponent(panelHighlightFields, gblHighlightFields,
 				checkboxHighlightFields, 0, 0, 1, 1, 0.0, 0.0, 5, 20, 5, 0,
+				GridBagConstraints.NONE, GridBagConstraints.WEST);
+
+		/*
+		 * Allow usage of fullscreen mode
+		 */
+		checkboxFullscreen = new JCheckBox(
+				_("Allow usage of fullscreen mode (EXPERIMENTAL)."));
+		checkboxFullscreen.setFocusPainted(false);
+
+		GridBagLayout gblFullscreen = new GridBagLayout();
+		JPanel panelFullscreen = new JPanel(gblFullscreen);
+
+		GUITools.addComponent(panelFullscreen, gblFullscreen,
+				checkboxFullscreen, 0, 0, 1, 1, 0.0, 0.0, 5, 20, 5, 0,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
 
 		/*
@@ -391,10 +406,13 @@ public class SettingsDialog extends AbstractDialog {
 		GUITools.addComponent(panelGeneral, gblGeneral, panelHighlightFields,
 				0, 3, 1, 1, 1.0, 1.0, 5, 5, 5, 5, GridBagConstraints.NONE,
 				GridBagConstraints.WEST);
-		GUITools.addComponent(panelGeneral, gblGeneral, panelProtWarn, 0, 4, 1,
+		GUITools.addComponent(panelGeneral, gblGeneral, panelFullscreen, 0, 4,
+				1, 1, 1.0, 1.0, 5, 5, 5, 5, GridBagConstraints.NONE,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(panelGeneral, gblGeneral, panelProtWarn, 0, 5, 1,
 				1, 1.0, 1.0, 5, 5, 5, 5, GridBagConstraints.NONE,
 				GridBagConstraints.WEST);
-		GUITools.addComponent(panelGeneral, gblGeneral, panelLanguage, 0, 5, 1,
+		GUITools.addComponent(panelGeneral, gblGeneral, panelLanguage, 0, 6, 1,
 				1, 1.0, 1.0, 5, 5, 5, 5, GridBagConstraints.NONE,
 				GridBagConstraints.WEST);
 
@@ -641,6 +659,14 @@ public class SettingsDialog extends AbstractDialog {
 						AppSettingValue.FALSE);
 			}
 
+			if (checkboxFullscreen.isSelected()) {
+				appData.setSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN,
+						AppSettingValue.TRUE);
+			} else {
+				appData.setSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN,
+						AppSettingValue.FALSE);
+			}
+
 			if (checkboxProtWarn.isSelected()) {
 				appData.setSettingValue(
 						AppSettingKey.APP_SHOW_PROTOCOL_WARNING,
@@ -760,6 +786,12 @@ public class SettingsDialog extends AbstractDialog {
 				checkboxHighlightFields.setSelected(true);
 			} else {
 				checkboxHighlightFields.setSelected(false);
+			}
+
+			if (appData.getSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN) == AppSettingValue.TRUE) {
+				checkboxFullscreen.setSelected(true);
+			} else {
+				checkboxFullscreen.setSelected(false);
 			}
 
 			if (appData

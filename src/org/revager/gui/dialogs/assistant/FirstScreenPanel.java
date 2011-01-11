@@ -148,6 +148,7 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 				GoToOpenRevPnlAction.class.getName()));
 		quickstartLnk.addActionListener(ActionRegistry.getInstance().get(
 				GoToAddAttPnlAction.class.getName()));
+		
 		selectLanguageLnk.addActionListener(selectLanguageAction);
 		openAspManagerLnk.addActionListener(openAspMngrAction);
 

@@ -361,10 +361,12 @@ public abstract class AbstractDialog extends JDialog {
 	 *            the anchor
 	 */
 	public void setHelpChapter(String chapter, String anchor) {
-		this.helpChapter = chapter;
-		this.helpChapterAnchor = anchor;
+		// TODO HELP IS CURRENTLY DISABLED!
+		
+		// this.helpChapter = chapter;
+		// this.helpChapterAnchor = anchor;
 
-		panelHelpButton.setVisible(true);
+		// panelHelpButton.setVisible(true);
 	}
 
 	/**

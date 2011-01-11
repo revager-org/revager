@@ -29,7 +29,6 @@ import java.util.List;
 
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
-import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Product;
 import org.revager.app.model.schema.Review;
 import org.revager.app.model.schema.Severities;
@@ -380,11 +379,6 @@ public class ApplicationControl {
 	 */
 	public void backupReview() throws ResiIOException, DataException {
 		io.storeReviewBackup();
-
-		Data.getInstance()
-				.getAppData()
-				.setSetting(AppSettingKey.APP_LAST_MODE,
-						Data.getInstance().getMode());
 	}
 
 	/**
@@ -398,10 +392,6 @@ public class ApplicationControl {
 	public void restoreReview() throws ResiIOException, DataException {
 		if (isReviewRestorable()) {
 			Data.getInstance().getResiData().clearReview();
-
-			Data.getInstance().setMode(
-					Data.getInstance().getAppData()
-							.getSetting(AppSettingKey.APP_LAST_MODE));
 
 			io.loadReviewBackup();
 

@@ -286,6 +286,15 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		tbNewAttendee.setToolTipText(_("Add Attendee"));
 		tbNewAttendee.addActionListener(ActionRegistry.getInstance().get(
 				AddAttendeeAction.class.getName()));
+		tbNewAttendee.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				
+				UI.getInstance().getAttendeeDialog().setCalledByAspectsManager(true);
+			}
+		});
+		
 		addTopComponent(tbNewAttendee);
 
 		tbRemove = GUITools.newImageButton();

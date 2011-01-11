@@ -54,21 +54,6 @@ public class Data {
 	private Locale locale = null;
 
 	/**
-	 * Current mode (moderator, scribe etc.)
-	 */
-	private String modeName = null;
-
-	/**
-	 * Properties for the current mode parameters.
-	 */
-	private Properties modeProp = new Properties();
-
-	/**
-	 * Properties for the default mode parameters.
-	 */
-	private Properties modeDefaultProp = new Properties();
-
-	/**
 	 * Properties for the application resources.
 	 */
 	private Properties resourcesProp = new Properties();
@@ -134,28 +119,6 @@ public class Data {
 			 */
 			System.err.println("Error while loading the resource file.");
 		}
-
-		/*
-		 * Load default mode properties
-		 */
-		URL modeFile = this.getClass().getResource(
-				getResource("path.modes") + "default.properties");
-
-		try {
-			modeDefaultProp.load(modeFile.openStream());
-		} catch (Exception e) {
-			/*
-			 * Not part of unit testing because this code will only be reached
-			 * if an internal error occurs.
-			 */
-			System.err.println("Error while loading the "
-					+ "default mode properties.");
-		}
-
-		/*
-		 * Set default mode
-		 */
-		setMode("default");
 	}
 
 	/**
@@ -235,37 +198,6 @@ public class Data {
 	}
 
 	/**
-	 * Get the current mode.
-	 * 
-	 * @return current mode as String, e.g. "none", "moderator" or "scribe"
-	 */
-	public String getMode() {
-		return modeName;
-	}
-
-	/**
-	 * Set the mode as String, e.g. "none", "moderator" or "scribe"
-	 * 
-	 * @param mode
-	 *            the mode to set
-	 */
-	public void setMode(String mode) {
-		this.modeName = mode;
-
-		URL modeFile = getClass().getResource(
-				getResource("path.modes") + mode + ".properties");
-
-		try {
-			modeProp.clear();
-			modeProp.load(modeFile.openStream());
-		} catch (Exception e) {
-			System.err.println("Error while loading the following "
-					+ "mode properties: " + getResource("path.modes") + mode
-					+ ".properties");
-		}
-	}
-
-	/**
 	 * Get an icon as ImageIcon object by file name.
 	 * 
 	 * @param iconFile
@@ -294,35 +226,6 @@ public class Data {
 		}
 
 		return resource;
-	}
-
-	/**
-	 * Get a parameter of the current mode.
-	 * 
-	 * @param key
-	 *            the key
-	 * 
-	 * @return parameter as boolean value
-	 */
-	public boolean getModeParam(String key) {
-		boolean parameter;
-		String paramValue = modeProp.getProperty(key);
-
-		/*
-		 * If parameter is not set in the current mode, try to get the default
-		 * value
-		 */
-		if (paramValue == null) {
-			paramValue = modeDefaultProp.getProperty(key);
-		}
-
-		if (paramValue != null && paramValue.equals("true")) {
-			parameter = true;
-		} else {
-			parameter = false;
-		}
-
-		return parameter;
 	}
 
 	/**

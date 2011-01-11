@@ -47,6 +47,8 @@ public class GoToFirstScreenPnlAction extends AbstractAction {
 		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
+		
+		UI.getInstance().getAssistantDialog().setInstantReview(false);
 	}
 
 }

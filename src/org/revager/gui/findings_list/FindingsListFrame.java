@@ -82,6 +82,7 @@ import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.ProtocolManagement;
 import org.revager.app.ReviewManagement;
+import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
@@ -131,6 +132,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private FindingManagement findMgmt = Application.getInstance()
 			.getFindingMgmt();
+
+	private ApplicationData appData = Data.getInstance().getAppData();
 
 	private GridBagLayout gbl = new GridBagLayout();
 	private JTabbedPane tabbedPane = new JTabbedPane();
@@ -433,29 +436,37 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		/*
 		 * Fullscreen
 		 */
-		JButton tbFullscreen = GUITools.newImageButton();
-		if (fullscreen) {
-			tbFullscreen.setIcon(Data.getInstance().getIcon(
-					"fullscreenClose_50x50_0.png"));
-			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
-					"fullscreenClose_50x50.png"));
-			tbFullscreen.setToolTipText(_("Exit Fullscreen"));
-		} else {
-			tbFullscreen.setIcon(Data.getInstance().getIcon(
-					"fullscreen_50x50_0.png"));
-			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
-					"fullscreen_50x50.png"));
-			tbFullscreen.setToolTipText(_("Change to Fullscreen mode"));
-		}
-		tbFullscreen.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getProtocolFrame(!isFullscreen())
-						.setVisible(true);
-			}
-		});
+		try {
+			if (appData.getSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN) == AppSettingValue.TRUE) {
+				JButton tbFullscreen = GUITools.newImageButton();
+				if (fullscreen) {
+					tbFullscreen.setIcon(Data.getInstance().getIcon(
+							"fullscreenClose_50x50_0.png"));
+					tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
+							"fullscreenClose_50x50.png"));
+					tbFullscreen.setToolTipText(_("Exit Fullscreen"));
+				} else {
+					tbFullscreen.setIcon(Data.getInstance().getIcon(
+							"fullscreen_50x50_0.png"));
+					tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
+							"fullscreen_50x50.png"));
+					tbFullscreen.setToolTipText(_("Change to Fullscreen mode"));
+				}
+				tbFullscreen.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						UI.getInstance().getProtocolFrame(!isFullscreen())
+								.setVisible(true);
+					}
+				});
 
-		addTopComponent(tbFullscreen);
+				addTopComponent(tbFullscreen);
+			}
+		} catch (DataException exc) {
+			JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
+					GUITools.getMessagePane(exc.getMessage()), _("Error"),
+					JOptionPane.ERROR_MESSAGE);
+		}
 
 		/*
 		 * current time

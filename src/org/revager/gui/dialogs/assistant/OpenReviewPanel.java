@@ -32,8 +32,6 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 
 import org.revager.app.ResiFileFilter;
 import org.revager.app.model.Data;
@@ -61,8 +59,6 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 	/*
 	 * Strings
 	 */
-	private String moderatorStrng = _("Moderator");
-	private String scribeStrng = _("Scribe or Singe Reviewer");
 	private String anotherRevStrng = _("Select another review...");
 	private String noRevsStrng = _("No reviews available");
 	private String firstRevStrng;
@@ -71,16 +67,8 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 	private String fourthRevStrng;
 
 	/*
-	 * ImageIcons
+	 * Image Icons
 	 */
-	private ImageIcon smallModeratorIcon = Data.getInstance().getIcon(
-			"moderator_50x50_0.png");
-	private ImageIcon smallModeratorRolloverIcon = Data.getInstance().getIcon(
-			"moderator_50x50.png");
-	private ImageIcon scribeIcon = Data.getInstance().getIcon(
-			"scribe_50x50_0.png");
-	private ImageIcon scribeRolloverIcon = Data.getInstance().getIcon(
-			"scribe_50x50.png");
 	private ImageIcon reviewIcon = Data.getInstance().getIcon(
 			"review_40x40_0.png");
 	private ImageIcon reviewRolloverIcon = Data.getInstance().getIcon(
@@ -91,14 +79,8 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 			"open_40x40.png");
 
 	/*
-	 * links and LinkGroups
+	 * Links and LinkGroup
 	 */
-	private LinkGroup modeGrp = new LinkGroup();
-	private HLink moderatorLnk = new HLink(moderatorStrng, smallModeratorIcon,
-			smallModeratorRolloverIcon, modeGrp);
-	private HLink scribeSingleRevLnk = new HLink(scribeStrng, scribeIcon,
-			scribeRolloverIcon, modeGrp);
-
 	private LinkGroup lastRevsGrp = new LinkGroup();
 	private HLink firstReviewLnk;
 	private HLink secondReviewLnk;
@@ -124,12 +106,17 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 			try {
 				List<String> lastRevs = Data.getInstance().getAppData()
 						.getLastReviews();
+				
 				int index = lastRevsGrp.getSelectedLinkIndex();
+				
 				String revPath = lastRevs.get(index);
+				
+				UI.getInstance().getMainFrame().setAssistantMode(false);
+				
 				GUITools.executeSwingWorker(new LoadReviewWorker(revPath));
-			} catch (DataException e1) {
+			} catch (DataException exc) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				exc.printStackTrace();
 			}
 
 		}
@@ -188,38 +175,6 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 
 		this.setLayout(gbl2);
 
-		moderatorLnk.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getAssistantDialog().setLocalMode("moderator");
-				Data.getInstance().setMode("moderator");
-			}
-		});
-
-		scribeSingleRevLnk.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getAssistantDialog().setLocalMode("scribe");
-				Data.getInstance().setMode("scribe");
-			}
-		});
-
-		modeGrp.addLink(moderatorLnk);
-		modeGrp.addLink(scribeSingleRevLnk);
-		modeGrp.selectLink(moderatorLnk);
-
-		GUITools.addComponent(this, gbl2, moderatorLnk, 0, 0, 1, 1, 0.5, 0.0,
-				0, 20, 0, 20, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl2, scribeSingleRevLnk, 0, 1, 1, 2, 0.5,
-				0.0, 20, 20, 0, 20, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl2, new JSeparator(
-				SwingConstants.VERTICAL), 1, 0, 1, 6, 0.0, 1.0, 0, 0, 0, 0,
-				GridBagConstraints.VERTICAL, GridBagConstraints.NORTHWEST);
-
 		try {
 			firstRevStrng = lastRevsVector.get(0);
 			firstReviewLnk = new HLink(firstRevStrng, reviewIcon,
@@ -227,13 +182,13 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 			lastRevsGrp.addLink(firstReviewLnk);
 			lastRevsGrp.selectLink(firstReviewLnk);
 			GUITools.addComponent(this, gbl2, firstReviewLnk, 2, 0, 1, 1, 1.0,
-					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 			noRevsLbl.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 12));
 			GUITools.addComponent(this, gbl2, noRevsLbl, 2, 0, 1, 1, 1.0, 0.0,
-					15, 80, 0, 0, GridBagConstraints.HORIZONTAL,
+					15, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 		}
 		try {
@@ -242,7 +197,7 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(secondReviewLnk);
 			GUITools.addComponent(this, gbl2, secondReviewLnk, 2, 1, 1, 1, 1.0,
-					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
@@ -254,7 +209,7 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(thirdReviewLnk);
 			GUITools.addComponent(this, gbl2, thirdReviewLnk, 2, 2, 1, 1, 1.0,
-					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
@@ -267,7 +222,7 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 					reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(fourthReviewLnk);
 			GUITools.addComponent(this, gbl2, fourthReviewLnk, 2, 3, 1, 1, 1.0,
-					0.0, 0, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
@@ -278,7 +233,7 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 		anotherReviewLnk.setUnderlined(true);
 		anotherReviewLnk.addActionListener(openAnotherRev);
 		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1, 1, 1.0,
-				1.0, 30, 40, 0, 0, GridBagConstraints.HORIZONTAL,
+				1.0, 30, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.SOUTHWEST);
 
 	}

@@ -42,6 +42,8 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {
 		MainFrame mainframe = UI.getInstance().getMainFrame();
 
+		mainframe.setAssistantMode(false);
+		
 		mainframe.switchToProgressMode();
 
 		mainframe.setStatusMessage(_("Restoring backup ..."), true);

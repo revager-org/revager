@@ -157,6 +157,12 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			UI.getInstance().getMainFrame().updateButtons();
 
 			UI.getInstance().getAspectsManagerFrame().updateViews();
+			
+			if (attDialog.isCalledByAspectsManager()) {
+				attDialog.setCalledByAspectsManager(false);
+				
+				UI.getInstance().getAspectsManagerFrame().setVisible(true);
+			}
 		}
 	}
 

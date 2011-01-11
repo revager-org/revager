@@ -42,11 +42,16 @@ public class GoToAddAttPnlAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setCurrentPnl(
-				UI.getInstance().getAssistantDialog().getAddAttendeePanel());
+		UI.getInstance()
+				.getAssistantDialog()
+				.setCurrentPnl(
+						UI.getInstance().getAssistantDialog()
+								.getAddAttendeePanel());
 		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
+
+		UI.getInstance().getAssistantDialog().setInstantReview(true);
 	}
 
 }

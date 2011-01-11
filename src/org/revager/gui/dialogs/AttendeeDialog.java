@@ -101,6 +101,16 @@ public class AttendeeDialog extends AbstractDialog {
 
 	private boolean fromAssistant;
 
+	private boolean calledByAspectsManager = false;
+
+	public boolean isCalledByAspectsManager() {
+		return calledByAspectsManager;
+	}
+
+	public void setCalledByAspectsManager(boolean calledByAspectsManager) {
+		this.calledByAspectsManager = calledByAspectsManager;
+	}
+
 	public boolean isFromAssistant() {
 		return fromAssistant;
 	}
@@ -496,9 +506,14 @@ public class AttendeeDialog extends AbstractDialog {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				setVisible(false);
-				if (fromAssistant == true)
-					UI.getInstance().getAssistantDialog().setVisible(true);
 
+				if (fromAssistant) {
+					UI.getInstance().getAssistantDialog().setVisible(true);
+				}
+
+				if (calledByAspectsManager) {
+					UI.getInstance().getAspectsManagerFrame().setVisible(true);
+				}
 			}
 		});
 

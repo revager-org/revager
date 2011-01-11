@@ -65,23 +65,6 @@ public class DataTest {
 	}
 
 	@Test
-	public void getAndSetMode() {
-		data = Data.getInstance();
-
-		data.setMode("moderator");
-
-		assertEquals("moderator", data.getMode());
-	}
-
-	@Test
-	public void setInvalidMode() {
-		data = Data.getInstance();
-
-		System.err.println("\nSHOW ERROR MESSAGE BECAUSE OF INVALID MODE:");
-		data.setMode("diesenModusGibtsNicht");
-	}
-
-	@Test
 	public void getIcon() {
 		data = Data.getInstance();
 
@@ -102,33 +85,6 @@ public class DataTest {
 
 		System.err.println("\nSHOW ERROR MESSAGE BECAUSE OF INVALID RESOURCE:");
 		data.getResource("dieseResourceGibtsNicht");
-	}
-
-	@Test
-	public void getRegularModeParameter() {
-		data = Data.getInstance();
-
-		data.setMode("moderator");
-
-		assertFalse(data.getModeParam("ableToCreateNewProtocol"));
-	}
-
-	@Test
-	public void getDefaultFallbackModeParameter() {
-		data = Data.getInstance();
-
-		data.setMode("moderator");
-
-		assertTrue(data.getModeParam("ableToManageSeverities"));
-	}
-
-	@Test
-	public void getInvalidModeParameter() {
-		data = Data.getInstance();
-
-		data.setMode("moderator");
-
-		assertFalse(data.getModeParam("diesenParameterGibtsNicht"));
 	}
 
 }

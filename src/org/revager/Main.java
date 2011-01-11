@@ -27,10 +27,12 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import org.revager.app.Application;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.gui.UI;
+import org.revager.tools.AppTools;
 import org.revager.tools.FileTools;
 import org.revager.tools.GUITools;
 
@@ -38,6 +40,8 @@ import org.revager.tools.GUITools;
  * Starts the Resi application.
  */
 public class Main {
+
+	private static String argData = null;
 
 	/**
 	 * The main method is not part of unit testing because it belongs to the
@@ -57,8 +61,10 @@ public class Main {
 		 */
 		if (args.length >= 2) {
 			if (args[0].trim().equals("-data")) {
+				argData = args[1].trim();
+
 				Data.getInstance().getAppData()
-						.setCustomAppDataDirectory(args[1].trim());
+						.setCustomAppDataDirectory(argData);
 			}
 		}
 
@@ -86,7 +92,7 @@ public class Main {
 			if (lang == null) {
 				lang = Locale.getDefault().getLanguage();
 			}
-			
+
 			if (!Data.getInstance().isLanguageAvailable(lang)) {
 				lang = Locale.ENGLISH.getLanguage();
 			}
@@ -114,6 +120,48 @@ public class Main {
 
 			System.err.println(e.getMessage());
 		}
+	}
+
+	/**
+	 * Restart the application.
+	 */
+	public static void restartApplication() {
+		String javaBinary = "java";
+
+		if (UI.getInstance().getPlatform() == UI.Platform.WINDOWS) {
+			javaBinary = "java.exe";
+		}
+
+		String appPath = AppTools.getJarLocation();
+
+		if (argData != null) {
+			appPath += "-data " + argData;
+		}
+		
+		ProcessBuilder pb = new ProcessBuilder(javaBinary, "-jar",
+				appPath);
+
+		try {
+			pb.start();
+			
+			exitApplication();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(e.getMessage()), _("Error"),
+					JOptionPane.ERROR_MESSAGE);
+
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	/**
+	 * Exit the application.
+	 */
+	public static void exitApplication() {
+		UI.getInstance().getMainFrame().dispose();
+		Application.getInstance().getApplicationCtl().clearReview();
+
+		System.exit(0);
 	}
 
 	/**

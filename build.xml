@@ -284,11 +284,10 @@
 		<tstamp>
 			<format property="currentDate" pattern="yyyy-MM-dd" />
 		</tstamp>
-		
+
 		<!-- Update build date -->
-		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties"
-			match="appRelease=(.*)" replace="appRelease=${currentDate}" byline="true" />
-		
+		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties" match="appRelease=(.*)" replace="appRelease=${currentDate}" byline="true" />
+
 		<!-- Run dist target -->
 		<antcall target="dist" />
 
@@ -310,7 +309,7 @@
 			<arg value="revno" />
 			<arg value="${vcsRepositoryURL}" />
 		</exec>
-		
+
 		<!-- Create build no. by incrementing revision no. +1 -->
 		<propertyfile file="buildNo.properties">
 			<entry key="buildNumber" type="int" operation="=" value="${revisionNumber}" />
@@ -318,10 +317,9 @@
 		</propertyfile>
 		<property file="buildNo.properties" />
 		<delete file="buildNo.properties" />
-		
+
 		<!-- Update build no. -->
-		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties"
-			match="appBuild=(.*)" replace="appBuild=${buildNumber}" byline="true" />
+		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties" match="appBuild=(.*)" replace="appBuild=${buildNumber}" byline="true" />
 
 		<!-- Generate a full release -->
 		<antcall target="release" />

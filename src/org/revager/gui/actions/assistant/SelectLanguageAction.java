@@ -23,13 +23,16 @@ import static org.revager.app.model.Data._;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
+import org.revager.Main;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.assistant.LanguagePopupWindow;
+import org.revager.tools.GUITools;
 
 /**
  * The Class GoToAddAttPnlAction. Calling this action will open a pop-up to
@@ -52,7 +55,7 @@ public class SelectLanguageAction extends AbstractAction {
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ev) {
 
 		if (UI.getInstance().getAssistantDialog().isVisible())
 			popup = new LanguagePopupWindow(UI.getInstance()
@@ -63,12 +66,22 @@ public class SelectLanguageAction extends AbstractAction {
 			try {
 				appData.setSetting(AppSettingKey.APP_LANGUAGE,
 						popup.getSelectedLanguage());
-				UI.getInstance()
-						.getAssistantDialog()
-						.setMessage(
-								_("You have to restart the application in order finalize the change of language!"));
+
+				int option = JOptionPane
+						.showConfirmDialog(
+								UI.getInstance().getAssistantDialog(),
+								GUITools.getMessagePane(_("You have to restart the application in order finalize the change of language. Restart now?")),
+								_("Question"),
+								JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE);
+
+				if (option == JOptionPane.YES_OPTION) {
+					Main.restartApplication();
+				}
 			} catch (DataException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(UI.getInstance()
+						.getAssistantDialog(), GUITools.getMessagePane(e
+						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

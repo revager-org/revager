@@ -59,6 +59,8 @@ import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.gui.AbstractDialog;
 import org.revager.gui.UI;
+import org.revager.gui.actions.ActionRegistry;
+import org.revager.gui.actions.ExitAction;
 import org.revager.gui.helpers.FileChooser;
 import org.revager.gui.workers.SettingsWorker;
 import org.revager.gui.workers.SettingsWorker.Mode;
@@ -97,6 +99,8 @@ public class SettingsDialog extends AbstractDialog {
 	private String logoPathInvitation = null;
 	private JTextField textFootInvitation = null;
 	private JTextArea textInvitation = null;
+
+	private boolean langChangeHintAlreadyDisplayed = false;
 
 	/**
 	 * Instantiates a new settings dialog.
@@ -336,10 +340,28 @@ public class SettingsDialog extends AbstractDialog {
 				String selectedLang = ((Language) boxLanguage.getSelectedItem())
 						.getLangCode();
 
-				if (currentLang.equals(selectedLang)) {
-					setMessage(null);
-				} else {
-					setMessage(_("You have to restart the application!"));
+				if (!currentLang.equals(selectedLang)
+						&& !langChangeHintAlreadyDisplayed) {
+					int option = JOptionPane.showConfirmDialog(
+							UI.getInstance().getSettingsDialog(),
+							GUITools.getMessagePane(_("You have to restart the application in order finalize the change of language. Restart now?")),
+							_("Question"), JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+
+					langChangeHintAlreadyDisplayed = true;
+
+					if (option == JOptionPane.YES_OPTION) {
+						GUITools.executeSwingWorker(new SettingsWorker(
+								Mode.STORE_APPDATA));
+
+						setVisible(false);
+
+						ExitAction exitAction = ((ExitAction) ActionRegistry
+								.getInstance().get(ExitAction.class.getName()));
+
+						exitAction.setRestartAgain(true);
+						exitAction.actionPerformed(null);
+					}
 				}
 			}
 		});

@@ -28,9 +28,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import org.revager.app.Application;
+import org.revager.Main;
 import org.revager.app.model.Data;
-import org.revager.gui.UI;
 import org.revager.gui.UI.Status;
 import org.revager.tools.GUITools;
 
@@ -39,6 +38,8 @@ import org.revager.tools.GUITools;
  */
 @SuppressWarnings("serial")
 public class ExitAction extends AbstractAction {
+
+	private boolean restartAgain = false;
 
 	/**
 	 * Instantiates a new exit action.
@@ -50,6 +51,13 @@ public class ExitAction extends AbstractAction {
 		putValue(NAME, _("Close Application"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
+	}
+
+	/**
+	 * Whether application should be restarted or not.
+	 */
+	public void setRestartAgain(boolean restartAgain) {
+		this.restartAgain = restartAgain;
 	}
 
 	/*
@@ -69,6 +77,7 @@ public class ExitAction extends AbstractAction {
 							GUITools.getMessagePane(_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
 							_("Question"), JOptionPane.YES_NO_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE);
+
 			if (option == JOptionPane.YES_OPTION) {
 				((SaveReviewAction) ActionRegistry.getInstance().get(
 						SaveReviewAction.class.getName()))
@@ -82,6 +91,10 @@ public class ExitAction extends AbstractAction {
 			if (option == JOptionPane.NO_OPTION) {
 				exitApplication();
 			}
+			
+			if (option == JOptionPane.CANCEL_OPTION) {
+				restartAgain = false;
+			}
 		} else {
 			exitApplication();
 		}
@@ -92,10 +105,11 @@ public class ExitAction extends AbstractAction {
 	 * returning an exit code to the operating system.
 	 */
 	public void exitApplication() {
-		UI.getInstance().getMainFrame().dispose();
-		Application.getInstance().getApplicationCtl().clearReview();
-
-		System.exit(0);
+		if (restartAgain) {
+			Main.restartApplication();
+		} else {
+			Main.exitApplication();
+		}
 	}
 
 }

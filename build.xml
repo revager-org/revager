@@ -2,8 +2,6 @@
 <?eclipse.ant.import?>
 <project basedir="." default="release" name="RevAger">
 
-	<property file="src/org/revager/resources/appResources.properties" />
-
 	<property environment="env" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.6" />
@@ -16,6 +14,8 @@
 	<property name="dir.dist" location="dist" />
 	<property name="dir.build.test" location="${dir.build}/org/revager/test" />
 	<property name="dir.build.resources.build" location="${dir.build}/org/revager/resources/build" />
+
+	<property file="${dir.src}/org/revager/resources/appResources.properties" />
 
 	<!-- Directory where build resources (images etc.) can be found -->
 	<property name="dir.src.resources.build" value="${dir.src}/org/revager/resources/build" />
@@ -111,6 +111,7 @@
 		<delete dir="${dir.build}" />
 		<delete dir="${dir.dist}" />
 		<delete dir="${dir.lib.dev}/launch4j/launch4j" />
+		<delete file="buildNo.properties" />
 	</target>
 
 	<target depends="build-subprojects,build-project" name="build" />
@@ -279,6 +280,16 @@
 	</target>
 
 	<target name="release" description="Generate a full release">
+		<!-- Get current date -->
+		<tstamp>
+			<format property="currentDate" pattern="yyyy-MM-dd" />
+		</tstamp>
+		
+		<!-- Update build date -->
+		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties"
+			match="appRelease=(.*)" replace="appRelease=${currentDate}" byline="true" />
+		
+		<!-- Run dist target -->
 		<antcall target="dist" />
 
 		<!-- Update language stuff -->
@@ -291,6 +302,29 @@
 		<!-- Windows binary -->
 		<antcall target="prepare-launch4j" />
 		<antcall target="build-launch4j" />
+	</target>
+
+	<target name="bzr-release" description="Update build no. before generating the release">
+		<!-- Get the revision no. of the current bazaar repository -->
+		<exec executable="bzr" outputproperty="revisionNumber">
+			<arg value="revno" />
+			<arg value="${vcsRepositoryURL}" />
+		</exec>
+		
+		<!-- Create build no. by incrementing revision no. +1 -->
+		<propertyfile file="buildNo.properties">
+			<entry key="buildNumber" type="int" operation="=" value="${revisionNumber}" />
+			<entry key="buildNumber" type="int" default="${revisionNumber}" operation="+" value="1" />
+		</propertyfile>
+		<property file="buildNo.properties" />
+		<delete file="buildNo.properties" />
+		
+		<!-- Update build no. -->
+		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties"
+			match="appBuild=(.*)" replace="appBuild=${buildNumber}" byline="true" />
+
+		<!-- Generate a full release -->
+		<antcall target="release" />
 	</target>
 
 </project>

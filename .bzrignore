@@ -8,4 +8,5 @@
 ./.project
 
 ./review-files
+./buildNo.properties
 *.mo

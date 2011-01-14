@@ -638,9 +638,11 @@ public class DatePicker extends Observable implements Runnable,
 		screen = new JDialog(parent);
 		screen.addWindowFocusListener(this);
 		screen.setSize(200, 200);
-		screen.setResizable(false);
 		screen.setModal(true);
-		screen.setUndecorated(true);
+		
+		// screen.setUndecorated(true);
+		screen.setResizable(false);
+		screen.setTitle(_("RevAger"));
 
 		screen.getContentPane().setLayout(new BorderLayout());
 		screen.getContentPane().add(panelBase, BorderLayout.CENTER);

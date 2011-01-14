@@ -18,8 +18,10 @@
  */
 package org.revager.app;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.revager.app.comparators.ProtocolComparator;
@@ -27,11 +29,17 @@ import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Meeting;
 
-
 /**
  * This class manages the meetings.
  */
 public class MeetingManagement {
+
+	/**
+	 * Dummy meeting
+	 */
+	private Meeting dummyMeeting = null;
+
+	private final String DUMMY_MEETING_ID = "DummyMeeting:xEUcr6cU5lLsiyuW";
 
 	/**
 	 * Instantiates the meeting management.
@@ -45,13 +53,48 @@ public class MeetingManagement {
 	 */
 	private ResiData resiData = Data.getInstance().getResiData();
 
+	private Meeting findDummyMeeting() {
+		for (Meeting m : resiData.getReview().getMeetings()) {
+			if (m.getPlannedLocation().equals(DUMMY_MEETING_ID)) {
+				return m;
+			}
+		}
+
+		return null;
+	}
+
+	public void initDummyMeeting() {
+		dummyMeeting = findDummyMeeting();
+
+		if (dummyMeeting == null) {
+			Calendar dummyDate = new GregorianCalendar();
+
+			dummyMeeting = new Meeting();
+
+			dummyMeeting.setPlannedDate(dummyDate);
+			dummyMeeting.setPlannedStart(dummyDate);
+			dummyMeeting.setPlannedEnd(dummyDate);
+			dummyMeeting.setPlannedLocation(DUMMY_MEETING_ID);
+
+			addMeeting(dummyMeeting);
+		}
+	}
+
 	/**
 	 * Returns the meetings of the review.
 	 * 
 	 * @return the meetings
 	 */
 	public List<Meeting> getMeetings() {
-		return resiData.getReview().getMeetings();
+		List<Meeting> meetings = new ArrayList<Meeting>();
+
+		for (Meeting m : resiData.getReview().getMeetings()) {
+			if (m != dummyMeeting) {
+				meetings.add(m);
+			}
+		}
+
+		return meetings;
 	}
 
 	/**
@@ -118,11 +161,11 @@ public class MeetingManagement {
 			meet.setComments("");
 		}
 
-		if (!getMeetings().contains(meet)) {
-			getMeetings().add(meet);
+		if (!resiData.getReview().getMeetings().contains(meet)) {
+			resiData.getReview().getMeetings().add(meet);
 
-			Collections.sort(getMeetings(), Application.getInstance()
-					.getMeetingComp());
+			Collections.sort(resiData.getReview().getMeetings(), Application
+					.getInstance().getMeetingComp());
 
 			resiData.fireDataChanged();
 		}
@@ -135,7 +178,7 @@ public class MeetingManagement {
 	 *            the meeting
 	 */
 	public void removeMeeting(Meeting meet) {
-		getMeetings().remove(meet);
+		resiData.getReview().getMeetings().remove(meet);
 
 		resiData.fireDataChanged();
 	}
@@ -147,7 +190,7 @@ public class MeetingManagement {
 	 *            the index of the meeting
 	 */
 	public void removeMeeting(int meetIndex) {
-		getMeetings().remove(meetIndex);
+		resiData.getReview().getMeetings().remove(meetIndex);
 
 		resiData.fireDataChanged();
 	}
@@ -161,11 +204,13 @@ public class MeetingManagement {
 	 *            the new meeting
 	 */
 	public void editMeeting(Meeting oldMeet, Meeting newMeet) {
-		if (getMeetings().contains(oldMeet)) {
-			int index = getMeetings().indexOf(oldMeet);
+		List<Meeting> meetings = resiData.getReview().getMeetings();
 
-			getMeetings().remove(oldMeet);
-			getMeetings().add(index, newMeet);
+		if (meetings.contains(oldMeet)) {
+			int index = meetings.indexOf(oldMeet);
+
+			meetings.remove(oldMeet);
+			meetings.add(index, newMeet);
 
 			resiData.fireDataChanged();
 		}
@@ -220,7 +265,7 @@ public class MeetingManagement {
 	 * @return true, if the meeting is canceled
 	 */
 	public boolean isMeetingCanceled(Meeting meet) {
-		if (meet.getCanceled() != null && !meet.getCanceled().trim().equals("")) {
+		if (meet.getCanceled() != null) {
 			return true;
 		} else {
 			return false;

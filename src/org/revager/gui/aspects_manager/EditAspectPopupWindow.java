@@ -148,7 +148,9 @@ public class EditAspectPopupWindow extends JDialog {
 
 		setLayout(new BorderLayout());
 
-		setUndecorated(true);
+		// setUndecorated(true);
+		setResizable(false);
+		setTitle(_("RevAger"));
 
 		setModal(true);
 	}

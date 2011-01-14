@@ -241,12 +241,8 @@ public class EditProductDialog extends AbstractDialog {
 				String localRef = reviewMgmt.getProductReferences().get(
 						selectedRow);
 
-				if (reviewMgmt.isProductReferenceRemovable(localRef)) {
-					reviewMgmt.removeProductReference(localRef);
-					rtm.fireTableDataChanged();
-				} else {
-					setMessage(_("The removal of this reference is not possible because at least one reference or file has to exist for a product."));
-				}
+				reviewMgmt.removeProductReference(localRef);
+				rtm.fireTableDataChanged();
 			}
 		});
 		buttonPanel.add(removeReference);
@@ -380,11 +376,7 @@ public class EditProductDialog extends AbstractDialog {
 				};
 
 				if (selRow != -1) {
-					if (reviewMgmt.isExtProdReferenceRemovable(ref)) {
-						GUITools.executeSwingWorker(removeExtRefWorker);
-					} else {
-						setMessage(_("The removal of this reference is not possible because at least one reference or file has to exist for a product."));
-					}
+					GUITools.executeSwingWorker(removeExtRefWorker);
 				}
 			}
 		});

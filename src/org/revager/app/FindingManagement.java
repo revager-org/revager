@@ -32,7 +32,6 @@ import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.tools.AppTools;
 
-
 /**
  * This class manages the findings.
  */
@@ -72,7 +71,8 @@ public class FindingManagement {
 	public int getLastId() {
 		int lastId = 0;
 
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -93,7 +93,8 @@ public class FindingManagement {
 	public void refactorIds() {
 		List<Integer> idList = new ArrayList<Integer>();
 
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -168,6 +169,14 @@ public class FindingManagement {
 	 */
 	public Finding addFinding(String description, String severity, Protocol prot) {
 		Finding finding = new Finding();
+
+		if (description == null) {
+			description = "";
+		}
+
+		if (severity == null) {
+			severity = "";
+		}
 
 		finding.setDescription(description);
 		finding.setSeverity(severity);

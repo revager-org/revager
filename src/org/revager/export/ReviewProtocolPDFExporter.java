@@ -19,6 +19,8 @@
 package org.revager.export;
 
 import static org.revager.app.model.Data._;
+
+import org.revager.app.Application;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -108,7 +110,8 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			/*
 			 * Write the title page of the protocol
 			 */
-			writeTitlePage(review.getMeetings(), attachProdExtRefs);
+			writeTitlePage(Application.getInstance().getMeetingMgmt()
+					.getMeetings(), attachProdExtRefs);
 
 			/*
 			 * Write attendees of the whole review
@@ -141,7 +144,8 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			/*
 			 * Write the meetings of this review
 			 */
-			for (Meeting m : review.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt()
+					.getMeetings()) {
 
 				Protocol prot = m.getProtocol();
 

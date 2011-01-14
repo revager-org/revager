@@ -18,8 +18,6 @@
  */
 package org.revager.gui.actions.meeting;
 
-import static org.revager.app.model.Data._;
-
 import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -27,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 import javax.swing.AbstractAction;
-import javax.swing.JTextField;
 
 import org.revager.app.Application;
 import org.revager.app.model.schema.Meeting;
@@ -51,53 +48,40 @@ public class ConfirmMeetingAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		MeetingDialog meetDialog = UI.getInstance().getMeetingDialog();
 
-		JTextField locTxtFld = meetDialog.getLocationTxtFld();
-		locTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
-
 		Meeting currentMeeting = meetDialog.getCurrentMeeting();
 
-		if (!locTxtFld.getText().trim().equals("")) {
-			DateFormat dateF = SimpleDateFormat
-					.getDateInstance(DateFormat.LONG);
+		DateFormat dateF = SimpleDateFormat.getDateInstance(DateFormat.LONG);
 
-			Meeting newMeeting = new Meeting();
+		Meeting newMeeting = new Meeting();
 
-			try {
-				newMeeting.setPlannedDate(GUITools.dateString2Calendar(UI
-						.getInstance().getMeetingDialog().getDateTxtFld()
-						.getText(), dateF));
-			} catch (ParseException exc) {
-				newMeeting.setPlannedDate(new GregorianCalendar());
-			}
-
-			newMeeting.setPlannedStart(meetDialog.getBegin());
-			newMeeting.setPlannedEnd(meetDialog.getEnd());
-			newMeeting.setPlannedLocation(meetDialog.getLocationTxt());
-			newMeeting.setCanceled(meetDialog.getCanceled());
-			Application.getInstance().getReviewMgmt().setRecommendation("");
-
-			if (meetDialog.isNewMeeting()) {
-				Application.getInstance().getMeetingMgmt()
-						.addMeeting(newMeeting);
-				newMeeting.setComments("");
-			} else {
-				newMeeting.setComments(currentMeeting.getComments());
-				newMeeting.setProtocol(currentMeeting.getProtocol());
-				Application.getInstance().getMeetingMgmt()
-						.editMeeting(currentMeeting, newMeeting);
-
-			}
-
-			UI.getInstance().getMainFrame().updateMeetingsTree();
-
-			meetDialog.setVisible(false);
-		} else {
-			locTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
-
-			String message = _("Please enter the location of the review.");
-
-			meetDialog.setMessage(message);
+		try {
+			newMeeting.setPlannedDate(GUITools.dateString2Calendar(
+					UI.getInstance().getMeetingDialog().getDateTxtFld()
+							.getText(), dateF));
+		} catch (ParseException exc) {
+			newMeeting.setPlannedDate(new GregorianCalendar());
 		}
+
+		newMeeting.setPlannedStart(meetDialog.getBegin());
+		newMeeting.setPlannedEnd(meetDialog.getEnd());
+		newMeeting.setPlannedLocation(meetDialog.getLocationTxt());
+		newMeeting.setCanceled(meetDialog.getCanceled());
+		Application.getInstance().getReviewMgmt().setRecommendation("");
+
+		if (meetDialog.isNewMeeting()) {
+			Application.getInstance().getMeetingMgmt().addMeeting(newMeeting);
+			newMeeting.setComments("");
+		} else {
+			newMeeting.setComments(currentMeeting.getComments());
+			newMeeting.setProtocol(currentMeeting.getProtocol());
+			Application.getInstance().getMeetingMgmt()
+					.editMeeting(currentMeeting, newMeeting);
+
+		}
+
+		UI.getInstance().getMainFrame().updateMeetingsTree();
+
+		meetDialog.setVisible(false);
 
 		UI.getInstance().getMainFrame().updateButtons();
 	}

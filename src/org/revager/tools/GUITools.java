@@ -461,7 +461,7 @@ public class GUITools {
 	public static JPanel newPopupBasePanel() {
 		JPanel panelBase = new JPanel();
 		panelBase.setLayout(new BorderLayout());
-		panelBase.setBorder(UI.POPUP_BORDER);
+		// panelBase.setBorder(UI.POPUP_BORDER);
 		panelBase.setBackground(UI.POPUP_BACKGROUND);
 
 		return panelBase;

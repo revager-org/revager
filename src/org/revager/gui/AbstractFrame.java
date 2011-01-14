@@ -641,13 +641,13 @@ public class AbstractFrame extends JFrame {
 		 */
 		boolean hintsAreTheSame = false;
 
-		if (currentHints != null) {
+		if (currentHints != null && currentHints.size() == hints.size()) {
 			hintsAreTheSame = true;
 
 			Iterator<HintItem> iterCurHints = currentHints.iterator();
 
 			for (HintItem hint : hints) {
-				if (hint != iterCurHints.next()) {
+				if (iterCurHints.hasNext() && hint != iterCurHints.next()) {
 					hintsAreTheSame = false;
 
 					break;
@@ -734,44 +734,32 @@ public class AbstractFrame extends JFrame {
 						GridBagConstraints.WEST, 1.0, 1.0);
 
 				// TODO HELP IS CURRENTLY DISABLED!
-				/* if (HINT.getHelpChapter() != null) {
-					JButton helpButton = GUITools.newImageButton();
-					helpButton.setIcon(ICON_HELP);
-					helpButton.setRolloverIcon(ICON_HELP_ROLLOVER);
-					helpButton.setBackground(Color.WHITE);
-					helpButton.setFocusable(false);
-
-					helpButton.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							GUITools.executeSwingWorker(new LoadHelpWorker(HINT
-									.getHelpChapter(), HINT
-									.getHelpChapterAnchor()));
-						}
-
-					});
-
-					try {
-						helpButton
-								.setToolTipText(_("Open help chapter")
-										+ " "
-										+ Data.getInstance()
-												.getHelpData()
-												.getChapterTitle(
-														HINT.getHelpChapter()));
-					} catch (DataException e) {
-						helpButton.setVisible(false);
-					}
-
-					//Minor margin for Mac
-					int ins = 15;
-
-					gblAdd(gblHints, panelHints, helpButton, 2, 2 * i, 1, 1,
-							new Insets(ins / 2, 0, ins, 8),
-							GridBagConstraints.EAST, GridBagConstraints.EAST,
-							0.0, 1.0);
-				} */
+				/*
+				 * if (HINT.getHelpChapter() != null) { JButton helpButton =
+				 * GUITools.newImageButton(); helpButton.setIcon(ICON_HELP);
+				 * helpButton.setRolloverIcon(ICON_HELP_ROLLOVER);
+				 * helpButton.setBackground(Color.WHITE);
+				 * helpButton.setFocusable(false);
+				 * 
+				 * helpButton.addActionListener(new ActionListener() {
+				 * 
+				 * @Override public void actionPerformed(ActionEvent e) {
+				 * GUITools.executeSwingWorker(new LoadHelpWorker(HINT
+				 * .getHelpChapter(), HINT .getHelpChapterAnchor())); }
+				 * 
+				 * });
+				 * 
+				 * try { helpButton .setToolTipText(_("Open help chapter") + " "
+				 * + Data.getInstance() .getHelpData() .getChapterTitle(
+				 * HINT.getHelpChapter())); } catch (DataException e) {
+				 * helpButton.setVisible(false); }
+				 * 
+				 * //Minor margin for Mac int ins = 15;
+				 * 
+				 * gblAdd(gblHints, panelHints, helpButton, 2, 2 * i, 1, 1, new
+				 * Insets(ins / 2, 0, ins, 8), GridBagConstraints.EAST,
+				 * GridBagConstraints.EAST, 0.0, 1.0); }
+				 */
 
 				i++;
 			}

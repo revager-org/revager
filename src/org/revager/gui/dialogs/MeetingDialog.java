@@ -174,7 +174,7 @@ public class MeetingDialog extends AbstractDialog {
 		if (canceled.isSelected()) {
 			return canceledTxtArea.getText();
 		} else {
-			return "";
+			return null;
 		}
 	}
 

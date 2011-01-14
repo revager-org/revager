@@ -316,7 +316,7 @@ public class ImportExportControl {
 
 		List<Finding> findings = new ArrayList<Finding>();
 
-		for (Meeting m : Data.getInstance().getResiData().getReview()
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
 				.getMeetings()) {
 			if (m.getProtocol() != null) {
 				findings.addAll(m.getProtocol().getFindings());

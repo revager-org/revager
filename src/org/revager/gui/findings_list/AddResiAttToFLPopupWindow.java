@@ -118,7 +118,9 @@ public class AddResiAttToFLPopupWindow extends JDialog {
 
 		setLayout(new BorderLayout());
 
-		setUndecorated(true);
+		// setUndecorated(true);
+		setResizable(false);
+		setTitle(_("RevAger"));
 
 		setModal(true);
 
@@ -240,7 +242,7 @@ public class AddResiAttToFLPopupWindow extends JDialog {
 	 * Creates the attendee bx.
 	 */
 	private void createAttendeeBx() {
-		for (Attendee att : Data.getInstance().getResiData().getReview()
+		for (Attendee att : Application.getInstance().getAttendeeMgmt()
 				.getAttendees()) {
 			if (!Application.getInstance().getProtocolMgmt()
 					.isAttendee(att, protocol)) {

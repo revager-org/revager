@@ -23,23 +23,29 @@ import static org.revager.app.model.Data._;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 import javax.swing.SwingWorker;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
+import javax.xml.datatype.DatatypeFactory;
 
 import org.revager.app.Application;
+import org.revager.app.AttendeeManagement;
 import org.revager.app.FindingManagement;
+import org.revager.app.MeetingManagement;
+import org.revager.app.ProtocolManagement;
 import org.revager.app.SeverityManagement;
 import org.revager.app.model.Data;
+import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
+import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
-import org.revager.gui.helpers.TreeMeeting;
-import org.revager.gui.helpers.TreeProtocol;
+import org.revager.gui.findings_list.FindingsListFrame;
 import org.revager.tools.GUITools;
 
 /**
@@ -52,6 +58,12 @@ public class OpenFindingsListAction extends AbstractAction {
 			.getFindingMgmt();
 	private SeverityManagement sevMgmt = Application.getInstance()
 			.getSeverityMgmt();
+	private ProtocolManagement protMgmt = Application.getInstance()
+			.getProtocolMgmt();
+	private MeetingManagement meetMgmt = Application.getInstance()
+			.getMeetingMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance()
+			.getAttendeeMgmt();
 
 	/**
 	 * Instantiates a new open protocol frame action.
@@ -80,48 +92,72 @@ public class OpenFindingsListAction extends AbstractAction {
 		@Override
 		protected Void doInBackground() throws Exception {
 			try {
-				UI.getInstance().getMainFrame().switchToProgressMode();
+				MainFrame mainFrame = UI.getInstance().getMainFrame();
+				FindingsListFrame protFrame = UI.getInstance()
+						.getProtocolFrame();
 
-				Meeting editMeet;
-				Protocol currentProt;
+				mainFrame.switchToProgressMode();
 
-				TreePath path = UI.getInstance().getMainFrame()
-						.getMeetingsTree().getSelectionPath();
+				Protocol currentProt = null;
+				Meeting currentMeet = null;
 
-				if (path.getPathCount() == 3)
-					editMeet = ((TreeProtocol) ((DefaultMutableTreeNode) path
-							.getLastPathComponent()).getUserObject())
-							.getMeeting();
-				else
-					editMeet = ((TreeMeeting) ((DefaultMutableTreeNode) path
-							.getLastPathComponent()).getUserObject())
-							.getMeeting();
+				if (mainFrame.getSelectedProtocol() != null) {
+					currentProt = mainFrame.getSelectedProtocol();
+					currentMeet = protMgmt.getMeeting(currentProt);
+				} else if (mainFrame.getSelectedMeeting() != null) {
+					currentProt = mainFrame.getSelectedMeeting().getProtocol();
+					currentMeet = mainFrame.getSelectedMeeting();
+				} else {
+					/*
+					 * Create a new meeting
+					 */
+					Calendar currentTime = new GregorianCalendar();
 
-				currentProt = Application.getInstance().getProtocolMgmt()
-						.getProtocol(editMeet);
+					int year = currentTime.get(Calendar.YEAR);
+					int month = currentTime.get(Calendar.MONTH);
+					int dayOfMonth = currentTime.get(Calendar.DAY_OF_MONTH);
+					int hourOfDay = currentTime.get(Calendar.HOUR_OF_DAY) + 2;
+					int minute = currentTime.get(Calendar.MINUTE);
+					int second = currentTime.get(Calendar.SECOND);
+
+					currentMeet = meetMgmt.addMeeting(currentTime, currentTime,
+							new GregorianCalendar(year, month, dayOfMonth,
+									hourOfDay, minute, second), "");
+				}
+
 				if (currentProt == null) {
 					currentProt = new Protocol();
-					currentProt.setDate(editMeet.getPlannedDate());
-					currentProt.setLocation(editMeet.getPlannedLocation());
-					currentProt.setStart(editMeet.getPlannedStart());
-					currentProt.setEnd(editMeet.getPlannedEnd());
+					currentProt.setDate(currentMeet.getPlannedDate());
+					currentProt.setLocation(currentMeet.getPlannedLocation());
+					currentProt.setStart(currentMeet.getPlannedStart());
+					currentProt.setEnd(currentMeet.getPlannedEnd());
 					currentProt.setComments("");
 
 					Finding newFind = new Finding();
 					newFind.setSeverity(sevMgmt.getSeverities().get(0));
 
 					findingMgmt.addFinding(newFind, currentProt);
+
+					/*
+					 * If there's exactly one attendee it is very likely that an
+					 * instant review has been started
+					 */
+					List<Attendee> attendees = attMgmt.getAttendees();
+
+					if (attendees.size() == 1) {
+						protMgmt.addAttendee(attendees.get(0), DatatypeFactory
+								.newInstance().newDuration(0), currentProt);
+					}
 				}
 
-				Application.getInstance().getProtocolMgmt()
-						.setProtocol(currentProt, editMeet);
+				protMgmt.setProtocol(currentProt, currentMeet);
 
-				UI.getInstance().getProtocolFrame().resetClock();
-				UI.getInstance().getProtocolFrame().setMeeting(editMeet);
-				UI.getInstance().getProtocolFrame().setVisible(true);
-				UI.getInstance().getMainFrame().updateMeetingsTree();
+				protFrame.resetClock();
+				protFrame.setMeeting(currentMeet);
+				protFrame.setVisible(true);
 
-				UI.getInstance().getMainFrame().switchToEditMode();
+				mainFrame.updateMeetingsTree();
+				mainFrame.switchToEditMode();
 			} catch (Exception e) {
 				UI.getInstance().getMainFrame().switchToEditMode();
 			}

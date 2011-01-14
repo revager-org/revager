@@ -38,17 +38,26 @@ import org.revager.app.model.schema.Protocol;
 import org.revager.app.model.schema.Role;
 import org.revager.tools.AppTools;
 
-
 /**
  * This class manages the attendees.
  */
 public class AttendeeManagement {
 
 	/**
+	 * Dummy attendee
+	 */
+	public final Attendee DUMMY_ATTENDEE = new Attendee();
+
+	/**
 	 * Instantiates a new attendee management.
 	 */
 	AttendeeManagement() {
 		super();
+
+		DUMMY_ATTENDEE.setId("");
+		DUMMY_ATTENDEE.setName("");
+		DUMMY_ATTENDEE.setContact("");
+		DUMMY_ATTENDEE.setRole(Role.REVIEWER);
 	}
 
 	/**
@@ -64,9 +73,9 @@ public class AttendeeManagement {
 	private int getLastId() {
 		int lastId = 0;
 
-		for (Attendee a : resiData.getReview().getAttendees()) {
-			if (Integer.parseInt(a.getId()) > lastId) {
-				lastId = Integer.parseInt(a.getId());
+		for (Attendee att : resiData.getReview().getAttendees()) {
+			if (att != DUMMY_ATTENDEE && Integer.parseInt(att.getId()) > lastId) {
+				lastId = Integer.parseInt(att.getId());
 			}
 		}
 
@@ -112,7 +121,8 @@ public class AttendeeManagement {
 			/*
 			 * Rename attendee references
 			 */
-			for (Meeting m : resiData.getReview().getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt()
+					.getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {
@@ -138,14 +148,30 @@ public class AttendeeManagement {
 	 */
 	public void refactorIds() {
 		/*
+		 * Remove dummy and empty attendees
+		 */
+		int i = 0;
+
+		while (resiData.getReview().getAttendees().size() > i) {
+			Attendee att = resiData.getReview().getAttendees().get(i);
+
+			if (att.getId().trim().equals("")) {
+				resiData.getReview().getAttendees().remove(att);
+			}
+
+			i++;
+		}
+
+		/*
 		 * Remove duplicate references
 		 */
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			List<String> idList = new ArrayList<String>();
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
-				int i = 0;
+				i = 0;
 
 				while (prot.getAttendeeReferences().size() > i) {
 					AttendeeReference ar = prot.getAttendeeReferences().get(i);
@@ -165,11 +191,12 @@ public class AttendeeManagement {
 		/*
 		 * Remove wrong references
 		 */
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
-				int i = 0;
+				i = 0;
 
 				while (prot.getAttendeeReferences().size() > i) {
 					AttendeeReference ar = prot.getAttendeeReferences().get(i);
@@ -210,7 +237,31 @@ public class AttendeeManagement {
 			id++;
 		}
 
+		/*
+		 * Add dummy attendee
+		 */
+		resiData.getReview().getAttendees().add(DUMMY_ATTENDEE);
+
 		resiData.fireDataChanged();
+	}
+
+	/**
+	 * Add dummy attendee
+	 */
+	public void addDummyAttendee() {
+		if (!resiData.getReview().getAttendees().contains(DUMMY_ATTENDEE)) {
+			resiData.getReview().getAttendees().add(DUMMY_ATTENDEE);
+		}
+		
+		ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
+		
+		for (Meeting meet : Application.getInstance().getMeetingMgmt().getMeetings()) {
+			Protocol prot = meet.getProtocol();
+			
+			if (prot != null && !protMgmt.isAttendee(DUMMY_ATTENDEE, prot)) {
+				protMgmt.addAttendee(DUMMY_ATTENDEE, null, prot);
+			}
+		}
 	}
 
 	/**
@@ -236,7 +287,15 @@ public class AttendeeManagement {
 	 * @return attendees of the review
 	 */
 	public List<Attendee> getAttendees() {
-		return resiData.getReview().getAttendees();
+		List<Attendee> attendees = new ArrayList<Attendee>();
+
+		for (Attendee att : resiData.getReview().getAttendees()) {
+			if (att != DUMMY_ATTENDEE) {
+				attendees.add(att);
+			}
+		}
+
+		return attendees;
 	}
 
 	/**
@@ -253,6 +312,8 @@ public class AttendeeManagement {
 		for (Attendee a : resiData.getReview().getAttendees()) {
 			if (a.getId().equals(Integer.toString(id))) {
 				att = a;
+				
+				break;
 			}
 		}
 
@@ -265,7 +326,7 @@ public class AttendeeManagement {
 	 * @return number of attendees
 	 */
 	public int getNumberOfAttendees() {
-		return resiData.getReview().getAttendees().size();
+		return getAttendees().size();
 	}
 
 	/**
@@ -366,10 +427,11 @@ public class AttendeeManagement {
 	public Attendee addAttendee(Attendee att) {
 		Attendee attendee = null;
 
-		if (!getAttendees().contains(att) && !isAttendee(att)) {
+		if (!resiData.getReview().getAttendees().contains(att)
+				&& !isAttendee(att)) {
 			att.setId(Integer.toString((getLastId() + 1)));
 
-			getAttendees().add(att);
+			resiData.getReview().getAttendees().add(att);
 
 			Collections.sort(resiData.getReview().getAttendees(), Application
 					.getInstance().getAttendeeComp());
@@ -452,7 +514,8 @@ public class AttendeeManagement {
 	public List<Meeting> getMeetings(Attendee att) {
 		List<Meeting> meetingList = new ArrayList<Meeting>();
 
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -482,8 +545,8 @@ public class AttendeeManagement {
 		for (Attendee a : resiData.getReview().getAttendees()) {
 			if (a == att && a.getAspects() != null) {
 				for (String aspId : a.getAspects().getAspectIds()) {
-					if (Application.getInstance().getAspectMgmt().getAspect(
-							aspId) != null) {
+					if (Application.getInstance().getAspectMgmt()
+							.getAspect(aspId) != null) {
 						aspectList.add(Application.getInstance()
 								.getAspectMgmt().getAspect(aspId));
 					}
@@ -673,8 +736,8 @@ public class AttendeeManagement {
 			int index = getAspects(att).indexOf(asp);
 
 			att.getAspects().getAspectIds().remove(index);
-			att.getAspects().getAspectIds().add(getAspects(att).size(),
-					asp.getId());
+			att.getAspects().getAspectIds()
+					.add(getAspects(att).size(), asp.getId());
 
 			resiData.fireDataChanged();
 		}
@@ -787,5 +850,5 @@ public class AttendeeManagement {
 
 		return strengths;
 	}
-	
+
 }

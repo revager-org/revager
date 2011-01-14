@@ -135,6 +135,8 @@ public class ApplicationControl {
 		Data.getInstance().getResiData().getReview().getProduct().setName("");
 		Data.getInstance().getResiData().getReview().getProduct()
 				.setVersion("");
+		
+		Application.getInstance().getReviewMgmt().addDummyProdReference();
 
 		/*
 		 * Set empty values
@@ -146,6 +148,7 @@ public class ApplicationControl {
 		Data.getInstance().getResiData().getReview().setImpression("");
 
 		Application.getInstance().getAspectMgmt().addDummyAspect();
+		Application.getInstance().getAttendeeMgmt().addDummyAttendee();
 
 		Data.getInstance().getResiData().fireDataChanged();
 	}
@@ -155,44 +158,6 @@ public class ApplicationControl {
 	 */
 	public void newReview() {
 		clearReview();
-	}
-
-	/**
-	 * Returns the reason for that the current review is not storable.
-	 * 
-	 * @return the reason as text
-	 */
-	public String getReasonForRevNotStorable() {
-		ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
-
-		if (revMgmt.getNumberOfProdRefs() == 0
-				|| revMgmt.getProductName().trim().equals("")
-				|| revMgmt.getProductVersion().trim().equals("")) {
-			return _("Missing product information. You have to put in the name, version and at least one reference or file.");
-		}
-
-		if (revMgmt.getNumberOfMeetings() == 0) {
-			return _("Missing meeting information. You have to add at least one meeting.");
-		}
-
-		if (revMgmt.getNumberOfAttendees() == 0) {
-			return _("Missing attendee information. You have to add at least one attendee.");
-		}
-
-		return null;
-	}
-
-	/**
-	 * Checks if the current review is storable or not.
-	 * 
-	 * @return true, if checks if is review storable
-	 */
-	public boolean isReviewStorable() {
-		if (getReasonForRevNotStorable() == null) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -214,10 +179,6 @@ public class ApplicationControl {
 				.getAppDataPath())) {
 			throw new ApplicationException(
 					_("It is not possible to store and open application data. Please choose another location."));
-		}
-
-		if (!isReviewStorable()) {
-			throw new ApplicationException(getReasonForRevNotStorable());
 		}
 
 		if (!filePath.trim().equals("")
@@ -275,7 +236,9 @@ public class ApplicationControl {
 
 		Application.getInstance().getReviewMgmt().refactorReview();
 
+		Application.getInstance().getReviewMgmt().addDummyProdReference();
 		Application.getInstance().getAspectMgmt().addDummyAspect();
+		Application.getInstance().getAttendeeMgmt().addDummyAttendee();
 
 		Application.getInstance().getAttendeeMgmt().updateAttendeesDirectory();
 

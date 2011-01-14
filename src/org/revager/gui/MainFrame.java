@@ -222,19 +222,10 @@ public class MainFrame extends AbstractFrame implements Observer {
 	/*
 	 * Hint items
 	 */
-	private HintItem hintProduct;
-	private HintItem hintRevName;
-	private HintItem hintRevDesc;
-	private HintItem hintMeet;
-	private HintItem hintAtt;
-	private HintItem hintImpr;
-	private HintItem hintRec;
+	private HintItem hintStart;
+	private HintItem hintMeetAtt;
 	private HintItem hintOk;
-	private HintItem hintRev;
-	private HintItem hintRevConf;
-	private HintItem hintInfoNewMeeting;
-	private HintItem hintInfoProtocol;
-	private HintItem hintInfoNewAttendee;
+	private HintItem hintListOfFindings;
 	private HintItem hintInfoAssistant;
 
 	/*
@@ -253,30 +244,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JComboBox recommendationBx = new JComboBox();
 
 	private long updateTime = System.currentTimeMillis();
-	private MouseListener productMouseListener = new MouseListener() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			if (revMgmt.getRecommendation().trim().equals("")) {
-				UI.getInstance().getEditProductDialog().setVisible(true);
-			}
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-		}
-	};
 
 	private KeyListener updKeyListener = new KeyListener() {
 		@Override
@@ -385,15 +352,14 @@ public class MainFrame extends AbstractFrame implements Observer {
 		textRevDesc.addKeyListener(updKeyListener);
 
 		scrollRevDesc = GUITools.setIntoScrllPn(textRevDesc);
-		
-		commentReview.setIcon(Data.getInstance()
-				.getIcon("comment_16x16.png"));
+
+		commentReview.setIcon(Data.getInstance().getIcon("comment_16x16.png"));
 		commentReview.setText(_("Comments on the review"));
 		commentReview.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String comments = revMgmt.getReviewComments();
-				
+
 				TextPopupWindow popup = new TextPopupWindow(UI.getInstance()
 						.getMainFrame(), _("Comments on the review:"),
 						comments, true);
@@ -406,6 +372,31 @@ public class MainFrame extends AbstractFrame implements Observer {
 				if (popup.getButtonClicked() == ButtonClicked.OK) {
 					revMgmt.setReviewComments(popup.getInput());
 				}
+			}
+		});
+
+		textProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		textProduct.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				UI.getInstance().getEditProductDialog().setVisible(true);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 	}
@@ -440,13 +431,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 		GUITools.addComponent(leftPanel, gbl, commentReview, 0, 7, 2, 1, 1.0,
 				0.0, 10, 20, 0, padding, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-
-		for (MouseListener ml : textProduct.getMouseListeners()) {
-			textProduct.removeMouseListener(ml);
-		}
-
-		textProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		textProduct.addMouseListener(productMouseListener);
 	}
 
 	/**
@@ -1295,12 +1279,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		recommendationBx.setSelectedItem(Application.getInstance()
 				.getReviewMgmt().getRecommendation());
-		if (revMgmt.isReviewConfirmable()) {
-			recommendationBx.setEnabled(true);
-		} else {
-			recommendationBx.setEnabled(false);
 
-		}
 		if (!textRevName.hasFocus()) {
 			textRevName.setText(Application.getInstance().getReviewMgmt()
 					.getReviewName());
@@ -1325,55 +1304,21 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
-		hintProduct = new HintItem(
-				_("Please specify the product including its name, version and references of the current review by clicking on the 'Product' text field."),
-				HintItem.WARNING, "review_management", "7");
-
-		hintRevName = new HintItem(
-				_("Please enter a title for the current review."),
-				HintItem.WARNING, "review_management", "4");
-
-		hintRevDesc = new HintItem(
-				_("Please enter a description for the current review."),
-				HintItem.WARNING, "review_management", "5");
-
-		hintMeet = new HintItem(
-				_("Please add at least one meeting to the review by clicking on the 'Add meeting' button next to the list of meetings."),
-				HintItem.WARNING, "meetings_management", "1");
-
-		hintAtt = new HintItem(
-				_("Please add at least one attendee to the review by clicking on the 'Add attendee' button next to the list of attendees."),
-				HintItem.WARNING, "attendees_management", "1");
-
-		hintRevConf = new HintItem(
-				_("In order to finalize the current review all required information have to be available. Meetings which haven't been canceled, aborted or the ones which do not own a findings list have to be removed."),
+		hintStart = new HintItem(
+				_("First of all we recommend to specify the product and the review's title."),
 				HintItem.WARNING);
 
-		hintImpr = new HintItem(
-				_("Please enter the general impression into the provided text field."),
-				HintItem.WARNING, "protocol", "4");
-
-		hintRec = new HintItem(
-				_("In order to complete the review you have to enter the final recommendation for the product."),
-				HintItem.WARNING, "protocol", "5");
+		hintMeetAtt = new HintItem(
+				_("You should create a meeting and add the attendees of the review by using the corresponding buttons."),
+				HintItem.WARNING);
 
 		hintOk = new HintItem(
-				_("All required information for the review is present."),
+				_("All required information for the review are present."),
 				HintItem.OK);
 
-		hintRev = new HintItem(_("The review has been completed."), HintItem.OK);
-
-		hintInfoNewMeeting = new HintItem(
-				_("In order to add a new meeting use the 'Add meeting' button in the tool bar."),
-				HintItem.INFO, "meetings_management", "1");
-
-		hintInfoProtocol = new HintItem(
-				_("You can create/open the list of findings by selecting the corresponding meeting and clicking the 'Open findings list' button."),
+		hintListOfFindings = new HintItem(
+				_("You can open the list of findings by selecting the corresponding meeting and clicking the 'Open findings list' button."),
 				HintItem.INFO);
-
-		hintInfoNewAttendee = new HintItem(
-				_("In order to add a new attendee use the 'Add attendee' button in the tool bar."),
-				HintItem.INFO, "attendees_management", "1");
 
 		hintInfoAssistant = new HintItem(
 				_("You can open the RevAger Assistant by clicking on the 'Open Assistant' button."),
@@ -1391,88 +1336,39 @@ public class MainFrame extends AbstractFrame implements Observer {
 		unmarkAllComponents();
 
 		if (!assistantMode) {
-			if (((JTextField) recommendationBx.getEditor().getEditorComponent())
-					.getText().equals("")) {
-				if (revMgmt.getProductName().trim().equals("")
-						|| revMgmt.getProductVersion().trim().equals("")
-						|| revMgmt.getNumberOfProdRefs() == 0) {
-					hints.add(hintProduct);
+			if (revMgmt.getProductName().trim().equals("")
+					|| revMgmt.getReviewName().trim().equals("")) {
+				hints.add(hintStart);
 
-					warningErrorHints = true;
+				warningErrorHints = true;
 
+				if (revMgmt.getProductName().trim().equals("")) {
 					markComponent(textProduct);
-				}
-
-				if (revMgmt.getReviewName().trim().equals("")) {
-					hints.add(hintRevName);
-
-					warningErrorHints = true;
-
+				} else if (revMgmt.getReviewName().trim().equals("")) {
 					markComponent(textRevName);
 				}
+			}
 
-				if (revMgmt.getReviewDescription().trim().equals("")) {
-					hints.add(hintRevDesc);
+			if (revMgmt.getNumberOfMeetings() == 0
+					|| revMgmt.getNumberOfAttendees() == 0) {
+				hints.add(hintMeetAtt);
 
-					warningErrorHints = true;
-
-					markComponent(scrollRevDesc);
-				}
+				warningErrorHints = true;
 
 				if (revMgmt.getNumberOfMeetings() == 0) {
-					hints.add(hintMeet);
-
-					warningErrorHints = true;
-
 					markComponent(treeScrollPane);
-				}
-
-				if (revMgmt.getNumberOfAttendees() == 0) {
-					hints.add(hintAtt);
-
-					warningErrorHints = true;
-
+				} else if (revMgmt.getNumberOfAttendees() == 0) {
 					markComponent(tableScrollBar);
 				}
-
-				if (revMgmt.getImpression().trim().equals("")) {
-					hints.add(hintImpr);
-
-					warningErrorHints = true;
-
-					markComponent(scrollImpression);
-				}
-			}
-
-			if (!revMgmt.isReviewConfirmable()) {
-				hints.add(hintRevConf);
-
-				warningErrorHints = true;
-
-				markComponent(treeScrollPane);
-			} else if (revMgmt.getRecommendation().trim().equals("")) {
-				hints.add(hintRec);
-
-				warningErrorHints = true;
-
-				markComponent(recommendationBx);
-			}
-
-			if (!revMgmt.getRecommendation().trim().equals("")) {
-				hints.add(hintRev);
-
-				warningErrorHints = true;
 			}
 
 			if (!warningErrorHints) {
 				hints.add(hintOk);
 			}
 
-			hints.add(hintInfoProtocol);
-
-			hints.add(hintInfoNewMeeting);
-
-			hints.add(hintInfoNewAttendee);
+			if (revMgmt.getNumberOfMeetings() > 0) {
+				hints.add(hintListOfFindings);
+			}
 		} else {
 			hints.add(hintInfoAssistant);
 		}

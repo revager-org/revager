@@ -73,7 +73,9 @@ public class TextPopupWindow extends JDialog {
 
 		setLayout(new BorderLayout());
 
-		setUndecorated(true);
+		// setUndecorated(true);
+		setResizable(false);
+		setTitle(_("RevAger"));
 
 		setModal(true);
 
@@ -104,7 +106,7 @@ public class TextPopupWindow extends JDialog {
 
 			panelBase.add(textInput, BorderLayout.CENTER);
 
-			popupSize = new Dimension(260, 110);
+			popupSize = new Dimension(260, 140);
 		}
 
 		/*

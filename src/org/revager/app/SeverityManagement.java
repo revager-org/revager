@@ -26,7 +26,6 @@ import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 
-
 /**
  * This class manages the severities of the current review.
  */
@@ -50,7 +49,8 @@ public class SeverityManagement {
 	public void validateSeverities() {
 		String highestSev = getSeverities().get(0);
 
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -154,7 +154,8 @@ public class SeverityManagement {
 		if (isSeverityRemovable(sev)) {
 			String replaceSeverity = getReplaceSeverity(sev);
 
-			for (Meeting m : resiData.getReview().getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt()
+					.getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {
@@ -193,7 +194,8 @@ public class SeverityManagement {
 				getSeverities().add(index, newSev);
 			}
 
-			for (Meeting m : resiData.getReview().getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt()
+					.getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {

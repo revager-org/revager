@@ -28,10 +28,8 @@ import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.AttendeeReference;
-import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
-
 
 /**
  * This class manages the protocols.
@@ -142,6 +140,8 @@ public class ProtocolManagement {
 	public void setProtocol(Protocol prot, Meeting meet) {
 		meet.setProtocol(prot);
 
+		Application.getInstance().getAttendeeMgmt().addDummyAttendee();
+
 		resiData.fireDataChanged();
 	}
 
@@ -168,11 +168,15 @@ public class ProtocolManagement {
 	public List<Attendee> getAttendees(Protocol prot) {
 		List<Attendee> attendees = new ArrayList<Attendee>();
 
-		for (AttendeeReference ar : prot.getAttendeeReferences()) {
-			Attendee att = Application.getInstance().getAttendeeMgmt()
-					.getAttendee(Integer.parseInt(ar.getAttendee()));
+		Attendee dummyAtt = Application.getInstance().getAttendeeMgmt().DUMMY_ATTENDEE;
 
-			attendees.add(att);
+		for (AttendeeReference ar : prot.getAttendeeReferences()) {
+			if (!ar.getAttendee().equals(dummyAtt.getId())) {
+				Attendee att = Application.getInstance().getAttendeeMgmt()
+						.getAttendee(Integer.parseInt(ar.getAttendee()));
+
+				attendees.add(att);
+			}
 		}
 
 		return attendees;
@@ -311,35 +315,6 @@ public class ProtocolManagement {
 	 */
 	public String getProtocolComment(Protocol prot) {
 		return prot.getComments();
-	}
-
-	/**
-	 * Checks if the protocol is complete.
-	 * 
-	 * @param prot
-	 *            the protocol
-	 * 
-	 * @return true, if the given protocol is complete
-	 */
-	public Boolean isProtocolComplete(Protocol prot) {
-		ReviewManagement reviewMgmt = Application.getInstance().getReviewMgmt();
-		FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
-
-		boolean allFindComp = true;
-
-		for (Finding find : findMgmt.getFindings(prot)) {
-			if (find.getDescription() == null
-					|| find.getDescription().trim().equals(""))
-				allFindComp = false;
-		}
-
-		if (prot.getDate() != null && !prot.getLocation().trim().equals("")
-				&& prot.getAttendeeReferences().size() != 0
-				&& !reviewMgmt.getImpression().trim().equals("") && allFindComp) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 }

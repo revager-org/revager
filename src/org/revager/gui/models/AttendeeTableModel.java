@@ -52,8 +52,7 @@ public class AttendeeTableModel extends AbstractTableModel {
 		if (Data.getInstance().getResiData().getReview() == null) {
 			return 0;
 		} else {
-			return Data.getInstance().getResiData().getReview().getAttendees()
-					.size();
+			return Application.getInstance().getAttendeeMgmt().getNumberOfAttendees();
 		}
 	}
 
@@ -97,6 +96,7 @@ public class AttendeeTableModel extends AbstractTableModel {
 				String value = String.valueOf(Application.getInstance()
 						.getAttendeeMgmt().getAttendees().get(rowIndex)
 						.getAspects().getAspectIds().size());
+				
 				return value.concat(" ").concat(_("Aspect(s)"));
 			} catch (Exception e) {
 				return "";

@@ -143,7 +143,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JButton tbPdfExport;
 	private JButton tbCsvExport;
 	private JButton tbConfirmProt;
-	private JButton tbExitProt;
 
 	private JPanel attPanel = new JPanel(gbl);
 	private JPanel tabPanelCommAndRec = new JPanel(gbl);
@@ -153,20 +152,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	/*
 	 * Hint items
 	 */
-	private HintItem hintLoc;
-	private HintItem hintDate;
 	private HintItem hintAtt;
-	private HintItem hintImpr;
-	private HintItem hintRec;
-	private HintItem hintRevConf;
+	private HintItem hintImprRec;
 	private HintItem hintFind;
 	private HintItem hintOk;
-	private HintItem hintInfoFind;
-	private HintItem hintOrgOk;
-	private HintItem hintFindOk;
-	private HintItem hintCommAndRecOk;
 	private HintItem hintInfoNewFinding;
-	private HintItem hintInfoAddAttendee;
 
 	/*
 	 * things for finding tab
@@ -346,9 +336,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		bodyCreated = true;
 	}
 
-	/*
-	 * creating toolbar
-	 */
 	/**
 	 * Creates the tool bar.
 	 */
@@ -360,7 +347,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tbConfirmProt.setToolTipText(_("Confirm and close list of findings"));
 		tbConfirmProt.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				if (protCommTxtArea.getText().trim().equals("")) {
 					currentProt.setComments("");
 				}
@@ -374,32 +361,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		addTopComponent(tbConfirmProt);
 
-		tbExitProt = GUITools.newImageButton(
-				Data.getInstance().getIcon("exitProtocol_50x50_0.png"), Data
-						.getInstance().getIcon("exitProtocol_50x50.png"));
-		tbExitProt.setToolTipText(_("Close list of findings"));
-		tbExitProt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				int option = JOptionPane.showConfirmDialog(
-						org.revager.gui.UI.getInstance().getProtocolFrame(),
-						GUITools.getMessagePane(_("You didn't enter all the required information. If you close the list of findings all the findings will be lost. Would you really like to continue?")),
-						_("Question"), JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE);
-
-				if (option == JOptionPane.YES_OPTION) {
-					UI.getInstance().getProtocolFrame().setVisible(false);
-					protMgmt.clearProtocol(currentMeet);
-					revMgmt.setRecommendation("");
-					UI.getInstance().getMainFrame().updateMeetingsTree();
-				}
-
-			}
-		});
-		addTopComponent(tbExitProt);
-
 		JButton sepBttn = GUITools.newImageButton();
 		sepBttn.setIcon(Data.getInstance().getIcon("sep_50x50.png"));
 		sepBttn.setEnabled(false);
@@ -411,7 +372,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tbPdfExport.setToolTipText(_("Export List of Findings as PDF File"));
 		tbPdfExport.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 
 				UI.getInstance().getExportPDFProtocolDialog().setVisible(true);
 
@@ -426,7 +387,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tbCsvExport.setToolTipText(_("Export List of Findings as CSV File"));
 		tbCsvExport.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				UI.getInstance().getExportCSVDialog().setVisible(true);
 			}
 		});
@@ -894,7 +855,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 
 		locationTxtFld.setText(currentProt.getLocation().trim());
-		locationTxtFld.addKeyListener(updateListener);
 
 		JPanel spinnerPanel = new JPanel(gbl);
 		spinnerPanel.setOpaque(false);
@@ -1310,24 +1270,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		if (bodyCreated) {
 			updateHints();
-
-			if (protMgmt.isProtocolComplete(currentProt)) {
-				tbCsvExport.setEnabled(true);
-				tbPdfExport.setEnabled(true);
-				tbConfirmProt.setVisible(true);
-				tbExitProt.setVisible(false);
-			} else {
-				tbCsvExport.setEnabled(false);
-				tbPdfExport.setEnabled(false);
-				tbConfirmProt.setVisible(false);
-				tbExitProt.setVisible(true);
-			}
-
-			if (revMgmt.isReviewConfirmable()) {
-				recBx.setEnabled(true);
-			} else {
-				recBx.setEnabled(false);
-			}
 		}
 	}
 
@@ -1508,7 +1450,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Unmark all components.
 	 */
 	private void unmarkAllComponents() {
-		locationTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
 		dateTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
 		beginHSpinner.setBorder(UI.STANDARD_BORDER);
 		beginMSpinner.setBorder(UI.STANDARD_BORDER);
@@ -1556,61 +1497,24 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void createHints() {
 		hintAtt = new HintItem(
-				_("Please add at least one attendee to the meeting by choosing one from the attendee pool or create a new one."),
+				_("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
 				HintItem.WARNING);
 
-		hintLoc = new HintItem(
-				_("Please enter the location of the meeting into the provided text field."),
-				HintItem.WARNING);
-
-		hintDate = new HintItem(
-				_("Please enter the date of the meeting into the provided text field."),
-				HintItem.WARNING);
-
-		hintImpr = new HintItem(
-				_("Please enter the general impression of the product into the provided text field."),
-				HintItem.WARNING);
-
-		hintRec = new HintItem(
-				_("In order to complete the current review select a final recommendation for the product or enter your an individual one and confirm it by pressing the enter key."),
-				HintItem.WARNING);
-
-		hintRevConf = new HintItem(
-				_("In order to complete the current review all required information have to be entered. Meetings which haven't been canceled, aborted or this one which do not have a list of findings have to be removed."),
+		hintImprRec = new HintItem(
+				_("Please enter the general impression and the final recommendation for the product into the provided text field (Tab 'Impression · Comments · Recommendation')."),
 				HintItem.WARNING);
 
 		hintFind = new HintItem(
-				_("For every finding enter at least a description."),
+				_("For every finding enter at least a description (Tab 'Findings')."),
 				HintItem.WARNING);
 
 		hintOk = new HintItem(
 				_("The meeting data and its list of findings is complete."),
 				HintItem.OK);
 
-		hintFindOk = new HintItem(
-				_("All the findings are complete. If you would like to finalize the list of findings click on the tab 'Impression · Comments · Recommendation'."),
-				HintItem.OK);
-
-		hintOrgOk = new HintItem(
-				_("The organizational information is complete. If you like to continue click on the tab 'Findings'."),
-				HintItem.OK);
-
-		hintCommAndRecOk = new HintItem(
-				_("The information on 'Impression · Comments · Recommendation' is complete. Once you have completed all the required information, you can finalize the list of findings."),
-				HintItem.OK);
-
-		hintInfoFind = new HintItem(
-				_("As soon as you have completed the list of findings you can continue by clicking on the tab 'Impression · Comments · Recommendation'"),
-				HintItem.INFO);
-
 		hintInfoNewFinding = new HintItem(
-				_("In order to add a new finding to the list of findings use the 'Add Finding' button"),
+				_("In order to add a new finding to the list of findings use the 'Add Finding' button (Tab 'Findings')."),
 				HintItem.INFO);
-
-		hintInfoAddAttendee = new HintItem(
-				_("In order to add a new attendee to the current meeting use the 'Add Attendee' or 'Add Attendee from the Attendee Pool' button."),
-				HintItem.INFO);
-
 	}
 
 	/**
@@ -1618,9 +1522,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void updateHints() {
 		boolean warningErrorHints = false;
-		boolean warningOrgPanelHints = false;
-		boolean warningCommandRecPanelHints = false;
-		boolean warningFindPanelHints = false;
 
 		List<HintItem> hints = new ArrayList<HintItem>();
 
@@ -1630,12 +1531,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tabbedPane.setIconAt(1, ICON_TAB_OK);
 		tabbedPane.setIconAt(2, ICON_TAB_OK);
 
-		if (currentProt.getAttendeeReferences().size() == 0) {
+		if (protMgmt.getAttendees(currentProt).size() == 0) {
+			hints.add(hintAtt);
+
 			if (tabPanelOrg.isVisible()) {
-				hints.add(hintAtt);
-
-				warningOrgPanelHints = true;
-
 				markComponent(scrllP);
 			}
 
@@ -1643,50 +1542,25 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			tabbedPane.setIconAt(0, ICON_TAB_WARN);
 		}
 
-		if (currentProt.getLocation().trim().equals("")) {
-			if (tabPanelOrg.isVisible()) {
-				hints.add(hintLoc);
-
-				warningOrgPanelHints = true;
-
-				markComponent(locationTxtFld);
-			}
-
-			warningErrorHints = true;
-			tabbedPane.setIconAt(0, ICON_TAB_WARN);
-		}
-
-		if (currentProt.getDate() == null) {
-			if (tabPanelOrg.isVisible()) {
-				hints.add(hintDate);
-
-				warningOrgPanelHints = true;
-
-				markComponent(dateTxtFld);
-			}
-
-			warningErrorHints = true;
-			tabbedPane.setIconAt(0, ICON_TAB_WARN);
-		}
-
 		if (!findMgmt.areAllFindingsComplete(currentProt)) {
-			if (tabPanelFindings.isVisible()) {
-				hints.add(hintFind);
-
-				warningFindPanelHints = true;
-			}
+			hints.add(hintFind);
 
 			warningErrorHints = true;
 			tabbedPane.setIconAt(1, ICON_TAB_WARN);
 		}
 
-		if (revMgmt.getImpression().trim().equals("")) {
+		if (revMgmt.getImpression().trim().equals("")
+				|| revMgmt.getRecommendation().trim().equals("")) {
+			hints.add(hintImprRec);
+
 			if (tabPanelCommAndRec.isVisible()) {
-				hints.add(hintImpr);
+				if (revMgmt.getImpression().trim().equals("")) {
+					markComponent(impScrllPn);
+				}
 
-				warningCommandRecPanelHints = true;
-
-				markComponent(impScrllPn);
+				if (revMgmt.getRecommendation().trim().equals("")) {
+					markComponent(recBx);
+				}
 			}
 
 			warningErrorHints = true;
@@ -1696,35 +1570,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		if (!warningErrorHints) {
 			hints.add(hintOk);
 		}
-
-		if (!warningOrgPanelHints && tabPanelOrg.isVisible()
-				&& warningErrorHints) {
-			hints.add(hintOrgOk);
-		}
-
-		if (!warningCommandRecPanelHints && tabPanelCommAndRec.isVisible()
-				&& warningErrorHints) {
-			hints.add(hintCommAndRecOk);
-		}
-
-		if (!revMgmt.isReviewConfirmable() && tabPanelCommAndRec.isVisible()) {
-			hints.add(hintRevConf);
-		} else if (revMgmt.isReviewConfirmable()
-				&& revMgmt.getRecommendation().trim().equals("")
-				&& tabPanelCommAndRec.isVisible()) {
-			hints.add(hintRec);
-		}
-
-		if (!warningFindPanelHints && tabPanelFindings.isVisible()
-				&& warningErrorHints) {
-			hints.add(hintFindOk);
-		}
-
-		if (tabPanelFindings.isVisible() && warningErrorHints) {
-			hints.add(hintInfoFind);
-		}
-
-		hints.add(hintInfoAddAttendee);
 
 		hints.add(hintInfoNewFinding);
 

@@ -20,6 +20,7 @@ package org.revager.gui.workers;
 
 import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
+import org.revager.gui.actions.OpenFindingsListAction;
 import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 
 /**
@@ -44,6 +45,17 @@ public class NewInstantReviewWorker extends NewReviewWorker {
 				.actionPerformed(null);
 
 		UI.getInstance().getAssistantDialog().setVisible(false);
+
+		UI.getInstance().getMainFrame().switchToProgressMode();
+
+		UI.getInstance().getEditProductDialog().setVisible(true);
+
+		/*
+		 * Run OpenFindingsListAction
+		 */
+		ActionRegistry.getInstance()
+				.get(OpenFindingsListAction.class.getName())
+				.actionPerformed(null);
 
 		return null;
 	}

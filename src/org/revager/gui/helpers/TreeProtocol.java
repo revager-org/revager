@@ -109,9 +109,13 @@ public class TreeProtocol {
 					.getDisplayName();
 			String location = meeting.getProtocol().getLocation();
 
+			if (!location.trim().equals("")) {
+				location = " | " + location;
+			}
+
 			String protFrom = _("Findings List of");
 			String protocolName = protFrom + " " + date + " | " + start + " - "
-					+ end + " (" + timezone + ")" + " | " + location;
+					+ end + " (" + timezone + ")" + location;
 
 			return protocolName;
 		} catch (Exception e) {

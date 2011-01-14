@@ -27,7 +27,6 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import org.revager.app.Application;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppSettingKey;
@@ -159,7 +158,6 @@ public class Main {
 	 */
 	public static void exitApplication() {
 		UI.getInstance().getMainFrame().dispose();
-		Application.getInstance().getApplicationCtl().clearReview();
 
 		System.exit(0);
 	}

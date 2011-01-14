@@ -492,7 +492,8 @@ public class InvitationPDFExporter extends PDFExporter {
 			}
 
 			List<Attendee> moderators = new ArrayList<Attendee>();
-			for (Attendee a : resiData.getReview().getAttendees()) {
+			for (Attendee a : Application.getInstance().getAttendeeMgmt()
+					.getAttendees()) {
 				if (a.getRole() == Role.MODERATOR) {
 					moderators.add(a);
 				}

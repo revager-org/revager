@@ -1000,7 +1000,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				SwingWorker<Void, Void> allocWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode(_("Cannot allocate aspects!"));
+						switchToProgressMode(_("Allocating aspects ..."));
 
 						observeResiData(false);
 

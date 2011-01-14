@@ -101,8 +101,12 @@ public class TreeMeeting {
 				.getDisplayName();
 		String location = meeting.getPlannedLocation();
 
+		if (!location.trim().equals("")) {
+			location = " | " + location;
+		}
+		
 		String output = date + " | " + start + " - " + end + " (" + timezone
-				+ ")" + " | " + location;
+				+ ")" + location;
 
 		return output;
 	}

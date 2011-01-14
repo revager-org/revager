@@ -75,19 +75,6 @@ public class SaveReviewAction extends AbstractAction {
 		boolean exitApp = exitApplication;
 		this.exitApplication = false;
 
-		if (!Application.getInstance().getApplicationCtl().isReviewStorable()) {
-			String messageText = _("Cannot save review file. Reason:")
-					+ "\n\n"
-					+ Application.getInstance().getApplicationCtl()
-							.getReasonForRevNotStorable();
-
-			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(messageText), _("Information"),
-					JOptionPane.INFORMATION_MESSAGE);
-
-			return;
-		}
-
 		FileChooser fileChooser = UI.getInstance().getFileChooser();
 		String reviewPath = Data.getInstance().getResiData().getReviewPath();
 

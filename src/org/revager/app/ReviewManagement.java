@@ -46,6 +46,11 @@ import org.revager.tools.FileTools;
 public class ReviewManagement {
 
 	/**
+	 * Dummy product reference
+	 */
+	private final String DUMMY_PROD_REF = "DummyProductReference:xEUcr6cU5lLsiyuW";
+
+	/**
 	 * Instantiates the review management.
 	 */
 	ReviewManagement() {
@@ -67,8 +72,7 @@ public class ReviewManagement {
 	/**
 	 * The review info document file name.
 	 */
-	private final String REVIEW_INFO_DOC = _(
-			"Review_Information.pdf");
+	private final String REVIEW_INFO_DOC = _("Review_Information.pdf");
 
 	/**
 	 * The prefix to store external references in XML file.
@@ -143,7 +147,8 @@ public class ReviewManagement {
 		 * Check if a reference with this filename exists in any finding of the
 		 * currently opened review
 		 */
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -160,8 +165,8 @@ public class ReviewManagement {
 		 * Check if a reference with this filename exists in the product
 		 * references
 		 */
-		if (resiData.getReview().getProduct().getReferences().contains(
-				getExtRefURI(fileName))) {
+		if (resiData.getReview().getProduct().getReferences()
+				.contains(getExtRefURI(fileName))) {
 			return true;
 		}
 
@@ -273,7 +278,8 @@ public class ReviewManagement {
 		 * Remove duplicate references in the findings of the currently opened
 		 * review
 		 */
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -302,7 +308,8 @@ public class ReviewManagement {
 		 * Remove invalid and wrong references in the findings of the currently
 		 * opened review
 		 */
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -358,7 +365,8 @@ public class ReviewManagement {
 			return true;
 		}
 
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			if (m.getProtocol() != null) {
 				for (Finding f : m.getProtocol().getFindings()) {
 					if (!f.getExternalReferences().isEmpty()) {
@@ -383,6 +391,8 @@ public class ReviewManagement {
 		Application.getInstance().getAttendeeMgmt().refactorIds();
 		Application.getInstance().getFindingMgmt().refactorIds();
 
+		Application.getInstance().getMeetingMgmt().initDummyMeeting();
+
 		Application.getInstance().getSeverityMgmt().validateSeverities();
 
 		validateExtRefs();
@@ -396,7 +406,8 @@ public class ReviewManagement {
 			MeetingManagement meetMgmt = Application.getInstance()
 					.getMeetingMgmt();
 
-			for (Meeting m : resiData.getReview().getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt()
+					.getMeetings()) {
 				if (m.getProtocol() == null && !meetMgmt.isMeetingCanceled(m)) {
 					meetMgmt.removeMeeting(m);
 				}
@@ -475,7 +486,7 @@ public class ReviewManagement {
 
 				// TODO
 				/*
-				 * Dirty workaround
+				 * workaround
 				 */
 				for (AttendeeReference att : prot.getAttendeeReferences()) {
 					if (att.getPreparationTime() == null) {
@@ -591,6 +602,10 @@ public class ReviewManagement {
 
 		resiData.getReview().getProduct().setName(name);
 
+		if (getReviewName().equals("") && !name.equals("")) {
+			setReviewName(_("Review of") + " " + name);
+		}
+
 		resiData.fireDataChanged();
 	}
 
@@ -627,6 +642,13 @@ public class ReviewManagement {
 	}
 
 	/**
+	 * Adds a dummy product reference.
+	 */
+	public void addDummyProdReference() {
+		addProductReference(DUMMY_PROD_REF);
+	}
+
+	/**
 	 * Checks if the given product reference exists.
 	 * 
 	 * @param ref
@@ -643,22 +665,6 @@ public class ReviewManagement {
 	}
 
 	/**
-	 * Checks if the given product reference is removable.
-	 * 
-	 * @param ref
-	 *            the reference
-	 * 
-	 * @return true, if the product reference is removable
-	 */
-	public boolean isProductReferenceRemovable(String ref) {
-		if (isProductReference(ref) && getNumberOfProdRefs() <= 1) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	/**
 	 * Returns the product's textual references.
 	 * 
 	 * @return product references of the review
@@ -667,7 +673,7 @@ public class ReviewManagement {
 		List<String> textRefs = new ArrayList<String>();
 
 		for (String ref : resiData.getReview().getProduct().getReferences()) {
-			if (!ref.startsWith(EXTREF_PREFIX)) {
+			if (!ref.startsWith(EXTREF_PREFIX) && !ref.equals(DUMMY_PROD_REF)) {
 				textRefs.add(ref);
 			}
 		}
@@ -700,11 +706,9 @@ public class ReviewManagement {
 	 *            the reference
 	 */
 	public void removeProductReference(String ref) {
-		if (isProductReferenceRemovable(ref)) {
-			resiData.getReview().getProduct().getReferences().remove(ref);
+		resiData.getReview().getProduct().getReferences().remove(ref);
 
-			resiData.fireDataChanged();
-		}
+		resiData.fireDataChanged();
 	}
 
 	/**
@@ -720,27 +724,11 @@ public class ReviewManagement {
 				.indexOf(oldRef);
 
 		if (!newRef.trim().equals("")) {
-			resiData.getReview().getProduct().getReferences().set(indexOld,
-					newRef);
+			resiData.getReview().getProduct().getReferences()
+					.set(indexOld, newRef);
 		}
 
 		resiData.fireDataChanged();
-	}
-
-	/**
-	 * Checks if the given external product reference is removable.
-	 * 
-	 * @param ref
-	 *            the reference
-	 * 
-	 * @return true, if the given external product reference removable
-	 */
-	public boolean isExtProdReferenceRemovable(File ref) {
-		if (isExtRef(ref.getName()) && getNumberOfProdRefs() <= 1) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	/**
@@ -879,33 +867,13 @@ public class ReviewManagement {
 	}
 
 	/**
-	 * Checks if the review is confirmable.
-	 * 
-	 * @return true, if the review is confirmable
-	 */
-	public boolean isReviewConfirmable() {
-		MeetingManagement meetMgmt = Application.getInstance().getMeetingMgmt();
-
-		if (getImpression().trim().equals("")) {
-			return false;
-		}
-
-		for (Meeting meet : meetMgmt.getMeetings()) {
-			if (!meetMgmt.isMeetingCanceled(meet) && !meet.isSetProtocol())
-				return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Returns the number of all (textual and external) product references of
 	 * the review.
 	 * 
 	 * @return number of product references of the review
 	 */
 	public int getNumberOfProdRefs() {
-		return resiData.getReview().getProduct().getReferences().size();
+		return getProductReferences().size() + getExtProdReferences().size();
 	}
 
 	/**
@@ -923,7 +891,8 @@ public class ReviewManagement {
 	 * @return the number of attendees
 	 */
 	public int getNumberOfAttendees() {
-		return resiData.getReview().getAttendees().size();
+		return Application.getInstance().getAttendeeMgmt()
+				.getNumberOfAttendees();
 	}
 
 	/**
@@ -941,7 +910,7 @@ public class ReviewManagement {
 	 * @return the number of meetings
 	 */
 	public int getNumberOfMeetings() {
-		return resiData.getReview().getMeetings().size();
+		return Application.getInstance().getMeetingMgmt().getMeetings().size();
 	}
 
 	/**
@@ -952,7 +921,8 @@ public class ReviewManagement {
 	public int getNumberOfFindings() {
 		int number = 0;
 
-		for (Meeting m : resiData.getReview().getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt()
+				.getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {

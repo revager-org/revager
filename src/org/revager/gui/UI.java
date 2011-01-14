@@ -741,7 +741,7 @@ public class UI implements Observer {
 		/*
 		 * Initialize the frames
 		 */
-		getHelpBrowserFrame();
+		//getHelpBrowserFrame();
 		getAspectsManagerFrame();
 		getCSVProfilesDialog();
 		getFileChooser();

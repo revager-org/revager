@@ -96,6 +96,8 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 					.setStatusMessage(_("Cannot allocate aspects!"), false);
 		}
 
+		UI.getInstance().getAspectsManagerFrame().updateViews();
+
 		UI.getInstance().getAspectsManagerFrame().observeResiData(true);
 
 		UI.getInstance().getAspectsManagerFrame().switchToEditMode();

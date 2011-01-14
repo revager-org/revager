@@ -111,7 +111,7 @@ public class AspectManagement {
 			/*
 			 * Rename aspect references
 			 */
-			for (Attendee att : resiData.getReview().getAttendees()) {
+			for (Attendee att : Application.getInstance().getAttendeeMgmt().getAttendees()) {
 				int index = -1;
 
 				if (att.getAspects() != null) {
@@ -156,7 +156,7 @@ public class AspectManagement {
 		/*
 		 * Remove duplicate references
 		 */
-		for (Attendee a : resiData.getReview().getAttendees()) {
+		for (Attendee a : Application.getInstance().getAttendeeMgmt().getAttendees()) {
 			List<String> idList = new ArrayList<String>();
 
 			i = 0;
@@ -180,7 +180,7 @@ public class AspectManagement {
 		/*
 		 * Remove wrong references
 		 */
-		for (Attendee a : resiData.getReview().getAttendees()) {
+		for (Attendee a : Application.getInstance().getAttendeeMgmt().getAttendees()) {
 			i = 0;
 
 			if (a.getAspects() != null) {

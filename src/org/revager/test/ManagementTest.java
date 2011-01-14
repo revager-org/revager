@@ -806,12 +806,10 @@ public class ManagementTest {
 		for (String ref : revMgmt.getProductReferences()) {
 			assertTrue(revMgmt.isProductReference(ref));
 
-			if (revMgmt.isProductReferenceRemovable(ref)) {
-				revMgmt.removeProductReference(ref);
-			}
+			revMgmt.removeProductReference(ref);
 		}
 
-		assertEquals(1, revMgmt.getProductReferences().size());
+		assertEquals(0, revMgmt.getProductReferences().size());
 		assertFalse(revMgmt.isProductReference("nicht existierende Referenz"));
 
 		String prodRef1 = "Referenz zum Prüfling";
@@ -842,12 +840,10 @@ public class ManagementTest {
 		 * Manage external product references
 		 */
 		for (File ref : revMgmt.getExtProdReferences()) {
-			if (revMgmt.isExtProdReferenceRemovable(ref)) {
-				revMgmt.removeExtProdReference(ref);
-			}
+			revMgmt.removeExtProdReference(ref);
 		}
 
-		assertEquals(1, revMgmt.getExtProdReferences().size());
+		assertEquals(0, revMgmt.getExtProdReferences().size());
 
 		revMgmt.addExtProdReference(extRef1);
 		revMgmt.addExtProdReference(extRef2);
@@ -855,7 +851,7 @@ public class ManagementTest {
 		revMgmt.addExtProdReference(extRef4);
 		revMgmt.addExtProdReference(extRef4);
 
-		assertEquals(6, revMgmt.getExtProdReferences().size());
+		assertEquals(5, revMgmt.getExtProdReferences().size());
 
 		/*
 		 * Reload review and check numbers

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-18 22:48+0100\n"
+"POT-Creation-Date: 2011-01-18 23:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,21 +23,21 @@ msgstr ""
 #: src/org/revager/gui/StrengthPopupWindow.java:292
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:84
 #: src/org/revager/gui/actions/attendee/ConfirmAttendeeAction.java:115
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:200
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:232
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:276
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:324
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:363
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:418
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:674
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:705
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:736
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:767
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:800
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:957
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1016
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1372
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1551
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:218
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:250
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:294
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:342
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:381
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:436
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:692
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:723
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:754
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:785
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:818
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:975
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1034
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1375
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1554
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:246
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:402
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:176
@@ -1054,7 +1054,7 @@ msgid "Review Meetings:"
 msgstr ""
 
 #: src/org/revager/gui/MainFrame.java:579
-#: src/org/revager/gui/MainFrame.java:1748
+#: src/org/revager/gui/MainFrame.java:1743
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:549
 msgid "Remove"
 msgstr ""
@@ -1148,17 +1148,17 @@ msgstr ""
 msgid "You can open the RevAger Assistant by clicking on the 'Open Assistant' button."
 msgstr ""
 
+#: src/org/revager/gui/MainFrame.java:1555
 #: src/org/revager/gui/MainFrame.java:1560
-#: src/org/revager/gui/MainFrame.java:1565
 #: src/org/revager/gui/actions/NewReviewAction.java:49
 msgid "New Review"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1728
+#: src/org/revager/gui/MainFrame.java:1723
 msgid "Remove meeting"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1738
+#: src/org/revager/gui/MainFrame.java:1733
 msgid "Remove list of findings"
 msgstr ""
 
@@ -1262,7 +1262,7 @@ msgstr ""
 
 #: src/org/revager/gui/actions/attendee/AddAttToProtAction.java:49
 #: src/org/revager/gui/actions/attendee/AddAttendeeAction.java:46
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:286
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:304
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:252
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:532
 msgid "Add Attendee"
@@ -1310,171 +1310,159 @@ msgstr ""
 msgid "All catalogs"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:182
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:181
+msgid "Confirm and close Aspects Manager"
+msgstr ""
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:200
 msgid "Add Catalog"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:212
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:230
 msgid "Copy selected Catalog"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:245
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:263
 msgid "Add a new Aspect to the selected Catalog"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:252
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:270
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:75
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:82
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:113
 msgid "(No Category)"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:304
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:322
 msgid "Remove selected Item"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:338
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:356
 msgid "Remove selected Items"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:383
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:401
 msgid "Edit selected Item"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:401
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:419
 msgid "Please enter a name for the category."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:435
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:453
 msgid "Assign selected Aspects to the Reviewers automatically"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:449
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:467
 msgid "Import Catalog"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:470
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:488
 msgid "Export selected Catalog"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:497
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:515
 msgid "Import Aspects into the selected Catalog"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:524
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:542
 msgid "Export selected Aspects"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:550
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:568
 msgid "Load Standard Catalogs"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:597
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:615
 #: src/org/revager/gui/models/AttendeeTableModel.java:70
 #: src/org/revager/gui/models/PresentAttendeesTableModel.java:107
 msgid "Aspects"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:655
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:673
 msgid "Push Item to the top"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:686
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:704
 msgid "Push Item up"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:717
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:735
 msgid "Push Item down"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:748
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:766
 msgid "Push Item to the bottom"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:791
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:809
 msgid "Sort Catalogs in ABC order"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:814
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:832
 msgid "Expand whole tree"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:826
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:844
 msgid "Collapse whole tree"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:857
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:875
 msgid "Show Reviewers"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:860
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:878
 msgid "Show assigned Aspects"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:934
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:952
 msgid "Assign selected Aspects to all Reviewers"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:941
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1004
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:959
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1022
 #: src/org/revager/gui/workers/AutoAspAllocWorker.java:77
 msgid "Allocating aspects ..."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:960
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1019
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:978
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1037
 msgid "Aspects allocated successfully."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:997
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1015
 msgid "Assign selected Aspects to the displayed Reviewer"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1229
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1247
 msgid "Aspects Manager"
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1292
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1310
 msgid "Aspects Manager loaded successfully."
 msgstr ""
 
-#.
-#. * Close button
-#.
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1305
-#: src/org/revager/gui/dialogs/AboutDialog.java:203
-#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:138
-#: src/org/revager/gui/dialogs/EditProductDialog.java:492
-#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:267
-#: src/org/revager/gui/helpers/DatePicker.java:991
-msgid "Close"
-msgstr ""
-
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1306
-msgid "Close Aspects Manager"
-msgstr ""
-
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1631
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1634
 msgid "You have to assign at least one aspect to a reviewer."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1635
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1638
 msgid "In order to assign aspects to reviewers you have to add at least one reviewer to the review."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1639
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1642
 msgid "You can assign catalogs, categories or aspects to the reviewers after selecting them by double click."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1643
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1646
 msgid "You can import complete catalogs or selected aspects by using the provided buttons in the tool bar."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1679
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1682
 msgid "No review is loaded. Therefore you can only work in the library with its catalogs and aspects."
 msgstr ""
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1688
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1691
 msgid "There aren't any reviewers existing in the review. After adding at least one reviewer by using the 'Add Attendee' button you can assign them aspects from the existing catalogs."
 msgstr ""
 
@@ -1538,6 +1526,17 @@ msgstr ""
 
 #: src/org/revager/gui/dialogs/AboutDialog.java:82
 msgid "E-mail:"
+msgstr ""
+
+#.
+#. * Close button
+#.
+#: src/org/revager/gui/dialogs/AboutDialog.java:203
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:138
+#: src/org/revager/gui/dialogs/EditProductDialog.java:492
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:267
+#: src/org/revager/gui/helpers/DatePicker.java:991
+msgid "Close"
 msgstr ""
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:253

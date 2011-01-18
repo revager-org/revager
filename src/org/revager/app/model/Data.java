@@ -176,7 +176,7 @@ public class Data {
 	 * @param locale
 	 *            the locale to set
 	 */
-	public void setLocale(Locale locale) {		
+	public void setLocale(Locale locale) {
 		this.locale = locale;
 
 		Locale.setDefault(locale);
@@ -303,8 +303,7 @@ public class Data {
 	public static List<String> getStandardCatalogs() {
 		List<String> list = new ArrayList<String>();
 
-		for (String sev : _(
-				"Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; Quellcode; Testkonzept; Testunterlage")
+		for (String sev : _("Software Specification; Second-hand Vehicle")
 				.split(";")) {
 			list.add(sev.trim());
 		}
@@ -356,8 +355,9 @@ public class Data {
 			} catch (IOException e) {
 				/* Search files in the lang directory and add them */
 				String absLangDir = new File(Data.class.getProtectionDomain()
-						.getCodeSource().getLocation().getPath()).getAbsolutePath()
-						.replace("\\", "/") + getResource("path.searchLang");
+						.getCodeSource().getLocation().getPath())
+						.getAbsolutePath().replace("\\", "/")
+						+ getResource("path.searchLang");
 
 				File[] files = (new File(absLangDir)).listFiles();
 
@@ -366,10 +366,11 @@ public class Data {
 						String filename = file.getName();
 						int idx = filename.indexOf(".properties");
 						if (idx > -1) {
-							String lang = filename.substring(bundleBaseNameLen + 1,
-									idx);
+							String lang = filename.substring(
+									bundleBaseNameLen + 1, idx);
 
-							langMap.put(lang, new Locale(lang).getDisplayLanguage());
+							langMap.put(lang,
+									new Locale(lang).getDisplayLanguage());
 						}
 					}
 				}
@@ -379,14 +380,14 @@ public class Data {
 
 		return langMap;
 	}
-	
-	public boolean isLanguageAvailable(String lang) {		
+
+	public boolean isLanguageAvailable(String lang) {
 		for (String langId : getLanguages().keySet()) {
 			if (lang.equals(langId)) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }

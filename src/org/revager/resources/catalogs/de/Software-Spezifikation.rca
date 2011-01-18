@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Beispiel-Katalog von PearReview (www.pearreview.com)</description>
+    <aspects>
+        <aspect>
+            <id>2605</id>
+            <category>Vollständigkeit</category>
+            <directive>Einleitung</directive>
+            <description>Einleitung (Zweck des Dokuments, Leserkreis, Name des Produkts, Überblick über das Dokument, Einschränkungen)</description>
+        </aspect>
+        <aspect>
+            <id>2606</id>
+            <category>Vollständigkeit</category>
+            <directive>Use Cases / Abläufe</directive>
+            <description>Use Cases/ Abläufe (Ist das Verhalten zu jeder möglichen Eingabe spezifiziert? Sind alle in der Problemanalyse entdeckten Abläufe durch Use Cases abgedeckt?)</description>
+        </aspect>
+        <aspect>
+            <id>2607</id>
+            <category>Vollständigkeit</category>
+            <directive>Aussagen über Qualitäten</directive>
+            <description>Aussagen über folgende Qualitäten: Benutzbarkeit, Sicherheit, Wartbarkeit, Portierbarkeit, Leistungsanforderungen (Laufzeit-/Ressourcenverbrauch)</description>
+        </aspect>
+        <aspect>
+            <id>2608</id>
+            <category>Vollständigkeit</category>
+            <directive>Mengengerüst</directive>
+            <description>Mengengerüst (z.B. Anzahl Benutzer, Größe und Komplexität der Daten)</description>
+        </aspect>
+        <aspect>
+            <id>2609</id>
+            <category>Vollständigkeit</category>
+            <directive>Benutzungsoberfläche</directive>
+            <description>Benutzungsoberfläche (für alle Aktoren)</description>
+        </aspect>
+        <aspect>
+            <id>2610</id>
+            <category>Vollständigkeit</category>
+            <directive>Aussagen über die Systemumgebung/Aktoren</directive>
+            <description>Aussagen über die Systemumgebung/Aktoren (Vorkenntnisse, Fähigkeiten)</description>
+        </aspect>
+        <aspect>
+            <id>2611</id>
+            <category>Vollständigkeit</category>
+            <directive>Entwurfs- und Implementierungseinschränkungen</directive>
+            <description>Entwurfs- und Implementierungseinschränkungen (Aussagen über Entwicklungswerkzeuge/-umgebung, Arbeitsumgebung (Hardware, Software, Betriebssystem))</description>
+        </aspect>
+        <aspect>
+            <id>2612</id>
+            <category>Vollständigkeit</category>
+            <directive>Erweiterung des Systems</directive>
+            <description>Erweiterung des Systems (Anforderungen an zukünftige Versionen des Systems)</description>
+        </aspect>
+        <aspect>
+            <id>2613</id>
+            <category>Allgemeine Eigenschaften der ganzen Spezifikation</category>
+            <directive>Widersprüchliche Aussagen</directive>
+            <description>Gibt es widersprüchliche Aussagen in der Spezifikation?</description>
+        </aspect>
+        <aspect>
+            <id>2614</id>
+            <category>Allgemeine Eigenschaften der ganzen Spezifikation</category>
+            <directive>Gruppierung von Use Cases</directive>
+            <description>Ist die Gruppierung der Use Cases in Use-Case-Diagramme anhand nachvollziehbarer Kriterien erfolgt?</description>
+        </aspect>
+        <aspect>
+            <id>2615</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Aktoren im Sinne der Use Cases</directive>
+            <description>Sind die Aktoren wirklich Aktoren im Sinne der Use-Case-Methode?</description>
+        </aspect>
+        <aspect>
+            <id>2616</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Aktionen und Reaktionen</directive>
+            <description>Wird mit jedem Use Case eine Sequenz von Aktionen und Reaktionen zwischen System und Aktor beschrieben?</description>
+        </aspect>
+        <aspect>
+            <id>2617</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Beschreibung für jede Diagrammkomponente</directive>
+            <description>Gibt es für jede Diagrammkomponente (Use Case, Aktor, System, Use-Case-Diagramm) eine erläuternde Beschreibung?</description>
+        </aspect>
+        <aspect>
+            <id>2618</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Anforderungen als solche erkennbar</directive>
+            <description>Sind alle Anforderungen als solche erkennbar, also von anderen Anforderungen, Erklärungen, Fakten und Beispielen usw. unterscheidbar?</description>
+        </aspect>
+        <aspect>
+            <id>2619</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Aussagen der Spezifikation eindeutig</directive>
+            <description>Sind die Aussagen der Spezifikation eindeutig? Sind alle potentiell mehrdeutigen Begriffe im Begriffslexikon definiert?</description>
+        </aspect>
+        <aspect>
+            <id>2620</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Begriffe aus dem Begriffslexikon</directive>
+            <description>Wurden die Begriffe verwendet, die auch im Begriffslexikon definiert sind? Wurden also keine Synonyme o.ä. für diese Begriffe verwendet? Wurde die definierte Bedeutung der Begriffe beachtet?</description>
+        </aspect>
+        <aspect>
+            <id>2621</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Anforderungen überprüfbar formuliert</directive>
+            <description>Sind alle Anforderungen / Use Cases überprüfbar formuliert? Kann also zu jeder Anforderung ein Testfall entwickelt werden, der die Einhaltung überprüft?</description>
+        </aspect>
+        <aspect>
+            <id>2622</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Korrektheit der Anforderungen</directive>
+            <description>Sind die beschriebenen Anforderungen / Use Cases korrekt? Entsprechen sie also den Ergebnissen der Problemanalyse?</description>
+        </aspect>
+        <aspect>
+            <id>2623</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Fehlerfälle</directive>
+            <description>Sind zu jedem Use Case alle Alternativen, Fehlerfälle und Ausnahmesituationen angegeben?</description>
+        </aspect>
+        <aspect>
+            <id>2624</id>
+            <category>Eigenschaften einzelner Komponenten der Spezifikation</category>
+            <directive>Rechtschreibung</directive>
+            <description>Sind Rechtschreibung und Zeichensetzung korrekt?</description>
+        </aspect>
+    </aspects>
+</catalog>

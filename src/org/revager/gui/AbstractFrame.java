@@ -34,6 +34,10 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -605,12 +609,67 @@ public class AbstractFrame extends JFrame {
 		 * Behaviour when closing this dialog.
 		 */
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+
+		// addWindowListener(new WindowAdapter() {
+		// @Override public void windowClosing(WindowEvent e) { // buttonClicked
+		// = ButtonClicked.CANCEL; setVisible(false); } });
+
 		/*
-		 * addWindowListener(new WindowAdapter() {
-		 * 
-		 * @Override public void windowClosing(WindowEvent e) { // buttonClicked
-		 * = ButtonClicked.CANCEL; setVisible(false); } });
+		 * Add window listeners.
 		 */
+		addWindowListener(new WindowListener() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+		});
+		addWindowStateListener(new WindowStateListener() {
+			@Override
+			public void windowStateChanged(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+		});
+		addWindowFocusListener(new WindowFocusListener() {
+			@Override
+			public void windowLostFocus(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+
+			@Override
+			public void windowGainedFocus(WindowEvent e) {
+				setHints(currentHints, true);
+			}
+		});
 	}
 
 	/**
@@ -630,6 +689,18 @@ public class AbstractFrame extends JFrame {
 	 *            the new hints
 	 */
 	public void setHints(List<HintItem> hints) {
+		setHints(hints, false);
+	}
+
+	/**
+	 * Sets the hints.
+	 * 
+	 * @param hints
+	 *            the new hints
+	 * @param forceRefresh
+	 *            forces the hints to refresh
+	 */
+	public void setHints(List<HintItem> hints, boolean forceRefresh) {
 		if (hints != null) {
 			if (hints.isEmpty()) {
 				hints = null;
@@ -655,7 +726,7 @@ public class AbstractFrame extends JFrame {
 			}
 		}
 
-		if (hintsAreTheSame == true) {
+		if (hintsAreTheSame && !forceRefresh) {
 			return;
 		}
 

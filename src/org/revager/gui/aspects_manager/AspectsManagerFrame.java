@@ -290,11 +290,12 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				
-				UI.getInstance().getAttendeeDialog().setCalledByAspectsManager(true);
+
+				UI.getInstance().getAttendeeDialog()
+						.setCalledByAspectsManager(true);
 			}
 		});
-		
+
 		addTopComponent(tbNewAttendee);
 
 		tbRemove = GUITools.newImageButton();
@@ -405,7 +406,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					if (popup.getButtonClicked() == ButtonClicked.OK
 							&& !popup.getInput().trim().equals("")) {
 						try {
-							String newCategory = popup.getInput();
+							String newCategory = popup.getInput().trim();
 
 							selCatalog.editCategory(selCategory, newCategory);
 

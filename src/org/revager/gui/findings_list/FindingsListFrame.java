@@ -1196,46 +1196,14 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (tbConfirmProt.isVisible()) {
-					Object[] options = { _("Close"), _("Discard"), _("Cancel") };
-
-					int option = JOptionPane
-							.showOptionDialog(
-									UI.getInstance().getProtocolFrame(),
-									GUITools.getMessagePane(_("Would you like to complete or discard the current findings list?")),
-									_("Question"), JOptionPane.YES_NO_OPTION,
-									JOptionPane.QUESTION_MESSAGE, null,
-									options, options[0]);
-
-					if (option == JOptionPane.YES_OPTION) {
-						GUITools.executeSwingWorker(new ImageEditorWriteWorker(
-								currentProt));
-
-						UI.getInstance().getProtocolFrame().setVisible(false);
-					} else if (option == JOptionPane.NO_OPTION) {
-						UI.getInstance().getProtocolFrame().setVisible(false);
-						protMgmt.clearProtocol(currentMeet);
-						UI.getInstance().getMainFrame().updateMeetingsTree();
-					}
-				} else {
-
-					int option = JOptionPane
-							.showConfirmDialog(
-									UI.getInstance().getProtocolFrame(),
-									GUITools.getMessagePane(_("You didn't enter all the required information. If you close the list of findings all the findings will be lost. Would you really like to continue?")),
-									_("Question"), JOptionPane.YES_NO_OPTION,
-									JOptionPane.QUESTION_MESSAGE);
-
-					if (option == JOptionPane.YES_OPTION) {
-						UI.getInstance().getProtocolFrame().setVisible(false);
-						protMgmt.clearProtocol(currentMeet);
-						revMgmt.setRecommendation("");
-						UI.getInstance().getMainFrame().updateMeetingsTree();
-					}
+				if (protCommTxtArea.getText().trim().equals("")) {
+					currentProt.setComments("");
 				}
 
-				if (protCommTxtArea.getText().trim().equals(""))
-					currentProt.setComments("");
+				GUITools.executeSwingWorker(new ImageEditorWriteWorker(
+						currentProt));
+
+				setVisible(false);
 			}
 
 			@Override

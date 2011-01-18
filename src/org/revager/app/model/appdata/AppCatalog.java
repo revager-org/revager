@@ -1074,6 +1074,13 @@ public class AppCatalog {
 	 */
 	public void editCategory(String oldName, String newName)
 			throws DataException {
+		/*
+		 * If the name didn't change.
+		 */
+		if (oldName.trim().equals(newName.trim())) {
+			return;
+		}
+		
 		if (!exists()) {
 			throw notFoundExc;
 		}

@@ -160,6 +160,8 @@ public class OpenFindingsListAction extends AbstractAction {
 				mainFrame.switchToEditMode();
 			} catch (Exception e) {
 				UI.getInstance().getMainFrame().switchToEditMode();
+				
+				e.printStackTrace();
 			}
 
 			return null;

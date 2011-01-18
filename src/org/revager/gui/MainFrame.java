@@ -1496,17 +1496,12 @@ public class MainFrame extends AbstractFrame implements Observer {
 				pdfExportItem.setEnabled(true);
 			}
 
-			boolean prodNameEmpty = Application.getInstance().getReviewMgmt()
-					.getProductName().trim().equals("");
-			boolean revNameEmpty = Application.getInstance().getReviewMgmt()
-					.getReviewName().trim().equals("");
 			boolean attendeesEmpty = Application.getInstance()
 					.getAttendeeMgmt().getAttendees().isEmpty();
 			boolean meetingsEmpty = Application.getInstance().getMeetingMgmt()
 					.getMeetings().isEmpty();
 
-			if (!prodNameEmpty && !revNameEmpty && !attendeesEmpty
-					&& !meetingsEmpty) {
+			if (!attendeesEmpty && !meetingsEmpty) {
 				tbCreateInvitations.setEnabled(true);
 				createInvitationsItem.setEnabled(true);
 			} else {

@@ -174,6 +174,24 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * creating the JToolBar within its components
 		 */
+		JButton tbConfirm = GUITools.newImageButton();
+		tbConfirm.setIcon(Data.getInstance().getIcon("confirm_50x50_0.png"));
+		tbConfirm.setRolloverIcon(Data.getInstance().getIcon(
+				"confirm_50x50.png"));
+		tbConfirm.setToolTipText(_("Confirm and close Aspects Manager"));
+		tbConfirm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UI.getInstance().getAspectsManagerFrame().setVisible(false);
+			}
+		});
+		addTopComponent(tbConfirm);
+
+		JButton sepBttn = GUITools.newImageButton();
+		sepBttn.setIcon(Data.getInstance().getIcon("sep_50x50.png"));
+		sepBttn.setEnabled(false);
+		addTopComponent(sepBttn);
+
 		tbAddCatalog = GUITools.newImageButton();
 		tbAddCatalog.setIcon(Data.getInstance().getIcon(
 				"addCatalog_50x50_0.png"));
@@ -1300,22 +1318,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		pack();
 
 		add(splitPane, BorderLayout.CENTER);
-		GridBagLayout gbl = new GridBagLayout();
-		JPanel closePanel = new JPanel(gbl);
-		JButton closeButton = new JButton(_("Close"));
-		closeButton.setToolTipText(_("Close Aspects Manager"));
-		closeButton.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getAspectsManagerFrame().setVisible(false);
-			}
-		});
-
-		GUITools.addComponent(closePanel, gbl, closeButton, 0, 0, 1, 1, 1.0,
-				1.0, 10, 20, 10, 20, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHEAST);
-		add(closePanel, BorderLayout.SOUTH);
 		Data.getInstance().getResiData().addObserver(this);
 
 		addWindowListener(new WindowListener() {

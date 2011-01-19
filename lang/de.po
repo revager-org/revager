@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-14 09:48+0100\n"
-"PO-Revision-Date: 2011-01-15 18:44+0000\n"
+"POT-Creation-Date: 2011-01-18 23:15+0100\n"
+"PO-Revision-Date: 2011-01-18 22:28+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-16 05:15+0000\n"
+"X-Launchpad-Export-Date: 2011-01-19 05:09+0000\n"
 "X-Generator: Launchpad (build 12177)\n"
 
 #: src/org/revager/Main.java:117 src/org/revager/Main.java:149
@@ -23,21 +23,21 @@ msgstr ""
 #: src/org/revager/gui/StrengthPopupWindow.java:292
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:84
 #: src/org/revager/gui/actions/attendee/ConfirmAttendeeAction.java:115
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:200
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:232
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:276
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:323
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:362
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:417
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:673
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:704
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:735
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:766
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:799
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:956
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1015
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1371
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1550
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:218
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:250
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:294
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:342
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:381
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:436
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:692
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:723
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:754
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:785
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:818
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:975
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1034
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1375
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1554
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:246
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:402
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:176
@@ -94,8 +94,6 @@ msgstr ""
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:559
 #: src/org/revager/gui/dialogs/SettingsDialog.java:363
 #: src/org/revager/gui/findings_list/FindingPanel.java:631
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1206
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1226
 #: src/org/revager/gui/helpers/FileChooser.java:271
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:80
 msgid "Question"
@@ -338,15 +336,9 @@ msgstr ""
 "Nicht beendet (Änderungen am Prüfling erforderlich); Nicht beendet "
 "(komplette Überarbeitung des Prüflings erforderlich)"
 
-#: src/org/revager/app/model/Data.java:307
-msgid ""
-"Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); "
-"Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; "
-"Quellcode; Testkonzept; Testunterlage"
-msgstr ""
-"Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); "
-"Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; "
-"Quellcode; Testkonzept; Testunterlage"
+#: src/org/revager/app/model/Data.java:306
+msgid "Software Specification; Second-hand Vehicle"
+msgstr "Software-Spezifikation; Gebrauchtwagen"
 
 #. 
 #. * Not part of unit testing because this exception only is thrown if
@@ -600,17 +592,17 @@ msgid "Cannot detect wether the given category exists or not."
 msgstr ""
 "Es konnte nicht ermittelt werden, ob die gewählte Kategorie existiert."
 
-#: src/org/revager/app/model/appdata/AppCatalog.java:1116
+#: src/org/revager/app/model/appdata/AppCatalog.java:1123
 msgid "Cannot change category."
 msgstr "Die Kategorie konnte nicht geändert werden."
 
-#: src/org/revager/app/model/appdata/AppCatalog.java:1161
+#: src/org/revager/app/model/appdata/AppCatalog.java:1168
 msgid "Cannot get first sorting position of the aspects."
 msgstr ""
 "Die erste Position der Prüfaspekte bzgl. ihrer Sortierung konnte nicht "
 "ermittelt werden."
 
-#: src/org/revager/app/model/appdata/AppCatalog.java:1208
+#: src/org/revager/app/model/appdata/AppCatalog.java:1215
 msgid "Cannot get last sorting position of the aspects."
 msgstr ""
 "Die letzte Position der Prüfaspekte bzgl. ihrer Sortierung konnte nicht "
@@ -620,11 +612,11 @@ msgstr ""
 #. * Not part of the unit testing, because this exception is only
 #. * thrown if there occurs an internal error.
 #. 
-#: src/org/revager/app/model/appdata/AppCatalog.java:1259
+#: src/org/revager/app/model/appdata/AppCatalog.java:1266
 msgid "Cannot get the number of aspects."
 msgstr "Die Anzahl an Prüfaspekten konnten nicht ermittelt werden."
 
-#: src/org/revager/app/model/appdata/AppCatalog.java:1317
+#: src/org/revager/app/model/appdata/AppCatalog.java:1324
 msgid "Cannot get aspects of the selected catalog / category."
 msgstr ""
 "Die Prüfaspekte des gewählten Fragenkatalogs / der gewählten Kategorie "
@@ -634,7 +626,7 @@ msgstr ""
 #. * Not part of the unit testing, because this exception is only
 #. * thrown if there occurs an internal error.
 #. 
-#: src/org/revager/app/model/appdata/AppCatalog.java:1434
+#: src/org/revager/app/model/appdata/AppCatalog.java:1441
 msgid "Cannot remove aspect."
 msgstr "Prüfaspekt konnte nicht entfernt werden."
 
@@ -660,7 +652,7 @@ msgstr "Das Einladungspaket konnte nicht als Verzeichnis gespeichert werden."
 #. 
 #: src/org/revager/export/InvitationPDFExporter.java:112
 #: src/org/revager/export/ProtocolPDFExporter.java:89
-#: src/org/revager/gui/AbstractFrame.java:213
+#: src/org/revager/gui/AbstractFrame.java:217
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -1020,7 +1012,7 @@ msgid "Show/hide help"
 msgstr "Hilfe ein-/ausblenden"
 
 #: src/org/revager/gui/AbstractDialog.java:557
-#: src/org/revager/gui/AbstractFrame.java:821
+#: src/org/revager/gui/AbstractFrame.java:892
 msgid "Work in progress ..."
 msgstr "Vorgang läuft ..."
 
@@ -1034,11 +1026,11 @@ msgstr "Hilfe wird geladen ..."
 #. 
 #. * Construct the button to toggle the hints
 #. 
-#: src/org/revager/gui/AbstractFrame.java:533
+#: src/org/revager/gui/AbstractFrame.java:537
 msgid "Show/hide hints"
 msgstr "Hinweise ein-/ausblenden"
 
-#: src/org/revager/gui/AbstractFrame.java:550
+#: src/org/revager/gui/AbstractFrame.java:554
 #: src/org/revager/gui/workers/LoadReviewWorker.java:77
 #: src/org/revager/gui/workers/NewReviewWorker.java:75
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:59
@@ -1177,7 +1169,7 @@ msgid "Review Meetings:"
 msgstr "Review-Sitzungen:"
 
 #: src/org/revager/gui/MainFrame.java:579
-#: src/org/revager/gui/MainFrame.java:1748
+#: src/org/revager/gui/MainFrame.java:1743
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:549
 msgid "Remove"
 msgstr "Entfernen"
@@ -1274,6 +1266,8 @@ msgid ""
 "You can open the list of findings by selecting the corresponding meeting and "
 "clicking the 'Open findings list' button."
 msgstr ""
+"Sie können das Review-Protokoll öffnen, indem Sie die entsprechende Sitzung "
+"auswählen und auf die Schaltfläche 'Protokoll öffnen' klicken."
 
 #: src/org/revager/gui/MainFrame.java:1324
 msgid ""
@@ -1283,17 +1277,17 @@ msgstr ""
 "Sie können den RevAger-Assistenten öffnen, indem Sie auf den entsprechenden "
 "Button klicken."
 
+#: src/org/revager/gui/MainFrame.java:1555
 #: src/org/revager/gui/MainFrame.java:1560
-#: src/org/revager/gui/MainFrame.java:1565
 #: src/org/revager/gui/actions/NewReviewAction.java:49
 msgid "New Review"
 msgstr "Neues Review"
 
-#: src/org/revager/gui/MainFrame.java:1728
+#: src/org/revager/gui/MainFrame.java:1723
 msgid "Remove meeting"
 msgstr "Sitzung entfernen"
 
-#: src/org/revager/gui/MainFrame.java:1738
+#: src/org/revager/gui/MainFrame.java:1733
 msgid "Remove list of findings"
 msgstr "Sitzungsprotokoll entfernen"
 
@@ -1303,7 +1297,6 @@ msgid "Restore"
 msgstr "Wiederherstellen"
 
 #: src/org/revager/gui/UI.java:758
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1200
 msgid "Discard"
 msgstr "Verwerfen"
 
@@ -1411,10 +1404,12 @@ msgid ""
 "You have to restart the application in order finalize the change of "
 "language. Restart now?"
 msgstr ""
+"Sie müssen die Anwendung neustarten um den Wechsel der Sprache "
+"durchzuführen. Jetzt neustarten?"
 
 #: src/org/revager/gui/actions/attendee/AddAttToProtAction.java:49
 #: src/org/revager/gui/actions/attendee/AddAttendeeAction.java:46
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:286
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:304
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:252
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:532
 msgid "Add Attendee"
@@ -1478,156 +1473,143 @@ msgstr ""
 msgid "All catalogs"
 msgstr "Alle Fragenkataloge"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:182
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:181
+msgid "Confirm and close Aspects Manager"
+msgstr "Bestätigen und Prüfaspekte-Manager schließen"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:200
 msgid "Add Catalog"
 msgstr "Fragenkatalog hinzufügen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:212
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:230
 msgid "Copy selected Catalog"
 msgstr "Ausgewählten Fragenkatalog kopieren"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:245
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:263
 msgid "Add a new Aspect to the selected Catalog"
 msgstr "Neuen Prüfaspekt zum ausgewählten Fragenkatalog hinzufügen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:252
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:270
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:75
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:82
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:113
 msgid "(No Category)"
 msgstr "(ohne Kategorie)"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:303
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:322
 msgid "Remove selected Item"
 msgstr "Ausgewählten Eintrag entfernen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:337
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:356
 msgid "Remove selected Items"
 msgstr "Ausgewählte Einträge entfernen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:382
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:401
 msgid "Edit selected Item"
 msgstr "Gewählten Eintrag bearbeiten"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:400
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:419
 msgid "Please enter a name for the category."
 msgstr "Bitte geben Sie einen Namen für die Kategorie ein."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:434
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:453
 msgid "Assign selected Aspects to the Reviewers automatically"
 msgstr "Die ausgewählten Prüfaspekte automatisch auf die Gutachter verteilen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:448
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:467
 msgid "Import Catalog"
 msgstr "Fragenkatalog importieren"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:469
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:488
 msgid "Export selected Catalog"
 msgstr "Ausgewählten Fragenkatalog exportieren"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:496
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:515
 msgid "Import Aspects into the selected Catalog"
 msgstr "Prüfaspekte in den ausgewählten Fragenkatalog importieren"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:523
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:542
 msgid "Export selected Aspects"
 msgstr "Ausgewählte Prüfaspekte exportieren"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:549
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:568
 msgid "Load Standard Catalogs"
 msgstr "Standard-Fragenkataloge laden"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:596
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:615
 #: src/org/revager/gui/models/AttendeeTableModel.java:70
 #: src/org/revager/gui/models/PresentAttendeesTableModel.java:107
 msgid "Aspects"
 msgstr "Prüfaspekte"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:654
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:673
 msgid "Push Item to the top"
 msgstr "Eintrag ganz nach oben verschieben"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:685
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:704
 msgid "Push Item up"
 msgstr "Eintrag nach oben verschieben"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:716
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:735
 msgid "Push Item down"
 msgstr "Eintrag nach unten verschieben"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:747
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:766
 msgid "Push Item to the bottom"
 msgstr "Eintrag ganz nach unten verschieben"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:790
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:809
 msgid "Sort Catalogs in ABC order"
 msgstr "Fragenkataloge alphabetisch sortieren"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:813
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:832
 msgid "Expand whole tree"
 msgstr "Den kompletten Baum ausklappen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:825
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:844
 msgid "Collapse whole tree"
 msgstr "Den kompletten Baum einklappen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:856
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:875
 msgid "Show Reviewers"
 msgstr "Gutachter anzeigen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:859
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:878
 msgid "Show assigned Aspects"
 msgstr "Zugeteilte Prüfaspekte anzeigen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:933
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:952
 msgid "Assign selected Aspects to all Reviewers"
 msgstr "Die ausgewählten Prüfaspekte allen Gutachtern zuteilen"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:940
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1003
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:959
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1022
 #: src/org/revager/gui/workers/AutoAspAllocWorker.java:77
 msgid "Allocating aspects ..."
 msgstr "Prüfaspekte werden zugeteilt ..."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:959
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1018
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:978
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1037
 msgid "Aspects allocated successfully."
 msgstr "Die Prüfaspekte wurden erfolgreich zugeteilt."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:996
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1015
 msgid "Assign selected Aspects to the displayed Reviewer"
 msgstr "Die ausgewählten Prüfaspekte dem angezeigten Gutachter zuteilen."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1228
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1247
 msgid "Aspects Manager"
 msgstr "Prüfaspekte-Manager"
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1291
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1310
 msgid "Aspects Manager loaded successfully."
 msgstr "Prüfaspekte-Manager erfolgreich geladen."
 
-#. 
-#. * Close button
-#. 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1304
-#: src/org/revager/gui/dialogs/AboutDialog.java:203
-#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:138
-#: src/org/revager/gui/dialogs/EditProductDialog.java:492
-#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:267
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1200
-#: src/org/revager/gui/helpers/DatePicker.java:991
-msgid "Close"
-msgstr "Schließen"
-
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1305
-msgid "Close Aspects Manager"
-msgstr "Prüfaspekte-Manager schließen"
-
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1630
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1634
 msgid "You have to assign at least one aspect to a reviewer."
 msgstr "Sie müssen mindestens einen Prüfaspekt einem Gutachter zuteilen."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1634
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1638
 msgid ""
 "In order to assign aspects to reviewers you have to add at least one "
 "reviewer to the review."
@@ -1635,7 +1617,7 @@ msgstr ""
 "Um den Gutachtern Prüfaspekte zuzuteilen müssen Sie zunächst einen Gutachter "
 "zum Review hinzufügen."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1638
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1642
 msgid ""
 "You can assign catalogs, categories or aspects to the reviewers after "
 "selecting them by double click."
@@ -1643,7 +1625,7 @@ msgstr ""
 "Sie können Fragenkataloge, Kategorien oder Prüfaspekte den Gutachtern "
 "zuteilen, indem Sie diese mit einem Doppelklick ausgewählt haben."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1642
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1646
 msgid ""
 "You can import complete catalogs or selected aspects by using the provided "
 "buttons in the tool bar."
@@ -1652,7 +1634,7 @@ msgstr ""
 "importieren, indem Sie die entsprechenden Buttons in der Werkzeugleiste "
 "verwenden."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1678
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1682
 msgid ""
 "No review is loaded. Therefore you can only work in the library with its "
 "catalogs and aspects."
@@ -1660,7 +1642,7 @@ msgstr ""
 "Es ist keine Review geladen. Daher können Sie ausschließlich in der "
 "Fragenkatalog-Bibliothek arbeiten."
 
-#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1687
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1691
 msgid ""
 "There aren't any reviewers existing in the review. After adding at least one "
 "reviewer by using the 'Add Attendee' button you can assign them aspects from "
@@ -1739,6 +1721,17 @@ msgstr "Homepage:"
 #: src/org/revager/gui/dialogs/AboutDialog.java:82
 msgid "E-mail:"
 msgstr "E-Mail:"
+
+#. 
+#. * Close button
+#. 
+#: src/org/revager/gui/dialogs/AboutDialog.java:203
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:138
+#: src/org/revager/gui/dialogs/EditProductDialog.java:492
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:267
+#: src/org/revager/gui/helpers/DatePicker.java:991
+msgid "Close"
+msgstr "Schließen"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:253
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:269
@@ -1849,7 +1842,6 @@ msgstr "Ausgewähltes CSV-Profil entfernen"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:549
 #: src/org/revager/gui/findings_list/FindingPanel.java:1050
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1200
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -2157,7 +2149,7 @@ msgstr "Pflicht-Eingabefelder visuell kenntlich machen."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:282
 msgid "Allow usage of fullscreen mode (EXPERIMENTAL)."
-msgstr ""
+msgstr "Vollbildmodus erlauben (EXPERIMENTELL)."
 
 #. 
 #. * Protocol warning
@@ -2216,6 +2208,9 @@ msgid ""
 "Here you can set some options concerning the PDF export. They will be saved "
 "in the database independently of any particular review."
 msgstr ""
+"Hier können Sie einige Optionen in Bezug auf den PDF-Export festlegen. Diese "
+"Einstellungen werden unabhängig von einem bestimmten Review in der Datenbank "
+"gespeichert."
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:41
 msgid "Don't show this dialog during the current session again."
@@ -2241,6 +2236,8 @@ msgid ""
 "You can select a mode and a review from the list of reviews. If your review "
 "isn't in the list, you can load it by choosing 'Select another review...'."
 msgstr ""
+"Sie können ein Review aus der Liste auswählen. Wenn Ihr Review nicht Teil "
+"der Liste ist, so können Sie auch ein anderes Review wählen."
 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:86
 msgid ""
@@ -2259,10 +2256,13 @@ msgid ""
 "reviewer. This option is perfect for quick reviews of a website or even for "
 "car inspections."
 msgstr ""
+"Hiermit können Sie als einzelner Gutachter sofort ein Review zu beginnen. "
+"Diese Methode ist sehr gut geeignet für ein schnelles Review einer Internet-"
+"Seite oder auch für eine Fahrzeug-Inspektion."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:73
 msgid "Select this if you would like to organize a review as moderator."
-msgstr ""
+msgstr "Hiermit können Sie als Moderator ein Review organisieren."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74
 msgid "Select this if you would like to open an existing review."
@@ -2277,6 +2277,8 @@ msgid ""
 "Select this if you would like to manage the catalogs and aspects in the "
 "Aspects Manager."
 msgstr ""
+"Hiermit können Sie die Fragenkataloge und Prüfaspekte im Prüfaspekte-Manager "
+"verwalten."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
 msgid "Open existing review"
@@ -2308,11 +2310,15 @@ msgstr "Keine Reviews verfügbar"
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:118
 msgid "Please select the aspects which should be added to the finding:"
 msgstr ""
+"Bitte wählen Sie die Prüfaspekte, welche zum Befund hinzugefügt werden "
+"sollen:"
 
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:130
 msgid ""
 "Please select the attendee you would like to add to the current meeting:"
 msgstr ""
+"Bitte wählen Sie den Teilnehmer, welchen Sie zur aktuellen Sitzung "
+"hinzufügen möchten."
 
 #. 
 #. * Set tooltips for buttons
@@ -2364,6 +2370,8 @@ msgstr "Prüfaspekt(e) entfernen"
 #: src/org/revager/gui/findings_list/FindingPanel.java:630
 msgid "Are you sure you want to remove the selected finding permanently?"
 msgstr ""
+"Sind Sie sicher, dass Sie den gewählten Befund unwiderruflich entfernen "
+"wollen?"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:803
 #: src/org/revager/gui/models/AttendeeTableModel.java:100
@@ -2388,6 +2396,8 @@ msgid ""
 "Unfortunately there isn't any image in the clipboard which can be included "
 "as a reference."
 msgstr ""
+"Leider existiert kein Bild in der Zwischenablage, welches als Referenz "
+"hinzugefügt werden kann."
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1030
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1090
@@ -2437,43 +2447,43 @@ msgstr "Vollbildansicht verlassen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:414
 msgid "Change to Fullscreen mode"
-msgstr ""
+msgstr "In den Vollbildmodus wechseln"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:467
 msgid "Reset Stop Watch"
-msgstr ""
+msgstr "Stoppuhr zurücksetzen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:498
 msgid "Pause Stop Watch"
-msgstr ""
+msgstr "Stoppuhr pausieren"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:504
 msgid "Start Stop Watch"
-msgstr ""
+msgstr "Stoppuhr starten"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:522
 msgid "Add Attendee from the Attendee Pool"
-msgstr ""
+msgstr "Einen Teilnehmer aus dem Teilnehmer-Pool hinzufügen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:542
 msgid "Remove Attendee"
-msgstr ""
+msgstr "Teilnehmer entfernen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:685
 msgid "Add Attendee to Meeting"
-msgstr ""
+msgstr "Einen neuen Teilnehmer zur Sitzung hinzufügen"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:718
 msgid "Attendees of the current meeting:"
-msgstr ""
+msgstr "Teilnehmer der aktuellen Sitzung:"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:927
 msgid "Comments on the meeting:"
-msgstr ""
+msgstr "Kommentare zur Sitzung:"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:930
 msgid "Comments on the list of findings:"
-msgstr ""
+msgstr "Kommentare zum Protokoll:"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1085
 #, java-format
@@ -2482,208 +2492,215 @@ msgid ""
 "recommended to finalize the meeting now and continue the review at a later "
 "point in time."
 msgstr ""
+"Diese Sitzung läuft bereits seit {0} Minuten. Daher wird empfohlen, die "
+"Sitzung nun abzuschließen und das Review zu einem späteren Zeitpunkt "
+"weiterzuführen."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1133
 msgid "List of findings successfully loaded."
-msgstr ""
+msgstr "Protokoll erfolgreich geladen."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1205
-msgid "Would you like to complete or discard the current findings list?"
-msgstr ""
-
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1225
-msgid ""
-"You didn't enter all the required information. If you close the list of "
-"findings all the findings will be lost. Would you really like to continue?"
-msgstr ""
-
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1500
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1468
 msgid ""
 "Please add at least one attendee to the meeting by choosing one from the "
 "attendees pool or create a new one (Tab 'Organizational')."
 msgstr ""
+"Bitte fügen Sie mindestens einen Teilnehmer zur Sitzung hinzu, entweder "
+"durch Auswahl aus dem Teilnehmer-Pool oder durch Anlegen eines neuen "
+"Teilnehmers (Tab 'Organisatorisches')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1504
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1472
 msgid ""
 "Please enter the general impression and the final recommendation for the "
 "product into the provided text field (Tab 'Impression · Comments · "
 "Recommendation')."
 msgstr ""
+"Bitte geben Sie den generellen Eindruck und die abschließende Bewertung des "
+"Prüflings in das dafür vorgesehene Textfeld ein (Tab 'Eindruck · Kommentare "
+"· Bewertung')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1508
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1476
 msgid "For every finding enter at least a description (Tab 'Findings')."
 msgstr ""
+"Bitte geben Sie für jeden Befund zumindest eine Beschreibung ein (Tab "
+"'Befunde')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1512
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1480
 msgid "The meeting data and its list of findings is complete."
-msgstr ""
+msgstr "Die Sitzungsdaten und das Protokoll sind vollständig."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1516
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1484
 msgid ""
 "In order to add a new finding to the list of findings use the 'Add Finding' "
 "button (Tab 'Findings')."
 msgstr ""
+"Um einen neuen Befund zum Protokoll hinzuzufügen, klicken Sie auf die "
+"Schaltfläche 'Befund hinzufügen' (Tab 'Befunde')."
 
 #: src/org/revager/gui/findings_list/FindingsTab.java:51
 msgid "Add Finding"
-msgstr ""
+msgstr "Befund hinzufügen"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:122
 msgid "Image Editor"
-msgstr ""
+msgstr "Bildbearbeitung"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:209
 msgid "Undo"
-msgstr ""
+msgstr "Rückgängig"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:221
 msgid "Redo"
-msgstr ""
+msgstr "Wiederholen"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:285
 msgid "Please enter some text"
-msgstr ""
+msgstr "Bitte den gewünschten Text eingeben"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:349
 msgid "Color"
-msgstr ""
+msgstr "Farbe"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:358
 msgid "Please choose a color"
-msgstr ""
+msgstr "Bitte eine Farbe auswählen"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:453
 msgid "Thickness"
-msgstr ""
+msgstr "Dicke"
 
 #: src/org/revager/gui/helpers/DatePicker.java:945
 msgid "January"
-msgstr ""
+msgstr "Januar"
 
 #: src/org/revager/gui/helpers/DatePicker.java:947
 msgid "February"
-msgstr ""
+msgstr "Februar"
 
 #: src/org/revager/gui/helpers/DatePicker.java:949
 msgid "March"
-msgstr ""
+msgstr "März"
 
 #: src/org/revager/gui/helpers/DatePicker.java:951
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: src/org/revager/gui/helpers/DatePicker.java:953
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: src/org/revager/gui/helpers/DatePicker.java:955
 msgid "June"
-msgstr ""
+msgstr "Juni"
 
 #: src/org/revager/gui/helpers/DatePicker.java:957
 msgid "July"
-msgstr ""
+msgstr "Juli"
 
 #: src/org/revager/gui/helpers/DatePicker.java:959
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: src/org/revager/gui/helpers/DatePicker.java:961
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: src/org/revager/gui/helpers/DatePicker.java:963
 msgid "October"
-msgstr ""
+msgstr "Oktober"
 
 #: src/org/revager/gui/helpers/DatePicker.java:965
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: src/org/revager/gui/helpers/DatePicker.java:967
 msgid "December"
-msgstr ""
+msgstr "Dezember"
 
 #: src/org/revager/gui/helpers/DatePicker.java:969
 msgid "Mon"
-msgstr ""
+msgstr "Mo"
 
 #: src/org/revager/gui/helpers/DatePicker.java:971
 msgid "Tue"
-msgstr ""
+msgstr "Di"
 
 #: src/org/revager/gui/helpers/DatePicker.java:973
 msgid "Wed"
-msgstr ""
+msgstr "Mi"
 
 #: src/org/revager/gui/helpers/DatePicker.java:975
 msgid "Thu"
-msgstr ""
+msgstr "Do"
 
 #: src/org/revager/gui/helpers/DatePicker.java:977
 msgid "Fri"
-msgstr ""
+msgstr "Fr"
 
 #: src/org/revager/gui/helpers/DatePicker.java:979
 msgid "Sat"
-msgstr ""
+msgstr "Sa"
 
 #: src/org/revager/gui/helpers/DatePicker.java:981
 msgid "Sun"
-msgstr ""
+msgstr "So"
 
 #: src/org/revager/gui/helpers/DatePicker.java:983
 msgid "Previous month"
-msgstr ""
+msgstr "Voriger Monat"
 
 #: src/org/revager/gui/helpers/DatePicker.java:985
 msgid "Next month"
-msgstr ""
+msgstr "Nächster Monat"
 
 #: src/org/revager/gui/helpers/DatePicker.java:987
 msgid "Previous year"
-msgstr ""
+msgstr "Voriges Jahr"
 
 #: src/org/revager/gui/helpers/DatePicker.java:989
 msgid "Next year"
-msgstr ""
+msgstr "Nächstes Jahr"
 
 #: src/org/revager/gui/helpers/DatePicker.java:993
 msgid "Please choose a date..."
-msgstr ""
+msgstr "Bitte Datum auswählen..."
 
 #: src/org/revager/gui/helpers/DatePicker.java:995
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 #: src/org/revager/gui/helpers/FileChooser.java:171
 #: src/org/revager/gui/helpers/FileChooser.java:302
 msgid "Open File..."
-msgstr ""
+msgstr "Datei öffnen..."
 
 #: src/org/revager/gui/helpers/FileChooser.java:190
 #: src/org/revager/gui/helpers/FileChooser.java:320
 msgid "Save File..."
-msgstr ""
+msgstr "Datei speichern..."
 
 #: src/org/revager/gui/helpers/FileChooser.java:209
 #: src/org/revager/gui/helpers/FileChooser.java:329
 msgid "Select Directory..."
-msgstr ""
+msgstr "Ordner wählen..."
 
 #: src/org/revager/gui/helpers/FileChooser.java:245
 msgid "Cannot find the given file. Please select a valid one."
 msgstr ""
+"Die gewählte Datei konnte nicht gefunden werden. Bitte wählen Sie eine "
+"gültige Datei."
 
 #: src/org/revager/gui/helpers/FileChooser.java:264
 msgid ""
 "There is a file with the given name already existing. Would you like to "
 "overwrite it?"
 msgstr ""
+"Es existiert bereits eine Datei mit dem angegebenen Namen. Soll diese "
+"überschrieben werden?"
 
 #: src/org/revager/gui/helpers/FileChooser.java:330
 msgid "Select"
-msgstr ""
+msgstr "Auswählen"
 
 #: src/org/revager/gui/helpers/FileChooser.java:357
 msgid ""
@@ -2691,71 +2708,74 @@ msgid ""
 "\n"
 "Please try again."
 msgstr ""
+"Beim Auswählen einer Datei / eines Ordners ist ein Fehler aufgetreten!\n"
+"\n"
+"Bitte versuchen Sie es erneut."
 
 #: src/org/revager/gui/helpers/TreeProtocol.java:116
 msgid "Findings List of"
-msgstr ""
+msgstr "Protokoll vom"
 
 #: src/org/revager/gui/models/AspectTableModel.java:145
 #: src/org/revager/gui/models/ReviewerTableModel.java:100
 msgid "Aspect"
-msgstr ""
+msgstr "Prüfaspekt"
 
 #: src/org/revager/gui/models/AspectTableModel.java:147
 msgid "Reviewers"
-msgstr ""
+msgstr "Gutachter"
 
 #: src/org/revager/gui/models/AttendeeTableModel.java:66
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: src/org/revager/gui/models/AttendeeTableModel.java:68
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 #: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:42
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:43
 msgid "Reference"
-msgstr ""
+msgstr "Referenz"
 
 #: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:44
 msgid "Severity"
-msgstr ""
+msgstr "Gewichtung"
 
 #: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:45
 msgid "Bug Reporter"
-msgstr ""
+msgstr "Bug-Reporter"
 
 #: src/org/revager/gui/models/CSVProfileTableModel.java:137
 msgid "Review Severity"
-msgstr ""
+msgstr "Gewichtung im Review"
 
 #: src/org/revager/gui/models/CSVProfileTableModel.java:139
 msgid "Mapping"
-msgstr ""
+msgstr "Zuordnung"
 
 #: src/org/revager/gui/models/FindExtRefTableModel.java:85
 msgid "Files"
-msgstr ""
+msgstr "Dateien"
 
 #: src/org/revager/gui/models/FindRefTableModel.java:105
 msgid "References"
-msgstr ""
+msgstr "Referenzen"
 
 #: src/org/revager/gui/models/PresentAttendeesTableModel.java:117
 msgid "Preparation time"
-msgstr ""
+msgstr "Vorbereitungszeit"
 
 #: src/org/revager/gui/models/ReviewerTableModel.java:98
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: src/org/revager/gui/workers/AutoAspAllocWorker.java:93
 msgid "Aspects allocated."
-msgstr ""
+msgstr "Prüfaspekte zugeteilt."
 
 #: src/org/revager/gui/workers/AutoAspAllocWorker.java:96
 msgid "Cannot allocate aspects!"
@@ -2763,23 +2783,23 @@ msgstr "Die Prüfaspekte konnten nicht zugeteilt werden!"
 
 #: src/org/revager/gui/workers/AutoBackupWorker.java:82
 msgid "Auto backup ..."
-msgstr ""
+msgstr "Automatische Sicherung ..."
 
 #: src/org/revager/gui/workers/AutoBackupWorker.java:92
 msgid "Auto backup done."
-msgstr ""
+msgstr "Automatische Sicherung erstellt."
 
 #: src/org/revager/gui/workers/AutoBackupWorker.java:100
 msgid "Auto backup failed!"
-msgstr ""
+msgstr "Automatische Sicherung fehlgeschlagen!"
 
 #: src/org/revager/gui/workers/AutoSaveWorker.java:98
 msgid "Review stored successfully."
-msgstr ""
+msgstr "Review erfolgreich gespeichert."
 
 #: src/org/revager/gui/workers/AutoSaveWorker.java:109
 msgid "Review couldn't be stored!"
-msgstr ""
+msgstr "Review konnte nicht gespeichert werden!"
 
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:72
 #, java-format
@@ -2792,113 +2812,132 @@ msgid ""
 "Please choose 'Update' to get the latest version. If you don't like to see "
 "this message again, you can turn it off in the application settings."
 msgstr ""
+"Eine neue Version von RevAger ist verfügbar!\n"
+"\n"
+"Aktuelle Version: {0}\n"
+"Ihre Version: {1}\n"
+"\n"
+"Bitte wählen Sie 'Update' um die aktuelle Version herunterzuladen. Wenn Sie "
+"diese Benachrichtigung nicht mehr sehen möchten, so können Sie diese in den "
+"Anwendungseinstellungen ausschalten."
 
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:76
 msgid "Update RevAger"
-msgstr ""
+msgstr "Update RevAger"
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:56
 msgid "Creating invitation(s) ..."
-msgstr ""
+msgstr "Einladungspakete werden erstellt ..."
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:92
 msgid "The invitations have been created successfully."
-msgstr ""
+msgstr "Die Einladungspakete wurden erfolgreich erstellt."
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:99
 msgid ""
 "You have to choose at least one attendee in order to create an invitation."
 msgstr ""
+"Sie müssen mindestens einen Teilnehmer auswählen, um ein Einladungspaket zu "
+"erstellen."
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:106
 msgid "Please choose a directory where to store the invitation(s)."
 msgstr ""
+"Bitte wählen Sie einen Ordner, in dem die Einladungspakete gespeichert "
+"werden sollen."
 
 #: src/org/revager/gui/workers/ExportAspectsWorker.java:73
 msgid "Exporting aspects ..."
-msgstr ""
+msgstr "Prüfaspekte werden exportiert ..."
 
 #: src/org/revager/gui/workers/ExportAspectsWorker.java:93
 msgid "Aspects exported successfully."
-msgstr ""
+msgstr "Die Prüfaspekte wurden erfolgreich exportiert."
 
 #: src/org/revager/gui/workers/ExportAspectsWorker.java:102
 msgid "Cannot export the selected aspects!"
-msgstr ""
+msgstr "Die ausgewählten Prüfaspekte konnten nicht exportiert werden!"
 
 #: src/org/revager/gui/workers/ExportCSVWorker.java:113
 #: src/org/revager/gui/workers/ExportCSVWorker.java:118
 msgid "The findings have been exported into a CSV file successfully."
-msgstr ""
+msgstr "Die Befunde wurden erfolgreich in eine CSV-Datei exportiert."
 
 #: src/org/revager/gui/workers/ExportCatalogWorker.java:73
 msgid "Exporting catalog ..."
-msgstr ""
+msgstr "Fragenkatalog wird exportiert ..."
 
 #: src/org/revager/gui/workers/ExportCatalogWorker.java:103
 msgid "Catalog exported successfully."
-msgstr ""
+msgstr "Der Fragenkatalog wurde erfolgreich exportiert."
 
 #: src/org/revager/gui/workers/ExportCatalogWorker.java:112
 msgid "Cannot export selected catalog!"
-msgstr ""
+msgstr "Der ausgewählte Fragenkatalog konnte nicht exportiert werden!"
 
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:75
 msgid "Review_Findings_List"
-msgstr ""
+msgstr "Review_Protokoll"
 
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:93
 msgid "Review_Meeting_Findings_List"
-msgstr ""
+msgstr "Review_Sitzungsprotokoll"
 
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:129
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:134
 msgid "The findings list has been exported as a PDF file successfully."
-msgstr ""
+msgstr "Das Protokoll wurde erfolgreich als PDF-Datei exportiert."
 
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:144
 msgid ""
 "RevAger cannot find a PDF viewer on your machine. Please install a PDF "
 "Viewer, and open the findings list manually."
 msgstr ""
+"RevAger konnte keine Anwendung zum Betrachten von PDF-Dateien auf Ihrem "
+"System finden. Bitten installieren eine solche Anwendung und öffnen Sie "
+"anschließend das Protokoll manuell."
 
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:71
 msgid "Importing aspects ..."
-msgstr ""
+msgstr "Prüfaspekte werden importiert ..."
 
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:86
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:117
 msgid "(No Directive)"
-msgstr ""
+msgstr "(Keine Direktive)"
 
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:94
 msgid "Aspects imported successfully."
-msgstr ""
+msgstr "Die Prüfaspekte wurden erfolgreich importiert."
 
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:100
 msgid ""
 "Cannot import selected file. The content isn't conform to the expected "
 "format (Resi XML Schema)."
 msgstr ""
+"Die gewählte Datei konnte nicht importiert werden. Der Inhalt dieser Datei "
+"entspricht nicht dem erwarteten Format (Resi XML Schema)."
 
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:105
 msgid "Cannot import aspects!"
-msgstr ""
+msgstr "Die Prüfaspekte konnten nicht importiert werden!"
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:88
 msgid "Please enter a new name for the catalog:"
-msgstr ""
+msgstr "Bitten geben Sie einen neuen Namen für den Fragenkatalog ein:"
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:91
 msgid ""
 "There is a catalog with the given name already existing. Please enter a new "
 "one."
 msgstr ""
+"Es existiert bereits ein Fragenkatalog mit dem angegebenen Namen. Bitte "
+"geben Sie einen neuen Namen ein."
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:127
 #: src/org/revager/gui/workers/LoadStdCatalogsWorker.java:113
 msgid "Catalog imported successfully."
-msgstr ""
+msgstr "Der Fragenkatalog wurde erfolgreich importiert."
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:134
 #: src/org/revager/gui/workers/LoadStdCatalogsWorker.java:119
@@ -2906,60 +2945,62 @@ msgid ""
 "Cannot import selected file. The content is not conform to the expected "
 "format (Resi XML Schema)."
 msgstr ""
+"Die gewählte Datei konnte nicht importiert werden. Der Inhalt dieser Datei "
+"entspricht nicht dem erwarteten Format (Resi XML Schema)."
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:139
 #: src/org/revager/gui/workers/LoadStdCatalogsWorker.java:124
 msgid "Cannot import catalog!"
-msgstr ""
+msgstr "Der Fragenkatalog konnte nicht importiert werden!"
 
 #: src/org/revager/gui/workers/LoadReviewWorker.java:64
 msgid "Loading review ..."
-msgstr ""
+msgstr "Review wird geladen ..."
 
 #: src/org/revager/gui/workers/LoadReviewWorker.java:71
 msgid "Review loaded successfully."
-msgstr ""
+msgstr "Das Review wurde erfolgreich geladen."
 
 #: src/org/revager/gui/workers/LoadReviewWorker.java:83
 msgid "Cannot load review file."
-msgstr ""
+msgstr "Die Review-Datei konnte nicht geladen werden."
 
 #: src/org/revager/gui/workers/NewReviewWorker.java:61
 msgid "Creating new review ..."
-msgstr ""
+msgstr "Ein neues Review wird erstellt ..."
 
 #: src/org/revager/gui/workers/NewReviewWorker.java:66
 msgid "New review created successfully."
-msgstr ""
+msgstr "Ein neues Review wurde erfolgreich erstellt."
 
 #: src/org/revager/gui/workers/NewReviewWorker.java:81
 msgid "Cannot create new review file."
-msgstr ""
+msgstr "Es konnte keine neue Review-Datei erstellt werden."
 
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:49
 msgid "Restoring backup ..."
-msgstr ""
+msgstr "Sicherung wird wiederhergestellt ..."
 
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:54
 msgid "Review restored successfully."
-msgstr ""
+msgstr "Das Review wurde erfolgreich wiederhergestellt."
 
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:65
 msgid "Cannot restore review."
-msgstr ""
+msgstr "Das Review konnte nicht wiederhergestellt werden."
 
 #: src/org/revager/gui/workers/SaveReviewWorker.java:66
 msgid "Saving review ..."
-msgstr ""
+msgstr "Review wird gespeichert ..."
 
 #: src/org/revager/gui/workers/SaveReviewWorker.java:71
 msgid "Review saved successfully."
-msgstr ""
+msgstr "Das Review wurde erfolgreich gespeichert."
 
 #: src/org/revager/gui/workers/SaveReviewWorker.java:80
 #: src/org/revager/gui/workers/SaveReviewWorker.java:84
 msgid "Cannot save review file."
-msgstr ""
+msgstr "Die Review-Datei konnte nicht gespeichert werden."
 
 #~ msgid "Missing attendee information. You have to add at least one attendee."
 #~ msgstr ""
@@ -2972,6 +3013,15 @@ msgstr ""
 #~ msgstr ""
 #~ "Der Prüfling ist nicht komplett angegegeben. Die Angabe von Name, Version "
 #~ "und mindestens einer Referenz oder Datei ist notwendig."
+
+#~ msgid ""
+#~ "Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); "
+#~ "Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; "
+#~ "Quellcode; Testkonzept; Testunterlage"
+#~ msgstr ""
+#~ "Entwurfsunterlage; Entwurfsunterlage (elementare Komponente); "
+#~ "Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; "
+#~ "Quellcode; Testkonzept; Testunterlage"
 
 #~ msgid "Missing meeting information. You have to add at least one meeting."
 #~ msgstr ""
@@ -3073,6 +3123,9 @@ msgstr ""
 
 #~ msgid "Please enter the location of the review."
 #~ msgstr "Bitte geben Sie den Ort ein, an dem das Review stattfindet."
+
+#~ msgid "Close Aspects Manager"
+#~ msgstr "Prüfaspekte-Manager schließen"
 
 #~ msgid ""
 #~ "In order to finalize the current review all required information have to be "

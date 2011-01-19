@@ -53,9 +53,10 @@ public class NewInstantReviewWorker extends NewReviewWorker {
 		/*
 		 * Run OpenFindingsListAction
 		 */
-		ActionRegistry.getInstance()
-				.get(OpenFindingsListAction.class.getName())
-				.actionPerformed(null);
+		OpenFindingsListAction action = (OpenFindingsListAction) ActionRegistry
+				.getInstance().get(OpenFindingsListAction.class.getName());
+
+		action.performActionDirectly();
 
 		return null;
 	}

@@ -1635,12 +1635,12 @@ public class MainFrame extends AbstractFrame implements Observer {
 	public void switchToClearMode() {
 		super.switchToClearMode();
 
-		UI.getInstance().setStatus(Status.NO_FILE_LOADED);
-
 		splitPanel.setVisible(false);
 		splitPanel.removeAll();
 
 		observeResiData(false);
+
+		UI.getInstance().setStatus(Status.NO_FILE_LOADED);
 
 		updateHints();
 		updateTitle();
@@ -1880,6 +1880,10 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 */
 	public void setAssistantMode(boolean assistantMode) {
 		this.assistantMode = assistantMode;
+
+		if (assistantMode) {
+			updateHints();
+		}
 	}
 
 }

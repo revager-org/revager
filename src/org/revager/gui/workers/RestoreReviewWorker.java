@@ -26,6 +26,7 @@ import javax.swing.SwingWorker;
 import org.revager.app.Application;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
+import org.revager.gui.UI.Status;
 import org.revager.tools.GUITools;
 
 /**
@@ -59,6 +60,12 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.setStatusMessage(_("No review in process."), false);
 
 			mainframe.switchToClearMode();
+
+			mainframe.setAssistantMode(true);
+			
+			Application.getInstance().getApplicationCtl().clearReview();
+			
+			UI.getInstance().setStatus(Status.NO_FILE_LOADED);
 
 			JOptionPane.showMessageDialog(
 					UI.getInstance().getMainFrame(),

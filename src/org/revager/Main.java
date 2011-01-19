@@ -27,6 +27,7 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import org.revager.app.Application;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppSettingKey;
@@ -125,39 +126,40 @@ public class Main {
 	 * Restart the application.
 	 */
 	public static void restartApplication() {
-		String javaBinary = "java";
-
-		if (UI.getInstance().getPlatform() == UI.Platform.WINDOWS) {
-			javaBinary = "java.exe";
-		}
-
 		String appPath = AppTools.getJarLocation();
 
-		if (argData != null) {
-			appPath += "-data " + argData;
+		if (appPath.toLowerCase().endsWith(".jar")) {
+			String javaBinary = "java";
+
+			if (UI.getInstance().getPlatform() == UI.Platform.WINDOWS) {
+				javaBinary = "java.exe";
+			}
+
+			appPath = javaBinary + " -jar " + appPath;
 		}
-		
-		ProcessBuilder pb = new ProcessBuilder(javaBinary, "-jar",
-				appPath);
+
+		if (argData != null) {
+			appPath += " -data " + argData;
+		}
+
+		ProcessBuilder pb = new ProcessBuilder(appPath);
 
 		try {
 			pb.start();
-			
-			exitApplication();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
-					JOptionPane.ERROR_MESSAGE);
-
 			System.err.println(e.getMessage());
 		}
+
+		exitApplication();
 	}
-	
+
 	/**
 	 * Exit the application.
 	 */
 	public static void exitApplication() {
 		UI.getInstance().getMainFrame().dispose();
+
+		Application.getInstance().getApplicationCtl().clearReview();
 
 		System.exit(0);
 	}

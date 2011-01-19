@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.swing.AbstractAction;
@@ -62,8 +63,23 @@ public class ConfirmMeetingAction extends AbstractAction {
 			newMeeting.setPlannedDate(new GregorianCalendar());
 		}
 
-		newMeeting.setPlannedStart(meetDialog.getBegin());
-		newMeeting.setPlannedEnd(meetDialog.getEnd());
+		Calendar begin = meetDialog.getBegin();
+		Calendar end = meetDialog.getEnd();
+
+		if (end.compareTo(begin) <= 0) {
+			int year = begin.get(Calendar.YEAR);
+			int month = begin.get(Calendar.MONTH);
+			int dayOfMonth = begin.get(Calendar.DAY_OF_MONTH);
+			int hourOfDay = begin.get(Calendar.HOUR_OF_DAY) + 2;
+			int minute = begin.get(Calendar.MINUTE);
+			int second = begin.get(Calendar.SECOND);
+
+			end = new GregorianCalendar(year, month, dayOfMonth, hourOfDay,
+					minute, second);
+		}
+
+		newMeeting.setPlannedStart(begin);
+		newMeeting.setPlannedEnd(end);
 		newMeeting.setPlannedLocation(meetDialog.getLocationTxt());
 		newMeeting.setCanceled(meetDialog.getCanceled());
 		Application.getInstance().getReviewMgmt().setRecommendation("");

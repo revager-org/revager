@@ -36,6 +36,8 @@ import javax.swing.plaf.FontUIResource;
 
 import org.revager.app.Application;
 import org.revager.app.model.Data;
+import org.revager.gui.actions.ActionRegistry;
+import org.revager.gui.actions.ExitAction;
 import org.revager.gui.aspects_manager.AspectsManagerFrame;
 import org.revager.gui.dialogs.AboutDialog;
 import org.revager.gui.dialogs.AttendeeDialog;
@@ -688,6 +690,21 @@ public class UI implements Observer {
 			System.setProperty(
 					"com.apple.mrj.application.apple.menu.about.name", Data
 							.getInstance().getResource("appName"));
+
+			/*
+			 * Register a hook to save the window position when quit via the app
+			 * menu.
+			 */
+			Runnable runner = new Runnable() {
+				public void run() {
+					ActionRegistry.getInstance()
+							.get(ExitAction.class.getName())
+							.actionPerformed(null);
+				}
+			};
+
+			Runtime.getRuntime().addShutdownHook(
+					new Thread(runner, "Window Prefs Hook"));
 		}
 
 		/*
@@ -741,7 +758,7 @@ public class UI implements Observer {
 		/*
 		 * Initialize the frames
 		 */
-		//getHelpBrowserFrame();
+		// getHelpBrowserFrame();
 		getAspectsManagerFrame();
 		getCSVProfilesDialog();
 		getFileChooser();

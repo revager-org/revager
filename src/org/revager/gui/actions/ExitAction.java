@@ -30,6 +30,7 @@ import javax.swing.KeyStroke;
 
 import org.revager.Main;
 import org.revager.app.model.Data;
+import org.revager.gui.UI;
 import org.revager.gui.UI.Status;
 import org.revager.tools.GUITools;
 
@@ -68,12 +69,12 @@ public class ExitAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Status status = org.revager.gui.UI.getInstance().getStatus();
+		Status status = UI.getInstance().getStatus();
 
 		if (status == Status.UNSAVED_CHANGES) {
 			int option = JOptionPane
 					.showConfirmDialog(
-							org.revager.gui.UI.getInstance().getMainFrame(),
+							UI.getInstance().getMainFrame(),
 							GUITools.getMessagePane(_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
 							_("Question"), JOptionPane.YES_NO_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE);
@@ -91,7 +92,7 @@ public class ExitAction extends AbstractAction {
 			if (option == JOptionPane.NO_OPTION) {
 				exitApplication();
 			}
-			
+
 			if (option == JOptionPane.CANCEL_OPTION) {
 				restartAgain = false;
 			}

@@ -87,83 +87,87 @@ public class OpenFindingsListAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		GUITools.executeSwingWorker(new OpenProtocolFrameWorker());
 	}
+	
+	public void performActionDirectly() {
+		try {
+			MainFrame mainFrame = UI.getInstance().getMainFrame();
+			FindingsListFrame protFrame = UI.getInstance()
+					.getProtocolFrame();
+
+			mainFrame.switchToProgressMode();
+
+			Protocol currentProt = null;
+			Meeting currentMeet = null;
+
+			if (mainFrame.getSelectedProtocol() != null) {
+				currentProt = mainFrame.getSelectedProtocol();
+				currentMeet = protMgmt.getMeeting(currentProt);
+			} else if (mainFrame.getSelectedMeeting() != null) {
+				currentProt = mainFrame.getSelectedMeeting().getProtocol();
+				currentMeet = mainFrame.getSelectedMeeting();
+			} else {
+				/*
+				 * Create a new meeting
+				 */
+				Calendar currentTime = new GregorianCalendar();
+
+				int year = currentTime.get(Calendar.YEAR);
+				int month = currentTime.get(Calendar.MONTH);
+				int dayOfMonth = currentTime.get(Calendar.DAY_OF_MONTH);
+				int hourOfDay = currentTime.get(Calendar.HOUR_OF_DAY) + 2;
+				int minute = currentTime.get(Calendar.MINUTE);
+				int second = currentTime.get(Calendar.SECOND);
+
+				currentMeet = meetMgmt.addMeeting(currentTime, currentTime,
+						new GregorianCalendar(year, month, dayOfMonth,
+								hourOfDay, minute, second), "");
+			}
+
+			if (currentProt == null) {
+				currentProt = new Protocol();
+				currentProt.setDate(currentMeet.getPlannedDate());
+				currentProt.setLocation(currentMeet.getPlannedLocation());
+				currentProt.setStart(currentMeet.getPlannedStart());
+				currentProt.setEnd(currentMeet.getPlannedEnd());
+				currentProt.setComments("");
+
+				Finding newFind = new Finding();
+				newFind.setSeverity(sevMgmt.getSeverities().get(0));
+
+				findingMgmt.addFinding(newFind, currentProt);
+
+				/*
+				 * If there's exactly one attendee it is very likely that an
+				 * instant review has been started.
+				 */
+				List<Attendee> attendees = attMgmt.getAttendees();
+
+				if (attendees.size() == 1) {
+					protMgmt.addAttendee(attendees.get(0), DatatypeFactory
+							.newInstance().newDuration(0), currentProt);
+				}
+			}
+
+			protMgmt.setProtocol(currentProt, currentMeet);
+
+			protFrame.resetClock();
+			protFrame.setMeeting(currentMeet);
+			protFrame.setVisible(true);
+
+			mainFrame.updateMeetingsTree();
+			mainFrame.switchToEditMode();
+		} catch (Exception e) {
+			UI.getInstance().getMainFrame().switchToEditMode();
+			
+			e.printStackTrace();
+		}
+	}
 
 	private class OpenProtocolFrameWorker extends SwingWorker<Void, Void> {
 		@Override
 		protected Void doInBackground() throws Exception {
-			try {
-				MainFrame mainFrame = UI.getInstance().getMainFrame();
-				FindingsListFrame protFrame = UI.getInstance()
-						.getProtocolFrame();
-
-				mainFrame.switchToProgressMode();
-
-				Protocol currentProt = null;
-				Meeting currentMeet = null;
-
-				if (mainFrame.getSelectedProtocol() != null) {
-					currentProt = mainFrame.getSelectedProtocol();
-					currentMeet = protMgmt.getMeeting(currentProt);
-				} else if (mainFrame.getSelectedMeeting() != null) {
-					currentProt = mainFrame.getSelectedMeeting().getProtocol();
-					currentMeet = mainFrame.getSelectedMeeting();
-				} else {
-					/*
-					 * Create a new meeting
-					 */
-					Calendar currentTime = new GregorianCalendar();
-
-					int year = currentTime.get(Calendar.YEAR);
-					int month = currentTime.get(Calendar.MONTH);
-					int dayOfMonth = currentTime.get(Calendar.DAY_OF_MONTH);
-					int hourOfDay = currentTime.get(Calendar.HOUR_OF_DAY) + 2;
-					int minute = currentTime.get(Calendar.MINUTE);
-					int second = currentTime.get(Calendar.SECOND);
-
-					currentMeet = meetMgmt.addMeeting(currentTime, currentTime,
-							new GregorianCalendar(year, month, dayOfMonth,
-									hourOfDay, minute, second), "");
-				}
-
-				if (currentProt == null) {
-					currentProt = new Protocol();
-					currentProt.setDate(currentMeet.getPlannedDate());
-					currentProt.setLocation(currentMeet.getPlannedLocation());
-					currentProt.setStart(currentMeet.getPlannedStart());
-					currentProt.setEnd(currentMeet.getPlannedEnd());
-					currentProt.setComments("");
-
-					Finding newFind = new Finding();
-					newFind.setSeverity(sevMgmt.getSeverities().get(0));
-
-					findingMgmt.addFinding(newFind, currentProt);
-
-					/*
-					 * If there's exactly one attendee it is very likely that an
-					 * instant review has been started
-					 */
-					List<Attendee> attendees = attMgmt.getAttendees();
-
-					if (attendees.size() == 1) {
-						protMgmt.addAttendee(attendees.get(0), DatatypeFactory
-								.newInstance().newDuration(0), currentProt);
-					}
-				}
-
-				protMgmt.setProtocol(currentProt, currentMeet);
-
-				protFrame.resetClock();
-				protFrame.setMeeting(currentMeet);
-				protFrame.setVisible(true);
-
-				mainFrame.updateMeetingsTree();
-				mainFrame.switchToEditMode();
-			} catch (Exception e) {
-				UI.getInstance().getMainFrame().switchToEditMode();
-				
-				e.printStackTrace();
-			}
-
+			performActionDirectly();
+			
 			return null;
 		}
 	}

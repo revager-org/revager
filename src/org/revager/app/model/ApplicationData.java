@@ -488,10 +488,6 @@ public class ApplicationData extends Observable {
 		ps.setInt(2, CURRENT_DATABASE_VERSION);
 		ps.executeUpdate();
 
-		ps.setString(1, AppSettingKey.APP_LANGUAGE.toString());
-		ps.setString(2, Data.getInstance().getResource("appDefaultLang"));
-		ps.executeUpdate();
-
 		ps.setString(1, AppSettingKey.APP_DO_AUTO_SAVE.toString());
 		ps.setString(2, AppSettingValue.TRUE.toString());
 		ps.executeUpdate();

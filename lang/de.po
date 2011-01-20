@@ -7,18 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-18 23:15+0100\n"
+"POT-Creation-Date: 2011-01-19 21:44+0100\n"
 "PO-Revision-Date: 2011-01-18 22:28+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-19 05:09+0000\n"
+"X-Launchpad-Export-Date: 2011-01-20 05:15+0000\n"
 "X-Generator: Launchpad (build 12177)\n"
 
-#: src/org/revager/Main.java:117 src/org/revager/Main.java:149
-#: src/org/revager/Main.java:241 src/org/revager/gui/HelpBrowserFrame.java:356
+#: src/org/revager/Main.java:118 src/org/revager/Main.java:243
+#: src/org/revager/gui/HelpBrowserFrame.java:356
 #: src/org/revager/gui/StrengthPopupWindow.java:136
 #: src/org/revager/gui/StrengthPopupWindow.java:292
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:84
@@ -71,12 +71,12 @@ msgstr ""
 #: src/org/revager/gui/workers/LoadReviewWorker.java:84
 #: src/org/revager/gui/workers/LoadStdCatalogsWorker.java:120
 #: src/org/revager/gui/workers/NewReviewWorker.java:82
-#: src/org/revager/gui/workers/RestoreReviewWorker.java:66
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:73
 #: src/org/revager/gui/workers/SaveReviewWorker.java:86
 msgid "Error"
 msgstr "Fehler"
 
-#: src/org/revager/Main.java:233
+#: src/org/revager/Main.java:235
 msgid ""
 "RevAger has detected an existing review data folder from an earlier version "
 "of this application. Do you want to use the data for the new version of "
@@ -85,8 +85,8 @@ msgstr ""
 "Es wurde ein Ordner mit Review-Daten einer früheren RevAger-Version "
 "gefunden. Wollen Sie diese Daten mit der neuen RevAger-Version nutzen?"
 
-#: src/org/revager/Main.java:234 src/org/revager/gui/UI.java:764
-#: src/org/revager/gui/actions/ExitAction.java:78
+#: src/org/revager/Main.java:236 src/org/revager/gui/UI.java:781
+#: src/org/revager/gui/actions/ExitAction.java:79
 #: src/org/revager/gui/actions/NewReviewAction.java:67
 #: src/org/revager/gui/actions/SaveReviewAction.java:101
 #: src/org/revager/gui/actions/SaveReviewAsAction.java:96
@@ -188,7 +188,7 @@ msgstr ""
 "geöffnet werden. Unter Umständen ist ein Grund dafür, dass RevAger bereits "
 "läuft."
 
-#: src/org/revager/app/model/ApplicationData.java:538
+#: src/org/revager/app/model/ApplicationData.java:534
 msgid ""
 "You are invited to the review meeting. Please consider the information which "
 "are part of this document."
@@ -196,7 +196,7 @@ msgstr ""
 "Sie sind zur Review-Sitzung eingeladen. Bitte beachten Sie alle hier "
 "erwähnten Informationen."
 
-#: src/org/revager/app/model/ApplicationData.java:703
+#: src/org/revager/app/model/ApplicationData.java:699
 msgid "Cannot retrieve the requested application settings."
 msgstr "Die Anwendungseinstellungen konnten nicht ermittelt werden."
 
@@ -204,27 +204,27 @@ msgstr "Die Anwendungseinstellungen konnten nicht ermittelt werden."
 #. * Not part of the unit testing, because this exception is only
 #. * thrown if there occurs an internal error.
 #. 
-#: src/org/revager/app/model/ApplicationData.java:776
+#: src/org/revager/app/model/ApplicationData.java:772
 msgid "Cannot store application settings."
 msgstr "Die Anwendungseinstellungen konnten nicht gespeichert werden."
 
-#: src/org/revager/app/model/ApplicationData.java:837
+#: src/org/revager/app/model/ApplicationData.java:833
 msgid "Cannot load the list of recent reviews."
 msgstr "Die zuletzt bearbeiteten Reviews konnten nicht ermittelt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:902
+#: src/org/revager/app/model/ApplicationData.java:898
 msgid "Cannot add the current review to the list of recent reviews."
 msgstr ""
 "Das aktuelle Review kann nicht zur Liste der zuletzt bearbeiteten Reviews "
 "hinzugefügt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:938
+#: src/org/revager/app/model/ApplicationData.java:934
 msgid "Cannot remove the review from the list of recent reviews."
 msgstr ""
 "Das aktuelle Review kann nicht aus der Liste der zuletzt bearbeiteten "
 "Reviews entfernt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:977
+#: src/org/revager/app/model/ApplicationData.java:973
 msgid "Cannot load catalogs from the catalog library."
 msgstr ""
 "Es konnten keine Fragenkataloge aus der Katalog-Bibliothek geladen werden."
@@ -233,57 +233,57 @@ msgstr ""
 #. * Not part of the unit testing, because this exception is only
 #. * thrown if there occurs an internal error.
 #. 
-#: src/org/revager/app/model/ApplicationData.java:1047
+#: src/org/revager/app/model/ApplicationData.java:1043
 msgid "Cannot find requested catalog."
 msgstr "Der gesuchte Fragenkatalog konnte nicht gefunden werden."
 
-#: src/org/revager/app/model/ApplicationData.java:1191
+#: src/org/revager/app/model/ApplicationData.java:1187
 msgid "An error occured while removing a catalog."
 msgstr ""
 "Während des Löschvorgangs des Fragenkatalogs ist ein Fehler aufgetreten."
 
-#: src/org/revager/app/model/ApplicationData.java:1241
-#: src/org/revager/app/model/ApplicationData.java:1825
+#: src/org/revager/app/model/ApplicationData.java:1237
+#: src/org/revager/app/model/ApplicationData.java:1821
 msgid "Cannot get the number of catalogs in the library."
 msgstr ""
 "Die Anzahl an Fragenkatalogen in der Katalog-Bibliothek konnte nicht "
 "ermittelt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:1282
+#: src/org/revager/app/model/ApplicationData.java:1278
 msgid "Cannot get the first sorting position of the catalogs."
 msgstr ""
 "Die erste Position der Kataloge bzgl. ihrer Sortierung konnte nicht "
 "ermittelt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:1323
+#: src/org/revager/app/model/ApplicationData.java:1319
 msgid "Cannot get the last sorting position of the catalogs."
 msgstr ""
 "Die letzte Position der Kataloge bzgl. ihrer Sortierung konnte nicht "
 "ermittelt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:1364
+#: src/org/revager/app/model/ApplicationData.java:1360
 msgid "Cannot load attendees from the database."
 msgstr "Die Teilnehmer konnten nicht aus der Datenbank geladen werden."
 
-#: src/org/revager/app/model/ApplicationData.java:1449
+#: src/org/revager/app/model/ApplicationData.java:1445
 msgid ""
 "Cannot find requested attendee. The requested attendee may not be existing."
 msgstr ""
 "Der gesuchte Teilnehmer konnte nicht gefunden werden.Unter Umständen "
 "existiert der gesuchte Teilnehmer nicht."
 
-#: src/org/revager/app/model/ApplicationData.java:1535
+#: src/org/revager/app/model/ApplicationData.java:1531
 msgid "An error occurred while removing an attendee."
 msgstr ""
 "Während des Löschvorgangs des Teilnehmers ist ein Fehler aufgetreten."
 
-#: src/org/revager/app/model/ApplicationData.java:1585
+#: src/org/revager/app/model/ApplicationData.java:1581
 msgid "Cannot get the number of attendees in the database."
 msgstr ""
 "Die Anzahl an gespeicherten Teilnehmern in der Datenbank konnte nicht "
 "ermittelt werden."
 
-#: src/org/revager/app/model/ApplicationData.java:1625
+#: src/org/revager/app/model/ApplicationData.java:1621
 msgid "Cannot load any CSV profile from the database."
 msgstr "Es konnte kein CSV-Profil aus der Datenbank geladen werden."
 
@@ -291,7 +291,7 @@ msgstr "Es konnte kein CSV-Profil aus der Datenbank geladen werden."
 #. * Not part of the unit testing, because this exception is only
 #. * thrown if there occurs an internal error.
 #. 
-#: src/org/revager/app/model/ApplicationData.java:1695
+#: src/org/revager/app/model/ApplicationData.java:1691
 msgid "Cannot load the requested CSV profile."
 msgstr "Das gewählte CSV-Profil konnte nicht geladen werden."
 
@@ -299,7 +299,7 @@ msgstr "Das gewählte CSV-Profil konnte nicht geladen werden."
 #. * Not part of the unit testing, because this exception is only
 #. * thrown if there occurs an internal error.
 #. 
-#: src/org/revager/app/model/ApplicationData.java:1775
+#: src/org/revager/app/model/ApplicationData.java:1771
 msgid "Cannot remove the CSV profile."
 msgstr "Das gewählte CSV-Profil konnte nicht gelöscht werden."
 
@@ -1033,7 +1033,7 @@ msgstr "Hinweise ein-/ausblenden"
 #: src/org/revager/gui/AbstractFrame.java:554
 #: src/org/revager/gui/workers/LoadReviewWorker.java:77
 #: src/org/revager/gui/workers/NewReviewWorker.java:75
-#: src/org/revager/gui/workers/RestoreReviewWorker.java:59
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:60
 msgid "No review in process."
 msgstr "Kein Review in Bearbeitung."
 
@@ -1292,15 +1292,15 @@ msgid "Remove list of findings"
 msgstr "Sitzungsprotokoll entfernen"
 
 #. getMainFrame().setEnabled(false);
-#: src/org/revager/gui/UI.java:758
+#: src/org/revager/gui/UI.java:775
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: src/org/revager/gui/UI.java:758
+#: src/org/revager/gui/UI.java:775
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/org/revager/gui/UI.java:763
+#: src/org/revager/gui/UI.java:780
 msgid ""
 "RevAger didn't shut down correctly. Thus some review data might have got "
 "lost.\n"
@@ -1312,11 +1312,11 @@ msgstr ""
 "\n"
 "Wollen Sie das zuletzt geöffnete Review wiederherstellen?"
 
-#: src/org/revager/gui/actions/ExitAction.java:51
+#: src/org/revager/gui/actions/ExitAction.java:52
 msgid "Close Application"
 msgstr "Anwendung beenden"
 
-#: src/org/revager/gui/actions/ExitAction.java:77
+#: src/org/revager/gui/actions/ExitAction.java:78
 #: src/org/revager/gui/actions/NewReviewAction.java:66
 msgid ""
 "There are unsaved changes in the review. Would you like to save them now?\n"
@@ -2977,15 +2977,15 @@ msgstr "Ein neues Review wurde erfolgreich erstellt."
 msgid "Cannot create new review file."
 msgstr "Es konnte keine neue Review-Datei erstellt werden."
 
-#: src/org/revager/gui/workers/RestoreReviewWorker.java:49
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:50
 msgid "Restoring backup ..."
 msgstr "Sicherung wird wiederhergestellt ..."
 
-#: src/org/revager/gui/workers/RestoreReviewWorker.java:54
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:55
 msgid "Review restored successfully."
 msgstr "Das Review wurde erfolgreich wiederhergestellt."
 
-#: src/org/revager/gui/workers/RestoreReviewWorker.java:65
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:72
 msgid "Cannot restore review."
 msgstr "Das Review konnte nicht wiederhergestellt werden."
 

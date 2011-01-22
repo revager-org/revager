@@ -25,7 +25,6 @@ import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Meeting;
-import org.revager.app.model.schema.Review;
 
 /**
  * This class implements the functionality to export a protocol for a certain
@@ -39,9 +38,9 @@ public class MeetingProtocolPDFExporter extends ProtocolPDFExporter {
 	private static ApplicationData appData = Data.getInstance().getAppData();
 
 	/**
-	 * Reference to the current review.
+	 * The title of the review.
 	 */
-	private static Review review = Data.getInstance().getResiData().getReview();
+	private static String reviewTitle = ProtocolPDFExporter.getReviewTitle();
 
 	/**
 	 * The meeting.
@@ -89,9 +88,9 @@ public class MeetingProtocolPDFExporter extends ProtocolPDFExporter {
 	public MeetingProtocolPDFExporter(String filePath, Meeting meeting,
 			boolean showSignFields, boolean attachProdExtRefs,
 			boolean attachFindExtRefs) throws ExportException, DataException {
-		super(filePath, _("List of Findings") + " · " + review.getName(),
-				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
-						.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
+		super(filePath, _("List of Findings") + " · " + reviewTitle, appData
+				.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
+				.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
 		this.meeting = meeting;
 		this.showSignFields = showSignFields;

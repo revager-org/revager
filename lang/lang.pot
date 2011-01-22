@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-22 14:16+0100\n"
+"POT-Creation-Date: 2011-01-22 17:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,13 +95,13 @@ msgstr ""
 msgid "Question"
 msgstr ""
 
-#: src/org/revager/app/ApplicationControl.java:181
-#: src/org/revager/app/ApplicationControl.java:228
+#: src/org/revager/app/ApplicationControl.java:182
+#: src/org/revager/app/ApplicationControl.java:229
 msgid "It is not possible to store and open application data. Please choose another location."
 msgstr ""
 
-#: src/org/revager/app/ApplicationControl.java:395
-#: src/org/revager/app/ApplicationControl.java:401
+#: src/org/revager/app/ApplicationControl.java:400
+#: src/org/revager/app/ApplicationControl.java:406
 msgid "Review"
 msgstr ""
 
@@ -581,94 +581,85 @@ msgstr ""
 msgid "HH:mm"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:152
+#: src/org/revager/export/InvitationPDFExporter.java:165
 msgid "Invitation"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:249
+#: src/org/revager/export/InvitationPDFExporter.java:261
 msgid "To:"
 msgstr ""
 
 #.
 #. * subject
 #.
-#: src/org/revager/export/InvitationPDFExporter.java:273
+#: src/org/revager/export/InvitationPDFExporter.java:285
 msgid "Invitation for the Meeting on"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:303
-#: src/org/revager/export/ProtocolPDFExporter.java:275
-#: src/org/revager/export/ProtocolPDFExporter.java:539
-#: src/org/revager/export/ProtocolPDFExporter.java:769
-#: src/org/revager/export/ProtocolPDFExporter.java:892
-#: src/org/revager/export/ProtocolPDFExporter.java:971
-msgid "o'clock"
-msgstr ""
-
-#: src/org/revager/export/InvitationPDFExporter.java:313
-#: src/org/revager/export/ProtocolPDFExporter.java:286
-#: src/org/revager/export/ProtocolPDFExporter.java:539
-#: src/org/revager/export/ProtocolPDFExporter.java:901
-#: src/org/revager/export/ProtocolPDFExporter.java:972
+#: src/org/revager/export/InvitationPDFExporter.java:325
+#: src/org/revager/export/ProtocolPDFExporter.java:303
+#: src/org/revager/export/ProtocolPDFExporter.java:573
+#: src/org/revager/export/ProtocolPDFExporter.java:938
+#: src/org/revager/export/ProtocolPDFExporter.java:1008
 msgid "Location"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:337
+#: src/org/revager/export/InvitationPDFExporter.java:350
 #, java-format
-msgid "You are invited as {0} to the review \"{1}\":"
+msgid "You are invited as {0} to this review ({1})."
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:360
+#: src/org/revager/export/InvitationPDFExporter.java:373
 #, java-format
 msgid "This meeting ties up to the review meeting of {0}."
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:370
+#: src/org/revager/export/InvitationPDFExporter.java:388
 msgid "The following product will be reviewed:"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:391
-#: src/org/revager/export/ProtocolPDFExporter.java:402
+#: src/org/revager/export/InvitationPDFExporter.java:414
+#: src/org/revager/export/ProtocolPDFExporter.java:430
 msgid "Product Version"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:451
+#: src/org/revager/export/InvitationPDFExporter.java:478
 #: src/org/revager/export/PDFCellEventExtRef.java:80
-#: src/org/revager/export/ProtocolPDFExporter.java:456
-#: src/org/revager/export/ProtocolPDFExporter.java:1556
+#: src/org/revager/export/ProtocolPDFExporter.java:483
+#: src/org/revager/export/ProtocolPDFExporter.java:1596
 msgid "File Attachment"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:490
+#: src/org/revager/export/InvitationPDFExporter.java:517
 msgid "Please prepare for the review meeting by checking the product for the aspects which are associated to you."
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:504
+#: src/org/revager/export/InvitationPDFExporter.java:531
 msgid "Please do not hesitate to contact the review moderator if you have any questions:"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:509
+#: src/org/revager/export/InvitationPDFExporter.java:536
 msgid "Please do not hesitate to contact one of the review moderators if you have any questions:"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:535
-#: src/org/revager/export/ProtocolPDFExporter.java:805
+#: src/org/revager/export/InvitationPDFExporter.java:562
+#: src/org/revager/export/ProtocolPDFExporter.java:836
 msgid "Cannot generate front page of the PDF document."
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:687
+#: src/org/revager/export/InvitationPDFExporter.java:718
 msgid "Cannot put aspects into the PDF document."
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:719
+#: src/org/revager/export/InvitationPDFExporter.java:750
 msgid "Please prepare for the review meeting by checking the product for the following aspects step by step:"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:731
+#: src/org/revager/export/InvitationPDFExporter.java:762
 msgid "The product will be checked for the following aspects:"
 msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:748
+#: src/org/revager/export/InvitationPDFExporter.java:779
 msgid "Cannot create invitation for the review meeting."
 msgstr ""
 
@@ -680,8 +671,8 @@ msgstr ""
 msgid "Cannot store invitation as ZIP file."
 msgstr ""
 
-#: src/org/revager/export/MeetingProtocolPDFExporter.java:92
-#: src/org/revager/export/ReviewProtocolPDFExporter.java:93
+#: src/org/revager/export/MeetingProtocolPDFExporter.java:91
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:92
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1132
 msgid "List of Findings"
 msgstr ""
@@ -690,8 +681,8 @@ msgstr ""
 #. * Not part of unit testing because this exception is only thrown if
 #. * an internal error occurs.
 #.
-#: src/org/revager/export/MeetingProtocolPDFExporter.java:126
-#: src/org/revager/export/ReviewProtocolPDFExporter.java:163
+#: src/org/revager/export/MeetingProtocolPDFExporter.java:125
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:165
 msgid "Cannot create PDF document."
 msgstr ""
 
@@ -704,66 +695,63 @@ msgstr ""
 msgid "Page {0} of"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:224
-msgid "Findings List of the entire review"
+#: src/org/revager/export/ProtocolPDFExporter.java:237
+msgid "Findings List of the Review"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:227
-msgid "Findings List of the review meeting"
+#: src/org/revager/export/ProtocolPDFExporter.java:240
+msgid "Findings List of the Review Meeting"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:303
+#: src/org/revager/export/ProtocolPDFExporter.java:319
 msgid "Review Description:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:309
+#: src/org/revager/export/ProtocolPDFExporter.java:325
 msgid "Review Comments"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:363
+#: src/org/revager/export/ProtocolPDFExporter.java:379
 msgid "Reviewed Product:"
 msgstr ""
 
-#.
-#. * Write name and version of the reviewed product
-#.
-#: src/org/revager/export/ProtocolPDFExporter.java:386
+#: src/org/revager/export/ProtocolPDFExporter.java:409
 msgid "Product Name"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:422
+#: src/org/revager/export/ProtocolPDFExporter.java:449
 msgid "Product References:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:501
+#: src/org/revager/export/ProtocolPDFExporter.java:530
 msgid "Meeting Information:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:504
+#: src/org/revager/export/ProtocolPDFExporter.java:533
 msgid "Findings Lists of the Review Meetings:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:537
+#: src/org/revager/export/ProtocolPDFExporter.java:571
 msgid "Date"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:538
+#: src/org/revager/export/ProtocolPDFExporter.java:572
 msgid "Time"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:579
+#: src/org/revager/export/ProtocolPDFExporter.java:612
 msgid "Duration of the meeting"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:580
-#: src/org/revager/export/ProtocolPDFExporter.java:1296
+#: src/org/revager/export/ProtocolPDFExporter.java:613
+#: src/org/revager/export/ProtocolPDFExporter.java:1336
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:210
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:158
 msgid "Hour(s)"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:581
-#: src/org/revager/export/ProtocolPDFExporter.java:1303
+#: src/org/revager/export/ProtocolPDFExporter.java:614
+#: src/org/revager/export/ProtocolPDFExporter.java:1343
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:211
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:159
 msgid "Minute(s)"
@@ -772,99 +760,99 @@ msgstr ""
 #.
 #. * meeting number of findings
 #.
-#: src/org/revager/export/ProtocolPDFExporter.java:597
+#: src/org/revager/export/ProtocolPDFExporter.java:630
 msgid "Number of findings"
 msgstr ""
 
 #.
 #. * meeting number of attendees
 #.
-#: src/org/revager/export/ProtocolPDFExporter.java:613
+#: src/org/revager/export/ProtocolPDFExporter.java:646
 msgid "Number of attendees"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:654
+#: src/org/revager/export/ProtocolPDFExporter.java:687
 msgid "General impressions of the product:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:663
+#: src/org/revager/export/ProtocolPDFExporter.java:696
 #: src/org/revager/gui/MainFrame.java:766
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:924
 msgid "Final recommendation for the product:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:726
-msgid "You should map each finding to exactly one severity (descending order of importance):"
+#: src/org/revager/export/ProtocolPDFExporter.java:759
+msgid "The severities of the findings in this review (descending order of importance):"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:744
+#: src/org/revager/export/ProtocolPDFExporter.java:777
 #, java-format
-msgid "This review consists of: {0} attendees, {1} findings, {2} meetings and {3} aspects."
+msgid "This review consists of {0} attendees, {1} findings, {2} meetings and {3} aspects."
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:773
+#: src/org/revager/export/ProtocolPDFExporter.java:804
 msgid "This finding has been created with RevAger on"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:875
+#: src/org/revager/export/ProtocolPDFExporter.java:906
 msgid "Review Meeting on"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:946
+#: src/org/revager/export/ProtocolPDFExporter.java:983
 msgid "The meeting took place as it has been planned."
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:953
+#: src/org/revager/export/ProtocolPDFExporter.java:990
 msgid "The meeting didn't take place as it has been planned. The meeting was planned:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:989
+#: src/org/revager/export/ProtocolPDFExporter.java:1025
 msgid "Comments on the Meeting:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:999
+#: src/org/revager/export/ProtocolPDFExporter.java:1035
 msgid "Comments on the Findings List:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1052
+#: src/org/revager/export/ProtocolPDFExporter.java:1089
 msgid "The following attendees participated"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1054
+#: src/org/revager/export/ProtocolPDFExporter.java:1091
 msgid "attendees"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1076
-msgid "The following findings were recorded by the participating reviewers:"
+#: src/org/revager/export/ProtocolPDFExporter.java:1117
+msgid "The following findings were recorded by the participating reviewers"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1080
+#: src/org/revager/export/ProtocolPDFExporter.java:1120
 msgid "findings"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1100
+#: src/org/revager/export/ProtocolPDFExporter.java:1140
 msgid "Cannot put the selected review meeting in the PDF document."
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1247
+#: src/org/revager/export/ProtocolPDFExporter.java:1287
 msgid "Assigned aspects:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1278
+#: src/org/revager/export/ProtocolPDFExporter.java:1318
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:183
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:137
 msgid "Preparation time:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1289
+#: src/org/revager/export/ProtocolPDFExporter.java:1329
 msgid "Day(s)"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1326
+#: src/org/revager/export/ProtocolPDFExporter.java:1366
 msgid "Date, Signature"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1381
+#: src/org/revager/export/ProtocolPDFExporter.java:1421
 msgid "Cannot put attendees into the PDF document."
 msgstr ""
 
@@ -874,25 +862,25 @@ msgstr ""
 #.
 #. * Update labels
 #.
-#: src/org/revager/export/ProtocolPDFExporter.java:1442
+#: src/org/revager/export/ProtocolPDFExporter.java:1482
 #: src/org/revager/gui/findings_list/FindingPanel.java:571
 #: src/org/revager/gui/findings_list/FindingPanel.java:827
 msgid "Finding"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1523
+#: src/org/revager/export/ProtocolPDFExporter.java:1563
 msgid "References:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1587
+#: src/org/revager/export/ProtocolPDFExporter.java:1627
 msgid "Aspects:"
 msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1632
+#: src/org/revager/export/ProtocolPDFExporter.java:1672
 msgid "Cannot put findings into the PDF document."
 msgstr ""
 
-#: src/org/revager/export/ReviewProtocolPDFExporter.java:131
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:133
 msgid "The following persons participated in the whole review:"
 msgstr ""
 

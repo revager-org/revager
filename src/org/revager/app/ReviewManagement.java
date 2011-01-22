@@ -901,7 +901,7 @@ public class ReviewManagement {
 	 * @return the number of aspects
 	 */
 	public int getNumberOfAspects() {
-		return resiData.getReview().getAspects().size();
+		return Application.getInstance().getAspectMgmt().getAspects().size();
 	}
 
 	/**

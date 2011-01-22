@@ -218,8 +218,6 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 
 			localMeetCoBx.validate();
 
-			showFieldsChBx.setSelected(false);
-
 			compRevRB.setSelected(false);
 		}
 

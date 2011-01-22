@@ -135,7 +135,7 @@ public class ApplicationControl {
 		Data.getInstance().getResiData().getReview().getProduct().setName("");
 		Data.getInstance().getResiData().getReview().getProduct()
 				.setVersion("");
-		
+
 		Application.getInstance().getReviewMgmt().addDummyProdReference();
 
 		/*
@@ -149,6 +149,7 @@ public class ApplicationControl {
 
 		Application.getInstance().getAspectMgmt().addDummyAspect();
 		Application.getInstance().getAttendeeMgmt().addDummyAttendee();
+		Application.getInstance().getMeetingMgmt().initDummyMeeting();
 
 		Data.getInstance().getResiData().fireDataChanged();
 	}
@@ -359,6 +360,10 @@ public class ApplicationControl {
 			io.loadReviewBackup();
 
 			Application.getInstance().getReviewMgmt().refactorReview();
+
+			Application.getInstance().getReviewMgmt().addDummyProdReference();
+			Application.getInstance().getAspectMgmt().addDummyAspect();
+			Application.getInstance().getAttendeeMgmt().addDummyAttendee();
 
 			Data.getInstance().getResiData().fireDataChanged();
 		}

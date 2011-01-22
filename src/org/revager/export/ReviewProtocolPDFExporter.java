@@ -27,7 +27,6 @@ import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
-import org.revager.app.model.schema.Review;
 import org.revager.tools.PDFTools;
 
 import com.lowagie.text.Font;
@@ -47,9 +46,9 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 	private static ApplicationData appData = Data.getInstance().getAppData();
 
 	/**
-	 * Reference to the current review.
+	 * The title of the review.
 	 */
-	private static Review review = Data.getInstance().getResiData().getReview();
+	private static String reviewTitle = ProtocolPDFExporter.getReviewTitle();
 
 	/**
 	 * True, if the signature fields should be part of the protocol.
@@ -90,9 +89,9 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 	public ReviewProtocolPDFExporter(String filePath, boolean showSignFields,
 			boolean attachProdExtRefs, boolean attachFindExtRefs)
 			throws ExportException, DataException {
-		super(filePath, _("List of Findings") + " · " + review.getName(),
-				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
-						.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
+		super(filePath, _("List of Findings") + " · " + reviewTitle, appData
+				.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
+				.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
 		this.showSignFields = showSignFields;
 		this.attachProdExtRefs = attachProdExtRefs;
@@ -116,7 +115,10 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			/*
 			 * Write attendees of the whole review
 			 */
-			if (showSignFields == true) {
+			int numOfAtts = Application.getInstance().getAttendeeMgmt()
+					.getNumberOfAttendees();
+
+			if (showSignFields == true && numOfAtts > 0) {
 				Font introFont = new Font(BaseFont.createFont(
 						BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252,
 						BaseFont.EMBEDDED), 10);

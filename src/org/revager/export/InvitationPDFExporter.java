@@ -128,6 +128,19 @@ public class InvitationPDFExporter extends PDFExporter {
 	private boolean attachProdExtRefs = true;
 
 	/**
+	 * Helper method to get the title of the invitation.
+	 */
+	private static String getReviewTitle() {
+		String title = resiData.getReview().getName();
+
+		if (title.trim().equals("")) {
+			title = "Review Meeting";
+		}
+
+		return title;
+	}
+
+	/**
 	 * Instantiates a new invitation pdf exporter.
 	 * 
 	 * @param filePath
@@ -149,8 +162,7 @@ public class InvitationPDFExporter extends PDFExporter {
 	public InvitationPDFExporter(String filePath, Meeting meeting,
 			Attendee attendee, boolean attachProdExtRefs)
 			throws ExportException, DataException {
-		super(filePath, _("Invitation") + " · "
-				+ resiData.getReview().getName(), appData
+		super(filePath, _("Invitation") + " · " + getReviewTitle(), appData
 				.getSetting(AppSettingKey.PDF_INVITATION_LOGO), appData
 				.getSetting(AppSettingKey.PDF_INVITATION_FOOT_TEXT));
 
@@ -300,8 +312,7 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			table.addCell(cell);
 
-			cell = new PdfPCell(new Phrase(meetingTime + " " + _("o'clock"),
-					italicFont));
+			cell = new PdfPCell(new Phrase(meetingTime, italicFont));
 			cell.setBorder(0);
 			cell.setColspan(2);
 			cell.setPadding(padding);
@@ -310,15 +321,17 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			table.addCell(cell);
 
-			cell = new PdfPCell(new Phrase(_("Location") + ": "
-					+ meeting.getPlannedLocation(), italicFont));
-			cell.setBorder(0);
-			cell.setColspan(2);
-			cell.setPadding(padding);
-			cell.setPaddingBottom(0);
-			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+			if (!meeting.getPlannedLocation().equals("")) {
+				cell = new PdfPCell(new Phrase(_("Location") + ": "
+						+ meeting.getPlannedLocation(), italicFont));
+				cell.setBorder(0);
+				cell.setColspan(2);
+				cell.setPadding(padding);
+				cell.setPaddingBottom(0);
+				cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 
-			table.addCell(cell);
+				table.addCell(cell);
+			}
 
 			/*
 			 * role; review title and description
@@ -334,9 +347,9 @@ public class InvitationPDFExporter extends PDFExporter {
 			phrase = new Phrase();
 			phrase.setLeading(leading);
 			phrase.add(new Chunk(MessageFormat.format(
-					_("You are invited as {0} to the review \"{1}\":"),
-					_(attendee.getRole().toString()), resiData.getReview()
-							.getName(), boldFont)));
+					_("You are invited as {0} to this review ({1})."),
+					_(attendee.getRole().toString()), getReviewTitle()),
+					boldFont));
 
 			cell.addElement(phrase);
 
@@ -364,46 +377,60 @@ public class InvitationPDFExporter extends PDFExporter {
 			}
 
 			/*
-			 * the product of this review
+			 * If there is a product name defined
 			 */
-			cell.addElement(new Phrase(
-					_("The following product will be reviewed:"), plainFont));
-			cell.addElement(phraseStrut);
+			if (!Data.getInstance().getResiData().getReview().getProduct()
+					.getName().trim().equals("")) {
+				/*
+				 * the product of this review
+				 */
+				cell.addElement(new Phrase(
+						_("The following product will be reviewed:"), plainFont));
+				cell.addElement(phraseStrut);
 
-			table.addCell(cell);
+				table.addCell(cell);
 
-			/*
-			 * Write name and version of the reviewed product
-			 */
-			Phrase phrName = new Phrase(Data.getInstance().getResiData()
-					.getReview().getProduct().getName(), boldItalicFont);
-			phrName.setLeading(leading);
+				/*
+				 * Write name and version of the reviewed product
+				 */
+				Phrase phrName = new Phrase(Data.getInstance().getResiData()
+						.getReview().getProduct().getName(), boldItalicFont);
+				phrName.setLeading(leading);
 
-			PdfPCell cellName = new PdfPCell(phrName);
-			cellName.setColspan(2);
-			cellName.setBorderWidth(0);
-			cellName.setPadding(padding);
-			cellName.setPaddingBottom(0);
-			cellName.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				PdfPCell cellName = new PdfPCell(phrName);
+				cellName.setColspan(2);
+				cellName.setBorderWidth(0);
+				cellName.setPadding(padding);
+				cellName.setPaddingBottom(0);
+				cellName.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 
-			table.addCell(cellName);
+				table.addCell(cellName);
 
-			Phrase phrVersion = new Phrase(_("Product Version")
-					+ ": "
-					+ Data.getInstance().getResiData().getReview().getProduct()
-							.getVersion(), italicFont);
-			phrVersion.setLeading(leading);
+				/*
+				 * If there is a product version defined
+				 */
+				if (!Data.getInstance().getResiData().getReview().getProduct()
+						.getVersion().trim().equals("")) {
+					Phrase phrVersion = new Phrase(_("Product Version")
+							+ ": "
+							+ Data.getInstance().getResiData().getReview()
+									.getProduct().getVersion(), italicFont);
+					phrVersion.setLeading(leading);
 
-			PdfPCell cellVersion = new PdfPCell(phrVersion);
-			cellVersion.setColspan(2);
-			cellVersion.setBorderWidth(0);
-			cellVersion.setPadding(padding);
-			cellVersion.setPaddingBottom(0);
-			cellVersion.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					PdfPCell cellVersion = new PdfPCell(phrVersion);
+					cellVersion.setColspan(2);
+					cellVersion.setBorderWidth(0);
+					cellVersion.setPadding(padding);
+					cellVersion.setPaddingBottom(0);
+					cellVersion.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 
-			table.addCell(cellVersion);
+					table.addCell(cellVersion);
+				}
 
-			table.addCell(createVerticalStrut(PDFTools.cmToPt(0.7f), 2));
+				table.addCell(createVerticalStrut(PDFTools.cmToPt(0.7f), 2));
+			} else {
+				table.addCell(cell);
+			}
 
 			boolean showBottomStrut = false;
 
@@ -543,6 +570,21 @@ public class InvitationPDFExporter extends PDFExporter {
 	 *             If an error occurs while writing the aspects
 	 */
 	private void writeAspects() throws ExportException {
+		/*
+		 * If the role of the attendee is not reviewer show all aspects
+		 */
+		List<Aspect> aspects = null;
+
+		if (attendee.getRole() == Role.REVIEWER) {
+			aspects = attMgmt.getAspects(attendee);
+		} else {
+			aspects = aspMgmt.getAspects();
+		}
+
+		if (aspects.size() == 0) {
+			return;
+		}
+
 		try {
 			Font descriptionFont = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
@@ -569,17 +611,6 @@ public class InvitationPDFExporter extends PDFExporter {
 			tableAspects.getDefaultCell().setPadding(0);
 
 			boolean grayBackground = true;
-
-			/*
-			 * If the role of the attendee is not reviewer show all aspects
-			 */
-			List<Aspect> aspects = null;
-
-			if (attendee.getRole() == Role.REVIEWER) {
-				aspects = attMgmt.getAspects(attendee);
-			} else {
-				aspects = aspMgmt.getAspects();
-			}
 
 			for (Aspect asp : aspects) {
 				/*

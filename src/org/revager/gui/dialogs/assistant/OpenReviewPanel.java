@@ -135,6 +135,9 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 			if (fileChooser.showDialog(UI.getInstance().getAssistantDialog(),
 					FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 				String reviewPath = fileChooser.getFile().getAbsolutePath();
+				
+				UI.getInstance().getMainFrame().setAssistantMode(false);
+				
 				GUITools.executeSwingWorker(new LoadReviewWorker(reviewPath));
 			}
 		}

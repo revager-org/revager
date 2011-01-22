@@ -842,9 +842,15 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Creates the tool bar.
 	 */
 	private void createToolBar() {
-		/*
-		 * Create the toolbar and its components
-		 */
+		tbShowAssistant = GUITools.newImageButton(
+				Data.getInstance().getIcon("tbShowAssistant_50x50_0.png"), Data
+						.getInstance().getIcon("tbShowAssistant_50x50.png"));
+		tbShowAssistant.setToolTipText(_("Open RevAger Assistant"));
+		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(
+				OpenAssistantAction.class.getName()));
+
+		addTopComponent(tbShowAssistant);
+		
 		tbNewReview = GUITools.newImageButton(
 				Data.getInstance().getIcon("new_50x50_0.png"), Data
 						.getInstance().getIcon("new_50x50.png"), ActionRegistry
@@ -867,15 +873,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 						SaveReviewAction.class.getName()));
 
 		addTopComponent(tbSaveReview);
-
-		tbShowAssistant = GUITools.newImageButton(
-				Data.getInstance().getIcon("tbShowAssistant_50x50_0.png"), Data
-						.getInstance().getIcon("tbShowAssistant_50x50.png"));
-		tbShowAssistant.setToolTipText(_("Open RevAger Assistant"));
-		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(
-				OpenAssistantAction.class.getName()));
-
-		addTopComponent(tbShowAssistant);
 
 		// TODO HELP IS CURRENTLY DISABLED!
 
@@ -960,38 +957,19 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Updates tool bar.
 	 */
 	private void updateToolBar() {
-		/*
-		 * Enable and disable toolbar items by mode parameters
-		 */
-		if (assistantMode) {
-			tbShowAssistant.setVisible(true);
+		tbShowAssistant.setVisible(assistantMode);
 
-			tbOpenReview.setVisible(false);
-			tbManageSeverities.setVisible(false);
-			tbSaveReview.setVisible(false);
-			tbNewReview.setVisible(false);
-			tbAspectsManager.setVisible(false);
-			tbCreateInvitations.setVisible(false);
-			tbNewAttendee.setVisible(false);
-			tbProtocolMode.setVisible(false);
-			tbPdfExport.setVisible(false);
-			tbCsvExport.setVisible(false);
-			tbNewMeeting.setVisible(false);
-		} else {
-			tbShowAssistant.setVisible(false);
-
-			tbOpenReview.setVisible(true);
-			tbManageSeverities.setVisible(true);
-			tbSaveReview.setVisible(true);
-			tbNewReview.setVisible(true);
-			tbAspectsManager.setVisible(true);
-			tbCreateInvitations.setVisible(true);
-			tbNewAttendee.setVisible(true);
-			tbProtocolMode.setVisible(true);
-			tbPdfExport.setVisible(true);
-			tbCsvExport.setVisible(true);
-			tbNewMeeting.setVisible(true);
-		}
+		//tbOpenReview.setVisible(!assistantMode);
+		tbManageSeverities.setVisible(!assistantMode);
+		tbSaveReview.setVisible(!assistantMode);
+		//tbNewReview.setVisible(!assistantMode);
+		//tbAspectsManager.setVisible(!assistantMode);
+		tbCreateInvitations.setVisible(!assistantMode);
+		tbNewAttendee.setVisible(!assistantMode);
+		tbProtocolMode.setVisible(!assistantMode);
+		tbPdfExport.setVisible(!assistantMode);
+		tbCsvExport.setVisible(!assistantMode);
+		tbNewMeeting.setVisible(!assistantMode);
 	}
 
 	/**
@@ -1013,6 +991,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 				OpenAssistantAction.class.getName()));
 
 		menuFile.add(fileSelectModeItem);
+
+		menuFile.addSeparator();
 
 		fileNewReviewItem = new JMenuItem(ActionRegistry.getInstance().get(
 				NewReviewAction.class.getName()));
@@ -1164,30 +1144,27 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Updates the menu.
 	 */
 	private void updateMenu() {
-		boolean itemVisible;
+		boolean itemVisible = !assistantMode;
 
-		if (assistantMode) {
-			itemVisible = false;
-		} else {
-			itemVisible = true;
-		}
+		//fileSelectModeItem.setEnabled(!itemVisible);
 
-		fileSelectModeItem.setVisible(!itemVisible);
+		//fileNewReviewItem.setEnabled(itemVisible);
+		//fileOpenReviewItem.setEnabled(itemVisible);
+		fileSaveReviewItem.setEnabled(itemVisible);
+		fileSaveReviewAsItem.setEnabled(itemVisible);
 
-		fileNewReviewItem.setVisible(itemVisible);
-		fileOpenReviewItem.setVisible(itemVisible);
-		fileSaveReviewItem.setVisible(itemVisible);
-		fileSaveReviewAsItem.setVisible(itemVisible);
+		//menuEdit.setEnabled(itemVisible);
+		//menuSettings.setEnabled(itemVisible);
+		
+		manageSeveritiesItem.setEnabled(itemVisible);
+		newMeetingItem.setEnabled(itemVisible);
 
-		menuEdit.setVisible(itemVisible);
-		menuSettings.setVisible(itemVisible);
-
-		aspectsManagerItem.setVisible(itemVisible);
-		createInvitationsItem.setVisible(itemVisible);
-		newAttendeeItem.setVisible(itemVisible);
-		protocolModeItem.setVisible(itemVisible);
-		pdfExportItem.setVisible(itemVisible);
-		csvExportItem.setVisible(itemVisible);
+		//aspectsManagerItem.setEnabled(itemVisible);
+		createInvitationsItem.setEnabled(itemVisible);
+		newAttendeeItem.setEnabled(itemVisible);
+		protocolModeItem.setEnabled(itemVisible);
+		pdfExportItem.setEnabled(itemVisible);
+		csvExportItem.setEnabled(itemVisible);
 	}
 
 	/**
@@ -1457,17 +1434,15 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 */
 	@Override
 	public void update(Observable obs, Object obj) {
+		updateMenu();
+		updateToolBar();
+		
 		if (Data.getInstance().getResiData().getReview() != null) {
 			if (!assistantMode) {
-				assistantMode = false;
-
 				splitPanel.removeAll();
 
 				updateLeftPane();
 				updateRightPane();
-
-				updateMenu();
-				updateToolBar();
 
 				GUITools.executeSwingWorker(updateWorker);
 
@@ -1883,6 +1858,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		if (assistantMode) {
 			updateHints();
+			updateToolBar();
+			updateMenu();
 		}
 	}
 

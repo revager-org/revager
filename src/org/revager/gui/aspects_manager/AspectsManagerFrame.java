@@ -1730,6 +1730,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		updateHints();
+		updateToolBar();
 	}
 
 	/**

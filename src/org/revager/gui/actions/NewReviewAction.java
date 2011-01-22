@@ -81,6 +81,8 @@ public class NewReviewAction extends AbstractAction {
 				return;
 			}
 		} else {
+			UI.getInstance().getMainFrame().setAssistantMode(false);
+			
 			GUITools.executeSwingWorker(new NewReviewWorker());
 		}
 	}

@@ -36,8 +36,6 @@ import javax.swing.plaf.FontUIResource;
 
 import org.revager.app.Application;
 import org.revager.app.model.Data;
-import org.revager.gui.actions.ActionRegistry;
-import org.revager.gui.actions.ExitAction;
 import org.revager.gui.aspects_manager.AspectsManagerFrame;
 import org.revager.gui.dialogs.AboutDialog;
 import org.revager.gui.dialogs.AttendeeDialog;
@@ -697,9 +695,23 @@ public class UI implements Observer {
 			 */
 			Runnable runner = new Runnable() {
 				public void run() {
-					ActionRegistry.getInstance()
-							.get(ExitAction.class.getName())
-							.actionPerformed(null);
+					String path = Data.getInstance().getResiData()
+							.getReviewPath();
+
+					try {
+						if (path != null) {
+							Application.getInstance().getApplicationCtl()
+									.storeReview(path);
+
+							Application.getInstance().getApplicationCtl()
+									.clearReview();
+						} else {
+							Application.getInstance().getApplicationCtl()
+									.backupReview();
+						}
+					} catch (Exception e) {
+						System.err.println(e.getMessage());
+					}
 				}
 			};
 
@@ -777,7 +789,7 @@ public class UI implements Observer {
 			if (JOptionPane
 					.showOptionDialog(
 							mainFrame,
-							GUITools.getMessagePane(_("RevAger didn't shut down correctly. Thus some review data might have got lost.\n\nWould you like to restore the recent review?")),
+							GUITools.getMessagePane(_("There is a review which hasn't been stored properly. Would you like to restore and load the review?")),
 							_("Question"), JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[0]) == JOptionPane.YES_OPTION) {

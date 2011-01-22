@@ -1464,6 +1464,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
+		setNumberOfHints(2);
+		
 		hintAtt = new HintItem(
 				_("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
 				HintItem.WARNING);
@@ -1561,6 +1563,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	public Map<String, ImageEditorDialog> getImageEditors() {
 		return imageEditors;
+	}
+	
+	public void activateFindingsTab() {
+		tabbedPane.setSelectedIndex(1);
 	}
 
 }

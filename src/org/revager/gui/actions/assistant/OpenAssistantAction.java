@@ -26,10 +26,17 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import org.revager.app.Application;
 import org.revager.app.model.Data;
+import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
+import org.revager.gui.UI.Status;
+import org.revager.gui.actions.ActionRegistry;
+import org.revager.gui.actions.SaveReviewAction;
+import org.revager.tools.GUITools;
 
 @SuppressWarnings("serial")
 /**
@@ -59,11 +66,56 @@ public class OpenAssistantAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*
+		 * Reset main frame
+		 */
+		MainFrame mainframe = UI.getInstance().getMainFrame();
+		Status status = UI.getInstance().getStatus();
+
+		if (status == Status.UNSAVED_CHANGES) {
+			int option = JOptionPane
+					.showConfirmDialog(
+							UI.getInstance().getMainFrame(),
+							GUITools.getMessagePane(_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
+							_("Question"), JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+
+			if (option == JOptionPane.YES_OPTION) {
+				ActionRegistry.getInstance()
+						.get(SaveReviewAction.class.getName())
+						.actionPerformed(e);
+			}
+
+			if (option == JOptionPane.CANCEL_OPTION) {
+				return;
+			}
+		}
+
+		mainframe.setStatusMessage(_("No review in process."), false);
+
+		mainframe.switchToClearMode();
+
+		Application.getInstance().getApplicationCtl().clearReview();
+
+		UI.getInstance().setStatus(Status.NO_FILE_LOADED);
+
+		mainframe.setAssistantMode(true);
+		
+		/*
+		 * Update aspects manager
+		 */
+		UI.getInstance().getAspectsManagerFrame().update(null, null);
+
+		/*
+		 * Prepare assistant dialog
+		 */
 		UI.getInstance()
 				.getAssistantDialog()
 				.setCurrentPnl(
 						UI.getInstance().getAssistantDialog()
 								.getFirstScreenPanel());
+
+		UI.getInstance().getAssistantDialog().setInstantReview(false);
 		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();

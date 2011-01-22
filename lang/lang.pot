@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-19 21:44+0100\n"
+"POT-Creation-Date: 2011-01-22 14:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/org/revager/Main.java:118 src/org/revager/Main.java:243
+#: src/org/revager/Main.java:118 src/org/revager/Main.java:262
 #: src/org/revager/gui/HelpBrowserFrame.java:356
 #: src/org/revager/gui/StrengthPopupWindow.java:136
 #: src/org/revager/gui/StrengthPopupWindow.java:292
@@ -56,7 +56,7 @@ msgstr ""
 #: src/org/revager/gui/dialogs/SettingsDialog.java:746
 #: src/org/revager/gui/dialogs/SettingsDialog.java:822
 #: src/org/revager/gui/dialogs/SettingsDialog.java:873
-#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:255
+#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:258
 #: src/org/revager/gui/findings_list/FindingPanel.java:522
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:428
 #: src/org/revager/gui/helpers/FileChooser.java:250
@@ -76,15 +76,16 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: src/org/revager/Main.java:235
+#: src/org/revager/Main.java:254
 msgid "RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?"
 msgstr ""
 
-#: src/org/revager/Main.java:236 src/org/revager/gui/UI.java:781
+#: src/org/revager/Main.java:255 src/org/revager/gui/UI.java:793
 #: src/org/revager/gui/actions/ExitAction.java:79
 #: src/org/revager/gui/actions/NewReviewAction.java:67
 #: src/org/revager/gui/actions/SaveReviewAction.java:101
 #: src/org/revager/gui/actions/SaveReviewAsAction.java:96
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:559
 #: src/org/revager/gui/dialogs/SettingsDialog.java:363
@@ -919,6 +920,7 @@ msgid "Show/hide hints"
 msgstr ""
 
 #: src/org/revager/gui/AbstractFrame.java:554
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:94
 #: src/org/revager/gui/workers/LoadReviewWorker.java:77
 #: src/org/revager/gui/workers/NewReviewWorker.java:75
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:60
@@ -1054,7 +1056,7 @@ msgid "Review Meetings:"
 msgstr ""
 
 #: src/org/revager/gui/MainFrame.java:579
-#: src/org/revager/gui/MainFrame.java:1743
+#: src/org/revager/gui/MainFrame.java:1718
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:549
 msgid "Remove"
 msgstr ""
@@ -1088,94 +1090,91 @@ msgstr ""
 msgid "General impression of the product:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:874
-#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:49
+#: src/org/revager/gui/MainFrame.java:848
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:56
 msgid "Open RevAger Assistant"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1010
+#: src/org/revager/gui/MainFrame.java:988
 msgid "File"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1050
+#: src/org/revager/gui/MainFrame.java:1030
 #: src/org/revager/gui/findings_list/FindingPanel.java:1050
 msgid "Edit"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1100
+#: src/org/revager/gui/MainFrame.java:1080
 msgid "Settings"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1103
+#: src/org/revager/gui/MainFrame.java:1083
 #: src/org/revager/gui/dialogs/SettingsDialog.java:115
 msgid "Application Settings"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1116
+#: src/org/revager/gui/MainFrame.java:1096
 msgid "CSV Profiles"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1134
+#: src/org/revager/gui/MainFrame.java:1114
 msgid "Help"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1147
+#: src/org/revager/gui/MainFrame.java:1127
 msgid "About RevAger"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1275
+#: src/org/revager/gui/MainFrame.java:1252
 #: src/org/revager/gui/dialogs/AboutDialog.java:74
 msgid "Version:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1308
+#: src/org/revager/gui/MainFrame.java:1285
 msgid "First of all we recommend to specify the product and the review's title."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1312
+#: src/org/revager/gui/MainFrame.java:1289
 msgid "You should create a meeting and add the attendees of the review by using the corresponding buttons."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1316
+#: src/org/revager/gui/MainFrame.java:1293
 msgid "All required information for the review are present."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1320
+#: src/org/revager/gui/MainFrame.java:1297
 msgid "You can open the list of findings by selecting the corresponding meeting and clicking the 'Open findings list' button."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1324
+#: src/org/revager/gui/MainFrame.java:1301
 msgid "You can open the RevAger Assistant by clicking on the 'Open Assistant' button."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1555
-#: src/org/revager/gui/MainFrame.java:1560
+#: src/org/revager/gui/MainFrame.java:1530
+#: src/org/revager/gui/MainFrame.java:1535
 #: src/org/revager/gui/actions/NewReviewAction.java:49
 msgid "New Review"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1723
+#: src/org/revager/gui/MainFrame.java:1698
 msgid "Remove meeting"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1733
+#: src/org/revager/gui/MainFrame.java:1708
 msgid "Remove list of findings"
 msgstr ""
 
 #. getMainFrame().setEnabled(false);
-#: src/org/revager/gui/UI.java:775
+#: src/org/revager/gui/UI.java:787
 msgid "Restore"
 msgstr ""
 
-#: src/org/revager/gui/UI.java:775
+#: src/org/revager/gui/UI.java:787
 msgid "Discard"
 msgstr ""
 
-#: src/org/revager/gui/UI.java:780
-msgid ""
-"RevAger didn't shut down correctly. Thus some review data might have got lost.\n"
-"\n"
-"Would you like to restore the recent review?"
+#: src/org/revager/gui/UI.java:792
+msgid "There is a review which hasn't been stored properly. Would you like to restore and load the review?"
 msgstr ""
 
 #: src/org/revager/gui/actions/ExitAction.java:52
@@ -1184,6 +1183,7 @@ msgstr ""
 
 #: src/org/revager/gui/actions/ExitAction.java:78
 #: src/org/revager/gui/actions/NewReviewAction.java:66
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:79
 msgid ""
 "There are unsaved changes in the review. Would you like to save them now?\n"
 "\n"
@@ -1545,7 +1545,7 @@ msgid "Here you can manage all required information of the attendee."
 msgstr ""
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:262
-#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:183
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:185
 msgid "Back"
 msgstr ""
 
@@ -2242,23 +2242,23 @@ msgstr ""
 msgid "List of findings successfully loaded."
 msgstr ""
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1468
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1470
 msgid "Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."
 msgstr ""
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1472
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1474
 msgid "Please enter the general impression and the final recommendation for the product into the provided text field (Tab 'Impression · Comments · Recommendation')."
 msgstr ""
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1476
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1478
 msgid "For every finding enter at least a description (Tab 'Findings')."
 msgstr ""
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1480
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1482
 msgid "The meeting data and its list of findings is complete."
 msgstr ""
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1484
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1486
 msgid "In order to add a new finding to the list of findings use the 'Add Finding' button (Tab 'Findings')."
 msgstr ""
 

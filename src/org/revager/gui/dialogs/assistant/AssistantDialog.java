@@ -169,6 +169,8 @@ public class AssistantDialog extends AbstractDialog {
 		updateContents();
 
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		
+		setResizable(false);
 
 		setMinimumSize(new Dimension(650, 500));
 

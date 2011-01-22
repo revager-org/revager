@@ -126,23 +126,42 @@ public class Main {
 	 * Restart the application.
 	 */
 	public static void restartApplication() {
-		String appPath = AppTools.getJarLocation();
+		ProcessBuilder pb = null;
 
-		if (appPath.toLowerCase().endsWith(".jar")) {
+		String appPath = AppTools.getJarLocation();
+		String javaStubPath = AppTools.getJavaAppStubLocation();
+
+		if (appPath.toLowerCase().endsWith(".jar")
+				&& UI.getInstance().getPlatform() == UI.Platform.MAC
+				&& javaStubPath != null) {
+			if (argData != null) {
+				pb = new ProcessBuilder(javaStubPath, "-data", argData);
+			} else {
+				pb = new ProcessBuilder(javaStubPath);
+			}
+		} else if (appPath.toLowerCase().endsWith(".jar")) {
 			String javaBinary = "java";
 
 			if (UI.getInstance().getPlatform() == UI.Platform.WINDOWS) {
-				javaBinary = "java.exe";
+				javaBinary = "javaw.exe";
 			}
 
-			appPath = javaBinary + " -jar " + appPath;
-		}
+			if (argData != null) {
+				pb = new ProcessBuilder(javaBinary, "-jar",
+						AppTools.getJarLocation(), "-data", argData);
+			} else {
+				pb = new ProcessBuilder(javaBinary, "-jar",
+						AppTools.getJarLocation());
+			}
+		} else {
+			pb = new ProcessBuilder(appPath);
 
-		if (argData != null) {
-			appPath += " -data " + argData;
+			if (argData != null) {
+				pb = new ProcessBuilder(appPath, "-data", argData);
+			} else {
+				pb = new ProcessBuilder(appPath);
+			}
 		}
-
-		ProcessBuilder pb = new ProcessBuilder(appPath);
 
 		try {
 			pb.start();

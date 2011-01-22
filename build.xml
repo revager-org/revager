@@ -288,11 +288,11 @@
 		<!-- Update build date -->
 		<replaceregexp file="${dir.src}/org/revager/resources/appResources.properties" match="appRelease=(.*)" replace="appRelease=${currentDate}" byline="true" />
 
-		<!-- Run dist target -->
-		<antcall target="dist" />
-
 		<!-- Update language stuff -->
 		<antcall target="lang-update" />
+
+		<!-- Run dist target -->
+		<antcall target="dist" />
 
 		<!-- Mac OS X binary -->
 		<antcall target="build-jarbundler" />

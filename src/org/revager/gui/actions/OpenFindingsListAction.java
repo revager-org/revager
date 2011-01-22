@@ -87,12 +87,11 @@ public class OpenFindingsListAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		GUITools.executeSwingWorker(new OpenProtocolFrameWorker());
 	}
-	
+
 	public void performActionDirectly() {
 		try {
 			MainFrame mainFrame = UI.getInstance().getMainFrame();
-			FindingsListFrame protFrame = UI.getInstance()
-					.getProtocolFrame();
+			FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
 
 			mainFrame.switchToProgressMode();
 
@@ -142,7 +141,9 @@ public class OpenFindingsListAction extends AbstractAction {
 				 */
 				List<Attendee> attendees = attMgmt.getAttendees();
 
-				if (attendees.size() == 1) {
+				if (attendees.size() == 1
+						&& UI.getInstance().getAssistantDialog()
+								.isInstantReview()) {
 					protMgmt.addAttendee(attendees.get(0), DatatypeFactory
 							.newInstance().newDuration(0), currentProt);
 				}
@@ -154,11 +155,15 @@ public class OpenFindingsListAction extends AbstractAction {
 			protFrame.setMeeting(currentMeet);
 			protFrame.setVisible(true);
 
+			if (UI.getInstance().getAssistantDialog().isInstantReview()) {
+				protFrame.activateFindingsTab();
+			}
+
 			mainFrame.updateMeetingsTree();
 			mainFrame.switchToEditMode();
 		} catch (Exception e) {
 			UI.getInstance().getMainFrame().switchToEditMode();
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -167,7 +172,7 @@ public class OpenFindingsListAction extends AbstractAction {
 		@Override
 		protected Void doInBackground() throws Exception {
 			performActionDirectly();
-			
+
 			return null;
 		}
 	}

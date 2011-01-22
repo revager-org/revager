@@ -198,4 +198,21 @@ public class AppTools {
 		return location;
 	}
 
+	public static String getJavaAppStubLocation() {
+		String jarLocation = getJarLocation();
+
+		String appStubLocation = null;
+
+		String indicator = ".app/Contents/Resources/Java";
+
+		if (jarLocation.contains(indicator)) {
+			int pos = jarLocation.indexOf(indicator);
+
+			appStubLocation = jarLocation.substring(0, pos)
+					+ ".app/Contents/MacOS/JavaApplicationStub";
+		}
+
+		return appStubLocation;
+	}
+
 }

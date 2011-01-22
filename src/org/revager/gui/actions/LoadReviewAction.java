@@ -67,6 +67,8 @@ public class LoadReviewAction extends AbstractAction {
 		if (fileChooser.showDialog(UI.getInstance().getMainFrame(),
 				FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 			String reviewPath = fileChooser.getFile().getAbsolutePath();
+			
+			UI.getInstance().getMainFrame().setAssistantMode(false);
 
 			GUITools.executeSwingWorker(new LoadReviewWorker(reviewPath));
 		}

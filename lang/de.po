@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-19 21:44+0100\n"
+"POT-Creation-Date: 2011-01-22 17:50+0100\n"
 "PO-Revision-Date: 2011-01-18 22:28+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-20 05:15+0000\n"
+"X-Launchpad-Export-Date: 2011-01-23 05:09+0000\n"
 "X-Generator: Launchpad (build 12177)\n"
 
-#: src/org/revager/Main.java:118 src/org/revager/Main.java:243
+#: src/org/revager/Main.java:118 src/org/revager/Main.java:262
 #: src/org/revager/gui/HelpBrowserFrame.java:356
 #: src/org/revager/gui/StrengthPopupWindow.java:136
 #: src/org/revager/gui/StrengthPopupWindow.java:292
@@ -56,7 +56,7 @@ msgstr ""
 #: src/org/revager/gui/dialogs/SettingsDialog.java:746
 #: src/org/revager/gui/dialogs/SettingsDialog.java:822
 #: src/org/revager/gui/dialogs/SettingsDialog.java:873
-#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:255
+#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:258
 #: src/org/revager/gui/findings_list/FindingPanel.java:522
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:428
 #: src/org/revager/gui/helpers/FileChooser.java:250
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Error"
 msgstr "Fehler"
 
-#: src/org/revager/Main.java:235
+#: src/org/revager/Main.java:254
 msgid ""
 "RevAger has detected an existing review data folder from an earlier version "
 "of this application. Do you want to use the data for the new version of "
@@ -85,11 +85,12 @@ msgstr ""
 "Es wurde ein Ordner mit Review-Daten einer früheren RevAger-Version "
 "gefunden. Wollen Sie diese Daten mit der neuen RevAger-Version nutzen?"
 
-#: src/org/revager/Main.java:236 src/org/revager/gui/UI.java:781
+#: src/org/revager/Main.java:255 src/org/revager/gui/UI.java:793
 #: src/org/revager/gui/actions/ExitAction.java:79
 #: src/org/revager/gui/actions/NewReviewAction.java:67
 #: src/org/revager/gui/actions/SaveReviewAction.java:101
 #: src/org/revager/gui/actions/SaveReviewAsAction.java:96
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:559
 #: src/org/revager/gui/dialogs/SettingsDialog.java:363
@@ -99,8 +100,8 @@ msgstr ""
 msgid "Question"
 msgstr "Frage"
 
-#: src/org/revager/app/ApplicationControl.java:181
-#: src/org/revager/app/ApplicationControl.java:228
+#: src/org/revager/app/ApplicationControl.java:182
+#: src/org/revager/app/ApplicationControl.java:229
 msgid ""
 "It is not possible to store and open application data. Please choose another "
 "location."
@@ -108,8 +109,8 @@ msgstr ""
 "Die Anwendungsdaten konnten weder geöffnet noch gespeichert werden. Bitte "
 "wählen Sie einen anderen Speicherort."
 
-#: src/org/revager/app/ApplicationControl.java:395
-#: src/org/revager/app/ApplicationControl.java:401
+#: src/org/revager/app/ApplicationControl.java:400
+#: src/org/revager/app/ApplicationControl.java:406
 msgid "Review"
 msgstr "Review"
 
@@ -656,65 +657,56 @@ msgstr "Das Einladungspaket konnte nicht als Verzeichnis gespeichert werden."
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: src/org/revager/export/InvitationPDFExporter.java:152
+#: src/org/revager/export/InvitationPDFExporter.java:165
 msgid "Invitation"
 msgstr "Einladung"
 
-#: src/org/revager/export/InvitationPDFExporter.java:249
+#: src/org/revager/export/InvitationPDFExporter.java:261
 msgid "To:"
 msgstr "An:"
 
 #. 
 #. * subject
 #. 
-#: src/org/revager/export/InvitationPDFExporter.java:273
+#: src/org/revager/export/InvitationPDFExporter.java:285
 msgid "Invitation for the Meeting on"
 msgstr "Einladung zur Sitzung am"
 
-#: src/org/revager/export/InvitationPDFExporter.java:303
-#: src/org/revager/export/ProtocolPDFExporter.java:275
-#: src/org/revager/export/ProtocolPDFExporter.java:539
-#: src/org/revager/export/ProtocolPDFExporter.java:769
-#: src/org/revager/export/ProtocolPDFExporter.java:892
-#: src/org/revager/export/ProtocolPDFExporter.java:971
-msgid "o'clock"
-msgstr "Uhr"
-
-#: src/org/revager/export/InvitationPDFExporter.java:313
-#: src/org/revager/export/ProtocolPDFExporter.java:286
-#: src/org/revager/export/ProtocolPDFExporter.java:539
-#: src/org/revager/export/ProtocolPDFExporter.java:901
-#: src/org/revager/export/ProtocolPDFExporter.java:972
+#: src/org/revager/export/InvitationPDFExporter.java:325
+#: src/org/revager/export/ProtocolPDFExporter.java:303
+#: src/org/revager/export/ProtocolPDFExporter.java:573
+#: src/org/revager/export/ProtocolPDFExporter.java:938
+#: src/org/revager/export/ProtocolPDFExporter.java:1008
 msgid "Location"
 msgstr "Ort"
 
-#: src/org/revager/export/InvitationPDFExporter.java:337
+#: src/org/revager/export/InvitationPDFExporter.java:350
 #, java-format
-msgid "You are invited as {0} to the review \"{1}\":"
-msgstr "Sie sind als {0} zum Review \"{1}\" eingeladen:"
+msgid "You are invited as {0} to this review ({1})."
+msgstr ""
 
-#: src/org/revager/export/InvitationPDFExporter.java:360
+#: src/org/revager/export/InvitationPDFExporter.java:373
 #, java-format
 msgid "This meeting ties up to the review meeting of {0}."
 msgstr "Diese Sitzung schließt an die Review-Sitzung vom {0} an."
 
-#: src/org/revager/export/InvitationPDFExporter.java:370
+#: src/org/revager/export/InvitationPDFExporter.java:388
 msgid "The following product will be reviewed:"
 msgstr "Der folgende Prüfling wird im Review begutachtet:"
 
-#: src/org/revager/export/InvitationPDFExporter.java:391
-#: src/org/revager/export/ProtocolPDFExporter.java:402
+#: src/org/revager/export/InvitationPDFExporter.java:414
+#: src/org/revager/export/ProtocolPDFExporter.java:430
 msgid "Product Version"
 msgstr "Version des Prüflings"
 
-#: src/org/revager/export/InvitationPDFExporter.java:451
+#: src/org/revager/export/InvitationPDFExporter.java:478
 #: src/org/revager/export/PDFCellEventExtRef.java:80
-#: src/org/revager/export/ProtocolPDFExporter.java:456
-#: src/org/revager/export/ProtocolPDFExporter.java:1556
+#: src/org/revager/export/ProtocolPDFExporter.java:483
+#: src/org/revager/export/ProtocolPDFExporter.java:1596
 msgid "File Attachment"
 msgstr "Dateianhang"
 
-#: src/org/revager/export/InvitationPDFExporter.java:490
+#: src/org/revager/export/InvitationPDFExporter.java:517
 msgid ""
 "Please prepare for the review meeting by checking the product for the "
 "aspects which are associated to you."
@@ -722,7 +714,7 @@ msgstr ""
 "Bitte bereiten Sie sich auf die Review-Sitzung vor, indem Sie den Prüfling "
 "mit Hilfe der Ihnen zugeteilten Prüfaspekte begutachten."
 
-#: src/org/revager/export/InvitationPDFExporter.java:504
+#: src/org/revager/export/InvitationPDFExporter.java:531
 msgid ""
 "Please do not hesitate to contact the review moderator if you have any "
 "questions:"
@@ -730,7 +722,7 @@ msgstr ""
 "Falls Sie Fragen zum Review haben, können Sie sich gerne an den Moderator "
 "wenden:"
 
-#: src/org/revager/export/InvitationPDFExporter.java:509
+#: src/org/revager/export/InvitationPDFExporter.java:536
 msgid ""
 "Please do not hesitate to contact one of the review moderators if you have "
 "any questions:"
@@ -738,17 +730,17 @@ msgstr ""
 "Falls Sie Fragen zum Review haben, können Sie sich gerne an einen der "
 "Moderatoren wenden:"
 
-#: src/org/revager/export/InvitationPDFExporter.java:535
-#: src/org/revager/export/ProtocolPDFExporter.java:805
+#: src/org/revager/export/InvitationPDFExporter.java:562
+#: src/org/revager/export/ProtocolPDFExporter.java:836
 msgid "Cannot generate front page of the PDF document."
 msgstr "Die Titelseite des PDF-Dokuments konnte nicht erstellt werden."
 
-#: src/org/revager/export/InvitationPDFExporter.java:687
+#: src/org/revager/export/InvitationPDFExporter.java:718
 msgid "Cannot put aspects into the PDF document."
 msgstr ""
 "Die Prüfaspekte konnten nicht in das PDF-Dokument geschrieben werden."
 
-#: src/org/revager/export/InvitationPDFExporter.java:719
+#: src/org/revager/export/InvitationPDFExporter.java:750
 msgid ""
 "Please prepare for the review meeting by checking the product for the "
 "following aspects step by step:"
@@ -756,11 +748,11 @@ msgstr ""
 "Bitte bereiten Sie sich auf die Review-Sitzung vor, indem Sie den Prüfling "
 "mit Hilfe der folgenden Prüfaspekte begutachten:"
 
-#: src/org/revager/export/InvitationPDFExporter.java:731
+#: src/org/revager/export/InvitationPDFExporter.java:762
 msgid "The product will be checked for the following aspects:"
 msgstr "Die Prüfling wird mit Hilfe der folgenden Prüfaspekte begutachtet:"
 
-#: src/org/revager/export/InvitationPDFExporter.java:748
+#: src/org/revager/export/InvitationPDFExporter.java:779
 msgid "Cannot create invitation for the review meeting."
 msgstr ""
 "Das Einladungspaket für die Review-Sitzung konnte nicht erstellt werden."
@@ -773,8 +765,8 @@ msgstr ""
 msgid "Cannot store invitation as ZIP file."
 msgstr "Das Einladungspaket konnte nicht als ZIP-Datei gespeichert werden."
 
-#: src/org/revager/export/MeetingProtocolPDFExporter.java:92
-#: src/org/revager/export/ReviewProtocolPDFExporter.java:93
+#: src/org/revager/export/MeetingProtocolPDFExporter.java:91
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:92
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1132
 msgid "List of Findings"
 msgstr "Review-Protokoll"
@@ -783,8 +775,8 @@ msgstr "Review-Protokoll"
 #. * Not part of unit testing because this exception is only thrown if
 #. * an internal error occurs.
 #. 
-#: src/org/revager/export/MeetingProtocolPDFExporter.java:126
-#: src/org/revager/export/ReviewProtocolPDFExporter.java:163
+#: src/org/revager/export/MeetingProtocolPDFExporter.java:125
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:165
 msgid "Cannot create PDF document."
 msgstr "Das PDF-Dokument konnte nicht erstellt werden."
 
@@ -801,66 +793,63 @@ msgstr ""
 msgid "Page {0} of"
 msgstr "Seite {0} von"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:224
-msgid "Findings List of the entire review"
-msgstr "Protokoll des gesamten Reviews"
+#: src/org/revager/export/ProtocolPDFExporter.java:237
+msgid "Findings List of the Review"
+msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:227
-msgid "Findings List of the review meeting"
-msgstr "Protokoll der Review-Sitzung"
+#: src/org/revager/export/ProtocolPDFExporter.java:240
+msgid "Findings List of the Review Meeting"
+msgstr ""
 
-#: src/org/revager/export/ProtocolPDFExporter.java:303
+#: src/org/revager/export/ProtocolPDFExporter.java:319
 msgid "Review Description:"
 msgstr "Beschreibung des Reviews:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:309
+#: src/org/revager/export/ProtocolPDFExporter.java:325
 msgid "Review Comments"
 msgstr "Kommentare zum Review"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:363
+#: src/org/revager/export/ProtocolPDFExporter.java:379
 msgid "Reviewed Product:"
 msgstr "Begutachteter Prüfling:"
 
-#. 
-#. * Write name and version of the reviewed product
-#. 
-#: src/org/revager/export/ProtocolPDFExporter.java:386
+#: src/org/revager/export/ProtocolPDFExporter.java:409
 msgid "Product Name"
 msgstr "Bezeichnung des Prüflings"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:422
+#: src/org/revager/export/ProtocolPDFExporter.java:449
 msgid "Product References:"
 msgstr "Referenzen zum Prüfling:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:501
+#: src/org/revager/export/ProtocolPDFExporter.java:530
 msgid "Meeting Information:"
 msgstr "Informationen zur Review-Sitzung:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:504
+#: src/org/revager/export/ProtocolPDFExporter.java:533
 msgid "Findings Lists of the Review Meetings:"
 msgstr "Protokoll der Review-Sitzung:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:537
+#: src/org/revager/export/ProtocolPDFExporter.java:571
 msgid "Date"
 msgstr "Datum"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:538
+#: src/org/revager/export/ProtocolPDFExporter.java:572
 msgid "Time"
 msgstr "Zeit"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:579
+#: src/org/revager/export/ProtocolPDFExporter.java:612
 msgid "Duration of the meeting"
 msgstr "Dauer der Sitzung"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:580
-#: src/org/revager/export/ProtocolPDFExporter.java:1296
+#: src/org/revager/export/ProtocolPDFExporter.java:613
+#: src/org/revager/export/ProtocolPDFExporter.java:1336
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:210
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:158
 msgid "Hour(s)"
 msgstr "Stunde(n)"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:581
-#: src/org/revager/export/ProtocolPDFExporter.java:1303
+#: src/org/revager/export/ProtocolPDFExporter.java:614
+#: src/org/revager/export/ProtocolPDFExporter.java:1343
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:211
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:159
 msgid "Minute(s)"
@@ -869,113 +858,108 @@ msgstr "Minute(n)"
 #. 
 #. * meeting number of findings
 #. 
-#: src/org/revager/export/ProtocolPDFExporter.java:597
+#: src/org/revager/export/ProtocolPDFExporter.java:630
 msgid "Number of findings"
 msgstr "Anzahl an Befunde"
 
 #. 
 #. * meeting number of attendees
 #. 
-#: src/org/revager/export/ProtocolPDFExporter.java:613
+#: src/org/revager/export/ProtocolPDFExporter.java:646
 msgid "Number of attendees"
 msgstr "Teilnehmerzahl"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:654
+#: src/org/revager/export/ProtocolPDFExporter.java:687
 msgid "General impressions of the product:"
 msgstr "Genereller Eindruck des Prüflings:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:663
+#: src/org/revager/export/ProtocolPDFExporter.java:696
 #: src/org/revager/gui/MainFrame.java:766
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:924
 msgid "Final recommendation for the product:"
 msgstr "Abschließende Bewertung des Prüflings:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:726
+#: src/org/revager/export/ProtocolPDFExporter.java:759
 msgid ""
-"You should map each finding to exactly one severity (descending order of "
+"The severities of the findings in this review (descending order of "
 "importance):"
 msgstr ""
-"Jedem Befund sollte genau eine Gewichtung (absteigend sortiert nach "
-"Wichtigkeit) zugewiesen werden:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:744
+#: src/org/revager/export/ProtocolPDFExporter.java:777
 #, java-format
 msgid ""
-"This review consists of: {0} attendees, {1} findings, {2} meetings and {3} "
+"This review consists of {0} attendees, {1} findings, {2} meetings and {3} "
 "aspects."
 msgstr ""
-"Dieses Review besteht aus {0} Teilnehmer, {1} Befund(e), {2} Sitzung(en) und "
-"{3} Prüfaspekt(e)."
 
-#: src/org/revager/export/ProtocolPDFExporter.java:773
+#: src/org/revager/export/ProtocolPDFExporter.java:804
 msgid "This finding has been created with RevAger on"
 msgstr "Dieser Befund wurde mit RevAger erstellt am"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:875
+#: src/org/revager/export/ProtocolPDFExporter.java:906
 msgid "Review Meeting on"
 msgstr "Review-Sitzung am"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:946
+#: src/org/revager/export/ProtocolPDFExporter.java:983
 msgid "The meeting took place as it has been planned."
 msgstr "Die Sitzung fand wie geplant statt."
 
-#: src/org/revager/export/ProtocolPDFExporter.java:953
+#: src/org/revager/export/ProtocolPDFExporter.java:990
 msgid ""
 "The meeting didn't take place as it has been planned. The meeting was "
 "planned:"
 msgstr ""
 "Die Sitzung fand nicht wie geplant statt. Ursprüngliche Planung der Sitzung:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:989
+#: src/org/revager/export/ProtocolPDFExporter.java:1025
 msgid "Comments on the Meeting:"
 msgstr "Kommentare zur Sitzung:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:999
+#: src/org/revager/export/ProtocolPDFExporter.java:1035
 msgid "Comments on the Findings List:"
 msgstr "Kommentare zum Protokoll:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1052
+#: src/org/revager/export/ProtocolPDFExporter.java:1089
 msgid "The following attendees participated"
 msgstr "Folgende Teilnehmer waren anwesend"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1054
+#: src/org/revager/export/ProtocolPDFExporter.java:1091
 msgid "attendees"
 msgstr "Teilnehmer"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1076
-msgid "The following findings were recorded by the participating reviewers:"
+#: src/org/revager/export/ProtocolPDFExporter.java:1117
+msgid "The following findings were recorded by the participating reviewers"
 msgstr ""
-"Die folgenden Befunde wurden durch die anwesenden Gutachter festgehalten:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1080
+#: src/org/revager/export/ProtocolPDFExporter.java:1120
 msgid "findings"
 msgstr "Befunde"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1100
+#: src/org/revager/export/ProtocolPDFExporter.java:1140
 msgid "Cannot put the selected review meeting in the PDF document."
 msgstr ""
 "Die gewählte Review-Sitzung konnte nicht in das PDF-Dokument geschrieben "
 "werden."
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1247
+#: src/org/revager/export/ProtocolPDFExporter.java:1287
 msgid "Assigned aspects:"
 msgstr "Zugeteilte Prüfaspekte:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1278
+#: src/org/revager/export/ProtocolPDFExporter.java:1318
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:183
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:137
 msgid "Preparation time:"
 msgstr "Vorbereitungszeit:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1289
+#: src/org/revager/export/ProtocolPDFExporter.java:1329
 msgid "Day(s)"
 msgstr "Tag(e)"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1326
+#: src/org/revager/export/ProtocolPDFExporter.java:1366
 msgid "Date, Signature"
 msgstr "Datum, Unterschrift"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1381
+#: src/org/revager/export/ProtocolPDFExporter.java:1421
 msgid "Cannot put attendees into the PDF document."
 msgstr "Die Teilnehmer konnten nicht in das PDF-Dokument geschrieben werden."
 
@@ -985,25 +969,25 @@ msgstr "Die Teilnehmer konnten nicht in das PDF-Dokument geschrieben werden."
 #. 
 #. * Update labels
 #. 
-#: src/org/revager/export/ProtocolPDFExporter.java:1442
+#: src/org/revager/export/ProtocolPDFExporter.java:1482
 #: src/org/revager/gui/findings_list/FindingPanel.java:571
 #: src/org/revager/gui/findings_list/FindingPanel.java:827
 msgid "Finding"
 msgstr "Befund"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1523
+#: src/org/revager/export/ProtocolPDFExporter.java:1563
 msgid "References:"
 msgstr "Referenzen:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1587
+#: src/org/revager/export/ProtocolPDFExporter.java:1627
 msgid "Aspects:"
 msgstr "Prüfaspekte:"
 
-#: src/org/revager/export/ProtocolPDFExporter.java:1632
+#: src/org/revager/export/ProtocolPDFExporter.java:1672
 msgid "Cannot put findings into the PDF document."
 msgstr "Die Befunde konnten nicht in das PDF-Dokument geschrieben werden."
 
-#: src/org/revager/export/ReviewProtocolPDFExporter.java:131
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:133
 msgid "The following persons participated in the whole review:"
 msgstr "Folgende Teilnehmer waren während des gesamten Reviews anwesend:"
 
@@ -1031,6 +1015,7 @@ msgid "Show/hide hints"
 msgstr "Hinweise ein-/ausblenden"
 
 #: src/org/revager/gui/AbstractFrame.java:554
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:94
 #: src/org/revager/gui/workers/LoadReviewWorker.java:77
 #: src/org/revager/gui/workers/NewReviewWorker.java:75
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:60
@@ -1169,7 +1154,7 @@ msgid "Review Meetings:"
 msgstr "Review-Sitzungen:"
 
 #: src/org/revager/gui/MainFrame.java:579
-#: src/org/revager/gui/MainFrame.java:1743
+#: src/org/revager/gui/MainFrame.java:1718
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:549
 msgid "Remove"
 msgstr "Entfernen"
@@ -1203,53 +1188,53 @@ msgstr "Teilnehmer bearbeiten"
 msgid "General impression of the product:"
 msgstr "Genereller Eindruck des Prüflings"
 
-#: src/org/revager/gui/MainFrame.java:874
-#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:49
+#: src/org/revager/gui/MainFrame.java:848
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:56
 msgid "Open RevAger Assistant"
 msgstr "RevAger-Assistent öffnen"
 
-#: src/org/revager/gui/MainFrame.java:1010
+#: src/org/revager/gui/MainFrame.java:988
 msgid "File"
 msgstr "Datei"
 
-#: src/org/revager/gui/MainFrame.java:1050
+#: src/org/revager/gui/MainFrame.java:1030
 #: src/org/revager/gui/findings_list/FindingPanel.java:1050
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: src/org/revager/gui/MainFrame.java:1100
+#: src/org/revager/gui/MainFrame.java:1080
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/org/revager/gui/MainFrame.java:1103
+#: src/org/revager/gui/MainFrame.java:1083
 #: src/org/revager/gui/dialogs/SettingsDialog.java:115
 msgid "Application Settings"
 msgstr "Anwendungseinstellungen"
 
-#: src/org/revager/gui/MainFrame.java:1116
+#: src/org/revager/gui/MainFrame.java:1096
 msgid "CSV Profiles"
 msgstr "CSV-Profil"
 
-#: src/org/revager/gui/MainFrame.java:1134
+#: src/org/revager/gui/MainFrame.java:1114
 msgid "Help"
 msgstr "Hilfe"
 
-#: src/org/revager/gui/MainFrame.java:1147
+#: src/org/revager/gui/MainFrame.java:1127
 msgid "About RevAger"
 msgstr "Über RevAger"
 
-#: src/org/revager/gui/MainFrame.java:1275
+#: src/org/revager/gui/MainFrame.java:1252
 #: src/org/revager/gui/dialogs/AboutDialog.java:74
 msgid "Version:"
 msgstr "Version:"
 
-#: src/org/revager/gui/MainFrame.java:1308
+#: src/org/revager/gui/MainFrame.java:1285
 msgid ""
 "First of all we recommend to specify the product and the review's title."
 msgstr ""
 "Zunächst empfehlen wir, den Prüfling und den Titel des Reviews festzulegen."
 
-#: src/org/revager/gui/MainFrame.java:1312
+#: src/org/revager/gui/MainFrame.java:1289
 msgid ""
 "You should create a meeting and add the attendees of the review by using the "
 "corresponding buttons."
@@ -1257,11 +1242,11 @@ msgstr ""
 "Erstellen Sie eine Sitzung und fügen Sie mindestens einen Teilnehmer zum "
 "Review hinzu, indem Sie die entsprechenden Schaltflächen nutzen."
 
-#: src/org/revager/gui/MainFrame.java:1316
+#: src/org/revager/gui/MainFrame.java:1293
 msgid "All required information for the review are present."
 msgstr "Alle für das Review benötigten Informationen wurden angegeben."
 
-#: src/org/revager/gui/MainFrame.java:1320
+#: src/org/revager/gui/MainFrame.java:1297
 msgid ""
 "You can open the list of findings by selecting the corresponding meeting and "
 "clicking the 'Open findings list' button."
@@ -1269,7 +1254,7 @@ msgstr ""
 "Sie können das Review-Protokoll öffnen, indem Sie die entsprechende Sitzung "
 "auswählen und auf die Schaltfläche 'Protokoll öffnen' klicken."
 
-#: src/org/revager/gui/MainFrame.java:1324
+#: src/org/revager/gui/MainFrame.java:1301
 msgid ""
 "You can open the RevAger Assistant by clicking on the 'Open Assistant' "
 "button."
@@ -1277,40 +1262,34 @@ msgstr ""
 "Sie können den RevAger-Assistenten öffnen, indem Sie auf den entsprechenden "
 "Button klicken."
 
-#: src/org/revager/gui/MainFrame.java:1555
-#: src/org/revager/gui/MainFrame.java:1560
+#: src/org/revager/gui/MainFrame.java:1530
+#: src/org/revager/gui/MainFrame.java:1535
 #: src/org/revager/gui/actions/NewReviewAction.java:49
 msgid "New Review"
 msgstr "Neues Review"
 
-#: src/org/revager/gui/MainFrame.java:1723
+#: src/org/revager/gui/MainFrame.java:1698
 msgid "Remove meeting"
 msgstr "Sitzung entfernen"
 
-#: src/org/revager/gui/MainFrame.java:1733
+#: src/org/revager/gui/MainFrame.java:1708
 msgid "Remove list of findings"
 msgstr "Sitzungsprotokoll entfernen"
 
 #. getMainFrame().setEnabled(false);
-#: src/org/revager/gui/UI.java:775
+#: src/org/revager/gui/UI.java:787
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: src/org/revager/gui/UI.java:775
+#: src/org/revager/gui/UI.java:787
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/org/revager/gui/UI.java:780
+#: src/org/revager/gui/UI.java:792
 msgid ""
-"RevAger didn't shut down correctly. Thus some review data might have got "
-"lost.\n"
-"\n"
-"Would you like to restore the recent review?"
+"There is a review which hasn't been stored properly. Would you like to "
+"restore and load the review?"
 msgstr ""
-"RevAger wurde nicht ordnungsgemäß beendet. Aus diesem Grund könnten Daten "
-"verloren gegangen sein.\n"
-"\n"
-"Wollen Sie das zuletzt geöffnete Review wiederherstellen?"
 
 #: src/org/revager/gui/actions/ExitAction.java:52
 msgid "Close Application"
@@ -1318,6 +1297,7 @@ msgstr "Anwendung beenden"
 
 #: src/org/revager/gui/actions/ExitAction.java:78
 #: src/org/revager/gui/actions/NewReviewAction.java:66
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:79
 msgid ""
 "There are unsaved changes in the review. Would you like to save them now?\n"
 "\n"
@@ -1741,7 +1721,7 @@ msgstr ""
 "verwalten."
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:262
-#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:183
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:185
 msgid "Back"
 msgstr "Zurück"
 
@@ -2500,7 +2480,7 @@ msgstr ""
 msgid "List of findings successfully loaded."
 msgstr "Protokoll erfolgreich geladen."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1468
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1470
 msgid ""
 "Please add at least one attendee to the meeting by choosing one from the "
 "attendees pool or create a new one (Tab 'Organizational')."
@@ -2509,7 +2489,7 @@ msgstr ""
 "durch Auswahl aus dem Teilnehmer-Pool oder durch Anlegen eines neuen "
 "Teilnehmers (Tab 'Organisatorisches')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1472
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1474
 msgid ""
 "Please enter the general impression and the final recommendation for the "
 "product into the provided text field (Tab 'Impression · Comments · "
@@ -2519,17 +2499,17 @@ msgstr ""
 "Prüflings in das dafür vorgesehene Textfeld ein (Tab 'Eindruck · Kommentare "
 "· Bewertung')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1476
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1478
 msgid "For every finding enter at least a description (Tab 'Findings')."
 msgstr ""
 "Bitte geben Sie für jeden Befund zumindest eine Beschreibung ein (Tab "
 "'Befunde')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1480
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1482
 msgid "The meeting data and its list of findings is complete."
 msgstr "Die Sitzungsdaten und das Protokoll sind vollständig."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1484
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1486
 msgid ""
 "In order to add a new finding to the list of findings use the 'Add Finding' "
 "button (Tab 'Findings')."
@@ -3023,10 +3003,42 @@ msgstr "Die Review-Datei konnte nicht gespeichert werden."
 #~ "Entwurfsunterlage (gegliederte Komponente); Lastenheft; Pflichtenheft; "
 #~ "Quellcode; Testkonzept; Testunterlage"
 
+#, java-format
+#~ msgid "You are invited as {0} to the review \"{1}\":"
+#~ msgstr "Sie sind als {0} zum Review \"{1}\" eingeladen:"
+
+#~ msgid "o'clock"
+#~ msgstr "Uhr"
+
+#~ msgid "Findings List of the entire review"
+#~ msgstr "Protokoll des gesamten Reviews"
+
 #~ msgid "Missing meeting information. You have to add at least one meeting."
 #~ msgstr ""
 #~ "Der Prüfling ist nicht komplett angegegeben. Es muss mindestens eine Review-"
 #~ "Sitzung angelegt werden."
+
+#~ msgid "Findings List of the review meeting"
+#~ msgstr "Protokoll der Review-Sitzung"
+
+#~ msgid ""
+#~ "You should map each finding to exactly one severity (descending order of "
+#~ "importance):"
+#~ msgstr ""
+#~ "Jedem Befund sollte genau eine Gewichtung (absteigend sortiert nach "
+#~ "Wichtigkeit) zugewiesen werden:"
+
+#, java-format
+#~ msgid ""
+#~ "This review consists of: {0} attendees, {1} findings, {2} meetings and {3} "
+#~ "aspects."
+#~ msgstr ""
+#~ "Dieses Review besteht aus {0} Teilnehmer, {1} Befund(e), {2} Sitzung(en) und "
+#~ "{3} Prüfaspekt(e)."
+
+#~ msgid "The following findings were recorded by the participating reviewers:"
+#~ msgstr ""
+#~ "Die folgenden Befunde wurden durch die anwesenden Gutachter festgehalten:"
 
 #~ msgid "Open help chapters"
 #~ msgstr "Hilfskapitel öffnen"
@@ -3111,6 +3123,17 @@ msgstr "Die Review-Datei konnte nicht gespeichert werden."
 
 #~ msgid "Scribe Mode"
 #~ msgstr "Notar-Modus"
+
+#~ msgid ""
+#~ "RevAger didn't shut down correctly. Thus some review data might have got "
+#~ "lost.\n"
+#~ "\n"
+#~ "Would you like to restore the recent review?"
+#~ msgstr ""
+#~ "RevAger wurde nicht ordnungsgemäß beendet. Aus diesem Grund könnten Daten "
+#~ "verloren gegangen sein.\n"
+#~ "\n"
+#~ "Wollen Sie das zuletzt geöffnete Review wiederherstellen?"
 
 #~ msgid "Cannot save review file. Reason:"
 #~ msgstr "Review-Datei konnte aus folgendem Grund nicht gespeichert werden:"

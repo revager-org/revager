@@ -23,6 +23,7 @@ import static org.revager.app.model.Data._;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -73,8 +74,14 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame()
-				.switchToProgressMode(_("Allocating aspects ..."));
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.switchToProgressMode(_("Allocating aspects ..."));
+			}
+		});
 
 		UI.getInstance().getAspectsManagerFrame().observeResiData(false);
 
@@ -89,18 +96,34 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		if (reviewers.size() > 0 && aspects.size() > 0) {
 			allocateAspects();
 
-			UI.getInstance().getAspectsManagerFrame()
-					.setStatusMessage(_("Aspects allocated."), false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getAspectsManagerFrame()
+							.setStatusMessage(_("Aspects allocated."), false);
+				}
+			});
 		} else {
-			UI.getInstance().getAspectsManagerFrame()
-					.setStatusMessage(_("Cannot allocate aspects!"), false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(_("Cannot allocate aspects!"),
+									false);
+				}
+			});
 		}
 
-		UI.getInstance().getAspectsManagerFrame().updateViews();
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
 		UI.getInstance().getAspectsManagerFrame().observeResiData(true);
 
-		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame().updateViews();
+
+				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+			}
+		});
 
 		return null;
 	}

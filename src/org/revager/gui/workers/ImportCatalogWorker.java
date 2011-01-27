@@ -23,6 +23,7 @@ import static org.revager.app.model.Data._;
 import java.io.File;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -68,8 +69,14 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		UI.getInstance().getAspectsManagerFrame()
-				.switchToProgressMode(_("Importing catalog ..."));
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.switchToProgressMode(_("Importing catalog ..."));
+			}
+		});
 
 		AppCatalog appCat = null;
 
@@ -120,13 +127,16 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 				appCat.newAspect(dir, asp.getDescription(), cate);
 			}
 
-			UI.getInstance().getAspectsManagerFrame().updateTree();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getAspectsManagerFrame().updateTree();
 
-			UI.getInstance()
-					.getAspectsManagerFrame()
-					.setStatusMessage(_("Catalog imported successfully."),
-							false);
-
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(
+									_("Catalog imported successfully."), false);
+				}
+			});
 		} catch (Exception e) {
 			JOptionPane
 					.showMessageDialog(
@@ -135,14 +145,28 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 									+ "\n\n" + e.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAspectsManagerFrame()
-					.setStatusMessage(_("Cannot import catalog!"), false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(_("Cannot import catalog!"),
+									false);
+				}
+			});
 		}
 
-		UI.getInstance().getAspectsManagerFrame()
-				.updateTree(appCat, null, null);
+		final AppCatalog catalog = appCat;
 
-		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.updateTree(catalog, null, null);
+
+				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+			}
+		});
 
 		return null;
 	}

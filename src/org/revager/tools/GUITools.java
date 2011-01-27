@@ -87,8 +87,12 @@ public class GUITools {
 	 * 
 	 * @param worker
 	 */
-	public static void executeSwingWorker(SwingWorker<?, ?> worker) {
+	public static void executeSwingWorker(final SwingWorker<?, ?> worker) {
+		// SwingUtilities.invokeLater(new Runnable() {
+		// public void run() {
 		java.util.concurrent.Executors.newCachedThreadPool().execute(worker);
+		// }
+		// });
 	}
 
 	/**
@@ -315,8 +319,8 @@ public class GUITools {
 				boolean result = super.editCellAt(row, column, e);
 				final Component editor = getEditorComponent();
 
-				TableCellRenderer renderer = this.getColumnModel().getColumn(
-						column).getCellRenderer();
+				TableCellRenderer renderer = this.getColumnModel()
+						.getColumn(column).getCellRenderer();
 
 				Font cellFont = null;
 

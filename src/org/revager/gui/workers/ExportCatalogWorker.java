@@ -21,6 +21,7 @@ package org.revager.gui.workers;
 import static org.revager.app.model.Data._;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -69,8 +70,14 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame()
-				.switchToProgressMode(_("Exporting catalog ..."));
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.switchToProgressMode(_("Exporting catalog ..."));
+			}
+		});
 
 		try {
 			Catalog cat = new Catalog();
@@ -98,22 +105,36 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 			Application.getInstance().getImportExportCtl()
 					.exportCatalogXML(this.filePath, cat);
 
-			UI.getInstance()
-					.getAspectsManagerFrame()
-					.setStatusMessage(_("Catalog exported successfully."),
-							false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(
+									_("Catalog exported successfully."), false);
+				}
+			});
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance()
-					.getAspectsManagerFrame()
-					.setStatusMessage(_("Cannot export selected catalog!"),
-							false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(
+									_("Cannot export selected catalog!"), false);
+				}
+			});
 		}
 
-		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+			}
+		});
 
 		return null;
 	}

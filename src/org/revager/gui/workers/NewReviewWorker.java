@@ -21,11 +21,14 @@ package org.revager.gui.workers;
 import static org.revager.app.model.Data._;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
+import org.revager.gui.actions.ActionRegistry;
+import org.revager.gui.actions.OpenFindingsListAction;
 import org.revager.tools.GUITools;
 
 /**
@@ -33,12 +36,12 @@ import org.revager.tools.GUITools;
  */
 public class NewReviewWorker extends SwingWorker<Void, Void> {
 
-	private boolean closeAssistantDialog = true;
+	private boolean instantReview = false;
 
-	public NewReviewWorker(boolean closeAssistantDialog) {
+	public NewReviewWorker(boolean instantReview) {
 		super();
 
-		this.closeAssistantDialog = closeAssistantDialog;
+		this.instantReview = instantReview;
 	}
 
 	public NewReviewWorker() {
@@ -52,29 +55,60 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		boolean showAssistantDialog = UI.getInstance().getAssistantDialog()
-				.isVisible();
-		MainFrame mainframe = UI.getInstance().getMainFrame();
+		final boolean showAssistantDialog = UI.getInstance()
+				.getAssistantDialog().isVisible();
+		final MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		mainframe.switchToProgressMode();
+		mainframe.notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				mainframe.switchToProgressMode();
+			}
+		});
 
 		mainframe.setStatusMessage(_("Creating new review ..."), true);
 
 		try {
 			Application.getInstance().getApplicationCtl().newReview();
 
-			mainframe.setStatusMessage(_("New review created successfully."),
-					false);
+			mainframe.notifySwitchToEditMode();
 
-			mainframe.switchToEditMode();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.setStatusMessage(
+							_("New review created successfully."), false);
+
+					if (instantReview) {
+						UI.getInstance().getEditProductDialog()
+								.setVisible(true);
+
+						/*
+						 * Run OpenFindingsListAction
+						 */
+						OpenFindingsListAction action = (OpenFindingsListAction) ActionRegistry
+								.getInstance().get(
+										OpenFindingsListAction.class.getName());
+
+						action.performActionDirectly();
+					}
+
+					mainframe.switchToEditMode();
+				}
+			});
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
-			UI.getInstance().getAssistantDialog()
-					.setVisible(!closeAssistantDialog);
 		} catch (Exception e) {
-			mainframe.setStatusMessage(_("No review in process."), false);
+			mainframe.notifySwitchToClearMode();
 
-			mainframe.switchToClearMode();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.setStatusMessage(_("No review in process."),
+							false);
+
+					mainframe.switchToClearMode();
+				}
+			});
 
 			JOptionPane.showMessageDialog(
 					UI.getInstance().getMainFrame(),
@@ -82,8 +116,12 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 							+ "\n\n" + e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAssistantDialog()
-					.setVisible(showAssistantDialog);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getAssistantDialog()
+							.setVisible(showAssistantDialog);
+				}
+			});
 		}
 
 		return null;

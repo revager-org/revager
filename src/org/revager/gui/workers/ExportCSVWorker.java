@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -56,8 +57,8 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 		SeverityManagement sevMgmt = Application.getInstance()
 				.getSeverityMgmt();
 
-		MainFrame mainFrame = UI.getInstance().getMainFrame();
-		FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
+		final MainFrame mainFrame = UI.getInstance().getMainFrame();
+		final FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
 
 		FileChooser fileChooser = UI.getInstance().getFileChooser();
 		fileChooser.setFile(null);
@@ -67,7 +68,14 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 
 		if (fileChooser.showDialog(UI.getInstance().getExportCSVDialog(),
 				FileChooser.MODE_SAVE_FILE, ResiFileFilter.TYPE_CSV) == FileChooser.SELECTED_APPROVE) {
-			UI.getInstance().getExportCSVDialog().switchToProgressMode();
+			UI.getInstance().getExportCSVDialog().notifySwitchToProgressMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getExportCSVDialog()
+							.switchToProgressMode();
+				}
+			});
 
 			String dir = fileChooser.getFile().getAbsolutePath();
 
@@ -104,24 +112,43 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 									sevMaps, reporter);
 				}
 
-				UI.getInstance().getExportCSVDialog().setVisible(false);
-				UI.getInstance().getExportCSVDialog().switchToEditMode();
+				UI.getInstance().getExportCSVDialog().notifySwitchToEditMode();
 
-				if (protFrame.isVisible()) {
-					protFrame
-							.setStatusMessage(
-									_("The findings have been exported into a CSV file successfully."),
-									false);
-				} else {
-					mainFrame
-							.setStatusMessage(
-									_("The findings have been exported into a CSV file successfully."),
-									false);
-				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance().getExportCSVDialog().setVisible(false);
+
+						UI.getInstance().getExportCSVDialog()
+								.switchToEditMode();
+					}
+				});
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						if (protFrame.isVisible()) {
+							protFrame
+									.setStatusMessage(
+											_("The findings have been exported into a CSV file successfully."),
+											false);
+						} else {
+							mainFrame
+									.setStatusMessage(
+											_("The findings have been exported into a CSV file successfully."),
+											false);
+						}
+					}
+				});
 
 				Desktop.getDesktop().open(expFile.getParentFile());
 			} catch (Exception e) {
-				UI.getInstance().getExportCSVDialog().switchToEditMode();
+				UI.getInstance().getExportCSVDialog().notifySwitchToEditMode();
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance().getExportCSVDialog()
+								.switchToEditMode();
+					}
+				});
 
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getExportCSVDialog(), GUITools.getMessagePane(e

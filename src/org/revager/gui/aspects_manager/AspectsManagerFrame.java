@@ -59,6 +59,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
@@ -98,7 +99,7 @@ import org.revager.gui.workers.ExportAspectsWorker;
 import org.revager.gui.workers.ExportCatalogWorker;
 import org.revager.gui.workers.ImportAspectsWorker;
 import org.revager.gui.workers.ImportCatalogWorker;
-import org.revager.gui.workers.LoadStdCatalogsWorker;
+import org.revager.gui.workers.LoadDefCatalogsWorker;
 import org.revager.tools.GUITools;
 import org.revager.tools.TreeTools;
 
@@ -358,10 +359,15 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SwingWorker<Void, Void> removeWorker = new SwingWorker<Void, Void>() {
-
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode();
+						notifySwitchToProgressMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								switchToProgressMode();
+							}
+						});
 
 						List<AppCatalog> chkCatalogs = getCheckedCatalogs();
 						List<AppAspect> chkAspects = getCheckedAspects();
@@ -381,9 +387,15 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
-						updateTree();
+						notifySwitchToEditMode();
 
-						switchToEditMode();
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								updateTree();
+
+								switchToEditMode();
+							}
+						});
 
 						return null;
 					}
@@ -569,7 +581,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		tbLoadStdCatalogs.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUITools.executeSwingWorker(new LoadStdCatalogsWorker());
+				GUITools.executeSwingWorker(new LoadDefCatalogsWorker());
 			}
 		});
 
@@ -956,7 +968,13 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				SwingWorker<Void, Void> allocWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode(_("Allocating aspects ..."));
+						notifySwitchToProgressMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								switchToProgressMode(_("Allocating aspects ..."));
+							}
+						});
 
 						observeResiData(false);
 
@@ -975,12 +993,19 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
-						setStatusMessage(_("Aspects allocated successfully."),
-								false);
-
 						observeResiData(true);
 
-						switchToEditMode();
+						notifySwitchToEditMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								setStatusMessage(
+										_("Aspects allocated successfully."),
+										false);
+
+								switchToEditMode();
+							}
+						});
 
 						return null;
 					}
@@ -1019,7 +1044,13 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				SwingWorker<Void, Void> allocWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode(_("Allocating aspects ..."));
+						notifySwitchToProgressMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								switchToProgressMode(_("Allocating aspects ..."));
+							}
+						});
 
 						observeResiData(false);
 
@@ -1034,12 +1065,19 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 									_("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
-						setStatusMessage(_("Aspects allocated successfully."),
-								false);
-
 						observeResiData(true);
 
-						switchToEditMode();
+						notifySwitchToEditMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								setStatusMessage(
+										_("Aspects allocated successfully."),
+										false);
+
+								switchToEditMode();
+							}
+						});
 
 						return null;
 					}
@@ -1368,7 +1406,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			 */
 			try {
 				if (appData.getNumberOfCatalogs() == 0) {
-					GUITools.executeSwingWorker(new LoadStdCatalogsWorker());
+					GUITools.executeSwingWorker(new LoadDefCatalogsWorker());
 				}
 			} catch (DataException e) {
 				JOptionPane.showMessageDialog(this,
@@ -1729,8 +1767,12 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		updateHints();
-		updateToolBar();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				updateHints();
+				updateToolBar();
+			}
+		});
 	}
 
 	/**

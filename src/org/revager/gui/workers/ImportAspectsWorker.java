@@ -21,6 +21,7 @@ package org.revager.gui.workers;
 import static org.revager.app.model.Data._;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -67,8 +68,14 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame()
-				.switchToProgressMode(_("Importing aspects ..."));
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.switchToProgressMode(_("Importing aspects ..."));
+			}
+		});
 
 		try {
 			Aspects asps = Application.getInstance().getImportExportCtl()
@@ -89,10 +96,14 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 				catalog.newAspect(dir, asp.getDescription(), cate);
 			}
 
-			UI.getInstance()
-					.getAspectsManagerFrame()
-					.setStatusMessage(_("Aspects imported successfully."),
-							false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(
+									_("Aspects imported successfully."), false);
+				}
+			});
 		} catch (Exception e) {
 			JOptionPane
 					.showMessageDialog(
@@ -101,14 +112,26 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 									+ "\n\n" + e.getMessage()), _("Error"),
 							JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAspectsManagerFrame()
-					.setStatusMessage(_("Cannot import aspects!"), false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(_("Cannot import aspects!"),
+									false);
+				}
+			});
 		}
 
-		UI.getInstance().getAspectsManagerFrame()
-				.updateTree(catalog, null, null);
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
-		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.updateTree(catalog, null, null);
+
+				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+			}
+		});
 
 		return null;
 	}

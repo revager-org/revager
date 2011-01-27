@@ -36,6 +36,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -994,20 +995,42 @@ public class FindingPanel extends JPanel {
 			if (fileChooser.showDialog(UI.getInstance().getEditProductDialog(),
 					FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_ALL) == FileChooser.SELECTED_APPROVE) {
 
-				UI.getInstance().getProtocolFrame().switchToProgressMode();
+				UI.getInstance().getProtocolFrame()
+						.notifySwitchToProgressMode();
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance().getProtocolFrame()
+								.switchToProgressMode();
+					}
+				});
 
 				File file = fileChooser.getFile();
+
 				findMgmt.addExtReference(file, finding);
-				modelExtReferences.fireTableDataChanged();
 
-				Thread.sleep(200);
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						modelExtReferences.fireTableDataChanged();
 
-				GUITools.scrollToBottom(scrollExtReferences);
+						GUITools.scrollToBottom(scrollExtReferences);
+					}
+				});
 
-				updateTableButtons();
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						updateTableButtons();
+					}
+				});
 			}
 
-			UI.getInstance().getProtocolFrame().switchToEditMode();
+			UI.getInstance().getProtocolFrame().notifySwitchToEditMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getProtocolFrame().switchToEditMode();
+				}
+			});
 
 			return null;
 		}
@@ -1016,9 +1039,16 @@ public class FindingPanel extends JPanel {
 	private class PasteImageFromClipboardWorker extends SwingWorker<Void, Void> {
 		@Override
 		protected Void doInBackground() throws Exception {
-			UI.getInstance()
-					.getProtocolFrame()
-					.switchToProgressMode(_("Getting image from clipboard ..."));
+			UI.getInstance().getProtocolFrame().notifySwitchToProgressMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getProtocolFrame()
+							.switchToProgressMode(
+									_("Getting image from clipboard ..."));
+				}
+			});
 
 			Image img = AppTools.getImageFromClipboard();
 
@@ -1063,24 +1093,40 @@ public class FindingPanel extends JPanel {
 				if (fileName != null && !fileName.trim().equals("")) {
 					findMgmt.addExtReference(img, fileName, finding);
 
-					modelExtReferences.fireTableDataChanged();
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							modelExtReferences.fireTableDataChanged();
 
-					updateTableButtons();
+							GUITools.scrollToBottom(scrollExtReferences);
+
+							updateTableButtons();
+						}
+					});
 				}
 
 				if (action == 1) {
 					int numberOfExtRefs = findMgmt.getExtReferences(finding)
 							.size();
 
-					File extRef = findMgmt.getExtReferences(finding).get(
+					final File extRef = findMgmt.getExtReferences(finding).get(
 							numberOfExtRefs - 1);
 
-					UI.getInstance().getProtocolFrame().getImageEditor(extRef)
-							.setVisible(true);
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							UI.getInstance().getProtocolFrame()
+									.getImageEditor(extRef).setVisible(true);
+						}
+					});
 				}
 			}
 
-			UI.getInstance().getProtocolFrame().switchToEditMode();
+			UI.getInstance().getProtocolFrame().notifySwitchToEditMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getProtocolFrame().switchToEditMode();
+				}
+			});
 
 			return null;
 		}

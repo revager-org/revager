@@ -293,31 +293,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 					long diff = System.currentTimeMillis() - updateTime;
 
 					if (diff >= change && diff < change * 3) {
-						final boolean textRevNameFocus = textRevName
-								.isFocusOwner();
-						final boolean textRevDescFocus = textRevDesc
-								.isFocusOwner();
-
-						final int textRevNamePos = textRevName
-								.getCaretPosition();
-						final int textRevDescPos = textRevDesc
-								.getCaretPosition();
-
-						updateResiData();
-
-						updateHints();
-
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
-								if (textRevNameFocus) {
-									textRevName.requestFocus();
-									textRevName
-											.setCaretPosition(textRevNamePos);
-								} else if (textRevDescFocus) {
-									textRevDesc.requestFocus();
-									textRevDesc
-											.setCaretPosition(textRevDescPos);
-								}
+								updateResiData();
+
+								updateHints();
 							}
 						});
 					}
@@ -1111,6 +1091,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		appSettings.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				UI.getInstance().getMainFrame().setEnabled(false);
 				UI.getInstance().getSettingsDialog().setVisible(true);
 			}
 		});
@@ -1463,19 +1444,54 @@ public class MainFrame extends AbstractFrame implements Observer {
 			public void run() {
 				updateMenu();
 				updateToolBar();
+			}
+		});
 
-				if (Data.getInstance().getResiData().getReview() != null) {
-					if (!assistantMode) {
+		if (Data.getInstance().getResiData().getReview() != null) {
+			if (!assistantMode) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						/*
+						 * Store cursor positions (text fields)
+						 */
+						final boolean textRevNameFocus = textRevName
+								.isFocusOwner();
+						final boolean textRevDescFocus = textRevDesc
+								.isFocusOwner();
+
+						final int textRevNamePos = textRevName
+								.getCaretPosition();
+						final int textRevDescPos = textRevDesc
+								.getCaretPosition();
+
+						/*
+						 * Do actions
+						 */
 						splitPanel.removeAll();
 
 						updateLeftPane();
 						updateRightPane();
 
-						GUITools.executeSwingWorker(updateWorker);
-
 						splitPanel.revalidate();
-					}
 
+						/*
+						 * Restore cursor positions (text fields)
+						 */
+						if (textRevNameFocus) {
+							textRevName.requestFocus();
+							textRevName.setCaretPosition(textRevNamePos);
+						} else if (textRevDescFocus) {
+							textRevDesc.requestFocus();
+							textRevDesc.setCaretPosition(textRevDescPos);
+						}
+					}
+				});
+
+				GUITools.executeSwingWorker(updateWorker);
+			}
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
 					// updateMeetingsTree();
 					meetingsTree.repaint();
 
@@ -1511,7 +1527,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 						createInvitationsItem.setEnabled(false);
 					}
 				}
+			});
+		}
 
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
 				updateHints();
 
 				updateTitle();

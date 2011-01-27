@@ -18,10 +18,10 @@
  */
 package org.revager.gui.workers;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.gui.UI;
-
 
 /**
  * Worker for updating the CSV Profiles dialog.
@@ -76,7 +76,12 @@ public class CSVProfilesWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getCSVProfilesDialog().updateAppData(selItem, selIdx);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getCSVProfilesDialog()
+						.updateAppData(selItem, selIdx);
+			}
+		});
 
 		return null;
 	}

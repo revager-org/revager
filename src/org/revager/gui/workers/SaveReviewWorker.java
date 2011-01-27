@@ -21,6 +21,7 @@ package org.revager.gui.workers;
 import static org.revager.app.model.Data._;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -61,14 +62,29 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		MainFrame mainframe = UI.getInstance().getMainFrame();
+		final MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		mainframe.setStatusMessage(_("Saving review ..."), true);
+		mainframe.notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				mainframe.switchToProgressMode(_("Saving review ..."));
+			}
+		});
 
 		try {
 			Application.getInstance().getApplicationCtl().storeReview(filePath);
 
-			mainframe.setStatusMessage(_("Review saved successfully."), false);
+			mainframe.notifySwitchToEditMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.switchToEditMode();
+
+					mainframe.setStatusMessage(_("Review saved successfully."),
+							false);
+				}
+			});
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
 
@@ -77,7 +93,16 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 						ExitAction.class.getName())).exitApplication();
 			}
 		} catch (Exception e) {
-			mainframe.setStatusMessage(_("Cannot save review file."), false);
+			mainframe.notifySwitchToEditMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.switchToEditMode();
+
+					mainframe.setStatusMessage(_("Cannot save review file."),
+							false);
+				}
+			});
 
 			JOptionPane.showMessageDialog(
 					UI.getInstance().getMainFrame(),

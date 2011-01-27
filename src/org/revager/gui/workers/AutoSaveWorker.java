@@ -23,6 +23,7 @@ import static org.revager.app.model.Data._;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -94,10 +95,14 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 					/*
 					 * Set done message
 					 */
-					for (AbstractFrame af : obsFrames) {
-						af.setStatusMessage(_("Review stored successfully."),
-								false);
-					}
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							for (AbstractFrame af : obsFrames) {
+								af.setStatusMessage(
+										_("Review stored successfully."), false);
+							}
+						}
+					});
 
 					UI.getInstance().setStatus(UI.Status.DATA_SAVED);
 				}
@@ -105,9 +110,14 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 				/*
 				 * Set failed message
 				 */
-				for (AbstractFrame af : obsFrames) {
-					af.setStatusMessage(_("Review couldn't be stored!"), false);
-				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						for (AbstractFrame af : obsFrames) {
+							af.setStatusMessage(
+									_("Review couldn't be stored!"), false);
+						}
+					}
+				});
 			}
 		}
 	}

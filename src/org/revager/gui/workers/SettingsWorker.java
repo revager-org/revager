@@ -18,11 +18,13 @@
  */
 package org.revager.gui.workers;
 
+import java.awt.Cursor;
+
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.gui.UI;
 import org.revager.gui.dialogs.SettingsDialog;
-
 
 /**
  * Worker to refresh the application settings dialog.
@@ -36,10 +38,9 @@ public class SettingsWorker extends SwingWorker<Void, Void> {
 		STORE_APPDATA, LOAD_APPDATA, UPDATE_LOGO_VIEWS;
 	}
 
-	/**
-	 * The current mode of the worker.
-	 */
 	private Mode mode;
+
+	private boolean visible;
 
 	/**
 	 * Instantiates a new settings worker.
@@ -48,30 +49,44 @@ public class SettingsWorker extends SwingWorker<Void, Void> {
 	 *            the worker mode
 	 */
 	public SettingsWorker(Mode mode) {
+		this(mode, true);
+	}
+
+	public SettingsWorker(Mode mode, boolean visible) {
 		super();
 
 		this.mode = mode;
+		this.visible = visible;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.SwingWorker#doInBackground()
-	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		SettingsDialog settDialog = UI.getInstance().getSettingsDialog();
+		final SettingsDialog settDialog = UI.getInstance().getSettingsDialog();
 
 		if (this.mode == Mode.STORE_APPDATA) {
-			settDialog.updateAppData();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					settDialog.updateAppData();
+
+					settDialog.setDialogVisible(visible);
+				}
+			});
 		} else if (this.mode == Mode.LOAD_APPDATA) {
-			settDialog.switchToProgressMode();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					settDialog.updateDialogData();
 
-			settDialog.updateDialogData();
-
-			settDialog.switchToEditMode();
+					settDialog.setDialogVisible(visible);
+				}
+			});
 		} else if (this.mode == Mode.UPDATE_LOGO_VIEWS) {
-			settDialog.updateLogoViews();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					settDialog.updateLogoViews();
+
+					settDialog.setDialogVisible(visible);
+				}
+			});
 		}
 
 		return null;

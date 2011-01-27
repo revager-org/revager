@@ -166,7 +166,11 @@ public class Main {
 		try {
 			pb.start();
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			JOptionPane
+					.showMessageDialog(
+							UI.getInstance().getMainFrame(),
+							GUITools.getMessagePane(_("The application cannot be restarted automatically on your system. Please start up RevAger manually after it has been closed.")),
+							_("Warning"), JOptionPane.WARNING_MESSAGE);
 		}
 
 		exitApplication();

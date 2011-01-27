@@ -71,6 +71,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
@@ -255,6 +256,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	public void setMeeting(Meeting meet) {
 		currentMeet = meet;
 		currentProt = meet.getProtocol();
+
 		patm = new PresentAttendeesTableModel(currentProt);
 		presentAttTable = GUITools.newStandardTable(patm, false);
 
@@ -305,35 +307,43 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Creates the body.
 	 */
 	private void createBody() {
-		attPanel.removeAll();
-		createAttPanel();
-		attPanel.validate();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				attPanel.removeAll();
+				createAttPanel();
+				attPanel.validate();
 
-		bottomOrgPanel.removeAll();
-		createBottomOrgPanel();
-		bottomOrgPanel.validate();
+				bottomOrgPanel.removeAll();
+				createBottomOrgPanel();
+				bottomOrgPanel.validate();
 
-		tabPanelCommAndRec.removeAll();
-		createCommAndRatePanel();
-		tabPanelCommAndRec.validate();
+				tabPanelCommAndRec.removeAll();
+				createCommAndRatePanel();
+				tabPanelCommAndRec.validate();
+			}
+		});
 
 		tabPanelFindings = new FindingsTab(currentProt);
 
-		tabbedPane.removeAll();
-		tabbedPane.removeChangeListener(tabChangeListener);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				tabbedPane.removeAll();
+				tabbedPane.removeChangeListener(tabChangeListener);
 
-		tabbedPane.setTabPlacement(JTabbedPane.TOP);
+				tabbedPane.setTabPlacement(JTabbedPane.TOP);
 
-		tabbedPane.add(_("Organizational"), tabPanelOrg);
-		tabbedPane.add(_("Findings"), tabPanelFindings);
-		tabbedPane.add(_("Impression · Comments · Recommendation"),
-				tabPanelCommAndRec);
+				tabbedPane.add(_("Organizational"), tabPanelOrg);
+				tabbedPane.add(_("Findings"), tabPanelFindings);
+				tabbedPane.add(_("Impression · Comments · Recommendation"),
+						tabPanelCommAndRec);
 
-		tabbedPane.addChangeListener(tabChangeListener);
+				tabbedPane.addChangeListener(tabChangeListener);
 
-		add(tabbedPane);
+				add(tabbedPane);
 
-		bodyCreated = true;
+				bodyCreated = true;
+			}
+		});
 	}
 
 	/**
@@ -1236,9 +1246,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		if (bodyCreated) {
-			updateHints();
-		}
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (bodyCreated) {
+					updateHints();
+				}
+			}
+		});
 	}
 
 	/*
@@ -1465,7 +1479,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void createHints() {
 		setNumberOfHints(2);
-		
+
 		hintAtt = new HintItem(
 				_("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
 				HintItem.WARNING);
@@ -1564,7 +1578,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	public Map<String, ImageEditorDialog> getImageEditors() {
 		return imageEditors;
 	}
-	
+
 	public void activateFindingsTab() {
 		tabbedPane.setSelectedIndex(1);
 	}

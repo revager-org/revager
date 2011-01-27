@@ -48,6 +48,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.model.Data;
@@ -63,7 +64,7 @@ import org.revager.gui.actions.ActionRegistry;
 import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 import org.revager.gui.actions.attendee.SelectAttOutOfDirAction;
 import org.revager.gui.models.StrengthTableModel;
-import org.revager.gui.workers.LoadStdCatalogsWorker;
+import org.revager.gui.workers.LoadDefCatalogsWorker;
 import org.revager.tools.GUITools;
 
 /**
@@ -401,9 +402,15 @@ public class AttendeeDialog extends AbstractDialog {
 						try {
 							if (Data.getInstance().getAppData()
 									.getNumberOfCatalogs() == 0) {
-								switchToProgressMode(_("Importing catalog ..."));
+								notifySwitchToProgressMode();
 
-								LoadStdCatalogsWorker catalogWorker = new LoadStdCatalogsWorker();
+								SwingUtilities.invokeLater(new Runnable() {
+									public void run() {
+										switchToProgressMode(_("Importing catalog ..."));
+									}
+								});
+
+								LoadDefCatalogsWorker catalogWorker = new LoadDefCatalogsWorker();
 
 								GUITools.executeSwingWorker(catalogWorker);
 
@@ -412,7 +419,13 @@ public class AttendeeDialog extends AbstractDialog {
 									Thread.sleep(500);
 								}
 
-								switchToEditMode();
+								notifySwitchToEditMode();
+
+								SwingUtilities.invokeLater(new Runnable() {
+									public void run() {
+										switchToEditMode();
+									}
+								});
 							}
 						} catch (Exception exc) {
 							/*
@@ -432,9 +445,13 @@ public class AttendeeDialog extends AbstractDialog {
 								}
 							}
 
-							stm.fireTableDataChanged();
+							SwingUtilities.invokeLater(new Runnable() {
+								public void run() {
+									stm.fireTableDataChanged();
 
-							updateStrengthButtons();
+									updateStrengthButtons();
+								}
+							});
 						}
 
 						return null;

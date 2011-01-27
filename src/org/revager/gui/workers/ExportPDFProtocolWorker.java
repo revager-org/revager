@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -52,8 +53,8 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		MainFrame mainFrame = UI.getInstance().getMainFrame();
-		FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
+		final MainFrame mainFrame = UI.getInstance().getMainFrame();
+		final FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
 
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -99,7 +100,14 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 				.getExportPDFProtocolDialog(), FileChooser.MODE_SAVE_FILE,
 				ResiFileFilter.TYPE_PDF) == FileChooser.SELECTED_APPROVE) {
 			UI.getInstance().getExportPDFProtocolDialog()
-					.switchToProgressMode();
+					.notifySwitchToProgressMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getExportPDFProtocolDialog()
+							.switchToProgressMode();
+				}
+			});
 
 			String filePath = fileChooser.getFile().getAbsolutePath();
 			File expFile = null;
@@ -119,21 +127,34 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 									showFields, addExProRef, addExFindRef);
 				}
 
-				UI.getInstance().getExportPDFProtocolDialog().setVisible(false);
 				UI.getInstance().getExportPDFProtocolDialog()
-						.switchToEditMode();
+						.notifySwitchToEditMode();
 
-				if (protFrame.isVisible()) {
-					protFrame
-							.setStatusMessage(
-									_("The findings list has been exported as a PDF file successfully."),
-									false);
-				} else {
-					mainFrame
-							.setStatusMessage(
-									_("The findings list has been exported as a PDF file successfully."),
-									false);
-				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance().getExportPDFProtocolDialog()
+								.setVisible(false);
+
+						UI.getInstance().getExportPDFProtocolDialog()
+								.switchToEditMode();
+					}
+				});
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						if (protFrame.isVisible()) {
+							protFrame
+									.setStatusMessage(
+											_("The findings list has been exported as a PDF file successfully."),
+											false);
+						} else {
+							mainFrame
+									.setStatusMessage(
+											_("The findings list has been exported as a PDF file successfully."),
+											false);
+						}
+					}
+				});
 
 				try {
 					Desktop.getDesktop().open(expFile);
@@ -146,7 +167,14 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 				}
 			} catch (Exception exc) {
 				UI.getInstance().getExportPDFProtocolDialog()
-						.switchToEditMode();
+						.notifySwitchToEditMode();
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance().getExportPDFProtocolDialog()
+								.switchToEditMode();
+					}
+				});
 
 				JOptionPane.showMessageDialog(null,
 						GUITools.getMessagePane(exc.getMessage()), _("Error"),

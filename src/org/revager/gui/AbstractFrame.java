@@ -34,12 +34,9 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -51,6 +48,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
 import org.revager.app.model.Data;
@@ -231,6 +229,12 @@ public class AbstractFrame extends JFrame {
 	 */
 	private boolean hintsOpened = false;
 
+	private long lastSwitchToClearMode = 1;
+
+	private long lastSwitchToEditMode = 0;
+
+	private long lastSwitchToProgressMode = Long.MIN_VALUE;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -365,8 +369,8 @@ public class AbstractFrame extends JFrame {
 	 * @param inProgress
 	 *            the in progress
 	 */
-	synchronized public void setStatusMessage(String message, boolean inProgress) {
-		this.statusMessage.setText(formatTime.format(new Date().getTime())
+	public void setStatusMessage(String message, boolean inProgress) {
+		this.statusMessage.setText(this.formatTime.format(new Date().getTime())
 				+ " | " + message);
 
 		if (inProgress == true) {
@@ -615,61 +619,43 @@ public class AbstractFrame extends JFrame {
 		// = ButtonClicked.CANCEL; setVisible(false); } });
 
 		/*
-		 * Add window listeners.
+		 * Add window listeners. (Workaround)
 		 */
-		addWindowListener(new WindowListener() {
-			@Override
-			public void windowOpened(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowClosing(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowActivated(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-		});
-		addWindowStateListener(new WindowStateListener() {
-			@Override
-			public void windowStateChanged(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-		});
-		addWindowFocusListener(new WindowFocusListener() {
-			@Override
-			public void windowLostFocus(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-
-			@Override
-			public void windowGainedFocus(WindowEvent e) {
-				setHints(currentHints, true);
-			}
-		});
+		/*
+		 * addWindowListener(new WindowListener() {
+		 * 
+		 * @Override public void windowOpened(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowIconified(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowDeiconified(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowDeactivated(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowClosing(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowClosed(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowActivated(WindowEvent e) {
+		 * setHints(currentHints, true); } }); addWindowStateListener(new
+		 * WindowStateListener() {
+		 * 
+		 * @Override public void windowStateChanged(WindowEvent e) {
+		 * setHints(currentHints, true); } }); addWindowFocusListener(new
+		 * WindowFocusListener() {
+		 * 
+		 * @Override public void windowLostFocus(WindowEvent e) {
+		 * setHints(currentHints, true); }
+		 * 
+		 * @Override public void windowGainedFocus(WindowEvent e) {
+		 * setHints(currentHints, true); } });
+		 */
 	}
 
 	/**
@@ -868,21 +854,39 @@ public class AbstractFrame extends JFrame {
 		currentHints = hints;
 	}
 
+	public synchronized void notifySwitchToClearMode() {
+		this.lastSwitchToProgressMode = Long.MIN_VALUE;
+		this.lastSwitchToEditMode = 0;
+		this.lastSwitchToClearMode = System.currentTimeMillis();
+	}
+
+	public synchronized void notifySwitchToEditMode() {
+		this.lastSwitchToProgressMode = Long.MIN_VALUE;
+		this.lastSwitchToEditMode = System.currentTimeMillis();
+	}
+
+	public synchronized void notifySwitchToProgressMode() {
+		this.lastSwitchToProgressMode = System.currentTimeMillis();
+	}
+
 	/**
 	 * Switch to edit mode.
 	 */
 	public void switchToEditMode() {
-		// panelBase.remove(panelGridContent);
-		// panelBase.add(panelGridContent, BorderLayout.CENTER);
+		if (lastSwitchToClearMode < lastSwitchToEditMode
+				&& lastSwitchToEditMode > lastSwitchToProgressMode) {
+			// panelBase.remove(panelGridContent);
+			// panelBase.add(panelGridContent, BorderLayout.CENTER);
 
-		// panelGridContent.revalidate();
-		// panelGridContent.repaint();
+			// panelGridContent.revalidate();
+			// panelGridContent.repaint();
 
-		// panelBase.revalidate();
-		// panelBase.repaint();
+			// panelBase.revalidate();
+			// panelBase.repaint();
 
-		progressPane.deactivate();
-		setGlassPane(disablePane);
+			this.progressPane.deactivate();
+			setGlassPane(this.disablePane);
+		}
 	}
 
 	/**
@@ -899,26 +903,32 @@ public class AbstractFrame extends JFrame {
 	 *            the text
 	 */
 	public void switchToProgressMode(String text) {
-		// panelBase.remove(panelGridContent);
+		if (lastSwitchToProgressMode > lastSwitchToEditMode
+				&& lastSwitchToClearMode < lastSwitchToProgressMode) {
+			// panelBase.remove(panelGridContent);
 
-		// panelBase.revalidate();
-		// panelBase.repaint();
+			// panelBase.revalidate();
+			// panelBase.repaint();
 
-		setGlassPane(progressPane);
-		progressPane.activate(text);
+			setGlassPane(this.progressPane);
+			this.progressPane.activate(text);
+		}
 	}
 
 	/**
 	 * Switch to clear mode.
 	 */
 	public void switchToClearMode() {
-		// panelBase.remove(panelGridContent);
+		if (lastSwitchToClearMode > lastSwitchToEditMode
+				&& lastSwitchToClearMode > lastSwitchToProgressMode) {
+			// panelBase.remove(panelGridContent);
 
-		// panelBase.revalidate();
-		// panelBase.repaint();
+			// panelBase.revalidate();
+			// panelBase.repaint();
 
-		progressPane.deactivate();
-		setGlassPane(disablePane);
+			this.progressPane.deactivate();
+			setGlassPane(this.disablePane);
+		}
 	}
 
 	/**

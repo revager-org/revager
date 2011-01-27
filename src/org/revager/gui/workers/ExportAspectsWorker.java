@@ -23,6 +23,7 @@ import static org.revager.app.model.Data._;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -69,8 +70,14 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		UI.getInstance().getAspectsManagerFrame()
-				.switchToProgressMode(_("Exporting aspects ..."));
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.switchToProgressMode(_("Exporting aspects ..."));
+			}
+		});
 
 		try {
 			Aspects asps = new Aspects();
@@ -88,22 +95,37 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 			Application.getInstance().getImportExportCtl()
 					.exportAspectsXML(this.filePath, asps);
 
-			UI.getInstance()
-					.getAspectsManagerFrame()
-					.setStatusMessage(_("Aspects exported successfully."),
-							false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(
+									_("Aspects exported successfully."), false);
+				}
+			});
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance()
-					.getAspectsManagerFrame()
-					.setStatusMessage(_("Cannot export the selected aspects!"),
-							false);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance()
+							.getAspectsManagerFrame()
+							.setStatusMessage(
+									_("Cannot export the selected aspects!"),
+									false);
+				}
+			});
 		}
 
-		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+			}
+		});
 
 		return null;
 	}

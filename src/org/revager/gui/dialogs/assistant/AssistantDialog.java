@@ -166,10 +166,12 @@ public class AssistantDialog extends AbstractDialog {
 		backBttn.addActionListener(ActionRegistry.getInstance().get(
 				GoToFirstScreenPnlAction.class.getName()));
 
+		setTitle(_("RevAger Assistant"));
+
 		updateContents();
 
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		
+
 		setResizable(false);
 
 		setMinimumSize(new Dimension(650, 500));
@@ -283,7 +285,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		super.setVisible(vis);
 	}
-	
+
 	/**
 	 * @return the instantReview
 	 */
@@ -292,7 +294,8 @@ public class AssistantDialog extends AbstractDialog {
 	}
 
 	/**
-	 * @param instantReview the instantReview to set
+	 * @param instantReview
+	 *            the instantReview to set
 	 */
 	public void setInstantReview(boolean instantReview) {
 		this.instantReview = instantReview;

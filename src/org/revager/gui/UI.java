@@ -315,7 +315,7 @@ public class UI implements Observer {
 	 * @param status
 	 *            the new status
 	 */
-	public void setStatus(Status status) {
+	public synchronized void setStatus(Status status) {
 		this.status = status;
 
 		mainFrame.updateTitle();
@@ -488,7 +488,7 @@ public class UI implements Observer {
 	 * 
 	 * @return the new attendee dialog
 	 */
-	public AttendeeDialog resetAttendeeDialog() {
+	public synchronized AttendeeDialog resetAttendeeDialog() {
 		attendeeDialog = new AttendeeDialog(UI.getInstance().getMainFrame());
 
 		return attendeeDialog;
@@ -766,7 +766,7 @@ public class UI implements Observer {
 	/**
 	 * This method starts the graphical user interface.
 	 */
-	public void run() {
+	public synchronized void run() {
 		/*
 		 * Initialize the frames
 		 */

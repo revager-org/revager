@@ -44,6 +44,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -128,7 +129,11 @@ public class EditProductDialog extends AbstractDialog {
 					long diff = System.currentTimeMillis() - updateTime;
 
 					if (diff >= change && diff < change * 3) {
-						updateMessages();
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								updateMessages();
+							}
+						});
 					}
 				} catch (Exception e) {
 					/*
@@ -326,19 +331,38 @@ public class EditProductDialog extends AbstractDialog {
 								FileChooser.MODE_OPEN_FILE,
 								ResiFileFilter.TYPE_ALL) == FileChooser.SELECTED_APPROVE) {
 
-							switchToProgressMode(_("Adding file ..."));
+							notifySwitchToProgressMode();
+
+							SwingUtilities.invokeLater(new Runnable() {
+								public void run() {
+									switchToProgressMode(_("Adding file ..."));
+								}
+							});
 
 							File file = fileChooser.getFile();
+
 							reviewMgmt.addExtProdReference(file);
-							updateMessages();
-							ertm.fireTableDataChanged();
+
+							SwingUtilities.invokeLater(new Runnable() {
+								public void run() {
+									updateMessages();
+
+									ertm.fireTableDataChanged();
+								}
+							});
 
 							Thread.sleep(200);
 
 							GUITools.scrollToBottom(dataScrllPn);
 						}
 
-						switchToEditMode();
+						notifySwitchToEditMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								switchToEditMode();
+							}
+						});
 
 						return null;
 					}
@@ -364,12 +388,29 @@ public class EditProductDialog extends AbstractDialog {
 				SwingWorker<Void, Void> removeExtRefWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						switchToProgressMode(_("Removing file ..."));
+						notifySwitchToProgressMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								switchToProgressMode(_("Removing file ..."));
+							}
+						});
 
 						reviewMgmt.removeExtProdReference(ref);
-						ertm.fireTableDataChanged();
 
-						switchToEditMode();
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								ertm.fireTableDataChanged();
+							}
+						});
+
+						notifySwitchToEditMode();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								switchToEditMode();
+							}
+						});
 
 						return null;
 					}

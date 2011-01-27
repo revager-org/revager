@@ -23,6 +23,7 @@ import static org.revager.app.model.Data._;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -78,9 +79,13 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 					/*
 					 * Set doing message
 					 */
-					for (AbstractFrame af : obsFrames) {
-						af.setStatusMessage(_("Auto backup ..."), true);
-					}
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							for (AbstractFrame af : obsFrames) {
+								af.setStatusMessage(_("Auto backup ..."), true);
+							}
+						}
+					});
 
 					Application.getInstance().getApplicationCtl()
 							.backupReview();
@@ -88,17 +93,26 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 					/*
 					 * Set done message
 					 */
-					for (AbstractFrame af : obsFrames) {
-						af.setStatusMessage(_("Auto backup done."), false);
-					}
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							for (AbstractFrame af : obsFrames) {
+								af.setStatusMessage(_("Auto backup done."),
+										false);
+							}
+						}
+					});
 				}
 			} catch (Exception e) {
 				/*
 				 * Set failed message
 				 */
-				for (AbstractFrame af : obsFrames) {
-					af.setStatusMessage(_("Auto backup failed!"), false);
-				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						for (AbstractFrame af : obsFrames) {
+							af.setStatusMessage(_("Auto backup failed!"), false);
+						}
+					}
+				});
 			}
 		}
 	}

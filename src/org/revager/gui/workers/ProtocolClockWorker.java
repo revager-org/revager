@@ -21,16 +21,16 @@ package org.revager.gui.workers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.gui.findings_list.FindingsListFrame;
-
 
 /**
  * Worker for the clock in the protocol window.
  */
 public class ProtocolClockWorker extends SwingWorker<Void, Void> {
-	
+
 	/**
 	 * True if the warning was displayed.
 	 */
@@ -128,7 +128,8 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	}
 
 	/**
-	 * @param warningDisplayed the warningDisplayed to set
+	 * @param warningDisplayed
+	 *            the warningDisplayed to set
 	 */
 	public void setWarningDisplayed(boolean warningDisplayed) {
 		this.warningDisplayed = warningDisplayed;
@@ -143,17 +144,19 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {
 		while (true) {
 
-			for (FindingsListFrame pf : protocolFrames) {
+			for (final FindingsListFrame pf : protocolFrames) {
 				if (clockRunning) {
-					pf
-							.updateClock((int) ((System.currentTimeMillis() - startingPoint) / 1000));
-				}
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							pf.updateClock((int) ((System.currentTimeMillis() - startingPoint) / 1000));
 
-				pf.updateCurrentTime();
+							pf.updateCurrentTime();
+						}
+					});
+				}
 			}
 
 			Thread.sleep(1000);
 		}
 	}
-
 }

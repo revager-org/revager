@@ -23,11 +23,12 @@ import static org.revager.app.model.Data._;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.SwingUtilities;
 
 import org.revager.gui.UI;
+import org.revager.gui.actions.attendee.ConfirmAttendeeAction;
 import org.revager.gui.dialogs.AttendeeDialog;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
-import org.revager.gui.workers.NewInstantReviewWorker;
 import org.revager.gui.workers.NewReviewWorker;
 import org.revager.tools.GUITools;
 
@@ -45,15 +46,25 @@ public class InitializeNewReviewAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AssistantDialog assistant = UI.getInstance().getAssistantDialog();
+		final AssistantDialog assistant = UI.getInstance().getAssistantDialog();
 
 		if (assistant.isInstantReview()) {
 			AttendeeDialog attDiag = UI.getInstance().getAttendeeDialog();
 
 			if (!attDiag.getNameTxtFld().getText().trim().equals("")) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						ActionRegistry.getInstance()
+								.get(ConfirmAttendeeAction.class.getName())
+								.actionPerformed(null);
+
+						assistant.setVisible(false);
+					}
+				});
+
 				UI.getInstance().getMainFrame().setAssistantMode(false);
-				
-				GUITools.executeSwingWorker(new NewInstantReviewWorker());
+
+				GUITools.executeSwingWorker(new NewReviewWorker(true));
 			} else {
 				String message = _("Please enter the name of the attendee.");
 
@@ -62,8 +73,8 @@ public class InitializeNewReviewAction extends AbstractAction {
 				attDiag.getNameTxtFld().setBorder(UI.MARKED_BORDER_INLINE);
 			}
 		} else {
-			UI.getInstance().getAssistantDialog().setVisible(false);
-			
+			assistant.setVisible(false);
+
 			UI.getInstance().getMainFrame().setAssistantMode(false);
 
 			GUITools.executeSwingWorker(new NewReviewWorker());

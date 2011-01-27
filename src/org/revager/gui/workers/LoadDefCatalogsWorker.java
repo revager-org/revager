@@ -24,6 +24,7 @@ import java.io.File;
 import java.net.URL;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -39,7 +40,7 @@ import org.revager.tools.GUITools;
 /**
  * Worker for loading the default catalogs.
  */
-public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
+public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 
 	/**
 	 * Reference to application data.
@@ -53,8 +54,14 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		UI.getInstance().getAspectsManagerFrame()
-				.switchToProgressMode(_("Importing catalog ..."));
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.switchToProgressMode(_("Importing catalog ..."));
+			}
+		});
 
 		String fileEnding = Data.getInstance().getResource("fileEndingCatalog");
 		String pathCatalogs = Data.getInstance().getResource("path.catalogs")
@@ -65,7 +72,7 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 		new File(pathWorkDir).mkdir();
 		AppCatalog appCatalog = null;
 
-		for (String catalogName : Data.getStandardCatalogs()) {
+		for (final String catalogName : Data.getStandardCatalogs()) {
 			try {
 				/*
 				 * Import catalog from file
@@ -75,10 +82,21 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 				File catalogFile = new File(pathWorkDir + "catalog."
 						+ fileEnding);
 
-				UI.getInstance()
-						.getAspectsManagerFrame()
-						.switchToProgressMode(
-								_("Importing catalog ...") + " " + catalogName);
+				UI.getInstance().getAspectsManagerFrame()
+						.notifySwitchToProgressMode();
+
+				UI.getInstance().getAspectsManagerFrame()
+						.notifySwitchToProgressMode();
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance()
+								.getAspectsManagerFrame()
+								.switchToProgressMode(
+										_("Importing catalog ...") + " "
+												+ catalogName);
+					}
+				});
 
 				FileTools.copyFile(catalog, catalogFile);
 
@@ -93,12 +111,14 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 				 */
 				int suffix = 1;
 
-				while (appData.getCatalog(catalogName) != null) {
-					catalogName = catalogName + " " + suffix;
+				String newCatalogName = catalogName;
+
+				while (appData.getCatalog(newCatalogName) != null) {
+					newCatalogName = newCatalogName + " " + suffix;
 					suffix++;
 				}
 
-				appCatalog = appData.newCatalog(catalogName);
+				appCatalog = appData.newCatalog(newCatalogName);
 				appCatalog.setDescription(resiCatalog.getDescription());
 
 				for (Aspect asp : resiCatalog.getAspects().getAspects()) {
@@ -106,12 +126,17 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 							asp.getDescription(), asp.getCategory());
 				}
 
-				UI.getInstance().getAspectsManagerFrame().updateTree();
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance().getAspectsManagerFrame().updateTree();
 
-				UI.getInstance()
-						.getAspectsManagerFrame()
-						.setStatusMessage(_("Catalog imported successfully."),
-								false);
+						UI.getInstance()
+								.getAspectsManagerFrame()
+								.setStatusMessage(
+										_("Catalog imported successfully."),
+										false);
+					}
+				});
 			} catch (Exception e) {
 				JOptionPane
 						.showMessageDialog(
@@ -120,15 +145,29 @@ public class LoadStdCatalogsWorker extends SwingWorker<Void, Void> {
 										+ "\n\n" + e.getMessage()), _("Error"),
 								JOptionPane.ERROR_MESSAGE);
 
-				UI.getInstance().getAspectsManagerFrame()
-						.setStatusMessage(_("Cannot import catalog!"), false);
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						UI.getInstance()
+								.getAspectsManagerFrame()
+								.setStatusMessage(_("Cannot import catalog!"),
+										false);
+					}
+				});
 			}
 		}
 
-		UI.getInstance().getAspectsManagerFrame()
-				.updateTree(appCatalog, null, null);
+		final AppCatalog catalog = appCatalog;
 
-		UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				UI.getInstance().getAspectsManagerFrame()
+						.updateTree(catalog, null, null);
+
+				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
+			}
+		});
 
 		return null;
 	}

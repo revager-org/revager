@@ -21,6 +21,7 @@ package org.revager.gui.workers;
 import static org.revager.app.model.Data._;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -55,28 +56,48 @@ public class LoadReviewWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		boolean showAssistantDialog = UI.getInstance().getAssistantDialog()
-				.isVisible();
-		MainFrame mainframe = UI.getInstance().getMainFrame();
+		final boolean showAssistantDialog = UI.getInstance()
+				.getAssistantDialog().isVisible();
+		final MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		mainframe.switchToProgressMode();
+		mainframe.notifySwitchToProgressMode();
 
-		mainframe.setStatusMessage(_("Loading review ..."), true);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				mainframe.switchToProgressMode();
 
-		UI.getInstance().getAssistantDialog().setVisible(false);
+				mainframe.setStatusMessage(_("Loading review ..."), true);
+
+				UI.getInstance().getAssistantDialog().setVisible(false);
+			}
+		});
 
 		try {
 			Application.getInstance().getApplicationCtl().loadReview(filePath);
 
-			mainframe.setStatusMessage(_("Review loaded successfully."), false);
-
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
 
-			mainframe.switchToEditMode();
-		} catch (Exception e) {
-			mainframe.setStatusMessage(_("No review in process."), false);
+			mainframe.notifySwitchToEditMode();
 
-			mainframe.switchToClearMode();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.setStatusMessage(
+							_("Review loaded successfully."), false);
+
+					mainframe.switchToEditMode();
+				}
+			});
+		} catch (Exception e) {
+			mainframe.notifySwitchToClearMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.setStatusMessage(_("No review in process."),
+							false);
+
+					mainframe.switchToClearMode();
+				}
+			});
 
 			JOptionPane.showMessageDialog(
 					null,
@@ -84,8 +105,12 @@ public class LoadReviewWorker extends SwingWorker<Void, Void> {
 							+ "\n\n" + e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
-			UI.getInstance().getAssistantDialog()
-					.setVisible(showAssistantDialog);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getAssistantDialog()
+							.setVisible(showAssistantDialog);
+				}
+			});
 		}
 
 		return null;

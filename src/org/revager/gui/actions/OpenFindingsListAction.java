@@ -29,6 +29,7 @@ import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.xml.datatype.DatatypeFactory;
 
@@ -90,10 +91,17 @@ public class OpenFindingsListAction extends AbstractAction {
 
 	public void performActionDirectly() {
 		try {
-			MainFrame mainFrame = UI.getInstance().getMainFrame();
-			FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
+			final MainFrame mainFrame = UI.getInstance().getMainFrame();
+			final FindingsListFrame protFrame = UI.getInstance()
+					.getProtocolFrame();
 
-			mainFrame.switchToProgressMode();
+			mainFrame.notifySwitchToProgressMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainFrame.switchToProgressMode();
+				}
+			});
 
 			Protocol currentProt = null;
 			Meeting currentMeet = null;
@@ -151,18 +159,33 @@ public class OpenFindingsListAction extends AbstractAction {
 
 			protMgmt.setProtocol(currentProt, currentMeet);
 
-			protFrame.resetClock();
-			protFrame.setMeeting(currentMeet);
-			protFrame.setVisible(true);
+			final Meeting meet = currentMeet;
 
-			if (UI.getInstance().getAssistantDialog().isInstantReview()) {
-				protFrame.activateFindingsTab();
-			}
+			mainFrame.notifySwitchToEditMode();
 
-			mainFrame.updateMeetingsTree();
-			mainFrame.switchToEditMode();
+			protFrame.setMeeting(meet);
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					protFrame.resetClock();
+					protFrame.setVisible(true);
+
+					if (UI.getInstance().getAssistantDialog().isInstantReview()) {
+						protFrame.activateFindingsTab();
+					}
+
+					mainFrame.updateMeetingsTree();
+					mainFrame.switchToEditMode();
+				}
+			});
 		} catch (Exception e) {
-			UI.getInstance().getMainFrame().switchToEditMode();
+			UI.getInstance().getMainFrame().notifySwitchToEditMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					UI.getInstance().getMainFrame().switchToEditMode();
+				}
+			});
 
 			e.printStackTrace();
 		}

@@ -24,6 +24,7 @@ import java.awt.Desktop;
 import java.io.File;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -46,14 +47,24 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		CreateInvitationsDialog dialog = UI.getInstance()
+		final CreateInvitationsDialog dialog = UI.getInstance()
 				.getCreateInvitationsDialog();
 
-		dialog.unmarkAllComp();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				dialog.unmarkAllComp();
+			}
+		});
 
 		if (!dialog.getSelectedPath().trim().equals("")
 				&& !dialog.getSelectedAttendees().isEmpty()) {
-			dialog.switchToProgressMode(_("Creating invitation(s) ..."));
+			dialog.notifySwitchToProgressMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					dialog.switchToProgressMode(_("Creating invitation(s) ..."));
+				}
+			});
 
 			boolean attachProdRefs = dialog.isProdSelected();
 			Meeting meeting = dialog.getSelectedMeeting();
@@ -77,36 +88,53 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 									meeting, att, attachProdRefs);
 				}
 			} catch (Exception exc) {
-				dialog.switchToEditMode();
+				dialog.notifySwitchToEditMode();
+
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						dialog.switchToEditMode();
+					}
+				});
 
 				JOptionPane.showMessageDialog(UI.getInstance()
 						.getExportCSVDialog(), GUITools.getMessagePane(exc
 						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
-			dialog.setVisible(false);
-			dialog.switchToEditMode();
-			UI.getInstance()
-					.getMainFrame()
-					.setStatusMessage(
-							_("The invitations have been created successfully."),
-							false);
+			dialog.notifySwitchToEditMode();
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					dialog.setVisible(false);
+					dialog.switchToEditMode();
+
+					UI.getInstance()
+							.getMainFrame()
+							.setStatusMessage(
+									_("The invitations have been created successfully."),
+									false);
+				}
+			});
 
 			Desktop.getDesktop().open(new File(dialog.getSelectedPath()));
 		} else {
-			if (dialog.getSelectedAttendees().isEmpty()) {
-				dialog.markAttScrollPane();
-				dialog.setMessage(_("You have to choose at least one attendee in order to create an invitation."));
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					if (dialog.getSelectedAttendees().isEmpty()) {
+						dialog.markAttScrollPane();
+						dialog.setMessage(_("You have to choose at least one attendee in order to create an invitation."));
 
-				return null;
-			}
+						return;
+					}
 
-			if (dialog.getSelectedPath().trim().equals("")) {
-				dialog.markPathTxtField();
-				dialog.setMessage(_("Please choose a directory where to store the invitation(s)."));
+					if (dialog.getSelectedPath().trim().equals("")) {
+						dialog.markPathTxtField();
+						dialog.setMessage(_("Please choose a directory where to store the invitation(s)."));
 
-				return null;
-			}
+						return;
+					}
+				}
+			});
 		}
 
 		return null;

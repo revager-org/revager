@@ -21,6 +21,7 @@ package org.revager.gui.workers;
 import static org.revager.app.model.Data._;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.app.Application;
@@ -41,30 +42,49 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		MainFrame mainframe = UI.getInstance().getMainFrame();
+		final MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		mainframe.setAssistantMode(false);
-		
-		mainframe.switchToProgressMode();
+		mainframe.notifySwitchToProgressMode();
 
-		mainframe.setStatusMessage(_("Restoring backup ..."), true);
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				mainframe.setAssistantMode(false);
+
+				mainframe.switchToProgressMode();
+
+				mainframe.setStatusMessage(_("Restoring backup ..."), true);
+			}
+		});
 
 		try {
 			Application.getInstance().getApplicationCtl().restoreReview();
 
-			mainframe.setStatusMessage(_("Review restored successfully."),
-					false);
+			mainframe.notifySwitchToEditMode();
 
-			mainframe.switchToEditMode();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.setStatusMessage(
+							_("Review restored successfully."), false);
+
+					mainframe.switchToEditMode();
+				}
+			});
 		} catch (Exception e) {
-			mainframe.setStatusMessage(_("No review in process."), false);
+			mainframe.notifySwitchToClearMode();
 
-			mainframe.switchToClearMode();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					mainframe.setStatusMessage(_("No review in process."),
+							false);
 
-			mainframe.setAssistantMode(true);
-			
+					mainframe.switchToClearMode();
+
+					mainframe.setAssistantMode(true);
+				}
+			});
+
 			Application.getInstance().getApplicationCtl().clearReview();
-			
+
 			UI.getInstance().setStatus(Status.NO_FILE_LOADED);
 
 			JOptionPane.showMessageDialog(

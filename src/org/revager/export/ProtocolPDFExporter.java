@@ -1106,6 +1106,22 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				}
 
 				/*
+				 * If there isn't any finding, finish the export here.
+				 */
+				if (findMgmt.getNumberOfFindings(protocol) == 0) {
+					return;
+				} else if (findMgmt.getNumberOfFindings(protocol) == 1) {
+					Finding find = findMgmt.getFindings(protocol).get(0);
+
+					if (find.getDescription().trim().equals("")
+							&& find.getExternalReferences().size() == 0
+							&& find.getReferences().size() == 0
+							&& find.getAspects().size() == 0) {
+						return;
+					}
+				}
+
+				/*
 				 * Write findings
 				 */
 				pdfDoc.newPage();
@@ -1436,6 +1452,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 	protected void writeFindings(Protocol protocol, boolean attachExtRefs)
 			throws ExportException {
 		try {
+			/*
+			 * Define fonts
+			 */
 			Font plainFontTitle = new Font(BaseFont.createFont(
 					BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 9,
 					Font.NORMAL, Color.WHITE);
@@ -1460,6 +1479,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252,
 					BaseFont.EMBEDDED), 10);
 
+			/*
+			 * Write findings
+			 */
 			PdfPTable tableBase = new PdfPTable(1);
 			tableBase.setWidthPercentage(100);
 			tableBase.setSplitRows(false);
@@ -1672,5 +1694,4 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					_("Cannot put findings into the PDF document."));
 		}
 	}
-
 }

@@ -36,6 +36,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -46,12 +47,15 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
 import org.revager.app.model.Data;
 import org.revager.gui.helpers.ProgressGlassPane;
 import org.revager.gui.workers.LoadEmbeddedHelpWorker;
 import org.revager.tools.GUITools;
+
+import com.sun.org.apache.bcel.internal.generic.LSTORE;
 
 /**
  * This class is the superclass for all dialogs in Resi.
@@ -203,6 +207,10 @@ public abstract class AbstractDialog extends JDialog {
 	 * The original width.
 	 */
 	private int originalWidth;
+
+	private long lastSwitchToEditMode = 0;
+
+	private long lastSwitchToProgressMode = Long.MIN_VALUE;
 
 	/*
 	 * (non-Javadoc)
@@ -362,7 +370,7 @@ public abstract class AbstractDialog extends JDialog {
 	 */
 	public void setHelpChapter(String chapter, String anchor) {
 		// TODO HELP IS CURRENTLY DISABLED!
-		
+
 		// this.helpChapter = chapter;
 		// this.helpChapterAnchor = anchor;
 
@@ -543,11 +551,22 @@ public abstract class AbstractDialog extends JDialog {
 		});
 	}
 
+	public synchronized void notifySwitchToEditMode() {
+		this.lastSwitchToProgressMode = Long.MIN_VALUE;
+		this.lastSwitchToEditMode = System.currentTimeMillis();
+	}
+
+	public synchronized void notifySwitchToProgressMode() {
+		this.lastSwitchToProgressMode = System.currentTimeMillis();
+	}
+
 	/**
 	 * Switch to edit mode.
 	 */
 	public void switchToEditMode() {
-		glassPane.deactivate();
+		if (lastSwitchToEditMode > lastSwitchToProgressMode) {
+			this.glassPane.deactivate();
+		}
 	}
 
 	/**
@@ -563,8 +582,10 @@ public abstract class AbstractDialog extends JDialog {
 	 * @param text
 	 *            the text
 	 */
-	public void switchToProgressMode(String text) {
-		glassPane.activate(text);
+	public void switchToProgressMode(final String text) {
+		if (lastSwitchToProgressMode > lastSwitchToEditMode) {
+			glassPane.activate(text);
+		}
 	}
 
 	/**

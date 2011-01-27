@@ -22,6 +22,7 @@ import static org.revager.app.model.Data._;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
@@ -152,8 +153,7 @@ public class SettingsDialog extends AbstractDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GUITools.executeSwingWorker(new SettingsWorker(
-						Mode.STORE_APPDATA));
-				setVisible(false);
+						Mode.STORE_APPDATA, false));
 			}
 		});
 
@@ -367,9 +367,7 @@ public class SettingsDialog extends AbstractDialog {
 
 					if (option == JOptionPane.YES_OPTION) {
 						GUITools.executeSwingWorker(new SettingsWorker(
-								Mode.STORE_APPDATA));
-
-						setVisible(false);
+								Mode.STORE_APPDATA, false));
 
 						ExitAction exitAction = ((ExitAction) ActionRegistry
 								.getInstance().get(ExitAction.class.getName()));
@@ -883,9 +881,14 @@ public class SettingsDialog extends AbstractDialog {
 	@Override
 	public void setVisible(boolean vis) {
 		if (vis) {
-			GUITools.executeSwingWorker(new SettingsWorker(Mode.LOAD_APPDATA));
+			GUITools.executeSwingWorker(new SettingsWorker(Mode.LOAD_APPDATA,
+					vis));
+		} else {
+			setDialogVisible(vis);
 		}
+	}
 
+	public void setDialogVisible(boolean vis) {
 		super.setVisible(vis);
 	}
 
@@ -893,6 +896,8 @@ public class SettingsDialog extends AbstractDialog {
 	 * Update logo views.
 	 */
 	public void updateLogoViews() {
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
 		labelImageProtocol.setIcon(Data.getInstance().getIcon(
 				"noImageProgress_30x30.gif"));
 		labelImageInvitation.setIcon(Data.getInstance().getIcon(
@@ -918,6 +923,8 @@ public class SettingsDialog extends AbstractDialog {
 
 		image = icon.getImage().getScaledInstance(-1, 30, Image.SCALE_SMOOTH);
 		labelImageInvitation.setIcon(new ImageIcon(image));
+
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 
 	private class Language {

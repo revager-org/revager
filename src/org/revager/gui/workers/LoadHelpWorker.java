@@ -18,6 +18,7 @@
  */
 package org.revager.gui.workers;
 
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.revager.gui.UI;
@@ -75,19 +76,24 @@ public class LoadHelpWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		try {
-			if (helpChapter != null && helpChapterAnchor != null) {
-				UI.getInstance().getHelpBrowserFrame()
-						.showHelp(helpChapter, helpChapterAnchor);
-			} else if (helpChapter != null && helpChapterAnchor == null) {
-				UI.getInstance().getHelpBrowserFrame().showHelp(helpChapter);
-			} else {
-				UI.getInstance().getHelpBrowserFrame().showHelp();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					if (helpChapter != null && helpChapterAnchor != null) {
+						UI.getInstance().getHelpBrowserFrame()
+								.showHelp(helpChapter, helpChapterAnchor);
+					} else if (helpChapter != null && helpChapterAnchor == null) {
+						UI.getInstance().getHelpBrowserFrame()
+								.showHelp(helpChapter);
+					} else {
+						UI.getInstance().getHelpBrowserFrame().showHelp();
+					}
+				} catch (Exception e) {
+					UI.getInstance().getHelpBrowserFrame().setVisible(false);
+					UI.getInstance().getHelpBrowserFrame().showHelp();
+				}
 			}
-		} catch (Exception e) {
-			UI.getInstance().getHelpBrowserFrame().setVisible(false);
-			UI.getInstance().getHelpBrowserFrame().showHelp();
-		}
+		});
 
 		return null;
 	}

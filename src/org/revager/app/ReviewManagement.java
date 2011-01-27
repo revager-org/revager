@@ -37,6 +37,7 @@ import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.AttendeeReference;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
+import org.revager.app.model.schema.Product;
 import org.revager.app.model.schema.Protocol;
 import org.revager.tools.FileTools;
 
@@ -615,6 +616,12 @@ public class ReviewManagement {
 	 * @return name of the reviewed product
 	 */
 	public String getProductName() {
+		if (resiData.getReview().getProduct() == null) {
+			resiData.getReview().setProduct(new Product());
+			resiData.getReview().getProduct().setName("");
+			resiData.getReview().getProduct().setVersion("");
+		}
+
 		return resiData.getReview().getProduct().getName();
 	}
 
@@ -638,6 +645,12 @@ public class ReviewManagement {
 	 * @return product version of the review
 	 */
 	public String getProductVersion() {
+		if (resiData.getReview().getProduct() == null) {
+			resiData.getReview().setProduct(new Product());
+			resiData.getReview().getProduct().setName("");
+			resiData.getReview().getProduct().setVersion("");
+		}
+
 		return resiData.getReview().getProduct().getVersion();
 	}
 

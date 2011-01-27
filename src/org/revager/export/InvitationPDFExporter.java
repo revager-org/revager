@@ -134,7 +134,7 @@ public class InvitationPDFExporter extends PDFExporter {
 		String title = resiData.getReview().getName();
 
 		if (title.trim().equals("")) {
-			title = "Review Meeting";
+			title = _("Review Meeting");
 		}
 
 		return title;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-22 17:50+0100\n"
+"POT-Creation-Date: 2011-01-27 11:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,6 +102,7 @@ msgstr ""
 
 #: src/org/revager/app/ApplicationControl.java:400
 #: src/org/revager/app/ApplicationControl.java:406
+#: src/org/revager/export/ProtocolPDFExporter.java:128
 msgid "Review"
 msgstr ""
 
@@ -156,13 +157,13 @@ msgstr ""
 #. *
 #. * The review info document file name.
 #.
-#: src/org/revager/app/ReviewManagement.java:75
+#: src/org/revager/app/ReviewManagement.java:76
 #: src/org/revager/export/InvitationDirExporter.java:92
 #: src/org/revager/export/InvitationZIPExporter.java:59
 msgid "Review_Information.pdf"
 msgstr ""
 
-#: src/org/revager/app/ReviewManagement.java:606
+#: src/org/revager/app/ReviewManagement.java:607
 msgid "Review of"
 msgstr ""
 
@@ -581,6 +582,10 @@ msgstr ""
 msgid "HH:mm"
 msgstr ""
 
+#: src/org/revager/export/InvitationPDFExporter.java:137
+msgid "Review Meeting"
+msgstr ""
+
 #: src/org/revager/export/InvitationPDFExporter.java:165
 msgid "Invitation"
 msgstr ""
@@ -776,7 +781,7 @@ msgid "General impressions of the product:"
 msgstr ""
 
 #: src/org/revager/export/ProtocolPDFExporter.java:696
-#: src/org/revager/gui/MainFrame.java:766
+#: src/org/revager/gui/MainFrame.java:791
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:924
 msgid "Final recommendation for the product:"
 msgstr ""
@@ -1012,143 +1017,143 @@ msgstr ""
 msgid "Cannot find help page."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:141
+#: src/org/revager/gui/MainFrame.java:142
 msgid "All meetings"
 msgstr ""
 
 #.
 #. * creating the left panel
 #.
-#: src/org/revager/gui/MainFrame.java:342
+#: src/org/revager/gui/MainFrame.java:367
 msgid "Product:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:346
+#: src/org/revager/gui/MainFrame.java:371
 msgid "Title of the review:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:350
+#: src/org/revager/gui/MainFrame.java:375
 msgid "Description of the review:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:357
+#: src/org/revager/gui/MainFrame.java:382
 msgid "Comments on the review"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:364
+#: src/org/revager/gui/MainFrame.java:389
 msgid "Comments on the review:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:445
+#: src/org/revager/gui/MainFrame.java:470
 msgid "Review Meetings:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:579
-#: src/org/revager/gui/MainFrame.java:1718
+#: src/org/revager/gui/MainFrame.java:604
+#: src/org/revager/gui/MainFrame.java:1747
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:549
 msgid "Remove"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:588
+#: src/org/revager/gui/MainFrame.java:613
 msgid "Modify meeting"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:599
+#: src/org/revager/gui/MainFrame.java:624
 msgid "Comment meeting"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:609
+#: src/org/revager/gui/MainFrame.java:634
 msgid "Open/create list of findings"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:620
+#: src/org/revager/gui/MainFrame.java:645
 msgid "Attendees of the review:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:739
+#: src/org/revager/gui/MainFrame.java:764
 msgid "Remove attendee"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:749
+#: src/org/revager/gui/MainFrame.java:774
 msgid "Modify attendee"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:760
+#: src/org/revager/gui/MainFrame.java:785
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:921
 msgid "General impression of the product:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:848
+#: src/org/revager/gui/MainFrame.java:873
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:56
 msgid "Open RevAger Assistant"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:988
+#: src/org/revager/gui/MainFrame.java:1013
 msgid "File"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1030
+#: src/org/revager/gui/MainFrame.java:1055
 #: src/org/revager/gui/findings_list/FindingPanel.java:1050
 msgid "Edit"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1080
+#: src/org/revager/gui/MainFrame.java:1105
 msgid "Settings"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1083
+#: src/org/revager/gui/MainFrame.java:1108
 #: src/org/revager/gui/dialogs/SettingsDialog.java:115
 msgid "Application Settings"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1096
+#: src/org/revager/gui/MainFrame.java:1121
 msgid "CSV Profiles"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1114
+#: src/org/revager/gui/MainFrame.java:1139
 msgid "Help"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1127
+#: src/org/revager/gui/MainFrame.java:1152
 msgid "About RevAger"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1252
+#: src/org/revager/gui/MainFrame.java:1277
 #: src/org/revager/gui/dialogs/AboutDialog.java:74
 msgid "Version:"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1285
+#: src/org/revager/gui/MainFrame.java:1310
 msgid "First of all we recommend to specify the product and the review's title."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1289
+#: src/org/revager/gui/MainFrame.java:1314
 msgid "You should create a meeting and add the attendees of the review by using the corresponding buttons."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1293
+#: src/org/revager/gui/MainFrame.java:1318
 msgid "All required information for the review are present."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1297
+#: src/org/revager/gui/MainFrame.java:1322
 msgid "You can open the list of findings by selecting the corresponding meeting and clicking the 'Open findings list' button."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1301
+#: src/org/revager/gui/MainFrame.java:1326
 msgid "You can open the RevAger Assistant by clicking on the 'Open Assistant' button."
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1530
-#: src/org/revager/gui/MainFrame.java:1535
+#: src/org/revager/gui/MainFrame.java:1559
+#: src/org/revager/gui/MainFrame.java:1564
 #: src/org/revager/gui/actions/NewReviewAction.java:49
 msgid "New Review"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1698
+#: src/org/revager/gui/MainFrame.java:1727
 msgid "Remove meeting"
 msgstr ""
 
-#: src/org/revager/gui/MainFrame.java:1708
+#: src/org/revager/gui/MainFrame.java:1737
 msgid "Remove list of findings"
 msgstr ""
 

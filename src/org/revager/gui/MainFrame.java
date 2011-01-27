@@ -59,6 +59,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
@@ -292,9 +293,33 @@ public class MainFrame extends AbstractFrame implements Observer {
 					long diff = System.currentTimeMillis() - updateTime;
 
 					if (diff >= change && diff < change * 3) {
+						final boolean textRevNameFocus = textRevName
+								.isFocusOwner();
+						final boolean textRevDescFocus = textRevDesc
+								.isFocusOwner();
+
+						final int textRevNamePos = textRevName
+								.getCaretPosition();
+						final int textRevDescPos = textRevDesc
+								.getCaretPosition();
+
 						updateResiData();
 
 						updateHints();
+
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								if (textRevNameFocus) {
+									textRevName.requestFocus();
+									textRevName
+											.setCaretPosition(textRevNamePos);
+								} else if (textRevDescFocus) {
+									textRevDesc.requestFocus();
+									textRevDesc
+											.setCaretPosition(textRevDescPos);
+								}
+							}
+						});
 					}
 				} catch (Exception e) {
 					/*
@@ -850,7 +875,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				OpenAssistantAction.class.getName()));
 
 		addTopComponent(tbShowAssistant);
-		
+
 		tbNewReview = GUITools.newImageButton(
 				Data.getInstance().getIcon("new_50x50_0.png"), Data
 						.getInstance().getIcon("new_50x50.png"), ActionRegistry
@@ -959,11 +984,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private void updateToolBar() {
 		tbShowAssistant.setVisible(assistantMode);
 
-		//tbOpenReview.setVisible(!assistantMode);
+		// tbOpenReview.setVisible(!assistantMode);
 		tbManageSeverities.setVisible(!assistantMode);
 		tbSaveReview.setVisible(!assistantMode);
-		//tbNewReview.setVisible(!assistantMode);
-		//tbAspectsManager.setVisible(!assistantMode);
+		// tbNewReview.setVisible(!assistantMode);
+		// tbAspectsManager.setVisible(!assistantMode);
 		tbCreateInvitations.setVisible(!assistantMode);
 		tbNewAttendee.setVisible(!assistantMode);
 		tbProtocolMode.setVisible(!assistantMode);
@@ -1146,20 +1171,20 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private void updateMenu() {
 		boolean itemVisible = !assistantMode;
 
-		//fileSelectModeItem.setEnabled(!itemVisible);
+		// fileSelectModeItem.setEnabled(!itemVisible);
 
-		//fileNewReviewItem.setEnabled(itemVisible);
-		//fileOpenReviewItem.setEnabled(itemVisible);
+		// fileNewReviewItem.setEnabled(itemVisible);
+		// fileOpenReviewItem.setEnabled(itemVisible);
 		fileSaveReviewItem.setEnabled(itemVisible);
 		fileSaveReviewAsItem.setEnabled(itemVisible);
 
-		//menuEdit.setEnabled(itemVisible);
-		//menuSettings.setEnabled(itemVisible);
-		
+		// menuEdit.setEnabled(itemVisible);
+		// menuSettings.setEnabled(itemVisible);
+
 		manageSeveritiesItem.setEnabled(itemVisible);
 		newMeetingItem.setEnabled(itemVisible);
 
-		//aspectsManagerItem.setEnabled(itemVisible);
+		// aspectsManagerItem.setEnabled(itemVisible);
 		createInvitationsItem.setEnabled(itemVisible);
 		newAttendeeItem.setEnabled(itemVisible);
 		protocolModeItem.setEnabled(itemVisible);
@@ -1434,60 +1459,64 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 */
 	@Override
 	public void update(Observable obs, Object obj) {
-		updateMenu();
-		updateToolBar();
-		
-		if (Data.getInstance().getResiData().getReview() != null) {
-			if (!assistantMode) {
-				splitPanel.removeAll();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				updateMenu();
+				updateToolBar();
 
-				updateLeftPane();
-				updateRightPane();
+				if (Data.getInstance().getResiData().getReview() != null) {
+					if (!assistantMode) {
+						splitPanel.removeAll();
 
-				GUITools.executeSwingWorker(updateWorker);
+						updateLeftPane();
+						updateRightPane();
 
-				splitPanel.revalidate();
+						GUITools.executeSwingWorker(updateWorker);
+
+						splitPanel.revalidate();
+					}
+
+					// updateMeetingsTree();
+					meetingsTree.repaint();
+
+					updateAttendeesTable(true);
+
+					updateButtons();
+
+					updateContentPane();
+
+					if (Application.getInstance().getProtocolMgmt()
+							.getProtocolsWithFindings().isEmpty()) {
+						tbCsvExport.setEnabled(false);
+						tbPdfExport.setEnabled(false);
+						csvExportItem.setEnabled(false);
+						pdfExportItem.setEnabled(false);
+					} else {
+						tbCsvExport.setEnabled(true);
+						tbPdfExport.setEnabled(true);
+						csvExportItem.setEnabled(true);
+						pdfExportItem.setEnabled(true);
+					}
+
+					boolean attendeesEmpty = Application.getInstance()
+							.getAttendeeMgmt().getAttendees().isEmpty();
+					boolean meetingsEmpty = Application.getInstance()
+							.getMeetingMgmt().getMeetings().isEmpty();
+
+					if (!attendeesEmpty && !meetingsEmpty) {
+						tbCreateInvitations.setEnabled(true);
+						createInvitationsItem.setEnabled(true);
+					} else {
+						tbCreateInvitations.setEnabled(false);
+						createInvitationsItem.setEnabled(false);
+					}
+				}
+
+				updateHints();
+
+				updateTitle();
 			}
-
-			// updateMeetingsTree();
-			meetingsTree.repaint();
-
-			updateAttendeesTable(true);
-
-			updateButtons();
-
-			updateContentPane();
-
-			if (Application.getInstance().getProtocolMgmt()
-					.getProtocolsWithFindings().isEmpty()) {
-				tbCsvExport.setEnabled(false);
-				tbPdfExport.setEnabled(false);
-				csvExportItem.setEnabled(false);
-				pdfExportItem.setEnabled(false);
-			} else {
-				tbCsvExport.setEnabled(true);
-				tbPdfExport.setEnabled(true);
-				csvExportItem.setEnabled(true);
-				pdfExportItem.setEnabled(true);
-			}
-
-			boolean attendeesEmpty = Application.getInstance()
-					.getAttendeeMgmt().getAttendees().isEmpty();
-			boolean meetingsEmpty = Application.getInstance().getMeetingMgmt()
-					.getMeetings().isEmpty();
-
-			if (!attendeesEmpty && !meetingsEmpty) {
-				tbCreateInvitations.setEnabled(true);
-				createInvitationsItem.setEnabled(true);
-			} else {
-				tbCreateInvitations.setEnabled(false);
-				createInvitationsItem.setEnabled(false);
-			}
-		}
-
-		updateHints();
-
-		updateTitle();
+		});
 	}
 
 	/**

@@ -125,7 +125,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 		String title = Data.getInstance().getResiData().getReview().getName();
 
 		if (title.trim().equals("")) {
-			title = "Review";
+			title = _("Review");
 		}
 
 		return title;

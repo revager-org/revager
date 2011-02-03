@@ -36,7 +36,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -47,15 +46,12 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
 import org.revager.app.model.Data;
 import org.revager.gui.helpers.ProgressGlassPane;
 import org.revager.gui.workers.LoadEmbeddedHelpWorker;
 import org.revager.tools.GUITools;
-
-import com.sun.org.apache.bcel.internal.generic.LSTORE;
 
 /**
  * This class is the superclass for all dialogs in Resi.

@@ -97,7 +97,7 @@ public class ApplicationControl {
 	/**
 	 * Clears the review data.
 	 */
-	public void clearReview() {
+	public synchronized void clearReview() {
 		/*
 		 * Clean up review data
 		 */
@@ -157,7 +157,7 @@ public class ApplicationControl {
 	/**
 	 * Clears the old review and creates a new one.
 	 */
-	public void newReview() {
+	public synchronized void newReview() {
 		clearReview();
 	}
 
@@ -174,8 +174,8 @@ public class ApplicationControl {
 	 * @throws ApplicationException
 	 *             the application exception
 	 */
-	public void storeReview(String filePath) throws ResiIOException,
-			IOException, ApplicationException {
+	public synchronized void storeReview(String filePath)
+			throws ResiIOException, IOException, ApplicationException {
 		if (filePath.startsWith(Data.getInstance().getAppData()
 				.getAppDataPath())) {
 			throw new ApplicationException(
@@ -221,8 +221,8 @@ public class ApplicationControl {
 	 * @throws ApplicationException
 	 *             the application exception
 	 */
-	public void loadReview(String filePath) throws ResiIOException,
-			IOException, ApplicationException {
+	public synchronized void loadReview(String filePath)
+			throws ResiIOException, IOException, ApplicationException {
 		if (filePath.startsWith(Data.getInstance().getAppData()
 				.getAppDataPath())) {
 			throw new ApplicationException(
@@ -341,7 +341,8 @@ public class ApplicationControl {
 	 * @throws DataException
 	 *             the data exception
 	 */
-	public void backupReview() throws ResiIOException, DataException {
+	public synchronized void backupReview() throws ResiIOException,
+			DataException {
 		io.storeReviewBackup();
 	}
 
@@ -353,7 +354,8 @@ public class ApplicationControl {
 	 * @throws DataException
 	 *             the data exception
 	 */
-	public void restoreReview() throws ResiIOException, DataException {
+	public synchronized void restoreReview() throws ResiIOException,
+			DataException {
 		if (isReviewRestorable()) {
 			Data.getInstance().getResiData().clearReview();
 

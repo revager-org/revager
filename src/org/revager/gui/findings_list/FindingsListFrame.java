@@ -144,6 +144,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JButton tbPdfExport;
 	private JButton tbCsvExport;
 	private JButton tbConfirmProt;
+	private JButton tbFullscreen;
 
 	private JPanel attPanel = new JPanel(gbl);
 	private JPanel tabPanelCommAndRec = new JPanel(gbl);
@@ -407,37 +408,29 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		/*
 		 * Fullscreen
 		 */
-		try {
-			if (appData.getSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN) == AppSettingValue.TRUE) {
-				JButton tbFullscreen = GUITools.newImageButton();
-				if (fullscreen) {
-					tbFullscreen.setIcon(Data.getInstance().getIcon(
-							"fullscreenClose_50x50_0.png"));
-					tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
-							"fullscreenClose_50x50.png"));
-					tbFullscreen.setToolTipText(_("Exit Fullscreen"));
-				} else {
-					tbFullscreen.setIcon(Data.getInstance().getIcon(
-							"fullscreen_50x50_0.png"));
-					tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
-							"fullscreen_50x50.png"));
-					tbFullscreen.setToolTipText(_("Change to Fullscreen mode"));
-				}
-				tbFullscreen.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						UI.getInstance().getProtocolFrame(!isFullscreen())
-								.setVisible(true);
-					}
-				});
-
-				addTopComponent(tbFullscreen);
-			}
-		} catch (DataException exc) {
-			JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
-					GUITools.getMessagePane(exc.getMessage()), _("Error"),
-					JOptionPane.ERROR_MESSAGE);
+		tbFullscreen = GUITools.newImageButton();
+		if (fullscreen) {
+			tbFullscreen.setIcon(Data.getInstance().getIcon(
+					"fullscreenClose_50x50_0.png"));
+			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
+					"fullscreenClose_50x50.png"));
+			tbFullscreen.setToolTipText(_("Exit Fullscreen"));
+		} else {
+			tbFullscreen.setIcon(Data.getInstance().getIcon(
+					"fullscreen_50x50_0.png"));
+			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon(
+					"fullscreen_50x50.png"));
+			tbFullscreen.setToolTipText(_("Change to Fullscreen mode"));
 		}
+		tbFullscreen.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UI.getInstance().getProtocolFrame(!isFullscreen())
+						.setVisible(true);
+			}
+		});
+
+		addTopComponent(tbFullscreen);
 
 		/*
 		 * current time
@@ -1274,6 +1267,21 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 		}
 
+		/*
+		 * Show fullscreen button in toolbar
+		 */
+		try {
+			if (appData.getSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN) == AppSettingValue.TRUE) {
+				tbFullscreen.setVisible(true);
+			} else {
+				tbFullscreen.setVisible(false);
+			}
+		} catch (DataException exc) {
+			/*
+			 * Ignore
+			 */
+		}
+
 		if (vis) {
 			clockWorker.startClock();
 			updateClockButtons();
@@ -1376,7 +1384,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 					if (diff >= change && diff < change * 3) {
 						updateResiData();
 
-						updateHints();
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								updateHints();
+							}
+						});
 					}
 				} catch (Exception e) {
 					/*
@@ -1511,10 +1523,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		unmarkAllComponents();
 
-		tabbedPane.setIconAt(0, ICON_TAB_OK);
-		tabbedPane.setIconAt(1, ICON_TAB_OK);
-		tabbedPane.setIconAt(2, ICON_TAB_OK);
-
 		if (protMgmt.getAttendees(currentProt).size() == 0) {
 			hints.add(hintAtt);
 
@@ -1523,14 +1531,20 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 
 			warningErrorHints = true;
+
 			tabbedPane.setIconAt(0, ICON_TAB_WARN);
+		} else {
+			tabbedPane.setIconAt(0, ICON_TAB_OK);
 		}
 
 		if (!findMgmt.areAllFindingsComplete(currentProt)) {
 			hints.add(hintFind);
 
 			warningErrorHints = true;
+
 			tabbedPane.setIconAt(1, ICON_TAB_WARN);
+		} else {
+			tabbedPane.setIconAt(1, ICON_TAB_OK);
 		}
 
 		if (revMgmt.getImpression().trim().equals("")
@@ -1548,7 +1562,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 
 			warningErrorHints = true;
+
 			tabbedPane.setIconAt(2, ICON_TAB_WARN);
+		} else {
+			tabbedPane.setIconAt(2, ICON_TAB_OK);
 		}
 
 		if (!warningErrorHints) {

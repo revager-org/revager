@@ -178,7 +178,7 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 		GUITools.addComponent(this, gbl1, selectLanguageLnk, 0, 2, 1, 1, 1.0,
 				0.0, 20, 20, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, openAspManagerLnk, 2, 2, 1, 1, 2.0,
+		GUITools.addComponent(this, gbl1, openAspManagerLnk, 2, 2, 1, 1, 1.0,
 				0.0, 20, 0, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHEAST);
 

@@ -20,8 +20,8 @@ package org.revager.gui.workers;
 
 import static org.revager.app.model.Data._;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
@@ -41,7 +41,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 	/**
 	 * The observing frames.
 	 */
-	private List<AbstractFrame> obsFrames = new ArrayList<AbstractFrame>();
+	private Set<AbstractFrame> obsFrames = new HashSet<AbstractFrame>();
 
 	/**
 	 * Adds the given frame as observer to the worker.
@@ -76,13 +76,13 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 
 		while (true) {
 			try {
-				reviewPath = Data.getInstance().getResiData().getReviewPath();
-
 				intervalInMinutes = Long.parseLong(Data.getInstance()
 						.getAppData()
 						.getSetting(AppSettingKey.APP_AUTO_SAVE_INTERVAL));
 
 				Thread.sleep(intervalInMinutes * 60 * 1000);
+
+				reviewPath = Data.getInstance().getResiData().getReviewPath();
 
 				if (Data.getInstance().getAppData()
 						.getSettingValue(AppSettingKey.APP_DO_AUTO_SAVE) == AppSettingValue.TRUE

@@ -59,7 +59,7 @@ public class AboutDialog extends AbstractDialog {
 	 */
 	public AboutDialog(Frame parent) {
 		super(parent);
-		setTitle(null);
+		setTitle(_("About"));
 		setDescription(null);
 		setIcon(Data.getInstance().getIcon("RevAger_300x74.png"));
 		setLayout(gbl);

@@ -20,8 +20,8 @@ package org.revager.gui.workers;
 
 import static org.revager.app.model.Data._;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
@@ -39,7 +39,7 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 	/**
 	 * The observing frames.
 	 */
-	private List<AbstractFrame> obsFrames = new ArrayList<AbstractFrame>();
+	private Set<AbstractFrame> obsFrames = new HashSet<AbstractFrame>();
 
 	/**
 	 * Adds the given frame as observer to the worker.
@@ -76,17 +76,6 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 				Thread.sleep(intervalInSeconds * 1000);
 
 				if (UI.getInstance().getStatus() == UI.Status.UNSAVED_CHANGES) {
-					/*
-					 * Set doing message
-					 */
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
-							for (AbstractFrame af : obsFrames) {
-								af.setStatusMessage(_("Auto backup ..."), true);
-							}
-						}
-					});
-
 					Application.getInstance().getApplicationCtl()
 							.backupReview();
 

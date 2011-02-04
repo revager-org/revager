@@ -34,6 +34,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.revager.gui.AbstractDialogPanel;
+import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
 /**
@@ -137,7 +138,7 @@ public class HLink extends JPanel {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if (localGroup == null) {
-				localLbl.setForeground(Color.BLUE);
+				localLbl.setForeground(UI.LINK_COLOR);
 				localBttn.setSelected(true);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				// setBold(true);
@@ -145,7 +146,7 @@ public class HLink extends JPanel {
 				localGroup.resetAllLinks();
 				localBttn.setIcon(localSelIcon);
 				localBttn.setRolloverIcon(localSelIcon);
-				localLbl.setForeground(Color.BLUE);
+				localLbl.setForeground(UI.LINK_COLOR);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				setSelected(true);
 				// setBold(true);
@@ -156,7 +157,7 @@ public class HLink extends JPanel {
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			if (localGroup == null) {
-				localLbl.setForeground(Color.BLUE);
+				localLbl.setForeground(UI.LINK_COLOR);
 				localBttn.setSelected(true);
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				// setBold(true);

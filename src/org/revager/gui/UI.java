@@ -87,6 +87,11 @@ public class UI implements Observer {
 	public static final Color MARKED_COLOR = new Color(210, 115, 0);
 
 	/**
+	 * The Constant LINK_COLOR.
+	 */
+	public static final Color LINK_COLOR = new Color(0, 23, 195);
+
+	/**
 	 * The Constant GLASSPANE_COLOR.
 	 */
 	public static final Color GLASSPANE_COLOR = new Color(255, 255, 255, 160);

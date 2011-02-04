@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-03 10:03+0100\n"
+"POT-Creation-Date: 2011-02-04 16:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 msgid "RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?"
 msgstr ""
 
-#: src/org/revager/Main.java:259 src/org/revager/gui/UI.java:793
+#: src/org/revager/Main.java:259 src/org/revager/gui/UI.java:798
 #: src/org/revager/gui/actions/ExitAction.java:79
 #: src/org/revager/gui/actions/NewReviewAction.java:67
 #: src/org/revager/gui/actions/SaveReviewAction.java:101
@@ -1165,15 +1165,15 @@ msgid "Remove list of findings"
 msgstr ""
 
 #. getMainFrame().setEnabled(false);
-#: src/org/revager/gui/UI.java:787
+#: src/org/revager/gui/UI.java:792
 msgid "Restore"
 msgstr ""
 
-#: src/org/revager/gui/UI.java:787
+#: src/org/revager/gui/UI.java:792
 msgid "Discard"
 msgstr ""
 
-#: src/org/revager/gui/UI.java:792
+#: src/org/revager/gui/UI.java:797
 msgid "There is a review which hasn't been stored properly. Would you like to restore and load the review?"
 msgstr ""
 

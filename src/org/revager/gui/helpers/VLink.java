@@ -34,6 +34,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.revager.gui.AbstractDialogPanel;
+import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
 /**
@@ -86,15 +87,15 @@ public class VLink extends JPanel {
 			localLbl.setForeground(Color.BLACK);
 			localBttn.setSelected(false);
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//			setBold(false);
+			// setBold(false);
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			localLbl.setForeground(Color.BLUE);
+			localLbl.setForeground(UI.LINK_COLOR);
 			localBttn.setSelected(true);
 			setCursor(new Cursor(Cursor.HAND_CURSOR));
-//			setBold(true);
+			// setBold(true);
 			localLbl.revalidate();
 		}
 
@@ -103,7 +104,7 @@ public class VLink extends JPanel {
 			localLbl.setForeground(Color.BLACK);
 			localBttn.setSelected(false);
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//			setBold(false);
+			// setBold(false);
 		}
 
 		@Override

@@ -111,7 +111,7 @@ public class DatePicker extends Observable implements Runnable,
 		 */
 		public void setSelectedDayStyle() {
 			setFont(FONT_BOLD);
-			setForeground(Color.BLUE);
+			setForeground(UI.LINK_COLOR);
 			setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 		}
 

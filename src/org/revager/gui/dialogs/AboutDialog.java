@@ -99,8 +99,8 @@ public class AboutDialog extends AbstractDialog {
 		authorInternetLbl.setFont(fontNormal);
 		authorInternetLbl.setCursor(Cursor
 				.getPredefinedCursor(Cursor.HAND_CURSOR));
-		authorInternetLbl.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLUE));
-		authorInternetLbl.setForeground(Color.BLUE);
+		authorInternetLbl.setBorder(new MatteBorder(0, 0, 1, 0, UI.LINK_COLOR));
+		authorInternetLbl.setForeground(UI.LINK_COLOR);
 		authorInternetLbl.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -137,8 +137,8 @@ public class AboutDialog extends AbstractDialog {
 		authorEmailLbl.setFont(fontNormal);
 		authorEmailLbl
 				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		authorEmailLbl.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLUE));
-		authorEmailLbl.setForeground(Color.BLUE);
+		authorEmailLbl.setBorder(new MatteBorder(0, 0, 1, 0, UI.LINK_COLOR));
+		authorEmailLbl.setForeground(UI.LINK_COLOR);
 		authorEmailLbl.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

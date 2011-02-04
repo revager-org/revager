@@ -21,6 +21,8 @@ package org.revager.gui.helpers;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.revager.gui.UI;
 /**
  * The class LinkGroup.
  * 
@@ -62,7 +64,7 @@ public class LinkGroup {
 		for (HLink link : hLinksList) {
 			if (link == selLink) {
 				//link.setBold(true);
-				link.setColor(Color.BLUE);
+				link.setColor(UI.LINK_COLOR);
 				link.setLocalRolloverIcon(link.getLocalSelIcon());
 				link.setLocalIcon(link.getLocalSelIcon());
 				link.setSelected(true);

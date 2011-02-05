@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-03 10:03+0100\n"
+"POT-Creation-Date: 2011-02-04 16:45+0100\n"
 "PO-Revision-Date: 2011-01-28 07:58+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-02-04 05:08+0000\n"
+"X-Launchpad-Export-Date: 2011-02-05 05:12+0000\n"
 "X-Generator: Launchpad (build 12177)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:266
@@ -96,7 +96,7 @@ msgstr ""
 "Es wurde ein Ordner mit Review-Daten einer früheren RevAger-Version "
 "gefunden. Wollen Sie diese Daten mit der neuen RevAger-Version nutzen?"
 
-#: src/org/revager/Main.java:259 src/org/revager/gui/UI.java:793
+#: src/org/revager/Main.java:259 src/org/revager/gui/UI.java:798
 #: src/org/revager/gui/actions/ExitAction.java:79
 #: src/org/revager/gui/actions/NewReviewAction.java:67
 #: src/org/revager/gui/actions/SaveReviewAction.java:101
@@ -1298,15 +1298,15 @@ msgid "Remove list of findings"
 msgstr "Sitzungsprotokoll entfernen"
 
 #. getMainFrame().setEnabled(false);
-#: src/org/revager/gui/UI.java:787
+#: src/org/revager/gui/UI.java:792
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: src/org/revager/gui/UI.java:787
+#: src/org/revager/gui/UI.java:792
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: src/org/revager/gui/UI.java:792
+#: src/org/revager/gui/UI.java:797
 msgid ""
 "There is a review which hasn't been stored properly. Would you like to "
 "restore and load the review?"

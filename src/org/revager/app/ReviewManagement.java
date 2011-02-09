@@ -603,10 +603,6 @@ public class ReviewManagement {
 
 		resiData.getReview().getProduct().setName(name);
 
-		if (getReviewName().equals("") && !name.equals("")) {
-			setReviewName(_("Review of") + " " + name);
-		}
-
 		resiData.fireDataChanged();
 	}
 

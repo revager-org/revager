@@ -26,6 +26,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -177,29 +179,23 @@ public class AppTools {
 		return isReadableImageFile(file) && isWritableImageFile(file);
 	}
 
-	/**
-	 * Returns the location and name of the .jar file.
-	 * 
-	 * @return the location
-	 */
-	public static String getJarLocation() {
-		String location = AppTools.class.getProtectionDomain().getCodeSource()
-				.getLocation().toString();
+	public static File getJarFile() {
+		URL url = AppTools.class.getProtectionDomain().getCodeSource()
+				.getLocation();
 
-		int idx = location.indexOf(":");
+		File file = null;
 
-		/* Windows uses file:/C:/folder whereas Unix uses file:/folder */
-		if (idx != location.lastIndexOf(":")) {
-			location = location.substring(idx + 2);
-		} else {
-			location = location.substring(idx + 1);
+		try {
+			file = new File(url.toURI());
+		} catch (URISyntaxException e) {
+			file = new File(url.getPath());
 		}
 
-		return location;
+		return file;
 	}
 
 	public static String getJavaAppStubLocation() {
-		String jarLocation = getJarLocation();
+		String jarLocation = getJarFile().getAbsolutePath();
 
 		String appStubLocation = null;
 

@@ -128,7 +128,7 @@ public class Main {
 	public static void restartApplication() {
 		ProcessBuilder pb = null;
 
-		String appPath = AppTools.getJarLocation();
+		String appPath = AppTools.getJarFile().getAbsolutePath();
 		String javaStubPath = AppTools.getJavaAppStubLocation();
 
 		if (appPath.toLowerCase().endsWith(".jar")
@@ -148,10 +148,10 @@ public class Main {
 
 			if (argData != null) {
 				pb = new ProcessBuilder(javaBinary, "-jar",
-						AppTools.getJarLocation(), "-data", argData);
+						appPath, "-data", argData);
 			} else {
 				pb = new ProcessBuilder(javaBinary, "-jar",
-						AppTools.getJarLocation());
+						appPath);
 			}
 		} else {
 			pb = new ProcessBuilder(appPath);

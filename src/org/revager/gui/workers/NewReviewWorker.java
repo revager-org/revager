@@ -83,6 +83,17 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 						UI.getInstance().getEditProductDialog()
 								.setVisible(true);
 
+						String prodName = Application.getInstance()
+								.getReviewMgmt().getProductName();
+
+						if (!prodName.trim().equals("")) {
+							Application
+									.getInstance()
+									.getReviewMgmt()
+									.setReviewName(
+											_("Review of") + " " + prodName);
+						}
+
 						/*
 						 * Run OpenFindingsListAction
 						 */

@@ -85,9 +85,6 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 				UI.getInstance().getAspectsManagerFrame()
 						.notifySwitchToProgressMode();
 
-				UI.getInstance().getAspectsManagerFrame()
-						.notifySwitchToProgressMode();
-
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						UI.getInstance()

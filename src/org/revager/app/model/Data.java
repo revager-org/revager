@@ -321,7 +321,7 @@ public class Data {
 		if (langMap == null) {
 			langMap = new HashMap<String, String>();
 
-			String jarLocation = AppTools.getJarLocation();
+			File jarFile = AppTools.getJarFile();
 
 			int lastIdx = getResource("path.lang").lastIndexOf(".");
 			String bundleBaseName = getResource("path.lang").substring(
@@ -334,7 +334,7 @@ public class Data {
 
 			try {
 				/* Search translations in the JAR file */
-				JarFile jf = new JarFile(jarLocation);
+				JarFile jf = new JarFile(jarFile);
 				Enumeration<JarEntry> ress = jf.entries();
 
 				String path = getResource("path.searchLang").substring(1);
@@ -375,7 +375,6 @@ public class Data {
 					}
 				}
 			}
-
 		}
 
 		return langMap;
@@ -390,4 +389,5 @@ public class Data {
 
 		return false;
 	}
+
 }

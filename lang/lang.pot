@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-04 16:45+0100\n"
+"POT-Creation-Date: 2011-02-09 21:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,9 +67,9 @@ msgstr ""
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:180
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:112
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:145
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:145
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:142
 #: src/org/revager/gui/workers/LoadReviewWorker.java:105
-#: src/org/revager/gui/workers/NewReviewWorker.java:116
+#: src/org/revager/gui/workers/NewReviewWorker.java:127
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:93
 #: src/org/revager/gui/workers/SaveReviewWorker.java:111
 msgid "Error"
@@ -168,10 +168,6 @@ msgstr ""
 #: src/org/revager/export/InvitationDirExporter.java:92
 #: src/org/revager/export/InvitationZIPExporter.java:59
 msgid "Review_Information.pdf"
-msgstr ""
-
-#: src/org/revager/app/ReviewManagement.java:607
-msgid "Review of"
 msgstr ""
 
 #: src/org/revager/app/model/ApplicationData.java:173
@@ -922,7 +918,7 @@ msgstr ""
 #: src/org/revager/gui/AbstractFrame.java:558
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:94
 #: src/org/revager/gui/workers/LoadReviewWorker.java:95
-#: src/org/revager/gui/workers/NewReviewWorker.java:106
+#: src/org/revager/gui/workers/NewReviewWorker.java:117
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:77
 msgid "No review in process."
 msgstr ""
@@ -1122,6 +1118,7 @@ msgid "Help"
 msgstr ""
 
 #: src/org/revager/gui/MainFrame.java:1133
+#: src/org/revager/gui/dialogs/AboutDialog.java:62
 msgid "About RevAger"
 msgstr ""
 
@@ -1512,10 +1509,6 @@ msgstr ""
 msgid "Push down item"
 msgstr ""
 
-#: src/org/revager/gui/dialogs/AboutDialog.java:62
-msgid "About"
-msgstr ""
-
 #: src/org/revager/gui/dialogs/AboutDialog.java:76
 msgid "Build:"
 msgstr ""
@@ -1587,7 +1580,7 @@ msgstr ""
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:409
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:77
 #: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:62
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:96
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:93
 msgid "Importing catalog ..."
 msgstr ""
 
@@ -2628,17 +2621,17 @@ msgid "There is a catalog with the given name already existing. Please enter a n
 msgstr ""
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:137
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:136
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:133
 msgid "Catalog imported successfully."
 msgstr ""
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:144
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:144
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:141
 msgid "Cannot import selected file. The content is not conform to the expected format (Resi XML Schema)."
 msgstr ""
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:152
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:152
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:149
 msgid "Cannot import catalog!"
 msgstr ""
 
@@ -2662,7 +2655,11 @@ msgstr ""
 msgid "New review created successfully."
 msgstr ""
 
-#: src/org/revager/gui/workers/NewReviewWorker.java:115
+#: src/org/revager/gui/workers/NewReviewWorker.java:94
+msgid "Review of"
+msgstr ""
+
+#: src/org/revager/gui/workers/NewReviewWorker.java:126
 msgid "Cannot create new review file."
 msgstr ""
 

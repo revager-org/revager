@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-04 16:45+0100\n"
+"POT-Creation-Date: 2011-02-09 21:48+0100\n"
 "PO-Revision-Date: 2011-01-28 07:58+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-02-05 05:12+0000\n"
+"X-Launchpad-Export-Date: 2011-02-10 04:46+0000\n"
 "X-Generator: Launchpad (build 12177)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:266
@@ -67,9 +67,9 @@ msgstr ""
 #: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:180
 #: src/org/revager/gui/workers/ImportAspectsWorker.java:112
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:145
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:145
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:142
 #: src/org/revager/gui/workers/LoadReviewWorker.java:105
-#: src/org/revager/gui/workers/NewReviewWorker.java:116
+#: src/org/revager/gui/workers/NewReviewWorker.java:127
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:93
 #: src/org/revager/gui/workers/SaveReviewWorker.java:111
 msgid "Error"
@@ -183,10 +183,6 @@ msgstr "Bild-Dateien"
 #: src/org/revager/export/InvitationZIPExporter.java:59
 msgid "Review_Information.pdf"
 msgstr "Review-Informationen.pdf"
-
-#: src/org/revager/app/ReviewManagement.java:607
-msgid "Review of"
-msgstr "Review von"
 
 #: src/org/revager/app/model/ApplicationData.java:173
 msgid "Cannot create tables in the database."
@@ -1038,7 +1034,7 @@ msgstr "Hinweise ein-/ausblenden"
 #: src/org/revager/gui/AbstractFrame.java:558
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:94
 #: src/org/revager/gui/workers/LoadReviewWorker.java:95
-#: src/org/revager/gui/workers/NewReviewWorker.java:106
+#: src/org/revager/gui/workers/NewReviewWorker.java:117
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:77
 msgid "No review in process."
 msgstr "Kein Review in Bearbeitung."
@@ -1241,6 +1237,7 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: src/org/revager/gui/MainFrame.java:1133
+#: src/org/revager/gui/dialogs/AboutDialog.java:62
 msgid "About RevAger"
 msgstr "Über RevAger"
 
@@ -1709,10 +1706,6 @@ msgstr "Eintrag nach oben verschieben"
 msgid "Push down item"
 msgstr "Eintrag nach unten verschieben"
 
-#: src/org/revager/gui/dialogs/AboutDialog.java:62
-msgid "About"
-msgstr ""
-
 #: src/org/revager/gui/dialogs/AboutDialog.java:76
 msgid "Build:"
 msgstr "Build:"
@@ -1786,7 +1779,7 @@ msgstr "Bitte wählen Sie mindestens einen Schwerpunkt für den Gutachter:"
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:409
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:77
 #: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:62
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:96
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:93
 msgid "Importing catalog ..."
 msgstr "Fragenkatalog werden importiert ..."
 
@@ -2942,12 +2935,12 @@ msgstr ""
 "geben Sie einen neuen Namen ein."
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:137
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:136
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:133
 msgid "Catalog imported successfully."
 msgstr "Der Fragenkatalog wurde erfolgreich importiert."
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:144
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:144
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:141
 msgid ""
 "Cannot import selected file. The content is not conform to the expected "
 "format (Resi XML Schema)."
@@ -2956,7 +2949,7 @@ msgstr ""
 "entspricht nicht dem erwarteten Format (Resi XML Schema)."
 
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:152
-#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:152
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:149
 msgid "Cannot import catalog!"
 msgstr "Der Fragenkatalog konnte nicht importiert werden!"
 
@@ -2980,7 +2973,11 @@ msgstr "Ein neues Review wird erstellt ..."
 msgid "New review created successfully."
 msgstr "Ein neues Review wurde erfolgreich erstellt."
 
-#: src/org/revager/gui/workers/NewReviewWorker.java:115
+#: src/org/revager/gui/workers/NewReviewWorker.java:94
+msgid "Review of"
+msgstr "Review von"
+
+#: src/org/revager/gui/workers/NewReviewWorker.java:126
 msgid "Cannot create new review file."
 msgstr "Es konnte keine neue Review-Datei erstellt werden."
 

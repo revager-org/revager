@@ -217,7 +217,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private ChangeListener tabChangeListener = new ChangeListener() {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			updateHints();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					updateHints();
+				}
+			});
 		}
 	};
 
@@ -310,6 +314,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private void createBody() {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
+				// Prepare creation of body
 				attPanel.removeAll();
 				createAttPanel();
 				attPanel.validate();
@@ -324,10 +329,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 		});
 
+		// Set current list of findings
 		tabPanelFindings = new FindingsTab(currentProt);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
+				// Create tab panel
 				tabbedPane.removeAll();
 				tabbedPane.removeChangeListener(tabChangeListener);
 
@@ -340,8 +347,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 				tabbedPane.addChangeListener(tabChangeListener);
 
+				// Add tab panel to content area
 				add(tabbedPane);
 
+				// Indicate that body has been created
 				bodyCreated = true;
 			}
 		});
@@ -1241,9 +1250,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				if (bodyCreated) {
-					updateHints();
-				}
+				updateHints();
 			}
 		});
 	}
@@ -1517,6 +1524,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Update hints.
 	 */
 	private void updateHints() {
+		if (!bodyCreated) {
+			return;
+		}
+
 		boolean warningErrorHints = false;
 
 		List<HintItem> hints = new ArrayList<HintItem>();

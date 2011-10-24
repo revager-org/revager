@@ -354,13 +354,14 @@ public class MeetingDialog extends AbstractDialog {
 		c.setLayout(gbl);
 
 		/*
-		 * 
-		 * creating spinners
+		 * Hide border if the application runs on Mac OS X
 		 */
-		GUITools.formatSpinner(endHSpinner);
-		GUITools.formatSpinner(endMSpinner);
-		GUITools.formatSpinner(beginHSpinner);
-		GUITools.formatSpinner(beginMSpinner);
+		boolean hideBorder = UI.getInstance().getPlatform() == UI.Platform.MAC;
+
+		GUITools.formatSpinner(endHSpinner, hideBorder);
+		GUITools.formatSpinner(endMSpinner, hideBorder);
+		GUITools.formatSpinner(beginHSpinner, hideBorder);
+		GUITools.formatSpinner(beginMSpinner, hideBorder);
 
 		JLabel beginLbl = new JLabel(_("Period of time:"));
 

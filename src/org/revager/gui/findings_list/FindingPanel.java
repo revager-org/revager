@@ -565,8 +565,8 @@ public class FindingPanel extends JPanel {
 
 		labelFindingNumber.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		labelFindingSeverity.setFont(new Font(UI.PROTOCOL_FONT.getName(),
-				Font.ITALIC, UI.PROTOCOL_FONT.getSize()));
+		labelFindingSeverity.setFont(UI.PROTOCOL_FONT);
+		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
 		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
 		labelFindingTitle.setText(_("Finding") + " " + finding.getId());

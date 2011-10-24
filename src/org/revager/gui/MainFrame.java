@@ -1564,32 +1564,36 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Update the title of the main frame.
 	 */
 	public void updateTitle() {
+		/*
+		 * Default title
+		 */
+		String title = Data.getInstance().getResource("appName");
+
 		if (observingResiData) {
-			String title = "";
+			title = "";
 
-			if (assistantMode) {
-				title = Data.getInstance().getResource("appName");
-			} else {
-				String revName = Data.getInstance().getResiData().getReview()
-						.getName();
+			String revName = Data.getInstance().getResiData().getReview()
+					.getName();
 
-				if (UI.getInstance().getStatus() != Status.NO_FILE_LOADED) {
-					if (revName != null) {
-						if (revName.trim().equals("")) {
-							title = _("New Review");
-						} else {
-							title = revName;
-						}
-					} else {
+			if (UI.getInstance().getStatus() != Status.NO_FILE_LOADED) {
+				if (revName != null) {
+					if (revName.trim().equals("")) {
 						title = _("New Review");
+					} else {
+						title = revName;
 					}
-
-					title += " - ";
+				} else {
+					title = _("New Review");
 				}
 
-				title += Data.getInstance().getResource("appName");
+				title += " - ";
 			}
 
+			title += Data.getInstance().getResource("appName");
+
+			/*
+			 * Indicator for unsaved changes
+			 */
 			if (UI.getInstance().getStatus() == UI.Status.UNSAVED_CHANGES) {
 				if (UI.getInstance().getPlatform() != UI.Platform.MAC) {
 					title += " *";
@@ -1601,9 +1605,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 				this.getRootPane().putClientProperty("Window.documentModified",
 						Boolean.FALSE);
 			}
-
-			setTitle(title);
 		}
+
+		setTitle(title);
 	}
 
 	/*
@@ -1906,6 +1910,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		this.assistantMode = assistantMode;
 
 		if (assistantMode) {
+			updateTitle();
 			updateHints();
 			updateToolBar();
 			updateMenu();

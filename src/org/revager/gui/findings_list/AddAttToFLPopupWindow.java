@@ -191,8 +191,13 @@ public class AddAttToFLPopupWindow extends JDialog {
 		durHSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 99, 1));
 		durMSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
 
-		GUITools.formatSpinner(durHSpinner);
-		GUITools.formatSpinner(durMSpinner);
+		/*
+		 * Hide border if the application runs on Mac OS X
+		 */
+		boolean hideBorder = UI.getInstance().getPlatform() == UI.Platform.MAC;
+		
+		GUITools.formatSpinner(durHSpinner, hideBorder);
+		GUITools.formatSpinner(durMSpinner, hideBorder);
 
 		if ((Integer) durHSpinner.getValue() == 0) {
 			((NumberEditor) durHSpinner.getEditor()).getTextField().setText(

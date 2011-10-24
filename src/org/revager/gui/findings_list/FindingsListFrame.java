@@ -814,23 +814,26 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		beginMSpinner.setFont(UI.PROTOCOL_FONT);
 		beginHSpinner.setFont(UI.PROTOCOL_FONT);
-
 		endHSpinner.setFont(UI.PROTOCOL_FONT);
 		endMSpinner.setFont(UI.PROTOCOL_FONT);
 
 		beginMSpinner.addChangeListener(spinnerChangeListener);
 		beginHSpinner.addChangeListener(spinnerChangeListener);
-
 		endHSpinner.addChangeListener(spinnerChangeListener);
 		endMSpinner.addChangeListener(spinnerChangeListener);
 
 		locationTxtFld = new JTextField();
 		locationTxtFld.setFont(UI.PROTOCOL_FONT);
 
-		GUITools.formatSpinner(endHSpinner);
-		GUITools.formatSpinner(endMSpinner);
-		GUITools.formatSpinner(beginHSpinner);
-		GUITools.formatSpinner(beginMSpinner);
+		/*
+		 * Hide border if the application runs on Mac OS X
+		 */
+		boolean hideBorder = UI.getInstance().getPlatform() == UI.Platform.MAC;
+
+		GUITools.formatSpinner(endHSpinner, hideBorder);
+		GUITools.formatSpinner(endMSpinner, hideBorder);
+		GUITools.formatSpinner(beginHSpinner, hideBorder);
+		GUITools.formatSpinner(beginMSpinner, hideBorder);
 
 		dateF.setTimeZone(currentProt.getDate().getTimeZone());
 		dateTxtFld.setText(dateF.format(currentProt.getDate().getTime()));
@@ -1114,8 +1117,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Update current time.
 	 */
 	public void updateCurrentTime() {
-		clockCurrentTime.setText(sdfCurrentTime.format(new Date().getTime())
-				+ " Uhr");
+		clockCurrentTime.setText(sdfCurrentTime.format(new Date().getTime()));
 	}
 
 	/**

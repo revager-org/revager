@@ -599,7 +599,7 @@ public class GUITools {
 	 * @param sp
 	 *            the spinner
 	 */
-	public static void formatSpinner(JSpinner sp) {
+	public static void formatSpinner(JSpinner sp, boolean hideBorder) {
 		JSpinner.DefaultEditor defEditor = (JSpinner.DefaultEditor) sp
 				.getEditor();
 		JFormattedTextField ftf = defEditor.getTextField();
@@ -611,6 +611,10 @@ public class GUITools {
 		DecimalFormatSymbols geSymbols = new DecimalFormatSymbols(Data
 				.getInstance().getLocale());
 		decimalFormat.setDecimalFormatSymbols(geSymbols);
+
+		if (hideBorder) {
+			sp.setBorder(null);
+		}
 	}
 
 	/**

@@ -270,7 +270,8 @@ public class Data {
 	public static List<String> getStandardSeverities() {
 		List<String> list = new ArrayList<String>();
 
-		for (String sev : _("Critical error; Main error; Minor error; Good")
+		for (String sev : _(
+				"Not rated; Critical error; Main error; Minor error; Good")
 				.split(";")) {
 			list.add(sev.trim());
 		}

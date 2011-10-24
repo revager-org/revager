@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-24 17:22+0200\n"
+"POT-Creation-Date: 2011-10-24 18:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -291,15 +291,15 @@ msgstr ""
 msgid "Scribe"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:273
-msgid "Critical error; Main error; Minor error; Good"
+#: src/org/revager/app/model/Data.java:274
+msgid "Not rated; Critical error; Main error; Minor error; Good"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:290
+#: src/org/revager/app/model/Data.java:291
 msgid "Accepted; Accepted (changes required); Not accepted; Not finished; Not finished (changes required); Not finished (complete revision required)"
 msgstr ""
 
-#: src/org/revager/app/model/Data.java:306
+#: src/org/revager/app/model/Data.java:307
 msgid "Software Specification; Second-hand Vehicle"
 msgstr ""
 

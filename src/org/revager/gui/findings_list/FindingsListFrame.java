@@ -139,6 +139,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private GridBagLayout gbl = new GridBagLayout();
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private JPanel tabPanelOrg = new JPanel(gbl);
+	private JPanel tabGenImp = new JPanel(gbl);
 	private JPanel bottomOrgPanel = new JPanel(gbl);
 
 	private JButton tbPdfExport;
@@ -155,7 +156,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Hint items
 	 */
 	private HintItem hintAtt;
-	private HintItem hintImprRec;
+	private HintItem hintImpr;
+	private HintItem hintRec;
 	private HintItem hintFind;
 	private HintItem hintOk;
 	private HintItem hintInfoNewFinding;
@@ -322,6 +324,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				bottomOrgPanel.removeAll();
 				createBottomOrgPanel();
 				bottomOrgPanel.validate();
+				
+				
+				tabGenImp.removeAll();
+				createImpPanel();
+				tabGenImp.validate();
 
 				tabPanelCommAndRec.removeAll();
 				createCommAndRatePanel();
@@ -341,8 +348,9 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				tabbedPane.setTabPlacement(JTabbedPane.TOP);
 
 				tabbedPane.add(_("Organizational"), tabPanelOrg);
+				tabbedPane.add(_("Impression"), tabGenImp);
 				tabbedPane.add(_("Findings"), tabPanelFindings);
-				tabbedPane.add(_("Impression · Comments · Recommendation"),
+				tabbedPane.add(_("Comments · Recommendation"),
 						tabPanelCommAndRec);
 
 				tabbedPane.addChangeListener(tabChangeListener);
@@ -740,6 +748,32 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				20, 0, 20, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 	}
+	
+	private void createImpPanel(){
+		JLabel impLbl = new JLabel(_("General impression of the product:"));
+		impLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		
+		impTxtArea = new JTextArea();
+		impTxtArea.setFont(UI.PROTOCOL_FONT);
+		
+		impTxtArea.addKeyListener(updateListener);
+		impTxtArea.addKeyListener(tabKeyListener);
+
+		impTxtArea.setText(revMgmt.getImpression().trim());
+		
+		impScrllPn = GUITools.setIntoScrllPn(impTxtArea);
+		GUITools.scrollToTop(impScrllPn);
+		
+		GUITools.addComponent(tabGenImp, gbl, impLbl, 0, 1, 2, 1, 0,
+				0, 20, 10, 0, 10, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		
+		GUITools.addComponent(tabGenImp, gbl, impScrllPn, 0, 2, 2, 1,
+				1.0, 1.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		
+		tabGenImp.setBorder(new EmptyBorder(0, 10, 20, 10));
+	}
 
 	/**
 	 * Creates the bottom org panel.
@@ -933,8 +967,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Creates the comm and rate panel.
 	 */
 	private void createCommAndRatePanel() {
-		JLabel impLbl = new JLabel(_("General impression of the product:"));
-		impLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
 		JLabel recLbl = new JLabel(_("Final recommendation for the product:"));
 		recLbl.setFont(UI.PROTOCOL_FONT_BOLD);
@@ -944,36 +976,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		JLabel protCommLbl = new JLabel(_("Comments on the list of findings:"));
 		protCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
-
-		KeyListener tabKeyListener = new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				Object evSrc = e.getSource();
-
-				if (evSrc instanceof JTextArea
-						&& e.getKeyCode() == KeyEvent.VK_TAB) {
-					JTextArea txtArea = (JTextArea) evSrc;
-
-					if (e.getModifiers() > 0) {
-						txtArea.transferFocusBackward();
-					} else {
-						txtArea.transferFocus();
-						e.consume();
-					}
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		};
-
-		impTxtArea = new JTextArea();
-		impTxtArea.setFont(UI.PROTOCOL_FONT);
 
 		meetCommTxtArea = new JTextArea();
 		meetCommTxtArea.setRows(4);
@@ -990,8 +992,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		/*
 		 * adding focus and tab listeners to TextAreas
 		 */
-		impTxtArea.addKeyListener(updateListener);
-		impTxtArea.addKeyListener(tabKeyListener);
 
 		meetCommTxtArea.addKeyListener(updateListener);
 		meetCommTxtArea.addKeyListener(tabKeyListener);
@@ -1006,14 +1006,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		recBx.addItemListener(itemListener);
 		recBx.setSelectedItem(revMgmt.getRecommendation().trim());
 
-		impTxtArea.setText(revMgmt.getImpression().trim());
+
 		meetCommTxtArea.setText(Application.getInstance().getMeetingMgmt()
 				.getMeetingComment(currentMeet).trim());
 		protCommTxtArea
 				.setText(protMgmt.getProtocolComment(currentProt).trim());
 
-		impScrllPn = GUITools.setIntoScrllPn(impTxtArea);
-		GUITools.scrollToTop(impScrllPn);
+
 
 		meetCommScrllPn = GUITools.setIntoScrllPn(meetCommTxtArea);
 		meetCommScrllPn.setMinimumSize(meetCommScrllPn.getPreferredSize());
@@ -1023,14 +1022,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		protCommScrllPn.setMinimumSize(protCommScrllPn.getPreferredSize());
 		GUITools.scrollToTop(protCommScrllPn);
 
-		GUITools.addComponent(tabPanelCommAndRec, gbl, impLbl, 0, 1, 2, 1, 0,
-				0, 20, 10, 0, 10, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(tabPanelCommAndRec, gbl, impScrllPn, 0, 2, 2, 1,
-				1.0, 1.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(tabPanelCommAndRec, gbl, recLbl, 0, 3, 2, 1, 0.0,
-				0.0, 25, 10, 0, 10, GridBagConstraints.NONE,
+				0.0, 20, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(tabPanelCommAndRec, gbl, recBx, 0, 4, 2, 1, 1.0,
 				0.0, 5, 10, 0, 10, GridBagConstraints.HORIZONTAL,
@@ -1039,13 +1032,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				1.0, 0.0, 25, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(tabPanelCommAndRec, gbl, meetCommScrllPn, 0, 6,
-				1, 1, 1.0, 0.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
+				1, 1, 1.0, 1.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(tabPanelCommAndRec, gbl, protCommLbl, 1, 5, 1, 1,
 				1.0, 0.0, 25, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(tabPanelCommAndRec, gbl, protCommScrllPn, 1, 6,
-				1, 1, 1.0, 0.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
+				1, 1, 1.0, 1.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 
 		tabPanelCommAndRec.setBorder(new EmptyBorder(0, 10, 20, 10));
@@ -1361,6 +1354,33 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		public void keyTyped(KeyEvent e) {
 		}
 	};
+	
+	private KeyListener tabKeyListener = new KeyListener() {
+		@Override
+		public void keyPressed(KeyEvent e) {
+			Object evSrc = e.getSource();
+
+			if (evSrc instanceof JTextArea
+					&& e.getKeyCode() == KeyEvent.VK_TAB) {
+				JTextArea txtArea = (JTextArea) evSrc;
+
+				if (e.getModifiers() > 0) {
+					txtArea.transferFocusBackward();
+				} else {
+					txtArea.transferFocus();
+					e.consume();
+				}
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+		}
+	};
 
 	private ChangeListener spinnerChangeListener = new ChangeListener() {
 
@@ -1505,8 +1525,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				_("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
 				HintItem.WARNING);
 
-		hintImprRec = new HintItem(
-				_("Please enter the general impression and the final recommendation for the product into the provided text field (Tab 'Impression · Comments · Recommendation')."),
+		hintImpr = new HintItem(
+				_("Please enter the general impression for the product into the provided text field (Tab 'Impression')."),
+				HintItem.WARNING);
+		
+		hintRec = new HintItem(
+				_("Please enter the final recommendation for the product into the provided text field (Tab 'Comments · Recommendation')."),
 				HintItem.WARNING);
 
 		hintFind = new HintItem(
@@ -1549,9 +1573,16 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		} else {
 			tabbedPane.setIconAt(0, ICON_TAB_OK);
 		}
+		
+		if (revMgmt.getImpression().trim().equals("")) {
+			hints.add(hintImpr);
 
-		if (!findMgmt.areAllFindingsComplete(currentProt)) {
-			hints.add(hintFind);
+			if (tabGenImp.isVisible()) {
+				if (revMgmt.getImpression().trim().equals("")) {
+					markComponent(impScrllPn);
+				}
+
+			}
 
 			warningErrorHints = true;
 
@@ -1560,14 +1591,20 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			tabbedPane.setIconAt(1, ICON_TAB_OK);
 		}
 
-		if (revMgmt.getImpression().trim().equals("")
-				|| revMgmt.getRecommendation().trim().equals("")) {
-			hints.add(hintImprRec);
+		if (!findMgmt.areAllFindingsComplete(currentProt)) {
+			hints.add(hintFind);
+
+			warningErrorHints = true;
+
+			tabbedPane.setIconAt(2, ICON_TAB_WARN);
+		} else {
+			tabbedPane.setIconAt(2, ICON_TAB_OK);
+		}
+		
+		if (revMgmt.getRecommendation().trim().equals("")) {
+			hints.add(hintRec);
 
 			if (tabPanelCommAndRec.isVisible()) {
-				if (revMgmt.getImpression().trim().equals("")) {
-					markComponent(impScrllPn);
-				}
 
 				if (revMgmt.getRecommendation().trim().equals("")) {
 					markComponent(recBx);
@@ -1576,9 +1613,9 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 			warningErrorHints = true;
 
-			tabbedPane.setIconAt(2, ICON_TAB_WARN);
+			tabbedPane.setIconAt(3, ICON_TAB_WARN);
 		} else {
-			tabbedPane.setIconAt(2, ICON_TAB_OK);
+			tabbedPane.setIconAt(3, ICON_TAB_OK);
 		}
 
 		if (!warningErrorHints) {

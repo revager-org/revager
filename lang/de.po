@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-24 18:53+0200\n"
-"PO-Revision-Date: 2011-01-28 07:58+0000\n"
+"PO-Revision-Date: 2011-10-26 21:23+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-10-25 04:56+0000\n"
-"X-Generator: Launchpad (build 14185)\n"
+"X-Launchpad-Export-Date: 2011-10-27 05:24+0000\n"
+"X-Generator: Launchpad (build 14197)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:266
 #: src/org/revager/gui/HelpBrowserFrame.java:356
@@ -334,7 +334,7 @@ msgstr "Notar"
 
 #: src/org/revager/app/model/Data.java:274
 msgid "Not rated; Critical error; Main error; Minor error; Good"
-msgstr ""
+msgstr "Unbewertet; Kritischer Fehler; Hauptfehler; Nebenfehler; Gut"
 
 #: src/org/revager/app/model/Data.java:291
 msgid ""

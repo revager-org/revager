@@ -1,22 +1,6 @@
-/* 
- * Copyright 2009 Davide Casciato, Sandra Reich, Johannes Wettinger
- * 
- * This file is part of Resi.
- *
- * Resi is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Resi is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Resi. If not, see <http://www.gnu.org/licenses/>.
- */
 package org.revager.gui.aspects_manager;
+
+import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTreeCellRenderer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,19 +19,13 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeCellRenderer;
 
 import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppAspect;
 import org.revager.app.model.appdata.AppCatalog;
 import org.revager.gui.UI;
 
-
-/**
- * The Class CheckRenderer.
- */
-@SuppressWarnings("serial")
-public class CheckRenderer implements TreeCellRenderer {
+public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 
 	final ImageIcon ASP_ICON = Data.getInstance().getIcon("aspect_15x15.png");
 	final ImageIcon CATE_ICON = Data.getInstance()
@@ -63,7 +41,7 @@ public class CheckRenderer implements TreeCellRenderer {
 	/**
 	 * Instantiates a new check renderer.
 	 */
-	public CheckRenderer() {
+	public CustomTreeCellRenderer() {
 		rendererPanel = new JPanel(new BorderLayout());
 		rendererPanel.setBackground(null);
 		rendererPanel.setLayout(new BorderLayout());
@@ -74,14 +52,8 @@ public class CheckRenderer implements TreeCellRenderer {
 		check.setBackground(UIManager.getColor("Tree.textBackground"));
 		label.setForeground(UIManager.getColor("Tree.textForeground"));// Tree.selectionForeground
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(javax.
-	 * swing.JTree, java.lang.Object, boolean, boolean, boolean, int, boolean)
-	 */
+	
+	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object value,
 			boolean isSelected, boolean expanded, boolean leaf, int row,
 			boolean hasFocus) {
@@ -111,6 +83,12 @@ public class CheckRenderer implements TreeCellRenderer {
 		return rendererPanel;
 	}
 
+	@Override
+	public boolean isOnHotspot(int x, int y) {
+
+		return (check.getBounds().contains(x, y));
+	}
+	
 	/**
 	 * Gets the preferred size.
 	 * 
@@ -158,7 +136,9 @@ public class CheckRenderer implements TreeCellRenderer {
 	/**
 	 * The Class TreeLabel.
 	 */
+	@SuppressWarnings("serial")
 	public class TreeLabel extends JLabel {
+		
 		boolean isSelected;
 
 		boolean hasFocus;

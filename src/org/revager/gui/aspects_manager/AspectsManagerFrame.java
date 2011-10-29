@@ -19,6 +19,8 @@
 package org.revager.gui.aspects_manager;
 
 import static org.revager.app.model.Data._;
+import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTree;
+import it.cnr.imaa.essi.lablib.gui.checkboxtree.TreeCheckingModel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -58,7 +60,6 @@ import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
-import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
@@ -122,7 +123,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	private JSplitPane splitPane = new JSplitPane();
 	private int dividerLocation = 0;
 
-	private JTree tree;
+	private CheckboxTree tree;
 	private CheckNode root = new CheckNode(_("All catalogs"));
 	private DefaultTreeModel dtm = new DefaultTreeModel(root);
 
@@ -596,7 +597,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		root.removeAllChildren();
 		root.setSelected(false);
-		tree = new JTree(dtm) {
+		tree = new CheckboxTree(dtm) {
 			@Override
 			public String getToolTipText(MouseEvent evt) {
 				if (getRowForLocation(evt.getX(), evt.getY()) == -1) {
@@ -659,10 +660,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		((BasicTreeUI) tree.getUI()).setLeftChildIndent(10);
 		((BasicTreeUI) tree.getUI()).setRightChildIndent(13);
 		tree.setRowHeight(25);
-		tree.setCellRenderer(new CheckRenderer());
+		tree.setCellRenderer(new CustomTreeCellRenderer());
 		tree.getSelectionModel().setSelectionMode(
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
-		tree.addMouseListener(new NodeSelectionListener(tree));
+		//tree.addMouseListener(new NodeSelectionListener(tree));
 		JScrollPane scrollPane = new JScrollPane(tree,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -673,6 +674,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		// updateTree();
 		tree.expandRow(0);
 		tree.setToolTipText("");
+		
+		tree.addTreeCheckingListener(new CheckBoxListener(tree));
+		
+		tree.getCheckingModel().setCheckingMode(TreeCheckingModel.CheckingMode.PROPAGATE_PRESERVING_CHECK);
 
 		leftPanel.add(scrollPane, BorderLayout.CENTER);
 		JPanel leftBottomPanel = new JPanel(new BorderLayout());

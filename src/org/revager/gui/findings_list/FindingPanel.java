@@ -604,14 +604,14 @@ public class FindingPanel extends JPanel {
 		}
 		comboSeverity.addFocusListener(focusListener);
 
-		comboSeverity.setSelectedItem(finding.getSeverity());
+		comboSeverity.setSelectedItem(findMgmt.getLocalizedSeverity(finding));
 
 		comboSeverity.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					finding.setSeverity(comboSeverity.getSelectedItem()
-							.toString());
+					findMgmt.setLocalizedSeverity(finding, comboSeverity
+							.getSelectedItem().toString());
 					resiData.fireDataChanged();
 				}
 			}
@@ -725,7 +725,8 @@ public class FindingPanel extends JPanel {
 
 		if (findMgmt.isFindingEmpty(finding)) {
 			finding.setDescription("");
-			finding.setSeverity(sevMgmt.getSeverities().get(0));
+			findMgmt.setLocalizedSeverity(finding,
+					sevMgmt.getSeverities().get(0));
 			resiData.fireDataChanged();
 		}
 
@@ -827,7 +828,7 @@ public class FindingPanel extends JPanel {
 		 */
 		labelFindingNumber.setText(_("Finding") + " " + finding.getId());
 
-		labelFindingSeverity.setText(finding.getSeverity());
+		labelFindingSeverity.setText(findMgmt.getLocalizedSeverity(finding));
 
 		labelFindingDescription.setText(finding.getDescription());
 

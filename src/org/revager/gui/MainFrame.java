@@ -771,7 +771,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		recommendation = new JLabel(_("Final recommendation for the product:"));
 		recommendation.setBorder(labelBorder);
 		recommendationBx.setEditable(true);
-		for (String rec : Data.getStandardRecommendations()) {
+		for (String rec : Data.getDefaultRecommendations()) {
 			recommendationBx.addItem(rec);
 		}
 		recommendationBx.addPopupMenuListener(new PopupMenuListener() {

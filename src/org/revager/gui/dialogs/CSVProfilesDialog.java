@@ -876,7 +876,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 						/*
 						 * Load standard severities as mappings
 						 */
-						for (String sev : Data.getStandardSeverities()) {
+						for (String sev : Data.getDefaultSeverities()) {
 							mappings.add(sev);
 						}
 					}

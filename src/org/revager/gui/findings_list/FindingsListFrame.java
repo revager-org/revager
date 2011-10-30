@@ -999,7 +999,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		protCommTxtArea.addKeyListener(updateListener);
 		protCommTxtArea.addKeyListener(tabKeyListener);
 
-		for (String rec : Data.getStandardRecommendations()) {
+		for (String rec : Data.getDefaultRecommendations()) {
 			recBx.addItem(rec);
 		}
 		recBx.setSelectedIndex(0);

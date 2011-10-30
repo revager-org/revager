@@ -72,7 +72,7 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 		new File(pathWorkDir).mkdir();
 		AppCatalog appCatalog = null;
 
-		for (final String catalogName : Data.getStandardCatalogs()) {
+		for (final String catalogName : Data.getDefaultCatalogs()) {
 			try {
 				/*
 				 * Import catalog from file

@@ -1516,8 +1516,8 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				/*
 				 * Print severity of the finding
 				 */
-				Phrase phraseSeverity = new Phrase(f.getSeverity(),
-						plainFontTitle);
+				Phrase phraseSeverity = new Phrase(
+						findMgmt.getLocalizedSeverity(f), plainFontTitle);
 
 				PdfPCell cellSeverity = new PdfPCell(phraseSeverity);
 				cellSeverity.setBackgroundColor(bgColorTitle);

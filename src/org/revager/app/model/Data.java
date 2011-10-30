@@ -263,28 +263,71 @@ public class Data {
 	}
 
 	/**
-	 * Returns list of standard severities.
+	 * Returns the list of default severities in the default language
 	 * 
-	 * @return list of standard severities
+	 * @return the list of default severities in the default language
 	 */
-	public static List<String> getStandardSeverities() {
+	public static List<String> getDefLangSeverities() {
 		List<String> list = new ArrayList<String>();
 
-		for (String sev : _(
-				"Not rated; Critical error; Main error; Minor error; Good")
-				.split(";")) {
-			list.add(sev.trim());
+		list.add("Not rated");
+		_("Not rated");
+
+		list.add("Critical error");
+		_("Critical error");
+
+		list.add("Main error");
+		_("Main error");
+
+		list.add("Minor error");
+		_("Minor error");
+
+		list.add("Good");
+		_("Good");
+
+		return list;
+	}
+
+	/**
+	 * Returns list of default severities.
+	 * 
+	 * @return list of default severities
+	 */
+	public static List<String> getDefaultSeverities() {
+		List<String> list = new ArrayList<String>();
+
+		for (String sev : getDefLangSeverities()) {
+			list.add(_(sev));
 		}
 
 		return list;
 	}
 
 	/**
-	 * Returns list of standard recommendations.
+	 * Returns the given severity in the default language; otherwise return the
+	 * localized one.
 	 * 
-	 * @return list of standard recommendations
+	 * @param severity
+	 *            The localized severity
+	 * @return the given severity in the default language;
+	 *         otherwise return the localized one.
 	 */
-	public static List<String> getStandardRecommendations() {
+	public static String getDefLangSeverity(String severity) {
+		for (String sev : getDefLangSeverities()) {
+			if (severity.equals(_(sev))) {
+				return sev;
+			}
+		}
+
+		return severity;
+	}
+
+	/**
+	 * Returns list of default recommendations.
+	 * 
+	 * @return list of default recommendations
+	 */
+	public static List<String> getDefaultRecommendations() {
 		List<String> list = new ArrayList<String>();
 
 		for (String sev : _(
@@ -297,11 +340,11 @@ public class Data {
 	}
 
 	/**
-	 * Returns list of standard catalogs.
+	 * Returns list of default catalogs.
 	 * 
-	 * @return list of standard catalogs
+	 * @return list of default catalogs
 	 */
-	public static List<String> getStandardCatalogs() {
+	public static List<String> getDefaultCatalogs() {
 		List<String> list = new ArrayList<String>();
 
 		for (String sev : _("Software Specification; Second-hand Vehicle")

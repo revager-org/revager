@@ -18,6 +18,7 @@
  */
 package org.revager.app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.revager.app.model.Data;
@@ -72,20 +73,31 @@ public class SeverityManagement {
 	 * @return true, if the given severity exists
 	 */
 	public boolean isSeverity(String sev) {
-		if (getSeverities().contains(sev)) {
+		if (getSeverities().contains(sev)
+				|| getSeverities().contains(Data.getDefLangSeverity(sev))) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
+	private List<String> getDefLangSeverities() {
+		return resiData.getReview().getSeverities().getSeverities();
+	}
+
 	/**
 	 * Returns a list of severities of the current review.
 	 * 
-	 * @return Severities
+	 * @return the severities
 	 */
 	public List<String> getSeverities() {
-		return resiData.getReview().getSeverities().getSeverities();
+		List<String> list = new ArrayList<String>();
+
+		for (String sev : getDefLangSeverities()) {
+			list.add(Data._(sev));
+		}
+
+		return list;
 	}
 
 	/**
@@ -95,7 +107,7 @@ public class SeverityManagement {
 	 *            the severity to add
 	 */
 	public void addSeverity(String sev) {
-		sev = sev.trim();
+		sev = Data.getDefLangSeverity(sev.trim());
 
 		if (!isSeverity(sev)) {
 			getSeverities().add(sev);
@@ -112,7 +124,9 @@ public class SeverityManagement {
 	 * 
 	 * @return the replace severity
 	 */
-	public String getReplaceSeverity(String sev) {
+	private String getReplaceSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		String replaceSeverity = null;
 
 		if (isSeverity(sev)) {
@@ -136,6 +150,8 @@ public class SeverityManagement {
 	 * @return true, if the given severity is removable
 	 */
 	public boolean isSeverityRemovable(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		if (isSeverity(sev) && getSeverities().size() <= 1) {
 			return false;
 		} else {
@@ -151,6 +167,8 @@ public class SeverityManagement {
 	 *            the severity
 	 */
 	public void removeSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		if (isSeverityRemovable(sev)) {
 			String replaceSeverity = getReplaceSeverity(sev);
 
@@ -183,7 +201,8 @@ public class SeverityManagement {
 	 *            the new severity
 	 */
 	public void editSeverity(String oldSev, String newSev) {
-		newSev = newSev.trim();
+		newSev = Data.getDefLangSeverity(newSev.trim());
+		oldSev = Data.getDefLangSeverity(oldSev);
 
 		if (getSeverities().contains(oldSev)) {
 			int index = getSeverities().indexOf(oldSev);
@@ -228,6 +247,8 @@ public class SeverityManagement {
 	 *            the severity to push
 	 */
 	public void pushUpSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		if (!isTopSeverity(sev)) {
 			int index = getSeverities().indexOf(sev);
 
@@ -245,6 +266,8 @@ public class SeverityManagement {
 	 *            the severity to push
 	 */
 	public void pushDownSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		if (!isBottomSeverity(sev)) {
 			int index = getSeverities().indexOf(sev);
 
@@ -263,6 +286,8 @@ public class SeverityManagement {
 	 *            the severity to push
 	 */
 	public void pushTopSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		if (!isTopSeverity(sev)) {
 			int index = getSeverities().indexOf(sev);
 
@@ -281,6 +306,8 @@ public class SeverityManagement {
 	 *            the severity to push
 	 */
 	public void pushBottomSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		if (!isBottomSeverity(sev)) {
 			int index = getSeverities().indexOf(sev);
 
@@ -301,6 +328,8 @@ public class SeverityManagement {
 	 * @return true, if the severity is at the top
 	 */
 	public boolean isTopSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		int index = getSeverities().indexOf(sev);
 
 		if (index == 0) {
@@ -320,6 +349,8 @@ public class SeverityManagement {
 	 * @return true, if the severity is at the bottom
 	 */
 	public boolean isBottomSeverity(String sev) {
+		sev = Data.getDefLangSeverity(sev);
+
 		int index = getSeverities().indexOf(sev);
 
 		if (index == getSeverities().size() - 1) {

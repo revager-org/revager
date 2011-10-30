@@ -182,14 +182,12 @@ public class FindingsCSVExporter extends CSVExporter {
 
 				case SEVERITY:
 					if (severityMappings != null
-							&& severityMappings.get(f.getSeverity()) != null) {
-						csvLine[index] = severityMappings.get(f.getSeverity());
+							&& severityMappings.get(findMgmt
+									.getLocalizedSeverity(f)) != null) {
+						csvLine[index] = severityMappings.get(findMgmt
+								.getLocalizedSeverity(f));
 					} else {
-						/*
-						 * Not part of unit testing because the Resi XML schema
-						 * says that each finding has a severity.
-						 */
-						csvLine[index] = f.getSeverity();
+						csvLine[index] = findMgmt.getLocalizedSeverity(f);
 					}
 					break;
 

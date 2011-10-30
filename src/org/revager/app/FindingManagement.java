@@ -179,7 +179,7 @@ public class FindingManagement {
 		}
 
 		finding.setDescription(description);
-		finding.setSeverity(severity);
+		setLocalizedSeverity(finding, severity);
 
 		return addFinding(finding, prot);
 	}
@@ -285,6 +285,31 @@ public class FindingManagement {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Returns the localized severity
+	 * 
+	 * @param find
+	 *            The finding
+	 * @return The localized severity
+	 */
+	public String getLocalizedSeverity(Finding find) {
+		return Data._(find.getSeverity());
+	}
+
+	/**
+	 * Sets the localized severity
+	 * 
+	 * @param find
+	 *            The finding
+	 * @param severity
+	 *            The localized severity
+	 */
+	public void setLocalizedSeverity(Finding find, String severity) {
+		String defLangSev = Data.getDefLangSeverity(severity);
+
+		find.setSeverity(defLangSev);
 	}
 
 	/**

@@ -124,7 +124,7 @@ public class ApplicationControl {
 		Data.getInstance().getResiData().getReview()
 				.setSeverities(new Severities());
 
-		List<String> stdSev = Data.getStandardSeverities();
+		List<String> stdSev = Data.getDefaultSeverities();
 		Data.getInstance().getResiData().getReview().getSeverities()
 				.getSeverities().addAll(stdSev);
 

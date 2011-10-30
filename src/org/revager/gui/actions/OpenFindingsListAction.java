@@ -139,7 +139,8 @@ public class OpenFindingsListAction extends AbstractAction {
 				currentProt.setComments("");
 
 				Finding newFind = new Finding();
-				newFind.setSeverity(sevMgmt.getSeverities().get(0));
+				findingMgmt.setLocalizedSeverity(newFind, sevMgmt
+						.getSeverities().get(0));
 
 				findingMgmt.addFinding(newFind, currentProt);
 

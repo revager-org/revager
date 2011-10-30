@@ -90,7 +90,8 @@ public class FindingsTab extends JPanel {
 				// if (!findMgmt.isFindingEmpty(findMgmt.getFindings(protocol)
 				// .get(listIdLastFinding))) {
 				Finding newFind = new Finding();
-				newFind.setSeverity(sevMgmt.getSeverities().get(0));
+				findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities()
+						.get(0));
 				newFind = findMgmt.addFinding(newFind, protocol);
 
 				addFinding(newFind);
@@ -133,11 +134,12 @@ public class FindingsTab extends JPanel {
 		Map<String, Integer> findingsSev = new HashMap<String, Integer>();
 
 		for (Finding f : findMgmt.getFindings(protocol)) {
-			if (findingsSev.get(f.getSeverity()) == null) {
-				findingsSev.put(f.getSeverity(), 1);
+			String severity = findMgmt.getLocalizedSeverity(f);
+
+			if (findingsSev.get(severity) == null) {
+				findingsSev.put(severity, 1);
 			} else {
-				findingsSev.put(f.getSeverity(),
-						findingsSev.get(f.getSeverity()) + 1);
+				findingsSev.put(severity, findingsSev.get(severity) + 1);
 			}
 		}
 
@@ -254,7 +256,8 @@ public class FindingsTab extends JPanel {
 		 */
 		if (findMgmt.getNumberOfFindings(protocol) == 0) {
 			Finding newFind = new Finding();
-			newFind.setSeverity(sevMgmt.getSeverities().get(0));
+			findMgmt.setLocalizedSeverity(newFind,
+					sevMgmt.getSeverities().get(0));
 			newFind = findMgmt.addFinding(newFind, protocol);
 
 			addFinding(newFind);

@@ -859,7 +859,7 @@ public class ReviewManagement {
 	 *            the recommendation
 	 */
 	public void setRecommendation(String rec) {
-		rec = rec.trim();
+		rec = Data.getDefLangRecommendation(rec.trim());
 
 		resiData.getReview().setRecommendation(rec);
 
@@ -872,7 +872,7 @@ public class ReviewManagement {
 	 * @return recommendation of the review
 	 */
 	public String getRecommendation() {
-		return resiData.getReview().getRecommendation();
+		return Data._(resiData.getReview().getRecommendation());
 	}
 
 	/**

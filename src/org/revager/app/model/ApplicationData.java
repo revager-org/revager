@@ -529,9 +529,7 @@ public class ApplicationData extends Observable {
 		ps.executeUpdate();
 
 		ps.setString(1, AppSettingKey.PDF_INVITATION_TEXT.toString());
-		ps.setString(
-				2,
-				_("You are invited to the review meeting. Please consider the information which are part of this document."));
+		ps.setString(2, _(Data.getDefLangInvitationText()));
 		ps.executeUpdate();
 
 		/*
@@ -700,6 +698,14 @@ public class ApplicationData extends Observable {
 							+ " [SETTING = " + key + "] " + e.getMessage());
 		}
 
+		/*
+		 * Translate the invitation text
+		 */
+		if (key == AppSettingKey.PDF_INVITATION_TEXT
+				&& setting.equals(Data.getDefLangInvitationText())) {
+			setting = _(setting);
+		}
+
 		return setting;
 	}
 
@@ -743,6 +749,14 @@ public class ApplicationData extends Observable {
 	 */
 	public void setSetting(AppSettingKey key, String value)
 			throws DataException {
+		/*
+		 * Check if the translation text is the original one
+		 */
+		if (key == AppSettingKey.PDF_INVITATION_TEXT
+				&& value.equals(_(Data.getDefLangInvitationText()))) {
+			value = Data.getDefLangInvitationText();
+		}
+
 		try {
 			Connection conn = openConnection();
 			PreparedStatement ps = null;

@@ -309,8 +309,8 @@ public class Data {
 	 * 
 	 * @param severity
 	 *            The localized severity
-	 * @return the given severity in the default language;
-	 *         otherwise return the localized one.
+	 * @return the given severity in the default language; otherwise return the
+	 *         localized one.
 	 */
 	public static String getDefLangSeverity(String severity) {
 		for (String sev : getDefLangSeverities()) {
@@ -323,6 +323,35 @@ public class Data {
 	}
 
 	/**
+	 * Returns the list of default recommendations in the default language
+	 * 
+	 * @return the list of default recommendations in the default language
+	 */
+	public static List<String> getDefLangRecommendations() {
+		List<String> list = new ArrayList<String>();
+
+		list.add("Accepted");
+		_("Accepted");
+
+		list.add("Accepted (changes required)");
+		_("Accepted (changes required)");
+
+		list.add("Not accepted");
+		_("Not accepted");
+
+		list.add("Not finished");
+		_("Not finished");
+
+		list.add("Not finished (changes required)");
+		_("Not finished (changes required)");
+
+		list.add("Not finished (complete revision required)");
+		_("Not finished (complete revision required)");
+
+		return list;
+	}
+
+	/**
 	 * Returns list of default recommendations.
 	 * 
 	 * @return list of default recommendations
@@ -330,13 +359,41 @@ public class Data {
 	public static List<String> getDefaultRecommendations() {
 		List<String> list = new ArrayList<String>();
 
-		for (String sev : _(
-				"Accepted; Accepted (changes required); Not accepted; Not finished; Not finished (changes required); Not finished (complete revision required)")
-				.split(";")) {
-			list.add(sev.trim());
+		for (String rec : getDefLangRecommendations()) {
+			list.add(_(rec));
 		}
 
 		return list;
+	}
+
+	/**
+	 * Returns the given recommendation in the default language; otherwise
+	 * return the localized one.
+	 * 
+	 * @param recommendation
+	 *            The localized recommendation
+	 * @return the given recommendation in the default language; otherwise
+	 *         return the localized one.
+	 */
+	public static String getDefLangRecommendation(String recommendation) {
+		for (String rec : getDefLangRecommendations()) {
+			if (recommendation.equals(_(rec))) {
+				return rec;
+			}
+		}
+
+		return recommendation;
+	}
+
+	/**
+	 * Returns the default invitation text.
+	 * 
+	 * @return the default invitation text
+	 */
+	public static String getDefLangInvitationText() {
+		_("You are invited to the review meeting. Please consider the information which are part of this document.");
+
+		return "You are invited to the review meeting. Please consider the information which are part of this document.";
 	}
 
 	/**

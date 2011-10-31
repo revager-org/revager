@@ -147,11 +147,10 @@ public class Main {
 			}
 
 			if (argData != null) {
-				pb = new ProcessBuilder(javaBinary, "-jar",
-						appPath, "-data", argData);
+				pb = new ProcessBuilder(javaBinary, "-jar", appPath, "-data",
+						argData);
 			} else {
-				pb = new ProcessBuilder(javaBinary, "-jar",
-						appPath);
+				pb = new ProcessBuilder(javaBinary, "-jar", appPath);
 			}
 		} else {
 			pb = new ProcessBuilder(appPath);

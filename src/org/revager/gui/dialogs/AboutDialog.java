@@ -20,7 +20,6 @@ package org.revager.gui.dialogs;
 
 import static org.revager.app.model.Data._;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;

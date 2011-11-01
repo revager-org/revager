@@ -86,18 +86,22 @@ public class Arrow2D extends RectangularShape {
 		return sx * length;
 	}
 
+	@Override
 	public double getX() {
 		return minX;
 	}
 
+	@Override
 	public double getY() {
 		return minY;
 	}
 
+	@Override
 	public double getWidth() {
 		return length;
 	}
 
+	@Override
 	public double getHeight() {
 		return thickness;
 	}
@@ -113,10 +117,12 @@ public class Arrow2D extends RectangularShape {
 		}
 	}
 
+	@Override
 	public boolean isEmpty() {
 		return !(length > 0 && thickness > 0);
 	}
 
+	@Override
 	public void setFrame(final double x, final double y, final double width,
 			final double height) {
 		this.minX = x;
@@ -125,10 +131,12 @@ public class Arrow2D extends RectangularShape {
 		this.thickness = height;
 	}
 
+	@Override
 	public Rectangle2D getBounds2D() {
 		return new Rectangle2D.Double(minX, minY, length, thickness);
 	}
 
+	@Override
 	public boolean contains(final double x, double y) {
 		if (x < minX) {
 			return false;
@@ -157,12 +165,14 @@ public class Arrow2D extends RectangularShape {
 		}
 	}
 
+	@Override
 	public boolean contains(final double x, final double y, final double width,
 			final double height) {
 		return contains(x, y) && contains(x + width, y)
 				&& contains(x + width, y + height) && contains(x, y + height);
 	}
 
+	@Override
 	public boolean intersects(final double x, final double y,
 			final double width, final double height) {
 		final double right = x + width;
@@ -214,11 +224,13 @@ public class Arrow2D extends RectangularShape {
 		return false;
 	}
 
+	@Override
 	public PathIterator getPathIterator(final AffineTransform at,
 			final double flatness) {
 		return new Iterator(at);
 	}
 
+	@Override
 	public PathIterator getPathIterator(final AffineTransform at) {
 		return new Iterator(at);
 	}
@@ -245,14 +257,17 @@ public class Arrow2D extends RectangularShape {
 			base = minX + sx * length;
 		}
 
+		@Override
 		public int getWindingRule() {
 			return WIND_EVEN_ODD;
 		}
 
+		@Override
 		public void next() {
 			code++;
 		}
 
+		@Override
 		public int currentSegment(final float[] coords) {
 			switch (code) {
 			case 0:
@@ -298,6 +313,7 @@ public class Arrow2D extends RectangularShape {
 			return (code == 0) ? SEG_MOVETO : SEG_LINETO;
 		}
 
+		@Override
 		public int currentSegment(final double[] coords) {
 			switch (code) {
 			case 0:
@@ -343,12 +359,14 @@ public class Arrow2D extends RectangularShape {
 			return (code == 0) ? SEG_MOVETO : SEG_LINETO;
 		}
 
+		@Override
 		public boolean isDone() {
 			return code > 8;
 		}
 
 	}
 
+	@Override
 	public boolean equals(final Object obj) {
 		if (obj == this) {
 			return true;
@@ -374,6 +392,7 @@ public class Arrow2D extends RectangularShape {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		final long code = Double.doubleToLongBits(thickness)
 				+ 37

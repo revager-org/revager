@@ -123,8 +123,8 @@ public abstract class PDFExporter {
 
 		fill.setColspan(colspan);
 		fill.setMinimumHeight(height);
-		fill.disableBorderSide(Table.LEFT | Table.RIGHT | Table.TOP
-				| Table.BOTTOM);
+		fill.disableBorderSide(Rectangle.LEFT | Rectangle.RIGHT | Rectangle.TOP
+				| Rectangle.BOTTOM);
 
 		return fill;
 	}

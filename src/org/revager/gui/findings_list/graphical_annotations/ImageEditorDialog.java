@@ -35,7 +35,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.ToolTipManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -152,7 +154,7 @@ public class ImageEditorDialog extends AbstractDialog {
 	}
 
 	public void run() {
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		GridBagLayout gbl = new GridBagLayout();
 		JPanel panelGbl = new JPanel(gbl);
@@ -307,11 +309,12 @@ public class ImageEditorDialog extends AbstractDialog {
 				DEFAULT_THICKNESS));
 		panelThicknessPreview.setBackground(currentColor);
 
-		sliderThickness = new JSlider(JSlider.VERTICAL, 1, MAX_THICKNESS,
+		sliderThickness = new JSlider(SwingConstants.VERTICAL, 1, MAX_THICKNESS,
 				DEFAULT_THICKNESS);
 		registerInToolTipManager(sliderThickness);
 
 		sliderThickness.addChangeListener(new ChangeListener() {
+			@Override
 			public void stateChanged(ChangeEvent e) {
 				currentThickness = sliderThickness.getValue();
 

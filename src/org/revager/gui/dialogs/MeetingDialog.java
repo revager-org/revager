@@ -255,7 +255,7 @@ public class MeetingDialog extends AbstractDialog {
 			setIcon(Data.getInstance().getIcon("addMeeting_50x50.png"));
 			setHelpChapter("meetings_management", "1");
 
-			DateFormat dateF = SimpleDateFormat
+			DateFormat dateF = DateFormat
 					.getDateInstance(DateFormat.LONG);
 
 			Calendar cal = Calendar.getInstance();
@@ -288,7 +288,7 @@ public class MeetingDialog extends AbstractDialog {
 					.getUserObject();
 			editMeet = ((TreeMeeting) obj).getMeeting();
 
-			DateFormat dateF = SimpleDateFormat
+			DateFormat dateF = DateFormat
 					.getDateInstance(DateFormat.LONG);
 			dateF.setTimeZone(currentMeeting.getPlannedDate().getTimeZone());
 

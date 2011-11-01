@@ -100,6 +100,7 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 		// helpPane.getDocument()).setBase(getClass().getResource(Data.getInstance().getResource("path.helpDocBase")));
 
 		helpPane.addHyperlinkListener(new HyperlinkListener() {
+			@Override
 			public void hyperlinkUpdate(HyperlinkEvent ev) {
 				if (ev.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					JEditorPane src = (JEditorPane) ev.getSource();

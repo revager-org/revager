@@ -51,6 +51,7 @@ public class ExtendedFlowLayout extends FlowLayout {
 	 * 
 	 * @see java.awt.FlowLayout#preferredLayoutSize(java.awt.Container)
 	 */
+	@Override
 	public Dimension preferredLayoutSize(Container target) {
 		synchronized (target.getTreeLock()) {
 			int width = 0;
@@ -93,6 +94,7 @@ public class ExtendedFlowLayout extends FlowLayout {
 	 * 
 	 * @see java.awt.FlowLayout#minimumLayoutSize(java.awt.Container)
 	 */
+	@Override
 	public Dimension minimumLayoutSize(Container target) {
 		synchronized (target.getTreeLock()) {
 			int width = 0;

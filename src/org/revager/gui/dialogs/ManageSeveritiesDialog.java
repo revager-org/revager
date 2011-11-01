@@ -39,6 +39,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.WindowConstants;
 
 import org.revager.app.model.Data;
 import org.revager.gui.AbstractDialog;
@@ -287,7 +288,7 @@ public class ManageSeveritiesDialog extends AbstractDialog {
 
 		setLocationToCenter();
 
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		addWindowListener(new WindowAdapter() {
 			@Override

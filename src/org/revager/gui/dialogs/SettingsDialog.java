@@ -48,6 +48,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -122,7 +124,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Content area as tabbed pane
 		 */
-		tabbedPane.setTabPlacement(JTabbedPane.TOP);
+		tabbedPane.setTabPlacement(SwingConstants.TOP);
 		tabbedPane.setBorder(null);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			@Override
@@ -179,7 +181,7 @@ public class SettingsDialog extends AbstractDialog {
 
 		setLocationToCenter();
 
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		pack();
 	}

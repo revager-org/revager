@@ -18,8 +18,6 @@
  */
 package org.revager.gui.workers;
 
-import java.awt.Cursor;
-
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
@@ -65,6 +63,7 @@ public class SettingsWorker extends SwingWorker<Void, Void> {
 
 		if (this.mode == Mode.STORE_APPDATA) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					settDialog.updateAppData();
 
@@ -73,6 +72,7 @@ public class SettingsWorker extends SwingWorker<Void, Void> {
 			});
 		} else if (this.mode == Mode.LOAD_APPDATA) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					settDialog.updateDialogData();
 
@@ -81,6 +81,7 @@ public class SettingsWorker extends SwingWorker<Void, Void> {
 			});
 		} else if (this.mode == Mode.UPDATE_LOGO_VIEWS) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					settDialog.updateLogoViews();
 

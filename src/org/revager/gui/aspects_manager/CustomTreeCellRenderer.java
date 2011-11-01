@@ -66,7 +66,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		label.setSelected(isSelected);
 		label.setFocus(hasFocus);
 		DefaultMutableTreeNode currentTreeNode = (DefaultMutableTreeNode) value;
-		Object userObject = (Object) currentTreeNode.getUserObject();
+		Object userObject = currentTreeNode.getUserObject();
 
 		if (userObject instanceof AppAspect) {
 			label.setIcon(ASP_ICON);
@@ -156,6 +156,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		 * 
 		 * @see javax.swing.JComponent#setBackground(java.awt.Color)
 		 */
+		@Override
 		public void setBackground(Color color) {
 			if (color instanceof ColorUIResource) {
 				color = null;
@@ -169,6 +170,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		 * 
 		 * @see javax.swing.JComponent#paint(java.awt.Graphics)
 		 */
+		@Override
 		public void paint(Graphics g) {
 			String str;
 			if ((str = getText()) != null) {
@@ -210,6 +212,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		 * 
 		 * @see javax.swing.JComponent#getPreferredSize()
 		 */
+		@Override
 		public Dimension getPreferredSize() {
 			Dimension retDimension = super.getPreferredSize();
 			if (retDimension != null) {

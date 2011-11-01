@@ -39,6 +39,7 @@ public class XMLResiValidationEventHandler implements ValidationEventHandler {
 	 * @seejavax.xml.bind.ValidationEventHandler#handleEvent(javax.xml.bind.
 	 * ValidationEvent)
 	 */
+	@Override
 	public boolean handleEvent(ValidationEvent event) {
 		if (event.getSeverity() == ValidationEvent.FATAL_ERROR
 				|| event.getSeverity() == ValidationEvent.ERROR) {

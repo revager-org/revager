@@ -32,6 +32,7 @@ public abstract class AbstractDialogPanel extends JPanel {
 	/**
 	 * Returns the parent of this component.
 	 */
+	@Override
 	public AbstractDialog getParent() {
 		return parent;
 	}

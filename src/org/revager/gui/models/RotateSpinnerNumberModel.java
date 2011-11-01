@@ -54,6 +54,7 @@ public class RotateSpinnerNumberModel extends SpinnerNumberModel {
 	 * 
 	 * @see javax.swing.SpinnerNumberModel#getNextValue()
 	 */
+	@Override
 	public Object getNextValue() {
 		Object value = super.getNextValue();
 		if (value == null
@@ -70,6 +71,7 @@ public class RotateSpinnerNumberModel extends SpinnerNumberModel {
 	 * 
 	 * @see javax.swing.SpinnerNumberModel#getPreviousValue()
 	 */
+	@Override
 	public Object getPreviousValue() {
 		Object value = super.getPreviousValue();
 		if (value == null || Integer.parseInt(value.toString()) == max) {

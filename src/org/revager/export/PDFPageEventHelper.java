@@ -25,6 +25,7 @@ import java.text.MessageFormat;
 import org.revager.tools.PDFTools;
 
 import com.lowagie.text.Document;
+import com.lowagie.text.Element;
 import com.lowagie.text.ExceptionConverter;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
@@ -216,8 +217,8 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			Phrase phraseTitle = new Phrase(headTitle, headFont);
 
 			PdfPCell cellTitle = new PdfPCell(phraseTitle);
-			cellTitle.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-			cellTitle.setVerticalAlignment(PdfPCell.ALIGN_BOTTOM);
+			cellTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
+			cellTitle.setVerticalAlignment(Element.ALIGN_BOTTOM);
 			cellTitle.setPaddingTop(0);
 			cellTitle.setPaddingBottom(PDFTools.cmToPt(0.2f));
 			cellTitle.setPaddingLeft(0);
@@ -235,8 +236,8 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 						PDFTools.cmToPt(1.1f));
 
 				PdfPCell cellLogo = new PdfPCell(headLogo);
-				cellLogo.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-				cellLogo.setVerticalAlignment(PdfPCell.ALIGN_BOTTOM);
+				cellLogo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+				cellLogo.setVerticalAlignment(Element.ALIGN_BOTTOM);
 				cellLogo.setPaddingTop(0);
 				cellLogo.setPaddingBottom(PDFTools.cmToPt(0.15f));
 				cellLogo.setPaddingLeft(0);
@@ -273,8 +274,8 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			foot.addCell(cellFill);
 
 			PdfPCell cellFootText = new PdfPCell(new Phrase(footText, footFont));
-			cellFootText.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-			cellFootText.setVerticalAlignment(PdfPCell.ALIGN_TOP);
+			cellFootText.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			cellFootText.setVerticalAlignment(Element.ALIGN_TOP);
 			cellFootText.setPaddingTop(PDFTools.cmToPt(0.15f));
 			cellFootText.setPaddingBottom(0);
 			cellFootText.setPaddingLeft(0);

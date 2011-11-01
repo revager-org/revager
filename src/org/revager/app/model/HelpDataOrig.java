@@ -81,7 +81,7 @@ public class HelpDataOrig {
 		String htmlLine = null;
 		StringBuffer htmlStrBfr = null;
 
-		htmlFile = (InputStream) resource.openStream();
+		htmlFile = resource.openStream();
 
 		fileReader = new BufferedReader(
 				new InputStreamReader(htmlFile, "UTF-8"));

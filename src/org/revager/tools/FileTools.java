@@ -111,7 +111,7 @@ public class FileTools {
 		BufferedReader fileReader = null;
 		InputStream fileStream = null;
 
-		fileStream = (InputStream) source.openStream();
+		fileStream = source.openStream();
 
 		fileReader = new BufferedReader(new InputStreamReader(fileStream,
 				"UTF-8"));

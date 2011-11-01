@@ -16,11 +16,13 @@ public class Adapter1
 {
 
 
-    public Calendar unmarshal(String value) {
+    @Override
+	public Calendar unmarshal(String value) {
         return (javax.xml.bind.DatatypeConverter.parseDate(value));
     }
 
-    public String marshal(Calendar value) {
+    @Override
+	public String marshal(Calendar value) {
         if (value == null) {
             return null;
         }

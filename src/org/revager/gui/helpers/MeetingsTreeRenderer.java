@@ -62,11 +62,12 @@ public class MeetingsTreeRenderer extends DefaultTreeCellRenderer {
 	 * (javax.swing.JTree, java.lang.Object, boolean, boolean, boolean, int,
 	 * boolean)
 	 */
+	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object value,
 			boolean sel, boolean expanded, boolean leaf, int row,
 			boolean hasFocus) {
 		DefaultMutableTreeNode currentTreeNode = (DefaultMutableTreeNode) value;
-		Object userObject = (Object) currentTreeNode.getUserObject();
+		Object userObject = currentTreeNode.getUserObject();
 
 		if (userObject instanceof TreeProtocol) {
 			setFont(UI.STANDARD_FONT);

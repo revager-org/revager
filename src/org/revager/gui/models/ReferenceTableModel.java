@@ -68,6 +68,7 @@ public class ReferenceTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
 	 * int, int)
 	 */
+	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		String oldRef = this.getValueAt(row, 0).toString();
 		Application.getInstance().getReviewMgmt().editProductReference(oldRef,
@@ -81,6 +82,7 @@ public class ReferenceTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
 	 */
+	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return true;
 	}
@@ -90,6 +92,7 @@ public class ReferenceTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
+	@Override
 	public String getColumnName(int column) {
 		return null;
 	}

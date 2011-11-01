@@ -742,7 +742,7 @@ public class DatePicker extends Observable implements Runnable,
 	 */
 	public Date parseDate(String date) {
 		if (sdf == null) {
-			sdf = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG);
+			sdf = DateFormat.getDateInstance(DateFormat.LONG);
 		}
 
 		try {
@@ -766,7 +766,7 @@ public class DatePicker extends Observable implements Runnable,
 		}
 
 		if (sdf == null) {
-			sdf = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG);
+			sdf = DateFormat.getDateInstance(DateFormat.LONG);
 		}
 
 		return sdf.format(date);

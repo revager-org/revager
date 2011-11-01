@@ -53,6 +53,7 @@ public class InitializeNewReviewAction extends AbstractAction {
 
 			if (!attDiag.getNameTxtFld().getText().trim().equals("")) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						ActionRegistry.getInstance()
 								.get(ConfirmAttendeeAction.class.getName())

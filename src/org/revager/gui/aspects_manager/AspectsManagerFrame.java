@@ -60,8 +60,11 @@ import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.plaf.basic.BasicTreeUI;
@@ -365,6 +368,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						notifySwitchToProgressMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								switchToProgressMode();
 							}
@@ -391,6 +395,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						notifySwitchToEditMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								updateTree();
 
@@ -665,8 +670,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
 		//tree.addMouseListener(new NodeSelectionListener(tree));
 		JScrollPane scrollPane = new JScrollPane(tree,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setBorder(new MatteBorder(0, 0, 1, 0, UI.SEPARATOR_COLOR));
 		scrollPane.setMinimumSize(new Dimension(400, 400));
 		scrollPane.setPreferredSize(new Dimension(400, 400));
@@ -949,7 +954,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				1.0, 0.0, 0, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.WEST);
 		GUITools.addComponent(panelView, gblView, new JSeparator(
-				JSeparator.HORIZONTAL), 0, 2, 2, 1, 1.0, 0.0, 0, 0, 10, 0,
+				SwingConstants.HORIZONTAL), 0, 2, 2, 1, 1.0, 0.0, 0, 0, 10, 0,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
 
 		/*
@@ -976,6 +981,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						notifySwitchToProgressMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								switchToProgressMode(_("Allocating aspects ..."));
 							}
@@ -1003,6 +1009,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						notifySwitchToEditMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								setStatusMessage(
 										_("Aspects allocated successfully."),
@@ -1052,6 +1059,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						notifySwitchToProgressMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								switchToProgressMode(_("Allocating aspects ..."));
 							}
@@ -1075,6 +1083,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						notifySwitchToEditMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								setStatusMessage(
 										_("Aspects allocated successfully."),
@@ -1290,7 +1299,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		setTitle(_("Aspects Manager"));
 		getContentPane().setLayout(new BorderLayout());
 
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		if (Data.getInstance().getResiData().getReview() == null) {
 			Data.getInstance().getResiData().setReview(new Review());
@@ -1723,7 +1732,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 			JLabel labelDesc = GUITools
 					.getMessagePane(_("No review is loaded. Therefore you can only work in the library with its catalogs and aspects."));
-			labelDesc.setHorizontalAlignment(JLabel.CENTER);
+			labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
 			labelDesc.setForeground(Color.GRAY);
 
 			rightPanel.add(labelDesc, BorderLayout.CENTER);
@@ -1732,7 +1741,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 			JLabel labelDesc = GUITools
 					.getMessagePane(_("There aren't any reviewers existing in the review. After adding at least one reviewer by using the 'Add Attendee' button you can assign them aspects from the existing catalogs."));
-			labelDesc.setHorizontalAlignment(JLabel.CENTER);
+			labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
 			labelDesc.setForeground(Color.GRAY);
 
 			rightPanel.add(labelDesc, BorderLayout.CENTER);
@@ -1773,6 +1782,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				updateHints();
 				updateToolBar();

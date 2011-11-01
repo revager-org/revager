@@ -74,6 +74,7 @@ public class SeverityTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
 	 * int, int)
 	 */
+	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		String currSev = Application.getInstance().getSeverityMgmt()
 				.getSeverities().get(row);
@@ -89,6 +90,7 @@ public class SeverityTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
 	 */
+	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return true;
 	}

@@ -101,6 +101,7 @@ public class SearchHelpAction extends AbstractAction {
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent SearchHelp) {
 		try {
 

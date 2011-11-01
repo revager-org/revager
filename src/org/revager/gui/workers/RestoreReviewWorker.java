@@ -47,6 +47,7 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 		mainframe.notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				mainframe.setAssistantMode(false);
 
@@ -62,6 +63,7 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainframe.setStatusMessage(
 							_("Review restored successfully."), false);
@@ -73,6 +75,7 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.notifySwitchToClearMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainframe.setStatusMessage(_("No review in process."),
 							false);

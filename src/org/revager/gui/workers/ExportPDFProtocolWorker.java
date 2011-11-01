@@ -103,6 +103,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 					.notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getExportPDFProtocolDialog()
 							.switchToProgressMode();
@@ -131,6 +132,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 						.notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						UI.getInstance().getExportPDFProtocolDialog()
 								.setVisible(false);
@@ -141,6 +143,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 				});
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						if (protFrame.isVisible()) {
 							protFrame
@@ -170,6 +173,7 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 						.notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						UI.getInstance().getExportPDFProtocolDialog()
 								.switchToEditMode();

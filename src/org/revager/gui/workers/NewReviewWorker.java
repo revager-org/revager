@@ -62,6 +62,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 		mainframe.notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				mainframe.switchToProgressMode();
 			}
@@ -75,6 +76,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainframe.setStatusMessage(
 							_("New review created successfully."), false);
@@ -113,6 +115,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.notifySwitchToClearMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainframe.setStatusMessage(_("No review in process."),
 							false);
@@ -128,6 +131,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getAssistantDialog()
 							.setVisible(showAssistantDialog);

@@ -98,6 +98,7 @@ public class OpenFindingsListAction extends AbstractAction {
 			mainFrame.notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainFrame.switchToProgressMode();
 				}
@@ -167,6 +168,7 @@ public class OpenFindingsListAction extends AbstractAction {
 			protFrame.setMeeting(meet);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					protFrame.resetClock();
 					protFrame.setVisible(true);
@@ -183,6 +185,7 @@ public class OpenFindingsListAction extends AbstractAction {
 			UI.getInstance().getMainFrame().notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getMainFrame().switchToEditMode();
 				}

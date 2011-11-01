@@ -96,6 +96,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 					 * Set done message
 					 */
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							for (AbstractFrame af : obsFrames) {
 								af.setStatusMessage(
@@ -111,6 +112,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 				 * Set failed message
 				 */
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						for (AbstractFrame af : obsFrames) {
 							af.setStatusMessage(

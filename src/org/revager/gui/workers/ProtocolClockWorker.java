@@ -147,6 +147,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 			for (final FindingsListFrame pf : protocolFrames) {
 				if (clockRunning) {
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							pf.updateClock((int) ((System.currentTimeMillis() - startingPoint) / 1000));
 

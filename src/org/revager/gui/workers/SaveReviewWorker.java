@@ -67,6 +67,7 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 		mainframe.notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				mainframe.switchToProgressMode(_("Saving review ..."));
 			}
@@ -78,6 +79,7 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainframe.switchToEditMode();
 
@@ -96,6 +98,7 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 			mainframe.notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					mainframe.switchToEditMode();
 

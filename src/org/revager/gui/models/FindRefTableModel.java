@@ -81,6 +81,7 @@ public class FindRefTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
 	 * int, int)
 	 */
+	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		String oldRef = this.getValueAt(row, 0).toString();
 		findingMgmt.editReference(oldRef, (String) insertion, localFind);
@@ -92,6 +93,7 @@ public class FindRefTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
 	 */
+	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return true;
 	}
@@ -101,6 +103,7 @@ public class FindRefTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
+	@Override
 	public String getColumnName(int column) {
 		return _("References");
 	}

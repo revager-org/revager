@@ -83,6 +83,7 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 					 * Set done message
 					 */
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							for (AbstractFrame af : obsFrames) {
 								af.setStatusMessage(_("Auto backup done."),
@@ -96,6 +97,7 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 				 * Set failed message
 				 */
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						for (AbstractFrame af : obsFrames) {
 							af.setStatusMessage(_("Auto backup failed!"), false);

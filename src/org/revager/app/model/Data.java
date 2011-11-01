@@ -442,7 +442,7 @@ public class Data {
 				int pathLen = path.length();
 
 				while (ress.hasMoreElements()) {
-					JarEntry je = (JarEntry) ress.nextElement();
+					JarEntry je = ress.nextElement();
 
 					if (je.getName().matches(
 							path + bundleBaseName + "_[a-z]+.properties")) {

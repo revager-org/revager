@@ -81,6 +81,7 @@ public class FindExtRefTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
+	@Override
 	public String getColumnName(int column) {
 		return _("Files");
 	}

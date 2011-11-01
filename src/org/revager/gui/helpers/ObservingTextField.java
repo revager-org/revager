@@ -35,6 +35,7 @@ public class ObservingTextField extends JTextField implements Observer {
 	 * 
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
+	@Override
 	public void update(Observable o, Object arg) {
 		Calendar calendar = (Calendar) arg;
 		DatePicker dp = (DatePicker) o;

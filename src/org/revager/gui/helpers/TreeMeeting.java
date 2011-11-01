@@ -85,12 +85,13 @@ public class TreeMeeting {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
-		DateFormat dfDateLong = SimpleDateFormat
+		DateFormat dfDateLong = DateFormat
 				.getDateInstance(DateFormat.LONG);
 		dfDateLong.setTimeZone(meeting.getPlannedDate().getTimeZone());
 
-		DateFormat dfTimeShort = SimpleDateFormat
+		DateFormat dfTimeShort = DateFormat
 				.getTimeInstance(DateFormat.SHORT);
 		dfTimeShort.setTimeZone(meeting.getPlannedDate().getTimeZone());
 

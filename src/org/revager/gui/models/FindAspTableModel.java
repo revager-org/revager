@@ -80,6 +80,7 @@ public class FindAspTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
+	@Override
 	public String getColumnName(int column) {
 		return _("Aspect(s)");
 	}

@@ -130,6 +130,7 @@ public class EditProductDialog extends AbstractDialog {
 
 					if (diff >= change && diff < change * 3) {
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								updateMessages();
 							}
@@ -334,6 +335,7 @@ public class EditProductDialog extends AbstractDialog {
 							notifySwitchToProgressMode();
 
 							SwingUtilities.invokeLater(new Runnable() {
+								@Override
 								public void run() {
 									switchToProgressMode(_("Adding file ..."));
 								}
@@ -344,6 +346,7 @@ public class EditProductDialog extends AbstractDialog {
 							reviewMgmt.addExtProdReference(file);
 
 							SwingUtilities.invokeLater(new Runnable() {
+								@Override
 								public void run() {
 									updateMessages();
 
@@ -359,6 +362,7 @@ public class EditProductDialog extends AbstractDialog {
 						notifySwitchToEditMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								switchToEditMode();
 							}
@@ -391,6 +395,7 @@ public class EditProductDialog extends AbstractDialog {
 						notifySwitchToProgressMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								switchToProgressMode(_("Removing file ..."));
 							}
@@ -399,6 +404,7 @@ public class EditProductDialog extends AbstractDialog {
 						reviewMgmt.removeExtProdReference(ref);
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								ertm.fireTableDataChanged();
 							}
@@ -407,6 +413,7 @@ public class EditProductDialog extends AbstractDialog {
 						notifySwitchToEditMode();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								switchToEditMode();
 							}

@@ -15,11 +15,13 @@ public class Adapter4
 {
 
 
-    public Integer unmarshal(String value) {
+    @Override
+	public Integer unmarshal(String value) {
         return (javax.xml.bind.DatatypeConverter.parseInt(value));
     }
 
-    public String marshal(Integer value) {
+    @Override
+	public String marshal(Integer value) {
         if (value == null) {
             return null;
         }

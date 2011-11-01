@@ -71,6 +71,7 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.switchToProgressMode(_("Importing aspects ..."));
@@ -97,6 +98,7 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 			}
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -113,6 +115,7 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 							JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -125,6 +128,7 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.updateTree(catalog, null, null);

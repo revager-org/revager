@@ -71,6 +71,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 			UI.getInstance().getExportCSVDialog().notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getExportCSVDialog()
 							.switchToProgressMode();
@@ -115,6 +116,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				UI.getInstance().getExportCSVDialog().notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						UI.getInstance().getExportCSVDialog().setVisible(false);
 
@@ -124,6 +126,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				});
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						if (protFrame.isVisible()) {
 							protFrame
@@ -144,6 +147,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				UI.getInstance().getExportCSVDialog().notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						UI.getInstance().getExportCSVDialog()
 								.switchToEditMode();

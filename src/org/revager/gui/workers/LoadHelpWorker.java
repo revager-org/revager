@@ -77,6 +77,7 @@ public class LoadHelpWorker extends SwingWorker<Void, Void> {
 	@Override
 	protected Void doInBackground() throws Exception {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					if (helpChapter != null && helpChapterAnchor != null) {

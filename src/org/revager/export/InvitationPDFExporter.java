@@ -45,6 +45,7 @@ import org.revager.app.model.schema.Role;
 import org.revager.tools.PDFTools;
 
 import com.lowagie.text.Chunk;
+import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.BaseFont;
@@ -266,7 +267,7 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			PdfPCell cellDate = new PdfPCell(new Phrase(
 					sdfDate.format(new Date().getTime()), plainFont));
-			cellDate.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+			cellDate.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cellDate.setBorder(0);
 			cellDate.setPadding(0);
 			cellDate.setPaddingTop(7);
@@ -308,7 +309,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			cell.setColspan(2);
 			cell.setPadding(padding);
 			cell.setPaddingBottom(0);
-			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 			table.addCell(cell);
 
@@ -317,7 +318,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			cell.setColspan(2);
 			cell.setPadding(padding);
 			cell.setPaddingBottom(0);
-			cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 			table.addCell(cell);
 
@@ -328,7 +329,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				cell.setColspan(2);
 				cell.setPadding(padding);
 				cell.setPaddingBottom(0);
-				cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 				table.addCell(cell);
 			}
@@ -402,7 +403,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				cellName.setBorderWidth(0);
 				cellName.setPadding(padding);
 				cellName.setPaddingBottom(0);
-				cellName.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellName.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 				table.addCell(cellName);
 
@@ -422,7 +423,7 @@ public class InvitationPDFExporter extends PDFExporter {
 					cellVersion.setBorderWidth(0);
 					cellVersion.setPadding(padding);
 					cellVersion.setPaddingBottom(0);
-					cellVersion.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					cellVersion.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 					table.addCell(cellVersion);
 				}
@@ -675,7 +676,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				cell.setBorderWidth(0);
 				cell.setPadding(padding * 0.4f);
 				cell.setPaddingTop(padding * 1.1f);
-				cell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+				cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
 				tableAspect.addCell(cell);
 

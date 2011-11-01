@@ -39,6 +39,7 @@ public class DatePickerAction extends AbstractAction {
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		// instantiate the DatePicker
 		DatePicker dp = new DatePicker(UI.getInstance().getMeetingDialog(), UI

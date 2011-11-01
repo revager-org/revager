@@ -73,6 +73,7 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.switchToProgressMode(_("Exporting aspects ..."));
@@ -96,6 +97,7 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 					.exportAspectsXML(this.filePath, asps);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -109,6 +111,7 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -122,6 +125,7 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 			}

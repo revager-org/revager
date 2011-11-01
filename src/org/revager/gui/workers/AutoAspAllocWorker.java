@@ -77,6 +77,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.switchToProgressMode(_("Allocating aspects ..."));
@@ -97,6 +98,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 			allocateAspects();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getAspectsManagerFrame()
 							.setStatusMessage(_("Aspects allocated."), false);
@@ -104,6 +106,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 			});
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -118,6 +121,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().observeResiData(true);
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame().updateViews();
 

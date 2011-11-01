@@ -46,6 +46,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
 
 import org.revager.app.model.Data;
@@ -537,7 +538,7 @@ public abstract class AbstractDialog extends JDialog {
 		/*
 		 * Behaviour when closing this dialog.
 		 */
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

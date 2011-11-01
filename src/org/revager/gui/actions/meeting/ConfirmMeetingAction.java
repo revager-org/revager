@@ -51,7 +51,7 @@ public class ConfirmMeetingAction extends AbstractAction {
 
 		Meeting currentMeeting = meetDialog.getCurrentMeeting();
 
-		DateFormat dateF = SimpleDateFormat.getDateInstance(DateFormat.LONG);
+		DateFormat dateF = DateFormat.getDateInstance(DateFormat.LONG);
 
 		Meeting newMeeting = new Meeting();
 

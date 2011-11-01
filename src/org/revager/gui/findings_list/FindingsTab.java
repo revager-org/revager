@@ -303,6 +303,7 @@ public class FindingsTab extends JPanel {
 			panelFindingsList.revalidate();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					scrollFindingsList
 							.getVerticalScrollBar()
@@ -354,6 +355,7 @@ public class FindingsTab extends JPanel {
 			panelFindingsList.revalidate();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					scrollFindingsList
 							.getVerticalScrollBar()

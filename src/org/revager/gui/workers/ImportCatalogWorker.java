@@ -72,6 +72,7 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.switchToProgressMode(_("Importing catalog ..."));
@@ -128,6 +129,7 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 			}
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getAspectsManagerFrame().updateTree();
 
@@ -146,6 +148,7 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 							JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -160,6 +163,7 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.updateTree(catalog, null, null);

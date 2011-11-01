@@ -30,6 +30,7 @@ public class ImageEditorPanel extends JPanel {
 	private Point originPosition = null;
 
 	private MouseMotionListener motionListener = new MouseMotionListener() {
+		@Override
 		public void mouseMoved(MouseEvent e) {
 			updateOriginPosition(e);
 
@@ -38,6 +39,7 @@ public class ImageEditorPanel extends JPanel {
 			repaint();
 		}
 
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			int width = (int) (e.getX() - originPosition.getX());
 			int height = (int) (e.getY() - originPosition.getY());

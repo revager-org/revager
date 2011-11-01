@@ -109,6 +109,7 @@ public class ProgressGlassPane extends JComponent implements KeyListener {
 	 * 
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
+	@Override
 	public void keyPressed(KeyEvent e) {
 		e.consume();
 	}
@@ -118,6 +119,7 @@ public class ProgressGlassPane extends JComponent implements KeyListener {
 	 * 
 	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
 	 */
+	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 
@@ -126,6 +128,7 @@ public class ProgressGlassPane extends JComponent implements KeyListener {
 	 * 
 	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
 	 */
+	@Override
 	public void keyReleased(KeyEvent e) {
 		e.consume();
 	}

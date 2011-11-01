@@ -36,19 +36,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
-import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
 
 import org.revager.app.model.Data;
@@ -612,7 +610,7 @@ public class AbstractFrame extends JFrame {
 		/*
 		 * Behaviour when closing this dialog.
 		 */
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		// addWindowListener(new WindowAdapter() {
 		// @Override public void windowClosing(WindowEvent e) { // buttonClicked

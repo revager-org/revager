@@ -73,6 +73,7 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame()
 						.switchToProgressMode(_("Exporting catalog ..."));
@@ -106,6 +107,7 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 					.exportCatalogXML(this.filePath, cat);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -119,6 +121,7 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getAspectsManagerFrame()
@@ -131,6 +134,7 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 		UI.getInstance().getAspectsManagerFrame().notifySwitchToEditMode();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 			}

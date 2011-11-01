@@ -52,6 +52,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -158,7 +159,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 
 		setLocationToCenter();
 
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		addWindowListener(new WindowListener() {
 			@Override
@@ -893,7 +894,7 @@ public class CSVProfilesDialog extends AbstractDialog {
 				}
 
 				if (selectedItem != null
-						&& !selectedItem.equals((String) listProfiles
+						&& !selectedItem.equals(listProfiles
 								.getSelectedValue())) {
 					listProfiles.setListData(getCSVProfiles());
 					listProfiles.setSelectedValue(selectedItem, true);

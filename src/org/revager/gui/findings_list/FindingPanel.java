@@ -1000,6 +1000,7 @@ public class FindingPanel extends JPanel {
 						.notifySwitchToProgressMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						UI.getInstance().getProtocolFrame()
 								.switchToProgressMode();
@@ -1011,6 +1012,7 @@ public class FindingPanel extends JPanel {
 				findMgmt.addExtReference(file, finding);
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						modelExtReferences.fireTableDataChanged();
 
@@ -1019,6 +1021,7 @@ public class FindingPanel extends JPanel {
 				});
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						updateTableButtons();
 					}
@@ -1028,6 +1031,7 @@ public class FindingPanel extends JPanel {
 			UI.getInstance().getProtocolFrame().notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getProtocolFrame().switchToEditMode();
 				}
@@ -1043,6 +1047,7 @@ public class FindingPanel extends JPanel {
 			UI.getInstance().getProtocolFrame().notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance()
 							.getProtocolFrame()
@@ -1095,6 +1100,7 @@ public class FindingPanel extends JPanel {
 					findMgmt.addExtReference(img, fileName, finding);
 
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							modelExtReferences.fireTableDataChanged();
 
@@ -1113,6 +1119,7 @@ public class FindingPanel extends JPanel {
 							numberOfExtRefs - 1);
 
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							UI.getInstance().getProtocolFrame()
 									.getImageEditor(extRef).setVisible(true);
@@ -1124,6 +1131,7 @@ public class FindingPanel extends JPanel {
 			UI.getInstance().getProtocolFrame().notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					UI.getInstance().getProtocolFrame().switchToEditMode();
 				}

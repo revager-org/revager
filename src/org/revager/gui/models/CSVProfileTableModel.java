@@ -94,6 +94,7 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
 	 * int, int)
 	 */
+	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		localColNameList.set(row, insertion.toString());
 		this.fireTableDataChanged();
@@ -105,6 +106,7 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
 	 */
+	@Override
 	public boolean isCellEditable(int row, int column) {
 		if (column == 1)
 			return true;
@@ -132,6 +134,7 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
+	@Override
 	public String getColumnName(int column) {
 		if (column == 0)
 			return _("Review Severity");

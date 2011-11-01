@@ -51,6 +51,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 				.getCreateInvitationsDialog();
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				dialog.unmarkAllComp();
 			}
@@ -61,6 +62,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 			dialog.notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					dialog.switchToProgressMode(_("Creating invitation(s) ..."));
 				}
@@ -91,6 +93,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 				dialog.notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						dialog.switchToEditMode();
 					}
@@ -104,6 +107,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 			dialog.notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					dialog.setVisible(false);
 					dialog.switchToEditMode();
@@ -119,6 +123,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 			Desktop.getDesktop().open(new File(dialog.getSelectedPath()));
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					if (dialog.getSelectedAttendees().isEmpty()) {
 						dialog.markAttScrollPane();

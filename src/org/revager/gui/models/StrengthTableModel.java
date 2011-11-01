@@ -65,6 +65,7 @@ public class StrengthTableModel extends AbstractTableModel {
 	 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
 	 * int, int)
 	 */
+	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		UI.getInstance().getAttendeeDialog().getStrengthList().set(row,
 				(String) insertion);
@@ -77,6 +78,7 @@ public class StrengthTableModel extends AbstractTableModel {
 	 * 
 	 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
 	 */
+	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return false;
 	}

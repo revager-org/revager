@@ -47,6 +47,7 @@ import org.revager.tools.PDFTools;
 
 import com.lowagie.text.Anchor;
 import com.lowagie.text.Chunk;
+import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
@@ -242,7 +243,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 			PdfPCell cellProtocol = new PdfPCell(new Phrase(protocolTitle,
 					protocolFontTitle));
-			cellProtocol.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+			cellProtocol.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cellProtocol.setColspan(2);
 			cellProtocol.setBorderWidth(0);
 			cellProtocol.setPaddingTop(PDFTools.cmToPt(0.4f));
@@ -256,7 +257,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			PdfPCell cellRevName = new PdfPCell(new Phrase(Application
 					.getInstance().getReviewMgmt().getReviewName(),
 					reviewFontTitle));
-			cellRevName.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+			cellRevName.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cellRevName.setColspan(2);
 			cellRevName.setBorderWidth(0);
 			cellRevName.setPaddingBottom(PDFTools.cmToPt(1.6f));
@@ -289,7 +290,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 				PdfPCell cellMeeting = new PdfPCell(phraseMeeting);
 				cellMeeting.setColspan(2);
-				cellMeeting.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellMeeting.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellMeeting.setPadding(0);
 				cellMeeting.setBorderWidth(0);
 
@@ -303,7 +304,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				cellMeeting = new PdfPCell(new Phrase(_("Location") + ": "
 						+ location, meetingFontTitle));
 				cellMeeting.setColspan(2);
-				cellMeeting.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellMeeting.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellMeeting.setPadding(0);
 				cellMeeting.setBorderWidth(0);
 				cellMeeting.setPaddingTop(PDFTools.cmToPt(0.15f));
@@ -786,7 +787,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				phrRevStat.setLeading(leading);
 				PdfPCell cellRevStat = new PdfPCell();
 				cellRevStat.setColspan(2);
-				cellRevStat.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellRevStat.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellRevStat.addElement(phrRevStat);
 				cellRevStat.setBorderWidth(0);
 				cellRevStat.setPadding(padding);
@@ -806,7 +807,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 			phrCreationDate.setLeading(leading);
 			PdfPCell cellCrDate = new PdfPCell();
 			cellCrDate.setColspan(2);
-			cellCrDate.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+			cellCrDate.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cellCrDate.addElement(phrCreationDate);
 			cellCrDate.setBorderWidth(0);
 			cellCrDate.setPadding(0);
@@ -911,7 +912,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 				PdfPCell cellTitle = new PdfPCell(anchorTitle);
 				cellTitle.setColspan(2);
-				cellTitle.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellTitle.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellTitle.setPadding(0);
 				cellTitle.setBorderWidth(0);
 				cellTitle.setPaddingTop(PDFTools.cmToPt(0.6f));
@@ -922,7 +923,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				PdfPCell cellTime = new PdfPCell(new Phrase(meetingTime,
 						italicFontTitle));
 				cellTime.setColspan(2);
-				cellTime.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellTime.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellTime.setPadding(0);
 				cellTime.setBorderWidth(0);
 				cellTime.setPaddingBottom(padding * 2);
@@ -938,7 +939,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				PdfPCell cellLocation = new PdfPCell(new Phrase(_("Location")
 						+ ": " + location, italicFontTitle));
 				cellLocation.setColspan(2);
-				cellLocation.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellLocation.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellLocation.setPadding(0);
 				cellLocation.setBorderWidth(0);
 				cellLocation.setPaddingBottom(PDFTools.cmToPt(1.5f));
@@ -1393,7 +1394,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 					cell.setBorderWidth(0);
 					cell.setPadding(padding * 0.4f);
 					cell.setPaddingTop(padding * 1.1f);
-					cell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+					cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
 					tableAttendee.addCell(cell);
 
@@ -1509,7 +1510,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				cellTitle.setBorderWidth(0);
 				cellTitle.setPadding(padding);
 				cellTitle.setPaddingBottom(padding * 1.5f);
-				cellTitle.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+				cellTitle.setHorizontalAlignment(Element.ALIGN_LEFT);
 
 				tableTitle.addCell(cellTitle);
 
@@ -1524,7 +1525,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				cellSeverity.setBorderWidth(0);
 				cellSeverity.setPadding(padding);
 				cellSeverity.setPaddingTop(padding * 1.1f);
-				cellSeverity.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+				cellSeverity.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 				tableTitle.addCell(cellSeverity);
 
@@ -1540,7 +1541,7 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				cellMeeting.setBorderWidth(0);
 				cellMeeting.setPadding(padding);
 				cellMeeting.setPaddingTop(padding * 1.1f);
-				cellMeeting.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+				cellMeeting.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
 				tableTitle.addCell(cellMeeting);
 

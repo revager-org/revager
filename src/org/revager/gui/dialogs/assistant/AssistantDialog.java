@@ -30,6 +30,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.WindowConstants;
 
 import org.revager.app.model.Data;
 import org.revager.gui.AbstractDialog;
@@ -170,7 +171,7 @@ public class AssistantDialog extends AbstractDialog {
 
 		updateContents();
 
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		setResizable(false);
 

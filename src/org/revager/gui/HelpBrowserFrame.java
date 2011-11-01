@@ -41,6 +41,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.WindowConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -172,9 +173,11 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 		/* Disallow collapsing the tree */
 		tree.addTreeWillExpandListener(new TreeWillExpandListener() {
+			@Override
 			public void treeWillExpand(TreeExpansionEvent e) {
 			}
 
+			@Override
 			public void treeWillCollapse(TreeExpansionEvent e)
 					throws ExpandVetoException {
 				throw new ExpandVetoException(e, "you can't collapse this tree");
@@ -276,7 +279,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 		setLocationToCenter();
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	/*
@@ -315,6 +318,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 		/* Handle links */
 		bodyPane.addHyperlinkListener(new HyperlinkListener() {
+			@Override
 			public void hyperlinkUpdate(HyperlinkEvent ev) {
 				if (ev.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 					JEditorPane src = (JEditorPane) ev.getSource();

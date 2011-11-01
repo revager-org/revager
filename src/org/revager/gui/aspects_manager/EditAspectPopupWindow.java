@@ -39,6 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.revager.app.Application;
@@ -175,8 +176,8 @@ public class EditAspectPopupWindow extends JDialog {
 		textAreaDescription.setLineWrap(true);
 		textAreaDescription.setWrapStyleWord(true);
 		JScrollPane scrollDescription = new JScrollPane(textAreaDescription,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		final JComboBox boxCatalog = new JComboBox();
 		boxCatalog.setEditable(false);
 		final JComboBox boxCategory = new JComboBox();

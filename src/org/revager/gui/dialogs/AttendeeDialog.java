@@ -50,6 +50,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.WindowConstants;
 
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -405,6 +406,7 @@ public class AttendeeDialog extends AbstractDialog {
 								notifySwitchToProgressMode();
 
 								SwingUtilities.invokeLater(new Runnable() {
+									@Override
 									public void run() {
 										switchToProgressMode(_("Importing catalog ..."));
 									}
@@ -422,6 +424,7 @@ public class AttendeeDialog extends AbstractDialog {
 								notifySwitchToEditMode();
 
 								SwingUtilities.invokeLater(new Runnable() {
+									@Override
 									public void run() {
 										switchToEditMode();
 									}
@@ -446,6 +449,7 @@ public class AttendeeDialog extends AbstractDialog {
 							}
 
 							SwingUtilities.invokeLater(new Runnable() {
+								@Override
 								public void run() {
 									stm.fireTableDataChanged();
 
@@ -551,7 +555,7 @@ public class AttendeeDialog extends AbstractDialog {
 
 		pack();
 
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 	}
 
 	/**

@@ -699,6 +699,7 @@ public class UI implements Observer {
 			 * menu.
 			 */
 			Runnable runner = new Runnable() {
+				@Override
 				public void run() {
 					String path = Data.getInstance().getResiData()
 							.getReviewPath();

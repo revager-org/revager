@@ -333,6 +333,7 @@ public class GUITools {
 						((JTextComponent) editor).selectAll();
 					} else {
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								((JTextComponent) editor).selectAll();
 							}
@@ -413,12 +414,14 @@ public class GUITools {
 		 * Rollover
 		 */
 		MouseInputAdapter rolloverListener = new MouseInputAdapter() {
+			@Override
 			public void mouseExited(MouseEvent e) {
 				rollOverRowIndex.put(keyIdx, -1);
 
 				table.repaint();
 			}
 
+			@Override
 			public void mouseMoved(MouseEvent e) {
 				int row = table.rowAtPoint(e.getPoint());
 
@@ -680,6 +683,7 @@ public class GUITools {
 	 */
 	public static void scrollToTop(final JScrollPane scrollPane) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				scrollPane.getVerticalScrollBar().setValue(
 						scrollPane.getVerticalScrollBar().getMinimum());
@@ -694,6 +698,7 @@ public class GUITools {
 	 */
 	public static void scrollToBottom(final JScrollPane scrollPane) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				scrollPane.getVerticalScrollBar().setValue(
 						scrollPane.getVerticalScrollBar().getMaximum());

@@ -22,7 +22,6 @@ import javax.swing.table.AbstractTableModel;
 
 import org.revager.app.Application;
 
-
 /**
  * The Class SeverityTableModel.
  */
@@ -76,10 +75,13 @@ public class SeverityTableModel extends AbstractTableModel {
 	 * int, int)
 	 */
 	public void setValueAt(Object insertion, int row, int column) {
-		Application.getInstance().getSeverityMgmt().getSeverities().set(row,
-				insertion.toString());
-		this.fireTableDataChanged();
+		String currSev = Application.getInstance().getSeverityMgmt()
+				.getSeverities().get(row);
 
+		Application.getInstance().getSeverityMgmt()
+				.editSeverity(currSev, insertion.toString());
+
+		this.fireTableDataChanged();
 	}
 
 	/*

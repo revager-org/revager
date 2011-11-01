@@ -41,7 +41,7 @@ public class AddSeverityAction extends AbstractAction {
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ev) {
 		String placeHolder = _("New severity");
 
 		Application.getInstance().getSeverityMgmt().addSeverity(placeHolder);

@@ -395,6 +395,7 @@ public class ReviewManagement {
 		Application.getInstance().getMeetingMgmt().initDummyMeeting();
 
 		Application.getInstance().getSeverityMgmt().validateSeverities();
+		Application.getInstance().getSeverityMgmt().updateSeverities();
 
 		validateExtRefs();
 
@@ -434,19 +435,6 @@ public class ReviewManagement {
 			removeProductReference(ref);
 			addProductReference(trimmedRef);
 		}
-
-		/*
-		 * Trim the strings of the severities.
-		 */
-		SeverityManagement sevMgmt = Application.getInstance()
-				.getSeverityMgmt();
-
-		List<String> sevs = new ArrayList<String>();
-		for (String sev : sevMgmt.getSeverities()) {
-			sevs.add(sev.trim());
-		}
-		resiData.getReview().getSeverities().getSeverities().clear();
-		resiData.getReview().getSeverities().getSeverities().addAll(sevs);
 
 		/*
 		 * Trim the strings of the attendees.

@@ -19,7 +19,10 @@
 package org.revager.app;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
@@ -44,11 +47,47 @@ public class SeverityManagement {
 	 */
 	private ResiData resiData = Data.getInstance().getResiData();
 
+	public void updateSeverities() {
+		Map<String, String> updates = new HashMap<String, String>();
+
+		for (String sev : getDefLangSeverities()) {
+			if (!sev.equals(Data.getDefLangSeverity(sev.trim()))) {
+				updates.put(sev, Data.getDefLangSeverity(sev.trim()));
+			}
+		}
+
+		for (Entry<String, String> entry : updates.entrySet()) {
+			String currSev = entry.getKey();
+			String updatedSev = entry.getValue();
+
+			int index = getDefLangSeverities().indexOf(currSev);
+
+			getDefLangSeverities().remove(currSev);
+
+			if (!isSeverity(updatedSev)) {
+				getDefLangSeverities().add(index, updatedSev);
+			}
+
+			for (Meeting m : Application.getInstance().getMeetingMgmt()
+					.getMeetings()) {
+				Protocol prot = m.getProtocol();
+
+				if (prot != null) {
+					for (Finding f : prot.getFindings()) {
+						if (currSev.equals(f.getSeverity())) {
+							f.setSeverity(updatedSev);
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * Checks the severity of all findings and corrects incorrect values.
 	 */
 	public void validateSeverities() {
-		String highestSev = getSeverities().get(0);
+		String highestSev = getDefLangSeverities().get(0);
 
 		for (Meeting m : Application.getInstance().getMeetingMgmt()
 				.getMeetings()) {
@@ -73,8 +112,7 @@ public class SeverityManagement {
 	 * @return true, if the given severity exists
 	 */
 	public boolean isSeverity(String sev) {
-		if (getSeverities().contains(sev)
-				|| getSeverities().contains(Data.getDefLangSeverity(sev))) {
+		if (getDefLangSeverities().contains(Data.getDefLangSeverity(sev))) {
 			return true;
 		} else {
 			return false;
@@ -110,7 +148,7 @@ public class SeverityManagement {
 		sev = Data.getDefLangSeverity(sev.trim());
 
 		if (!isSeverity(sev)) {
-			getSeverities().add(sev);
+			getDefLangSeverities().add(sev);
 
 			resiData.fireDataChanged();
 		}
@@ -130,11 +168,12 @@ public class SeverityManagement {
 		String replaceSeverity = null;
 
 		if (isSeverity(sev)) {
-			if (getSeverities().indexOf(sev) == 0 && getSeverities().size() > 1) {
-				replaceSeverity = getSeverities().get(1);
+			if (getDefLangSeverities().indexOf(sev) == 0
+					&& getDefLangSeverities().size() > 1) {
+				replaceSeverity = getDefLangSeverities().get(1);
 			} else {
-				replaceSeverity = getSeverities().get(
-						getSeverities().indexOf(sev) - 1);
+				replaceSeverity = getDefLangSeverities().get(
+						getDefLangSeverities().indexOf(sev) - 1);
 			}
 		}
 
@@ -152,7 +191,7 @@ public class SeverityManagement {
 	public boolean isSeverityRemovable(String sev) {
 		sev = Data.getDefLangSeverity(sev);
 
-		if (isSeverity(sev) && getSeverities().size() <= 1) {
+		if (isSeverity(sev) && getDefLangSeverities().size() <= 1) {
 			return false;
 		} else {
 			return true;
@@ -185,7 +224,7 @@ public class SeverityManagement {
 				}
 			}
 
-			getSeverities().remove(sev);
+			getDefLangSeverities().remove(sev);
 
 			resiData.fireDataChanged();
 		}
@@ -204,13 +243,13 @@ public class SeverityManagement {
 		newSev = Data.getDefLangSeverity(newSev.trim());
 		oldSev = Data.getDefLangSeverity(oldSev);
 
-		if (getSeverities().contains(oldSev)) {
-			int index = getSeverities().indexOf(oldSev);
+		if (getDefLangSeverities().contains(oldSev)) {
+			int index = getDefLangSeverities().indexOf(oldSev);
 
-			getSeverities().remove(oldSev);
+			getDefLangSeverities().remove(oldSev);
 
 			if (!isSeverity(newSev)) {
-				getSeverities().add(index, newSev);
+				getDefLangSeverities().add(index, newSev);
 			}
 
 			for (Meeting m : Application.getInstance().getMeetingMgmt()
@@ -250,10 +289,10 @@ public class SeverityManagement {
 		sev = Data.getDefLangSeverity(sev);
 
 		if (!isTopSeverity(sev)) {
-			int index = getSeverities().indexOf(sev);
+			int index = getDefLangSeverities().indexOf(sev);
 
-			getSeverities().remove(index);
-			getSeverities().add(index - 1, sev);
+			getDefLangSeverities().remove(index);
+			getDefLangSeverities().add(index - 1, sev);
 
 			resiData.fireDataChanged();
 		}
@@ -269,10 +308,10 @@ public class SeverityManagement {
 		sev = Data.getDefLangSeverity(sev);
 
 		if (!isBottomSeverity(sev)) {
-			int index = getSeverities().indexOf(sev);
+			int index = getDefLangSeverities().indexOf(sev);
 
-			getSeverities().remove(index);
-			getSeverities().add(index + 1, sev);
+			getDefLangSeverities().remove(index);
+			getDefLangSeverities().add(index + 1, sev);
 
 			resiData.fireDataChanged();
 		}
@@ -289,10 +328,10 @@ public class SeverityManagement {
 		sev = Data.getDefLangSeverity(sev);
 
 		if (!isTopSeverity(sev)) {
-			int index = getSeverities().indexOf(sev);
+			int index = getDefLangSeverities().indexOf(sev);
 
-			getSeverities().remove(index);
-			getSeverities().add(0, sev);
+			getDefLangSeverities().remove(index);
+			getDefLangSeverities().add(0, sev);
 
 			resiData.fireDataChanged();
 		}
@@ -309,10 +348,10 @@ public class SeverityManagement {
 		sev = Data.getDefLangSeverity(sev);
 
 		if (!isBottomSeverity(sev)) {
-			int index = getSeverities().indexOf(sev);
+			int index = getDefLangSeverities().indexOf(sev);
 
-			getSeverities().add(getSeverities().size(), sev);
-			getSeverities().remove(index);
+			getDefLangSeverities().add(getDefLangSeverities().size(), sev);
+			getDefLangSeverities().remove(index);
 
 			resiData.fireDataChanged();
 		}
@@ -330,7 +369,7 @@ public class SeverityManagement {
 	public boolean isTopSeverity(String sev) {
 		sev = Data.getDefLangSeverity(sev);
 
-		int index = getSeverities().indexOf(sev);
+		int index = getDefLangSeverities().indexOf(sev);
 
 		if (index == 0) {
 			return true;
@@ -351,9 +390,9 @@ public class SeverityManagement {
 	public boolean isBottomSeverity(String sev) {
 		sev = Data.getDefLangSeverity(sev);
 
-		int index = getSeverities().indexOf(sev);
+		int index = getDefLangSeverities().indexOf(sev);
 
-		if (index == getSeverities().size() - 1) {
+		if (index == getDefLangSeverities().size() - 1) {
 			return true;
 		} else {
 			return false;

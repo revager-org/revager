@@ -71,8 +71,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -220,6 +222,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					updateHints();
 				}
@@ -315,6 +318,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void createBody() {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				// Prepare creation of body
 				attPanel.removeAll();
@@ -340,17 +344,18 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tabPanelFindings = new FindingsTab(currentProt);
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				// Create tab panel
 				tabbedPane.removeAll();
 				tabbedPane.removeChangeListener(tabChangeListener);
 
-				tabbedPane.setTabPlacement(JTabbedPane.TOP);
+				tabbedPane.setTabPlacement(SwingConstants.TOP);
 
 				tabbedPane.add(_("Organizational"), tabPanelOrg);
 				tabbedPane.add(_("Impression"), tabGenImp);
 				tabbedPane.add(_("Findings"), tabPanelFindings);
-				tabbedPane.add(_("Comments · Recommendation"),
+				tabbedPane.add(_("Comments & Recommendation"),
 						tabPanelCommAndRec);
 
 				tabbedPane.addChangeListener(tabChangeListener);
@@ -1140,7 +1145,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		setStatusMessage(_("List of findings successfully loaded."), false);
 
 		getContentPane().setLayout(new BorderLayout());
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		/*
 		 * Format bottom panel in org tab
@@ -1244,6 +1249,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				updateHints();
 			}
@@ -1414,6 +1420,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 						updateResiData();
 
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								updateHints();
 							}
@@ -1530,7 +1537,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				HintItem.WARNING);
 		
 		hintRec = new HintItem(
-				_("Please enter the final recommendation for the product into the provided text field (Tab 'Comments · Recommendation')."),
+				_("Please enter the final recommendation for the product into the provided text field (Tab 'Comments & Recommendation')."),
 				HintItem.WARNING);
 
 		hintFind = new HintItem(

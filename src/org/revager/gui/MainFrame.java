@@ -61,6 +61,7 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.MouseInputAdapter;
@@ -226,6 +227,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private HintItem hintStart;
 	private HintItem hintMeetAtt;
 	private HintItem hintOk;
+	private HintItem hintSecondOk;
 	private HintItem hintListOfFindings;
 	private HintItem hintInfoAssistant;
 
@@ -294,6 +296,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 					if (diff >= change && diff < change * 3) {
 						SwingUtilities.invokeLater(new Runnable() {
+							@Override
 							public void run() {
 								updateResiData();
 
@@ -502,9 +505,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 		meetingsTree.setSelectionRow(0);
 		meetingsTree.setRowHeight(30);
 		meetingsTree.addTreeWillExpandListener(new TreeWillExpandListener() {
+			@Override
 			public void treeWillExpand(TreeExpansionEvent e) {
 			}
 
+			@Override
 			public void treeWillCollapse(TreeExpansionEvent e)
 					throws ExpandVetoException {
 				throw new ExpandVetoException(e);
@@ -548,6 +553,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 * Rollover
 		 */
 		MouseInputAdapter rolloverListener = new MouseInputAdapter() {
+			@Override
 			public void mouseMoved(MouseEvent e) {
 				int i = meetingsTree.getRowForPath(meetingsTree
 						.getPathForLocation(e.getX(), e.getY()));
@@ -1298,6 +1304,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 		hintOk = new HintItem(
 				_("All required information for the review are present."),
 				HintItem.OK);
+		hintSecondOk = new HintItem(
+				_("Now you've got the possibility to export the protocol of the whole review or of single meetings."),
+				HintItem.INFO);
 
 		hintListOfFindings = new HintItem(
 				_("You can open the list of findings by selecting the corresponding meeting and clicking the 'Open findings list' button."),
@@ -1347,6 +1356,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 			if (!warningErrorHints) {
 				hints.add(hintOk);
+				hints.add(hintSecondOk);
 			}
 
 			if (revMgmt.getNumberOfMeetings() > 0) {
@@ -1420,7 +1430,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		pack();
 
@@ -1441,6 +1451,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 	@Override
 	public void update(Observable obs, Object obj) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				updateMenu();
 				updateToolBar();
@@ -1450,6 +1461,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		if (Data.getInstance().getResiData().getReview() != null) {
 			if (!assistantMode) {
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						/*
 						 * Store cursor positions (text fields)
@@ -1491,6 +1503,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 			}
 
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					// updateMeetingsTree();
 					meetingsTree.repaint();
@@ -1531,6 +1544,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		}
 
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				updateHints();
 
@@ -1838,7 +1852,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		DefaultMutableTreeNode node = nodeMeetingRoot;
 
 		while (node.getNextNode() != null) {
-			node = (DefaultMutableTreeNode) node.getNextNode();
+			node = node.getNextNode();
 
 			Object curNode = node.getUserObject();
 
@@ -1863,7 +1877,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		DefaultMutableTreeNode node = nodeMeetingRoot;
 
 		while (node.getNextNode() != null) {
-			node = (DefaultMutableTreeNode) node.getNextNode();
+			node = node.getNextNode();
 
 			Object curNode = node.getUserObject();
 

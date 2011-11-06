@@ -262,7 +262,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * @param meet
 	 *            the new meeting
 	 */
-	public void setMeeting(Meeting meet) {
+	public synchronized void setMeeting(Meeting meet) {
 		currentMeet = meet;
 		currentProt = meet.getProtocol();
 
@@ -319,7 +319,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				// TODO
 				attPanel.removeAll();
 				createAttPanel();
 				attPanel.validate();
@@ -1245,7 +1244,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				// TODO
 				updateHints();
 			}
 		});

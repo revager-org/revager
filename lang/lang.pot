@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-06 13:29+0100\n"
+"POT-Creation-Date: 2011-11-06 13:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1176,7 +1176,7 @@ msgid "All required information for the review are present."
 msgstr ""
 
 #: src/org/revager/gui/MainFrame.java:1308
-msgid "Now you've got the possibility to export the protocol of the whole review or of single meetings."
+msgid "Now you can export the list of findings either for the whole review or a single review meeting."
 msgstr ""
 
 #: src/org/revager/gui/MainFrame.java:1312
@@ -1488,7 +1488,7 @@ msgid "In order to assign aspects to reviewers you have to add at least one revi
 msgstr ""
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1694
-msgid "You can assign catalogs, categories or aspects to the reviewers after selecting them by double click."
+msgid "You can assign catalogs, categories or aspects to the reviewers after selecting them."
 msgstr ""
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1698

@@ -1691,7 +1691,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				HintItem.WARNING, "aspects_management");
 
 		hintInfoAlloc = new HintItem(
-				_("You can assign catalogs, categories or aspects to the reviewers after selecting them by double click."),
+				_("You can assign catalogs, categories or aspects to the reviewers after selecting them."),
 				HintItem.INFO, "aspects_management");
 
 		hintInfoImpExp = new HintItem(

@@ -1305,7 +1305,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				_("All required information for the review are present."),
 				HintItem.OK);
 		hintSecondOk = new HintItem(
-				_("Now you've got the possibility to export the protocol of the whole review or of single meetings."),
+				_("Now you can export the list of findings either for the whole review or a single review meeting."),
 				HintItem.INFO);
 
 		hintListOfFindings = new HintItem(

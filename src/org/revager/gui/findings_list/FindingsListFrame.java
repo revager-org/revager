@@ -59,7 +59,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -320,7 +319,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				// Prepare creation of body
+				// TODO
 				attPanel.removeAll();
 				createAttPanel();
 				attPanel.validate();
@@ -328,8 +327,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				bottomOrgPanel.removeAll();
 				createBottomOrgPanel();
 				bottomOrgPanel.validate();
-				
-				
+
 				tabGenImp.removeAll();
 				createImpPanel();
 				tabGenImp.validate();
@@ -753,30 +751,29 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				20, 0, 20, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 	}
-	
-	private void createImpPanel(){
+
+	private void createImpPanel() {
 		JLabel impLbl = new JLabel(_("General impression of the product:"));
 		impLbl.setFont(UI.PROTOCOL_FONT_BOLD);
-		
+
 		impTxtArea = new JTextArea();
 		impTxtArea.setFont(UI.PROTOCOL_FONT);
-		
+
 		impTxtArea.addKeyListener(updateListener);
 		impTxtArea.addKeyListener(tabKeyListener);
 
 		impTxtArea.setText(revMgmt.getImpression().trim());
-		
+
 		impScrllPn = GUITools.setIntoScrllPn(impTxtArea);
 		GUITools.scrollToTop(impScrllPn);
-		
-		GUITools.addComponent(tabGenImp, gbl, impLbl, 0, 1, 2, 1, 0,
-				0, 20, 10, 0, 10, GridBagConstraints.NONE,
+
+		GUITools.addComponent(tabGenImp, gbl, impLbl, 0, 1, 2, 1, 0, 0, 20, 10,
+				0, 10, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+
+		GUITools.addComponent(tabGenImp, gbl, impScrllPn, 0, 2, 2, 1, 1.0, 1.0,
+				5, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		
-		GUITools.addComponent(tabGenImp, gbl, impScrllPn, 0, 2, 2, 1,
-				1.0, 1.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		
+
 		tabGenImp.setBorder(new EmptyBorder(0, 10, 20, 10));
 	}
 
@@ -1011,13 +1008,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		recBx.addItemListener(itemListener);
 		recBx.setSelectedItem(revMgmt.getRecommendation().trim());
 
-
 		meetCommTxtArea.setText(Application.getInstance().getMeetingMgmt()
 				.getMeetingComment(currentMeet).trim());
 		protCommTxtArea
 				.setText(protMgmt.getProtocolComment(currentProt).trim());
-
-
 
 		meetCommScrllPn = GUITools.setIntoScrllPn(meetCommTxtArea);
 		meetCommScrllPn.setMinimumSize(meetCommScrllPn.getPreferredSize());
@@ -1251,6 +1245,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				// TODO
 				updateHints();
 			}
 		});
@@ -1360,14 +1355,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		public void keyTyped(KeyEvent e) {
 		}
 	};
-	
+
 	private KeyListener tabKeyListener = new KeyListener() {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			Object evSrc = e.getSource();
 
-			if (evSrc instanceof JTextArea
-					&& e.getKeyCode() == KeyEvent.VK_TAB) {
+			if (evSrc instanceof JTextArea && e.getKeyCode() == KeyEvent.VK_TAB) {
 				JTextArea txtArea = (JTextArea) evSrc;
 
 				if (e.getModifiers() > 0) {
@@ -1535,7 +1529,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		hintImpr = new HintItem(
 				_("Please enter the general impression for the product into the provided text field (Tab 'Impression')."),
 				HintItem.WARNING);
-		
+
 		hintRec = new HintItem(
 				_("Please enter the final recommendation for the product into the provided text field (Tab 'Comments & Recommendation')."),
 				HintItem.WARNING);
@@ -1580,7 +1574,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		} else {
 			tabbedPane.setIconAt(0, ICON_TAB_OK);
 		}
-		
+
 		if (revMgmt.getImpression().trim().equals("")) {
 			hints.add(hintImpr);
 
@@ -1607,7 +1601,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		} else {
 			tabbedPane.setIconAt(2, ICON_TAB_OK);
 		}
-		
+
 		if (revMgmt.getRecommendation().trim().equals("")) {
 			hints.add(hintRec);
 

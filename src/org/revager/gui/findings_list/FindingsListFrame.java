@@ -95,6 +95,7 @@ import org.revager.app.model.schema.Protocol;
 import org.revager.gui.AbstractFrame;
 import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
+import org.revager.gui.actions.ExitAction;
 import org.revager.gui.actions.attendee.AddAttToProtAction;
 import org.revager.gui.actions.attendee.AddResiAttToProtAction;
 import org.revager.gui.actions.attendee.EditAttFromProtAction;
@@ -319,21 +320,37 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				attPanel.removeAll();
-				createAttPanel();
-				attPanel.validate();
+				try {
+					attPanel.removeAll();
+					createAttPanel();
+					attPanel.validate();
 
-				bottomOrgPanel.removeAll();
-				createBottomOrgPanel();
-				bottomOrgPanel.validate();
+					bottomOrgPanel.removeAll();
+					createBottomOrgPanel();
+					bottomOrgPanel.validate();
 
-				tabGenImp.removeAll();
-				createImpPanel();
-				tabGenImp.validate();
+					tabGenImp.removeAll();
+					createImpPanel();
+					tabGenImp.validate();
 
-				tabPanelCommAndRec.removeAll();
-				createCommAndRatePanel();
-				tabPanelCommAndRec.validate();
+					tabPanelCommAndRec.removeAll();
+					createCommAndRatePanel();
+					tabPanelCommAndRec.validate();
+				} catch (Exception exc) {
+					// Workaround for a threading problem
+					exc.printStackTrace();
+
+					JOptionPane.showMessageDialog(
+							UI.getInstance().getProtocolFrame(),
+							GUITools.getMessagePane(_("Severe problem occurred! RevAger has to be restarted.")),
+							_("Problem occurred"), JOptionPane.ERROR_MESSAGE);
+
+					ExitAction exitAction = ((ExitAction) ActionRegistry
+							.getInstance().get(ExitAction.class.getName()));
+
+					exitAction.setRestartAgain(true);
+					exitAction.actionPerformed(null);
+				}
 			}
 		});
 
@@ -870,7 +887,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		GUITools.formatSpinner(beginHSpinner, hideBorder);
 		GUITools.formatSpinner(beginMSpinner, hideBorder);
 
-		dateF.setTimeZone(currentProt.getDate().getTimeZone());
+		dateF.setTimeZone(currentProt.getDate().getTimeZone()); // TODO: In some
+																// cases
+																// 'currentProt.getDate()'
+																// returns null.
 		dateTxtFld.setText(dateF.format(currentProt.getDate().getTime()));
 
 		int beginHours = currentProt.getStart().get(Calendar.HOUR_OF_DAY);

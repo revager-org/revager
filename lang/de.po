@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-11-06 15:07+0100\n"
+"POT-Creation-Date: 2011-11-07 18:59+0100\n"
 "PO-Revision-Date: 2011-11-06 14:03+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-07 05:50+0000\n"
+"X-Launchpad-Export-Date: 2011-11-08 06:09+0000\n"
 "X-Generator: Launchpad (build 14231)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -52,10 +52,10 @@ msgstr ""
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:183
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:304
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:334
-#: src/org/revager/gui/dialogs/SettingsDialog.java:688
-#: src/org/revager/gui/dialogs/SettingsDialog.java:746
-#: src/org/revager/gui/dialogs/SettingsDialog.java:822
-#: src/org/revager/gui/dialogs/SettingsDialog.java:873
+#: src/org/revager/gui/dialogs/SettingsDialog.java:687
+#: src/org/revager/gui/dialogs/SettingsDialog.java:745
+#: src/org/revager/gui/dialogs/SettingsDialog.java:821
+#: src/org/revager/gui/dialogs/SettingsDialog.java:872
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:258
 #: src/org/revager/gui/findings_list/FindingPanel.java:523
 #: src/org/revager/gui/helpers/FileChooser.java:250
@@ -104,7 +104,7 @@ msgstr ""
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:560
-#: src/org/revager/gui/dialogs/SettingsDialog.java:365
+#: src/org/revager/gui/dialogs/SettingsDialog.java:364
 #: src/org/revager/gui/findings_list/FindingPanel.java:632
 #: src/org/revager/gui/helpers/FileChooser.java:271
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:80
@@ -810,7 +810,7 @@ msgstr "Das Einladungspaket konnte nicht als ZIP-Datei gespeichert werden."
 
 #: src/org/revager/export/MeetingProtocolPDFExporter.java:91
 #: src/org/revager/export/ReviewProtocolPDFExporter.java:92
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1144
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1157
 msgid "List of Findings"
 msgstr "Review-Protokoll"
 
@@ -918,7 +918,7 @@ msgstr "Genereller Eindruck des Prüflings:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:697
 #: src/org/revager/gui/MainFrame.java:777
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:976
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:992
 msgid "Final recommendation for the product:"
 msgstr "Abschließende Bewertung des Prüflings:"
 
@@ -1108,7 +1108,7 @@ msgstr "Teilnehmer aus dem Adressbuch entfernen"
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:272
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:181
 #: src/org/revager/gui/dialogs/MeetingDialog.java:492
-#: src/org/revager/gui/dialogs/SettingsDialog.java:162
+#: src/org/revager/gui/dialogs/SettingsDialog.java:161
 #: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:166
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:183
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:300
@@ -1127,7 +1127,7 @@ msgstr "Abbrechen"
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:543
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:385
 #: src/org/revager/gui/dialogs/MeetingDialog.java:503
-#: src/org/revager/gui/dialogs/SettingsDialog.java:152
+#: src/org/revager/gui/dialogs/SettingsDialog.java:151
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:97
 #: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:175
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:192
@@ -1232,7 +1232,7 @@ msgid "Modify attendee"
 msgstr "Teilnehmer bearbeiten"
 
 #: src/org/revager/gui/MainFrame.java:771
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:758
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:772
 msgid "General impression of the product:"
 msgstr "Genereller Eindruck des Prüflings"
 
@@ -1255,7 +1255,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 #: src/org/revager/gui/MainFrame.java:1094
-#: src/org/revager/gui/dialogs/SettingsDialog.java:118
+#: src/org/revager/gui/dialogs/SettingsDialog.java:117
 msgid "Application Settings"
 msgstr "Anwendungseinstellungen"
 
@@ -1438,7 +1438,7 @@ msgid "Select language"
 msgstr "Sprache wählen"
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:73
-#: src/org/revager/gui/dialogs/SettingsDialog.java:364
+#: src/org/revager/gui/dialogs/SettingsDialog.java:363
 msgid ""
 "You have to restart the application in order finalize the change of "
 "language. Restart now?"
@@ -1450,7 +1450,7 @@ msgstr ""
 #: src/org/revager/gui/actions/attendee/AddAttendeeAction.java:46
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:309
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:254
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:557
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:571
 msgid "Add Attendee"
 msgstr "Teilnehmer hinzufügen"
 
@@ -1467,7 +1467,7 @@ msgstr ""
 
 #: src/org/revager/gui/actions/attendee/EditAttFromProtAction.java:48
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:270
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:577
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:591
 msgid "Edit Attendee"
 msgstr "Teilnehmer bearbeiten"
 
@@ -2120,12 +2120,12 @@ msgid "Here you can edit all information of the selected meeting."
 msgstr "Hier können Sie alle Informationen der gewählten Sitzung bearbeiten."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:366
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:793
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:806
 msgid "Period of time:"
 msgstr "Zeitraum:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:369
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:796
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:809
 msgid "to"
 msgstr "bis"
 
@@ -2134,7 +2134,7 @@ msgstr "bis"
 #. * creating elements for location, and canceled infos
 #. 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:397
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:787
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:800
 msgid "Location:"
 msgstr "Ort:"
 
@@ -2147,7 +2147,7 @@ msgstr "Abgesagt"
 #. * creating elements for the date of the meeting
 #. 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:426
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:790
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:803
 msgid "Date:"
 msgstr "Datum:"
 
@@ -2155,86 +2155,86 @@ msgstr "Datum:"
 msgid "Select date"
 msgstr "Datum wählen"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:137
+#: src/org/revager/gui/dialogs/SettingsDialog.java:136
 msgid "General"
 msgstr "Allgemein"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:142
+#: src/org/revager/gui/dialogs/SettingsDialog.java:141
 msgid "PDF Export"
 msgstr "PDF-Export"
 
 #. 
 #. * Auto save
 #. 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:202
+#: src/org/revager/gui/dialogs/SettingsDialog.java:201
 #, java-format
 msgid "Save review every {0} minutes automatically."
 msgstr "Das Review alle {0} Minuten automatisch speichern."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:242
+#: src/org/revager/gui/dialogs/SettingsDialog.java:241
 msgid ""
 "Check if a new version of RevAger is available during application start."
 msgstr ""
 "Beim Start von RevAger prüfen, ob eine neue Version der Anwendung verfügbar "
 "ist."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:256
+#: src/org/revager/gui/dialogs/SettingsDialog.java:255
 msgid "Show hints in dialogs by default."
 msgstr "Hinweise in den Dialogen standardmäßig anzeigen."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:270
+#: src/org/revager/gui/dialogs/SettingsDialog.java:269
 msgid "Highlight obligatory input fields."
 msgstr "Pflicht-Eingabefelder visuell kenntlich machen."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:284
+#: src/org/revager/gui/dialogs/SettingsDialog.java:283
 msgid "Allow usage of fullscreen mode (EXPERIMENTAL)."
 msgstr "Vollbildmodus erlauben (EXPERIMENTELL)."
 
 #. 
 #. * Protocol warning
 #. 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:297
+#: src/org/revager/gui/dialogs/SettingsDialog.java:296
 #, java-format
 msgid "Show warning while creating a findings list after {0} minutes."
 msgstr "Nach {0} Minuten Arbeit an einem Protokoll eine Warnung einblenden."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:388
+#: src/org/revager/gui/dialogs/SettingsDialog.java:387
 msgid "Language:"
 msgstr "Sprache:"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:431
+#: src/org/revager/gui/dialogs/SettingsDialog.java:430
 msgid "Findings list as PDF file"
 msgstr "Review-Protokoll als PDF-Datei"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:441
-#: src/org/revager/gui/dialogs/SettingsDialog.java:511
+#: src/org/revager/gui/dialogs/SettingsDialog.java:440
+#: src/org/revager/gui/dialogs/SettingsDialog.java:510
 msgid "Choose an Image..."
 msgstr "Bild auswählen..."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:462
-#: src/org/revager/gui/dialogs/SettingsDialog.java:532
+#: src/org/revager/gui/dialogs/SettingsDialog.java:461
+#: src/org/revager/gui/dialogs/SettingsDialog.java:531
 msgid "Remove Image"
 msgstr "Bild entfernen"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:474
-#: src/org/revager/gui/dialogs/SettingsDialog.java:544
+#: src/org/revager/gui/dialogs/SettingsDialog.java:473
+#: src/org/revager/gui/dialogs/SettingsDialog.java:543
 msgid "Displayed image:"
 msgstr "Angezeigtes Bild:"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:489
-#: src/org/revager/gui/dialogs/SettingsDialog.java:572
+#: src/org/revager/gui/dialogs/SettingsDialog.java:488
+#: src/org/revager/gui/dialogs/SettingsDialog.java:571
 msgid "Displayed foot text:"
 msgstr "Angezeigter Fußtext:"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:501
+#: src/org/revager/gui/dialogs/SettingsDialog.java:500
 msgid "Invitations as PDF file:"
 msgstr "Einladungspakete als PDF-Datei:"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:562
+#: src/org/revager/gui/dialogs/SettingsDialog.java:561
 msgid "Text of invitations:"
 msgstr "Einladungstext:"
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:611
+#: src/org/revager/gui/dialogs/SettingsDialog.java:610
 msgid ""
 "Here you can set some application options. They will be saved in the "
 "database independently of any particular review."
@@ -2242,7 +2242,7 @@ msgstr ""
 "Hier können sie einige Anwendungseinstellungen vornehmen. Diese werden in "
 "der Datenbank unabhängig von einem bestimmten Review gespeichert."
 
-#: src/org/revager/gui/dialogs/SettingsDialog.java:613
+#: src/org/revager/gui/dialogs/SettingsDialog.java:612
 msgid ""
 "Here you can set some options concerning the PDF export. They will be saved "
 "in the database independently of any particular review."
@@ -2443,7 +2443,7 @@ msgstr ""
 "hinzugefügt werden kann."
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1066
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1103
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1116
 msgid "Information"
 msgstr "Informationen"
 
@@ -2459,80 +2459,88 @@ msgstr "Bitte geben Sie einen Namen für das Bild ein:"
 msgid "Save"
 msgstr "Speichern"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:355
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:345
+msgid "Severe problem occurred! RevAger has to be restarted."
+msgstr ""
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:346
+msgid "Problem occurred"
+msgstr ""
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:369
 msgid "Organizational"
 msgstr "Organisatorisch"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:356
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:370
 msgid "Impression"
 msgstr "Genereller Eindruck"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:357
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:371
 #: src/org/revager/gui/findings_list/FindingsTab.java:129
 msgid "Findings"
 msgstr "Befunde"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:358
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:372
 msgid "Comments & Recommendation"
 msgstr "Kommentare & Bewertung"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:380
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:394
 msgid "Confirm and close list of findings"
 msgstr "Bestätigen und Protokoll schließen"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:405
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:419
 msgid "Export List of Findings as PDF File"
 msgstr "Review-Protokoll als PDF-Datei exportieren"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:420
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:434
 msgid "Export List of Findings as CSV File"
 msgstr "Review-Protokoll als CSV-Datei exportieren"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:439
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:453
 msgid "Exit Fullscreen"
 msgstr "Vollbildansicht verlassen"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:445
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:459
 msgid "Change to Fullscreen mode"
 msgstr "In den Vollbildmodus wechseln"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:492
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:506
 msgid "Reset Stop Watch"
 msgstr "Stoppuhr zurücksetzen"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:523
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:537
 msgid "Pause Stop Watch"
 msgstr "Stoppuhr pausieren"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:529
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:543
 msgid "Start Stop Watch"
 msgstr "Stoppuhr starten"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:547
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:561
 msgid "Add Attendee from the Attendee Pool"
 msgstr "Einen Teilnehmer aus dem Teilnehmer-Pool hinzufügen"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:567
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:581
 msgid "Remove Attendee"
 msgstr "Teilnehmer entfernen"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:710
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:724
 msgid "Add Attendee to Meeting"
 msgstr "Einen neuen Teilnehmer zur Sitzung hinzufügen"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:743
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:757
 msgid "Attendees of the current meeting:"
 msgstr "Teilnehmer der aktuellen Sitzung:"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:979
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:995
 msgid "Comments on the meeting:"
 msgstr "Kommentare zur Sitzung:"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:982
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:998
 msgid "Comments on the list of findings:"
 msgstr "Kommentare zum Protokoll:"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1098
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1111
 #, java-format
 msgid ""
 "This review meeting is running for {0} minutes already. Therefore it is "
@@ -2543,11 +2551,11 @@ msgstr ""
 "Sitzung nun abzuschließen und das Review zu einem späteren Zeitpunkt "
 "weiterzuführen."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1145
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1158
 msgid "List of findings successfully loaded."
 msgstr "Protokoll erfolgreich geladen."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1532
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1544
 msgid ""
 "Please add at least one attendee to the meeting by choosing one from the "
 "attendees pool or create a new one (Tab 'Organizational')."
@@ -2556,7 +2564,7 @@ msgstr ""
 "durch Auswahl aus dem Teilnehmer-Pool oder durch Anlegen eines neuen "
 "Teilnehmers (Tab 'Organisatorisches')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1536
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1548
 msgid ""
 "Please enter the general impression for the product into the provided text "
 "field (Tab 'Impression')."
@@ -2564,7 +2572,7 @@ msgstr ""
 "Bitte geben Sie den generellen Eindruck des Prüflings in das dafür "
 "vorgesehene Textfeld ein (Tab 'Genereller Eindruck')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1540
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1552
 msgid ""
 "Please enter the final recommendation for the product into the provided text "
 "field (Tab 'Comments & Recommendation')."
@@ -2572,17 +2580,17 @@ msgstr ""
 "Bitte geben Sie die abschließende Bewertung des Prüflings in das dafür "
 "vorgesehene Textfeld ein (Tab 'Kommentare & Bewertung')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1544
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1556
 msgid "For every finding enter at least a description (Tab 'Findings')."
 msgstr ""
 "Bitte geben Sie für jeden Befund zumindest eine Beschreibung ein (Tab "
 "'Befunde')."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1548
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1560
 msgid "The meeting data and its list of findings is complete."
 msgstr "Die Sitzungsdaten und das Protokoll sind vollständig."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1552
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1564
 msgid ""
 "In order to add a new finding to the list of findings use the 'Add Finding' "
 "button (Tab 'Findings')."

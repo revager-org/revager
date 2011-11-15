@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-07 18:59+0100\n"
-"PO-Revision-Date: 2011-11-06 14:03+0000\n"
+"PO-Revision-Date: 2011-11-14 18:46+0000\n"
 "Last-Translator: Johannes Wettinger <revager@jowettinger.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-08 06:09+0000\n"
-"X-Generator: Launchpad (build 14231)\n"
+"X-Launchpad-Export-Date: 2011-11-15 05:10+0000\n"
+"X-Generator: Launchpad (build 14291)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -2462,10 +2462,11 @@ msgstr "Speichern"
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:345
 msgid "Severe problem occurred! RevAger has to be restarted."
 msgstr ""
+"Schwerwiegendes Problem ist aufgetreten! RevAger muss neugestartet werden."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:346
 msgid "Problem occurred"
-msgstr ""
+msgstr "Problem aufgetreten"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:369
 msgid "Organizational"

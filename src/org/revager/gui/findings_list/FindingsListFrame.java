@@ -1493,10 +1493,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void unmarkAllComponents() {
 		dateTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
-		beginHSpinner.setBorder(UI.STANDARD_BORDER);
-		beginMSpinner.setBorder(UI.STANDARD_BORDER);
-		endHSpinner.setBorder(UI.STANDARD_BORDER);
-		endMSpinner.setBorder(UI.STANDARD_BORDER);
 		scrllP.setBorder(UI.STANDARD_BORDER);
 		recBx.setBorder(UI.STANDARD_BORDER);
 		impScrllPn.setBorder(UI.STANDARD_BORDER);

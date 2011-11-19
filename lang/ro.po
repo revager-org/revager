@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-11-17 15:49+0000\n"
+"PO-Revision-Date: 2011-11-18 10:11+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-18 05:18+0000\n"
+"X-Launchpad-Export-Date: 2011-11-19 05:25+0000\n"
 "X-Generator: Launchpad (build 14299)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -210,23 +210,23 @@ msgstr "Parametrii aplicatiei nu pot fi memorati/salvati."
 
 #: src/org/revager/app/model/ApplicationData.java:847
 msgid "Cannot load the list of recent reviews."
-msgstr "Lista cu inspectiile/reviziile recente nu poate fi incarcata."
+msgstr "Lista cu inspectii/revizii recente nu poate fi incarcata."
 
 #: src/org/revager/app/model/ApplicationData.java:912
 msgid "Cannot add the current review to the list of recent reviews."
 msgstr ""
 "Inspectia/Revizuirea curenta nu poate fi adaugata listei cu "
-"inspectiile/reviziile recente."
+"inspectii/revizii recente."
 
 #: src/org/revager/app/model/ApplicationData.java:948
 msgid "Cannot remove the review from the list of recent reviews."
 msgstr ""
-"Inspectia/Revizuirea nu poate fi stearsa din  lista cu inspectiile/reviziile "
+"Inspectia/Revizuirea nu poate fi stearsa din  lista cu inspectii/revizii "
 "recente."
 
 #: src/org/revager/app/model/ApplicationData.java:987
 msgid "Cannot load catalogs from the catalog library."
-msgstr "Nu pot incarca cataloagele din biblioteca de cataloage."
+msgstr "Nu pot incarca cataloage din biblioteca de cataloage."
 
 #. 
 #. * Not part of the unit testing, because this exception is only
@@ -270,7 +270,7 @@ msgstr "Eroare in timpul stergerii unui participant."
 
 #: src/org/revager/app/model/ApplicationData.java:1595
 msgid "Cannot get the number of attendees in the database."
-msgstr "Nu pot gasi numarul de participanti in baza de date."
+msgstr "Nu pot gasi numarul de participanti din baza de date."
 
 #: src/org/revager/app/model/ApplicationData.java:1635
 msgid "Cannot load any CSV profile from the database."
@@ -451,11 +451,11 @@ msgstr "Aspectul solicitat nu poate fi mutat."
 #: src/org/revager/app/model/appdata/AppAspect.java:681
 #: src/org/revager/app/model/appdata/AppAspect.java:727
 msgid "Cannot get sorting position of the aspect."
-msgstr "Nu pot gasi potia/indicele de sortare a aspectului."
+msgstr "Nu pot gasi pozitia/indicele de sortare a aspectului."
 
 #: src/org/revager/app/model/appdata/AppAttendee.java:51
 msgid "Attendee does not exist!"
-msgstr ""
+msgstr "Participantul nu exista!"
 
 #. 
 #. * Not part of the unit testing, because this exception is only
@@ -555,7 +555,7 @@ msgstr "Nu pot stabili numele catalogului."
 #. 
 #: src/org/revager/app/model/appdata/AppCatalog.java:385
 msgid "Cannot move the selected catalog."
-msgstr "Nu pot muta catalogul selctat."
+msgstr "Nu pot muta catalogul selectat."
 
 #: src/org/revager/app/model/appdata/AppCatalog.java:471
 #: src/org/revager/app/model/appdata/AppCatalog.java:513

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-11-18 10:11+0000\n"
+"PO-Revision-Date: 2011-11-22 15:25+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-19 05:25+0000\n"
-"X-Generator: Launchpad (build 14299)\n"
+"X-Launchpad-Export-Date: 2011-11-23 05:32+0000\n"
+"X-Generator: Launchpad (build 14336)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -690,69 +690,78 @@ msgstr "Adresa/Locaţia"
 #: src/org/revager/export/InvitationPDFExporter.java:351
 #, java-format
 msgid "You are invited as {0} to this review ({1})."
-msgstr ""
+msgstr "Sunteti invitat ca {0} la aceasta inspectie/revizuire ({1})."
 
 #: src/org/revager/export/InvitationPDFExporter.java:374
 #, java-format
 msgid "This meeting ties up to the review meeting of {0}."
 msgstr ""
+"Aceasta sedinta are legatura cu sedinta pentru inspectie/revizuire a {0}."
 
 #: src/org/revager/export/InvitationPDFExporter.java:389
 msgid "The following product will be reviewed:"
-msgstr ""
+msgstr "Urmatorul produs va fi inspectat/revizuit:"
 
 #: src/org/revager/export/InvitationPDFExporter.java:415
 #: src/org/revager/export/ProtocolPDFExporter.java:431
 msgid "Product Version"
-msgstr ""
+msgstr "Versiunea produsului"
 
 #: src/org/revager/export/InvitationPDFExporter.java:479
 #: src/org/revager/export/PDFCellEventExtRef.java:80
 #: src/org/revager/export/ProtocolPDFExporter.java:484
 #: src/org/revager/export/ProtocolPDFExporter.java:1619
 msgid "File Attachment"
-msgstr ""
+msgstr "Atasare fisier"
 
 #: src/org/revager/export/InvitationPDFExporter.java:518
 msgid ""
 "Please prepare for the review meeting by checking the product for the "
 "aspects which are associated to you."
 msgstr ""
+"Va rog sa va pregatiti pentru sedinta de inspectie/revizuire prin "
+"verificarea produsului privitor la aspectele asociate dumneavoastra."
 
 #: src/org/revager/export/InvitationPDFExporter.java:532
 msgid ""
 "Please do not hesitate to contact the review moderator if you have any "
 "questions:"
 msgstr ""
+"Va rog sa nu ezitati sa conectati moderatorul inspectiei/reviziei daca aveti "
+"intrebari:"
 
 #: src/org/revager/export/InvitationPDFExporter.java:537
 msgid ""
 "Please do not hesitate to contact one of the review moderators if you have "
 "any questions:"
 msgstr ""
+"Va rog sa nu ezitati sa conectati pe unul dintre moderatorii "
+"inspectiei/reviziei daca aveti intrebari:"
 
 #: src/org/revager/export/InvitationPDFExporter.java:563
 #: src/org/revager/export/ProtocolPDFExporter.java:837
 msgid "Cannot generate front page of the PDF document."
-msgstr ""
+msgstr "Nu pot genera prima pagina a documentului PDF."
 
 #: src/org/revager/export/InvitationPDFExporter.java:719
 msgid "Cannot put aspects into the PDF document."
-msgstr ""
+msgstr "Nu se pot pune aspecte in documentul PDF."
 
 #: src/org/revager/export/InvitationPDFExporter.java:751
 msgid ""
 "Please prepare for the review meeting by checking the product for the "
 "following aspects step by step:"
 msgstr ""
+"Va rog sa va pregatiti pentru sedinta de inspectie/revizuire prin "
+"verificarea produsului privitor la urmatoarele aspecte pas cu pas:"
 
 #: src/org/revager/export/InvitationPDFExporter.java:763
 msgid "The product will be checked for the following aspects:"
-msgstr ""
+msgstr "Produsul va fi verificat in privinta urmaoarelor aspecte:"
 
 #: src/org/revager/export/InvitationPDFExporter.java:780
 msgid "Cannot create invitation for the review meeting."
-msgstr ""
+msgstr "Nu pot crea o invitatie petru sedinta de inspectie/revizuire."
 
 #. 
 #. * Not part of unit testing because this exception is only thrown if
@@ -760,13 +769,13 @@ msgstr ""
 #. 
 #: src/org/revager/export/InvitationZIPExporter.java:143
 msgid "Cannot store invitation as ZIP file."
-msgstr ""
+msgstr "Nu pot memora/salva invitatia sub forma de fisier ZIP."
 
 #: src/org/revager/export/MeetingProtocolPDFExporter.java:91
 #: src/org/revager/export/ReviewProtocolPDFExporter.java:92
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1157
 msgid "List of Findings"
-msgstr ""
+msgstr "Lista rezultatelor"
 
 #. 
 #. * Not part of unit testing because this exception is only thrown if
@@ -775,7 +784,7 @@ msgstr ""
 #: src/org/revager/export/MeetingProtocolPDFExporter.java:125
 #: src/org/revager/export/ReviewProtocolPDFExporter.java:165
 msgid "Cannot create PDF document."
-msgstr ""
+msgstr "Nu pot crea un fisier PDF."
 
 #: src/org/revager/export/PDFExporter.java:91
 msgid ""
@@ -786,99 +795,101 @@ msgstr ""
 #: src/org/revager/export/PDFPageEventHelper.java:296
 #, java-format
 msgid "Page {0} of"
-msgstr ""
+msgstr "Pagina {0} din"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:238
 msgid "Findings List of the Review"
-msgstr ""
+msgstr "Lista rezultatelor inspectiei/revizuirii"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:241
 msgid "Findings List of the Review Meeting"
-msgstr ""
+msgstr "Lista rezultatelor sedintei de  inspectie/revizuire"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:320
 msgid "Review Description:"
-msgstr ""
+msgstr "Descrierea inspectiei/revizuirii"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:326
 msgid "Review Comments"
-msgstr ""
+msgstr "Comentarii la inspectie/revizuire"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:380
 msgid "Reviewed Product:"
-msgstr ""
+msgstr "Produsul inspectat/revizuit:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:410
 msgid "Product Name"
-msgstr ""
+msgstr "Numele produsului"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:450
 msgid "Product References:"
-msgstr ""
+msgstr "Referintele produsului:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:531
 msgid "Meeting Information:"
-msgstr ""
+msgstr "Informatiile sedintei:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:534
 msgid "Findings Lists of the Review Meetings:"
-msgstr ""
+msgstr "Liste cu rezultatele sedintelor de inspectie/revizuire:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:572
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:573
 msgid "Time"
-msgstr ""
+msgstr "Ora/Timp"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:613
 msgid "Duration of the meeting"
-msgstr ""
+msgstr "Durata sedintei"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:614
 #: src/org/revager/export/ProtocolPDFExporter.java:1353
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:215
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:163
 msgid "Hour(s)"
-msgstr ""
+msgstr "Ora"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:615
 #: src/org/revager/export/ProtocolPDFExporter.java:1360
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:216
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:164
 msgid "Minute(s)"
-msgstr ""
+msgstr "Minut(e)"
 
 #. 
 #. * meeting number of findings
 #. 
 #: src/org/revager/export/ProtocolPDFExporter.java:631
 msgid "Number of findings"
-msgstr ""
+msgstr "Numarul rezultatelor"
 
 #. 
 #. * meeting number of attendees
 #. 
 #: src/org/revager/export/ProtocolPDFExporter.java:647
 msgid "Number of attendees"
-msgstr ""
+msgstr "Numarul participantilor"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:688
 msgid "General impressions of the product:"
-msgstr ""
+msgstr "Impresii generale despre produs:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:697
 #: src/org/revager/gui/MainFrame.java:777
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:992
 msgid "Final recommendation for the product:"
-msgstr ""
+msgstr "Recomandarea finala pentru produs:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:760
 msgid ""
 "The severities of the findings in this review (descending order of "
 "importance):"
 msgstr ""
+"Gradele de severitate a rezultatelor în această inspectie/revizuire (in "
+"ordinea descrescătoare a importanţei):"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:778
 #, java-format
@@ -886,14 +897,16 @@ msgid ""
 "This review consists of {0} attendees, {1} findings, {2} meetings and {3} "
 "aspects."
 msgstr ""
+"Aceasta inspectie/revizuire consta din {0} participanti, {1} rezultate, {2} "
+"sedinte si {3} aspecte."
 
 #: src/org/revager/export/ProtocolPDFExporter.java:805
 msgid "This finding has been created with RevAger on"
-msgstr ""
+msgstr "Acest rezultat a fos creat cu RevAger asupra/pe"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:907
 msgid "Review Meeting on"
-msgstr ""
+msgstr "Sedinta de inspectie/revizuire a"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:984
 msgid "The meeting took place as it has been planned."

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-11-22 15:25+0000\n"
+"PO-Revision-Date: 2011-11-23 14:38+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-23 05:32+0000\n"
+"X-Launchpad-Export-Date: 2011-11-24 05:13+0000\n"
 "X-Generator: Launchpad (build 14336)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -910,63 +910,66 @@ msgstr "Sedinta de inspectie/revizuire a"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:984
 msgid "The meeting took place as it has been planned."
-msgstr ""
+msgstr "Sedinta a decurs conform planului."
 
 #: src/org/revager/export/ProtocolPDFExporter.java:991
 msgid ""
 "The meeting didn't take place as it has been planned. The meeting was "
 "planned:"
-msgstr ""
+msgstr "Sedinta nu a decurs conform planului. Sedinta a fost planificata:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1026
 msgid "Comments on the Meeting:"
-msgstr ""
+msgstr "Comentarii la sedinta:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1036
 msgid "Comments on the Findings List:"
-msgstr ""
+msgstr "Comentarii la lista rezultatelor:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1090
 msgid "The following attendees participated"
-msgstr ""
+msgstr "Urmatorii participanti au luat parte"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1092
 msgid "attendees"
-msgstr ""
+msgstr "participanti"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1134
 msgid "The following findings were recorded by the participating reviewers"
 msgstr ""
+"Urmatoarele rezultate au fost au fost înregistrate de către "
+"inspectorii/revizorii participanti"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1137
 msgid "findings"
-msgstr ""
+msgstr "rezultate"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1157
 msgid "Cannot put the selected review meeting in the PDF document."
 msgstr ""
+"Nu po pune sedinta de inspectie/revizuire selectata în documentul PDF."
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1304
 msgid "Assigned aspects:"
-msgstr ""
+msgstr "Aspecte alocate:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1335
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:183
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:137
 msgid "Preparation time:"
-msgstr ""
+msgstr "Timp de pregatire:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1346
 msgid "Day(s)"
-msgstr ""
+msgstr "Zi(le)"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1383
 msgid "Date, Signature"
-msgstr ""
+msgstr "Data, Semnatura"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1438
 msgid "Cannot put attendees into the PDF document."
-msgstr ""
+msgstr "Nu se pot pune participanţii în documentul PDF."
 
 #. 
 #. * Print title of the finding
@@ -978,46 +981,48 @@ msgstr ""
 #: src/org/revager/gui/findings_list/FindingPanel.java:572
 #: src/org/revager/gui/findings_list/FindingPanel.java:829
 msgid "Finding"
-msgstr ""
+msgstr "Descoperire/Rezultat"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1586
 msgid "References:"
-msgstr ""
+msgstr "Referințe:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1650
 msgid "Aspects:"
-msgstr ""
+msgstr "Aspecte:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:1695
 msgid "Cannot put findings into the PDF document."
-msgstr ""
+msgstr "Nu se pot pune rezulate/descoperiri în documentul PDF."
 
 #: src/org/revager/export/ReviewProtocolPDFExporter.java:133
 msgid "The following persons participated in the whole review:"
 msgstr ""
+"Următoarele persoane au participat la inspectie/revizuire pe tot parcursul "
+"ei:"
 
 #: src/org/revager/gui/AbstractDialog.java:481
 msgid "Show/hide help"
-msgstr ""
+msgstr "Arata /ascunde sistemul de asistenta de ajutor"
 
 #: src/org/revager/gui/AbstractDialog.java:573
 #: src/org/revager/gui/AbstractFrame.java:894
 msgid "Work in progress ..."
-msgstr ""
+msgstr "Lucrări în progres ..."
 
 #. 
 #. * Show "wait..." as label
 #. 
 #: src/org/revager/gui/AbstractDialog.java:600
 msgid "Loading help ..."
-msgstr ""
+msgstr "Incarcarea sistemului de asistenta de ajutor ..."
 
 #. 
 #. * Construct the button to toggle the hints
 #. 
 #: src/org/revager/gui/AbstractFrame.java:539
 msgid "Show/hide hints"
-msgstr ""
+msgstr "Arata / ascunde sugestii"
 
 #: src/org/revager/gui/AbstractFrame.java:556
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:94
@@ -1025,7 +1030,7 @@ msgstr ""
 #: src/org/revager/gui/workers/NewReviewWorker.java:120
 #: src/org/revager/gui/workers/RestoreReviewWorker.java:80
 msgid "No review in process."
-msgstr ""
+msgstr "Nici o inspectie/revizuire in proces."
 
 #: src/org/revager/gui/DirectoryPopupWindow.java:99
 #: src/org/revager/gui/StrengthPopupWindow.java:109
@@ -1037,21 +1042,21 @@ msgstr ""
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:123
 #: src/org/revager/gui/helpers/DatePicker.java:645
 msgid "RevAger"
-msgstr ""
+msgstr "RevAger"
 
 #: src/org/revager/gui/DirectoryPopupWindow.java:114
 #: src/org/revager/gui/StrengthPopupWindow.java:142
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:131
 msgid "Filter:"
-msgstr ""
+msgstr "Filtru:"
 
 #: src/org/revager/gui/DirectoryPopupWindow.java:115
 msgid "Filtered attendees:"
-msgstr ""
+msgstr "Participanţii filtraţi:"
 
 #: src/org/revager/gui/DirectoryPopupWindow.java:119
 msgid "Remove attendee from address book"
-msgstr ""
+msgstr "Stergeţi participantul din agendă"
 
 #. 
 #. * buttons for accepting and canceling
@@ -1072,7 +1077,7 @@ msgstr ""
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:204
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:409
 msgid "Abort"
-msgstr ""
+msgstr "Abandonare"
 
 #. 
 #. * buttons
@@ -1093,94 +1098,96 @@ msgstr ""
 #: src/org/revager/gui/findings_list/FindingPanel.java:1089
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:424
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmă"
 
 #: src/org/revager/gui/HelpBrowserFrame.java:103
 msgid "RevAger Online Help"
-msgstr ""
+msgstr "RevAger Ajutor Online"
 
 #: src/org/revager/gui/HelpBrowserFrame.java:129
 msgid "Filter/Search - Enter search item ..."
-msgstr ""
+msgstr "Filtru / Cautare - Introduceţi elementul cautat ..."
 
 #: src/org/revager/gui/HelpBrowserFrame.java:137
 #: src/org/revager/gui/StrengthPopupWindow.java:163
 msgid "Reset filter"
-msgstr ""
+msgstr "Reinitializati filtrul"
 
 #: src/org/revager/gui/HelpBrowserFrame.java:142
 msgid ""
 "Please enter a search item into the input field to filter the contents:"
 msgstr ""
+"Va rog să introduceti un element de căutare în câmpul de intrare pentru "
+"filtrarea conţinutului:"
 
 #: src/org/revager/gui/HelpBrowserFrame.java:164
 msgid "Cannot load the start page."
-msgstr ""
+msgstr "Nu se poate încărca pagina de start."
 
 #: src/org/revager/gui/HelpBrowserFrame.java:164
 msgid "Error occured"
-msgstr ""
+msgstr "S-a detectat o eroare"
 
 #: src/org/revager/gui/HelpBrowserFrame.java:361
 msgid "Cannot find help page."
-msgstr ""
+msgstr "Nu se poate gasi pagina de ajutor."
 
 #: src/org/revager/gui/MainFrame.java:143
 msgid "All meetings"
-msgstr ""
+msgstr "Toate sedintele"
 
 #. 
 #. * creating the left panel
 #. 
 #: src/org/revager/gui/MainFrame.java:350
 msgid "Product:"
-msgstr ""
+msgstr "Produs:"
 
 #: src/org/revager/gui/MainFrame.java:354
 msgid "Title of the review:"
-msgstr ""
+msgstr "Titlul inspectiei/revizuirii:"
 
 #: src/org/revager/gui/MainFrame.java:358
 msgid "Description of the review:"
-msgstr ""
+msgstr "Descrierea inspectiei/revizuirii:"
 
 #: src/org/revager/gui/MainFrame.java:365
 msgid "Comments on the review"
-msgstr ""
+msgstr "Observaţii/Comentarii cu privire la inspectie/revizuire"
 
 #: src/org/revager/gui/MainFrame.java:372
 msgid "Comments on the review:"
-msgstr ""
+msgstr "Observaţii/Comentarii cu privire la inspectie/revizuire:"
 
 #: src/org/revager/gui/MainFrame.java:453
 msgid "Review Meetings:"
-msgstr ""
+msgstr "Sedinte de inspectie/revizuire:"
 
 #: src/org/revager/gui/MainFrame.java:590
 #: src/org/revager/gui/MainFrame.java:1785
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:550
 msgid "Remove"
-msgstr ""
+msgstr "Șterge"
 
 #: src/org/revager/gui/MainFrame.java:599
 msgid "Modify meeting"
-msgstr ""
+msgstr "Modifica inspectia/revizuirea:"
 
 #: src/org/revager/gui/MainFrame.java:610
 msgid "Comment meeting"
-msgstr ""
+msgstr "Comenteaza sedinta"
 
 #: src/org/revager/gui/MainFrame.java:620
 msgid "Open/create list of findings"
-msgstr ""
+msgstr "Deschide/creaza lista de rezultate/constatări"
 
 #: src/org/revager/gui/MainFrame.java:631
 msgid "Attendees of the review:"
-msgstr ""
+msgstr "Participantii la inspectie/revizuire:"
 
 #: src/org/revager/gui/MainFrame.java:750
 msgid "Remove attendee"
-msgstr ""
+msgstr "Sterge participant"
 
 #: src/org/revager/gui/MainFrame.java:760
 msgid "Modify attendee"

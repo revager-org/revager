@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-02 12:44+0000\n"
+"PO-Revision-Date: 2011-12-05 15:27+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-03 05:17+0000\n"
-"X-Generator: Launchpad (build 14418)\n"
+"X-Launchpad-Export-Date: 2011-12-06 05:39+0000\n"
+"X-Generator: Launchpad (build 14435)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -1716,11 +1716,11 @@ msgstr "Data versiunii:"
 
 #: src/org/revager/gui/dialogs/AboutDialog.java:79
 msgid "Homepage:"
-msgstr ""
+msgstr "Pagină web:"
 
 #: src/org/revager/gui/dialogs/AboutDialog.java:81
 msgid "E-mail:"
-msgstr ""
+msgstr "E-mail:"
 
 #. 
 #. * Close button
@@ -1731,83 +1731,87 @@ msgstr ""
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:268
 #: src/org/revager/gui/helpers/DatePicker.java:991
 msgid "Close"
-msgstr ""
+msgstr "Închideţi"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:255
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:271
 msgid "Here you can manage all required information of the attendee."
 msgstr ""
+"Aici aveţi posibilitatea să administrati toate informaţiile cerute ale "
+"participantului."
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:264
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:188
 msgid "Back"
-msgstr ""
+msgstr "Înapoi"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:321
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:186
 msgid "Name:"
-msgstr ""
+msgstr "Nume:"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:329
 msgid "Open Attendee Directory"
-msgstr ""
+msgstr "Deschideţi directorul participantului"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:332
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:185
 msgid "Contact information:"
-msgstr ""
+msgstr "Date de contact:"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:338
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:184
 msgid "Role:"
-msgstr ""
+msgstr "Rol:"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:354
 msgid "Priorities:"
-msgstr ""
+msgstr "Priorităţi:"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:386
 msgid "Add Strength"
-msgstr ""
+msgstr "Adaugare aptitudine/punct forte"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:391
 msgid "Please select at least one strength for the reviewer:"
 msgstr ""
+"Va rog sa selectati cel putin o aptitudine/punct forte pentru "
+"inspector/revizor:"
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:411
 #: src/org/revager/gui/workers/ImportCatalogWorker.java:78
 #: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:63
 #: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:95
 msgid "Importing catalog ..."
-msgstr ""
+msgstr "Importare catalog ..."
 
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:476
 msgid "Remove Strength"
-msgstr ""
+msgstr "Stergere aptitudine/punct forte"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:131
 msgid "CSV Profiles for Finding Export"
-msgstr ""
+msgstr "Profile CSV pentru exportul rezultatelor"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:133
 msgid "Here you can configure the CSV Profiles for exporting findings."
-msgstr ""
+msgstr "Aici puteţi configura Profile CSV pentru exportarea rezultatelor."
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:265
 msgid "Name of the CSV Profile:"
-msgstr ""
+msgstr "Numele profilului CSV:"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:329
 msgid "Column order in the CSV file:"
-msgstr ""
+msgstr "Ordinea coloanelor in fisierul CSV:"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:376
 msgid "Column names in the CSV file:"
-msgstr ""
+msgstr "Numele coloanelor în fişierul CSV:"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:407
 msgid "Put the given column names into the CSV file (first row)."
-msgstr ""
+msgstr "Puneti numele coloanelor în fişierul CSV (primul rând)."
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:411
 msgid "Protect the content of individual cells in the CSV file with quotes."

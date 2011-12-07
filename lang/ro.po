@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-05 15:27+0000\n"
+"PO-Revision-Date: 2011-12-06 14:59+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-06 05:39+0000\n"
+"X-Launchpad-Export-Date: 2011-12-07 05:04+0000\n"
 "X-Generator: Launchpad (build 14435)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -1816,130 +1816,132 @@ msgstr "Puneti numele coloanelor în fişierul CSV (primul rând)."
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:411
 msgid "Protect the content of individual cells in the CSV file with quotes."
 msgstr ""
+"Protejati conţinutul celulelor individuale din fişierul CSV cu ghilimele."
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:462
 msgid "Valid severities of the findings for this profile:"
-msgstr ""
+msgstr "Grade de severitate valide ale rezultatelor pentru acest profil:"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:497
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:244
 msgid "CSV Profile:"
-msgstr ""
+msgstr "Profilul CSV:"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:516
 msgid "Add a new CSV Profile"
-msgstr ""
+msgstr "Adaugati un nou profil CSV"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:522
 msgid "Please enter a name for the new CSV Profile:"
-msgstr ""
+msgstr "Vă rog să introduceţi un nume pentru noul profil CSV:"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:546
 msgid "Remove selected CSV Profile"
-msgstr ""
+msgstr "Stergeti Profilul CSV selectat"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:550
 #: src/org/revager/gui/findings_list/FindingPanel.java:1086
 msgid "Cancel"
-msgstr ""
+msgstr "Anulaţi"
 
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:558
 msgid ""
 "You are going to delete the selected CSV Profile. Do you really want to "
 "continue?"
 msgstr ""
+"Aveţi de gand sa ştergeţi profilul CSV selectat. Chiar doriţi să continuaţi?"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:237
 msgid "Selected meeting:"
-msgstr ""
+msgstr "Sedinta selectata:"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:249
 msgid "Attach product to invitation packages"
-msgstr ""
+msgstr "Ataşaţi produsul la pachetele invitaţiei"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:254
 msgid "Package as PDF file"
-msgstr ""
+msgstr "Pachet ca fişier PDF"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:258
 msgid "Package as ZIP file"
-msgstr ""
+msgstr "Pachet ca fişier ZIP"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:262
 msgid "Package as sub directory"
-msgstr ""
+msgstr "Pachet ca subdirector"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:272
 msgid "Attendees:"
-msgstr ""
+msgstr "Participanţi:"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:274
 msgid "Select All"
-msgstr ""
+msgstr "Selectați tot"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:302
 msgid "Directory:"
-msgstr ""
+msgstr "Director:"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:307
 msgid "Select directory where to store the packages"
-msgstr ""
+msgstr "Selectaţi directorul în care se vor salva pachetele"
 
 #: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:367
 msgid "Here you can create invitations for the attendees."
-msgstr ""
+msgstr "Aici aveţi posibilitatea să creaţi invitaţii pentru participanti."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:83
 msgid "Product reference(s):"
-msgstr ""
+msgstr "Referinta/referintele produsului:"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:84
 msgid "Product file(s):"
-msgstr ""
+msgstr "Fişier(e) Produs:"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:85
 msgid "Product name:"
-msgstr ""
+msgstr "Numele produsului:"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:86
 msgid "Product version:"
-msgstr ""
+msgstr "Versiunea produsului:"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:210
 #: src/org/revager/gui/findings_list/FindingPanel.java:358
 msgid "Add Reference"
-msgstr ""
+msgstr "Adăugaţi referinţă"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:218
 msgid "New reference"
-msgstr ""
+msgstr "Referinţă nouă"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:241
 #: src/org/revager/gui/findings_list/FindingPanel.java:359
 msgid "Remove Reference"
-msgstr ""
+msgstr "Stergeţi referinţa"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:260
 #: src/org/revager/gui/findings_list/FindingPanel.java:360
 msgid "Edit Reference"
-msgstr ""
+msgstr "Editaţi referinţa"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:317
 #: src/org/revager/gui/findings_list/FindingPanel.java:407
 msgid "Add File"
-msgstr ""
+msgstr "Adăugaţi fişier"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:340
 msgid "Adding file ..."
-msgstr ""
+msgstr "Adăugare fişier ..."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:384
 msgid "Remove File"
-msgstr ""
+msgstr "Ștergeţi fişierul"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:400
 msgid "Removing file ..."
-msgstr ""
+msgstr "Ștergere fişier ..."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:490
 msgid "Press enter to add the reference finally."

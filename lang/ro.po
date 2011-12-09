@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-06 14:59+0000\n"
+"PO-Revision-Date: 2011-12-08 15:37+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-07 05:04+0000\n"
-"X-Generator: Launchpad (build 14435)\n"
+"X-Launchpad-Export-Date: 2011-12-09 04:56+0000\n"
+"X-Generator: Launchpad (build 14450)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -1945,19 +1945,19 @@ msgstr "Ștergere fişier ..."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:490
 msgid "Press enter to add the reference finally."
-msgstr ""
+msgstr "Apasati tasta enter pentru a adăuga referinţa în cele din urmă."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:496
 msgid "Please enter the name of the product."
-msgstr ""
+msgstr "Vă rog să introduceţi numele produsului."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:502
 msgid "Please enter the version number of the product."
-msgstr ""
+msgstr "Vă rog să introduceţi numărul de versiune al produsului."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:508
 msgid "Please enter at least one reference for the product."
-msgstr ""
+msgstr "Vă rog să introduceţi cel puţin o referinţă pentru produs."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:528
 msgid "Specify the Product"

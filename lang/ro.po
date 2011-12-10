@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-08 15:37+0000\n"
+"PO-Revision-Date: 2011-12-09 11:45+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-09 04:56+0000\n"
+"X-Launchpad-Export-Date: 2011-12-10 05:01+0000\n"
 "X-Generator: Launchpad (build 14450)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -1464,7 +1464,7 @@ msgid ""
 "severities will be replaced by the next higher one. Would you really like to "
 "remove the selected severity?"
 msgstr ""
-"Dacă eliminaţi o severitate, acest lucru va afecta întreaga "
+"Dacă stergeţi o severitate, acest lucru va afecta întreaga "
 "inspectie/revizuire. Severitatea îndepărtata va fi înlocuita cu cea cu "
 "urmatorul grad mai mare. Doriti intr-adevar sa stergeti severitatea "
 "selectata?"
@@ -1961,127 +1961,132 @@ msgstr "Vă rog să introduceţi cel puţin o referinţă pentru produs."
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:528
 msgid "Specify the Product"
-msgstr ""
+msgstr "Specificaţi produsul"
 
 #: src/org/revager/gui/dialogs/EditProductDialog.java:529
 msgid "Here you can set the name, version and references of the product."
-msgstr ""
+msgstr "Aici puteţi seta numele, versiunea şi referinţe ale produsului."
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:153
 msgid "Here you can export the findings into a CSV file."
-msgstr ""
+msgstr "Aici puteţi să exportaţi rezultatele într-un fişier CSV."
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:222
 msgid "All findigs of this review"
-msgstr ""
+msgstr "Toate rezultatele din aceasta inspectie/revizuire"
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:235
 msgid "Export findings of a certain meeting only:"
-msgstr ""
+msgstr "Exportati numai rezultatele unei inspectii/revizuiri precise:"
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:243
 msgid "Bug Reporter:"
-msgstr ""
+msgstr "Reporterul de erori:"
 
 #: src/org/revager/gui/dialogs/ExportCSVDialog.java:281
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:190
 msgid "Export"
-msgstr ""
+msgstr "Exportare"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:118
 msgid "Export Findings as PDF File"
-msgstr ""
+msgstr "Exportaţi  rezultatele intr-un fisier PDF"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:119
 msgid "Here you can export the findings as a PDF file."
-msgstr ""
+msgstr "Aici puteţi să exportaţi rezultatele intr-un fişier PDF."
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:134
 msgid "All findings of the review"
-msgstr ""
+msgstr "Toate rezultatele inspectiei/revizuirii"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:137
 msgid "Include signing fields for the present attendees."
-msgstr ""
+msgstr "Includeţi câmpuri de semnare pentru participanţii prezenţi."
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:138
 msgid "Attach files which belong to the findings."
-msgstr ""
+msgstr "Ataşaţi fişiere care aparţin rezultatelor."
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:139
 msgid "Attach file(s) of the product"
-msgstr ""
+msgstr "Ataşaţi fişier(e) al(e) produsului"
 
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:145
 msgid "Export the findings of a certain meeting only:"
-msgstr ""
+msgstr "Exportati numai rezultatele unei sedinte anumite:"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:72
 msgid "Severities for the findings in this review:"
-msgstr ""
+msgstr "Severităţi ale rezultatelor din aceasta inspectie/revizuire:"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:143
 msgid "Add Severity"
-msgstr ""
+msgstr "Adaugaţi  severitate"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:153
 msgid "Remove Severity"
-msgstr ""
+msgstr "Stergeţi severitate"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:162
 msgid "Edit Severity"
-msgstr ""
+msgstr "Editaţi severitate"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:171
 msgid "Push to the top"
-msgstr ""
+msgstr "Impingeti spre vârf/inceput"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:180
 msgid "Push up"
-msgstr ""
+msgstr "Impingeti in sus"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:190
 msgid "Push down"
-msgstr ""
+msgstr "Impingeti in jos"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:200
 msgid "Push to the bottom"
-msgstr ""
+msgstr "Impingeti spre baza/sfârsit"
 
 #: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:256
 msgid ""
 "The order of the severities for the findings affects the entire review and "
 "represents their relevance (decreasing from top to bottom in the list)."
 msgstr ""
+"Ordinea severitătilor pentru rezultate afectează întreaga "
+"inspectie/revizuire şi reprezintă relevanţa lor (descendent în listă de la "
+"vârf/inceput pina la bază/sfârsit)."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:254
 msgid "Here you can enter all information for the new review meeting."
 msgstr ""
+"Aici puteţi introduce toate informaţiile pentru noua sedinta a "
+"inspectiei/revizuirii."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:276
 #: src/org/revager/gui/dialogs/MeetingDialog.java:401
 msgid "Please enter the reason for canceling the meeting..."
-msgstr ""
+msgstr "Vă rog să introduceţi motivul pentru anularea sedintei ..."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:278
 #: src/org/revager/gui/dialogs/MeetingDialog.java:348
 msgid "Edit Meeting"
-msgstr ""
+msgstr "Editati sedinta"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:279
 #: src/org/revager/gui/dialogs/MeetingDialog.java:349
 msgid "Here you can edit all information of the selected meeting."
-msgstr ""
+msgstr "Aici puteţi să editaţi toate informaţiile sedintei selectate."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:366
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:806
 msgid "Period of time:"
-msgstr ""
+msgstr "Perioada de timp:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:369
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:809
 msgid "to"
-msgstr ""
+msgstr "la"
 
 #. 
 #. *
@@ -2090,11 +2095,11 @@ msgstr ""
 #: src/org/revager/gui/dialogs/MeetingDialog.java:397
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:800
 msgid "Location:"
-msgstr ""
+msgstr "Locaţia:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:405
 msgid "Canceled"
-msgstr ""
+msgstr "Anulat"
 
 #. 
 #. *
@@ -2103,19 +2108,19 @@ msgstr ""
 #: src/org/revager/gui/dialogs/MeetingDialog.java:426
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:803
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:456
 msgid "Select date"
-msgstr ""
+msgstr "Selectaţi data"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:136
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:141
 msgid "PDF Export"
-msgstr ""
+msgstr "Export PDF"
 
 #. 
 #. * Auto save
@@ -2124,6 +2129,7 @@ msgstr ""
 #, java-format
 msgid "Save review every {0} minutes automatically."
 msgstr ""
+"Salvaţi inspectia/revizuirea tot la fiecare {0} minute în mod automat."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:241
 msgid ""

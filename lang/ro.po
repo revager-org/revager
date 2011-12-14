@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-09 11:45+0000\n"
+"PO-Revision-Date: 2011-12-13 14:25+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-10 05:01+0000\n"
-"X-Generator: Launchpad (build 14450)\n"
+"X-Launchpad-Export-Date: 2011-12-14 04:54+0000\n"
+"X-Generator: Launchpad (build 14487)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -2135,18 +2135,20 @@ msgstr ""
 msgid ""
 "Check if a new version of RevAger is available during application start."
 msgstr ""
+"Verificaţi dacă o nouă versiune a aplicatiei RevAger este disponibilă în "
+"timpul pornirii aplicaţiei."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:255
 msgid "Show hints in dialogs by default."
-msgstr ""
+msgstr "Afişaţi sugestii în casetele de dialog în mod implicit."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:269
 msgid "Highlight obligatory input fields."
-msgstr ""
+msgstr "Marcaţi câmpurile obligatorii de intrare."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:283
 msgid "Allow usage of fullscreen mode (EXPERIMENTAL)."
-msgstr ""
+msgstr "Permiteţi utilizarea modului fullscreen (EXPERIMENTAL)."
 
 #. 
 #. * Protocol warning
@@ -2155,89 +2157,101 @@ msgstr ""
 #, java-format
 msgid "Show warning while creating a findings list after {0} minutes."
 msgstr ""
+"Arătaţi o avertizare în timpul creării unei liste de rezultate după {0} "
+"minute."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:387
 msgid "Language:"
-msgstr ""
+msgstr "Limba:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:430
 msgid "Findings list as PDF file"
-msgstr ""
+msgstr "Lista rezultatelor ca fişier PDF"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:440
 #: src/org/revager/gui/dialogs/SettingsDialog.java:510
 msgid "Choose an Image..."
-msgstr ""
+msgstr "Alegeţi o imagine ..."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:461
 #: src/org/revager/gui/dialogs/SettingsDialog.java:531
 msgid "Remove Image"
-msgstr ""
+msgstr "Stergeţi imaginea"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:473
 #: src/org/revager/gui/dialogs/SettingsDialog.java:543
 msgid "Displayed image:"
-msgstr ""
+msgstr "Imaginea afisata:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:488
 #: src/org/revager/gui/dialogs/SettingsDialog.java:571
 msgid "Displayed foot text:"
-msgstr ""
+msgstr "Textul de subsol afişat:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:500
 msgid "Invitations as PDF file:"
-msgstr ""
+msgstr "Invitaţiile ca fişier PDF:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:561
 msgid "Text of invitations:"
-msgstr ""
+msgstr "Textul invitaţiilor:"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:610
 msgid ""
 "Here you can set some application options. They will be saved in the "
 "database independently of any particular review."
 msgstr ""
+"Aici puteţi seta unele opţiuni ale aplicaţiei. Acestea vor fi salvate în "
+"baza de date, independent de orice inspecţie/revizuire particulara."
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:612
 msgid ""
 "Here you can set some options concerning the PDF export. They will be saved "
 "in the database independently of any particular review."
 msgstr ""
+"Aici puteţi seta unele opţiuni privind exportul PDF. Acestea vor fi salvate "
+"în baza de date, independent de orice inspecţie/revizuire particulara."
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:41
 msgid "Don't show this dialog during the current session again."
-msgstr ""
+msgstr "Nu mai arătaţi acest dialog în timpul sesiunii curente."
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:104
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #: src/org/revager/gui/dialogs/WarningDialog.java:107
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #. 
 #. * Strings
 #. 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:83
 msgid "Welcome to RevAger!"
-msgstr ""
+msgstr "Bine aţi venit la RevAger!"
 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:85
 msgid ""
 "You can select a mode and a review from the list of reviews. If your review "
 "isn't in the list, you can load it by choosing 'Select another review...'."
 msgstr ""
+"Puteţi selecta un mod şi o inspecţie/revizuire din lista de "
+"inspecţii/revizuiri. Dacă inspecţia/revizuirea dumneavoastră nu este în "
+"listă, aveţi posibilitatea să o încărcaţi prin alegînd 'Selectaţi o altă "
+"recenzie ...'."
 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:87
 msgid ""
 "Here you can manage some personal details. They will be used during the "
 "review."
 msgstr ""
+"Aici puteţi administra unele detalii personale. Acestea vor fi folosite în "
+"timpul inspecţiei/revizuirii."
 
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:170
 msgid "RevAger Assistant"
-msgstr ""
+msgstr "Asistent pentru RevAger"
 
 #. 
 #. * Strings
@@ -2248,36 +2262,46 @@ msgid ""
 "reviewer. This option is perfect for quick reviews of a website or even for "
 "car inspections."
 msgstr ""
+"Selectaţi această opţiune dacă doriţi să începeţi imediat o "
+"inspecţie/revizuire ca un inspector/revizor unic. Această opţiune este "
+"perfectă pentru inspecţii/revizuiri rapide a unui site web sau chiar pentru "
+"inspecţiile de masina."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:73
 msgid "Select this if you would like to organize a review as moderator."
 msgstr ""
+"Selectaţi această opţiune dacă doriţi să organizaţi o inspecţie/revizuire de "
+"moderator."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74
 msgid "Select this if you would like to open an existing review."
 msgstr ""
+"Selectaţi această opţiune dacă doriţi să deschideţi o inspecţie/revizuire "
+"existentă."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
 msgid "Select this if you want to change the language of the application."
-msgstr ""
+msgstr "Selectaţi această opţiune dacă doriţi să schimbaţi limba aplicaţiei."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
 msgid ""
 "Select this if you would like to manage the catalogs and aspects in the "
 "Aspects Manager."
 msgstr ""
+"Selectaţi această opţiune dacă doriţi să administraţi  cataloagele şi "
+"aspectele în Administratorul de Aspecte."
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
 msgid "Open existing review"
-msgstr ""
+msgstr "Deschideţi o inspecţie/revizuire existentă"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
 msgid "Open Aspects Manager"
-msgstr ""
+msgstr "Deschideţi Administratorul de Aspecte"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
 msgid "Schedule new review"
-msgstr ""
+msgstr "Planificaţi o inspecţie/revizuire nouă"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
 msgid "Quickstart"

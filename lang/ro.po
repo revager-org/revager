@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-13 14:25+0000\n"
+"PO-Revision-Date: 2011-12-14 14:04+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-14 04:54+0000\n"
+"X-Launchpad-Export-Date: 2011-12-15 05:33+0000\n"
 "X-Generator: Launchpad (build 14487)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -2305,92 +2305,95 @@ msgstr "Planificaţi o inspecţie/revizuire nouă"
 
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
 msgid "Quickstart"
-msgstr ""
+msgstr "Start rapid"
 
 #. 
 #. * Strings
 #. 
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:62
 msgid "Select another review..."
-msgstr ""
+msgstr "Selectaţi o altă inspecţie/revizuire ..."
 
 #: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:63
 msgid "No reviews available"
-msgstr ""
+msgstr "Nu există inspecţii/revizuiri disponibile"
 
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:118
 msgid "Please select the aspects which should be added to the finding:"
 msgstr ""
+"Vă rog sa selectaţi aspectele care ar trebui să fie adăugate la rezultat:"
 
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:130
 msgid ""
 "Please select the attendee you would like to add to the current meeting:"
 msgstr ""
+"Vă rog să selectaţi participantul pe care doriţi să-l adăugaţi la actuala "
+"sedinţă:"
 
 #. 
 #. * Set tooltips for buttons
 #. 
 #: src/org/revager/gui/findings_list/FindingPanel.java:293
 msgid "Close Edit View of this Finding"
-msgstr ""
+msgstr "Inchide Editare Vizualizare a acestui rezultat"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:294
 msgid "Remove this Finding"
-msgstr ""
+msgstr "Stergeti acest rezultat"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:295
 msgid "Push up Finding"
-msgstr ""
+msgstr "Impinge rezultatul in sus"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:296
 msgid "Push down Finding"
-msgstr ""
+msgstr "Impinge rezultatul in jos"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:297
 msgid "Push Finding to the top"
-msgstr ""
+msgstr "Impinge rezultatul spre inceput/virf"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:298
 msgid "Push Finding to the bottom"
-msgstr ""
+msgstr "Impinge rezultatul spre fund/bază"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:313
 msgid "Please enter a reference"
-msgstr ""
+msgstr "Vă rog să introduceţi o referinţă"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:408
 msgid "Remove file"
-msgstr ""
+msgstr "Ştergeţi fişierul"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:409
 msgid "Paste Image from Clipboard"
-msgstr ""
+msgstr "Inseraţi imaginea din Clipboard/memoria intermediara"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:461
 msgid "Add Aspect(s)"
-msgstr ""
+msgstr "Adăugaţi aspect(e)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:462
 msgid "Remove Aspect(s)"
-msgstr ""
+msgstr "Ştergeţi aspect(e)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:631
 msgid "Are you sure you want to remove the selected finding permanently?"
-msgstr ""
+msgstr "Sunteţi sigur că doriţi să ştergeţi rezultatul selectat permanent?"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:805
 #: src/org/revager/gui/models/AttendeeTableModel.java:101
 #: src/org/revager/gui/models/FindAspTableModel.java:85
 msgid "Aspect(s)"
-msgstr ""
+msgstr "Aspect(e)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:807
 msgid "Reference(s)"
-msgstr ""
+msgstr "Referinţă/Referinţe"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:808
 msgid "File(s)"
-msgstr ""
+msgstr "Fişier(e)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1055
 msgid "Getting image from clipboard ..."

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-14 14:04+0000\n"
+"PO-Revision-Date: 2011-12-15 15:05+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-15 05:33+0000\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Launchpad-Export-Date: 2011-12-16 05:44+0000\n"
+"X-Generator: Launchpad (build 14523)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -2397,111 +2397,113 @@ msgstr "Fişier(e)"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1055
 msgid "Getting image from clipboard ..."
-msgstr ""
+msgstr "Obţinerea imaginii din Clipboard/memoria intermediara"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1065
 msgid ""
 "Unfortunately there isn't any image in the clipboard which can be included "
 "as a reference."
 msgstr ""
+"Din păcate, nu există nici o imagine în clipboard/memoria intermediara, care "
+"poate fi inclusă ca referinţă."
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1066
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1116
 msgid "Information"
-msgstr ""
+msgstr "Informaţii"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1077
 msgid "Screenshot"
-msgstr ""
+msgstr "Captură de ecran"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1082
 msgid "Please enter a name for the image:"
-msgstr ""
+msgstr "Vă rog să introduceţi un nume pentru imagine:"
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1086
 msgid "Save"
-msgstr ""
+msgstr "Salvați"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:345
 msgid "Severe problem occurred! RevAger has to be restarted."
-msgstr ""
+msgstr "O problemă severă a fost inregistrată! RevAger trebuie repornit."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:346
 msgid "Problem occurred"
-msgstr ""
+msgstr "Problemă inregistrată"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:369
 msgid "Organizational"
-msgstr ""
+msgstr "Organizatoric"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:370
 msgid "Impression"
-msgstr ""
+msgstr "Impresie"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:371
 #: src/org/revager/gui/findings_list/FindingsTab.java:129
 msgid "Findings"
-msgstr ""
+msgstr "Rezultate"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:372
 msgid "Comments & Recommendation"
-msgstr ""
+msgstr "Comentarii & Recomandari"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:394
 msgid "Confirm and close list of findings"
-msgstr ""
+msgstr "Confirmaţi şi inchideţi jos lista rezultatelor"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:419
 msgid "Export List of Findings as PDF File"
-msgstr ""
+msgstr "Exportaţi lista rezultatelor ca fişier PDF"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:434
 msgid "Export List of Findings as CSV File"
-msgstr ""
+msgstr "Exportaţi lista rezultatelor ca fişier CSV"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:453
 msgid "Exit Fullscreen"
-msgstr ""
+msgstr "Terminarea modului de afisare pe întregul ecran"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:459
 msgid "Change to Fullscreen mode"
-msgstr ""
+msgstr "Schimbare la modul de afisare pe tot ecranul"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:506
 msgid "Reset Stop Watch"
-msgstr ""
+msgstr "Reinitializare cronometru"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:537
 msgid "Pause Stop Watch"
-msgstr ""
+msgstr "Oprire/Intrerupere cronometru"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:543
 msgid "Start Stop Watch"
-msgstr ""
+msgstr "Start cronometru"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:561
 msgid "Add Attendee from the Attendee Pool"
-msgstr ""
+msgstr "Adăugaţi participant din gruparea de participanţi"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:581
 msgid "Remove Attendee"
-msgstr ""
+msgstr "Stergeti participant"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:724
 msgid "Add Attendee to Meeting"
-msgstr ""
+msgstr "Adăugaţi participant la şedinţă"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:757
 msgid "Attendees of the current meeting:"
-msgstr ""
+msgstr "Participanţii şedinţei curente:"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:995
 msgid "Comments on the meeting:"
-msgstr ""
+msgstr "Comentarii cu privire la şedinţă:"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:998
 msgid "Comments on the list of findings:"
-msgstr ""
+msgstr "Comentarii cu privire la lista de rezultate:"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1111
 #, java-format
@@ -2510,22 +2512,29 @@ msgid ""
 "recommended to finalize the meeting now and continue the review at a later "
 "point in time."
 msgstr ""
+"Această şedinţă  de inspecţie/revizuire este deja de {0} minute in execuţie. "
+"Prin urmare, este recomandat să finalizaţi şedinţa acum şi să continuaţi "
+"inspecţia/revizuirea la un moment de timp ulterior."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1158
 msgid "List of findings successfully loaded."
-msgstr ""
+msgstr "Lista de rezulate a fost incarcată cu succes."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1544
 msgid ""
 "Please add at least one attendee to the meeting by choosing one from the "
 "attendees pool or create a new one (Tab 'Organizational')."
 msgstr ""
+"Vă rog să adăugaţi cel puţin un participant la şedinţă prin alegerea unuia "
+"din gruparea de participanţi sau să creaţi unul nou (Tab \"Organizatoric\")."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1548
 msgid ""
 "Please enter the general impression for the product into the provided text "
 "field (Tab 'Impression')."
 msgstr ""
+"Vă rog  să introduceţi impresia generală pentru produs în câmpul de text "
+"prevăzut (Tab \"Impresie\")."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1552
 msgid ""

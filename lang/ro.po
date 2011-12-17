@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-15 15:05+0000\n"
+"PO-Revision-Date: 2011-12-16 14:53+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-16 05:44+0000\n"
-"X-Generator: Launchpad (build 14523)\n"
+"X-Launchpad-Export-Date: 2011-12-17 05:30+0000\n"
+"X-Generator: Launchpad (build 14525)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -2487,7 +2487,7 @@ msgstr "Adăugaţi participant din gruparea de participanţi"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:581
 msgid "Remove Attendee"
-msgstr "Stergeti participant"
+msgstr "Stergeţi participant"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:724
 msgid "Add Attendee to Meeting"
@@ -2541,181 +2541,187 @@ msgid ""
 "Please enter the final recommendation for the product into the provided text "
 "field (Tab 'Comments & Recommendation')."
 msgstr ""
+"Vă rog să introduceţi recomandarea finală pentru produs în câmpul de text "
+"prevăzut (Tab \"Comentarii & Recomandări\")."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1556
 msgid "For every finding enter at least a description (Tab 'Findings')."
 msgstr ""
+"Introduceţi cel puţin o descriere pentru fiecare rezultat (Tab "
+"\"Rezultate\")."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1560
 msgid "The meeting data and its list of findings is complete."
-msgstr ""
+msgstr "Datele şedinţei si lista ei cu rezulate sunt complete."
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:1564
 msgid ""
 "In order to add a new finding to the list of findings use the 'Add Finding' "
 "button (Tab 'Findings')."
 msgstr ""
+"Pentru a adăuga un nou rezultat în lista de rezultate utilizaţi butonul "
+"\"Adăugaţi Rezultat\" (Tab \"Rezulate\")."
 
 #: src/org/revager/gui/findings_list/FindingsTab.java:51
 msgid "Add Finding"
-msgstr ""
+msgstr "Adăugaţi Rezultat"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:124
 msgid "Image Editor"
-msgstr ""
+msgstr "Editor de imagini"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:211
 msgid "Undo"
-msgstr ""
+msgstr "Anulaţi/Revocați"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:223
 msgid "Redo"
-msgstr ""
+msgstr "Refaceți/Repetaţi"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:287
 msgid "Please enter some text"
-msgstr ""
+msgstr "Vă rog să introduceţi un text"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:352
 msgid "Color"
-msgstr ""
+msgstr "Culoare"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:361
 msgid "Please choose a color"
-msgstr ""
+msgstr "Vă rog să alegeţi o culoare"
 
 #: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:456
 msgid "Thickness"
-msgstr ""
+msgstr "Grosime"
 
 #: src/org/revager/gui/helpers/DatePicker.java:945
 msgid "January"
-msgstr ""
+msgstr "Ianuarie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:947
 msgid "February"
-msgstr ""
+msgstr "Februarie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:949
 msgid "March"
-msgstr ""
+msgstr "Martie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:951
 msgid "April"
-msgstr ""
+msgstr "Aprilie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:953
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: src/org/revager/gui/helpers/DatePicker.java:955
 msgid "June"
-msgstr ""
+msgstr "Iunie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:957
 msgid "July"
-msgstr ""
+msgstr "Iulie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:959
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: src/org/revager/gui/helpers/DatePicker.java:961
 msgid "September"
-msgstr ""
+msgstr "Septembrie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:963
 msgid "October"
-msgstr ""
+msgstr "Octombrie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:965
 msgid "November"
-msgstr ""
+msgstr "Noiembrie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:967
 msgid "December"
-msgstr ""
+msgstr "Decembrie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:969
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: src/org/revager/gui/helpers/DatePicker.java:971
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: src/org/revager/gui/helpers/DatePicker.java:973
 msgid "Wed"
-msgstr ""
+msgstr "Mie"
 
 #: src/org/revager/gui/helpers/DatePicker.java:975
 msgid "Thu"
-msgstr ""
+msgstr "Joi"
 
 #: src/org/revager/gui/helpers/DatePicker.java:977
 msgid "Fri"
-msgstr ""
+msgstr "Vin"
 
 #: src/org/revager/gui/helpers/DatePicker.java:979
 msgid "Sat"
-msgstr ""
+msgstr "Sâm"
 
 #: src/org/revager/gui/helpers/DatePicker.java:981
 msgid "Sun"
-msgstr ""
+msgstr "Dum"
 
 #: src/org/revager/gui/helpers/DatePicker.java:983
 msgid "Previous month"
-msgstr ""
+msgstr "Luna trecută"
 
 #: src/org/revager/gui/helpers/DatePicker.java:985
 msgid "Next month"
-msgstr ""
+msgstr "Luna viitoare"
 
 #: src/org/revager/gui/helpers/DatePicker.java:987
 msgid "Previous year"
-msgstr ""
+msgstr "Anul trecut"
 
 #: src/org/revager/gui/helpers/DatePicker.java:989
 msgid "Next year"
-msgstr ""
+msgstr "Anul viitor"
 
 #: src/org/revager/gui/helpers/DatePicker.java:993
 msgid "Please choose a date..."
-msgstr ""
+msgstr "Vă rog sa alegeți o dată..."
 
 #: src/org/revager/gui/helpers/DatePicker.java:995
 msgid "Calendar"
-msgstr ""
+msgstr "Calendar"
 
 #: src/org/revager/gui/helpers/FileChooser.java:171
 #: src/org/revager/gui/helpers/FileChooser.java:302
 msgid "Open File..."
-msgstr ""
+msgstr "Deschideți fișierul..."
 
 #: src/org/revager/gui/helpers/FileChooser.java:190
 #: src/org/revager/gui/helpers/FileChooser.java:320
 msgid "Save File..."
-msgstr ""
+msgstr "Salvați fișierul..."
 
 #: src/org/revager/gui/helpers/FileChooser.java:209
 #: src/org/revager/gui/helpers/FileChooser.java:329
 msgid "Select Directory..."
-msgstr ""
+msgstr "Selectați un director..."
 
 #: src/org/revager/gui/helpers/FileChooser.java:245
 msgid "Cannot find the given file. Please select a valid one."
-msgstr ""
+msgstr "Fişierul dat nu poate fi găsit. Vă rog să selectaţi o adresă validă."
 
 #: src/org/revager/gui/helpers/FileChooser.java:264
 msgid ""
 "There is a file with the given name already existing. Would you like to "
 "overwrite it?"
-msgstr ""
+msgstr "Există deja un fişier cu numele dat. Doriţi să il suprascrieţi?"
 
 #: src/org/revager/gui/helpers/FileChooser.java:330
 msgid "Select"
-msgstr ""
+msgstr "Selectaţi"
 
 #: src/org/revager/gui/helpers/FileChooser.java:357
 msgid ""
@@ -2723,31 +2729,32 @@ msgid ""
 "\n"
 "Please try again."
 msgstr ""
+"S-a înregistrat o eroare în timpul alegerii unui fişier sau director!"
 
 #: src/org/revager/gui/helpers/TreeProtocol.java:117
 msgid "Findings List of"
-msgstr ""
+msgstr "Lista rezulatelor de"
 
 #: src/org/revager/gui/models/AspectTableModel.java:145
 #: src/org/revager/gui/models/ReviewerTableModel.java:100
 msgid "Aspect"
-msgstr ""
+msgstr "Aspect"
 
 #: src/org/revager/gui/models/AspectTableModel.java:147
 msgid "Reviewers"
-msgstr ""
+msgstr "Inspectori/Revizori"
 
 #: src/org/revager/gui/models/AttendeeTableModel.java:67
 msgid "Name"
-msgstr ""
+msgstr "Nume"
 
 #: src/org/revager/gui/models/AttendeeTableModel.java:69
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:42
 msgid "Description"
-msgstr ""
+msgstr "Descriere"
 
 #: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:43
 msgid "Reference"

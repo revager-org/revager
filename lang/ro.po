@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-16 22:44+0100\n"
-"PO-Revision-Date: 2011-12-19 08:10+0000\n"
+"PO-Revision-Date: 2011-12-20 07:25+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-20 04:54+0000\n"
+"X-Launchpad-Export-Date: 2011-12-21 05:23+0000\n"
 "X-Generator: Launchpad (build 14538)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -2798,23 +2798,23 @@ msgstr "Aspecte alocate."
 
 #: src/org/revager/gui/workers/AutoAspAllocWorker.java:113
 msgid "Cannot allocate aspects!"
-msgstr ""
+msgstr "Nu se pot aloca aspecte!"
 
 #: src/org/revager/gui/workers/AutoBackupWorker.java:89
 msgid "Auto backup done."
-msgstr ""
+msgstr "Copia de siguranţă automată a fost terminată."
 
 #: src/org/revager/gui/workers/AutoBackupWorker.java:103
 msgid "Auto backup failed!"
-msgstr ""
+msgstr "Copia de siguranţă automată a eşuat!"
 
 #: src/org/revager/gui/workers/AutoSaveWorker.java:103
 msgid "Review stored successfully."
-msgstr ""
+msgstr "Inspetia/Revizuirea a fost stocată cu succes."
 
 #: src/org/revager/gui/workers/AutoSaveWorker.java:119
 msgid "Review couldn't be stored!"
-msgstr ""
+msgstr "Inspetia/Revizuirea nu a putut fi stocată!"
 
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:72
 #, java-format
@@ -2827,23 +2827,32 @@ msgid ""
 "Please choose 'Update' to get the latest version. If you don't like to see "
 "this message again, you can turn it off in the application settings."
 msgstr ""
+"O nouă versiune a aplicaţiei  RevAger este disponibilă!\n"
+"\n"
+"Ultima versiune: {0}\n"
+"Versiune dvs.: {1}\n"
+"\n"
+"Vă rog să alegeţi \"Update\" pentru a obţine cea mai recentă versiune. Dacă "
+"nu doriţi să vedeţi acest mesaj din nou, aveţi posibilitatea să îl "
+"dezactivaţi în setările aplicaţiei."
 
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:76
 msgid "Update RevAger"
-msgstr ""
+msgstr "Actualizare RevAger"
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:67
 msgid "Creating invitation(s) ..."
-msgstr ""
+msgstr "Creare de invitaţie/invitaţii ..."
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:118
 msgid "The invitations have been created successfully."
-msgstr ""
+msgstr "Invitaţiile au fost create cu succes."
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:130
 msgid ""
 "You have to choose at least one attendee in order to create an invitation."
 msgstr ""
+"Trebuie să alegeţi cel puţin un participant, cu scopul de a crea o invitaţie."
 
 #: src/org/revager/gui/workers/CreateInvitationsWorker.java:137
 msgid "Please choose a directory where to store the invitation(s)."

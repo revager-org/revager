@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Fragenkatalog für Use Cases, basierend auf der Checkliste von Holger Röder (Stand: 2010-10-19)</description>
+    <aspects>
+        <aspect>
+            <id>158</id>
+            <category>Allgemein</category>
+            <directive>Verhalten</directive>
+            <description>Der UC beschreibt ein für den Hauptakteur wertvolles Verhalten des Systems (z.B. wie das System eine benötigte Funktionalität erbringt.)</description>
+        </aspect>
+        <aspect>
+            <id>159</id>
+            <category>Allgemein</category>
+            <directive>Form</directive>
+            <description>Der UC ist in einem Formular (z.B. einer Tabelle) beschrieben, dass einheitlich für alle UC in der Anforderungsspezifikation verwendet wird.</description>
+        </aspect>
+        <aspect>
+            <id>160</id>
+            <category>Allgemein</category>
+            <directive>Referenzierbarkeit</directive>
+            <description>Der UC ist eindeutig referenzierbar (z.B. durch die Angabe einer ID)</description>
+        </aspect>
+        <aspect>
+            <id>161</id>
+            <category>Allgemein</category>
+            <directive>Benamung</directive>
+            <description>Der UC hat einen eindeutigen und aussagekräftigen Namen Anmerkung: Die Form &quot;Objekt + Verb&quot; hat sich im Deutschen bewährt, also z.B. &quot;Bestellung aufgeben&quot; oder &quot;Geld abheben&quot;.</description>
+        </aspect>
+        <aspect>
+            <id>162</id>
+            <category>Allgemein</category>
+            <directive>Ziel</directive>
+            <description>Das Ziel, das der Hauptakteur mit dem UC verfolgt, ist verständlich beschrieben.</description>
+        </aspect>
+        <aspect>
+            <id>163</id>
+            <category>Akteure</category>
+            <directive>Akteure</directive>
+            <description>Alle am UC beteiligten Akteure sind angegeben. (Anmerkung: Das System selbst ist kein Akteur, wohl aber externe Systeme. Alle angegebenen Akteure sollten im Begriffslexikon aufgeführt sein.</description>
+        </aspect>
+        <aspect>
+            <id>164</id>
+            <category>Akteure</category>
+            <directive>Kennzeichnung Primärakteur</directive>
+            <description>Wenn mehrere Akteure am UC beteiligt sind, ist der Hauptakteur (primärer Akteur) gekennzeichnet.</description>
+        </aspect>
+        <aspect>
+            <id>166</id>
+            <category>Vorbedingungen</category>
+            <directive>Vorhandensein</directive>
+            <description>Die Vorbedinungen für den UC sind angegeben.</description>
+        </aspect>
+        <aspect>
+            <id>167</id>
+            <category>Vorbedingungen</category>
+            <directive>Blinde Annahme</directive>
+            <description>Die Vorbedinungen werden im UC nicht überprüft, sondern als gegeben angenommen.</description>
+        </aspect>
+        <aspect>
+            <id>168</id>
+            <category>Nachbedingungen</category>
+            <directive>Vorhandensein</directive>
+            <description>Die Nachbedingungen für den UC sind angegeben. (Anmerkung: Die Nachbedingungen beziehen sich auf den Normalablauf. Nachbedingungen für Sonderfälle werden separat angegeben.)</description>
+        </aspect>
+        <aspect>
+            <id>169</id>
+            <category>Normalablauf</category>
+            <directive>Erkennbarkeit Hauptakteur</directive>
+            <description>Es ist eindeutig erkennbar, wie der Hauptakteur das Ereignis auslöst, das den Normalablauf anstößt.</description>
+        </aspect>
+        <aspect>
+            <id>170</id>
+            <category>Normalablauf</category>
+            <directive>Prägnanz</directive>
+            <description>Der Normalablauf hat 3-9 Schritte. (Anmerkung: UC sollten verständlich und übersichtlich bleiben, aus diesem Grund sollten die Abläufe nur aus einer überschaubaren Zahl von Schritten bestehen (und sonst ggf. aufgeteilt werden). Die angabe ist als Richtwert zu verstehen.)</description>
+        </aspect>
+        <aspect>
+            <id>171</id>
+            <category>Normalablauf</category>
+            <directive>Zielerreichung</directive>
+            <description>Der Hauptakteur erreicht durch den Normalablauf sein Ziel.</description>
+        </aspect>
+        <aspect>
+            <id>172</id>
+            <category>Einzelschritte</category>
+            <directive>Nummerierung</directive>
+            <description>Der Schritt ist fortlaufend (und innerhalb der UC) eindeutig nummeriert.</description>
+        </aspect>
+        <aspect>
+            <id>173</id>
+            <category>Einzelschritte</category>
+            <directive>Erkennbarkeit Hauptakteur</directive>
+            <description>Der Akteur, der den Schritt ausführt, ist eindeutig erkennbar.</description>
+        </aspect>
+        <aspect>
+            <id>174</id>
+            <category>Einzelschritte</category>
+            <directive>Implementierungsneutralität</directive>
+            <description>Der Schritt beschreibt keine Details der Benutzungsschnittstelle.</description>
+        </aspect>
+        <aspect>
+            <id>175</id>
+            <category>Einzelschritte</category>
+            <directive>Ein-Aktion-Prinzip</directive>
+            <description>Der Schritt beschreibt eine Aktion des handelnden Akteurs. (Anmerkung: Gleichartige Einzelschritte können dabei auch abstrahiert als eine Aktion zusammengefasst werden: &quot;Der Sachbearbeiter gibt die Adresse ein&quot; statt &quot;1.  ... gibt die Straße ein. / 2. ... gibt die Hausnummer ein. / 3. ... gibt die Postleitzahl ein.)</description>
+        </aspect>
+        <aspect>
+            <id>176</id>
+            <category>Sonderfälle</category>
+            <directive>Existenz Nachbedingung</directive>
+            <description>Für alle Sonderfälle sind Nachbedingungen angegeben.</description>
+        </aspect>
+        <aspect>
+            <id>177</id>
+            <category>Sonderfälle</category>
+            <directive>Erkennbarkeit Verzweigung</directive>
+            <description>Es ist eindeutig erkennbar, bei welchem Schritt der Normalablauf in den Sonderfall verzweigt.</description>
+        </aspect>
+        <aspect>
+            <id>178</id>
+            <category>Sonderfälle</category>
+            <directive>Angabe Bedinungen</directive>
+            <description>Die Bedingungen, unter denen der Normalablauf in den Sonderfall verzweigt, sind angegeben.</description>
+        </aspect>
+        <aspect>
+            <id>179</id>
+            <category>Sonderfälle</category>
+            <directive>Erfülltheit Nachbedingungen</directive>
+            <description>Nach dem Sonderfall sind die für diesen Sonderfall angegebenen Nachbedingungen erfüllt.</description>
+        </aspect>
+    </aspects>
+</catalog>

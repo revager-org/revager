@@ -354,12 +354,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		// Set current list of findings
-		tabPanelFindings = new FindingsTab(currentProt);
+
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				// Set current list of findings
+				tabPanelFindings = new FindingsTab(currentProt);
 				// Create tab panel
 				tabbedPane.removeAll();
 				tabbedPane.removeChangeListener(tabChangeListener);

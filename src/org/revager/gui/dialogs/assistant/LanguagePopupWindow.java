@@ -71,23 +71,29 @@ public class LanguagePopupWindow extends JDialog {
 	private JPanel inputPnl = new JPanel(gbl);
 	private JPanel panelBase = GUITools.newPopupBasePanel();
 
+	Locale romanian = new Locale("ro","RO");
 	/*
 	 * Strings
 	 */
 	private String germanStrng = Locale.GERMAN.getDisplayLanguage();
 	private String englishStrng = Locale.ENGLISH.getDisplayLanguage();
+	private String romanianStrng = romanian.getDisplayLanguage();
 
 	/*
 	 * ImageIcons
 	 */
 	private ImageIcon germanIcon = Data.getInstance().getIcon(
-			"german_31x20_0.png");
+			"de_16x11_0.png");
 	private ImageIcon germanRolloverIcon = Data.getInstance().getIcon(
-			"german_31x20.png");
+			"de_16x11.png");
 	private ImageIcon englishIcon = Data.getInstance().getIcon(
-			"english_31x20_0.png");
+			"gb_16x11_0.png");
 	private ImageIcon englishRolloverIcon = Data.getInstance().getIcon(
-			"english_31x20.png");
+			"gb_16x11.png");
+	private ImageIcon romanianIcon = Data.getInstance().getIcon(
+			"ro_16x11_0.png");
+	private ImageIcon romanianRolloverIcon = Data.getInstance().getIcon(
+			"ro_16x11.png");
 	private String currentLang;
 
 	/*
@@ -98,6 +104,8 @@ public class LanguagePopupWindow extends JDialog {
 			germanRolloverIcon, languageGrp);
 	private HLink englishHLnk = new HLink(englishStrng, englishIcon,
 			englishRolloverIcon, languageGrp);
+	private HLink romanianHLnk = new HLink(romanianStrng, romanianIcon,
+			romanianRolloverIcon, languageGrp);
 
 	/**
 	 * Returns the selected language.
@@ -108,6 +116,9 @@ public class LanguagePopupWindow extends JDialog {
 		if (languageGrp.getSelectedLinkText().contains(
 				Locale.GERMAN.getDisplayLanguage()))
 			return Locale.GERMAN.getLanguage();
+		else if(languageGrp.getSelectedLinkText().contains(
+			 romanian.getDisplayLanguage()))
+			return romanian.getLanguage();
 		else
 			return Locale.ENGLISH.getLanguage();
 	}
@@ -139,6 +150,7 @@ public class LanguagePopupWindow extends JDialog {
 			currentLang = null;
 		}
 		languageGrp.addLink(germanHLnk);
+		languageGrp.addLink(romanianHLnk);
 		languageGrp.addLink(englishHLnk);
 
 		if (currentLang.equals(Locale.GERMAN.getLanguage()))
@@ -149,9 +161,14 @@ public class LanguagePopupWindow extends JDialog {
 		GUITools.addComponent(inputPnl, gbl, germanHLnk, 0, 0, 1, 1, 1.0, 1.0,
 				10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(inputPnl, gbl, englishHLnk, 0, 1, 1, 1, 1.0, 1.0,
+		GUITools.addComponent(inputPnl, gbl, romanianHLnk, 0, 1, 1, 1, 1.0, 1.0,
+				10, 10, 0, 10, GridBagConstraints.BOTH,
+				GridBagConstraints.CENTER);
+		GUITools.addComponent(inputPnl, gbl, englishHLnk, 0, 2, 1, 1, 1.0, 1.0,
 				10, 10, 10, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
+		
+		
 
 		panelBase.add(inputPnl, BorderLayout.CENTER);
 

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-11-16 22:44+0100\n"
+"POT-Creation-Date: 2013-06-09 14:57+0200\n"
 "PO-Revision-Date: 2012-05-09 11:03+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-10 05:28+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2013-06-11 05:59+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -773,7 +773,7 @@ msgstr "Nu pot memora/salva invitatia sub forma de fisier ZIP."
 
 #: src/org/revager/export/MeetingProtocolPDFExporter.java:91
 #: src/org/revager/export/ReviewProtocolPDFExporter.java:92
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1157
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1158
 msgid "List of Findings"
 msgstr "Lista rezultatelor"
 
@@ -879,7 +879,7 @@ msgstr "Impresii generale despre produs:"
 
 #: src/org/revager/export/ProtocolPDFExporter.java:697
 #: src/org/revager/gui/MainFrame.java:777
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:992
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:993
 msgid "Final recommendation for the product:"
 msgstr "Recomandarea finala pentru produs:"
 
@@ -1036,7 +1036,7 @@ msgstr "Nici o inspectie/revizuire in proces."
 #: src/org/revager/gui/StrengthPopupWindow.java:109
 #: src/org/revager/gui/TextPopupWindow.java:78
 #: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:154
-#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:128
+#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:139
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:111
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:173
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:123
@@ -1071,7 +1071,7 @@ msgstr "Stergeţi participantul din agendă"
 #: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:181
 #: src/org/revager/gui/dialogs/MeetingDialog.java:492
 #: src/org/revager/gui/dialogs/SettingsDialog.java:161
-#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:166
+#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:183
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:183
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:300
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:204
@@ -1091,7 +1091,7 @@ msgstr "Abandonare"
 #: src/org/revager/gui/dialogs/MeetingDialog.java:503
 #: src/org/revager/gui/dialogs/SettingsDialog.java:151
 #: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:97
-#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:175
+#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:192
 #: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:192
 #: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:309
 #: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:213
@@ -1194,7 +1194,7 @@ msgid "Modify attendee"
 msgstr "Modifică participantul"
 
 #: src/org/revager/gui/MainFrame.java:771
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:772
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:773
 msgid "General impression of the product:"
 msgstr "Impresia generală a produsului:"
 
@@ -1410,7 +1410,7 @@ msgstr ""
 #: src/org/revager/gui/actions/attendee/AddAttendeeAction.java:46
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:309
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:254
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:571
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:572
 msgid "Add Attendee"
 msgstr "Adăugaţi participant"
 
@@ -1427,7 +1427,7 @@ msgstr ""
 
 #: src/org/revager/gui/actions/attendee/EditAttFromProtAction.java:48
 #: src/org/revager/gui/dialogs/AttendeeDialog.java:270
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:591
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:592
 msgid "Edit Attendee"
 msgstr "Editaţi participantul"
 
@@ -2079,12 +2079,12 @@ msgid "Here you can edit all information of the selected meeting."
 msgstr "Aici puteţi să editaţi toate informaţiile sedintei selectate."
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:366
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:806
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:807
 msgid "Period of time:"
 msgstr "Perioada de timp:"
 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:369
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:809
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:810
 msgid "to"
 msgstr "la"
 
@@ -2093,7 +2093,7 @@ msgstr "la"
 #. * creating elements for location, and canceled infos
 #. 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:397
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:800
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:801
 msgid "Location:"
 msgstr "Locaţia:"
 
@@ -2106,7 +2106,7 @@ msgstr "Anulat"
 #. * creating elements for the date of the meeting
 #. 
 #: src/org/revager/gui/dialogs/MeetingDialog.java:426
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:803
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:804
 msgid "Date:"
 msgstr "Data:"
 
@@ -2408,7 +2408,7 @@ msgstr ""
 "poate fi inclusă ca referinţă."
 
 #: src/org/revager/gui/findings_list/FindingPanel.java:1066
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1116
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1117
 msgid "Information"
 msgstr "Informaţii"
 
@@ -2432,80 +2432,80 @@ msgstr "O problemă severă a fost inregistrată! RevAger trebuie repornit."
 msgid "Problem occurred"
 msgstr "Problemă inregistrată"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:369
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:370
 msgid "Organizational"
 msgstr "Organizatoric"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:370
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:371
 msgid "Impression"
 msgstr "Impresie"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:371
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:372
 #: src/org/revager/gui/findings_list/FindingsTab.java:129
 msgid "Findings"
 msgstr "Rezultate"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:372
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:373
 msgid "Comments & Recommendation"
 msgstr "Comentarii & Recomandari"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:394
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:395
 msgid "Confirm and close list of findings"
 msgstr "Confirmaţi şi inchideţi jos lista rezultatelor"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:419
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:420
 msgid "Export List of Findings as PDF File"
 msgstr "Exportaţi lista rezultatelor ca fişier PDF"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:434
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:435
 msgid "Export List of Findings as CSV File"
 msgstr "Exportaţi lista rezultatelor ca fişier CSV"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:453
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:454
 msgid "Exit Fullscreen"
 msgstr "Terminarea modului de afisare pe întregul ecran"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:459
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:460
 msgid "Change to Fullscreen mode"
 msgstr "Schimbare la modul de afisare pe tot ecranul"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:506
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:507
 msgid "Reset Stop Watch"
 msgstr "Reinitializare cronometru"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:537
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:538
 msgid "Pause Stop Watch"
 msgstr "Oprire/Intrerupere cronometru"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:543
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:544
 msgid "Start Stop Watch"
 msgstr "Start cronometru"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:561
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:562
 msgid "Add Attendee from the Attendee Pool"
 msgstr "Adăugaţi participant din gruparea de participanţi"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:581
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:582
 msgid "Remove Attendee"
 msgstr "Stergeţi participant"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:724
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:725
 msgid "Add Attendee to Meeting"
 msgstr "Adăugaţi participant la şedinţă"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:757
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:758
 msgid "Attendees of the current meeting:"
 msgstr "Participanţii şedinţei curente:"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:995
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:996
 msgid "Comments on the meeting:"
 msgstr "Comentarii cu privire la şedinţă:"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:998
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:999
 msgid "Comments on the list of findings:"
 msgstr "Comentarii cu privire la lista de rezultate:"
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1111
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1112
 #, java-format
 msgid ""
 "This review meeting is running for {0} minutes already. Therefore it is "
@@ -2516,11 +2516,11 @@ msgstr ""
 "Prin urmare, este recomandat să finalizaţi şedinţa acum şi să continuaţi "
 "inspecţia/revizuirea la un moment de timp ulterior."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1158
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1159
 msgid "List of findings successfully loaded."
 msgstr "Lista de rezulate a fost incarcată cu succes."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1544
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1541
 msgid ""
 "Please add at least one attendee to the meeting by choosing one from the "
 "attendees pool or create a new one (Tab 'Organizational')."
@@ -2528,7 +2528,7 @@ msgstr ""
 "Vă rog să adăugaţi cel puţin un participant la şedinţă prin alegerea unuia "
 "din gruparea de participanţi sau să creaţi unul nou (Tab \"Organizatoric\")."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1548
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1545
 msgid ""
 "Please enter the general impression for the product into the provided text "
 "field (Tab 'Impression')."
@@ -2536,7 +2536,7 @@ msgstr ""
 "Vă rog  să introduceţi impresia generală pentru produs în câmpul de text "
 "prevăzut (Tab \"Impresie\")."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1552
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1549
 msgid ""
 "Please enter the final recommendation for the product into the provided text "
 "field (Tab 'Comments & Recommendation')."
@@ -2544,17 +2544,17 @@ msgstr ""
 "Vă rog să introduceţi recomandarea finală pentru produs în câmpul de text "
 "prevăzut (Tab \"Comentarii & Recomandări\")."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1556
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1553
 msgid "For every finding enter at least a description (Tab 'Findings')."
 msgstr ""
 "Introduceţi cel puţin o descriere pentru fiecare rezultat (Tab "
 "\"Rezultate\")."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1560
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1557
 msgid "The meeting data and its list of findings is complete."
 msgstr "Datele şedinţei şi lista ei cu rezulate sunt complete."
 
-#: src/org/revager/gui/findings_list/FindingsListFrame.java:1564
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1561
 msgid ""
 "In order to add a new finding to the list of findings use the 'Add Finding' "
 "button (Tab 'Findings')."

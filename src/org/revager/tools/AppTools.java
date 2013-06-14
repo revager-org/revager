@@ -211,4 +211,12 @@ public class AppTools {
 		return appStubLocation;
 	}
 
+	public static String cutString(String str, int max) {
+		if (str.length() > max) {
+			str = str.substring(0, max) + "...";
+		}
+
+		return str;
+	}
+
 }

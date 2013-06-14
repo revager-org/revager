@@ -39,6 +39,7 @@ import org.revager.gui.actions.assistant.GoToOpenRevPnlAction;
 import org.revager.gui.actions.assistant.SelectLanguageAction;
 import org.revager.gui.helpers.HLink;
 import org.revager.gui.helpers.VLink;
+import org.revager.tools.AppTools;
 import org.revager.tools.GUITools;
 
 /**
@@ -69,18 +70,19 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	/*
 	 * Strings
 	 */
+	int max = 27;
+
+	private String openRevStrng = AppTools.cutString(_("Open existing review"), max);
+	private String languageStrng = AppTools.cutString(_("Select language"), max);
+	private String aspectsManagerStrng = AppTools.cutString(_("Open Aspects Manager"), max);
+	private String newReviewStrng = AppTools.cutString(_("Schedule new review"), max);
+	private String quickstartStrng = AppTools.cutString(_("Quickstart"), max);
+
 	private String quickRevTooltipStrng = _("Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections.");
 	private String newRevTooltipStrng = _("Select this if you would like to organize a review as moderator.");
 	private String openRevTooltipStrng = _("Select this if you would like to open an existing review.");
 	private String selectLanguageTooltipStrng = _("Select this if you want to change the language of the application.");
 	private String openAspectsMngrTooltipStrng = _("Select this if you would like to manage the catalogs and aspects in the Aspects Manager.");
-
-	private String openRevStrng = _("Open existing review");
-
-	private String languageStrng = _("Select language");
-	private String aspectsManagerStrng = _("Open Aspects Manager");
-	private String newReviewStrng = _("Schedule new review");
-	private String quickstartStrng = _("Quickstart");
 
 	/*
 	 * ImageIcons

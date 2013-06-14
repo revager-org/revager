@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-09 14:57+0200\n"
+"POT-Creation-Date: 2013-06-14 15:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1288,7 +1288,7 @@ msgid "Save Review as..."
 msgstr ""
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:62
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:80
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74
 msgid "Select language"
 msgstr ""
 
@@ -2060,40 +2060,40 @@ msgstr ""
 #.
 #. * Strings
 #.
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:72
-msgid "Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections."
-msgstr ""
-
 #: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:73
-msgid "Select this if you would like to organize a review as moderator."
-msgstr ""
-
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74
-msgid "Select this if you would like to open an existing review."
-msgstr ""
-
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
-msgid "Select this if you want to change the language of the application."
-msgstr ""
-
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
-msgid "Select this if you would like to manage the catalogs and aspects in the Aspects Manager."
-msgstr ""
-
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
 msgid "Open existing review"
 msgstr ""
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
 msgid "Open Aspects Manager"
 msgstr ""
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
 msgid "Schedule new review"
 msgstr ""
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:77
 msgid "Quickstart"
+msgstr ""
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:79
+msgid "Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections."
+msgstr ""
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:80
+msgid "Select this if you would like to organize a review as moderator."
+msgstr ""
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
+msgid "Select this if you would like to open an existing review."
+msgstr ""
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
+msgid "Select this if you want to change the language of the application."
+msgstr ""
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
+msgid "Select this if you would like to manage the catalogs and aspects in the Aspects Manager."
 msgstr ""
 
 #.

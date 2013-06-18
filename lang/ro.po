@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-06-14 15:40+0200\n"
+"POT-Creation-Date: 2013-06-17 09:33+0200\n"
 "PO-Revision-Date: 2013-06-14 13:09+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-15 05:22+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-18 06:15+0000\n"
+"X-Generator: Launchpad (build 16673)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
 #: src/org/revager/gui/HelpBrowserFrame.java:360
@@ -1393,7 +1393,7 @@ msgid "Save Review as..."
 msgstr "Salvati inspectia/revizuirea ca ..."
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:62
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:74
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
 msgid "Select language"
 msgstr "Alegeți limba"
 
@@ -2253,26 +2253,23 @@ msgstr ""
 msgid "RevAger Assistant"
 msgstr "Asistent pentru RevAger"
 
-#. 
-#. * Strings
-#. 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:73
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
 msgid "Open existing review"
 msgstr "Deschideţi o inspecţie/revizuire existentă"
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:77
 msgid "Open Aspects Manager"
 msgstr "Deschideţi Administratorul de Aspecte"
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
 msgid "Schedule new review"
 msgstr "Planificaţi o inspecţie/revizuire nouă"
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:77
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:79
 msgid "Quickstart"
 msgstr "Start rapid"
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:79
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
 msgid ""
 "Select this if you would like to start a review immediately as a single "
 "reviewer. This option is perfect for quick reviews of a website or even for "
@@ -2283,23 +2280,23 @@ msgstr ""
 "perfectă pentru inspecţii/revizuiri rapide a unui site web sau chiar pentru "
 "inspecţiile de masina."
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:80
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
 msgid "Select this if you would like to organize a review as moderator."
 msgstr ""
 "Selectaţi această opţiune dacă doriţi să organizaţi o inspecţie/revizuire de "
 "moderator."
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
 msgid "Select this if you would like to open an existing review."
 msgstr ""
 "Selectaţi această opţiune dacă doriţi să deschideţi o inspecţie/revizuire "
 "existentă."
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:84
 msgid "Select this if you want to change the language of the application."
 msgstr "Selectaţi această opţiune dacă doriţi să schimbaţi limba aplicaţiei."
 
-#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:85
 msgid ""
 "Select this if you would like to manage the catalogs and aspects in the "
 "Aspects Manager."

@@ -402,14 +402,50 @@ public class Data {
 	 * @return list of default catalogs
 	 */
 	public static List<String> getDefaultCatalogs() {
-		List<String> list = new ArrayList<String>();
+		List catalogs = new ArrayList<String>();
 
-		for (String sev : _("Software Specification; Second-hand Vehicle")
-				.split(";")) {
-			list.add(sev.trim());
+		String pathCatalogs = getInstance().getResource("path.catalogs") + getInstance().getLocale().getLanguage() + "/";
+		String fileEnding = "." + getInstance().getResource("fileEndingCatalog");
+
+		File jarFile = AppTools.getJarFile();
+
+		try {
+			/* Search files in the JAR file */
+			JarFile jf = new JarFile(jarFile);
+			Enumeration<JarEntry> ress = jf.entries();
+
+			String path = pathCatalogs.substring(1);
+			int pathLen = path.length();
+
+			while (ress.hasMoreElements()) {
+				JarEntry je = ress.nextElement();
+
+				if (je.getName().matches(
+						path + ".+" + fileEnding)) {
+					String filename = je.getName();
+
+					catalogs.add(filename.substring(pathLen, filename.length() - fileEnding.length()));
+				}
+			}
+		} catch (IOException e) {
+			/* Search files in the directory and add them */
+			String absDir = new File(Data.class.getProtectionDomain()
+					.getCodeSource().getLocation().getPath())
+					.getAbsolutePath().replace("\\", "/")
+					+ pathCatalogs;
+
+			File[] files = (new File(absDir)).listFiles();
+
+			if (files != null) {
+				for (File file : files) {
+					String filename = file.getName();
+
+					catalogs.add(filename.substring(0, filename.length() - fileEnding.length()));
+				}
+			}
 		}
 
-		return list;
+		return catalogs;
 	}
 
 	/**

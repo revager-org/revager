@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-18 22:24+0200\n"
+"POT-Creation-Date: 2013-06-18 22:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgstr ""
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:560
-#: src/org/revager/gui/dialogs/SettingsDialog.java:364
+#: src/org/revager/gui/dialogs/SettingsDialog.java:367
 #: src/org/revager/gui/findings_list/FindingPanel.java:632
 #: src/org/revager/gui/helpers/FileChooser.java:271
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:80
@@ -1289,7 +1289,7 @@ msgid "Select language"
 msgstr ""
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:73
-#: src/org/revager/gui/dialogs/SettingsDialog.java:363
+#: src/org/revager/gui/dialogs/SettingsDialog.java:366
 msgid "You have to restart the application in order finalize the change of language. Restart now?"
 msgstr ""
 

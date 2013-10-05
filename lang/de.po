@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-06-17 09:33+0200\n"
-"PO-Revision-Date: 2012-05-02 06:42+0000\n"
-"Last-Translator: Dennis Baudys <Unknown>\n"
+"POT-Creation-Date: 2013-06-18 22:50+0200\n"
+"PO-Revision-Date: 2013-06-19 10:00+0000\n"
+"Last-Translator: Daniel Kulesz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-18 06:15+0000\n"
+"X-Launchpad-Export-Date: 2013-06-20 05:38+0000\n"
 "X-Generator: Launchpad (build 16673)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -104,7 +104,7 @@ msgstr ""
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:560
-#: src/org/revager/gui/dialogs/SettingsDialog.java:364
+#: src/org/revager/gui/dialogs/SettingsDialog.java:367
 #: src/org/revager/gui/findings_list/FindingPanel.java:632
 #: src/org/revager/gui/helpers/FileChooser.java:271
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:80
@@ -375,10 +375,6 @@ msgid ""
 msgstr ""
 "Sie sind zur Review-Sitzung eingeladen. Bitte beachten Sie alle hier "
 "erwähnten Informationen."
-
-#: src/org/revager/app/model/Data.java:407
-msgid "Software Specification; Second-hand Vehicle"
-msgstr "Software-Spezifikation; Gebrauchtwagen"
 
 #. 
 #. * Not part of unit testing because this exception only is thrown if
@@ -1438,7 +1434,7 @@ msgid "Select language"
 msgstr "Sprache wählen"
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:73
-#: src/org/revager/gui/dialogs/SettingsDialog.java:363
+#: src/org/revager/gui/dialogs/SettingsDialog.java:366
 msgid ""
 "You have to restart the application in order finalize the change of "
 "language. Restart now?"
@@ -1678,7 +1674,7 @@ msgid ""
 "No review is loaded. Therefore you can only work in the library with its "
 "catalogs and aspects."
 msgstr ""
-"Es ist keine Review geladen. Daher können Sie ausschließlich in der "
+"Es ist kein Review geladen. Daher können Sie ausschließlich in der "
 "Fragenkatalog-Bibliothek arbeiten."
 
 #: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1743

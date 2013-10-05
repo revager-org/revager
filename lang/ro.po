@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: revager\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-06-17 09:33+0200\n"
+"POT-Creation-Date: 2013-06-18 22:50+0200\n"
 "PO-Revision-Date: 2013-06-14 13:09+0000\n"
 "Last-Translator: Angela Georgescu <Unknown>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-18 06:15+0000\n"
+"X-Launchpad-Export-Date: 2013-06-19 05:34+0000\n"
 "X-Generator: Launchpad (build 16673)\n"
 
 #: src/org/revager/Main.java:118 src/org/revager/Main.java:265
@@ -105,7 +105,7 @@ msgstr ""
 #: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
 #: src/org/revager/gui/dialogs/CSVProfilesDialog.java:560
-#: src/org/revager/gui/dialogs/SettingsDialog.java:364
+#: src/org/revager/gui/dialogs/SettingsDialog.java:367
 #: src/org/revager/gui/findings_list/FindingPanel.java:632
 #: src/org/revager/gui/helpers/FileChooser.java:271
 #: src/org/revager/gui/workers/CheckForNewVersionWorker.java:80
@@ -363,10 +363,6 @@ msgid ""
 msgstr ""
 "Sunteti invitati la sedinta de revizuire. Va rog sa luati in considerare "
 "informatiile care sunt parte a acestui document."
-
-#: src/org/revager/app/model/Data.java:407
-msgid "Software Specification; Second-hand Vehicle"
-msgstr "Specificatie Software; Vehicul second-hand"
 
 #. 
 #. * Not part of unit testing because this exception only is thrown if
@@ -1398,7 +1394,7 @@ msgid "Select language"
 msgstr "Alegeți limba"
 
 #: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:73
-#: src/org/revager/gui/dialogs/SettingsDialog.java:363
+#: src/org/revager/gui/dialogs/SettingsDialog.java:366
 msgid ""
 "You have to restart the application in order finalize the change of "
 "language. Restart now?"

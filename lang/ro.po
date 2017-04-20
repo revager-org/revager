@@ -1,0 +1,3014 @@
+# Romanian translation for revager
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the revager package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: revager\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-06-18 22:50+0200\n"
+"PO-Revision-Date: 2013-06-14 13:09+0000\n"
+"Last-Translator: Angela Georgescu <Unknown>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-06 05:06+0000\n"
+"X-Generator: Launchpad (build 16791)\n"
+
+#: src/org/revager/Main.java:118 src/org/revager/Main.java:265
+#: src/org/revager/gui/HelpBrowserFrame.java:360
+#: src/org/revager/gui/StrengthPopupWindow.java:136
+#: src/org/revager/gui/StrengthPopupWindow.java:292
+#: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:84
+#: src/org/revager/gui/actions/attendee/ConfirmAttendeeAction.java:115
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:223
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:255
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:299
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:347
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:392
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:454
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:714
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:745
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:776
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:807
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:840
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1004
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1078
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1427
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1606
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:247
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:403
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:178
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:287
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:240
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:536
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:571
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:914
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:937
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:962
+#: src/org/revager/gui/dialogs/EditProductDialog.java:291
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:183
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:304
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:334
+#: src/org/revager/gui/dialogs/SettingsDialog.java:687
+#: src/org/revager/gui/dialogs/SettingsDialog.java:745
+#: src/org/revager/gui/dialogs/SettingsDialog.java:821
+#: src/org/revager/gui/dialogs/SettingsDialog.java:872
+#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:258
+#: src/org/revager/gui/findings_list/FindingPanel.java:523
+#: src/org/revager/gui/helpers/FileChooser.java:250
+#: src/org/revager/gui/workers/CreateInvitationsWorker.java:104
+#: src/org/revager/gui/workers/ExportAspectsWorker.java:110
+#: src/org/revager/gui/workers/ExportCSVWorker.java:159
+#: src/org/revager/gui/workers/ExportCatalogWorker.java:120
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:169
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:184
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:114
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:147
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:145
+#: src/org/revager/gui/workers/LoadReviewWorker.java:108
+#: src/org/revager/gui/workers/NewReviewWorker.java:130
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:96
+#: src/org/revager/gui/workers/SaveReviewWorker.java:114
+msgid "Error"
+msgstr "Eroare"
+
+#: src/org/revager/Main.java:171
+msgid ""
+"The application cannot be restarted automatically on your system. Please "
+"start up RevAger manually after it has been closed."
+msgstr ""
+"Aplicatia nu poate fi reinitializata in mod automat in sistemul "
+"dumneavoastra. Va rog sa porniti RevAger manual dupa ce a fost inchis."
+
+#: src/org/revager/Main.java:172
+msgid "Warning"
+msgstr "Atentionare"
+
+#: src/org/revager/Main.java:257
+msgid ""
+"RevAger has detected an existing review data folder from an earlier version "
+"of this application. Do you want to use the data for the new version of "
+"RevAger?"
+msgstr ""
+"RevAger a detectat un director/catalog existent cu datele "
+"inspectiilor/revizuirilor unei versiuni anterioare a acestei aplicatii. Vrei "
+"sa folositi datele pentru noua versiune a lui RevAger?"
+
+#: src/org/revager/Main.java:258 src/org/revager/gui/UI.java:799
+#: src/org/revager/gui/actions/ExitAction.java:79
+#: src/org/revager/gui/actions/NewReviewAction.java:67
+#: src/org/revager/gui/actions/SaveReviewAction.java:101
+#: src/org/revager/gui/actions/SaveReviewAsAction.java:96
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:80
+#: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:74
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:560
+#: src/org/revager/gui/dialogs/SettingsDialog.java:367
+#: src/org/revager/gui/findings_list/FindingPanel.java:632
+#: src/org/revager/gui/helpers/FileChooser.java:271
+#: src/org/revager/gui/workers/CheckForNewVersionWorker.java:80
+msgid "Question"
+msgstr "Întrebare"
+
+#: src/org/revager/app/ApplicationControl.java:182
+#: src/org/revager/app/ApplicationControl.java:229
+msgid ""
+"It is not possible to store and open application data. Please choose another "
+"location."
+msgstr ""
+"Salvarea si deschiderea datelor aplicatiei nu este posibila. Va rog sa "
+"alegeti alta adresa/locatie."
+
+#: src/org/revager/app/ApplicationControl.java:402
+#: src/org/revager/app/ApplicationControl.java:408
+#: src/org/revager/export/ProtocolPDFExporter.java:129
+msgid "Review"
+msgstr "Inspectie/Revizuire"
+
+#: src/org/revager/app/ImportExportControl.java:285
+#: src/org/revager/app/ImportExportControl.java:333
+msgid "There aren't any findings to export into a CSV file."
+msgstr ""
+
+#: src/org/revager/app/ImportExportControl.java:409
+msgid "Review Invitation"
+msgstr "Invitatie la inspectie/revizuire"
+
+#: src/org/revager/app/ResiFileFilter.java:210
+#: src/org/revager/app/ResiFileFilter.java:257
+msgid "All files"
+msgstr "Toate fişierele"
+
+#: src/org/revager/app/ResiFileFilter.java:214
+#: src/org/revager/gui/actions/attendee/SelectAttOutOfDirAction.java:48
+#: src/org/revager/gui/actions/attendee/SelectAttOutOfDirAction.java:51
+msgid "Directory"
+msgstr "Director/Catalog"
+
+#: src/org/revager/app/ResiFileFilter.java:218
+msgid "Review files"
+msgstr "Fisiere cu datele inspectiei/revizuirii"
+
+#: src/org/revager/app/ResiFileFilter.java:227
+msgid "Catalog files"
+msgstr "Fisiere de catalog"
+
+#: src/org/revager/app/ResiFileFilter.java:232
+msgid "Aspect files"
+msgstr ""
+
+#: src/org/revager/app/ResiFileFilter.java:237
+msgid "PDF files"
+msgstr "Fișiere PDF"
+
+#: src/org/revager/app/ResiFileFilter.java:242
+msgid "CSV files"
+msgstr "Fişiere CSV"
+
+#: src/org/revager/app/ResiFileFilter.java:247
+msgid "ZIP files"
+msgstr "Fisiere ZIP (fisiere comprimate)"
+
+#: src/org/revager/app/ResiFileFilter.java:252
+msgid "Image files"
+msgstr "Fisiere imagine"
+
+#. *
+#. * The review info document file name.
+#. 
+#: src/org/revager/app/ReviewManagement.java:76
+#: src/org/revager/export/InvitationDirExporter.java:92
+#: src/org/revager/export/InvitationZIPExporter.java:59
+msgid "Review_Information.pdf"
+msgstr "Review_Information.pdf"
+
+#: src/org/revager/app/model/ApplicationData.java:173
+msgid "Cannot create tables in the database."
+msgstr "Nu pot fi create tabele in baza de date"
+
+#: src/org/revager/app/model/ApplicationData.java:210
+msgid ""
+"Cannot open or create the database for storing application data. Maybe "
+"RevAger is running already."
+msgstr ""
+"Baza de date nu poate fi deschisa sau creata pentru memorarea/salvarea "
+"datelor aplicatiei. Este posibil ca RevAger sa fie deja in executie."
+
+#: src/org/revager/app/model/ApplicationData.java:697
+msgid "Cannot retrieve the requested application settings."
+msgstr "Parametrii aplicatiei solicitati nu pot fi accesati/preluati."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/ApplicationData.java:786
+msgid "Cannot store application settings."
+msgstr "Parametrii aplicatiei nu pot fi memorati/salvati."
+
+#: src/org/revager/app/model/ApplicationData.java:847
+msgid "Cannot load the list of recent reviews."
+msgstr "Lista cu inspectii/revizii recente nu poate fi incarcata."
+
+#: src/org/revager/app/model/ApplicationData.java:912
+msgid "Cannot add the current review to the list of recent reviews."
+msgstr ""
+"Inspectia/Revizuirea curenta nu poate fi adaugata listei cu "
+"inspectii/revizii recente."
+
+#: src/org/revager/app/model/ApplicationData.java:948
+msgid "Cannot remove the review from the list of recent reviews."
+msgstr ""
+"Inspectia/Revizuirea nu poate fi stearsa din  lista cu inspectii/revizii "
+"recente."
+
+#: src/org/revager/app/model/ApplicationData.java:987
+msgid "Cannot load catalogs from the catalog library."
+msgstr "Nu pot incarca cataloage din biblioteca de cataloage."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/ApplicationData.java:1057
+msgid "Cannot find requested catalog."
+msgstr "Catalogul solicitat nu poate fi gasit."
+
+#: src/org/revager/app/model/ApplicationData.java:1201
+msgid "An error occured while removing a catalog."
+msgstr "Eroare in timpul stergerii unui catalog."
+
+#: src/org/revager/app/model/ApplicationData.java:1251
+#: src/org/revager/app/model/ApplicationData.java:1835
+msgid "Cannot get the number of catalogs in the library."
+msgstr "Nu pot gasi numarul de cataloage din biblioteca."
+
+#: src/org/revager/app/model/ApplicationData.java:1292
+msgid "Cannot get the first sorting position of the catalogs."
+msgstr "Nu pot gasi prima pozitie/primul indice de sortare a cataloagelor."
+
+#: src/org/revager/app/model/ApplicationData.java:1333
+msgid "Cannot get the last sorting position of the catalogs."
+msgstr "Nu pot gasi ultima pozitie/ultimul indice de sortare a cataloagelor."
+
+#: src/org/revager/app/model/ApplicationData.java:1374
+msgid "Cannot load attendees from the database."
+msgstr "Nu pot incarca participantii din baza de date."
+
+#: src/org/revager/app/model/ApplicationData.java:1459
+msgid ""
+"Cannot find requested attendee. The requested attendee may not be existing."
+msgstr ""
+"Nu pot gasi participantul solicitat. Este posibil ca participantul solicitat "
+"sa nu existe."
+
+#: src/org/revager/app/model/ApplicationData.java:1545
+msgid "An error occurred while removing an attendee."
+msgstr "Eroare in timpul stergerii unui participant."
+
+#: src/org/revager/app/model/ApplicationData.java:1595
+msgid "Cannot get the number of attendees in the database."
+msgstr "Nu pot gasi numarul de participanti din baza de date."
+
+#: src/org/revager/app/model/ApplicationData.java:1635
+msgid "Cannot load any CSV profile from the database."
+msgstr "Nu pot incarca nici un profil CVS din baza de date."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/ApplicationData.java:1705
+msgid "Cannot load the requested CSV profile."
+msgstr "Nu pot incarca profilul CVS solicitat din baza de date."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/ApplicationData.java:1785
+msgid "Cannot remove the CSV profile."
+msgstr "Nu pot sterge profilul CVS."
+
+#: src/org/revager/app/model/Data.java:243
+msgid "Moderator"
+msgstr "Moderator"
+
+#: src/org/revager/app/model/Data.java:245
+msgid "Author"
+msgstr "Autor"
+
+#: src/org/revager/app/model/Data.java:247
+msgid "Customer"
+msgstr "Client"
+
+#: src/org/revager/app/model/Data.java:249
+msgid "Reviewer"
+msgstr "Inspector/Revizor"
+
+#: src/org/revager/app/model/Data.java:251
+msgid "Scribe"
+msgstr "Secretar/Copist"
+
+#: src/org/revager/app/model/Data.java:274
+msgid "Not rated"
+msgstr "Neevaluat"
+
+#: src/org/revager/app/model/Data.java:277
+msgid "Critical error"
+msgstr "Eroare critică"
+
+#: src/org/revager/app/model/Data.java:280
+msgid "Main error"
+msgstr "Eroare majora/grava"
+
+#: src/org/revager/app/model/Data.java:283
+msgid "Minor error"
+msgstr "Eroare minora"
+
+#: src/org/revager/app/model/Data.java:286
+msgid "Good"
+msgstr "Bun/bine"
+
+#: src/org/revager/app/model/Data.java:334
+msgid "Accepted"
+msgstr "Acceptat"
+
+#: src/org/revager/app/model/Data.java:337
+msgid "Accepted (changes required)"
+msgstr "Acceptat (modificari sunt necesare)"
+
+#: src/org/revager/app/model/Data.java:340
+msgid "Not accepted"
+msgstr "Neacceptat"
+
+#: src/org/revager/app/model/Data.java:343
+msgid "Not finished"
+msgstr "Neterminat"
+
+#: src/org/revager/app/model/Data.java:346
+msgid "Not finished (changes required)"
+msgstr "Neterminat (modificari sunt necesare)"
+
+#: src/org/revager/app/model/Data.java:349
+msgid "Not finished (complete revision required)"
+msgstr "Neterminat (o reviziune completa este necesara)"
+
+#: src/org/revager/app/model/Data.java:394
+msgid ""
+"You are invited to the review meeting. Please consider the information which "
+"are part of this document."
+msgstr ""
+"Sunteti invitati la sedinta de revizuire. Va rog sa luati in considerare "
+"informatiile care sunt parte a acestui document."
+
+#. 
+#. * Not part of unit testing because this exception only is thrown if
+#. * an internal error occurs which cannot be provoked.
+#. 
+#. 
+#. * Not part of unit testing because this exception only is
+#. * thrown if an internal error occurs which cannot be provoked.
+#. 
+#: src/org/revager/app/model/HelpDataOrig.java:163
+#: src/org/revager/app/model/HelpDataOrig.java:205
+#: src/org/revager/gui/workers/LoadEmbeddedHelpWorker.java:137
+msgid "Cannot load help information."
+msgstr "Nu pot incarca informatii ajutatoare."
+
+#. 
+#. * Not part of unit testing because normally you don't have
+#. * any chapters without a title.
+#. 
+#: src/org/revager/app/model/HelpDataOrig.java:198
+msgid "<no title>"
+msgstr "<fara titlu>"
+
+#: src/org/revager/app/model/HelpDataOrig.java:291
+#: src/org/revager/app/model/HelpDataOrig.java:323
+msgid "Cannot find requested help chapter."
+msgstr "Capitolul ajutator solicitat nu poate fi gasit."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppAspect.java:145
+msgid "Cannot add new aspect."
+msgstr "Un aspect nou nu poate fi adaugat."
+
+#: src/org/revager/app/model/appdata/AppAspect.java:223
+msgid "Cannot read directive of the aspect."
+msgstr "Directiva aspectului nu poate fi citita."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppAspect.java:259
+msgid "Cannot store directive of the aspect."
+msgstr "Directiva aspectului nu poate fi memorata/salvata."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppAspect.java:297
+msgid "Cannot read description of the aspect."
+msgstr "Descrierea aspectului nu poate fi citita."
+
+#: src/org/revager/app/model/appdata/AppAspect.java:334
+msgid "Cannot store description of the aspect."
+msgstr "Descrierea aspectului nu poate fi memorata/salvata."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppAspect.java:413
+msgid "Cannot read category of the aspect."
+msgstr "Categoria aspectului nu poate fi citita."
+
+#: src/org/revager/app/model/appdata/AppAspect.java:482
+msgid "Cannot store category of the aspect."
+msgstr "Categoria aspectului nu poate fi memorata/salvata."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppAspect.java:551
+msgid "Cannot move selected aspect."
+msgstr "Aspectul solicitat nu poate fi mutat."
+
+#: src/org/revager/app/model/appdata/AppAspect.java:635
+#: src/org/revager/app/model/appdata/AppAspect.java:681
+#: src/org/revager/app/model/appdata/AppAspect.java:727
+msgid "Cannot get sorting position of the aspect."
+msgstr "Nu pot gasi pozitia/indicele de sortare a aspectului."
+
+#: src/org/revager/app/model/appdata/AppAttendee.java:51
+msgid "Attendee does not exist!"
+msgstr "Participantul nu exista!"
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppAttendee.java:182
+msgid "Cannot add or get attendee."
+msgstr "Nu se poate adauga sau gasi un participant."
+
+#: src/org/revager/app/model/appdata/AppAttendee.java:322
+msgid ""
+"Cannot store attendee! There may be an attendee with the given name and "
+"contact information already existing."
+msgstr ""
+"Nu se poate memora/salva participantul. Este posibil ca participantul cu "
+"numele si informatiile de contact mentionate sa existe deja."
+
+#: src/org/revager/app/model/appdata/AppAttendee.java:366
+msgid "Cannot get strengths of the selected attendee."
+msgstr ""
+"Nu pot gasi aptitudinile/punctele forte ale participantului selectat."
+
+#: src/org/revager/app/model/appdata/AppAttendee.java:412
+msgid ""
+"Cannot detect wether the given category is a strength of the attendee or not."
+msgstr ""
+"Nu pot detecta daca categoria mentionata este o aptitudine/punct forte a "
+"participantului sau nu."
+
+#: src/org/revager/app/model/appdata/AppAttendee.java:458
+msgid "Cannot assign strength to the attendee."
+msgstr "Nu pot atribui aptitudinea/punctul forte participantului."
+
+#: src/org/revager/app/model/appdata/AppAttendee.java:547
+msgid "Cannot remove strength of the attendee."
+msgstr "Nu pot sterge aptitudinea/punctul forte participantului."
+
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:48
+msgid "CSV profile does not exist!"
+msgstr "Profilul CVS nu exista!"
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:161
+msgid "Cannot add or get CSV profile."
+msgstr "Nu pot adauga sau gasi profilul CVS."
+
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:235
+msgid "Cannot store name of the CSV profile."
+msgstr "Nu pot memora/salva numele profilului CVS."
+
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:279
+msgid "Cannot get column order of the selected CSV profile."
+msgstr "Nu pot gasi ordinea coloanelor profilului CVS selectat."
+
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:347
+msgid "Cannot set column order of the selected CSV profile."
+msgstr "Nu pot stabili ordinea coloanelor profilului CVS selectat."
+
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:387
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:467
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:553
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:599
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:739
+msgid "Cannot get the requested property of the selected CSV profile."
+msgstr "Nu pot gasi proprietatea solicitata a  profilului CVS selectat."
+
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:428
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:508
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:654
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:698
+#: src/org/revager/app/model/appdata/AppCSVProfile.java:818
+msgid "Cannot store property of the selected CSV profile."
+msgstr "Nu pot memora/salva proprietatea  profilului CVS selectat."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:47
+msgid "Catalog doesn't exists!"
+msgstr "Catalogul nu exista!"
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCatalog.java:153
+msgid "Cannot add or get catalog."
+msgstr "Nu pot adauga sau gasi catalogul."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:246
+msgid "Cannot set catalog name."
+msgstr "Nu pot stabili numele catalogului."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCatalog.java:385
+msgid "Cannot move the selected catalog."
+msgstr "Nu pot muta catalogul selectat."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:471
+#: src/org/revager/app/model/appdata/AppCatalog.java:513
+#: src/org/revager/app/model/appdata/AppCatalog.java:555
+msgid "Cannot get the sorting position of the catalogs."
+msgstr "Nu pot gasi pozitia de sortare a cataloagelor."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:600
+#: src/org/revager/app/model/appdata/AppCatalog.java:647
+#: src/org/revager/app/model/appdata/AppCatalog.java:694
+msgid "Cannot get sorting position of the category."
+msgstr "Nu pot gasi pozitia de sortare a categoriei."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:736
+msgid "Cannot get first sorting position of the categories."
+msgstr "Nu pot gasi prima pozitie de sortare a categoriilor."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:779
+msgid "Cannot get last sorting position of the categories."
+msgstr "Nu pot gasi ultima pozitie de sortare a categoriei."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCatalog.java:853
+msgid "Cannot move the selected category."
+msgstr "Nu pot muta categoria selectata."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCatalog.java:947
+msgid "Cannot get the number of categories."
+msgstr "Nu pot obtine numarul categoriilor."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:988
+msgid "Cannot get category of the selected catalog."
+msgstr "Nu pot gasi categoria catalogului selectat."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:1057
+msgid "Cannot detect wether the given category exists or not."
+msgstr "Nu pot detecta daca categoria mentionata exista sau nu."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:1123
+msgid "Cannot change category."
+msgstr "Nu pot schimba categoria."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:1168
+msgid "Cannot get first sorting position of the aspects."
+msgstr "Nu pot gasi prima pozitie de sortare a aspectelor."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:1215
+msgid "Cannot get last sorting position of the aspects."
+msgstr "Nu pot gasi ultima pozitie de sortare a aspectelor."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCatalog.java:1266
+msgid "Cannot get the number of aspects."
+msgstr "Nu pot gasi numarul aspectelor."
+
+#: src/org/revager/app/model/appdata/AppCatalog.java:1324
+msgid "Cannot get aspects of the selected catalog / category."
+msgstr "Nu pot gasi aspecte ale catalogului/categoriei slectat(e)."
+
+#. 
+#. * Not part of the unit testing, because this exception is only
+#. * thrown if there occurs an internal error.
+#. 
+#: src/org/revager/app/model/appdata/AppCatalog.java:1441
+msgid "Cannot remove aspect."
+msgstr "Nu po sterge aspectul."
+
+#: src/org/revager/export/FindingsCSVExporter.java:154
+msgid "Review Findings"
+msgstr "Rezultatele inspectiei/revizuirii"
+
+#: src/org/revager/export/FindingsCSVExporter.java:170
+#, java-format
+msgid "Finding {0} of Review \"{1}\" ** Product: {2} (Version: {3}) **** {4}"
+msgstr ""
+"Rezultatul {0} al Inspectiei/Revizuirii \"{1}\" ** Product: {2} (Versiune: "
+"{3}) **** {4}"
+
+#: src/org/revager/export/InvitationDirExporter.java:133
+msgid "Cannot store invitation as directory."
+msgstr "Nu pot memora/salva invitatia sub forma de director/catalog."
+
+#. *
+#. * The date formatter for times.
+#. 
+#. *
+#. * The format time.
+#. 
+#: src/org/revager/export/InvitationPDFExporter.java:113
+#: src/org/revager/export/ProtocolPDFExporter.java:90
+#: src/org/revager/gui/AbstractFrame.java:213
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: src/org/revager/export/InvitationPDFExporter.java:138
+msgid "Review Meeting"
+msgstr "Sedinta pentru inspectie/revizuire"
+
+#: src/org/revager/export/InvitationPDFExporter.java:166
+msgid "Invitation"
+msgstr "Invitație"
+
+#: src/org/revager/export/InvitationPDFExporter.java:262
+msgid "To:"
+msgstr "Către:"
+
+#. 
+#. * subject
+#. 
+#: src/org/revager/export/InvitationPDFExporter.java:286
+msgid "Invitation for the Meeting on"
+msgstr "Invitatie la sedinta despre"
+
+#: src/org/revager/export/InvitationPDFExporter.java:326
+#: src/org/revager/export/ProtocolPDFExporter.java:304
+#: src/org/revager/export/ProtocolPDFExporter.java:574
+#: src/org/revager/export/ProtocolPDFExporter.java:939
+#: src/org/revager/export/ProtocolPDFExporter.java:1009
+msgid "Location"
+msgstr "Adresa/Locaţia"
+
+#: src/org/revager/export/InvitationPDFExporter.java:351
+#, java-format
+msgid "You are invited as {0} to this review ({1})."
+msgstr "Sunteti invitat ca {0} la aceasta inspectie/revizuire ({1})."
+
+#: src/org/revager/export/InvitationPDFExporter.java:374
+#, java-format
+msgid "This meeting ties up to the review meeting of {0}."
+msgstr ""
+"Aceasta sedinta are legatura cu sedinta pentru inspectie/revizuire a {0}."
+
+#: src/org/revager/export/InvitationPDFExporter.java:389
+msgid "The following product will be reviewed:"
+msgstr "Urmatorul produs va fi inspectat/revizuit:"
+
+#: src/org/revager/export/InvitationPDFExporter.java:415
+#: src/org/revager/export/ProtocolPDFExporter.java:431
+msgid "Product Version"
+msgstr "Versiunea produsului"
+
+#: src/org/revager/export/InvitationPDFExporter.java:479
+#: src/org/revager/export/PDFCellEventExtRef.java:80
+#: src/org/revager/export/ProtocolPDFExporter.java:484
+#: src/org/revager/export/ProtocolPDFExporter.java:1619
+msgid "File Attachment"
+msgstr "Atasare fisier"
+
+#: src/org/revager/export/InvitationPDFExporter.java:518
+msgid ""
+"Please prepare for the review meeting by checking the product for the "
+"aspects which are associated to you."
+msgstr ""
+"Va rog sa va pregatiti pentru sedinta de inspectie/revizuire prin "
+"verificarea produsului privitor la aspectele asociate dumneavoastra."
+
+#: src/org/revager/export/InvitationPDFExporter.java:532
+msgid ""
+"Please do not hesitate to contact the review moderator if you have any "
+"questions:"
+msgstr ""
+"Va rog sa nu ezitati sa conectati moderatorul inspectiei/reviziei daca aveti "
+"intrebari:"
+
+#: src/org/revager/export/InvitationPDFExporter.java:537
+msgid ""
+"Please do not hesitate to contact one of the review moderators if you have "
+"any questions:"
+msgstr ""
+"Va rog sa nu ezitati sa conectati pe unul dintre moderatorii "
+"inspectiei/reviziei daca aveti intrebari:"
+
+#: src/org/revager/export/InvitationPDFExporter.java:563
+#: src/org/revager/export/ProtocolPDFExporter.java:837
+msgid "Cannot generate front page of the PDF document."
+msgstr "Nu pot genera prima pagina a documentului PDF."
+
+#: src/org/revager/export/InvitationPDFExporter.java:719
+msgid "Cannot put aspects into the PDF document."
+msgstr "Nu se pot pune aspecte in documentul PDF."
+
+#: src/org/revager/export/InvitationPDFExporter.java:751
+msgid ""
+"Please prepare for the review meeting by checking the product for the "
+"following aspects step by step:"
+msgstr ""
+"Va rog sa va pregatiti pentru sedinta de inspectie/revizuire prin "
+"verificarea produsului privitor la urmatoarele aspecte pas cu pas:"
+
+#: src/org/revager/export/InvitationPDFExporter.java:763
+msgid "The product will be checked for the following aspects:"
+msgstr "Produsul va fi verificat in privinta urmaoarelor aspecte:"
+
+#: src/org/revager/export/InvitationPDFExporter.java:780
+msgid "Cannot create invitation for the review meeting."
+msgstr "Nu pot crea o invitatie petru sedinta de inspectie/revizuire."
+
+#. 
+#. * Not part of unit testing because this exception is only thrown if
+#. * an internal error occurs.
+#. 
+#: src/org/revager/export/InvitationZIPExporter.java:143
+msgid "Cannot store invitation as ZIP file."
+msgstr "Nu pot memora/salva invitatia sub forma de fisier ZIP."
+
+#: src/org/revager/export/MeetingProtocolPDFExporter.java:91
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:92
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1158
+msgid "List of Findings"
+msgstr "Lista rezultatelor"
+
+#. 
+#. * Not part of unit testing because this exception is only thrown if
+#. * an internal error occurs.
+#. 
+#: src/org/revager/export/MeetingProtocolPDFExporter.java:125
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:165
+msgid "Cannot create PDF document."
+msgstr "Nu pot crea un fisier PDF."
+
+#: src/org/revager/export/PDFExporter.java:91
+msgid ""
+"Cannot store PDF file. Either you don't have write permissions or the PDF "
+"file cannot be created."
+msgstr ""
+
+#: src/org/revager/export/PDFPageEventHelper.java:296
+#, java-format
+msgid "Page {0} of"
+msgstr "Pagina {0} din"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:238
+msgid "Findings List of the Review"
+msgstr "Lista rezultatelor inspectiei/revizuirii"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:241
+msgid "Findings List of the Review Meeting"
+msgstr "Lista rezultatelor sedintei de  inspectie/revizuire"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:320
+msgid "Review Description:"
+msgstr "Descrierea inspectiei/revizuirii"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:326
+msgid "Review Comments"
+msgstr "Comentarii la inspectie/revizuire"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:380
+msgid "Reviewed Product:"
+msgstr "Produsul inspectat/revizuit:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:410
+msgid "Product Name"
+msgstr "Numele produsului"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:450
+msgid "Product References:"
+msgstr "Referintele produsului:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:531
+msgid "Meeting Information:"
+msgstr "Informatiile sedintei:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:534
+msgid "Findings Lists of the Review Meetings:"
+msgstr "Liste cu rezultatele sedintelor de inspectie/revizuire:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:572
+msgid "Date"
+msgstr "Data"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:573
+msgid "Time"
+msgstr "Ora/Timp"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:613
+msgid "Duration of the meeting"
+msgstr "Durata sedintei"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:614
+#: src/org/revager/export/ProtocolPDFExporter.java:1353
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:215
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:163
+msgid "Hour(s)"
+msgstr "Ora"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:615
+#: src/org/revager/export/ProtocolPDFExporter.java:1360
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:216
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:164
+msgid "Minute(s)"
+msgstr "Minut(e)"
+
+#. 
+#. * meeting number of findings
+#. 
+#: src/org/revager/export/ProtocolPDFExporter.java:631
+msgid "Number of findings"
+msgstr "Numarul rezultatelor"
+
+#. 
+#. * meeting number of attendees
+#. 
+#: src/org/revager/export/ProtocolPDFExporter.java:647
+msgid "Number of attendees"
+msgstr "Numarul participantilor"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:688
+msgid "General impressions of the product:"
+msgstr "Impresii generale despre produs:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:697
+#: src/org/revager/gui/MainFrame.java:777
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:993
+msgid "Final recommendation for the product:"
+msgstr "Recomandarea finala pentru produs:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:760
+msgid ""
+"The severities of the findings in this review (descending order of "
+"importance):"
+msgstr ""
+"Gradele de severitate a rezultatelor în această inspectie/revizuire (in "
+"ordinea descrescătoare a importanţei):"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:778
+#, java-format
+msgid ""
+"This review consists of {0} attendees, {1} findings, {2} meetings and {3} "
+"aspects."
+msgstr ""
+"Aceasta inspectie/revizuire consta din {0} participanti, {1} rezultate, {2} "
+"sedinte si {3} aspecte."
+
+#: src/org/revager/export/ProtocolPDFExporter.java:805
+msgid "This finding has been created with RevAger on"
+msgstr "Acest rezultat a fos creat cu RevAger asupra/pe"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:907
+msgid "Review Meeting on"
+msgstr "Sedinta de inspectie/revizuire a"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:984
+msgid "The meeting took place as it has been planned."
+msgstr "Sedinta a decurs conform planului."
+
+#: src/org/revager/export/ProtocolPDFExporter.java:991
+msgid ""
+"The meeting didn't take place as it has been planned. The meeting was "
+"planned:"
+msgstr "Sedinta nu a decurs conform planului. Sedinta a fost planificata:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1026
+msgid "Comments on the Meeting:"
+msgstr "Comentarii la sedinta:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1036
+msgid "Comments on the Findings List:"
+msgstr "Comentarii la lista rezultatelor:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1090
+msgid "The following attendees participated"
+msgstr "Urmatorii participanti au luat parte"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1092
+msgid "attendees"
+msgstr "participanti"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1134
+msgid "The following findings were recorded by the participating reviewers"
+msgstr ""
+"Urmatoarele rezultate au fost au fost înregistrate de către "
+"inspectorii/revizorii participanti"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1137
+msgid "findings"
+msgstr "rezultate"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1157
+msgid "Cannot put the selected review meeting in the PDF document."
+msgstr ""
+"Nu po pune sedinta de inspectie/revizuire selectata în documentul PDF."
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1304
+msgid "Assigned aspects:"
+msgstr "Aspecte alocate:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1335
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:183
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:137
+msgid "Preparation time:"
+msgstr "Timp de pregatire:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1346
+msgid "Day(s)"
+msgstr "Zi(le)"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1383
+msgid "Date, Signature"
+msgstr "Data, Semnatura"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1438
+msgid "Cannot put attendees into the PDF document."
+msgstr "Nu se pot pune participanţii în documentul PDF."
+
+#. 
+#. * Print title of the finding
+#. 
+#. 
+#. * Update labels
+#. 
+#: src/org/revager/export/ProtocolPDFExporter.java:1505
+#: src/org/revager/gui/findings_list/FindingPanel.java:572
+#: src/org/revager/gui/findings_list/FindingPanel.java:829
+msgid "Finding"
+msgstr "Descoperire/Rezultat"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1586
+msgid "References:"
+msgstr "Referințe:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1650
+msgid "Aspects:"
+msgstr "Aspecte:"
+
+#: src/org/revager/export/ProtocolPDFExporter.java:1695
+msgid "Cannot put findings into the PDF document."
+msgstr "Nu se pot pune rezulate/descoperiri în documentul PDF."
+
+#: src/org/revager/export/ReviewProtocolPDFExporter.java:133
+msgid "The following persons participated in the whole review:"
+msgstr ""
+"Următoarele persoane au participat la inspectie/revizuire pe tot parcursul "
+"ei:"
+
+#: src/org/revager/gui/AbstractDialog.java:481
+msgid "Show/hide help"
+msgstr "Arata /ascunde sistemul de asistenta de ajutor"
+
+#: src/org/revager/gui/AbstractDialog.java:573
+#: src/org/revager/gui/AbstractFrame.java:894
+msgid "Work in progress ..."
+msgstr "Lucrări în progres ..."
+
+#. 
+#. * Show "wait..." as label
+#. 
+#: src/org/revager/gui/AbstractDialog.java:600
+msgid "Loading help ..."
+msgstr "Incarcarea sistemului de asistenta de ajutor ..."
+
+#. 
+#. * Construct the button to toggle the hints
+#. 
+#: src/org/revager/gui/AbstractFrame.java:539
+msgid "Show/hide hints"
+msgstr "Arata / ascunde sugestii"
+
+#: src/org/revager/gui/AbstractFrame.java:556
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:94
+#: src/org/revager/gui/workers/LoadReviewWorker.java:98
+#: src/org/revager/gui/workers/NewReviewWorker.java:120
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:80
+msgid "No review in process."
+msgstr "Nici o inspectie/revizuire in proces."
+
+#: src/org/revager/gui/DirectoryPopupWindow.java:99
+#: src/org/revager/gui/StrengthPopupWindow.java:109
+#: src/org/revager/gui/TextPopupWindow.java:78
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:154
+#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:139
+#: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:111
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:173
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:123
+#: src/org/revager/gui/helpers/DatePicker.java:645
+msgid "RevAger"
+msgstr "RevAger"
+
+#: src/org/revager/gui/DirectoryPopupWindow.java:114
+#: src/org/revager/gui/StrengthPopupWindow.java:142
+#: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:131
+msgid "Filter:"
+msgstr "Filtru:"
+
+#: src/org/revager/gui/DirectoryPopupWindow.java:115
+msgid "Filtered attendees:"
+msgstr "Participanţii filtraţi:"
+
+#: src/org/revager/gui/DirectoryPopupWindow.java:119
+msgid "Remove attendee from address book"
+msgstr "Stergeţi participantul din agendă"
+
+#. 
+#. * buttons for accepting and canceling
+#. 
+#: src/org/revager/gui/DirectoryPopupWindow.java:209
+#: src/org/revager/gui/StrengthPopupWindow.java:202
+#: src/org/revager/gui/TextPopupWindow.java:127
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:309
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:524
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:374
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:272
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:181
+#: src/org/revager/gui/dialogs/MeetingDialog.java:492
+#: src/org/revager/gui/dialogs/SettingsDialog.java:161
+#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:183
+#: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:183
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:300
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:204
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:409
+msgid "Abort"
+msgstr "Abandonare"
+
+#. 
+#. * buttons
+#. 
+#: src/org/revager/gui/DirectoryPopupWindow.java:218
+#: src/org/revager/gui/StrengthPopupWindow.java:211
+#: src/org/revager/gui/TextPopupWindow.java:136
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:324
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:543
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:385
+#: src/org/revager/gui/dialogs/MeetingDialog.java:503
+#: src/org/revager/gui/dialogs/SettingsDialog.java:151
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:97
+#: src/org/revager/gui/dialogs/assistant/LanguagePopupWindow.java:192
+#: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:192
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:309
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:213
+#: src/org/revager/gui/findings_list/FindingPanel.java:1089
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:424
+msgid "Confirm"
+msgstr "Confirmă"
+
+#: src/org/revager/gui/HelpBrowserFrame.java:103
+msgid "RevAger Online Help"
+msgstr "RevAger Ajutor Online"
+
+#: src/org/revager/gui/HelpBrowserFrame.java:129
+msgid "Filter/Search - Enter search item ..."
+msgstr "Filtru / Cautare - Introduceţi elementul cautat ..."
+
+#: src/org/revager/gui/HelpBrowserFrame.java:137
+#: src/org/revager/gui/StrengthPopupWindow.java:163
+msgid "Reset filter"
+msgstr "Reinitializati filtrul"
+
+#: src/org/revager/gui/HelpBrowserFrame.java:142
+msgid ""
+"Please enter a search item into the input field to filter the contents:"
+msgstr ""
+"Va rog să introduceti un element de căutare în câmpul de intrare pentru "
+"filtrarea conţinutului:"
+
+#: src/org/revager/gui/HelpBrowserFrame.java:164
+msgid "Cannot load the start page."
+msgstr "Nu se poate încărca pagina de start."
+
+#: src/org/revager/gui/HelpBrowserFrame.java:164
+msgid "Error occured"
+msgstr "S-a detectat o eroare"
+
+#: src/org/revager/gui/HelpBrowserFrame.java:361
+msgid "Cannot find help page."
+msgstr "Nu se poate gasi pagina de ajutor."
+
+#: src/org/revager/gui/MainFrame.java:143
+msgid "All meetings"
+msgstr "Toate sedintele"
+
+#. 
+#. * creating the left panel
+#. 
+#: src/org/revager/gui/MainFrame.java:350
+msgid "Product:"
+msgstr "Produs:"
+
+#: src/org/revager/gui/MainFrame.java:354
+msgid "Title of the review:"
+msgstr "Titlul inspectiei/revizuirii:"
+
+#: src/org/revager/gui/MainFrame.java:358
+msgid "Description of the review:"
+msgstr "Descrierea inspectiei/revizuirii:"
+
+#: src/org/revager/gui/MainFrame.java:365
+msgid "Comments on the review"
+msgstr "Observaţii/Comentarii cu privire la inspectie/revizuire"
+
+#: src/org/revager/gui/MainFrame.java:372
+msgid "Comments on the review:"
+msgstr "Observaţii/Comentarii cu privire la inspectie/revizuire:"
+
+#: src/org/revager/gui/MainFrame.java:453
+msgid "Review Meetings:"
+msgstr "Sedinte de inspectie/revizuire:"
+
+#: src/org/revager/gui/MainFrame.java:590
+#: src/org/revager/gui/MainFrame.java:1785
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:550
+msgid "Remove"
+msgstr "Șterge"
+
+#: src/org/revager/gui/MainFrame.java:599
+msgid "Modify meeting"
+msgstr "Modifica inspectia/revizuirea:"
+
+#: src/org/revager/gui/MainFrame.java:610
+msgid "Comment meeting"
+msgstr "Comenteaza sedinta"
+
+#: src/org/revager/gui/MainFrame.java:620
+msgid "Open/create list of findings"
+msgstr "Deschide/creaza lista de rezultate/constatări"
+
+#: src/org/revager/gui/MainFrame.java:631
+msgid "Attendees of the review:"
+msgstr "Participantii la inspectie/revizuire:"
+
+#: src/org/revager/gui/MainFrame.java:750
+msgid "Remove attendee"
+msgstr "Sterge participant"
+
+#: src/org/revager/gui/MainFrame.java:760
+msgid "Modify attendee"
+msgstr "Modifică participantul"
+
+#: src/org/revager/gui/MainFrame.java:771
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:773
+msgid "General impression of the product:"
+msgstr "Impresia generală a produsului:"
+
+#: src/org/revager/gui/MainFrame.java:859
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:56
+msgid "Open RevAger Assistant"
+msgstr "Deschideţi Asistentul RevAger"
+
+#: src/org/revager/gui/MainFrame.java:999
+msgid "File"
+msgstr ""
+
+#: src/org/revager/gui/MainFrame.java:1041
+#: src/org/revager/gui/findings_list/FindingPanel.java:1086
+msgid "Edit"
+msgstr "Editaţi"
+
+#: src/org/revager/gui/MainFrame.java:1091
+msgid "Settings"
+msgstr "Optiuni de configurare"
+
+#: src/org/revager/gui/MainFrame.java:1094
+#: src/org/revager/gui/dialogs/SettingsDialog.java:117
+msgid "Application Settings"
+msgstr "Optiuni de configurare a aplicatiei"
+
+#: src/org/revager/gui/MainFrame.java:1108
+msgid "CSV Profiles"
+msgstr "Profile CVS"
+
+#: src/org/revager/gui/MainFrame.java:1126
+msgid "Help"
+msgstr "Ajutor"
+
+#: src/org/revager/gui/MainFrame.java:1139
+#: src/org/revager/gui/dialogs/AboutDialog.java:61
+msgid "About RevAger"
+msgstr "Despre RevAger"
+
+#: src/org/revager/gui/MainFrame.java:1264
+#: src/org/revager/gui/dialogs/AboutDialog.java:73
+msgid "Version:"
+msgstr "Versiunea:"
+
+#: src/org/revager/gui/MainFrame.java:1297
+msgid ""
+"First of all we recommend to specify the product and the review's title."
+msgstr ""
+"Inainte de toate, vă recomandăm să specificati produsul şi titlul "
+"inspectiei/revizuirii."
+
+#: src/org/revager/gui/MainFrame.java:1301
+msgid ""
+"You should create a meeting and add the attendees of the review by using the "
+"corresponding buttons."
+msgstr ""
+"Trebuie să creaţi o sedinta şi sa adaugati participanţii la "
+"inspectie/revizuire utilizând butoanele corespunzătoare."
+
+#: src/org/revager/gui/MainFrame.java:1305
+msgid "All required information for the review are present."
+msgstr ""
+"Toate informaţiile necesare pentru inspectie/revizuire sunt prezente."
+
+#: src/org/revager/gui/MainFrame.java:1308
+msgid ""
+"Now you can export the list of findings either for the whole review or a "
+"single review meeting."
+msgstr ""
+"Acum puteti să exportaţi lista de rezultate, fie pentru inspectia/revizuirea "
+"completa sau a unei sedinte de inspectie/revizuire singulare."
+
+#: src/org/revager/gui/MainFrame.java:1312
+msgid ""
+"You can open the list of findings by selecting the corresponding meeting and "
+"clicking the 'Open findings list' button."
+msgstr ""
+"Puteţi deschide lista rezultatelor prin selectarea sedintei corespunzătoare "
+"şi făcând clic pe butonul 'Deschide lista de rezultate \"."
+
+#: src/org/revager/gui/MainFrame.java:1316
+msgid ""
+"You can open the RevAger Assistant by clicking on the 'Open Assistant' "
+"button."
+msgstr ""
+"Puteti să deschideţi Asistentul RevAger făcând clic pe butonul \"Deschide "
+"Asistent '."
+
+#: src/org/revager/gui/MainFrame.java:1595
+#: src/org/revager/gui/MainFrame.java:1600
+#: src/org/revager/gui/actions/NewReviewAction.java:49
+msgid "New Review"
+msgstr "Sedinta noua"
+
+#: src/org/revager/gui/MainFrame.java:1765
+msgid "Remove meeting"
+msgstr "Stergeti sedinta"
+
+#: src/org/revager/gui/MainFrame.java:1775
+msgid "Remove list of findings"
+msgstr "Stergeti lista rezultatelor"
+
+#. getMainFrame().setEnabled(false);
+#: src/org/revager/gui/UI.java:793
+msgid "Restore"
+msgstr "Restaurati"
+
+#: src/org/revager/gui/UI.java:793
+msgid "Discard"
+msgstr "ignorați/Anulați"
+
+#: src/org/revager/gui/UI.java:798
+msgid ""
+"There is a review which hasn't been stored properly. Would you like to "
+"restore and load the review?"
+msgstr ""
+"Există o inspectie/revizuire, care nu a fost salvată în mod corespunzător. "
+"Doriţi să restauraţi şi sa încărcaţi inspectia/revizuirea?"
+
+#: src/org/revager/gui/actions/ExitAction.java:52
+msgid "Close Application"
+msgstr "Inchideti aplicatia"
+
+#: src/org/revager/gui/actions/ExitAction.java:78
+#: src/org/revager/gui/actions/NewReviewAction.java:66
+#: src/org/revager/gui/actions/assistant/OpenAssistantAction.java:79
+msgid ""
+"There are unsaved changes in the review. Would you like to save them now?\n"
+"\n"
+"Attention: If you choose 'No' all unsaved information will get lost."
+msgstr ""
+"Există modificări nesalvate în inspectie/revizuire Doriţi să le salvaţi acum?"
+
+#: src/org/revager/gui/actions/InitializeNewReviewAction.java:70
+#: src/org/revager/gui/actions/attendee/ConfirmAttendeeAction.java:82
+msgid "Please enter the name of the attendee."
+msgstr "Vă rugăm să introduceţi numele participantului."
+
+#: src/org/revager/gui/actions/LoadReviewAction.java:50
+msgid "Open Review..."
+msgstr "Deschideţi inspectia/revizuirea ..."
+
+#: src/org/revager/gui/actions/ManageSeveritiesAction.java:46
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:255
+msgid "Manage Severities"
+msgstr "Administrati gradele de severitate"
+
+#: src/org/revager/gui/actions/OpenAspectsManagerAction.java:46
+msgid "Manage Aspects"
+msgstr "Administrati aspectele"
+
+#: src/org/revager/gui/actions/OpenExpCSVDialogAction.java:47
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:152
+msgid "Export Findings into a CSV File"
+msgstr "Exportati rezultatele într-un fişier CSV"
+
+#: src/org/revager/gui/actions/OpenExpPDFDialogAction.java:46
+msgid "Export Findings List as PDF File"
+msgstr "Exportati lista de rezulate/constatari ca fisier PDF"
+
+#: src/org/revager/gui/actions/OpenFindingsListAction.java:76
+msgid "Open/Create Findings List"
+msgstr "Deschideţi/Creaţi lista de rezultate"
+
+#: src/org/revager/gui/actions/OpenInvitationsDialogAction.java:47
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:366
+msgid "Create Invitations"
+msgstr "Creaţi invitaţii"
+
+#: src/org/revager/gui/actions/SaveReviewAction.java:60
+msgid "Save Review"
+msgstr "Salvati inspectia/revizuirea"
+
+#: src/org/revager/gui/actions/SaveReviewAction.java:92
+#: src/org/revager/gui/actions/SaveReviewAsAction.java:87
+#: src/org/revager/gui/workers/CheckForNewVersionWorker.java:76
+msgid "Ignore"
+msgstr "Ignorati"
+
+#: src/org/revager/gui/actions/SaveReviewAction.java:92
+#: src/org/revager/gui/actions/SaveReviewAsAction.java:87
+msgid "Correct"
+msgstr "Corectati"
+
+#: src/org/revager/gui/actions/SaveReviewAction.java:100
+#: src/org/revager/gui/actions/SaveReviewAsAction.java:95
+msgid ""
+"This review contains attachments. It is not possible to store them inside "
+"the XML file, so they'll get lost."
+msgstr ""
+"Această inspectie/revizuire conţine atasamente. Acestea nu pot fi salvate în "
+"interiorul fişierului XML, in consecinta vor fi pierdute."
+
+#: src/org/revager/gui/actions/SaveReviewAsAction.java:57
+msgid "Save Review as..."
+msgstr "Salvati inspectia/revizuirea ca ..."
+
+#: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:62
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:76
+msgid "Select language"
+msgstr "Alegeți limba"
+
+#: src/org/revager/gui/actions/assistant/SelectLanguageAction.java:73
+#: src/org/revager/gui/dialogs/SettingsDialog.java:366
+msgid ""
+"You have to restart the application in order finalize the change of "
+"language. Restart now?"
+msgstr ""
+"Trebuie să reporniţi aplicaţia pentru a finaliza schimbarea limbii. "
+"Reporniţi acum?"
+
+#: src/org/revager/gui/actions/attendee/AddAttToProtAction.java:49
+#: src/org/revager/gui/actions/attendee/AddAttendeeAction.java:46
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:309
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:254
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:572
+msgid "Add Attendee"
+msgstr "Adăugaţi participant"
+
+#: src/org/revager/gui/actions/attendee/ConfirmAttendeeAction.java:135
+#: src/org/revager/gui/actions/attendee/ConfirmAttendeeAction.java:147
+msgid ""
+"There is an attendee with the given information already existing. Please "
+"change the name, the contact information or the role of the attendee you "
+"would like to add."
+msgstr ""
+"Există deja un participant cu informaţiile oferite. Vă rugăm să schimbaţi "
+"numele, datele de contact sau rolul  participantului pe care doriţi să il "
+"adăugaţi."
+
+#: src/org/revager/gui/actions/attendee/EditAttFromProtAction.java:48
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:270
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:592
+msgid "Edit Attendee"
+msgstr "Editaţi participantul"
+
+#: src/org/revager/gui/actions/attendee/RemoveAttendeeAction.java:78
+#, java-format
+msgid ""
+"Cannot remove the selected attendee ({0}) from the current review because "
+"he/she is part of at least one meeting: {1}"
+msgstr ""
+"Nu pot sterge participantul selectat ({0}) din inspectia/revizuirea curenta, "
+"deoarece el/ea este parte din cel puţin o sedinta: {1}"
+
+#: src/org/revager/gui/actions/attendee/RemoveAttendeeAction.java:83
+#: src/org/revager/gui/dialogs/WarningDialog.java:100
+msgid "Attention!"
+msgstr "Atentie!"
+
+#: src/org/revager/gui/actions/meeting/AddMeetingAction.java:47
+#: src/org/revager/gui/dialogs/MeetingDialog.java:253
+msgid "Add Meeting"
+msgstr "Adaugati sedinta"
+
+#: src/org/revager/gui/actions/meeting/CommentMeetingAction.java:62
+msgid "Comments on the selected meeting:"
+msgstr "Comentarii privind  inspectia/revizuirea selectata:"
+
+#: src/org/revager/gui/actions/severities/AddSeverityAction.java:45
+msgid "New severity"
+msgstr "Severitate noua"
+
+#: src/org/revager/gui/actions/severities/RemoveSeverityAction.java:39
+msgid ""
+"If you remove a severity, this will affect the whole review. Removed "
+"severities will be replaced by the next higher one. Would you really like to "
+"remove the selected severity?"
+msgstr ""
+"Dacă stergeţi o severitate, acest lucru va afecta întreaga "
+"inspectie/revizuire. Severitatea îndepărtata va fi înlocuita cu cea cu "
+"urmatorul grad mai mare. Doriti intr-adevar sa stergeti severitatea "
+"selectata?"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:130
+msgid "All catalogs"
+msgstr "Toate cataloagele"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:186
+msgid "Confirm and close Aspects Manager"
+msgstr "Confirmati si inchideti Administratorul pentru Aspecte"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:205
+msgid "Add Catalog"
+msgstr "Adaugati catalog"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:235
+msgid "Copy selected Catalog"
+msgstr "Copiati catalogul selectat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:268
+msgid "Add a new Aspect to the selected Catalog"
+msgstr "Adăugati un aspect nou la catalogul selectat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:275
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:76
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:90
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:121
+msgid "(No Category)"
+msgstr "(Nici o categorie)"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:327
+msgid "Remove selected Item"
+msgstr "Stergeti elementul selectat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:361
+msgid "Remove selected Items"
+msgstr "Stergeti elementele selectate"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:419
+msgid "Edit selected Item"
+msgstr "Editati elementul selectat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:437
+msgid "Please enter a name for the category."
+msgstr "Introduceti un nume pentru categorie, va rog."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:471
+msgid "Assign selected Aspects to the Reviewers automatically"
+msgstr ""
+"Atribuiti aspectele selectate inspectorilor/revizorilor in mod automat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:485
+msgid "Import Catalog"
+msgstr "Importati catalog"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:506
+msgid "Export selected Catalog"
+msgstr "Exportati catalogul selectat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:533
+msgid "Import Aspects into the selected Catalog"
+msgstr "Importati aspecte în catalogul selectat"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:560
+msgid "Export selected Aspects"
+msgstr "Exportati aspectele selectate"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:586
+msgid "Load Standard Catalogs"
+msgstr "Incarcati cataloagele standard"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:633
+#: src/org/revager/gui/models/AttendeeTableModel.java:71
+#: src/org/revager/gui/models/PresentAttendeesTableModel.java:107
+msgid "Aspects"
+msgstr "Aspecte"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:695
+msgid "Push Item to the top"
+msgstr "Împingeţi elementul la început"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:726
+msgid "Push Item up"
+msgstr "Împingeţi elementul in sus"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:757
+msgid "Push Item down"
+msgstr "Împingeţi elementul in jos"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:788
+msgid "Push Item to the bottom"
+msgstr "Împingeţi elementul la sfirsit"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:831
+msgid "Sort Catalogs in ABC order"
+msgstr "Sortare catalog in ordine alfabetica"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:854
+msgid "Expand whole tree"
+msgstr "Expandarea intregului arbore"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:866
+msgid "Collapse whole tree"
+msgstr "Minimalizarea intregului arbore"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:897
+msgid "Show Reviewers"
+msgstr "Arata inspectorii/revizorii"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:900
+msgid "Show assigned Aspects"
+msgstr "Arata aspectele alocate"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:974
+msgid "Assign selected Aspects to all Reviewers"
+msgstr "Atribuirea aspectelor selectate tuturor inspectorilor/revizorilor"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:986
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1064
+#: src/org/revager/gui/workers/AutoAspAllocWorker.java:83
+msgid "Allocating aspects ..."
+msgstr "Alocarea aspectelor ..."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1015
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1089
+msgid "Aspects allocated successfully."
+msgstr "Aspectele au fost alocate cu succes."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1052
+msgid "Assign selected Aspects to the displayed Reviewer"
+msgstr "Atribuirea aspectelor selectate inspectorilor/revizorilor afisati"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1299
+msgid "Aspects Manager"
+msgstr "Administratorul de aspecte"
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1362
+msgid "Aspects Manager loaded successfully."
+msgstr "Administratorul de aspecte a fost încărcat cu succes."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1686
+msgid "You have to assign at least one aspect to a reviewer."
+msgstr "Trebuie să alocaţi cel puţin un aspect unui inspector/revizor."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1690
+msgid ""
+"In order to assign aspects to reviewers you have to add at least one "
+"reviewer to the review."
+msgstr ""
+"În scopul de a atribui aspecte inspectorilor/revizorilor trebuie să adăugaţi "
+"cel puţin un inspector/revizor unei inspectii/revizuiri."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1694
+msgid ""
+"You can assign catalogs, categories or aspects to the reviewers after "
+"selecting them."
+msgstr ""
+"Puteti atribui cataloage, categorii sau aspecte inspectorilor/revizorilor "
+"după selectarea acestora."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1698
+msgid ""
+"You can import complete catalogs or selected aspects by using the provided "
+"buttons in the tool bar."
+msgstr ""
+"Puteti importa cataloage complete sau aspecte selectate folosind butoanele "
+"furnizate în bara de instrumente."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1734
+msgid ""
+"No review is loaded. Therefore you can only work in the library with its "
+"catalogs and aspects."
+msgstr ""
+"Nici o inspectie/revizuire  nu este încărcată. Prin urmare, se poate lucra "
+"numai în bibliotecă, cu cataloagele şi aspectele sale."
+
+#: src/org/revager/gui/aspects_manager/AspectsManagerFrame.java:1743
+msgid ""
+"There aren't any reviewers existing in the review. After adding at least one "
+"reviewer by using the 'Add Attendee' button you can assign them aspects from "
+"the existing catalogs."
+msgstr ""
+"Nu exista nici un inspector/revizor în cadrul inspectiei/revizuirii. După "
+"adăugarea cel puţin a unui inspector/revizor folosind butonul 'Adaugati "
+"Participant' veti putea să le atribuiţi aspecte din cataloagele existente."
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:189
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:203
+msgid ""
+"Please enter the required information of the aspect into the provided text "
+"fields."
+msgstr ""
+"Vă rugăm să introduceţi informaţiile aspectului solicitate în câmpurile de "
+"text furnizate."
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:190
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:204
+msgid "Directive of the aspect:"
+msgstr "Directiva aspectului:"
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:232
+msgid ""
+"Please enter the required information of the catalog into the provided text "
+"fields."
+msgstr ""
+"Vă rugăm să introduceţi informaţiile necesare ale catalogului în câmpurile "
+"de text furnizate."
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:233
+msgid "Name of the catalog:"
+msgstr "Numele catalogukui:"
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:262
+msgid "Description:"
+msgstr "Descriere:"
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:263
+msgid "Catalog:"
+msgstr "Catalog:"
+
+#: src/org/revager/gui/aspects_manager/EditAspectPopupWindow.java:264
+msgid "Category:"
+msgstr "Categoria:"
+
+#: src/org/revager/gui/aspects_manager/ReviewerPanel.java:158
+msgid "Remove selected aspect"
+msgstr "Stergeti aspectul selectat"
+
+#: src/org/revager/gui/aspects_manager/ReviewerPanel.java:184
+msgid "Edit selected aspect"
+msgstr "Editati aspectul selectat"
+
+#: src/org/revager/gui/aspects_manager/ReviewerPanel.java:190
+msgid "Push up item"
+msgstr "Impingeti elementul in sus"
+
+#: src/org/revager/gui/aspects_manager/ReviewerPanel.java:212
+msgid "Push down item"
+msgstr "Impingeti elementul in jos"
+
+#: src/org/revager/gui/dialogs/AboutDialog.java:75
+msgid "Build:"
+msgstr "Construiti:"
+
+#: src/org/revager/gui/dialogs/AboutDialog.java:77
+msgid "Date of Release:"
+msgstr "Data versiunii:"
+
+#: src/org/revager/gui/dialogs/AboutDialog.java:79
+msgid "Homepage:"
+msgstr "Pagină web:"
+
+#: src/org/revager/gui/dialogs/AboutDialog.java:81
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#. 
+#. * Close button
+#. 
+#: src/org/revager/gui/dialogs/AboutDialog.java:202
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:139
+#: src/org/revager/gui/dialogs/EditProductDialog.java:540
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:268
+#: src/org/revager/gui/helpers/DatePicker.java:991
+msgid "Close"
+msgstr "Închideţi"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:255
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:271
+msgid "Here you can manage all required information of the attendee."
+msgstr ""
+"Aici aveţi posibilitatea să administrati toate informaţiile cerute ale "
+"participantului."
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:264
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:188
+msgid "Back"
+msgstr "Înapoi"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:321
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:186
+msgid "Name:"
+msgstr "Nume:"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:329
+msgid "Open Attendee Directory"
+msgstr "Deschideţi directorul participantului"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:332
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:185
+msgid "Contact information:"
+msgstr "Date de contact:"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:338
+#: src/org/revager/gui/findings_list/AddAttToFLPopupWindow.java:184
+msgid "Role:"
+msgstr "Rol:"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:354
+msgid "Priorities:"
+msgstr "Priorităţi:"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:386
+msgid "Add Strength"
+msgstr "Adaugare aptitudine/punct forte"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:391
+msgid "Please select at least one strength for the reviewer:"
+msgstr ""
+"Va rog sa selectati cel putin o aptitudine/punct forte pentru "
+"inspector/revizor:"
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:411
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:78
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:63
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:95
+msgid "Importing catalog ..."
+msgstr "Importare catalog ..."
+
+#: src/org/revager/gui/dialogs/AttendeeDialog.java:476
+msgid "Remove Strength"
+msgstr "Stergere aptitudine/punct forte"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:131
+msgid "CSV Profiles for Finding Export"
+msgstr "Profile CSV pentru exportul rezultatelor"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:133
+msgid "Here you can configure the CSV Profiles for exporting findings."
+msgstr "Aici puteţi configura Profile CSV pentru exportarea rezultatelor."
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:265
+msgid "Name of the CSV Profile:"
+msgstr "Numele profilului CSV:"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:329
+msgid "Column order in the CSV file:"
+msgstr "Ordinea coloanelor in fisierul CSV:"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:376
+msgid "Column names in the CSV file:"
+msgstr "Numele coloanelor în fişierul CSV:"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:407
+msgid "Put the given column names into the CSV file (first row)."
+msgstr "Puneti numele coloanelor în fişierul CSV (primul rând)."
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:411
+msgid "Protect the content of individual cells in the CSV file with quotes."
+msgstr ""
+"Protejati conţinutul celulelor individuale din fişierul CSV cu ghilimele."
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:462
+msgid "Valid severities of the findings for this profile:"
+msgstr "Grade de severitate valide ale rezultatelor pentru acest profil:"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:497
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:244
+msgid "CSV Profile:"
+msgstr "Profilul CSV:"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:516
+msgid "Add a new CSV Profile"
+msgstr "Adaugati un nou profil CSV"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:522
+msgid "Please enter a name for the new CSV Profile:"
+msgstr "Vă rog să introduceţi un nume pentru noul profil CSV:"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:546
+msgid "Remove selected CSV Profile"
+msgstr "Stergeti Profilul CSV selectat"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:550
+#: src/org/revager/gui/findings_list/FindingPanel.java:1086
+msgid "Cancel"
+msgstr "Anulaţi"
+
+#: src/org/revager/gui/dialogs/CSVProfilesDialog.java:558
+msgid ""
+"You are going to delete the selected CSV Profile. Do you really want to "
+"continue?"
+msgstr ""
+"Aveţi de gand sa ştergeţi profilul CSV selectat. Chiar doriţi să continuaţi?"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:237
+msgid "Selected meeting:"
+msgstr "Sedinta selectata:"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:249
+msgid "Attach product to invitation packages"
+msgstr "Ataşaţi produsul la pachetele invitaţiei"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:254
+msgid "Package as PDF file"
+msgstr "Pachet ca fişier PDF"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:258
+msgid "Package as ZIP file"
+msgstr "Pachet ca fişier ZIP"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:262
+msgid "Package as sub directory"
+msgstr "Pachet ca subdirector"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:272
+msgid "Attendees:"
+msgstr "Participanţi:"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:274
+msgid "Select All"
+msgstr "Selectați tot"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:302
+msgid "Directory:"
+msgstr "Director:"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:307
+msgid "Select directory where to store the packages"
+msgstr "Selectaţi directorul în care se vor salva pachetele"
+
+#: src/org/revager/gui/dialogs/CreateInvitationsDialog.java:367
+msgid "Here you can create invitations for the attendees."
+msgstr "Aici aveţi posibilitatea să creaţi invitaţii pentru participanti."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:83
+msgid "Product reference(s):"
+msgstr "Referinta/referintele produsului:"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:84
+msgid "Product file(s):"
+msgstr "Fişier(e) Produs:"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:85
+msgid "Product name:"
+msgstr "Numele produsului:"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:86
+msgid "Product version:"
+msgstr "Versiunea produsului:"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:210
+#: src/org/revager/gui/findings_list/FindingPanel.java:358
+msgid "Add Reference"
+msgstr "Adăugaţi referinţă"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:218
+msgid "New reference"
+msgstr "Referinţă nouă"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:241
+#: src/org/revager/gui/findings_list/FindingPanel.java:359
+msgid "Remove Reference"
+msgstr "Stergeţi referinţa"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:260
+#: src/org/revager/gui/findings_list/FindingPanel.java:360
+msgid "Edit Reference"
+msgstr "Editaţi referinţa"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:317
+#: src/org/revager/gui/findings_list/FindingPanel.java:407
+msgid "Add File"
+msgstr "Adăugaţi fişier"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:340
+msgid "Adding file ..."
+msgstr "Adăugare fişier ..."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:384
+msgid "Remove File"
+msgstr "Ștergeţi fişierul"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:400
+msgid "Removing file ..."
+msgstr "Ștergere fişier ..."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:490
+msgid "Press enter to add the reference finally."
+msgstr "Apasati tasta enter pentru a adăuga referinţa în cele din urmă."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:496
+msgid "Please enter the name of the product."
+msgstr "Vă rog să introduceţi numele produsului."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:502
+msgid "Please enter the version number of the product."
+msgstr "Vă rog să introduceţi numărul de versiune al produsului."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:508
+msgid "Please enter at least one reference for the product."
+msgstr "Vă rog să introduceţi cel puţin o referinţă pentru produs."
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:528
+msgid "Specify the Product"
+msgstr "Specificaţi produsul"
+
+#: src/org/revager/gui/dialogs/EditProductDialog.java:529
+msgid "Here you can set the name, version and references of the product."
+msgstr "Aici puteţi seta numele, versiunea şi referinţe ale produsului."
+
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:153
+msgid "Here you can export the findings into a CSV file."
+msgstr "Aici puteţi să exportaţi rezultatele într-un fişier CSV."
+
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:222
+msgid "All findigs of this review"
+msgstr "Toate rezultatele din aceasta inspectie/revizuire"
+
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:235
+msgid "Export findings of a certain meeting only:"
+msgstr "Exportati numai rezultatele unei inspectii/revizuiri precise:"
+
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:243
+msgid "Bug Reporter:"
+msgstr "Reporterul de erori:"
+
+#: src/org/revager/gui/dialogs/ExportCSVDialog.java:281
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:190
+msgid "Export"
+msgstr "Exportare"
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:118
+msgid "Export Findings as PDF File"
+msgstr "Exportaţi  rezultatele intr-un fisier PDF"
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:119
+msgid "Here you can export the findings as a PDF file."
+msgstr "Aici puteţi să exportaţi rezultatele intr-un fişier PDF."
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:134
+msgid "All findings of the review"
+msgstr "Toate rezultatele inspectiei/revizuirii"
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:137
+msgid "Include signing fields for the present attendees."
+msgstr "Includeţi câmpuri de semnare pentru participanţii prezenţi."
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:138
+msgid "Attach files which belong to the findings."
+msgstr "Ataşaţi fişiere care aparţin rezultatelor."
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:139
+msgid "Attach file(s) of the product"
+msgstr "Ataşaţi fişier(e) al(e) produsului"
+
+#: src/org/revager/gui/dialogs/ExportPDFProtocolDialog.java:145
+msgid "Export the findings of a certain meeting only:"
+msgstr "Exportati numai rezultatele unei sedinte anumite:"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:72
+msgid "Severities for the findings in this review:"
+msgstr "Severităţi ale rezultatelor din aceasta inspectie/revizuire:"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:143
+msgid "Add Severity"
+msgstr "Adaugaţi  severitate"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:153
+msgid "Remove Severity"
+msgstr "Stergeţi severitate"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:162
+msgid "Edit Severity"
+msgstr "Editaţi severitate"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:171
+msgid "Push to the top"
+msgstr "Impingeti spre vârf/inceput"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:180
+msgid "Push up"
+msgstr "Impingeti in sus"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:190
+msgid "Push down"
+msgstr "Impingeti in jos"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:200
+msgid "Push to the bottom"
+msgstr "Impingeti spre baza/sfârsit"
+
+#: src/org/revager/gui/dialogs/ManageSeveritiesDialog.java:256
+msgid ""
+"The order of the severities for the findings affects the entire review and "
+"represents their relevance (decreasing from top to bottom in the list)."
+msgstr ""
+"Ordinea severitătilor pentru rezultate afectează întreaga "
+"inspectie/revizuire şi reprezintă relevanţa lor (descendent în listă de la "
+"vârf/inceput pina la bază/sfârsit)."
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:254
+msgid "Here you can enter all information for the new review meeting."
+msgstr ""
+"Aici puteţi introduce toate informaţiile pentru noua sedinta a "
+"inspectiei/revizuirii."
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:276
+#: src/org/revager/gui/dialogs/MeetingDialog.java:401
+msgid "Please enter the reason for canceling the meeting..."
+msgstr "Vă rog să introduceţi motivul pentru anularea sedintei ..."
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:278
+#: src/org/revager/gui/dialogs/MeetingDialog.java:348
+msgid "Edit Meeting"
+msgstr "Editati sedinta"
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:279
+#: src/org/revager/gui/dialogs/MeetingDialog.java:349
+msgid "Here you can edit all information of the selected meeting."
+msgstr "Aici puteţi să editaţi toate informaţiile sedintei selectate."
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:366
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:807
+msgid "Period of time:"
+msgstr "Perioada de timp:"
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:369
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:810
+msgid "to"
+msgstr "la"
+
+#. 
+#. *
+#. * creating elements for location, and canceled infos
+#. 
+#: src/org/revager/gui/dialogs/MeetingDialog.java:397
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:801
+msgid "Location:"
+msgstr "Locaţia:"
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:405
+msgid "Canceled"
+msgstr "Anulat"
+
+#. 
+#. *
+#. * creating elements for the date of the meeting
+#. 
+#: src/org/revager/gui/dialogs/MeetingDialog.java:426
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:804
+msgid "Date:"
+msgstr "Data:"
+
+#: src/org/revager/gui/dialogs/MeetingDialog.java:456
+msgid "Select date"
+msgstr "Selectaţi data"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:136
+msgid "General"
+msgstr "General"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:141
+msgid "PDF Export"
+msgstr "Export PDF"
+
+#. 
+#. * Auto save
+#. 
+#: src/org/revager/gui/dialogs/SettingsDialog.java:201
+#, java-format
+msgid "Save review every {0} minutes automatically."
+msgstr ""
+"Salvaţi inspectia/revizuirea tot la fiecare {0} minute în mod automat."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:241
+msgid ""
+"Check if a new version of RevAger is available during application start."
+msgstr ""
+"Verificaţi dacă o nouă versiune a aplicatiei RevAger este disponibilă în "
+"timpul pornirii aplicaţiei."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:255
+msgid "Show hints in dialogs by default."
+msgstr "Afişaţi sugestii în casetele de dialog în mod implicit."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:269
+msgid "Highlight obligatory input fields."
+msgstr "Marcaţi câmpurile obligatorii de intrare."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:283
+msgid "Allow usage of fullscreen mode (EXPERIMENTAL)."
+msgstr "Permiteţi utilizarea modului fullscreen (EXPERIMENTAL)."
+
+#. 
+#. * Protocol warning
+#. 
+#: src/org/revager/gui/dialogs/SettingsDialog.java:296
+#, java-format
+msgid "Show warning while creating a findings list after {0} minutes."
+msgstr ""
+"Arătaţi o avertizare în timpul creării unei liste de rezultate după {0} "
+"minute."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:387
+msgid "Language:"
+msgstr "Limba:"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:430
+msgid "Findings list as PDF file"
+msgstr "Lista rezultatelor ca fişier PDF"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:440
+#: src/org/revager/gui/dialogs/SettingsDialog.java:510
+msgid "Choose an Image..."
+msgstr "Alegeţi o imagine ..."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:461
+#: src/org/revager/gui/dialogs/SettingsDialog.java:531
+msgid "Remove Image"
+msgstr "Stergeţi imaginea"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:473
+#: src/org/revager/gui/dialogs/SettingsDialog.java:543
+msgid "Displayed image:"
+msgstr "Imaginea afisata:"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:488
+#: src/org/revager/gui/dialogs/SettingsDialog.java:571
+msgid "Displayed foot text:"
+msgstr "Textul de subsol afişat:"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:500
+msgid "Invitations as PDF file:"
+msgstr "Invitaţiile ca fişier PDF:"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:561
+msgid "Text of invitations:"
+msgstr "Textul invitaţiilor:"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:610
+msgid ""
+"Here you can set some application options. They will be saved in the "
+"database independently of any particular review."
+msgstr ""
+"Aici puteţi seta unele opţiuni ale aplicaţiei. Acestea vor fi salvate în "
+"baza de date, independent de orice inspecţie/revizuire particulara."
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:612
+msgid ""
+"Here you can set some options concerning the PDF export. They will be saved "
+"in the database independently of any particular review."
+msgstr ""
+"Aici puteţi seta unele opţiuni privind exportul PDF. Acestea vor fi salvate "
+"în baza de date, independent de orice inspecţie/revizuire particulara."
+
+#: src/org/revager/gui/dialogs/WarningDialog.java:41
+msgid "Don't show this dialog during the current session again."
+msgstr "Nu mai arătaţi acest dialog în timpul sesiunii curente."
+
+#: src/org/revager/gui/dialogs/WarningDialog.java:104
+msgid "No"
+msgstr "Nu"
+
+#: src/org/revager/gui/dialogs/WarningDialog.java:107
+msgid "Yes"
+msgstr "Da"
+
+#. 
+#. * Strings
+#. 
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:83
+msgid "Welcome to RevAger!"
+msgstr "Bine aţi venit la RevAger!"
+
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:85
+msgid ""
+"You can select a mode and a review from the list of reviews. If your review "
+"isn't in the list, you can load it by choosing 'Select another review...'."
+msgstr ""
+"Puteţi selecta un mod şi o inspecţie/revizuire din lista de "
+"inspecţii/revizuiri. Dacă inspecţia/revizuirea dumneavoastră nu este în "
+"listă, aveţi posibilitatea să o încărcaţi prin alegînd 'Selectaţi o altă "
+"recenzie ...'."
+
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:87
+msgid ""
+"Here you can manage some personal details. They will be used during the "
+"review."
+msgstr ""
+"Aici puteţi administra unele detalii personale. Acestea vor fi folosite în "
+"timpul inspecţiei/revizuirii."
+
+#: src/org/revager/gui/dialogs/assistant/AssistantDialog.java:170
+msgid "RevAger Assistant"
+msgstr "Asistent pentru RevAger"
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:75
+msgid "Open existing review"
+msgstr "Deschideţi o inspecţie/revizuire existentă"
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:77
+msgid "Open Aspects Manager"
+msgstr "Deschideţi Administratorul de Aspecte"
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:78
+msgid "Schedule new review"
+msgstr "Planificaţi o inspecţie/revizuire nouă"
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:79
+msgid "Quickstart"
+msgstr "Start rapid"
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:81
+msgid ""
+"Select this if you would like to start a review immediately as a single "
+"reviewer. This option is perfect for quick reviews of a website or even for "
+"car inspections."
+msgstr ""
+"Selectaţi această opţiune dacă doriţi să începeţi imediat o "
+"inspecţie/revizuire ca un inspector/revizor unic. Această opţiune este "
+"perfectă pentru inspecţii/revizuiri rapide a unui site web sau chiar pentru "
+"inspecţiile de masina."
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:82
+msgid "Select this if you would like to organize a review as moderator."
+msgstr ""
+"Selectaţi această opţiune dacă doriţi să organizaţi o inspecţie/revizuire de "
+"moderator."
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:83
+msgid "Select this if you would like to open an existing review."
+msgstr ""
+"Selectaţi această opţiune dacă doriţi să deschideţi o inspecţie/revizuire "
+"existentă."
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:84
+msgid "Select this if you want to change the language of the application."
+msgstr "Selectaţi această opţiune dacă doriţi să schimbaţi limba aplicaţiei."
+
+#: src/org/revager/gui/dialogs/assistant/FirstScreenPanel.java:85
+msgid ""
+"Select this if you would like to manage the catalogs and aspects in the "
+"Aspects Manager."
+msgstr ""
+"Selectaţi această opţiune dacă doriţi să administraţi  cataloagele şi "
+"aspectele în Administratorul de Aspecte."
+
+#. 
+#. * Strings
+#. 
+#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:62
+msgid "Select another review..."
+msgstr "Selectaţi o altă inspecţie/revizuire ..."
+
+#: src/org/revager/gui/dialogs/assistant/OpenReviewPanel.java:63
+msgid "No reviews available"
+msgstr "Nu există inspecţii/revizuiri disponibile"
+
+#: src/org/revager/gui/findings_list/AddAspToFindPopupWindow.java:118
+msgid "Please select the aspects which should be added to the finding:"
+msgstr ""
+"Vă rog sa selectaţi aspectele care ar trebui să fie adăugate la rezultat:"
+
+#: src/org/revager/gui/findings_list/AddResiAttToFLPopupWindow.java:130
+msgid ""
+"Please select the attendee you would like to add to the current meeting:"
+msgstr ""
+"Vă rog să selectaţi participantul pe care doriţi să-l adăugaţi la actuala "
+"sedinţă:"
+
+#. 
+#. * Set tooltips for buttons
+#. 
+#: src/org/revager/gui/findings_list/FindingPanel.java:293
+msgid "Close Edit View of this Finding"
+msgstr "Inchide Editare Vizualizare a acestui rezultat"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:294
+msgid "Remove this Finding"
+msgstr "Stergeti acest rezultat"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:295
+msgid "Push up Finding"
+msgstr "Impinge rezultatul in sus"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:296
+msgid "Push down Finding"
+msgstr "Impinge rezultatul in jos"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:297
+msgid "Push Finding to the top"
+msgstr "Impinge rezultatul spre inceput/virf"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:298
+msgid "Push Finding to the bottom"
+msgstr "Impinge rezultatul spre fund/bază"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:313
+msgid "Please enter a reference"
+msgstr "Vă rog să introduceţi o referinţă"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:408
+msgid "Remove file"
+msgstr "Ştergeţi fişierul"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:409
+msgid "Paste Image from Clipboard"
+msgstr "Inseraţi imaginea din Clipboard/memoria intermediara"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:461
+msgid "Add Aspect(s)"
+msgstr "Adăugaţi aspect(e)"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:462
+msgid "Remove Aspect(s)"
+msgstr "Ştergeţi aspect(e)"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:631
+msgid "Are you sure you want to remove the selected finding permanently?"
+msgstr "Sunteţi sigur că doriţi să ştergeţi rezultatul selectat permanent?"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:805
+#: src/org/revager/gui/models/AttendeeTableModel.java:101
+#: src/org/revager/gui/models/FindAspTableModel.java:85
+msgid "Aspect(s)"
+msgstr "Aspect(e)"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:807
+msgid "Reference(s)"
+msgstr "Referinţă/Referinţe"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:808
+msgid "File(s)"
+msgstr "Fişier(e)"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:1055
+msgid "Getting image from clipboard ..."
+msgstr "Obţinerea imaginii din Clipboard/memoria intermediara"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:1065
+msgid ""
+"Unfortunately there isn't any image in the clipboard which can be included "
+"as a reference."
+msgstr ""
+"Din păcate, nu există nici o imagine în clipboard/memoria intermediara, care "
+"poate fi inclusă ca referinţă."
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:1066
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1117
+msgid "Information"
+msgstr "Informaţii"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:1077
+msgid "Screenshot"
+msgstr "Captură de ecran"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:1082
+msgid "Please enter a name for the image:"
+msgstr "Vă rog să introduceţi un nume pentru imagine:"
+
+#: src/org/revager/gui/findings_list/FindingPanel.java:1086
+msgid "Save"
+msgstr "Salvați"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:345
+msgid "Severe problem occurred! RevAger has to be restarted."
+msgstr "O problemă severă a fost inregistrată! RevAger trebuie repornit."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:346
+msgid "Problem occurred"
+msgstr "Problemă inregistrată"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:370
+msgid "Organizational"
+msgstr "Organizatoric"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:371
+msgid "Impression"
+msgstr "Impresie"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:372
+#: src/org/revager/gui/findings_list/FindingsTab.java:129
+msgid "Findings"
+msgstr "Rezultate"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:373
+msgid "Comments & Recommendation"
+msgstr "Comentarii & Recomandari"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:395
+msgid "Confirm and close list of findings"
+msgstr "Confirmaţi şi inchideţi jos lista rezultatelor"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:420
+msgid "Export List of Findings as PDF File"
+msgstr "Exportaţi lista rezultatelor ca fişier PDF"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:435
+msgid "Export List of Findings as CSV File"
+msgstr "Exportaţi lista rezultatelor ca fişier CSV"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:454
+msgid "Exit Fullscreen"
+msgstr "Terminarea modului de afisare pe întregul ecran"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:460
+msgid "Change to Fullscreen mode"
+msgstr "Schimbare la modul de afisare pe tot ecranul"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:507
+msgid "Reset Stop Watch"
+msgstr "Reinitializare cronometru"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:538
+msgid "Pause Stop Watch"
+msgstr "Oprire/Intrerupere cronometru"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:544
+msgid "Start Stop Watch"
+msgstr "Start cronometru"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:562
+msgid "Add Attendee from the Attendee Pool"
+msgstr "Adăugaţi participant din gruparea de participanţi"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:582
+msgid "Remove Attendee"
+msgstr "Stergeţi participant"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:725
+msgid "Add Attendee to Meeting"
+msgstr "Adăugaţi participant la şedinţă"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:758
+msgid "Attendees of the current meeting:"
+msgstr "Participanţii şedinţei curente:"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:996
+msgid "Comments on the meeting:"
+msgstr "Comentarii cu privire la şedinţă:"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:999
+msgid "Comments on the list of findings:"
+msgstr "Comentarii cu privire la lista de rezultate:"
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1112
+#, java-format
+msgid ""
+"This review meeting is running for {0} minutes already. Therefore it is "
+"recommended to finalize the meeting now and continue the review at a later "
+"point in time."
+msgstr ""
+"Această şedinţă  de inspecţie/revizuire este deja de {0} minute in execuţie. "
+"Prin urmare, este recomandat să finalizaţi şedinţa acum şi să continuaţi "
+"inspecţia/revizuirea la un moment de timp ulterior."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1159
+msgid "List of findings successfully loaded."
+msgstr "Lista de rezulate a fost incarcată cu succes."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1541
+msgid ""
+"Please add at least one attendee to the meeting by choosing one from the "
+"attendees pool or create a new one (Tab 'Organizational')."
+msgstr ""
+"Vă rog să adăugaţi cel puţin un participant la şedinţă prin alegerea unuia "
+"din gruparea de participanţi sau să creaţi unul nou (Tab \"Organizatoric\")."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1545
+msgid ""
+"Please enter the general impression for the product into the provided text "
+"field (Tab 'Impression')."
+msgstr ""
+"Vă rog  să introduceţi impresia generală pentru produs în câmpul de text "
+"prevăzut (Tab \"Impresie\")."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1549
+msgid ""
+"Please enter the final recommendation for the product into the provided text "
+"field (Tab 'Comments & Recommendation')."
+msgstr ""
+"Vă rog să introduceţi recomandarea finală pentru produs în câmpul de text "
+"prevăzut (Tab \"Comentarii & Recomandări\")."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1553
+msgid "For every finding enter at least a description (Tab 'Findings')."
+msgstr ""
+"Introduceţi cel puţin o descriere pentru fiecare rezultat (Tab "
+"\"Rezultate\")."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1557
+msgid "The meeting data and its list of findings is complete."
+msgstr "Datele şedinţei şi lista ei cu rezulate sunt complete."
+
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:1561
+msgid ""
+"In order to add a new finding to the list of findings use the 'Add Finding' "
+"button (Tab 'Findings')."
+msgstr ""
+"Pentru a adăuga un nou rezultat în lista de rezultate utilizaţi butonul "
+"\"Adăugaţi Rezultat\" (Tab \"Rezulate\")."
+
+#: src/org/revager/gui/findings_list/FindingsTab.java:51
+msgid "Add Finding"
+msgstr "Adăugaţi Rezultat"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:124
+msgid "Image Editor"
+msgstr "Editor de imagini"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:211
+msgid "Undo"
+msgstr "Anulaţi/Revocați"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:223
+msgid "Redo"
+msgstr "Refaceți/Repetaţi"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:287
+msgid "Please enter some text"
+msgstr "Vă rog să introduceţi un text"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:352
+msgid "Color"
+msgstr "Culoare"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:361
+msgid "Please choose a color"
+msgstr "Vă rog să alegeţi o culoare"
+
+#: src/org/revager/gui/findings_list/graphical_annotations/ImageEditorDialog.java:456
+msgid "Thickness"
+msgstr "Grosime"
+
+#: src/org/revager/gui/helpers/DatePicker.java:945
+msgid "January"
+msgstr "Ianuarie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:947
+msgid "February"
+msgstr "Februarie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:949
+msgid "March"
+msgstr "Martie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:951
+msgid "April"
+msgstr "Aprilie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:953
+msgid "May"
+msgstr "Mai"
+
+#: src/org/revager/gui/helpers/DatePicker.java:955
+msgid "June"
+msgstr "Iunie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:957
+msgid "July"
+msgstr "Iulie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:959
+msgid "August"
+msgstr "August"
+
+#: src/org/revager/gui/helpers/DatePicker.java:961
+msgid "September"
+msgstr "Septembrie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:963
+msgid "October"
+msgstr "Octombrie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:965
+msgid "November"
+msgstr "Noiembrie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:967
+msgid "December"
+msgstr "Decembrie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:969
+msgid "Mon"
+msgstr "Lun"
+
+#: src/org/revager/gui/helpers/DatePicker.java:971
+msgid "Tue"
+msgstr "Mar"
+
+#: src/org/revager/gui/helpers/DatePicker.java:973
+msgid "Wed"
+msgstr "Mie"
+
+#: src/org/revager/gui/helpers/DatePicker.java:975
+msgid "Thu"
+msgstr "Joi"
+
+#: src/org/revager/gui/helpers/DatePicker.java:977
+msgid "Fri"
+msgstr "Vin"
+
+#: src/org/revager/gui/helpers/DatePicker.java:979
+msgid "Sat"
+msgstr "Sâm"
+
+#: src/org/revager/gui/helpers/DatePicker.java:981
+msgid "Sun"
+msgstr "Dum"
+
+#: src/org/revager/gui/helpers/DatePicker.java:983
+msgid "Previous month"
+msgstr "Luna trecută"
+
+#: src/org/revager/gui/helpers/DatePicker.java:985
+msgid "Next month"
+msgstr "Luna viitoare"
+
+#: src/org/revager/gui/helpers/DatePicker.java:987
+msgid "Previous year"
+msgstr "Anul trecut"
+
+#: src/org/revager/gui/helpers/DatePicker.java:989
+msgid "Next year"
+msgstr "Anul viitor"
+
+#: src/org/revager/gui/helpers/DatePicker.java:993
+msgid "Please choose a date..."
+msgstr "Vă rog sa alegeți o dată..."
+
+#: src/org/revager/gui/helpers/DatePicker.java:995
+msgid "Calendar"
+msgstr "Calendar"
+
+#: src/org/revager/gui/helpers/FileChooser.java:171
+#: src/org/revager/gui/helpers/FileChooser.java:302
+msgid "Open File..."
+msgstr "Deschideți fișierul..."
+
+#: src/org/revager/gui/helpers/FileChooser.java:190
+#: src/org/revager/gui/helpers/FileChooser.java:320
+msgid "Save File..."
+msgstr "Salvați fișierul..."
+
+#: src/org/revager/gui/helpers/FileChooser.java:209
+#: src/org/revager/gui/helpers/FileChooser.java:329
+msgid "Select Directory..."
+msgstr "Selectați un director..."
+
+#: src/org/revager/gui/helpers/FileChooser.java:245
+msgid "Cannot find the given file. Please select a valid one."
+msgstr "Fişierul dat nu poate fi găsit. Vă rog să selectaţi un fişier valid."
+
+#: src/org/revager/gui/helpers/FileChooser.java:264
+msgid ""
+"There is a file with the given name already existing. Would you like to "
+"overwrite it?"
+msgstr "Există deja un fişier cu numele dat. Doriţi să il suprascrieţi?"
+
+#: src/org/revager/gui/helpers/FileChooser.java:330
+msgid "Select"
+msgstr "Selectaţi"
+
+#: src/org/revager/gui/helpers/FileChooser.java:357
+msgid ""
+"An error occurred while choosing a file or directory!\n"
+"\n"
+"Please try again."
+msgstr ""
+"S-a înregistrat o eroare în timpul alegerii unui fişier sau director!\n"
+"\n"
+"Vă rugăm să încercaţi din nou."
+
+#: src/org/revager/gui/helpers/TreeProtocol.java:117
+msgid "Findings List of"
+msgstr "Lista rezulatelor de"
+
+#: src/org/revager/gui/models/AspectTableModel.java:145
+#: src/org/revager/gui/models/ReviewerTableModel.java:100
+msgid "Aspect"
+msgstr "Aspect"
+
+#: src/org/revager/gui/models/AspectTableModel.java:147
+msgid "Reviewers"
+msgstr "Inspectori/Revizori"
+
+#: src/org/revager/gui/models/AttendeeTableModel.java:67
+msgid "Name"
+msgstr "Nume"
+
+#: src/org/revager/gui/models/AttendeeTableModel.java:69
+msgid "Role"
+msgstr "Rol"
+
+#: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:42
+msgid "Description"
+msgstr "Descriere"
+
+#: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:43
+msgid "Reference"
+msgstr "Referinţă"
+
+#: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:44
+msgid "Severity"
+msgstr "Severitate"
+
+#: src/org/revager/gui/models/CSVColumnsComboBoxModel.java:45
+msgid "Bug Reporter"
+msgstr "Reporter de erori"
+
+#: src/org/revager/gui/models/CSVProfileTableModel.java:140
+msgid "Review Severity"
+msgstr "Gravitatea/Gradul de severitate (al) inspectiei/revizuirii"
+
+#: src/org/revager/gui/models/CSVProfileTableModel.java:142
+msgid "Mapping"
+msgstr "Asociere"
+
+#: src/org/revager/gui/models/FindExtRefTableModel.java:86
+msgid "Files"
+msgstr "Fișiere"
+
+#: src/org/revager/gui/models/FindRefTableModel.java:108
+msgid "References"
+msgstr "Referințe"
+
+#: src/org/revager/gui/models/PresentAttendeesTableModel.java:117
+msgid "Preparation time"
+msgstr "Timp de pregătire"
+
+#: src/org/revager/gui/models/ReviewerTableModel.java:98
+msgid "Category"
+msgstr "Categorie"
+
+#: src/org/revager/gui/workers/AutoAspAllocWorker.java:104
+msgid "Aspects allocated."
+msgstr "Aspecte alocate."
+
+#: src/org/revager/gui/workers/AutoAspAllocWorker.java:113
+msgid "Cannot allocate aspects!"
+msgstr "Nu se pot aloca aspecte!"
+
+#: src/org/revager/gui/workers/AutoBackupWorker.java:89
+msgid "Auto backup done."
+msgstr "Copia automată de siguranţă a fost terminată."
+
+#: src/org/revager/gui/workers/AutoBackupWorker.java:103
+msgid "Auto backup failed!"
+msgstr "Copia automată de siguranţă a eşuat!"
+
+#: src/org/revager/gui/workers/AutoSaveWorker.java:103
+msgid "Review stored successfully."
+msgstr "Inspetia/Revizuirea a fost stocată cu succes."
+
+#: src/org/revager/gui/workers/AutoSaveWorker.java:119
+msgid "Review couldn't be stored!"
+msgstr "Inspetia/Revizuirea nu a putut fi stocată!"
+
+#: src/org/revager/gui/workers/CheckForNewVersionWorker.java:72
+#, java-format
+msgid ""
+"A new version of RevAger is available!\n"
+"\n"
+"Latest version: {0}\n"
+"Your version: {1}\n"
+"\n"
+"Please choose 'Update' to get the latest version. If you don't like to see "
+"this message again, you can turn it off in the application settings."
+msgstr ""
+"O nouă versiune a aplicaţiei  RevAger este disponibilă!\n"
+"\n"
+"Ultima versiune: {0}\n"
+"Versiunea dvs.: {1}\n"
+"\n"
+"Vă rog să alegeţi \"Update\" pentru a obţine cea mai recentă versiune. Dacă "
+"nu doriţi să vedeţi acest mesaj din nou, aveţi posibilitatea să îl "
+"dezactivaţi în setările aplicaţiei."
+
+#: src/org/revager/gui/workers/CheckForNewVersionWorker.java:76
+msgid "Update RevAger"
+msgstr "Actualizare RevAger"
+
+#: src/org/revager/gui/workers/CreateInvitationsWorker.java:67
+msgid "Creating invitation(s) ..."
+msgstr "Creare invitaţie/invitaţii ..."
+
+#: src/org/revager/gui/workers/CreateInvitationsWorker.java:118
+msgid "The invitations have been created successfully."
+msgstr "Invitaţiile au fost create cu succes."
+
+#: src/org/revager/gui/workers/CreateInvitationsWorker.java:130
+msgid ""
+"You have to choose at least one attendee in order to create an invitation."
+msgstr ""
+"Trebuie să alegeţi cel puţin un participant, cu scopul de a crea o invitaţie."
+
+#: src/org/revager/gui/workers/CreateInvitationsWorker.java:137
+msgid "Please choose a directory where to store the invitation(s)."
+msgstr ""
+"Vă rog să alegeţi un director pentru stocarea invitaţiei/invitaţiilor."
+
+#: src/org/revager/gui/workers/ExportAspectsWorker.java:79
+msgid "Exporting aspects ..."
+msgstr "Exportare aspecte..."
+
+#: src/org/revager/gui/workers/ExportAspectsWorker.java:105
+msgid "Aspects exported successfully."
+msgstr "Aspectele au fost exportate cu succes."
+
+#: src/org/revager/gui/workers/ExportAspectsWorker.java:119
+msgid "Cannot export the selected aspects!"
+msgstr "Aspectele selectate nu pot fi exportate!"
+
+#: src/org/revager/gui/workers/ExportCSVWorker.java:134
+#: src/org/revager/gui/workers/ExportCSVWorker.java:139
+msgid "The findings have been exported into a CSV file successfully."
+msgstr "Rezultatele au fost exportate cu succes într-un fişier CSV."
+
+#: src/org/revager/gui/workers/ExportCatalogWorker.java:79
+msgid "Exporting catalog ..."
+msgstr "Exportare catalog..."
+
+#: src/org/revager/gui/workers/ExportCatalogWorker.java:115
+msgid "Catalog exported successfully."
+msgstr "Catalogul a fost exportat cu succes."
+
+#: src/org/revager/gui/workers/ExportCatalogWorker.java:129
+msgid "Cannot export selected catalog!"
+msgstr "Catalogul selectat nu poate fi exportat!"
+
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:76
+msgid "Review_Findings_List"
+msgstr ""
+
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:94
+msgid "Review_Meeting_Findings_List"
+msgstr ""
+
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:151
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:156
+msgid "The findings list has been exported as a PDF file successfully."
+msgstr "Lista cu rezultate a fost exportată cu succes într-un fişier PDF."
+
+#: src/org/revager/gui/workers/ExportPDFProtocolWorker.java:168
+msgid ""
+"RevAger cannot find a PDF viewer on your machine. Please install a PDF "
+"Viewer, and open the findings list manually."
+msgstr ""
+"RevAger nu poate găsi un vizualizator PDF pe calculatorul dumneavoastră. Vă "
+"rugăm să instalaţi un vizualizator PDF, şi să deschideţi  lista rezulatelor "
+"in mod manual."
+
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:77
+msgid "Importing aspects ..."
+msgstr "Importare aspecte ..."
+
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:94
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:125
+msgid "(No Directive)"
+msgstr "(Nici o directiva)"
+
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:106
+msgid "Aspects imported successfully."
+msgstr "Aspectele au fost importate cu succes."
+
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:113
+msgid ""
+"Cannot import selected file. The content isn't conform to the expected "
+"format (Resi XML Schema)."
+msgstr ""
+"Fişierul selectat nu poate fi importat. Conţinutul nu este conform cu "
+"formatul aşteptat (Resi XML Schema)."
+
+#: src/org/revager/gui/workers/ImportAspectsWorker.java:122
+msgid "Cannot import aspects!"
+msgstr "Aspectele nu pot fi importate!"
+
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:96
+msgid "Please enter a new name for the catalog:"
+msgstr "Vă rog să introduceţi un nume nou pentru catalog:"
+
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:99
+msgid ""
+"There is a catalog with the given name already existing. Please enter a new "
+"one."
+msgstr ""
+"Există deja un catalog cu numele dat. Vă rog să introduceţi unul nou."
+
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:139
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:136
+msgid "Catalog imported successfully."
+msgstr "Catalogul a fost importat cu succes."
+
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:146
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:144
+msgid ""
+"Cannot import selected file. The content is not conform to the expected "
+"format (Resi XML Schema)."
+msgstr ""
+"Fişierul selectat nu poate fi importat. Conţinutul nu este conform cu "
+"formatul aşteptat (Resi XML Schema)."
+
+#: src/org/revager/gui/workers/ImportCatalogWorker.java:155
+#: src/org/revager/gui/workers/LoadDefCatalogsWorker.java:153
+msgid "Cannot import catalog!"
+msgstr "Catalogul nu poate fi importat!"
+
+#: src/org/revager/gui/workers/LoadReviewWorker.java:70
+msgid "Loading review ..."
+msgstr "Incărcare inspecţie/revizuire..."
+
+#: src/org/revager/gui/workers/LoadReviewWorker.java:87
+msgid "Review loaded successfully."
+msgstr "Inspecţia/Revizuirea a fost încărcată cu succes."
+
+#: src/org/revager/gui/workers/LoadReviewWorker.java:107
+msgid "Cannot load review file."
+msgstr "Nu se poate încărca fişierul de inspectie/revizuire."
+
+#: src/org/revager/gui/workers/NewReviewWorker.java:71
+msgid "Creating new review ..."
+msgstr "Crearea unei noi inspecţii/revizuiri..."
+
+#: src/org/revager/gui/workers/NewReviewWorker.java:82
+msgid "New review created successfully."
+msgstr "Noua  inspecţie/revizuire a fost creată cu succes."
+
+#: src/org/revager/gui/workers/NewReviewWorker.java:96
+msgid "Review of"
+msgstr "Inspecţia/Revizuirea lui"
+
+#: src/org/revager/gui/workers/NewReviewWorker.java:129
+msgid "Cannot create new review file."
+msgstr "Nu se poate crea fişierul de inspecţie/revizuire."
+
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:56
+msgid "Restoring backup ..."
+msgstr "Restaurarea salvării de siguranţă.."
+
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:69
+msgid "Review restored successfully."
+msgstr "Inspecţia/Revizuirea a fost restaurată cu succes."
+
+#: src/org/revager/gui/workers/RestoreReviewWorker.java:95
+msgid "Cannot restore review."
+msgstr "Inspecţia/Revizuirea nu poate fi restaurată."
+
+#: src/org/revager/gui/workers/SaveReviewWorker.java:72
+msgid "Saving review ..."
+msgstr "Salvare inspecţie/revizuire"
+
+#: src/org/revager/gui/workers/SaveReviewWorker.java:86
+msgid "Review saved successfully."
+msgstr "Inspecţia/Revizuirea a fost salvată cu succes."
+
+#: src/org/revager/gui/workers/SaveReviewWorker.java:105
+#: src/org/revager/gui/workers/SaveReviewWorker.java:112
+msgid "Cannot save review file."
+msgstr "Fişierul de inspecţie/revizuire nu poate fi salvat."

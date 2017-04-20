@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (c) 2009, Markus Knauss, Holger Roeder, Daniel Kulesz
+All rights reserved
+
+V1.4: Fengg
+
+Changes:
++2009-02-19 MK: (Almhoamfahr´n) Initial release
++2009-02-23 MK: (Pfingstochse)
+                As reported by Wolfgang Fellger a planed review has no
+                protocol. Therefore the cardinality of protocol in the
+                meeting element was changed to 0..*.
++2009-03-03 MK: (Schellenursli)
+                - Removed aspectIdListType is it is no longer used
+                  (reported by Johannes Dilli).
+                - The type of the element "preparation-time" was changed to
+                  xsd:duration (reported by Paul Hummel).
+                - The severities that can be used to weight a finding
+                  are freely configurable now (reported by Paul Hummel).
++2009-03-05 MK: (Maiensaess)
+				- Set the upper bound of reference in the productType to
+				  unbounded. This is due to reference more than
+				  one product that is reviewed (reported by Johannes
+				  Wettinger).
+				- Added severities element of type severitiesType to the
+				  review. This is needed to know the severities with which
+				  a finding is weighted (reported by Johannes Wettinger).
++2009-05-26 MK: (Fengg)
+                - Corrected some spelling and naming errors in the
+                  documentation of the elements and types (reported by
+                  Felix Krause and Johannes Dilli).
+                - Added an element to reference screen shots in findings
+                  (by request of the customer)
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+
+-->
+   
+<xsd:schema targetNamespace="http://www.informatik.uni-stuttgart.de/iste/se"
+   elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:resi="http://www.informatik.uni-stuttgart.de/iste/se">
+
+   <xsd:annotation>
+      <xsd:documentation>This file contains the XML schema
+         definition (XSD) for the XML data exchange format of Resi the
+         review assistant. There are two elements that can be used for
+         documents. One is the aspects element that can be used for
+         exchanging aspects and the other is the review element that is
+         used for exchanging data about reviews of a product.      </xsd:documentation>   </xsd:annotation>
+   
+   <xsd:complexType name="aspectType">
+      <xsd:annotation>
+         <xsd:documentation>An aspect is a single directive for which
+            a product is checked.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>An aspect's id is unique. It is used
+                  to reference aspects that are used in a review session
+                  of a specimen.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="category" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>The category to which this aspect
+                  belongs to.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="directive" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>The directive for which the
+                  product has to be checked for.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="description" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>A short description of the aspects
+                  purpose.</xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <xsd:complexType name="findingType">
+      <xsd:annotation>
+         <xsd:documentation>A finding is some error or comment on the
+            product in order of its examination against an aspect.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:nonNegativeInteger">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Each finding has an unique ID by which it can be
+                  identified.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+            <xsd:element name="severity" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>The severity of this finding. Note: the 
+                 severity defined for the finding must be part of the list of 
+                 possible severities that were defined for this review.
+               </xsd:documentation>
+            </xsd:annotation></xsd:element>
+            <xsd:element name="description" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A short description of the finding.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="reference" type="xsd:string" maxOccurs="unbounded" 
+         		minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A reference to a location in the product to which the
+                  finding belongs to.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="aspect" type="xsd:string" minOccurs="0"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The aspect to which this finding belongs to.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="external-reference" type="xsd:anyURI" minOccurs="0"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                 A reference to an external entity like a screen shot that
+                 illustrates the finding.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="attendeeType">
+      <xsd:annotation>
+         <xsd:documentation>An attendee who can take part in a review.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="id" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Unique id of the attendee.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="name" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The name of the attendee.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="contact" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Contact information of the attendee, for instance his
+                  e-mail address.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="role" type="resi:roleType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The role the attendee is playing in a review.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="aspects" type="resi:aspectsIdType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The ids of the aspects that this attendee has to check the
+                  product against.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:simpleType name="roleType">
+      <xsd:annotation>
+         <xsd:documentation>Roles an attendee can play in a review.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="moderator" />
+         <xsd:enumeration value="scribe" />
+         <xsd:enumeration value="reviewer" />
+         <xsd:enumeration value="author" />
+         <xsd:enumeration value="customer" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <xsd:complexType name="protocolType">
+      <xsd:annotation>
+         <xsd:documentation>The protocol of a review session.
+         </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="date" type="xsd:date">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Date of the review session.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="start" type="xsd:time">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Starting time of the review session.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="end" type="xsd:time">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Time the review session ended.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="location" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                 The location at which the review was performed.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="attendee" type="resi:attendeeReferenceType"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The attendees of this review session.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="finding" type="resi:findingType"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The findings of the reviewers in the specimen.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="comments" type="xsd:string"></xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="attendeeReferenceType">
+      <xsd:annotation>
+         <xsd:documentation>An attendee is a person that takes part in
+            a review session.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="attendee" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A reference to an attendee that attends a review
+                  session.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="preparation-time" type="xsd:duration" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The lead time in which the reviewer examined the
+                  specimen.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="productType">
+      <xsd:annotation>
+         <xsd:documentation>The product to review that is typically
+            a document.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="name" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>Name of the product.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="reference" type="xsd:string" maxOccurs="unbounded"
+         		minOccurs="1">
+            <xsd:annotation>
+               <xsd:documentation>Reference where to find the
+                  product. For instance a file location or an URL.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="version" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                 The version of the product that is to be checked.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="meetingType">
+      <xsd:annotation>
+         <xsd:documentation>A review session.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="planned-date" type="xsd:date">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Date for which the review session is planned.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="planned-start" type="xsd:time">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Planned starting time of the review session.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="planned-end" type="xsd:time">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Planned ending time of the review session
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="planned-location" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The location where the review session should take
+                  place.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="protocol" type="resi:protocolType" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The protocol of the session if it was performed.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="canceled" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+               <xsd:documentation>
+                 If the review was cancelled the cancellation is documented
+                 here.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="comments" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                  General comments on the review.
+               </xsd:documentation>
+            </xsd:annotation>         
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="reviewType">
+      <xsd:annotation>
+         <xsd:documentation>A review that is about a specimen in
+            several versions. The specimen is checked by some reviewers
+            against defined aspects in several review sessions. For
+            further information about technical reviews see Ludewig, J.
+            and Lichter, H. (2008): Software Engineering. dpunkt.verlag
+            GmbH.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+            <xsd:element name="name" type="xsd:string">
+              <xsd:annotation>
+                 <xsd:documentation>
+                    A name for the review
+                 </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="description" type="xsd:string">
+              <xsd:annotation>
+                 <xsd:documentation>
+                   A description of the review.
+                 </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="product" type="resi:productType">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The product to review.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="attendee" type="resi:attendeeType"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The attendees that attend the review.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="aspect" type="resi:aspectType"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  The aspects against which the specimen is checked.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="severities" type="resi:severitiesType">
+            <xsd:annotation>
+               <xsd:documentation>
+                 The severities with which a finding can be weighted in this
+                 review.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="meeting" type="resi:meetingType"
+            maxOccurs="unbounded">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Review sessions in which the specimen was checked
+                  against the aspects by the reviewers.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="impression" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                 The general impression of the reviewers about the product.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="recommendation" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                 The final recommendation of the reviewers.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="comments" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                 Comments about the product and the review.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:element name="review" type="resi:reviewType">
+      <xsd:annotation>
+         <xsd:documentation>This element is used to exchange data
+            about reviews of a product.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:element name="aspects" type="resi:aspectsType">
+      <xsd:annotation>
+         <xsd:documentation>This element is used to exchange aspects
+            for aspect catalogs.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="aspectsType">
+      <xsd:annotation>
+         <xsd:documentation>This complex type contains a list of
+            aspects.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="aspect" type="resi:aspectType"
+            maxOccurs="unbounded" />
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="catalogExchangeType">
+            <xsd:annotation>
+               <xsd:documentation>
+                 A catalog of aspects.
+               </xsd:documentation>
+            </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="description" type="xsd:string">
+            <xsd:annotation>
+               <xsd:documentation>
+                 Description for a set of aspects.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="aspects" type="resi:aspectsType">
+            <xsd:annotation>
+               <xsd:documentation>
+                A set of aspects.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:element name="catalog" type="resi:catalogExchangeType">
+            <xsd:annotation>
+               <xsd:documentation>
+                 Used for exchanging a catalog of aspects.
+               </xsd:documentation>
+            </xsd:annotation>
+   </xsd:element>
+
+   <xsd:complexType name="aspectsIdType">
+      <xsd:annotation>
+        <xsd:documentation>
+          Used for referencing aspects by their IDs.
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element name="aspect-id" type="xsd:string" minOccurs="1" 
+         		maxOccurs="unbounded">
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:complexType name="severitiesType">
+        <xsd:annotation>
+           <xsd:documentation>This type lists all severities that can be 
+             defined for a finding. The order of the severities define their 
+             importance. The first listed severity is more important than the 
+             second and so on. The last listed severity is the least important.
+           </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+         <xsd:element name="severity" type="xsd:string" maxOccurs="unbounded" 
+         		minOccurs="1">
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

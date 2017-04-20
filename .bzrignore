@@ -1,0 +1,12 @@
+./bin
+./build
+./dist
+./lib-dev/launch4j/launch4j
+./lib-dev/launch4j/l4j.tar
+
+./.classpath
+./.project
+
+./review-files
+./buildNo.properties
+*.mo

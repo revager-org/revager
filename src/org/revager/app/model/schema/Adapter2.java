@@ -9,6 +9,7 @@
 package org.revager.app.model.schema;
 
 import java.util.Calendar;
+
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class Adapter2

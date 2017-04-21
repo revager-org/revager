@@ -19,8 +19,6 @@
 package org.revager.gui.aspects_manager;
 
 import static org.revager.app.model.Data._;
-import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTree;
-import it.cnr.imaa.essi.lablib.gui.checkboxtree.TreeCheckingModel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -50,7 +48,6 @@ import java.util.Observer;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -108,6 +105,9 @@ import org.revager.tools.GUITools;
 import org.revager.tools.TreeTools;
 
 import com.lowagie.text.Font;
+
+import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTree;
+import it.cnr.imaa.essi.lablib.gui.checkboxtree.TreeCheckingModel;
 
 /**
  * The Class AspectsManagerFrame.

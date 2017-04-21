@@ -19,6 +19,7 @@
 package org.revager.app.model.appdata;
 
 import static org.revager.app.model.Data._;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

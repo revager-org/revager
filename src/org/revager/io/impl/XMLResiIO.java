@@ -30,7 +30,6 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;

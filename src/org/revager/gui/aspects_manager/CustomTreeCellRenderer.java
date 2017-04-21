@@ -1,7 +1,5 @@
 package org.revager.gui.aspects_manager;
 
-import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTreeCellRenderer;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -24,6 +22,8 @@ import org.revager.app.model.Data;
 import org.revager.app.model.appdata.AppAspect;
 import org.revager.app.model.appdata.AppCatalog;
 import org.revager.gui.UI;
+
+import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTreeCellRenderer;
 
 public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 

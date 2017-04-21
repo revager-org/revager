@@ -19,6 +19,7 @@
 package org.revager.gui.helpers;
 
 import static org.revager.app.model.Data._;
+
 import java.awt.Dialog;
 import java.awt.FileDialog;
 import java.awt.Frame;

@@ -19,7 +19,6 @@
 package org.revager.gui.helpers;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import org.revager.app.model.schema.Meeting;
 

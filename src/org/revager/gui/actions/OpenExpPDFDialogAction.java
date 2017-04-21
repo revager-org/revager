@@ -19,6 +19,7 @@
 package org.revager.gui.actions;
 
 import static org.revager.app.model.Data._;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;

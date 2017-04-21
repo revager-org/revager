@@ -72,10 +72,9 @@ public class DefaultTableHeaderCellRenderer extends DefaultTableCellRenderer {
 	 *      Object, boolean, boolean, int, int)
 	 */
 	@Override
-	public Component getTableCellRendererComponent(JTable table, Object value,
-			boolean isSelected, boolean hasFocus, int row, int column) {
-		super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-				row, column);
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
+		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		setIcon(getIcon(table, column));
 		setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		return this;

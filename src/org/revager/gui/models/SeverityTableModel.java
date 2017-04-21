@@ -46,8 +46,7 @@ public class SeverityTableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		try {
-			return Application.getInstance().getSeverityMgmt()
-					.getNumberOfSeverities();
+			return Application.getInstance().getSeverityMgmt().getNumberOfSeverities();
 		} catch (Exception e) {
 			return 0;
 		}
@@ -61,8 +60,7 @@ public class SeverityTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		try {
-			return Application.getInstance().getSeverityMgmt().getSeverities()
-					.get(rowIndex);
+			return Application.getInstance().getSeverityMgmt().getSeverities().get(rowIndex);
 		} catch (Exception e) {
 			return 0;
 		}
@@ -76,11 +74,9 @@ public class SeverityTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public void setValueAt(Object insertion, int row, int column) {
-		String currSev = Application.getInstance().getSeverityMgmt()
-				.getSeverities().get(row);
+		String currSev = Application.getInstance().getSeverityMgmt().getSeverities().get(row);
 
-		Application.getInstance().getSeverityMgmt()
-				.editSeverity(currSev, insertion.toString());
+		Application.getInstance().getSeverityMgmt().editSeverity(currSev, insertion.toString());
 
 		this.fireTableDataChanged();
 	}

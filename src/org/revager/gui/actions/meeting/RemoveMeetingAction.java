@@ -28,7 +28,6 @@ import org.revager.app.ProtocolManagement;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 
-
 /**
  * The Class RemoveMeetingAction.
  */
@@ -43,22 +42,19 @@ public class RemoveMeetingAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ProtocolManagement protMgmt = Application.getInstance()
-				.getProtocolMgmt();
+		ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
 		MeetingManagement meetMgmt = Application.getInstance().getMeetingMgmt();
 
 		MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		if (mainframe.getSelectedMeeting() == null
-				&& mainframe.getSelectedProtocol() == null) {
+		if (mainframe.getSelectedMeeting() == null && mainframe.getSelectedProtocol() == null) {
 			return;
 		}
 
 		if (mainframe.getSelectedMeeting() != null) {
 			meetMgmt.removeMeeting(mainframe.getSelectedMeeting());
 		} else {
-			protMgmt.clearProtocol(protMgmt.getMeeting(mainframe
-					.getSelectedProtocol()));
+			protMgmt.clearProtocol(protMgmt.getMeeting(mainframe.getSelectedProtocol()));
 		}
 
 		mainframe.updateMeetingsTree();

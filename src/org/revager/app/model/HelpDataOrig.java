@@ -83,8 +83,7 @@ public class HelpDataOrig {
 
 		htmlFile = resource.openStream();
 
-		fileReader = new BufferedReader(
-				new InputStreamReader(htmlFile, "UTF-8"));
+		fileReader = new BufferedReader(new InputStreamReader(htmlFile, "UTF-8"));
 
 		htmlStrBfr = new StringBuffer();
 
@@ -100,9 +99,8 @@ public class HelpDataOrig {
 		/*
 		 * Customizing path of images
 		 */
-		htmlStr = Pattern
-				.compile("<img \\p{Blank}*src=\"", Pattern.CASE_INSENSITIVE)
-				.matcher(htmlStr).replaceAll("<img src=\"" + helpPath);
+		htmlStr = Pattern.compile("<img \\p{Blank}*src=\"", Pattern.CASE_INSENSITIVE).matcher(htmlStr)
+				.replaceAll("<img src=\"" + helpPath);
 
 		return htmlStr;
 	}
@@ -120,9 +118,8 @@ public class HelpDataOrig {
 		/*
 		 * Create absolute path of help data to display the images
 		 */
-		String currentDirectory = new File(HelpData.class.getProtectionDomain()
-				.getCodeSource().getLocation().getPath()).getAbsolutePath()
-				.replace("\\", "/");
+		String currentDirectory = new File(HelpData.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+				.getAbsolutePath().replace("\\", "/");
 
 		if (!currentDirectory.startsWith("/")) {
 			/*
@@ -132,29 +129,24 @@ public class HelpDataOrig {
 			currentDirectory = "/" + currentDirectory;
 		}
 
-		helpPath = "file:" + currentDirectory
-				+ Data.getInstance().getResource("path.helpDocBase");
+		helpPath = "file:" + currentDirectory + Data.getInstance().getResource("path.helpDocBase");
 
-		if (currentDirectory.toLowerCase().endsWith(".jar")
-				|| currentDirectory.toLowerCase().endsWith(".exe")) {
+		if (currentDirectory.toLowerCase().endsWith(".jar") || currentDirectory.toLowerCase().endsWith(".exe")) {
 			/*
 			 * Not part of unit testing because the correctness of the showed
 			 * images is checked in the system test. Therefore the application
 			 * has to be run from a Jar file.
 			 */
-			helpPath = "jar:file:" + currentDirectory + "!"
-					+ Data.getInstance().getResource("path.helpDocBase");
+			helpPath = "jar:file:" + currentDirectory + "!" + Data.getInstance().getResource("path.helpDocBase");
 		}
 
 		try {
 			/*
 			 * Read head and foot
 			 */
-			helpHead = readHtmlFile(getClass().getResource(
-					Data.getInstance().getResource("path.help") + "head.html"));
+			helpHead = readHtmlFile(getClass().getResource(Data.getInstance().getResource("path.help") + "head.html"));
 
-			helpFoot = readHtmlFile(getClass().getResource(
-					Data.getInstance().getResource("path.help") + "foot.html"));
+			helpFoot = readHtmlFile(getClass().getResource(Data.getInstance().getResource("path.help") + "foot.html"));
 		} catch (Exception e) {
 			/*
 			 * Not part of unit testing because this exception only is thrown if
@@ -166,8 +158,7 @@ public class HelpDataOrig {
 		/*
 		 * Initialize chapter arrays
 		 */
-		helpChapters = Data.getInstance().getResource("helpChapters")
-				.split(",");
+		helpChapters = Data.getInstance().getResource("helpChapters").split(",");
 		helpChaptersTitle = new String[helpChapters.length];
 		helpChaptersContent = new String[helpChapters.length];
 
@@ -177,18 +168,13 @@ public class HelpDataOrig {
 		for (int i = 0; i < helpChapters.length; i++) {
 
 			try {
-				htmlStr = readHtmlFile(getClass().getResource(
-						Data.getInstance().getResource("path.help")
-								+ Data.getInstance().getLocale().getLanguage()
-								+ "/" + helpChapters[i] + ".html"));
+				htmlStr = readHtmlFile(getClass().getResource(Data.getInstance().getResource("path.help")
+						+ Data.getInstance().getLocale().getLanguage() + "/" + helpChapters[i] + ".html"));
 
-				helpChaptersContent[i] = helpHead
-						+ htmlStr.substring(htmlStr.indexOf("-->") + 3)
-						+ helpFoot;
+				helpChaptersContent[i] = helpHead + htmlStr.substring(htmlStr.indexOf("-->") + 3) + helpFoot;
 
-				helpChaptersTitle[i] = htmlStr.substring(
-						htmlStr.indexOf("<!--#TITLE") + 10,
-						htmlStr.indexOf("-->")).trim();
+				helpChaptersTitle[i] = htmlStr.substring(htmlStr.indexOf("<!--#TITLE") + 10, htmlStr.indexOf("-->"))
+						.trim();
 
 				if (helpChaptersTitle[i].isEmpty()) {
 					/*
@@ -288,8 +274,7 @@ public class HelpDataOrig {
 		}
 
 		if (title == null) {
-			throw new DataException(_("Cannot find requested help chapter.")
-					+ " [CHAPTER = " + chapter + "]");
+			throw new DataException(_("Cannot find requested help chapter.") + " [CHAPTER = " + chapter + "]");
 		}
 
 		return title;
@@ -320,8 +305,7 @@ public class HelpDataOrig {
 		}
 
 		if (htmlCode == null) {
-			throw new DataException(_("Cannot find requested help chapter.")
-					+ " [CHAPTER = " + chapter + "]");
+			throw new DataException(_("Cannot find requested help chapter.") + " [CHAPTER = " + chapter + "]");
 		}
 
 		return htmlCode;

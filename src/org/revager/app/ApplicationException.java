@@ -35,7 +35,8 @@ public class ApplicationException extends Exception {
 	/**
 	 * Instantiates a new application exception.
 	 * 
-	 * @param message the message
+	 * @param message
+	 *            the message
 	 */
 	public ApplicationException(String message) {
 		super(message);

@@ -79,8 +79,7 @@ public class CSVProfilesWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getCSVProfilesDialog()
-						.updateAppData(selItem, selIdx);
+				UI.getInstance().getCSVProfilesDialog().updateAppData(selItem, selIdx);
 			}
 		});
 

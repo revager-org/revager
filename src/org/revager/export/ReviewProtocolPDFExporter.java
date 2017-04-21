@@ -86,12 +86,11 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 	 *             If an error occurs while getting the data for the export
 	 *             process
 	 */
-	public ReviewProtocolPDFExporter(String filePath, boolean showSignFields,
-			boolean attachProdExtRefs, boolean attachFindExtRefs)
-			throws ExportException, DataException {
-		super(filePath, _("List of Findings") + " · " + reviewTitle, appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
+	public ReviewProtocolPDFExporter(String filePath, boolean showSignFields, boolean attachProdExtRefs,
+			boolean attachFindExtRefs) throws ExportException, DataException {
+		super(filePath, _("List of Findings") + " · " + reviewTitle,
+				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO),
+				appData.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
 		this.showSignFields = showSignFields;
 		this.attachProdExtRefs = attachProdExtRefs;
@@ -109,19 +108,16 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			/*
 			 * Write the title page of the protocol
 			 */
-			writeTitlePage(Application.getInstance().getMeetingMgmt()
-					.getMeetings(), attachProdExtRefs);
+			writeTitlePage(Application.getInstance().getMeetingMgmt().getMeetings(), attachProdExtRefs);
 
 			/*
 			 * Write attendees of the whole review
 			 */
-			int numOfAtts = Application.getInstance().getAttendeeMgmt()
-					.getNumberOfAttendees();
+			int numOfAtts = Application.getInstance().getAttendeeMgmt().getNumberOfAttendees();
 
 			if (showSignFields == true && numOfAtts > 0) {
-				Font introFont = new Font(BaseFont.createFont(
-						BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252,
-						BaseFont.EMBEDDED), 10);
+				Font introFont = new Font(
+						BaseFont.createFont(BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
 				pdfDoc.newPage();
 
@@ -129,9 +125,7 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 				table.setWidthPercentage(100);
 
 				PdfPCell cellSignIntro = new PdfPCell(
-						new Phrase(
-								_("The following persons participated in the whole review:"),
-								introFont));
+						new Phrase(_("The following persons participated in the whole review:"), introFont));
 				cellSignIntro.setBorderWidth(0);
 				cellSignIntro.setPadding(padding);
 				cellSignIntro.setPaddingBottom(PDFTools.cmToPt(0.8f));
@@ -146,8 +140,7 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			/*
 			 * Write the meetings of this review
 			 */
-			for (Meeting m : Application.getInstance().getMeetingMgmt()
-					.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 
 				Protocol prot = m.getProtocol();
 

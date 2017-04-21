@@ -57,8 +57,7 @@ public class CheckNode extends DefaultMutableTreeNode {
 	 * @param isSelected
 	 *            the is selected
 	 */
-	public CheckNode(Object userObject, boolean allowsChildren,
-			boolean isSelected) {
+	public CheckNode(Object userObject, boolean allowsChildren, boolean isSelected) {
 		super(userObject, allowsChildren);
 
 		this.isSelected = isSelected;

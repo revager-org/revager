@@ -44,8 +44,8 @@ public class AddAttendeeAction extends AbstractAction {
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuNewAtt_16x16.png"));
 		putValue(NAME, _("Add Attendee"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_T, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_T, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*

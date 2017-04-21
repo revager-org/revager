@@ -25,7 +25,6 @@ import javax.swing.JTable;
 
 import org.revager.gui.UI;
 
-
 /**
  * The Class EditSeverityAction.
  */
@@ -40,14 +39,12 @@ public class EditSeverityAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog()
-				.getSeverityTbl();
+		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog().getSeverityTbl();
 
 		int selectedRow = sevTbl.getSelectedRow();
 
 		if (selectedRow != -1) {
-			sevTbl.scrollRectToVisible(sevTbl
-					.getCellRect(selectedRow, 0, false));
+			sevTbl.scrollRectToVisible(sevTbl.getCellRect(selectedRow, 0, false));
 
 			sevTbl.editCellAt(selectedRow, 0);
 		}

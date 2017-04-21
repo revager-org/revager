@@ -40,8 +40,7 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class RemoveAttendeeAction extends AbstractAction {
 
-	private AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
 
 	/*
 	 * (non-Javadoc)
@@ -51,8 +50,7 @@ public class RemoveAttendeeAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Attendee attendee = UI.getInstance().getMainFrame()
-				.getSelectedAttendee();
+		Attendee attendee = UI.getInstance().getMainFrame().getSelectedAttendee();
 		if (attMgmt.isAttendeeRemovable(attendee)) {
 			attMgmt.removeAttendee(attendee);
 
@@ -74,13 +72,12 @@ public class RemoveAttendeeAction extends AbstractAction {
 				meetTxt = meetTxt.concat(treeMeet.toString());
 			}
 
-			String compTxt = MessageFormat
-					.format(_("Cannot remove the selected attendee ({0}) from the current review because he/she is part of at least one meeting: {1}"),
-							nameTxt, meetTxt);
+			String compTxt = MessageFormat.format(
+					_("Cannot remove the selected attendee ({0}) from the current review because he/she is part of at least one meeting: {1}"),
+					nameTxt, meetTxt);
 
-			JOptionPane.showMessageDialog(org.revager.gui.UI.getInstance()
-					.getMainFrame(), GUITools.getMessagePane(compTxt),
-					_("Attention!"), JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(org.revager.gui.UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(compTxt), _("Attention!"), JOptionPane.OK_OPTION);
 		}
 	}
 

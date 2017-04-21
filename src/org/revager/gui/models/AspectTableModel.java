@@ -69,8 +69,7 @@ public class AspectTableModel extends AbstractTableModel {
 		if (columnIndex == 0) {
 			String direc = getAllAssignedAspects().get(rowIndex).getDirective();
 			String cat = getAllAssignedAspects().get(rowIndex).getCategory();
-			String desc = getAllAssignedAspects().get(rowIndex)
-					.getDescription();
+			String desc = getAllAssignedAspects().get(rowIndex).getDescription();
 
 			return direc + " (" + cat + ")" + "\n\n" + desc;
 		} else {
@@ -114,15 +113,13 @@ public class AspectTableModel extends AbstractTableModel {
 	 * @return the all assigned aspects
 	 */
 	private List<Aspect> getAllAssignedAspects() {
-		List<Attendee> allAttendeesList = Application.getInstance()
-				.getAttendeeMgmt().getAttendees();
+		List<Attendee> allAttendeesList = Application.getInstance().getAttendeeMgmt().getAttendees();
 
 		List<Aspect> allAssignedAspList = new ArrayList<Aspect>();
 
 		for (Attendee att : allAttendeesList) {
 			if (att.getRole() == Role.REVIEWER) {
-				List<Aspect> localAspList = Application.getInstance()
-						.getAttendeeMgmt().getAspects(att);
+				List<Aspect> localAspList = Application.getInstance().getAttendeeMgmt().getAspects(att);
 				for (Aspect localAsp : localAspList) {
 					if (!allAssignedAspList.contains(localAsp)) {
 						allAssignedAspList.add(localAsp);

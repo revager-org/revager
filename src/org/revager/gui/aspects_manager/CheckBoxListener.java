@@ -12,18 +12,18 @@ public class CheckBoxListener implements TreeCheckingListener {
 
 	private JTree tree;
 	private TreePath path;
-	
+
 	@Override
 	public void valueChanged(TreeCheckingEvent e) {
-		
+
 		setNodeBehaviour(true, e);
 
 	}
-	
-	public CheckBoxListener (CheckboxTree tree) {
+
+	public CheckBoxListener(CheckboxTree tree) {
 		this.tree = tree;
 	}
-	
+
 	/**
 	 * Deselect parent.
 	 * 
@@ -35,8 +35,7 @@ public class CheckBoxListener implements TreeCheckingListener {
 			return;
 		}
 
-		CheckNode node = (CheckNode) path.getParentPath()
-				.getLastPathComponent();
+		CheckNode node = (CheckNode) path.getParentPath().getLastPathComponent();
 
 		boolean allChildsSelected = true;
 
@@ -64,8 +63,7 @@ public class CheckBoxListener implements TreeCheckingListener {
 			return;
 		}
 
-		CheckNode node = (CheckNode) path.getParentPath()
-				.getLastPathComponent();
+		CheckNode node = (CheckNode) path.getParentPath().getLastPathComponent();
 
 		boolean allChildsSelected = true;
 

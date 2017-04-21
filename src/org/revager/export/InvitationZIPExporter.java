@@ -42,21 +42,18 @@ public class InvitationZIPExporter {
 	/**
 	 * Reference to review management.
 	 */
-	private ReviewManagement revMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 	/**
 	 * The work directory to store temporary files.
 	 */
-	private static final File WORK_DIRECTORY = new File(Data.getInstance()
-			.getAppData().getAppDataPath()
-			+ Data.getInstance().getResource("workDirectoryName"));
+	private static final File WORK_DIRECTORY = new File(
+			Data.getInstance().getAppData().getAppDataPath() + Data.getInstance().getResource("workDirectoryName"));
 
 	/**
 	 * The review info document.
 	 */
-	private static final File REVIEW_INFO_DOC = new File(WORK_DIRECTORY,
-			_("Review_Information.pdf"));
+	private static final File REVIEW_INFO_DOC = new File(WORK_DIRECTORY, _("Review_Information.pdf"));
 
 	/**
 	 * The meeting.
@@ -91,8 +88,7 @@ public class InvitationZIPExporter {
 	 *            true, if the external product references should be part of the
 	 *            invitation
 	 */
-	public InvitationZIPExporter(String filePath, Meeting meeting,
-			Attendee attendee, boolean attachProdExtRefs) {
+	public InvitationZIPExporter(String filePath, Meeting meeting, Attendee attendee, boolean attachProdExtRefs) {
 		super();
 
 		this.meeting = meeting;
@@ -128,8 +124,7 @@ public class InvitationZIPExporter {
 	 *             invitation
 	 */
 	public void writeToFile() throws ExportException, DataException {
-		new InvitationPDFExporter(REVIEW_INFO_DOC.getAbsolutePath(), meeting,
-				attendee, false).writeToFile();
+		new InvitationPDFExporter(REVIEW_INFO_DOC.getAbsolutePath(), meeting, attendee, false).writeToFile();
 
 		files.add(new File(REVIEW_INFO_DOC.getAbsolutePath()));
 

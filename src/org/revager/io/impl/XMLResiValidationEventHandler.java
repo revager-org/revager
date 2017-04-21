@@ -41,12 +41,10 @@ public class XMLResiValidationEventHandler implements ValidationEventHandler {
 	 */
 	@Override
 	public boolean handleEvent(ValidationEvent event) {
-		if (event.getSeverity() == ValidationEvent.FATAL_ERROR
-				|| event.getSeverity() == ValidationEvent.ERROR) {
+		if (event.getSeverity() == ValidationEvent.FATAL_ERROR || event.getSeverity() == ValidationEvent.ERROR) {
 			ValidationEventLocator locator = event.getLocator();
 
-			message = event.getMessage() + " [COLUMN = "
-					+ locator.getColumnNumber() + ", LINE = "
+			message = event.getMessage() + " [COLUMN = " + locator.getColumnNumber() + ", LINE = "
 					+ locator.getLineNumber() + "]";
 		}
 

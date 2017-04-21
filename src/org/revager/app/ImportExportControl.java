@@ -115,10 +115,8 @@ public class ImportExportControl {
 	 * @throws ResiIOException
 	 *             the resi io exception
 	 */
-	public File exportCatalogXML(String filePath, Catalog cat)
-			throws ResiIOException {
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(ENDING_CATALOG)
+	public File exportCatalogXML(String filePath, Catalog cat) throws ResiIOException {
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(ENDING_CATALOG)
 				&& !filePath.toLowerCase().trim().endsWith(".xml")) {
 			filePath = filePath + ENDING_CATALOG;
 		}
@@ -158,10 +156,8 @@ public class ImportExportControl {
 	 * @throws ResiIOException
 	 *             If an error occurs while exporting
 	 */
-	public File exportAspectsXML(String filePath, Aspects asps)
-			throws ResiIOException {
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(ENDING_ASPECTS)
+	public File exportAspectsXML(String filePath, Aspects asps) throws ResiIOException {
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(ENDING_ASPECTS)
 				&& !filePath.toLowerCase().trim().endsWith(".xml")) {
 			filePath = filePath + ENDING_ASPECTS;
 		}
@@ -194,16 +190,14 @@ public class ImportExportControl {
 	 * @throws DataException
 	 *             If an error occurs while getting the data for the protocol
 	 */
-	public File exportMeetingProtocolPDF(String filePath, Meeting meeting,
-			boolean showSignFields, boolean attachProdExtRefs,
-			boolean attachFindExtRefs) throws ExportException, DataException {
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(".pdf")) {
+	public File exportMeetingProtocolPDF(String filePath, Meeting meeting, boolean showSignFields,
+			boolean attachProdExtRefs, boolean attachFindExtRefs) throws ExportException, DataException {
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(".pdf")) {
 			filePath = filePath + ".pdf";
 		}
 
-		ProtocolPDFExporter exporter = new MeetingProtocolPDFExporter(filePath,
-				meeting, showSignFields, attachProdExtRefs, attachFindExtRefs);
+		ProtocolPDFExporter exporter = new MeetingProtocolPDFExporter(filePath, meeting, showSignFields,
+				attachProdExtRefs, attachFindExtRefs);
 
 		exporter.writeToFile();
 
@@ -229,16 +223,14 @@ public class ImportExportControl {
 	 * @throws DataException
 	 *             If an error occurs while getting the data for the protocol
 	 */
-	public File exportReviewProtocolPDF(String filePath,
-			boolean showSignFields, boolean attachProdExtRefs,
+	public File exportReviewProtocolPDF(String filePath, boolean showSignFields, boolean attachProdExtRefs,
 			boolean attachFindExtRefs) throws ExportException, DataException {
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(".pdf")) {
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(".pdf")) {
 			filePath = filePath + ".pdf";
 		}
 
-		ProtocolPDFExporter exporter = new ReviewProtocolPDFExporter(filePath,
-				showSignFields, attachProdExtRefs, attachFindExtRefs);
+		ProtocolPDFExporter exporter = new ReviewProtocolPDFExporter(filePath, showSignFields, attachProdExtRefs,
+				attachFindExtRefs);
 
 		exporter.writeToFile();
 
@@ -264,25 +256,20 @@ public class ImportExportControl {
 	 * @throws ApplicationException
 	 *             If the given meeting has no protocol
 	 */
-	public File exportMeetingFindingsCSV(String filePath,
-			AppCSVProfile csvProfile, Meeting meeting,
-			Map<String, String> severityMappings, String reporter)
-			throws ExportException, ApplicationException {
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(".txt")
+	public File exportMeetingFindingsCSV(String filePath, AppCSVProfile csvProfile, Meeting meeting,
+			Map<String, String> severityMappings, String reporter) throws ExportException, ApplicationException {
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(".txt")
 				&& !filePath.toLowerCase().trim().endsWith(".csv")) {
 			filePath = filePath + ".csv";
 		}
 
 		if (meeting.getProtocol() != null) {
-			CSVExporter exporter = new FindingsCSVExporter(csvProfile,
-					severityMappings, meeting.getProtocol().getFindings(),
-					reporter);
+			CSVExporter exporter = new FindingsCSVExporter(csvProfile, severityMappings,
+					meeting.getProtocol().getFindings(), reporter);
 
 			exporter.writeToFile(filePath);
 		} else {
-			throw new ApplicationException(
-					_("There aren't any findings to export into a CSV file."));
+			throw new ApplicationException(_("There aren't any findings to export into a CSV file."));
 		}
 
 		return new File(filePath);
@@ -305,32 +292,27 @@ public class ImportExportControl {
 	 * @throws ApplicationException
 	 *             If no protocol exists in the current review
 	 */
-	public File exportReviewFindingsCSV(String filePath,
-			AppCSVProfile csvProfile, Map<String, String> severityMappings,
+	public File exportReviewFindingsCSV(String filePath, AppCSVProfile csvProfile, Map<String, String> severityMappings,
 			String reporter) throws ExportException, ApplicationException {
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(".txt")
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(".txt")
 				&& !filePath.toLowerCase().trim().endsWith(".csv")) {
 			filePath = filePath + ".csv";
 		}
 
 		List<Finding> findings = new ArrayList<Finding>();
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			if (m.getProtocol() != null) {
 				findings.addAll(m.getProtocol().getFindings());
 			}
 		}
 
 		if (findings.size() > 0) {
-			CSVExporter exporter = new FindingsCSVExporter(csvProfile,
-					severityMappings, findings, reporter);
+			CSVExporter exporter = new FindingsCSVExporter(csvProfile, severityMappings, findings, reporter);
 
 			exporter.writeToFile(filePath);
 		} else {
-			throw new ApplicationException(
-					_("There aren't any findings to export into a CSV file."));
+			throw new ApplicationException(_("There aren't any findings to export into a CSV file."));
 		}
 
 		return new File(filePath);
@@ -356,9 +338,8 @@ public class ImportExportControl {
 	 * @throws DataException
 	 *             If an error occurs while getting the data for the invitation
 	 */
-	public File exportInvitations(String dirPath, InvitationType type,
-			Meeting meeting, Attendee attendee, boolean attachProdExtRefs)
-			throws ExportException, DataException {
+	public File exportInvitations(String dirPath, InvitationType type, Meeting meeting, Attendee attendee,
+			boolean attachProdExtRefs) throws ExportException, DataException {
 		List<Attendee> attendees = new ArrayList<Attendee>();
 		attendees.add(attendee);
 
@@ -387,9 +368,8 @@ public class ImportExportControl {
 	 * @throws DataException
 	 *             If an error occurs while getting the data for the invitation
 	 */
-	public File exportInvitations(String dirPath, InvitationType type,
-			Meeting meeting, List<Attendee> attendees, boolean attachProdExtRefs)
-			throws ExportException, DataException {
+	public File exportInvitations(String dirPath, InvitationType type, Meeting meeting, List<Attendee> attendees,
+			boolean attachProdExtRefs) throws ExportException, DataException {
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		File directory = new File(dirPath);
@@ -406,39 +386,35 @@ public class ImportExportControl {
 		Role.values();
 
 		for (Attendee att : attendees) {
-			invitationPackName = _("Review Invitation") + " "
-					+ sdf.format(new Date().getTime()) + " " + att.getName()
+			invitationPackName = _("Review Invitation") + " " + sdf.format(new Date().getTime()) + " " + att.getName()
 					+ " (" + _(att.getRole().toString()) + ")";
 
 			invitationPackName = FileTools.validateFileName(invitationPackName);
 
 			switch (type) {
 			case PDF:
-				invitationPackPath = new File(dirPath, invitationPackName
-						+ ".pdf").getAbsolutePath();
+				invitationPackPath = new File(dirPath, invitationPackName + ".pdf").getAbsolutePath();
 
-				InvitationPDFExporter pdfExporter = new InvitationPDFExporter(
-						invitationPackPath, meeting, att, attachProdExtRefs);
+				InvitationPDFExporter pdfExporter = new InvitationPDFExporter(invitationPackPath, meeting, att,
+						attachProdExtRefs);
 
 				pdfExporter.writeToFile();
 				break;
 
 			case ZIP:
-				invitationPackPath = new File(dirPath, invitationPackName
-						+ ".zip").getAbsolutePath();
+				invitationPackPath = new File(dirPath, invitationPackName + ".zip").getAbsolutePath();
 
-				InvitationZIPExporter zipExporter = new InvitationZIPExporter(
-						invitationPackPath, meeting, att, attachProdExtRefs);
+				InvitationZIPExporter zipExporter = new InvitationZIPExporter(invitationPackPath, meeting, att,
+						attachProdExtRefs);
 
 				zipExporter.writeToFile();
 				break;
 
 			case DIRECTORY:
-				invitationPackPath = new File(dirPath, invitationPackName)
-						.getAbsolutePath();
+				invitationPackPath = new File(dirPath, invitationPackName).getAbsolutePath();
 
-				InvitationDirExporter dirExporter = new InvitationDirExporter(
-						invitationPackPath, meeting, att, attachProdExtRefs);
+				InvitationDirExporter dirExporter = new InvitationDirExporter(invitationPackPath, meeting, att,
+						attachProdExtRefs);
 
 				dirExporter.writeDir();
 				break;

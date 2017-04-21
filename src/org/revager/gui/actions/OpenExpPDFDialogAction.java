@@ -42,11 +42,10 @@ public class OpenExpPDFDialogAction extends AbstractAction {
 	public OpenExpPDFDialogAction() {
 		super();
 
-		putValue(SMALL_ICON,
-				Data.getInstance().getIcon("menuPdfExport_16x16.png"));
+		putValue(SMALL_ICON, Data.getInstance().getIcon("menuPdfExport_16x16.png"));
 		putValue(NAME, _("Export Findings List as PDF File"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_F, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*

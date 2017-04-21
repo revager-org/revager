@@ -92,12 +92,10 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			 */
 			try {
 				if (currAppAtt == null) {
-					currAppAtt = Data.getInstance().getAppData()
-							.getAttendee(attName, attContact);
+					currAppAtt = Data.getInstance().getAppData().getAttendee(attName, attContact);
 
 					if (currAppAtt == null) {
-						currAppAtt = Data.getInstance().getAppData()
-								.newAttendee(attName, attContact);
+						currAppAtt = Data.getInstance().getAppData().newAttendee(attName, attContact);
 					}
 				} else {
 					currAppAtt.setNameAndContact(attName, attContact);
@@ -111,8 +109,7 @@ public class ConfirmAttendeeAction extends AbstractAction {
 					currAppAtt.addStrength(str);
 				}
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(attDialog,
-						GUITools.getMessagePane(e.getMessage()), _("Error"),
+				JOptionPane.showMessageDialog(attDialog, GUITools.getMessagePane(e.getMessage()), _("Error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -126,25 +123,21 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			newAtt.setRole(attRole);
 
 			if (currAtt == null) {
-				if (!Application.getInstance().getAttendeeMgmt()
-						.isAttendee(newAtt)) {
-					Application.getInstance().getAttendeeMgmt()
-							.addAttendee(attName, attContact, attRole, null);
+				if (!Application.getInstance().getAttendeeMgmt().isAttendee(newAtt)) {
+					Application.getInstance().getAttendeeMgmt().addAttendee(attName, attContact, attRole, null);
 				} else {
-					attDialog
-							.setMessage(_("There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
+					attDialog.setMessage(_(
+							"There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
 
 					return;
 				}
 			} else {
 				newAtt.setAspects(currAtt.getAspects());
 
-				if (Application.getInstance().getAttendeeComp()
-						.compare(currAtt, newAtt) != 0) {
-					if (!Application.getInstance().getAttendeeMgmt()
-							.editAttendee(currAtt, newAtt)) {
-						attDialog
-								.setMessage(_("There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
+				if (Application.getInstance().getAttendeeComp().compare(currAtt, newAtt) != 0) {
+					if (!Application.getInstance().getAttendeeMgmt().editAttendee(currAtt, newAtt)) {
+						attDialog.setMessage(_(
+								"There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
 
 						return;
 					}
@@ -157,10 +150,10 @@ public class ConfirmAttendeeAction extends AbstractAction {
 			UI.getInstance().getMainFrame().updateButtons();
 
 			UI.getInstance().getAspectsManagerFrame().updateViews();
-			
+
 			if (attDialog.isCalledByAspectsManager()) {
 				attDialog.setCalledByAspectsManager(false);
-				
+
 				UI.getInstance().getAspectsManagerFrame().setVisible(true);
 			}
 		}

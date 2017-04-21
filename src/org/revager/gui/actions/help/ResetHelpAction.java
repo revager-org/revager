@@ -27,7 +27,6 @@ import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.gui.HelpBrowserFrame;
 
-
 /**
  * The Class ResetHelpAction.
  */
@@ -42,21 +41,15 @@ public class ResetHelpAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ResetHelp) {
-		HelpBrowserFrame.getTree().setModel(
-				new DefaultTreeModel(HelpBrowserFrame.getStandardRoot()));
+		HelpBrowserFrame.getTree().setModel(new DefaultTreeModel(HelpBrowserFrame.getStandardRoot()));
 		HelpBrowserFrame.getSrchTxtFld().setText("");
 		int selectedRows[] = HelpBrowserFrame.getTree().getSelectionRows();
 		HelpBrowserFrame.getTree().removeSelectionRows(selectedRows);
 		HelpBrowserFrame.getTree().setSelectionRow(0);
 
 		try {
-			HelpBrowserFrame.getBodyPane().setText(
-					"<H1>"
-							+ Data.getInstance().getHelpData().getChapterTitle(
-									"start")
-							+ "</H1>"
-							+ Data.getInstance().getHelpData()
-									.getChapterContent("start"));
+			HelpBrowserFrame.getBodyPane().setText("<H1>" + Data.getInstance().getHelpData().getChapterTitle("start")
+					+ "</H1>" + Data.getInstance().getHelpData().getChapterContent("start"));
 		} catch (DataException e) {
 			/*
 			 * do nothing

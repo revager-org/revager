@@ -45,8 +45,7 @@ public class Data {
 	/**
 	 * Path of the resources file.
 	 */
-	private final URL RESOURCES_FILE = this.getClass().getResource(
-			"/org/revager/resources/appResources.properties");
+	private final URL RESOURCES_FILE = this.getClass().getResource("/org/revager/resources/appResources.properties");
 
 	/**
 	 * The current locale of the data model.
@@ -191,8 +190,8 @@ public class Data {
 				 * Not part of unit testing because this code will only be
 				 * reached if an internal error occurs.
 				 */
-				System.err.println("Error while loading locale data from the"
-						+ " following path: " + getResource("path.lang"));
+				System.err.println(
+						"Error while loading locale data from the" + " following path: " + getResource("path.lang"));
 			}
 		}
 	}
@@ -206,8 +205,7 @@ public class Data {
 	 * @return icon as ImageIcon
 	 */
 	public ImageIcon getIcon(String iconFile) {
-		return new ImageIcon(getClass().getResource(
-				getResource("path.icons") + iconFile));
+		return new ImageIcon(getClass().getResource(getResource("path.icons") + iconFile));
 	}
 
 	/**
@@ -404,7 +402,8 @@ public class Data {
 	public static List<String> getDefaultCatalogs() {
 		List catalogs = new ArrayList<String>();
 
-		String pathCatalogs = getInstance().getResource("path.catalogs") + getInstance().getLocale().getLanguage() + "/";
+		String pathCatalogs = getInstance().getResource("path.catalogs") + getInstance().getLocale().getLanguage()
+				+ "/";
 		String fileEnding = "." + getInstance().getResource("fileEndingCatalog");
 
 		File jarFile = AppTools.getJarFile();
@@ -420,8 +419,7 @@ public class Data {
 			while (ress.hasMoreElements()) {
 				JarEntry je = ress.nextElement();
 
-				if (je.getName().matches(
-						path + ".+" + fileEnding)) {
+				if (je.getName().matches(path + ".+" + fileEnding)) {
 					String filename = je.getName();
 
 					catalogs.add(filename.substring(pathLen, filename.length() - fileEnding.length()));
@@ -429,10 +427,8 @@ public class Data {
 			}
 		} catch (IOException e) {
 			/* Search files in the directory and add them */
-			String absDir = new File(Data.class.getProtectionDomain()
-					.getCodeSource().getLocation().getPath())
-					.getAbsolutePath().replace("\\", "/")
-					+ pathCatalogs;
+			String absDir = new File(Data.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+					.getAbsolutePath().replace("\\", "/") + pathCatalogs;
 
 			File[] files = (new File(absDir)).listFiles();
 
@@ -461,13 +457,11 @@ public class Data {
 			File jarFile = AppTools.getJarFile();
 
 			int lastIdx = getResource("path.lang").lastIndexOf(".");
-			String bundleBaseName = getResource("path.lang").substring(
-					lastIdx + 1);
+			String bundleBaseName = getResource("path.lang").substring(lastIdx + 1);
 			int bundleBaseNameLen = bundleBaseName.length();
 
 			/* Add English as standard language */
-			langMap.put(Locale.ENGLISH.getLanguage(),
-					Locale.ENGLISH.getDisplayLanguage());
+			langMap.put(Locale.ENGLISH.getLanguage(), Locale.ENGLISH.getDisplayLanguage());
 
 			try {
 				/* Search translations in the JAR file */
@@ -480,21 +474,17 @@ public class Data {
 				while (ress.hasMoreElements()) {
 					JarEntry je = ress.nextElement();
 
-					if (je.getName().matches(
-							path + bundleBaseName + "_[a-z]+.properties")) {
+					if (je.getName().matches(path + bundleBaseName + "_[a-z]+.properties")) {
 						int idx = je.getName().indexOf(".properties");
-						String lang = je.getName().substring(
-								pathLen + bundleBaseNameLen + 1, idx);
+						String lang = je.getName().substring(pathLen + bundleBaseNameLen + 1, idx);
 
 						langMap.put(lang, new Locale(lang).getDisplayLanguage());
 					}
 				}
 			} catch (IOException e) {
 				/* Search files in the lang directory and add them */
-				String absLangDir = new File(Data.class.getProtectionDomain()
-						.getCodeSource().getLocation().getPath())
-						.getAbsolutePath().replace("\\", "/")
-						+ getResource("path.searchLang");
+				String absLangDir = new File(Data.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+						.getAbsolutePath().replace("\\", "/") + getResource("path.searchLang");
 
 				File[] files = (new File(absLangDir)).listFiles();
 
@@ -503,11 +493,9 @@ public class Data {
 						String filename = file.getName();
 						int idx = filename.indexOf(".properties");
 						if (idx > -1) {
-							String lang = filename.substring(
-									bundleBaseNameLen + 1, idx);
+							String lang = filename.substring(bundleBaseNameLen + 1, idx);
 
-							langMap.put(lang,
-									new Locale(lang).getDisplayLanguage());
+							langMap.put(lang, new Locale(lang).getDisplayLanguage());
 						}
 					}
 				}

@@ -96,27 +96,23 @@ public class ApplicationData extends Observable {
 			 * Possible paths to search for, to save the application data
 			 * automatically.
 			 */
-			String currentDirectory = new File(ApplicationData.class
-					.getProtectionDomain().getCodeSource().getLocation()
-					.getPath()).getAbsolutePath();
+			String currentDirectory = new File(
+					ApplicationData.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+							.getAbsolutePath();
 
 			int endIndex = currentDirectory.lastIndexOf(File.separator);
 
-			String[] possibleDirectories = {
-					System.getProperty("user.home") + File.separator,
-					currentDirectory = currentDirectory.substring(0,
-							endIndex + 1),
+			String[] possibleDirectories = { System.getProperty("user.home") + File.separator,
+					currentDirectory = currentDirectory.substring(0, endIndex + 1),
 					System.getProperty("user.dir") + File.separator };
 
 			/*
 			 * Check if a custom directory is given and valid
 			 */
-			if (customAppDataDirectory != null
-					&& new File(customAppDataDirectory).canWrite()) {
+			if (customAppDataDirectory != null && new File(customAppDataDirectory).canWrite()) {
 				dbLocationFound = true;
 
-				appDataPath = customAppDataDirectory
-						+ Data.getInstance().getResource("dataDirectoryName");
+				appDataPath = customAppDataDirectory + Data.getInstance().getResource("dataDirectoryName");
 			}
 
 			/*
@@ -126,14 +122,11 @@ public class ApplicationData extends Observable {
 			 * a custom directory for the database.
 			 */
 			for (String dir : possibleDirectories) {
-				if (new File(dir
-						+ Data.getInstance().getResource("dataDirectoryName"))
-						.exists() && dbLocationFound == false) {
+				if (new File(dir + Data.getInstance().getResource("dataDirectoryName")).exists()
+						&& dbLocationFound == false) {
 					dbLocationFound = true;
 
-					appDataPath = dir
-							+ Data.getInstance().getResource(
-									"dataDirectoryName");
+					appDataPath = dir + Data.getInstance().getResource("dataDirectoryName");
 				}
 			}
 
@@ -147,14 +140,11 @@ public class ApplicationData extends Observable {
 				if (new File(dir).canWrite() && dbLocationFound == false) {
 					dbLocationFound = true;
 
-					appDataPath = dir
-							+ Data.getInstance().getResource(
-									"dataDirectoryName");
+					appDataPath = dir + Data.getInstance().getResource("dataDirectoryName");
 				}
 			}
 
-			System.setProperty("derby.system.home", appDataPath + "db"
-					+ File.separator);
+			System.setProperty("derby.system.home", appDataPath + "db" + File.separator);
 
 			appDataInitialized = true;
 
@@ -169,10 +159,8 @@ public class ApplicationData extends Observable {
 				 * thrown if there occurs an internal error while creating the
 				 * tables.
 				 */
-				throw new DataException(
-						_("Cannot create tables in the database.")
-								+ " [ERROR = " + e.getErrorCode() + " "
-								+ e.getMessage() + "]");
+				throw new DataException(_("Cannot create tables in the database.") + " [ERROR = " + e.getErrorCode()
+						+ " " + e.getMessage() + "]");
 			}
 
 			fireDataChanged();
@@ -206,8 +194,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot open or create the database for storing application data. Maybe RevAger is running already."));
+			throw new DataException(_(
+					"Cannot open or create the database for storing application data. Maybe RevAger is running already."));
 		}
 
 		return c;
@@ -301,10 +289,8 @@ public class ApplicationData extends Observable {
 		tableName = "LastReviews";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( filePath VARCHAR(150) NOT NULL PRIMARY KEY, time BIGINT NOT NULL )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( filePath VARCHAR(150) NOT NULL PRIMARY KEY, time BIGINT NOT NULL )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -316,10 +302,8 @@ public class ApplicationData extends Observable {
 		tableName = "Attendees";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( name VARCHAR(100) NOT NULL, contact VARCHAR(1000) NOT NULL,"
+			PreparedStatement ps = conn.prepareStatement(
+					"CREATE TABLE " + tableName + " ( name VARCHAR(100) NOT NULL, contact VARCHAR(1000) NOT NULL,"
 							+ " PRIMARY KEY(name,contact) )");
 
 			ps.executeUpdate();
@@ -332,11 +316,9 @@ public class ApplicationData extends Observable {
 		tableName = "AttendeesStrengths";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( attendeeName VARCHAR(100) NOT NULL, attendeeContact VARCHAR(1000) NOT NULL, categoryName VARCHAR(100) NOT NULL,"
-							+ " PRIMARY KEY(attendeeName,attendeeContact,categoryName) )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( attendeeName VARCHAR(100) NOT NULL, attendeeContact VARCHAR(1000) NOT NULL, categoryName VARCHAR(100) NOT NULL,"
+					+ " PRIMARY KEY(attendeeName,attendeeContact,categoryName) )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -348,10 +330,8 @@ public class ApplicationData extends Observable {
 		tableName = "Catalogs";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( name VARCHAR(100) NOT NULL PRIMARY KEY, description VARCHAR(10000) NOT NULL, sortPos INTEGER NOT NULL )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( name VARCHAR(100) NOT NULL PRIMARY KEY, description VARCHAR(10000) NOT NULL, sortPos INTEGER NOT NULL )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -363,11 +343,9 @@ public class ApplicationData extends Observable {
 		tableName = "Categories";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( name VARCHAR(100) NOT NULL, catalogName VARCHAR(100) NOT NULL, sortPos INTEGER NOT NULL,"
-							+ " PRIMARY KEY(name,catalogName) )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( name VARCHAR(100) NOT NULL, catalogName VARCHAR(100) NOT NULL, sortPos INTEGER NOT NULL,"
+					+ " PRIMARY KEY(name,catalogName) )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -379,11 +357,9 @@ public class ApplicationData extends Observable {
 		tableName = "Aspects";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( id INTEGER NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
-							+ " directive VARCHAR(500) NOT NULL, description VARCHAR(3000), categoryName VARCHAR(100) NOT NULL, catalogName VARCHAR(100) NOT NULL, sortPos INTEGER NOT NULL )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( id INTEGER NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
+					+ " directive VARCHAR(500) NOT NULL, description VARCHAR(3000), categoryName VARCHAR(100) NOT NULL, catalogName VARCHAR(100) NOT NULL, sortPos INTEGER NOT NULL )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -395,10 +371,8 @@ public class ApplicationData extends Observable {
 		tableName = "ApplicationSettings";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( settingKey VARCHAR(100) NOT NULL PRIMARY KEY, settingValue VARCHAR(3000) NOT NULL )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( settingKey VARCHAR(100) NOT NULL PRIMARY KEY, settingValue VARCHAR(3000) NOT NULL )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -412,11 +386,9 @@ public class ApplicationData extends Observable {
 		tableName = "CSVProfiles";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( name VARCHAR(100) NOT NULL PRIMARY KEY,"
-							+ " columnOrder VARCHAR(200) NOT NULL, columnsInFirstLine VARCHAR(10) NOT NULL, encapsulateContent VARCHAR(10) NOT NULL )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( name VARCHAR(100) NOT NULL PRIMARY KEY,"
+					+ " columnOrder VARCHAR(200) NOT NULL, columnsInFirstLine VARCHAR(10) NOT NULL, encapsulateContent VARCHAR(10) NOT NULL )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -430,10 +402,8 @@ public class ApplicationData extends Observable {
 		tableName = "CSVColumnMappings";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn
-					.prepareStatement("CREATE TABLE "
-							+ tableName
-							+ " ( profileName VARCHAR(100) NOT NULL, columnName VARCHAR(100) NOT NULL, columnMapping VARCHAR(100) NOT NULL, PRIMARY KEY(profileName,columnName) )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( profileName VARCHAR(100) NOT NULL, columnName VARCHAR(100) NOT NULL, columnMapping VARCHAR(100) NOT NULL, PRIMARY KEY(profileName,columnName) )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -447,10 +417,8 @@ public class ApplicationData extends Observable {
 		tableName = "CSVSeverityMappings";
 
 		if (!tables.contains(tableName.toUpperCase())) {
-			PreparedStatement ps = conn.prepareStatement("CREATE TABLE "
-					+ tableName
-					+ " ( profileName VARCHAR(100) NOT NULL PRIMARY KEY,"
-					+ " validMappings VARCHAR(1000) NOT NULL )");
+			PreparedStatement ps = conn.prepareStatement("CREATE TABLE " + tableName
+					+ " ( profileName VARCHAR(100) NOT NULL PRIMARY KEY," + " validMappings VARCHAR(1000) NOT NULL )");
 
 			ps.executeUpdate();
 			ps.close();
@@ -473,16 +441,14 @@ public class ApplicationData extends Observable {
 	 * @throws SQLException
 	 *             If an error while running the SQL statements occurs
 	 */
-	private void insertDefaultsApplicationSettings() throws DataException,
-			SQLException {
+	private void insertDefaultsApplicationSettings() throws DataException, SQLException {
 		Connection conn = openConnection();
 		PreparedStatement ps;
 
 		/*
 		 * Table ApplicationSettings
 		 */
-		ps = conn.prepareStatement("INSERT INTO ApplicationSettings "
-				+ "(settingKey, settingValue) VALUES (?, ?)");
+		ps = conn.prepareStatement("INSERT INTO ApplicationSettings " + "(settingKey, settingValue) VALUES (?, ?)");
 
 		ps.setString(1, AppSettingKey.DATABASE_VERSION.toString());
 		ps.setInt(2, CURRENT_DATABASE_VERSION);
@@ -555,16 +521,12 @@ public class ApplicationData extends Observable {
 		/*
 		 * Table CSVProfiles
 		 */
-		ps = conn
-				.prepareStatement("INSERT INTO CSVProfiles "
-						+ "(name, columnOrder, columnsInFirstLine, encapsulateContent) "
-						+ "VALUES (?, ?, ?, ?)");
+		ps = conn.prepareStatement("INSERT INTO CSVProfiles "
+				+ "(name, columnOrder, columnsInFirstLine, encapsulateContent) " + "VALUES (?, ?, ?, ?)");
 
 		ps.setString(1, "Trac");
-		ps.setString(2, AppCSVColumnName.DESCRIPTION.toString() + "|"
-				+ AppCSVColumnName.REFERENCE.toString() + "|"
-				+ AppCSVColumnName.SEVERITY.toString() + "|"
-				+ AppCSVColumnName.REPORTER.toString());
+		ps.setString(2, AppCSVColumnName.DESCRIPTION.toString() + "|" + AppCSVColumnName.REFERENCE.toString() + "|"
+				+ AppCSVColumnName.SEVERITY.toString() + "|" + AppCSVColumnName.REPORTER.toString());
 		ps.setBoolean(3, true);
 		ps.setBoolean(4, false);
 		ps.executeUpdate();
@@ -584,13 +546,12 @@ public class ApplicationData extends Observable {
 	 * @throws SQLException
 	 *             If an error while running the SQL statements occurs
 	 */
-	private void insertDefaultsCSVColumnMappings() throws DataException,
-			SQLException {
+	private void insertDefaultsCSVColumnMappings() throws DataException, SQLException {
 		Connection conn = openConnection();
 		PreparedStatement ps;
 
-		ps = conn.prepareStatement("INSERT INTO CSVColumnMappings "
-				+ " (profileName, columnName, columnMapping) VALUES (?, ?, ?)");
+		ps = conn.prepareStatement(
+				"INSERT INTO CSVColumnMappings " + " (profileName, columnName, columnMapping) VALUES (?, ?, ?)");
 
 		ps.setString(1, "Trac");
 		ps.setString(2, AppCSVColumnName.DESCRIPTION.toString());
@@ -627,13 +588,11 @@ public class ApplicationData extends Observable {
 	 * @throws SQLException
 	 *             If an error while running the SQL statements occurs
 	 */
-	private void insertDefaultsCSVSeverityMappings() throws DataException,
-			SQLException {
+	private void insertDefaultsCSVSeverityMappings() throws DataException, SQLException {
 		Connection conn = openConnection();
 		PreparedStatement ps;
 
-		ps = conn.prepareStatement("INSERT INTO CSVSeverityMappings "
-				+ " (profileName, validMappings) VALUES (?, ?)");
+		ps = conn.prepareStatement("INSERT INTO CSVSeverityMappings " + " (profileName, validMappings) VALUES (?, ?)");
 
 		ps.setString(1, "Trac");
 		ps.setString(2, "critical|major|minor");
@@ -673,8 +632,7 @@ public class ApplicationData extends Observable {
 			Connection conn = openConnection();
 
 			PreparedStatement ps = conn
-					.prepareStatement("SELECT settingValue FROM ApplicationSettings "
-							+ "WHERE settingKey = ?");
+					.prepareStatement("SELECT settingValue FROM ApplicationSettings " + "WHERE settingKey = ?");
 
 			ps.setString(1, key.toString());
 
@@ -693,16 +651,14 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot retrieve the requested application settings.")
-							+ " [SETTING = " + key + "] " + e.getMessage());
+			throw new DataException(_("Cannot retrieve the requested application settings.") + " [SETTING = " + key
+					+ "] " + e.getMessage());
 		}
 
 		/*
 		 * Translate the invitation text
 		 */
-		if (key == AppSettingKey.PDF_INVITATION_TEXT
-				&& setting.equals(Data.getDefLangInvitationText())) {
+		if (key == AppSettingKey.PDF_INVITATION_TEXT && setting.equals(Data.getDefLangInvitationText())) {
 			setting = _(setting);
 		}
 
@@ -720,8 +676,7 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while getting the value from the database
 	 */
-	public AppSettingValue getSettingValue(AppSettingKey key)
-			throws DataException {
+	public AppSettingValue getSettingValue(AppSettingKey key) throws DataException {
 		AppSettingValue setting = null;
 		String settingStr = getSetting(key);
 
@@ -747,13 +702,11 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while setting the value from the database
 	 */
-	public void setSetting(AppSettingKey key, String value)
-			throws DataException {
+	public void setSetting(AppSettingKey key, String value) throws DataException {
 		/*
 		 * Check if the translation text is the original one
 		 */
-		if (key == AppSettingKey.PDF_INVITATION_TEXT
-				&& value.equals(_(Data.getDefLangInvitationText()))) {
+		if (key == AppSettingKey.PDF_INVITATION_TEXT && value.equals(_(Data.getDefLangInvitationText()))) {
 			value = Data.getDefLangInvitationText();
 		}
 
@@ -762,11 +715,10 @@ public class ApplicationData extends Observable {
 			PreparedStatement ps = null;
 
 			if (getSetting(key) == null) {
-				ps = conn.prepareStatement("INSERT INTO ApplicationSettings "
-						+ "(settingValue, settingKey) VALUES (?, ?)");
+				ps = conn.prepareStatement(
+						"INSERT INTO ApplicationSettings " + "(settingValue, settingKey) VALUES (?, ?)");
 			} else {
-				ps = conn.prepareStatement("UPDATE ApplicationSettings "
-						+ "SET settingValue=? WHERE settingKey=?");
+				ps = conn.prepareStatement("UPDATE ApplicationSettings " + "SET settingValue=? WHERE settingKey=?");
 			}
 
 			ps.setString(1, value);
@@ -783,8 +735,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot store application settings.")
-					+ " [SETTING = " + key + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store application settings.") + " [SETTING = " + key + "] " + e.getMessage());
 		}
 	}
 
@@ -800,8 +752,7 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while setting the value from the database
 	 */
-	public void setSettingValue(AppSettingKey key, AppSettingValue value)
-			throws DataException {
+	public void setSettingValue(AppSettingKey key, AppSettingValue value) throws DataException {
 		setSetting(key, value.toString());
 	}
 
@@ -822,11 +773,8 @@ public class ApplicationData extends Observable {
 			/*
 			 * Get reviews
 			 */
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT filePath FROM LastReviews "
-							+ "ORDER BY time DESC");
-			ps.setMaxRows(Integer.parseInt(Data.getInstance().getResource(
-					"numberOfLastReviews")));
+			PreparedStatement ps = conn.prepareStatement("SELECT filePath FROM LastReviews " + "ORDER BY time DESC");
+			ps.setMaxRows(Integer.parseInt(Data.getInstance().getResource("numberOfLastReviews")));
 
 			ResultSet res = ps.executeQuery();
 
@@ -843,9 +791,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot load the list of recent reviews.") + " "
-							+ e.getMessage());
+			throw new DataException(_("Cannot load the list of recent reviews.") + " " + e.getMessage());
 		}
 
 		return lastReviews;
@@ -868,14 +814,12 @@ public class ApplicationData extends Observable {
 			/*
 			 * 70 days ago from now
 			 */
-			long timeAgo = Calendar.getInstance().getTimeInMillis()
-					- (70 * 24 * 60 * 60 * 1000);
+			long timeAgo = Calendar.getInstance().getTimeInMillis() - (70 * 24 * 60 * 60 * 1000);
 
 			/*
 			 * Remove old reviews
 			 */
-			PreparedStatement ps = conn
-					.prepareStatement("DELETE FROM LastReviews WHERE time < ?");
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM LastReviews WHERE time < ?");
 
 			ps.setLong(1, timeAgo);
 
@@ -887,11 +831,9 @@ public class ApplicationData extends Observable {
 			 * Insert new review or just update time
 			 */
 			if (getLastReviews().contains(filePath)) {
-				ps = conn.prepareStatement("UPDATE LastReviews "
-						+ "SET time=? WHERE filePath=?");
+				ps = conn.prepareStatement("UPDATE LastReviews " + "SET time=? WHERE filePath=?");
 			} else {
-				ps = conn.prepareStatement("INSERT INTO LastReviews "
-						+ "(time, filePath) VALUES (?, ?)");
+				ps = conn.prepareStatement("INSERT INTO LastReviews " + "(time, filePath) VALUES (?, ?)");
 			}
 
 			ps.setLong(1, Calendar.getInstance().getTimeInMillis());
@@ -908,9 +850,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot add the current review to the list of recent reviews.")
-							+ " (" + filePath + ") " + e.getMessage());
+			throw new DataException(_("Cannot add the current review to the list of recent reviews.") + " (" + filePath
+					+ ") " + e.getMessage());
 		}
 	}
 
@@ -927,9 +868,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("DELETE FROM LastReviews "
-							+ "WHERE filePath = ?");
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM LastReviews " + "WHERE filePath = ?");
 
 			ps.setString(1, filePath);
 
@@ -944,9 +883,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot remove the review from the list of recent reviews.")
-							+ " (" + filePath + ") " + e.getMessage());
+			throw new DataException(_("Cannot remove the review from the list of recent reviews.") + " (" + filePath
+					+ ") " + e.getMessage());
 		}
 	}
 
@@ -965,9 +903,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT name FROM Catalogs "
-							+ "ORDER BY sortPos ASC");
+			PreparedStatement ps = conn.prepareStatement("SELECT name FROM Catalogs " + "ORDER BY sortPos ASC");
 
 			ResultSet res = ps.executeQuery();
 
@@ -983,9 +919,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot load catalogs from the catalog library.") + " "
-							+ e.getMessage());
+			throw new DataException(_("Cannot load catalogs from the catalog library.") + " " + e.getMessage());
 		}
 
 		return catalogs;
@@ -1034,9 +968,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT name FROM Catalogs "
-							+ " WHERE name = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT name FROM Catalogs " + " WHERE name = ?");
 
 			ps.setString(1, name);
 
@@ -1054,8 +986,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot find requested catalog.")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(_("Cannot find requested catalog.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return catalog;
@@ -1105,14 +1036,12 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while copying an AppCatalog object
 	 */
-	public AppCatalog copyCatalog(AppCatalog origCatalog, String copCatName)
-			throws DataException {
+	public AppCatalog copyCatalog(AppCatalog origCatalog, String copCatName) throws DataException {
 		AppCatalog newCatalog = newCatalog(copCatName);
 
 		for (String category : origCatalog.getCategories()) {
 			for (AppAspect aspect : origCatalog.getAspects(category)) {
-				newCatalog.newAspect(aspect.getDirective(),
-						aspect.getDescription(), aspect.getCategory());
+				newCatalog.newAspect(aspect.getDirective(), aspect.getDescription(), aspect.getCategory());
 			}
 		}
 
@@ -1137,11 +1066,7 @@ public class ApplicationData extends Observable {
 
 			for (int j = 0; j <= length - 1; j++, length--)
 				for (int i = 0; i < length - 1; i++) {
-					if (getCatalogs()
-							.get(i)
-							.getName()
-							.compareToIgnoreCase(
-									getCatalogs().get(i + 1).getName()) > 0) {
+					if (getCatalogs().get(i).getName().compareToIgnoreCase(getCatalogs().get(i + 1).getName()) > 0) {
 						getCatalogs().get(i).pushDown();
 
 						count++;
@@ -1173,18 +1098,15 @@ public class ApplicationData extends Observable {
 			/*
 			 * Remove catalog and linked data
 			 */
-			ps = conn.prepareStatement("DELETE FROM Catalogs "
-					+ "WHERE name = ?");
+			ps = conn.prepareStatement("DELETE FROM Catalogs " + "WHERE name = ?");
 			ps.setString(1, name);
 			ps.executeUpdate();
 
-			ps = conn.prepareStatement("DELETE FROM Categories "
-					+ "WHERE catalogName = ?");
+			ps = conn.prepareStatement("DELETE FROM Categories " + "WHERE catalogName = ?");
 			ps.setString(1, name);
 			ps.executeUpdate();
 
-			ps = conn.prepareStatement("DELETE FROM Aspects "
-					+ "WHERE catalogName = ?");
+			ps = conn.prepareStatement("DELETE FROM Aspects " + "WHERE catalogName = ?");
 			ps.setString(1, name);
 			ps.executeUpdate();
 
@@ -1198,8 +1120,7 @@ public class ApplicationData extends Observable {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("An error occured while removing a catalog.")
-							+ " [NAME = " + name + "] " + e.getMessage());
+					_("An error occured while removing a catalog.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1230,8 +1151,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT COUNT(*) FROM Catalogs");
+			PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM Catalogs");
 
 			ResultSet res = ps.executeQuery();
 
@@ -1247,9 +1167,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the number of catalogs in the library.")
-							+ " " + e.getMessage());
+			throw new DataException(_("Cannot get the number of catalogs in the library.") + " " + e.getMessage());
 		}
 
 		return numberOfCatalogs;
@@ -1269,9 +1187,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT sortPos FROM Catalogs "
-							+ "ORDER BY sortPos ASC");
+			PreparedStatement ps = conn.prepareStatement("SELECT sortPos FROM Catalogs " + "ORDER BY sortPos ASC");
 			ps.setMaxRows(1);
 
 			ResultSet res = ps.executeQuery();
@@ -1288,9 +1204,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the first sorting position of the catalogs.")
-							+ " " + e.getMessage());
+			throw new DataException(_("Cannot get the first sorting position of the catalogs.") + " " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1310,9 +1224,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT sortPos FROM Catalogs "
-							+ "ORDER BY sortPos DESC");
+			PreparedStatement ps = conn.prepareStatement("SELECT sortPos FROM Catalogs " + "ORDER BY sortPos DESC");
 			ps.setMaxRows(1);
 
 			ResultSet res = ps.executeQuery();
@@ -1329,9 +1241,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the last sorting position of the catalogs.")
-							+ " " + e.getMessage());
+			throw new DataException(_("Cannot get the last sorting position of the catalogs.") + " " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1351,15 +1261,12 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT name,contact FROM Attendees "
-							+ "ORDER BY name ASC");
+			PreparedStatement ps = conn.prepareStatement("SELECT name,contact FROM Attendees " + "ORDER BY name ASC");
 
 			ResultSet res = ps.executeQuery();
 
 			while (res.next()) {
-				attendees.add(AppAttendee.newInstance(res.getString("name"),
-						res.getString("contact")));
+				attendees.add(AppAttendee.newInstance(res.getString("name"), res.getString("contact")));
 			}
 
 			res.close();
@@ -1370,9 +1277,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot load attendees from the database.") + " "
-							+ e.getMessage());
+			throw new DataException(_("Cannot load attendees from the database.") + " " + e.getMessage());
 		}
 
 		return attendees;
@@ -1403,8 +1308,7 @@ public class ApplicationData extends Observable {
 				}
 			}
 
-			if (att.getName().toLowerCase().contains(filter.toLowerCase())
-					|| isInContact) {
+			if (att.getName().toLowerCase().contains(filter.toLowerCase()) || isInContact) {
 				attendeesFiltered.add(att);
 			}
 		}
@@ -1426,16 +1330,14 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while getting the attendee
 	 */
-	public AppAttendee getAttendee(String name, String contact)
-			throws DataException {
+	public AppAttendee getAttendee(String name, String contact) throws DataException {
 		AppAttendee attendee = null;
 
 		try {
 			Connection conn = openConnection();
 
 			PreparedStatement ps = conn
-					.prepareStatement("SELECT name,contact FROM Attendees "
-							+ " WHERE name = ? AND contact = ?");
+					.prepareStatement("SELECT name,contact FROM Attendees " + " WHERE name = ? AND contact = ?");
 
 			ps.setString(1, name);
 			ps.setString(2, contact);
@@ -1443,8 +1345,7 @@ public class ApplicationData extends Observable {
 			ResultSet res = ps.executeQuery();
 
 			if (res.next()) {
-				attendee = AppAttendee.newInstance(res.getString("name"),
-						res.getString("contact"));
+				attendee = AppAttendee.newInstance(res.getString("name"), res.getString("contact"));
 			}
 
 			res.close();
@@ -1455,9 +1356,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot find requested attendee. The requested attendee may not be existing.")
-							+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(_("Cannot find requested attendee. The requested attendee may not be existing.")
+					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return attendee;
@@ -1495,8 +1395,7 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while creating the new attendee
 	 */
-	public AppAttendee newAttendee(String name, String contact)
-			throws DataException {
+	public AppAttendee newAttendee(String name, String contact) throws DataException {
 		return AppAttendee.newInstance(name, contact);
 	}
 
@@ -1511,8 +1410,7 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while removing the attendee
 	 */
-	public void removeAttendee(String name, String contact)
-			throws DataException {
+	public void removeAttendee(String name, String contact) throws DataException {
 		try {
 			Connection conn = openConnection();
 			PreparedStatement ps;
@@ -1520,14 +1418,13 @@ public class ApplicationData extends Observable {
 			/*
 			 * Remove attendee and linked data
 			 */
-			ps = conn.prepareStatement("DELETE FROM Attendees "
-					+ "WHERE name = ? AND contact = ?");
+			ps = conn.prepareStatement("DELETE FROM Attendees " + "WHERE name = ? AND contact = ?");
 			ps.setString(1, name);
 			ps.setString(2, contact);
 			ps.executeUpdate();
 
-			ps = conn.prepareStatement("DELETE FROM AttendeesStrengths "
-					+ "WHERE attendeeName = ? AND attendeeContact = ?");
+			ps = conn.prepareStatement(
+					"DELETE FROM AttendeesStrengths " + "WHERE attendeeName = ? AND attendeeContact = ?");
 			ps.setString(1, name);
 			ps.setString(2, contact);
 			ps.executeUpdate();
@@ -1542,8 +1439,7 @@ public class ApplicationData extends Observable {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("An error occurred while removing an attendee.")
-							+ " [NAME = " + name + "] " + e.getMessage());
+					_("An error occurred while removing an attendee.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1574,8 +1470,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT COUNT(*) FROM Attendees");
+			PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM Attendees");
 
 			ResultSet res = ps.executeQuery();
 
@@ -1591,9 +1486,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the number of attendees in the database.")
-							+ " " + e.getMessage());
+			throw new DataException(_("Cannot get the number of attendees in the database.") + " " + e.getMessage());
 		}
 
 		return numberOfAttendees;
@@ -1613,9 +1506,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT name FROM CSVProfiles "
-							+ "ORDER BY name ASC");
+			PreparedStatement ps = conn.prepareStatement("SELECT name FROM CSVProfiles " + "ORDER BY name ASC");
 
 			ResultSet res = ps.executeQuery();
 
@@ -1631,9 +1522,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot load any CSV profile from the database.") + " "
-							+ e.getMessage());
+			throw new DataException(_("Cannot load any CSV profile from the database.") + " " + e.getMessage());
 		}
 
 		return profiles;
@@ -1650,8 +1539,7 @@ public class ApplicationData extends Observable {
 	 * @throws DataException
 	 *             If an error occurs while getting the CSV profiles
 	 */
-	public List<AppCSVProfile> getCSVProfiles(String filter)
-			throws DataException {
+	public List<AppCSVProfile> getCSVProfiles(String filter) throws DataException {
 		List<AppCSVProfile> profiles = getCSVProfiles();
 		List<AppCSVProfile> profilesFiltered = new ArrayList<AppCSVProfile>();
 
@@ -1682,9 +1570,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT name FROM CSVProfiles "
-							+ " WHERE name = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT name FROM CSVProfiles " + " WHERE name = ?");
 
 			ps.setString(1, name);
 
@@ -1702,8 +1588,8 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot load the requested CSV profile.")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot load the requested CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return profile;
@@ -1758,18 +1644,15 @@ public class ApplicationData extends Observable {
 			/*
 			 * Remove catalog and linked data
 			 */
-			ps = conn.prepareStatement("DELETE FROM CSVProfiles "
-					+ "WHERE name = ?");
+			ps = conn.prepareStatement("DELETE FROM CSVProfiles " + "WHERE name = ?");
 			ps.setString(1, name);
 			ps.executeUpdate();
 
-			ps = conn.prepareStatement("DELETE FROM CSVColumnMappings "
-					+ "WHERE profileName = ?");
+			ps = conn.prepareStatement("DELETE FROM CSVColumnMappings " + "WHERE profileName = ?");
 			ps.setString(1, name);
 			ps.executeUpdate();
 
-			ps = conn.prepareStatement("DELETE FROM CSVSeverityMappings "
-					+ "WHERE profileName = ?");
+			ps = conn.prepareStatement("DELETE FROM CSVSeverityMappings " + "WHERE profileName = ?");
 			ps.setString(1, name);
 			ps.executeUpdate();
 
@@ -1782,8 +1665,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot remove the CSV profile.")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(_("Cannot remove the CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1814,8 +1696,7 @@ public class ApplicationData extends Observable {
 		try {
 			Connection conn = openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT COUNT(*) FROM CSVProfiles");
+			PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM CSVProfiles");
 
 			ResultSet res = ps.executeQuery();
 
@@ -1831,9 +1712,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the number of catalogs in the library.")
-							+ " " + e.getMessage());
+			throw new DataException(_("Cannot get the number of catalogs in the library.") + " " + e.getMessage());
 		}
 
 		return numberOfCSVProfiles;

@@ -115,12 +115,9 @@ import it.cnr.imaa.essi.lablib.gui.checkboxtree.TreeCheckingModel;
 @SuppressWarnings("serial")
 public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
-	private AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
-	private AspectManagement aspMgmt = Application.getInstance()
-			.getAspectMgmt();
-	private ReviewManagement revMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
+	private AspectManagement aspMgmt = Application.getInstance().getAspectMgmt();
+	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 	private ApplicationData appData = Data.getInstance().getAppData();
 
 	private JSplitPane splitPane = new JSplitPane();
@@ -181,8 +178,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		 */
 		JButton tbConfirm = GUITools.newImageButton();
 		tbConfirm.setIcon(Data.getInstance().getIcon("confirm_50x50_0.png"));
-		tbConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"confirm_50x50.png"));
+		tbConfirm.setRolloverIcon(Data.getInstance().getIcon("confirm_50x50.png"));
 		tbConfirm.setToolTipText(_("Confirm and close Aspects Manager"));
 		tbConfirm.addActionListener(new ActionListener() {
 			@Override
@@ -198,10 +194,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		addTopComponent(sepBttn);
 
 		tbAddCatalog = GUITools.newImageButton();
-		tbAddCatalog.setIcon(Data.getInstance().getIcon(
-				"addCatalog_50x50_0.png"));
-		tbAddCatalog.setRolloverIcon(Data.getInstance().getIcon(
-				"addCatalog_50x50.png"));
+		tbAddCatalog.setIcon(Data.getInstance().getIcon("addCatalog_50x50_0.png"));
+		tbAddCatalog.setRolloverIcon(Data.getInstance().getIcon("addCatalog_50x50.png"));
 		tbAddCatalog.setToolTipText(_("Add Catalog"));
 		tbAddCatalog.addActionListener(new ActionListener() {
 			@Override
@@ -209,29 +203,26 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				try {
 					AppCatalog catalog = appData.newCatalog("");
 
-					EditAspectPopupWindow popup = new EditAspectPopupWindow(UI
-							.getInstance().getAspectsManagerFrame(), catalog);
+					EditAspectPopupWindow popup = new EditAspectPopupWindow(UI.getInstance().getAspectsManagerFrame(),
+							catalog);
 
 					popup.setVisible(true);
 
-					if (popup.getButtonClicked() == org.revager.gui.aspects_manager.EditAspectPopupWindow.ButtonClicked.ABORT) {
+					if (popup
+							.getButtonClicked() == org.revager.gui.aspects_manager.EditAspectPopupWindow.ButtonClicked.ABORT) {
 						appData.removeCatalog("");
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		addTopComponent(tbAddCatalog);
 
 		tbCopyCatalog = GUITools.newImageButton();
-		tbCopyCatalog.setIcon(Data.getInstance().getIcon(
-				"copyCatalog_50x50_0.png"));
-		tbCopyCatalog.setRolloverIcon(Data.getInstance().getIcon(
-				"copyCatalog_50x50.png"));
+		tbCopyCatalog.setIcon(Data.getInstance().getIcon("copyCatalog_50x50_0.png"));
+		tbCopyCatalog.setRolloverIcon(Data.getInstance().getIcon("copyCatalog_50x50.png"));
 		tbCopyCatalog.setToolTipText(_("Copy selected Catalog"));
 		tbCopyCatalog.addActionListener(new ActionListener() {
 			@Override
@@ -245,27 +236,21 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						suffix++;
 					}
 
-					AppCatalog catalog = appData.copyCatalog(
-							getSelectedCatalog(), name);
+					AppCatalog catalog = appData.copyCatalog(getSelectedCatalog(), name);
 
 					updateTree(catalog, null, null);
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		addTopComponent(tbCopyCatalog);
 
 		tbAddAspect = GUITools.newImageButton();
-		tbAddAspect
-				.setIcon(Data.getInstance().getIcon("addAspect_50x50_0.png"));
-		tbAddAspect.setRolloverIcon(Data.getInstance().getIcon(
-				"addAspect_50x50.png"));
-		tbAddAspect
-				.setToolTipText(_("Add a new Aspect to the selected Catalog"));
+		tbAddAspect.setIcon(Data.getInstance().getIcon("addAspect_50x50_0.png"));
+		tbAddAspect.setRolloverIcon(Data.getInstance().getIcon("addAspect_50x50.png"));
+		tbAddAspect.setToolTipText(_("Add a new Aspect to the selected Catalog"));
 		tbAddAspect.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -284,38 +269,33 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						AppAspect aspect = catalog.newAspect("", "", category);
 
 						EditAspectPopupWindow popup = new EditAspectPopupWindow(
-								UI.getInstance().getAspectsManagerFrame(),
-								aspect);
+								UI.getInstance().getAspectsManagerFrame(), aspect);
 
 						popup.setVisible(true);
 
-						if (popup.getButtonClicked() == org.revager.gui.aspects_manager.EditAspectPopupWindow.ButtonClicked.ABORT) {
+						if (popup
+								.getButtonClicked() == org.revager.gui.aspects_manager.EditAspectPopupWindow.ButtonClicked.ABORT) {
 							catalog.removeAspect(aspect);
 						}
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		addTopComponent(tbAddAspect);
 
-		tbNewAttendee = GUITools.newImageButton(
-				Data.getInstance().getIcon("addAttendee_50x50_0.png"), Data
-						.getInstance().getIcon("addAttendee_50x50.png"));
+		tbNewAttendee = GUITools.newImageButton(Data.getInstance().getIcon("addAttendee_50x50_0.png"),
+				Data.getInstance().getIcon("addAttendee_50x50.png"));
 		tbNewAttendee.setToolTipText(_("Add Attendee"));
-		tbNewAttendee.addActionListener(ActionRegistry.getInstance().get(
-				AddAttendeeAction.class.getName()));
+		tbNewAttendee.addActionListener(ActionRegistry.getInstance().get(AddAttendeeAction.class.getName()));
 		tbNewAttendee.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 
-				UI.getInstance().getAttendeeDialog()
-						.setCalledByAspectsManager(true);
+				UI.getInstance().getAttendeeDialog().setCalledByAspectsManager(true);
 			}
 		});
 
@@ -338,14 +318,11 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					} else if (selCategory != null) {
 						selCatalog.removeCategory(selCategory);
 					} else if (selCatalog != null) {
-						Data.getInstance().getAppData()
-								.removeCatalog(selCatalog);
+						Data.getInstance().getAppData().removeCatalog(selCatalog);
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -354,10 +331,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		addTopComponent(tbRemove);
 
 		tbRemoveAll = GUITools.newImageButton();
-		tbRemoveAll
-				.setIcon(Data.getInstance().getIcon("removeAll_50x50_0.png"));
-		tbRemoveAll.setRolloverIcon(Data.getInstance().getIcon(
-				"removeAll_50x50.png"));
+		tbRemoveAll.setIcon(Data.getInstance().getIcon("removeAll_50x50_0.png"));
+		tbRemoveAll.setRolloverIcon(Data.getInstance().getIcon("removeAll_50x50.png"));
 		tbRemoveAll.setToolTipText(_("Remove selected Items"));
 		tbRemoveAll.addActionListener(new ActionListener() {
 			@Override
@@ -386,10 +361,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 								appData.removeCatalog(cat);
 							}
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(UI.getInstance()
-									.getAspectsManagerFrame(), GUITools
-									.getMessagePane(exc.getMessage()),
-									_("Error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+									GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 						}
 
 						notifySwitchToEditMode();
@@ -414,49 +387,41 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		tbEditItem = GUITools.newImageButton();
 		tbEditItem.setIcon(Data.getInstance().getIcon("editItem_50x50_0.png"));
-		tbEditItem.setRolloverIcon(Data.getInstance().getIcon(
-				"editItem_50x50.png"));
+		tbEditItem.setRolloverIcon(Data.getInstance().getIcon("editItem_50x50.png"));
 		tbEditItem.setToolTipText(_("Edit selected Item"));
 		tbEditItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AspectsManagerFrame aspMan = UI.getInstance()
-						.getAspectsManagerFrame();
+				AspectsManagerFrame aspMan = UI.getInstance().getAspectsManagerFrame();
 
 				AppAspect selAspect = getSelectedAspect();
 				AppCatalog selCatalog = getSelectedCatalog();
 				String selCategory = getSelectedCategory();
 
 				if (selAspect != null) {
-					EditAspectPopupWindow popup = new EditAspectPopupWindow(
-							aspMan, selAspect);
+					EditAspectPopupWindow popup = new EditAspectPopupWindow(aspMan, selAspect);
 
 					popup.setVisible(true);
 				} else if (selCategory != null) {
-					TextPopupWindow popup = new TextPopupWindow(aspMan,
-							_("Please enter a name for the category."),
+					TextPopupWindow popup = new TextPopupWindow(aspMan, _("Please enter a name for the category."),
 							selCategory, false);
 
 					popup.setVisible(true);
 
-					if (popup.getButtonClicked() == ButtonClicked.OK
-							&& !popup.getInput().trim().equals("")) {
+					if (popup.getButtonClicked() == ButtonClicked.OK && !popup.getInput().trim().equals("")) {
 						try {
 							String newCategory = popup.getInput().trim();
 
 							selCatalog.editCategory(selCategory, newCategory);
 
-							updateTree(selCatalog, newCategory, null,
-									selCategory);
+							updateTree(selCatalog, newCategory, null, selCategory);
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(aspMan,
-									GUITools.getMessagePane(exc.getMessage()),
-									_("Error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(aspMan, GUITools.getMessagePane(exc.getMessage()), _("Error"),
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				} else if (selCatalog != null) {
-					EditAspectPopupWindow popup = new EditAspectPopupWindow(
-							aspMan, selCatalog);
+					EditAspectPopupWindow popup = new EditAspectPopupWindow(aspMan, selCatalog);
 
 					popup.setVisible(true);
 				}
@@ -464,24 +429,20 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		addTopComponent(tbEditItem);
 
-		tbAutoAllocation = GUITools.newImageButton(
-				Data.getInstance().getIcon("autoAllocation_50x50_0.png"), Data
-						.getInstance().getIcon("autoAllocation_50x50.png"));
-		tbAutoAllocation
-				.setToolTipText(_("Assign selected Aspects to the Reviewers automatically"));
+		tbAutoAllocation = GUITools.newImageButton(Data.getInstance().getIcon("autoAllocation_50x50_0.png"),
+				Data.getInstance().getIcon("autoAllocation_50x50.png"));
+		tbAutoAllocation.setToolTipText(_("Assign selected Aspects to the Reviewers automatically"));
 		tbAutoAllocation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUITools.executeSwingWorker(new AutoAspAllocWorker(
-						getCheckedAspects()));
+				GUITools.executeSwingWorker(new AutoAspAllocWorker(getCheckedAspects()));
 			}
 		});
 
 		addTopComponent(tbAutoAllocation);
 
-		tbImportCatalog = GUITools.newImageButton(
-				Data.getInstance().getIcon("importCatalog_50x50_0.png"), Data
-						.getInstance().getIcon("importCatalog_50x50.png"));
+		tbImportCatalog = GUITools.newImageButton(Data.getInstance().getIcon("importCatalog_50x50_0.png"),
+				Data.getInstance().getIcon("importCatalog_50x50.png"));
 		tbImportCatalog.setToolTipText(_("Import Catalog"));
 		tbImportCatalog.addActionListener(new ActionListener() {
 			@Override
@@ -490,19 +451,17 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 				fc.setFile(null);
 
-				if (fc.showDialog(UI.getInstance().getAspectsManagerFrame(),
-						FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
-					GUITools.executeSwingWorker(new ImportCatalogWorker(fc
-							.getFile().getAbsolutePath()));
+				if (fc.showDialog(UI.getInstance().getAspectsManagerFrame(), FileChooser.MODE_OPEN_FILE,
+						ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
+					GUITools.executeSwingWorker(new ImportCatalogWorker(fc.getFile().getAbsolutePath()));
 				}
 			}
 		});
 
 		addTopRightComp(tbImportCatalog);
 
-		tbExportCatalog = GUITools.newImageButton(
-				Data.getInstance().getIcon("exportCatalog_50x50_0.png"), Data
-						.getInstance().getIcon("exportCatalog_50x50.png"));
+		tbExportCatalog = GUITools.newImageButton(Data.getInstance().getIcon("exportCatalog_50x50_0.png"),
+				Data.getInstance().getIcon("exportCatalog_50x50.png"));
 		tbExportCatalog.setToolTipText(_("Export selected Catalog"));
 		tbExportCatalog.addActionListener(new ActionListener() {
 			@Override
@@ -512,13 +471,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 					fc.setFile(new File(getSelectedCatalog().getName()));
 
-					if (fc.showDialog(
-							UI.getInstance().getAspectsManagerFrame(),
-							FileChooser.MODE_SAVE_FILE,
+					if (fc.showDialog(UI.getInstance().getAspectsManagerFrame(), FileChooser.MODE_SAVE_FILE,
 							ResiFileFilter.TYPE_CATALOG) == FileChooser.SELECTED_APPROVE) {
-						GUITools.executeSwingWorker(new ExportCatalogWorker(fc
-								.getFile().getAbsolutePath(),
-								getSelectedCatalog()));
+						GUITools.executeSwingWorker(
+								new ExportCatalogWorker(fc.getFile().getAbsolutePath(), getSelectedCatalog()));
 					}
 				}
 			}
@@ -526,11 +482,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbExportCatalog);
 
-		tbImportAspects = GUITools.newImageButton(
-				Data.getInstance().getIcon("importAspects_50x50_0.png"), Data
-						.getInstance().getIcon("importAspects_50x50.png"));
-		tbImportAspects
-				.setToolTipText(_("Import Aspects into the selected Catalog"));
+		tbImportAspects = GUITools.newImageButton(Data.getInstance().getIcon("importAspects_50x50_0.png"),
+				Data.getInstance().getIcon("importAspects_50x50.png"));
+		tbImportAspects.setToolTipText(_("Import Aspects into the selected Catalog"));
 		tbImportAspects.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -540,13 +494,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				fc.setFile(null);
 
 				if (catalog != null) {
-					if (fc.showDialog(
-							UI.getInstance().getAspectsManagerFrame(),
-							FileChooser.MODE_OPEN_FILE,
+					if (fc.showDialog(UI.getInstance().getAspectsManagerFrame(), FileChooser.MODE_OPEN_FILE,
 							ResiFileFilter.TYPE_ASPECTS) == FileChooser.SELECTED_APPROVE) {
-						GUITools.executeSwingWorker(new ImportAspectsWorker(fc
-								.getFile().getAbsolutePath(),
-								getSelectedCatalog()));
+						GUITools.executeSwingWorker(
+								new ImportAspectsWorker(fc.getFile().getAbsolutePath(), getSelectedCatalog()));
 					}
 				}
 			}
@@ -554,9 +505,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbImportAspects);
 
-		tbExportAspects = GUITools.newImageButton(
-				Data.getInstance().getIcon("exportAspects_50x50_0.png"), Data
-						.getInstance().getIcon("exportAspects_50x50.png"));
+		tbExportAspects = GUITools.newImageButton(Data.getInstance().getIcon("exportAspects_50x50_0.png"),
+				Data.getInstance().getIcon("exportAspects_50x50.png"));
 		tbExportAspects.setToolTipText(_("Export selected Aspects"));
 		tbExportAspects.addActionListener(new ActionListener() {
 			@Override
@@ -566,13 +516,10 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				fc.setFile(null);
 
 				if (getCheckedAspects().size() > 0) {
-					if (fc.showDialog(
-							UI.getInstance().getAspectsManagerFrame(),
-							FileChooser.MODE_SAVE_FILE,
+					if (fc.showDialog(UI.getInstance().getAspectsManagerFrame(), FileChooser.MODE_SAVE_FILE,
 							ResiFileFilter.TYPE_ASPECTS) == FileChooser.SELECTED_APPROVE) {
-						GUITools.executeSwingWorker(new ExportAspectsWorker(fc
-								.getFile().getAbsolutePath(),
-								getCheckedAspects()));
+						GUITools.executeSwingWorker(
+								new ExportAspectsWorker(fc.getFile().getAbsolutePath(), getCheckedAspects()));
 					}
 				}
 			}
@@ -580,9 +527,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		addTopRightComp(tbExportAspects);
 
-		tbLoadStdCatalogs = GUITools.newImageButton(
-				Data.getInstance().getIcon("loadStdCatalogs_50x50_0.png"), Data
-						.getInstance().getIcon("loadStdCatalogs_50x50.png"));
+		tbLoadStdCatalogs = GUITools.newImageButton(Data.getInstance().getIcon("loadStdCatalogs_50x50_0.png"),
+				Data.getInstance().getIcon("loadStdCatalogs_50x50.png"));
 		tbLoadStdCatalogs.setToolTipText(_("Load Standard Catalogs"));
 		tbLoadStdCatalogs.addActionListener(new ActionListener() {
 			@Override
@@ -611,16 +557,14 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 				TreePath curPath = getPathForLocation(evt.getX(), evt.getY());
 
-				Object obj = ((DefaultMutableTreeNode) curPath
-						.getLastPathComponent()).getUserObject();
+				Object obj = ((DefaultMutableTreeNode) curPath.getLastPathComponent()).getUserObject();
 
 				if (obj instanceof AppAspect) {
 					AppAspect asp = ((AppAspect) obj);
 
 					try {
-						return GUITools.getTextAsHtml("<b>"
-								+ asp.getDirective() + "</b>" + "\n\n"
-								+ asp.getDescription());
+						return GUITools
+								.getTextAsHtml("<b>" + asp.getDirective() + "</b>" + "\n\n" + asp.getDescription());
 					} catch (DataException e) {
 						return null;
 					}
@@ -628,10 +572,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					AppCatalog cat = ((AppCatalog) obj);
 
 					try {
-						return GUITools.getTextAsHtml("<b>" + cat.getName()
-								+ "</b>\n(" + cat.getNumberOfAspects() + " "
-								+ _("Aspects") + ")" + "\n\n"
-								+ cat.getDescription());
+						return GUITools.getTextAsHtml("<b>" + cat.getName() + "</b>\n(" + cat.getNumberOfAspects() + " "
+								+ _("Aspects") + ")" + "\n\n" + cat.getDescription());
 					} catch (DataException e) {
 						return null;
 					}
@@ -666,11 +608,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		((BasicTreeUI) tree.getUI()).setRightChildIndent(13);
 		tree.setRowHeight(25);
 		tree.setCellRenderer(new CustomTreeCellRenderer());
-		tree.getSelectionModel().setSelectionMode(
-				TreeSelectionModel.SINGLE_TREE_SELECTION);
-		//tree.addMouseListener(new NodeSelectionListener(tree));
-		JScrollPane scrollPane = new JScrollPane(tree,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		// tree.addMouseListener(new NodeSelectionListener(tree));
+		JScrollPane scrollPane = new JScrollPane(tree, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setBorder(new MatteBorder(0, 0, 1, 0, UI.SEPARATOR_COLOR));
 		scrollPane.setMinimumSize(new Dimension(400, 400));
@@ -679,9 +619,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		// updateTree();
 		tree.expandRow(0);
 		tree.setToolTipText("");
-		
+
 		tree.addTreeCheckingListener(new CheckBoxListener(tree));
-		
+
 		tree.getCheckingModel().setCheckingMode(TreeCheckingModel.CheckingMode.PROPAGATE_PRESERVING_CHECK);
 
 		leftPanel.add(scrollPane, BorderLayout.CENTER);
@@ -689,9 +629,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
 
-		pushTop = GUITools.newImageButton(
-				Data.getInstance().getIcon("pushTop_25x25_0.png"), Data
-						.getInstance().getIcon("pushTop_25x25.png"));
+		pushTop = GUITools.newImageButton(Data.getInstance().getIcon("pushTop_25x25_0.png"),
+				Data.getInstance().getIcon("pushTop_25x25.png"));
 		pushTop.setToolTipText(_("Push Item to the top"));
 		pushTop.addActionListener(new ActionListener() {
 			@Override
@@ -709,10 +648,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						selCatalog.pushTop();
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -720,9 +657,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(pushTop);
 
-		pushUp = GUITools.newImageButton(
-				Data.getInstance().getIcon("upArrow_25x25_0.png"), Data
-						.getInstance().getIcon("upArrow_25x25.png"));
+		pushUp = GUITools.newImageButton(Data.getInstance().getIcon("upArrow_25x25_0.png"),
+				Data.getInstance().getIcon("upArrow_25x25.png"));
 		pushUp.setToolTipText(_("Push Item up"));
 		pushUp.addActionListener(new ActionListener() {
 			@Override
@@ -740,10 +676,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						selCatalog.pushUp();
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -751,9 +685,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(pushUp);
 
-		pushDown = GUITools.newImageButton(
-				Data.getInstance().getIcon("downArrow_25x25_0.png"), Data
-						.getInstance().getIcon("downArrow_25x25.png"));
+		pushDown = GUITools.newImageButton(Data.getInstance().getIcon("downArrow_25x25_0.png"),
+				Data.getInstance().getIcon("downArrow_25x25.png"));
 		pushDown.setToolTipText(_("Push Item down"));
 		pushDown.addActionListener(new ActionListener() {
 			@Override
@@ -771,10 +704,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						selCatalog.pushDown();
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -782,9 +713,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(pushDown);
 
-		pushBottom = GUITools.newImageButton(
-				Data.getInstance().getIcon("pushBottom_25x25_0.png"), Data
-						.getInstance().getIcon("pushBottom_25x25.png"));
+		pushBottom = GUITools.newImageButton(Data.getInstance().getIcon("pushBottom_25x25_0.png"),
+				Data.getInstance().getIcon("pushBottom_25x25.png"));
 		pushBottom.setToolTipText(_("Push Item to the bottom"));
 		pushBottom.addActionListener(new ActionListener() {
 			@Override
@@ -802,10 +732,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						selCatalog.pushBottom();
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(UI.getInstance()
-							.getAspectsManagerFrame(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -816,8 +744,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Strut button
 		 */
-		JButton strutButton = GUITools.newImageButton(Data.getInstance()
-				.getIcon("blank_25x25.png"),
+		JButton strutButton = GUITools.newImageButton(Data.getInstance().getIcon("blank_25x25.png"),
 				Data.getInstance().getIcon("blank_25x25.png"));
 		strutButton.setEnabled(false);
 		buttonPanel.add(strutButton);
@@ -825,8 +752,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Button for sorting the tree
 		 */
-		JButton buttonSort = GUITools.newImageButton(Data.getInstance()
-				.getIcon("sort_22x22_0.png"),
+		JButton buttonSort = GUITools.newImageButton(Data.getInstance().getIcon("sort_22x22_0.png"),
 				Data.getInstance().getIcon("sort_22x22.png"));
 		buttonSort.setToolTipText(_("Sort Catalogs in ABC order"));
 		buttonSort.addActionListener(new ActionListener() {
@@ -835,9 +761,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				try {
 					Data.getInstance().getAppData().sortCatalogsAlphabetical();
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(null,
-							GUITools.getMessagePane(exc.getMessage()),
-							_("Error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
+							JOptionPane.ERROR_MESSAGE);
 				}
 
 				updateTree();
@@ -848,8 +773,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Buttons for collapsing and expanding the whole tree
 		 */
-		JButton buttonExpandAll = GUITools.newImageButton(Data.getInstance()
-				.getIcon("expandTree_25x25_0.png"),
+		JButton buttonExpandAll = GUITools.newImageButton(Data.getInstance().getIcon("expandTree_25x25_0.png"),
 				Data.getInstance().getIcon("expandTree_25x25.png"));
 		buttonExpandAll.setToolTipText(_("Expand whole tree"));
 		buttonExpandAll.addActionListener(new ActionListener() {
@@ -860,9 +784,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonPanel.add(buttonExpandAll);
 
-		JButton buttonCollapseAll = GUITools.newImageButton(Data.getInstance()
-				.getIcon("collapseTree_25x25_0.png"), Data.getInstance()
-				.getIcon("collapseTree_25x25.png"));
+		JButton buttonCollapseAll = GUITools.newImageButton(Data.getInstance().getIcon("collapseTree_25x25_0.png"),
+				Data.getInstance().getIcon("collapseTree_25x25.png"));
 		buttonCollapseAll.setToolTipText(_("Collapse whole tree"));
 		buttonCollapseAll.addActionListener(new ActionListener() {
 			@Override
@@ -894,15 +817,12 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		GridBagLayout gblView = new GridBagLayout();
 		final JPanel panelView = new JPanel(gblView);
 
-		rbReviewersView = new JRadioButton(_("Show Reviewers"), Data
-				.getInstance().getIcon("reviewers_16x16.png"));
+		rbReviewersView = new JRadioButton(_("Show Reviewers"), Data.getInstance().getIcon("reviewers_16x16.png"));
 
-		rbAspectsView = new JRadioButton(_("Show assigned Aspects"), Data
-				.getInstance().getIcon("aspects_16x16.png"));
+		rbAspectsView = new JRadioButton(_("Show assigned Aspects"), Data.getInstance().getIcon("aspects_16x16.png"));
 
 		rbReviewersView.setFont(UI.STANDARD_FONT.deriveFont(Font.BOLD));
-		rbReviewersView.setCursor(Cursor
-				.getPredefinedCursor(Cursor.HAND_CURSOR));
+		rbReviewersView.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		rbReviewersView.setFocusPainted(false);
 		rbReviewersView.addItemListener(new ItemListener() {
 			@Override
@@ -947,15 +867,12 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		});
 		buttonsView.add(rbAspectsView);
 
-		GUITools.addComponent(panelView, gblView, rbReviewersView, 0, 1, 1, 1,
-				1.0, 0.0, 0, 10, 0, 10, GridBagConstraints.NONE,
-				GridBagConstraints.EAST);
-		GUITools.addComponent(panelView, gblView, rbAspectsView, 1, 1, 1, 1,
-				1.0, 0.0, 0, 10, 0, 10, GridBagConstraints.NONE,
-				GridBagConstraints.WEST);
-		GUITools.addComponent(panelView, gblView, new JSeparator(
-				SwingConstants.HORIZONTAL), 0, 2, 2, 1, 1.0, 0.0, 0, 0, 10, 0,
-				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
+		GUITools.addComponent(panelView, gblView, rbReviewersView, 0, 1, 1, 1, 1.0, 0.0, 0, 10, 0, 10,
+				GridBagConstraints.NONE, GridBagConstraints.EAST);
+		GUITools.addComponent(panelView, gblView, rbAspectsView, 1, 1, 1, 1, 1.0, 0.0, 0, 10, 0, 10,
+				GridBagConstraints.NONE, GridBagConstraints.WEST);
+		GUITools.addComponent(panelView, gblView, new JSeparator(SwingConstants.HORIZONTAL), 0, 2, 2, 1, 1.0, 0.0, 0, 0,
+				10, 0, GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
 
 		/*
 		 * ****** Prepare the reviewers view ******
@@ -967,11 +884,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Button to allocate aspects to all reviewers
 		 */
-		buttonAllocAll = GUITools.newImageButton(
-				Data.getInstance().getIcon("allocAspAll_32x32_0.png"), Data
-						.getInstance().getIcon("allocAspAll_32x32.png"));
-		buttonAllocAll
-				.setToolTipText(_("Assign selected Aspects to all Reviewers"));
+		buttonAllocAll = GUITools.newImageButton(Data.getInstance().getIcon("allocAspAll_32x32_0.png"),
+				Data.getInstance().getIcon("allocAspAll_32x32.png"));
+		buttonAllocAll.setToolTipText(_("Assign selected Aspects to all Reviewers"));
 		buttonAllocAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -993,15 +908,13 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 							for (Attendee att : attMgmt.getAttendees()) {
 								if (att.getRole() == Role.REVIEWER) {
 									for (AppAspect asp : getCheckedAspects()) {
-										attMgmt.addAspect(
-												asp.getAsResiAspect(), att);
+										attMgmt.addAspect(asp.getAsResiAspect(), att);
 									}
 								}
 							}
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(null,
-									GUITools.getMessagePane(exc.getMessage()),
-									_("Error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
+									JOptionPane.ERROR_MESSAGE);
 						}
 
 						observeResiData(true);
@@ -1011,9 +924,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						SwingUtilities.invokeLater(new Runnable() {
 							@Override
 							public void run() {
-								setStatusMessage(
-										_("Aspects allocated successfully."),
-										false);
+								setStatusMessage(_("Aspects allocated successfully."), false);
 
 								switchToEditMode();
 							}
@@ -1028,28 +939,23 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 		});
 
-		GUITools.addComponent(panelReviewers, gblReviewers, buttonAllocAll, 0,
-				0, 1, 1, 0.0, 0.0, 0, 0, 0, 5, GridBagConstraints.NONE,
-				GridBagConstraints.WEST);
+		GUITools.addComponent(panelReviewers, gblReviewers, buttonAllocAll, 0, 0, 1, 1, 0.0, 0.0, 0, 0, 0, 5,
+				GridBagConstraints.NONE, GridBagConstraints.WEST);
 
 		/*
 		 * Prepare the panel for the reviewer buttons
 		 */
-		panelRevButtons = new JPanel(new ExtendedFlowLayout(FlowLayout.LEFT, 7,
-				7));
+		panelRevButtons = new JPanel(new ExtendedFlowLayout(FlowLayout.LEFT, 7, 7));
 
-		GUITools.addComponent(panelReviewers, gblReviewers, panelRevButtons, 1,
-				0, 1, 1, 1.0, 0.0, 0, 0, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelReviewers, gblReviewers, panelRevButtons, 1, 0, 1, 1, 1.0, 0.0, 0, 0, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 		/*
 		 * Button to allocate aspects to the selected reviewer
 		 */
-		buttonAlloc = GUITools.newImageButton(
-				Data.getInstance().getIcon("allocAsp_32x32_0.png"), Data
-						.getInstance().getIcon("allocAsp_32x32.png"));
-		buttonAlloc
-				.setToolTipText(_("Assign selected Aspects to the displayed Reviewer"));
+		buttonAlloc = GUITools.newImageButton(Data.getInstance().getIcon("allocAsp_32x32_0.png"),
+				Data.getInstance().getIcon("allocAsp_32x32.png"));
+		buttonAlloc.setToolTipText(_("Assign selected Aspects to the displayed Reviewer"));
 		buttonAlloc.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1069,13 +975,11 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 						try {
 							for (AppAspect asp : getCheckedAspects()) {
-								attMgmt.addAspect(asp.getAsResiAspect(),
-										selectedReviewer);
+								attMgmt.addAspect(asp.getAsResiAspect(), selectedReviewer);
 							}
 						} catch (DataException exc) {
-							JOptionPane.showMessageDialog(null,
-									GUITools.getMessagePane(exc.getMessage()),
-									_("Error"), JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
+									JOptionPane.ERROR_MESSAGE);
 						}
 
 						observeResiData(true);
@@ -1085,9 +989,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 						SwingUtilities.invokeLater(new Runnable() {
 							@Override
 							public void run() {
-								setStatusMessage(
-										_("Aspects allocated successfully."),
-										false);
+								setStatusMessage(_("Aspects allocated successfully."), false);
 
 								switchToEditMode();
 							}
@@ -1101,18 +1003,16 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		GUITools.addComponent(panelReviewers, gblReviewers, buttonAlloc, 0, 1,
-				1, 1, 0.0, 0.0, 45, 0, 0, 5, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelReviewers, gblReviewers, buttonAlloc, 0, 1, 1, 1, 0.0, 0.0, 45, 0, 0, 5,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 
 		/*
 		 * Prepare the panel for the reviewer table
 		 */
 		panelRevTable = new JPanel(new BorderLayout());
 
-		GUITools.addComponent(panelReviewers, gblReviewers, panelRevTable, 1,
-				1, 1, 1, 1.0, 1.0, 20, 7, 7, 7, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelReviewers, gblReviewers, panelRevTable, 1, 1, 1, 1, 1.0, 1.0, 20, 7, 7, 7,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 
 		/*
 		 * ****** Prepare the aspects view ******
@@ -1121,8 +1021,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		panelAllAspects.setBorder(new EmptyBorder(30, 40, 30, 40));
 
 		aspTabModel = new AspectTableModel();
-		final JTable tableAspects = GUITools
-				.newStandardTable(aspTabModel, true);
+		final JTable tableAspects = GUITools.newStandardTable(aspTabModel, true);
 		tableAspects.setShowGrid(true);
 		tableAspects.getColumnModel().getColumn(1).setMaxWidth(200);
 		tableAspects.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -1134,8 +1033,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				if (e.getClickCount() == 2 && selRow != -1) {
 					Aspect aspect = aspTabModel.getAspect(selRow);
 
-					EditAspectPopupWindow popup = new EditAspectPopupWindow(UI
-							.getInstance().getAspectsManagerFrame(), aspect);
+					EditAspectPopupWindow popup = new EditAspectPopupWindow(UI.getInstance().getAspectsManagerFrame(),
+							aspect);
 
 					popup.setVisible(true);
 
@@ -1170,24 +1069,21 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		 */
 		DefaultTableCellRenderer cellRend = new DefaultTableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table,
-					Object value, boolean isSelected, boolean hasFocus,
-					int row, int column) {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
 				String content = (String) value;
 
 				setToolTipText(GUITools.getTextAsHtml(content));
 
 				content = content.split("\n")[0];
 
-				return super.getTableCellRendererComponent(table, content,
-						isSelected, hasFocus, row, column);
+				return super.getTableCellRendererComponent(table, content, isSelected, hasFocus, row, column);
 			}
 		};
 		tableAspects.getColumnModel().getColumn(0).setCellRenderer(cellRend);
 		tableAspects.getColumnModel().getColumn(1).setCellRenderer(cellRend);
 
-		panelAllAspects.add(GUITools.setIntoScrollPane(tableAspects),
-				BorderLayout.CENTER);
+		panelAllAspects.add(GUITools.setIntoScrollPane(tableAspects), BorderLayout.CENTER);
 
 		/*
 		 * ****** Add right panel to split panel ******
@@ -1208,8 +1104,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		/*
 		 * Check selected reviewer
 		 */
-		if (!attMgmt.isAttendee(selectedReviewer)
-				|| selectedReviewer.getRole() != Role.REVIEWER) {
+		if (!attMgmt.isAttendee(selectedReviewer) || selectedReviewer.getRole() != Role.REVIEWER) {
 			selectedReviewer = null;
 
 			for (Attendee att : attMgmt.getAttendees()) {
@@ -1230,8 +1125,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 				final Attendee rev = att;
 
 				JToggleButton button = new JToggleButton(rev.getName());
-				button.setToolTipText(GUITools.getTextAsHtml("<b>"
-						+ rev.getName() + "</b>\n\n" + rev.getContact()));
+				button.setToolTipText(GUITools.getTextAsHtml("<b>" + rev.getName() + "</b>\n\n" + rev.getContact()));
 				button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent ev) {
@@ -1423,8 +1317,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 					GUITools.executeSwingWorker(new LoadDefCatalogsWorker());
 				}
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(this,
-						GUITools.getMessagePane(e.getMessage()), _("Error"),
+				JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e.getMessage()), _("Error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -1461,8 +1354,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 * @param selAspect
 	 *            the sel aspect
 	 */
-	public void updateTree(AppCatalog selCatalog, String selCategory,
-			AppAspect selAspect) {
+	public void updateTree(AppCatalog selCatalog, String selCategory, AppAspect selAspect) {
 		updateTree(selCatalog, selCategory, selAspect, null);
 	}
 
@@ -1478,8 +1370,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 * @param oldCategory
 	 *            the old category
 	 */
-	public void updateTree(AppCatalog selCatalog, String selCategory,
-			AppAspect selAspect, String oldCategory) {
+	public void updateTree(AppCatalog selCatalog, String selCategory, AppAspect selAspect, String oldCategory) {
 		if (selAspect == null) {
 			selAspect = getSelectedAspect();
 		}
@@ -1602,8 +1493,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			 */
 			updateToolBar();
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(this,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1626,8 +1516,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			tbAddAspect.setEnabled(false);
 		}
 
-		if (getSelectedAspect() != null || getSelectedCatalog() != null
-				|| getSelectedCategory() != null) {
+		if (getSelectedAspect() != null || getSelectedCatalog() != null || getSelectedCategory() != null) {
 			tbRemove.setEnabled(true);
 			tbEditItem.setEnabled(true);
 			tbAddAspect.setEnabled(true);
@@ -1682,9 +1571,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
-		hintMinOneAsp = new HintItem(
-				_("You have to assign at least one aspect to a reviewer."),
-				HintItem.WARNING, "aspects_management");
+		hintMinOneAsp = new HintItem(_("You have to assign at least one aspect to a reviewer."), HintItem.WARNING,
+				"aspects_management");
 
 		hintMinOneRev = new HintItem(
 				_("In order to assign aspects to reviewers you have to add at least one reviewer to the review."),
@@ -1730,8 +1618,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		if (UI.getInstance().getStatus() == UI.Status.NO_FILE_LOADED) {
 			rightPanel.removeAll();
 
-			JLabel labelDesc = GUITools
-					.getMessagePane(_("No review is loaded. Therefore you can only work in the library with its catalogs and aspects."));
+			JLabel labelDesc = GUITools.getMessagePane(_(
+					"No review is loaded. Therefore you can only work in the library with its catalogs and aspects."));
 			labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
 			labelDesc.setForeground(Color.GRAY);
 
@@ -1739,8 +1627,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 		} else if (!existReviewers()) {
 			rightPanel.removeAll();
 
-			JLabel labelDesc = GUITools
-					.getMessagePane(_("There aren't any reviewers existing in the review. After adding at least one reviewer by using the 'Add Attendee' button you can assign them aspects from the existing catalogs."));
+			JLabel labelDesc = GUITools.getMessagePane(_(
+					"There aren't any reviewers existing in the review. After adding at least one reviewer by using the 'Add Attendee' button you can assign them aspects from the existing catalogs."));
 			labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
 			labelDesc.setForeground(Color.GRAY);
 
@@ -1820,8 +1708,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 			Object obj = node.getUserObject();
 
-			if (obj instanceof AppCatalog
-					&& tree.isExpanded(getPath((AppCatalog) obj))) {
+			if (obj instanceof AppCatalog && tree.isExpanded(getPath((AppCatalog) obj))) {
 				catalogs.add((AppCatalog) obj);
 			}
 		}
@@ -1849,10 +1736,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			if (obj instanceof AppCatalog) {
 				currentCatalog = (AppCatalog) obj;
 
-				categories.put(currentCatalog.getName(),
-						new ArrayList<String>());
-			} else if (!(obj instanceof AppAspect)
-					&& obj != root.getUserObject()
+				categories.put(currentCatalog.getName(), new ArrayList<String>());
+			} else if (!(obj instanceof AppAspect) && obj != root.getUserObject()
 					&& tree.isExpanded(getPath(currentCatalog, (String) obj))) {
 				categories.get(currentCatalog.getName()).add((String) obj);
 			}
@@ -1868,8 +1753,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 */
 	public AppCatalog getSelectedCatalog() {
 		if (tree.getSelectionPath() != null) {
-			Object obj = ((CheckNode) tree.getSelectionPath()
-					.getLastPathComponent()).getUserObject();
+			Object obj = ((CheckNode) tree.getSelectionPath().getLastPathComponent()).getUserObject();
 
 			Object rootObj = root.getUserObject();
 
@@ -1883,10 +1767,9 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			/*
 			 * Case: A category is selected
 			 */
-			if (!(obj instanceof AppAspect) && !(obj instanceof AppAspect)
-					&& obj != rootObj) {
-				CheckNode catalog = (CheckNode) ((CheckNode) tree
-						.getSelectionPath().getLastPathComponent()).getParent();
+			if (!(obj instanceof AppAspect) && !(obj instanceof AppAspect) && obj != rootObj) {
+				CheckNode catalog = (CheckNode) ((CheckNode) tree.getSelectionPath().getLastPathComponent())
+						.getParent();
 
 				return (AppCatalog) catalog.getUserObject();
 			}
@@ -1902,8 +1785,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 */
 	public AppAspect getSelectedAspect() {
 		if (tree.getSelectionPath() != null) {
-			Object obj = ((CheckNode) tree.getSelectionPath()
-					.getLastPathComponent()).getUserObject();
+			Object obj = ((CheckNode) tree.getSelectionPath().getLastPathComponent()).getUserObject();
 
 			if (obj instanceof AppAspect) {
 				return (AppAspect) obj;
@@ -1920,13 +1802,11 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 */
 	public String getSelectedCategory() {
 		if (tree.getSelectionPath() != null) {
-			Object obj = ((CheckNode) tree.getSelectionPath()
-					.getLastPathComponent()).getUserObject();
+			Object obj = ((CheckNode) tree.getSelectionPath().getLastPathComponent()).getUserObject();
 
 			Object rootObj = root.getUserObject();
 
-			if (!(obj instanceof AppAspect) && !(obj instanceof AppCatalog)
-					&& obj != rootObj) {
+			if (!(obj instanceof AppAspect) && !(obj instanceof AppCatalog) && obj != rootObj) {
 				return (String) obj;
 			}
 		}
@@ -1996,10 +1876,8 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 			if (obj instanceof AppCatalog) {
 				currentCatalog = (AppCatalog) obj;
 
-				categories.put(currentCatalog.getName(),
-						new ArrayList<String>());
-			} else if (node.isSelected() && !(obj instanceof AppAspect)
-					&& obj != root.getUserObject()) {
+				categories.put(currentCatalog.getName(), new ArrayList<String>());
+			} else if (node.isSelected() && !(obj instanceof AppAspect) && obj != root.getUserObject()) {
 				categories.get(currentCatalog.getName()).add((String) obj);
 			}
 		}
@@ -2059,8 +1937,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 	 * 
 	 * @return true, if is in list
 	 */
-	private boolean isInList(String category, String catalogName,
-			Map<String, List<String>> categoryList) {
+	private boolean isInList(String category, String catalogName, Map<String, List<String>> categoryList) {
 		List<String> categories = categoryList.get(catalogName);
 
 		if (categories != null) {
@@ -2090,8 +1967,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 			Object curNode = node.getUserObject();
 
-			if (curNode instanceof AppAspect
-					&& ((AppAspect) curNode).equals(asp)) {
+			if (curNode instanceof AppAspect && ((AppAspect) curNode).equals(asp)) {
 				return new TreePath(node.getPath());
 			}
 		}
@@ -2115,8 +1991,7 @@ public class AspectsManagerFrame extends AbstractFrame implements Observer {
 
 			Object curNode = node.getUserObject();
 
-			if (curNode instanceof AppCatalog
-					&& ((AppCatalog) curNode).equals(catalog)) {
+			if (curNode instanceof AppCatalog && ((AppCatalog) curNode).equals(catalog)) {
 				return new TreePath(node.getPath());
 			}
 		}

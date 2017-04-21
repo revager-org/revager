@@ -126,8 +126,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 	private boolean assistantMode = true;
 
-	private ReviewManagement revMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 	private JPanel splitPanel = new JPanel(new GridLayout(1, 2));
 	private GridBagLayout gbl = new GridBagLayout();
@@ -138,14 +137,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JButton removeAttendee;
 	private JButton editAttendee;
 
-	private DefaultMutableTreeNode nodeMeetingRoot = new DefaultMutableTreeNode(
-			_("All meetings"));
-	private DefaultTreeModel meetingsTreeModel = new DefaultTreeModel(
-			nodeMeetingRoot);
+	private DefaultMutableTreeNode nodeMeetingRoot = new DefaultMutableTreeNode(_("All meetings"));
+	private DefaultTreeModel meetingsTreeModel = new DefaultTreeModel(nodeMeetingRoot);
 	private JTree meetingsTree;
 
-	private Border labelBorder = new MatteBorder(15, 0, 0, 0, getContentPane()
-			.getBackground());
+	private Border labelBorder = new MatteBorder(15, 0, 0, 0, getContentPane().getBackground());
 	private int padding = 30;
 
 	/*
@@ -284,8 +280,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private SwingWorker<Void, Void> updateWorker = new SwingWorker<Void, Void>() {
 		@Override
 		protected Void doInBackground() throws Exception {
-			long change = Long.parseLong(Data.getInstance().getResource(
-					"keyTypeChangeInMillis"));
+			long change = Long.parseLong(Data.getInstance().getResource("keyTypeChangeInMillis"));
 
 			while (true) {
 				try {
@@ -367,9 +362,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				String comments = revMgmt.getReviewComments();
 
-				TextPopupWindow popup = new TextPopupWindow(UI.getInstance()
-						.getMainFrame(), _("Comments on the review:"),
-						comments, true);
+				TextPopupWindow popup = new TextPopupWindow(UI.getInstance().getMainFrame(),
+						_("Comments on the review:"), comments, true);
 
 				popup.setVisible(true);
 
@@ -417,27 +411,20 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		leftPanel.removeAll();
 
-		GUITools.addComponent(leftPanel, gbl, product, 0, 0, 2, 1, 1.0, 0.0,
-				10, 20, 0, padding, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(leftPanel, gbl, textProduct, 0, 1, 2, 1, 1.0,
-				0.0, 10, 20, 0, padding, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(leftPanel, gbl, reviewName, 0, 2, 2, 1, 1.0, 0.0,
-				10, 20, 0, padding, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(leftPanel, gbl, textRevName, 0, 3, 2, 1, 1.0,
-				0.0, 10, 20, 0, padding, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(leftPanel, gbl, reviewDescription, 0, 4, 2, 1,
-				1.0, 0.0, 10, 20, 0, padding, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(leftPanel, gbl, scrollRevDesc, 0, 5, 2, 2, 1.0,
-				1.0, 10, 20, 0, padding, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(leftPanel, gbl, commentReview, 0, 7, 2, 1, 1.0,
-				0.0, 10, 20, 0, padding, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(leftPanel, gbl, product, 0, 0, 2, 1, 1.0, 0.0, 10, 20, 0, padding,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(leftPanel, gbl, textProduct, 0, 1, 2, 1, 1.0, 0.0, 10, 20, 0, padding,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTH);
+		GUITools.addComponent(leftPanel, gbl, reviewName, 0, 2, 2, 1, 1.0, 0.0, 10, 20, 0, padding,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(leftPanel, gbl, textRevName, 0, 3, 2, 1, 1.0, 0.0, 10, 20, 0, padding,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTH);
+		GUITools.addComponent(leftPanel, gbl, reviewDescription, 0, 4, 2, 1, 1.0, 0.0, 10, 20, 0, padding,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(leftPanel, gbl, scrollRevDesc, 0, 5, 2, 2, 1.0, 1.0, 10, 20, 0, padding,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTH);
+		GUITools.addComponent(leftPanel, gbl, commentReview, 0, 7, 2, 1, 1.0, 0.0, 10, 20, 0, padding,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 	}
 
 	/**
@@ -460,8 +447,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 				meetingsTreeModel.setRoot(nodeMeetingRoot);
 
-				TreeTools.expandAll(meetingsTree,
-						new TreePath(nodeMeetingRoot), true);
+				TreeTools.expandAll(meetingsTree, new TreePath(nodeMeetingRoot), true);
 
 				meetingsTree.setSelectionPath(selMeeting);
 
@@ -478,18 +464,14 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 				TreePath curPath = getPathForLocation(evt.getX(), evt.getY());
 
-				Object obj = ((DefaultMutableTreeNode) curPath
-						.getLastPathComponent()).getUserObject();
+				Object obj = ((DefaultMutableTreeNode) curPath.getLastPathComponent()).getUserObject();
 
 				if (obj instanceof TreeMeeting) {
 					tip = "<b>" + ((TreeMeeting) obj).toString() + "</b>\n\n"
 							+ ((TreeMeeting) obj).getMeeting().getComments();
 				} else if (obj instanceof TreeProtocol) {
-					tip = "<b>"
-							+ ((TreeProtocol) obj).toString()
-							+ "</b>\n\n"
-							+ ((TreeProtocol) obj).getMeeting().getProtocol()
-									.getComments();
+					tip = "<b>" + ((TreeProtocol) obj).toString() + "</b>\n\n"
+							+ ((TreeProtocol) obj).getMeeting().getProtocol().getComments();
 				}
 
 				return GUITools.getTextAsHtml(tip);
@@ -509,8 +491,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 			}
 
 			@Override
-			public void treeWillCollapse(TreeExpansionEvent e)
-					throws ExpandVetoException {
+			public void treeWillCollapse(TreeExpansionEvent e) throws ExpandVetoException {
 				throw new ExpandVetoException(e);
 			}
 		});
@@ -519,13 +500,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					if (getSelectedMeeting() != null) {
-						ActionRegistry.getInstance()
-								.get(EditMeetingAction.class.getName())
-								.actionPerformed(null);
+						ActionRegistry.getInstance().get(EditMeetingAction.class.getName()).actionPerformed(null);
 					} else if (getSelectedProtocol() != null) {
-						ActionRegistry.getInstance()
-								.get(OpenFindingsListAction.class.getName())
-								.actionPerformed(null);
+						ActionRegistry.getInstance().get(OpenFindingsListAction.class.getName()).actionPerformed(null);
 					}
 				}
 			}
@@ -554,8 +531,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		MouseInputAdapter rolloverListener = new MouseInputAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				int i = meetingsTree.getRowForPath(meetingsTree
-						.getPathForLocation(e.getX(), e.getY()));
+				int i = meetingsTree.getRowForPath(meetingsTree.getPathForLocation(e.getX(), e.getY()));
 
 				MeetingsTreeRenderer.currentRow = i;
 
@@ -565,8 +541,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		meetingsTree.addMouseMotionListener(rolloverListener);
 		meetingsTree.addMouseListener(rolloverListener);
 
-		meetingsTree.getSelectionModel().setSelectionMode(
-				TreeSelectionModel.SINGLE_TREE_SELECTION);
+		meetingsTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
 		treeScrollPane = new JScrollPane(meetingsTree);
 
@@ -576,49 +551,38 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 */
 		meetingButtons = new JPanel(new GridLayout(5, 1));
 
-		addMeeting = GUITools.newImageButton(
-				Data.getInstance().getIcon("add_25x25_0.png"), Data
-						.getInstance().getIcon("add_25x25.png"), ActionRegistry
-						.getInstance().get(AddMeetingAction.class.getName()));
+		addMeeting = GUITools.newImageButton(Data.getInstance().getIcon("add_25x25_0.png"),
+				Data.getInstance().getIcon("add_25x25.png"),
+				ActionRegistry.getInstance().get(AddMeetingAction.class.getName()));
 		meetingButtons.add(addMeeting);
 
 		removeMeeting = GUITools.newImageButton();
 		removeMeeting.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
-		removeMeeting.setRolloverIcon(Data.getInstance().getIcon(
-				"remove_25x25.png"));
+		removeMeeting.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
 		removeMeeting.setToolTipText(_("Remove"));
-		removeMeeting.addActionListener(ActionRegistry.getInstance().get(
-				RemoveMeetingAction.class.getName()));
+		removeMeeting.addActionListener(ActionRegistry.getInstance().get(RemoveMeetingAction.class.getName()));
 		meetingButtons.add(removeMeeting);
 
 		editMeeting = GUITools.newImageButton();
 		editMeeting.setIcon(Data.getInstance().getIcon("edit_25x25_0.png"));
-		editMeeting.setRolloverIcon(Data.getInstance()
-				.getIcon("edit_25x25.png"));
+		editMeeting.setRolloverIcon(Data.getInstance().getIcon("edit_25x25.png"));
 		editMeeting.setToolTipText(_("Modify meeting"));
-		editMeeting.addActionListener(ActionRegistry.getInstance().get(
-				EditMeetingAction.class.getName()));
+		editMeeting.addActionListener(ActionRegistry.getInstance().get(EditMeetingAction.class.getName()));
 
 		meetingButtons.add(editMeeting);
 
 		commentMeeting = GUITools.newImageButton();
-		commentMeeting.setIcon(Data.getInstance()
-				.getIcon("comment_25x25_0.png"));
-		commentMeeting.setRolloverIcon(Data.getInstance().getIcon(
-				"comment_25x25.png"));
+		commentMeeting.setIcon(Data.getInstance().getIcon("comment_25x25_0.png"));
+		commentMeeting.setRolloverIcon(Data.getInstance().getIcon("comment_25x25.png"));
 		commentMeeting.setToolTipText(_("Comment meeting"));
-		commentMeeting.addActionListener(ActionRegistry.getInstance().get(
-				CommentMeetingAction.class.getName()));
+		commentMeeting.addActionListener(ActionRegistry.getInstance().get(CommentMeetingAction.class.getName()));
 		meetingButtons.add(commentMeeting);
 
 		editProtocol = GUITools.newImageButton();
-		editProtocol.setIcon(Data.getInstance().getIcon(
-				"protocolFrame_25x25_0.png"));
-		editProtocol.setRolloverIcon(Data.getInstance().getIcon(
-				"protocolFrame_25x25.png"));
+		editProtocol.setIcon(Data.getInstance().getIcon("protocolFrame_25x25_0.png"));
+		editProtocol.setRolloverIcon(Data.getInstance().getIcon("protocolFrame_25x25.png"));
 		editProtocol.setToolTipText(_("Open/create list of findings"));
-		editProtocol.addActionListener(ActionRegistry.getInstance().get(
-				OpenFindingsListAction.class.getName()));
+		editProtocol.addActionListener(ActionRegistry.getInstance().get(OpenFindingsListAction.class.getName()));
 
 		meetingButtons.add(editProtocol);
 
@@ -634,14 +598,12 @@ public class MainFrame extends AbstractFrame implements Observer {
 		TableColumn col = attendeesTable.getColumnModel().getColumn(0);
 		col.setCellRenderer(new TableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table,
-					Object arg1, boolean isSelected, boolean arg3, int row,
-					int column) {
+			public Component getTableCellRendererComponent(JTable table, Object arg1, boolean isSelected, boolean arg3,
+					int row, int column) {
 				JPanel localPnl = new JPanel();
 
 				if (isSelected) {
-					localPnl.setBackground(attendeesTable
-							.getSelectionBackground());
+					localPnl.setBackground(attendeesTable.getSelectionBackground());
 				} else {
 					int localRow = row;
 
@@ -656,11 +618,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 					}
 				}
 				if (!table.isEnabled()) {
-					localPnl.add(new JLabel(Data.getInstance().getIcon(
-							"attendeeDisabled_20x20.png")));
+					localPnl.add(new JLabel(Data.getInstance().getIcon("attendeeDisabled_20x20.png")));
 				} else {
-					localPnl.add(new JLabel(Data.getInstance().getIcon(
-							"attendee_20x20.png")));
+					localPnl.add(new JLabel(Data.getInstance().getIcon("attendee_20x20.png")));
 				}
 
 				return localPnl;
@@ -679,17 +639,15 @@ public class MainFrame extends AbstractFrame implements Observer {
 		 */
 		DefaultTableCellRenderer cellRend = new DefaultTableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table,
-					Object value, boolean isSelected, boolean hasFocus,
-					int row, int column) {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
 				String content = (String) value;
 
 				setToolTipText(GUITools.getTextAsHtml(content));
 
 				content = content.split("\n")[0];
 
-				return super.getTableCellRendererComponent(table, content,
-						isSelected, hasFocus, row, column);
+				return super.getTableCellRendererComponent(table, content, isSelected, hasFocus, row, column);
 			}
 		};
 		attendeesTable.getColumnModel().getColumn(1).setCellRenderer(cellRend);
@@ -698,9 +656,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					ActionRegistry.getInstance()
-							.get(EditAttendeeAction.class.getName())
-							.actionPerformed(null);
+					ActionRegistry.getInstance().get(EditAttendeeAction.class.getName()).actionPerformed(null);
 				}
 			}
 
@@ -734,35 +690,26 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		attendeeButtons = new JPanel(grid);
 
-		addAttendee = GUITools.newImageButton(
-				Data.getInstance().getIcon("addAttendee_25x25_0.png"),
+		addAttendee = GUITools.newImageButton(Data.getInstance().getIcon("addAttendee_25x25_0.png"),
 				Data.getInstance().getIcon("addAttendee_25x25.png"),
-				ActionRegistry.getInstance().get(
-						AddAttendeeAction.class.getName()));
+				ActionRegistry.getInstance().get(AddAttendeeAction.class.getName()));
 		attendeeButtons.add(addAttendee);
 
 		removeAttendee = GUITools.newImageButton();
-		removeAttendee.setIcon(Data.getInstance().getIcon(
-				"removeAttendee_25x25_0.png"));
-		removeAttendee.setRolloverIcon(Data.getInstance().getIcon(
-				"removeAttendee_25x25.png"));
+		removeAttendee.setIcon(Data.getInstance().getIcon("removeAttendee_25x25_0.png"));
+		removeAttendee.setRolloverIcon(Data.getInstance().getIcon("removeAttendee_25x25.png"));
 		removeAttendee.setToolTipText(_("Remove attendee"));
-		removeAttendee.addActionListener(ActionRegistry.getInstance().get(
-				RemoveAttendeeAction.class.getName()));
+		removeAttendee.addActionListener(ActionRegistry.getInstance().get(RemoveAttendeeAction.class.getName()));
 		attendeeButtons.add(removeAttendee);
 
 		editAttendee = GUITools.newImageButton();
-		editAttendee.setIcon(Data.getInstance().getIcon(
-				"editAttendee_25x25_0.png"));
-		editAttendee.setRolloverIcon(Data.getInstance().getIcon(
-				"editAttendee_25x25.png"));
+		editAttendee.setIcon(Data.getInstance().getIcon("editAttendee_25x25_0.png"));
+		editAttendee.setRolloverIcon(Data.getInstance().getIcon("editAttendee_25x25.png"));
 		editAttendee.setToolTipText(_("Modify attendee"));
-		editAttendee.addActionListener(ActionRegistry.getInstance().get(
-				EditAttendeeAction.class.getName()));
+		editAttendee.addActionListener(ActionRegistry.getInstance().get(EditAttendeeAction.class.getName()));
 		attendeeButtons.add(editAttendee);
 
-		editAspects.setAction(ActionRegistry.getInstance().get(
-				OpenAspectsManagerAction.class.getName()));
+		editAspects.setAction(ActionRegistry.getInstance().get(OpenAspectsManagerAction.class.getName()));
 
 		removeAttendee.setEnabled(false);
 		editAttendee.setEnabled(false);
@@ -807,27 +754,20 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		rightPanel.removeAll();
 
-		GUITools.addComponent(rightPanel, gbl, meetings, 0, 0, 1, 1, 0, 0, 10,
-				padding, 0, 20, GridBagConstraints.NONE,
+		GUITools.addComponent(rightPanel, gbl, meetings, 0, 0, 1, 1, 0, 0, 10, padding, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(rightPanel, gbl, treeScrollPane, 0, 1, 2, 2, 1.0,
-				1.0, 10, padding, 0, 20, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(rightPanel, gbl, meetingButtons, 2, 1, 1, 2, 0,
-				1.0, 10, 0, 0, padding / 2, GridBagConstraints.NONE,
-				GridBagConstraints.NORTH);
+		GUITools.addComponent(rightPanel, gbl, treeScrollPane, 0, 1, 2, 2, 1.0, 1.0, 10, padding, 0, 20,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTH);
+		GUITools.addComponent(rightPanel, gbl, meetingButtons, 2, 1, 1, 2, 0, 1.0, 10, 0, 0, padding / 2,
+				GridBagConstraints.NONE, GridBagConstraints.NORTH);
 
-		GUITools.addComponent(rightPanel, gbl, attendees, 0, 3, 1, 1, 0, 0, 10,
-				padding, 0, 20, GridBagConstraints.NONE,
+		GUITools.addComponent(rightPanel, gbl, attendees, 0, 3, 1, 1, 0, 0, 10, padding, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(rightPanel, gbl, tableScrollBar, 0, 4, 2, 2, 1.0,
-				1.0, 10, padding, 0, 20, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(rightPanel, gbl, attendeeButtons, 2, 4, 1, 2, 0,
-				1.0, 10, 0, 0, padding / 2, GridBagConstraints.NONE,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(rightPanel, gbl, editAspects, 1, 6, 1, 2, 0, 0,
-				10, 0, 0, 20, GridBagConstraints.NONE,
+		GUITools.addComponent(rightPanel, gbl, tableScrollBar, 0, 4, 2, 2, 1.0, 1.0, 10, padding, 0, 20,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTH);
+		GUITools.addComponent(rightPanel, gbl, attendeeButtons, 2, 4, 1, 2, 0, 1.0, 10, 0, 0, padding / 2,
+				GridBagConstraints.NONE, GridBagConstraints.NORTH);
+		GUITools.addComponent(rightPanel, gbl, editAspects, 1, 6, 1, 2, 0, 0, 10, 0, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHEAST);
 
 		/*
@@ -852,35 +792,28 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Creates the tool bar.
 	 */
 	private void createToolBar() {
-		tbShowAssistant = GUITools.newImageButton(
-				Data.getInstance().getIcon("tbShowAssistant_50x50_0.png"), Data
-						.getInstance().getIcon("tbShowAssistant_50x50.png"));
+		tbShowAssistant = GUITools.newImageButton(Data.getInstance().getIcon("tbShowAssistant_50x50_0.png"),
+				Data.getInstance().getIcon("tbShowAssistant_50x50.png"));
 		tbShowAssistant.setToolTipText(_("Open RevAger Assistant"));
-		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(
-				OpenAssistantAction.class.getName()));
+		tbShowAssistant.addActionListener(ActionRegistry.getInstance().get(OpenAssistantAction.class.getName()));
 
 		addTopComponent(tbShowAssistant);
 
-		tbNewReview = GUITools.newImageButton(
-				Data.getInstance().getIcon("new_50x50_0.png"), Data
-						.getInstance().getIcon("new_50x50.png"), ActionRegistry
-						.getInstance().get(NewReviewAction.class.getName()));
+		tbNewReview = GUITools.newImageButton(Data.getInstance().getIcon("new_50x50_0.png"),
+				Data.getInstance().getIcon("new_50x50.png"),
+				ActionRegistry.getInstance().get(NewReviewAction.class.getName()));
 
 		addTopComponent(tbNewReview);
 
-		tbOpenReview = GUITools.newImageButton(
-				Data.getInstance().getIcon("open_50x50_0.png"),
+		tbOpenReview = GUITools.newImageButton(Data.getInstance().getIcon("open_50x50_0.png"),
 				Data.getInstance().getIcon("open_50x50.png"),
-				ActionRegistry.getInstance().get(
-						LoadReviewAction.class.getName()));
+				ActionRegistry.getInstance().get(LoadReviewAction.class.getName()));
 
 		addTopComponent(tbOpenReview);
 
-		tbSaveReview = GUITools.newImageButton(
-				Data.getInstance().getIcon("save_50x50_0.png"),
+		tbSaveReview = GUITools.newImageButton(Data.getInstance().getIcon("save_50x50_0.png"),
 				Data.getInstance().getIcon("save_50x50.png"),
-				ActionRegistry.getInstance().get(
-						SaveReviewAction.class.getName()));
+				ActionRegistry.getInstance().get(SaveReviewAction.class.getName()));
 
 		addTopComponent(tbSaveReview);
 
@@ -895,70 +828,51 @@ public class MainFrame extends AbstractFrame implements Observer {
 		//
 		// addTopComponent(tbShowHelp);
 
-		tbManageSeverities = GUITools.newImageButton(
-				Data.getInstance().getIcon("severities_50x50_0.png"),
+		tbManageSeverities = GUITools.newImageButton(Data.getInstance().getIcon("severities_50x50_0.png"),
 				Data.getInstance().getIcon("severities_50x50.png"),
-				ActionRegistry.getInstance().get(
-						ManageSeveritiesAction.class.getName()));
+				ActionRegistry.getInstance().get(ManageSeveritiesAction.class.getName()));
 
 		addTopRightComp(tbManageSeverities);
 
-		tbAspectsManager = GUITools.newImageButton(
-				Data.getInstance().getIcon("aspectsManager_50x50_0.png"),
+		tbAspectsManager = GUITools.newImageButton(Data.getInstance().getIcon("aspectsManager_50x50_0.png"),
 				Data.getInstance().getIcon("aspectsManager_50x50.png"),
-				ActionRegistry.getInstance().get(
-						OpenAspectsManagerAction.class.getName()));
+				ActionRegistry.getInstance().get(OpenAspectsManagerAction.class.getName()));
 
 		addTopRightComp(tbAspectsManager);
 
-		tbCreateInvitations = GUITools
-				.newImageButton(
-						Data.getInstance().getIcon(
-								"createInvitations_50x50_0.png"),
-						Data.getInstance().getIcon(
-								"createInvitations_50x50.png"),
-						ActionRegistry.getInstance().get(
-								OpenInvitationsDialogAction.class.getName()));
+		tbCreateInvitations = GUITools.newImageButton(Data.getInstance().getIcon("createInvitations_50x50_0.png"),
+				Data.getInstance().getIcon("createInvitations_50x50.png"),
+				ActionRegistry.getInstance().get(OpenInvitationsDialogAction.class.getName()));
 
 		addTopRightComp(tbCreateInvitations);
 
-		tbNewAttendee = GUITools.newImageButton(
-				Data.getInstance().getIcon("addAttendee_50x50_0.png"),
+		tbNewAttendee = GUITools.newImageButton(Data.getInstance().getIcon("addAttendee_50x50_0.png"),
 				Data.getInstance().getIcon("addAttendee_50x50.png"),
-				ActionRegistry.getInstance().get(
-						AddAttendeeAction.class.getName()));
+				ActionRegistry.getInstance().get(AddAttendeeAction.class.getName()));
 
 		addTopComponent(tbNewAttendee);
 
-		tbNewMeeting = GUITools.newImageButton(
-				Data.getInstance().getIcon("addMeeting_50x50_0.png"),
+		tbNewMeeting = GUITools.newImageButton(Data.getInstance().getIcon("addMeeting_50x50_0.png"),
 				Data.getInstance().getIcon("addMeeting_50x50.png"),
-				ActionRegistry.getInstance().get(
-						AddMeetingAction.class.getName()));
+				ActionRegistry.getInstance().get(AddMeetingAction.class.getName()));
 
 		addTopComponent(tbNewMeeting);
 
-		tbProtocolMode = GUITools.newImageButton(
-				Data.getInstance().getIcon("protocolFrame_50x50_0.png"),
+		tbProtocolMode = GUITools.newImageButton(Data.getInstance().getIcon("protocolFrame_50x50_0.png"),
 				Data.getInstance().getIcon("protocolFrame_50x50.png"),
-				ActionRegistry.getInstance().get(
-						OpenFindingsListAction.class.getName()));
+				ActionRegistry.getInstance().get(OpenFindingsListAction.class.getName()));
 
 		addTopComponent(tbProtocolMode);
 
-		tbPdfExport = GUITools.newImageButton(
-				Data.getInstance().getIcon("PDFExport_50x50_0.png"),
+		tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon("PDFExport_50x50_0.png"),
 				Data.getInstance().getIcon("PDFExport_50x50.png"),
-				ActionRegistry.getInstance().get(
-						OpenExpPDFDialogAction.class.getName()));
+				ActionRegistry.getInstance().get(OpenExpPDFDialogAction.class.getName()));
 
 		addTopRightComp(tbPdfExport);
 
-		tbCsvExport = GUITools.newImageButton(
-				Data.getInstance().getIcon("CSVExport_50x50_0.png"),
+		tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon("CSVExport_50x50_0.png"),
 				Data.getInstance().getIcon("CSVExport_50x50.png"),
-				ActionRegistry.getInstance().get(
-						OpenExpCSVDialogAction.class.getName()));
+				ActionRegistry.getInstance().get(OpenExpCSVDialogAction.class.getName()));
 
 		addTopRightComp(tbCsvExport);
 	}
@@ -997,37 +911,31 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuFile = new JMenu();
 		menuFile.setText(_("File"));
 
-		fileSelectModeItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenAssistantAction.class.getName()));
+		fileSelectModeItem = new JMenuItem(ActionRegistry.getInstance().get(OpenAssistantAction.class.getName()));
 
 		menuFile.add(fileSelectModeItem);
 
 		menuFile.addSeparator();
 
-		fileNewReviewItem = new JMenuItem(ActionRegistry.getInstance().get(
-				NewReviewAction.class.getName()));
+		fileNewReviewItem = new JMenuItem(ActionRegistry.getInstance().get(NewReviewAction.class.getName()));
 
 		menuFile.add(fileNewReviewItem);
 
-		fileOpenReviewItem = new JMenuItem(ActionRegistry.getInstance().get(
-				LoadReviewAction.class.getName()));
+		fileOpenReviewItem = new JMenuItem(ActionRegistry.getInstance().get(LoadReviewAction.class.getName()));
 
 		menuFile.add(fileOpenReviewItem);
 
-		fileSaveReviewItem = new JMenuItem(ActionRegistry.getInstance().get(
-				SaveReviewAction.class.getName()));
+		fileSaveReviewItem = new JMenuItem(ActionRegistry.getInstance().get(SaveReviewAction.class.getName()));
 
 		menuFile.add(fileSaveReviewItem);
 
-		fileSaveReviewAsItem = new JMenuItem(ActionRegistry.getInstance().get(
-				SaveReviewAsAction.class.getName()));
+		fileSaveReviewAsItem = new JMenuItem(ActionRegistry.getInstance().get(SaveReviewAsAction.class.getName()));
 
 		menuFile.add(fileSaveReviewAsItem);
 
 		menuFile.addSeparator();
 
-		closeApplicationItem = new JMenuItem(ActionRegistry.getInstance().get(
-				ExitAction.class.getName()));
+		closeApplicationItem = new JMenuItem(ActionRegistry.getInstance().get(ExitAction.class.getName()));
 
 		menuFile.add(closeApplicationItem);
 
@@ -1039,45 +947,38 @@ public class MainFrame extends AbstractFrame implements Observer {
 		menuEdit = new JMenu();
 		menuEdit.setText(_("Edit"));
 
-		newMeetingItem = new JMenuItem(ActionRegistry.getInstance().get(
-				AddMeetingAction.class.getName()));
+		newMeetingItem = new JMenuItem(ActionRegistry.getInstance().get(AddMeetingAction.class.getName()));
 
 		menuEdit.add(newMeetingItem);
 
-		newAttendeeItem = new JMenuItem(ActionRegistry.getInstance().get(
-				AddAttendeeAction.class.getName()));
+		newAttendeeItem = new JMenuItem(ActionRegistry.getInstance().get(AddAttendeeAction.class.getName()));
 
 		menuEdit.add(newAttendeeItem);
 
-		aspectsManagerItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenAspectsManagerAction.class.getName()));
+		aspectsManagerItem = new JMenuItem(ActionRegistry.getInstance().get(OpenAspectsManagerAction.class.getName()));
 
 		menuEdit.add(aspectsManagerItem);
 
-		manageSeveritiesItem = new JMenuItem(ActionRegistry.getInstance().get(
-				ManageSeveritiesAction.class.getName()));
+		manageSeveritiesItem = new JMenuItem(ActionRegistry.getInstance().get(ManageSeveritiesAction.class.getName()));
 
 		menuEdit.add(manageSeveritiesItem);
 
-		protocolModeItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenFindingsListAction.class.getName()));
+		protocolModeItem = new JMenuItem(ActionRegistry.getInstance().get(OpenFindingsListAction.class.getName()));
 
 		menuEdit.add(protocolModeItem);
 
 		menuEdit.addSeparator();
 
-		createInvitationsItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenInvitationsDialogAction.class.getName()));
+		createInvitationsItem = new JMenuItem(
+				ActionRegistry.getInstance().get(OpenInvitationsDialogAction.class.getName()));
 
 		menuEdit.add(createInvitationsItem);
 
-		pdfExportItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenExpPDFDialogAction.class.getName()));
+		pdfExportItem = new JMenuItem(ActionRegistry.getInstance().get(OpenExpPDFDialogAction.class.getName()));
 
 		menuEdit.add(pdfExportItem);
 
-		csvExportItem = new JMenuItem(ActionRegistry.getInstance().get(
-				OpenExpCSVDialogAction.class.getName()));
+		csvExportItem = new JMenuItem(ActionRegistry.getInstance().get(OpenExpCSVDialogAction.class.getName()));
 
 		menuEdit.add(csvExportItem);
 
@@ -1091,8 +992,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		appSettings = new JMenuItem();
 		appSettings.setText(_("Application Settings"));
-		appSettings.setIcon(Data.getInstance().getIcon(
-				"menuAppSettings_16x16.png"));
+		appSettings.setIcon(Data.getInstance().getIcon("menuAppSettings_16x16.png"));
 		appSettings.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1105,8 +1005,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		csvProfiles = new JMenuItem();
 		csvProfiles.setText(_("CSV Profiles"));
-		csvProfiles.setIcon(Data.getInstance().getIcon(
-				"menuCsvSettings_16x16.png"));
+		csvProfiles.setIcon(Data.getInstance().getIcon("menuCsvSettings_16x16.png"));
 		csvProfiles.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1182,8 +1081,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Updates the meetings tree.
 	 */
 	public void updateMeetingsTree() {
-		MeetingManagement meetingMgmt = Application.getInstance()
-				.getMeetingMgmt();
+		MeetingManagement meetingMgmt = Application.getInstance().getMeetingMgmt();
 		ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 		/*
@@ -1203,8 +1101,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 			if (treeMeet.getMeeting().getProtocol() != null) {
 				TreeProtocol treeProt = new TreeProtocol();
 				treeProt.setMeeting(treeMeet.getMeeting());
-				DefaultMutableTreeNode protocolNode = new DefaultMutableTreeNode(
-						treeProt);
+				DefaultMutableTreeNode protocolNode = new DefaultMutableTreeNode(treeProt);
 
 				dmtn.add(protocolNode);
 			}
@@ -1237,8 +1134,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		int i = 0;
 
 		if (rememberSelection && selAtt != null) {
-			for (Attendee att : Application.getInstance().getAttendeeMgmt()
-					.getAttendees()) {
+			for (Attendee att : Application.getInstance().getAttendeeMgmt().getAttendees()) {
 				if (att == selAtt) {
 					attendeesTable.setRowSelectionInterval(i, i);
 				}
@@ -1252,10 +1148,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Update content pane.
 	 */
 	private void updateContentPane() {
-		String productName = Application.getInstance().getReviewMgmt()
-				.getProductName();
-		String productVersion = Application.getInstance().getReviewMgmt()
-				.getProductVersion();
+		String productName = Application.getInstance().getReviewMgmt().getProductName();
+		String productVersion = Application.getInstance().getReviewMgmt().getProductVersion();
 
 		String product = productName;
 
@@ -1265,25 +1159,21 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		textProduct.setText(product);
 
-		recommendationBx.setSelectedItem(Application.getInstance()
-				.getReviewMgmt().getRecommendation());
+		recommendationBx.setSelectedItem(Application.getInstance().getReviewMgmt().getRecommendation());
 
 		if (!textRevName.hasFocus()) {
-			textRevName.setText(Application.getInstance().getReviewMgmt()
-					.getReviewName());
+			textRevName.setText(Application.getInstance().getReviewMgmt().getReviewName());
 		}
 
 		if (!textRevDesc.hasFocus()) { // ODOT
 			Rectangle visRect = scrollRevDesc.getViewport().getVisibleRect();
-			textRevDesc.setText(Application.getInstance().getReviewMgmt()
-					.getReviewDescription());
+			textRevDesc.setText(Application.getInstance().getReviewMgmt().getReviewDescription());
 			scrollRevDesc.scrollRectToVisible(visRect);
 		}
 
 		if (!impressionTxtArea.hasFocus()) {
 			Rectangle visRect = scrollImpression.getViewport().getVisibleRect();
-			impressionTxtArea.setText(Application.getInstance().getReviewMgmt()
-					.getImpression());
+			impressionTxtArea.setText(Application.getInstance().getReviewMgmt().getImpression());
 			impressionTxtArea.scrollRectToVisible(visRect);
 		}
 	}
@@ -1292,17 +1182,14 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 * Creates the hints.
 	 */
 	private void createHints() {
-		hintStart = new HintItem(
-				_("First of all we recommend to specify the product and the review's title."),
+		hintStart = new HintItem(_("First of all we recommend to specify the product and the review's title."),
 				HintItem.WARNING);
 
 		hintMeetAtt = new HintItem(
 				_("You should create a meeting and add the attendees of the review by using the corresponding buttons."),
 				HintItem.WARNING);
 
-		hintOk = new HintItem(
-				_("All required information for the review are present."),
-				HintItem.OK);
+		hintOk = new HintItem(_("All required information for the review are present."), HintItem.OK);
 		hintSecondOk = new HintItem(
 				_("Now you can export the list of findings either for the whole review or a single review meeting."),
 				HintItem.INFO);
@@ -1312,8 +1199,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				HintItem.INFO);
 
 		hintInfoAssistant = new HintItem(
-				_("You can open the RevAger Assistant by clicking on the 'Open Assistant' button."),
-				HintItem.INFO);
+				_("You can open the RevAger Assistant by clicking on the 'Open Assistant' button."), HintItem.INFO);
 	}
 
 	/**
@@ -1327,8 +1213,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		unmarkAllComponents();
 
 		if (!assistantMode) {
-			if (revMgmt.getProductName().trim().equals("")
-					|| revMgmt.getReviewName().trim().equals("")) {
+			if (revMgmt.getProductName().trim().equals("") || revMgmt.getReviewName().trim().equals("")) {
 				hints.add(hintStart);
 
 				warningErrorHints = true;
@@ -1340,8 +1225,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 				}
 			}
 
-			if (revMgmt.getNumberOfMeetings() == 0
-					|| revMgmt.getNumberOfAttendees() == 0) {
+			if (revMgmt.getNumberOfMeetings() == 0 || revMgmt.getNumberOfAttendees() == 0) {
 				hints.add(hintMeetAtt);
 
 				warningErrorHints = true;
@@ -1393,8 +1277,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 		observeResiData(false);
 
-		splitPanel.setBorder(new MatteBorder(0, 0, padding / 2, 0,
-				getContentPane().getBackground()));
+		splitPanel.setBorder(new MatteBorder(0, 0, padding / 2, 0, getContentPane().getBackground()));
 		add(splitPanel, BorderLayout.CENTER);
 
 		addWindowListener(new WindowListener() {
@@ -1408,8 +1291,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				ActionRegistry.getInstance().get(ExitAction.class.getName())
-						.actionPerformed(null);
+				ActionRegistry.getInstance().get(ExitAction.class.getName()).actionPerformed(null);
 			}
 
 			@Override
@@ -1465,15 +1347,11 @@ public class MainFrame extends AbstractFrame implements Observer {
 						/*
 						 * Store cursor positions (text fields)
 						 */
-						final boolean textRevNameFocus = textRevName
-								.isFocusOwner();
-						final boolean textRevDescFocus = textRevDesc
-								.isFocusOwner();
+						final boolean textRevNameFocus = textRevName.isFocusOwner();
+						final boolean textRevDescFocus = textRevDesc.isFocusOwner();
 
-						final int textRevNamePos = textRevName
-								.getCaretPosition();
-						final int textRevDescPos = textRevDesc
-								.getCaretPosition();
+						final int textRevNamePos = textRevName.getCaretPosition();
+						final int textRevDescPos = textRevDesc.getCaretPosition();
 
 						/*
 						 * Do actions
@@ -1513,8 +1391,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 					updateContentPane();
 
-					if (Application.getInstance().getProtocolMgmt()
-							.getProtocolsWithFindings().isEmpty()) {
+					if (Application.getInstance().getProtocolMgmt().getProtocolsWithFindings().isEmpty()) {
 						tbCsvExport.setEnabled(false);
 						tbPdfExport.setEnabled(false);
 						csvExportItem.setEnabled(false);
@@ -1526,10 +1403,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 						pdfExportItem.setEnabled(true);
 					}
 
-					boolean attendeesEmpty = Application.getInstance()
-							.getAttendeeMgmt().getAttendees().isEmpty();
-					boolean meetingsEmpty = Application.getInstance()
-							.getMeetingMgmt().getMeetings().isEmpty();
+					boolean attendeesEmpty = Application.getInstance().getAttendeeMgmt().getAttendees().isEmpty();
+					boolean meetingsEmpty = Application.getInstance().getMeetingMgmt().getMeetings().isEmpty();
 
 					if (!attendeesEmpty && !meetingsEmpty) {
 						tbCreateInvitations.setEnabled(true);
@@ -1558,17 +1433,13 @@ public class MainFrame extends AbstractFrame implements Observer {
 	public void updateResiData() {
 		observeResiData(false);
 
-		Application.getInstance().getReviewMgmt()
-				.setReviewName(getTextRevName());
+		Application.getInstance().getReviewMgmt().setReviewName(getTextRevName());
 
-		Application.getInstance().getReviewMgmt()
-				.setReviewDescription(getTextRevDesc());
+		Application.getInstance().getReviewMgmt().setReviewDescription(getTextRevDesc());
 
-		Application.getInstance().getReviewMgmt()
-				.setImpression(impressionTxtArea.getText());
+		Application.getInstance().getReviewMgmt().setImpression(impressionTxtArea.getText());
 
-		Application.getInstance().getReviewMgmt()
-				.setRecommendation((String) recommendationBx.getSelectedItem());
+		Application.getInstance().getReviewMgmt().setRecommendation((String) recommendationBx.getSelectedItem());
 
 		observeResiData(true);
 	}
@@ -1585,8 +1456,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 		if (observingResiData) {
 			title = "";
 
-			String revName = Data.getInstance().getResiData().getReview()
-					.getName();
+			String revName = Data.getInstance().getResiData().getReview().getName();
 
 			if (UI.getInstance().getStatus() != Status.NO_FILE_LOADED) {
 				if (revName != null) {
@@ -1612,11 +1482,9 @@ public class MainFrame extends AbstractFrame implements Observer {
 					title += " *";
 				}
 
-				this.getRootPane().putClientProperty("Window.documentModified",
-						Boolean.TRUE);
+				this.getRootPane().putClientProperty("Window.documentModified", Boolean.TRUE);
 			} else {
-				this.getRootPane().putClientProperty("Window.documentModified",
-						Boolean.FALSE);
+				this.getRootPane().putClientProperty("Window.documentModified", Boolean.FALSE);
 			}
 		}
 
@@ -1792,8 +1660,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 */
 	public Meeting getSelectedMeeting() {
 		if (meetingsTree.getSelectionPath() != null) {
-			Object obj = ((DefaultMutableTreeNode) meetingsTree
-					.getSelectionPath().getLastPathComponent()).getUserObject();
+			Object obj = ((DefaultMutableTreeNode) meetingsTree.getSelectionPath().getLastPathComponent())
+					.getUserObject();
 
 			if (obj instanceof TreeMeeting) {
 				return ((TreeMeeting) obj).getMeeting();
@@ -1810,8 +1678,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 	 */
 	public Protocol getSelectedProtocol() {
 		if (meetingsTree.getSelectionPath() != null) {
-			Object obj = ((DefaultMutableTreeNode) meetingsTree
-					.getSelectionPath().getLastPathComponent()).getUserObject();
+			Object obj = ((DefaultMutableTreeNode) meetingsTree.getSelectionPath().getLastPathComponent())
+					.getUserObject();
 
 			if (obj instanceof TreeProtocol) {
 				return ((TreeProtocol) obj).getMeeting().getProtocol();
@@ -1829,11 +1697,8 @@ public class MainFrame extends AbstractFrame implements Observer {
 	public Attendee getSelectedAttendee() {
 		int selRow = attendeesTable.getSelectedRow();
 
-		if (selRow != -1
-				&& selRow < Application.getInstance().getReviewMgmt()
-						.getNumberOfAttendees()) {
-			return Application.getInstance().getAttendeeMgmt().getAttendees()
-					.get(selRow);
+		if (selRow != -1 && selRow < Application.getInstance().getReviewMgmt().getNumberOfAttendees()) {
+			return Application.getInstance().getAttendeeMgmt().getAttendees().get(selRow);
 		}
 
 		return null;
@@ -1855,8 +1720,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 			Object curNode = node.getUserObject();
 
-			if (curNode instanceof TreeMeeting
-					&& ((TreeMeeting) curNode).getMeeting().equals(meet)) {
+			if (curNode instanceof TreeMeeting && ((TreeMeeting) curNode).getMeeting().equals(meet)) {
 				return new TreePath(node.getPath());
 			}
 		}
@@ -1880,9 +1744,7 @@ public class MainFrame extends AbstractFrame implements Observer {
 
 			Object curNode = node.getUserObject();
 
-			if (curNode instanceof TreeProtocol
-					&& ((TreeProtocol) curNode).getMeeting().getProtocol()
-							.equals(prot)) {
+			if (curNode instanceof TreeProtocol && ((TreeProtocol) curNode).getMeeting().getProtocol().equals(prot)) {
 				return new TreePath(node.getPath());
 			}
 		}

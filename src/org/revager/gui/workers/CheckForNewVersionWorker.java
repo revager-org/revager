@@ -53,37 +53,28 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 					.getSettingValue(AppSettingKey.APP_CHECK_VERSION) == AppSettingValue.TRUE) {
 				Properties versionProp = new Properties();
 
-				URL versionUrl = new URL(Data.getInstance().getResource(
-						"currVerFileLocation"));
+				URL versionUrl = new URL(Data.getInstance().getResource("currVerFileLocation"));
 
 				versionProp.load(versionUrl.openStream());
 
-				int localBuild = Integer.parseInt(Data.getInstance()
-						.getResource("appBuild"));
-				String localVersion = Data.getInstance().getResource(
-						"appVersion");
+				int localBuild = Integer.parseInt(Data.getInstance().getResource("appBuild"));
+				String localVersion = Data.getInstance().getResource("appVersion");
 
-				int remoteBuild = Integer.parseInt(versionProp.getProperty(
-						"build", Integer.toString(localBuild)));
-				String remoteVersion = versionProp.getProperty("version",
-						localVersion);
+				int remoteBuild = Integer.parseInt(versionProp.getProperty("build", Integer.toString(localBuild)));
+				String remoteVersion = versionProp.getProperty("version", localVersion);
 
-				String newVersionAvail = MessageFormat
-						.format(_("A new version of RevAger is available!\n\nLatest version: {0}\nYour version: {1}\n\nPlease choose 'Update' to get the latest version. If you don't like to see this message again, you can turn it off in the application settings."),
-								remoteVersion, localVersion);
+				String newVersionAvail = MessageFormat.format(
+						_("A new version of RevAger is available!\n\nLatest version: {0}\nYour version: {1}\n\nPlease choose 'Update' to get the latest version. If you don't like to see this message again, you can turn it off in the application settings."),
+						remoteVersion, localVersion);
 
 				if (remoteBuild > localBuild) {
 					Object[] options = { _("Update RevAger"), _("Ignore") };
 
-					if (JOptionPane.showOptionDialog(UI.getInstance()
-							.getMainFrame(), GUITools
-							.getMessagePane(newVersionAvail), _("Question"),
-							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[0]) == JOptionPane.YES_OPTION) {
-						Desktop.getDesktop().browse(
-								new URL(Data.getInstance().getResource(
-										"currVerBrowseURL")).toURI());
+					if (JOptionPane.showOptionDialog(UI.getInstance().getMainFrame(),
+							GUITools.getMessagePane(newVersionAvail), _("Question"), JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION) {
+						Desktop.getDesktop()
+								.browse(new URL(Data.getInstance().getResource("currVerBrowseURL")).toURI());
 					}
 
 					// UI.getInstance().getMainFrame().setEnabled(true);

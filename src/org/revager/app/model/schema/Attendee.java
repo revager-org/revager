@@ -5,7 +5,6 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-
 package org.revager.app.model.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,14 +12,16 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * An attendee who can take part in a review.
- *          
  * 
- * <p>Java class for attendeeType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for attendeeType complex type.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="attendeeType">
@@ -41,163 +42,142 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "attendeeType", propOrder = {
-    "id",
-    "name",
-    "contact",
-    "role",
-    "aspects"
-})
+@XmlType(name = "attendeeType", propOrder = { "id", "name", "contact", "role", "aspects" })
 public class Attendee {
 
-    @XmlElement(required = true)
-    protected String id;
-    @XmlElement(required = true)
-    protected String name;
-    @XmlElement(required = true)
-    protected String contact;
-    @XmlElement(required = true)
-    protected Role role;
-    protected AspectsIds aspects;
+	@XmlElement(required = true)
+	protected String id;
+	@XmlElement(required = true)
+	protected String name;
+	@XmlElement(required = true)
+	protected String contact;
+	@XmlElement(required = true)
+	protected Role role;
+	protected AspectsIds aspects;
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
+	public boolean isSetId() {
+		return (this.id != null);
+	}
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the value of the name property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	/**
+	 * Sets the value of the name property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
+	public boolean isSetName() {
+		return (this.name != null);
+	}
 
-    /**
-     * Gets the value of the contact property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getContact() {
-        return contact;
-    }
+	/**
+	 * Gets the value of the contact property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getContact() {
+		return contact;
+	}
 
-    /**
-     * Sets the value of the contact property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setContact(String value) {
-        this.contact = value;
-    }
+	/**
+	 * Sets the value of the contact property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setContact(String value) {
+		this.contact = value;
+	}
 
-    public boolean isSetContact() {
-        return (this.contact!= null);
-    }
+	public boolean isSetContact() {
+		return (this.contact != null);
+	}
 
-    /**
-     * Gets the value of the role property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Role }
-     *     
-     */
-    public Role getRole() {
-        return role;
-    }
+	/**
+	 * Gets the value of the role property.
+	 * 
+	 * @return possible object is {@link Role }
+	 * 
+	 */
+	public Role getRole() {
+		return role;
+	}
 
-    /**
-     * Sets the value of the role property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Role }
-     *     
-     */
-    public void setRole(Role value) {
-        this.role = value;
-    }
+	/**
+	 * Sets the value of the role property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Role }
+	 * 
+	 */
+	public void setRole(Role value) {
+		this.role = value;
+	}
 
-    public boolean isSetRole() {
-        return (this.role!= null);
-    }
+	public boolean isSetRole() {
+		return (this.role != null);
+	}
 
-    /**
-     * Gets the value of the aspects property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AspectsIds }
-     *     
-     */
-    public AspectsIds getAspects() {
-        return aspects;
-    }
+	/**
+	 * Gets the value of the aspects property.
+	 * 
+	 * @return possible object is {@link AspectsIds }
+	 * 
+	 */
+	public AspectsIds getAspects() {
+		return aspects;
+	}
 
-    /**
-     * Sets the value of the aspects property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AspectsIds }
-     *     
-     */
-    public void setAspects(AspectsIds value) {
-        this.aspects = value;
-    }
+	/**
+	 * Sets the value of the aspects property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link AspectsIds }
+	 * 
+	 */
+	public void setAspects(AspectsIds value) {
+		this.aspects = value;
+	}
 
-    public boolean isSetAspects() {
-        return (this.aspects!= null);
-    }
+	public boolean isSetAspects() {
+		return (this.aspects != null);
+	}
 
 }

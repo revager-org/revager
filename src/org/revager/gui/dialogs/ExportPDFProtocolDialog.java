@@ -53,8 +53,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 	private GridBagLayout gbl = new GridBagLayout();
 	private JRadioButton compRevRB;
 	private JComboBox localMeetCoBx;
-	private ProtocolManagement protMgmt = Application.getInstance()
-			.getProtocolMgmt();
+	private ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
 	private JButton abortBttn;
 	private JButton exportBttn;
 	private JCheckBox showFieldsChBx;
@@ -159,27 +158,20 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 		localMeetCoBx = new JComboBox();
 		localMeetCoBx.setEnabled(false);
 
-		GUITools.addComponent(this, gbl, compRevRB, 0, 0, 1, 1, 1.0, 0, 10, 10,
-				0, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl, compRevRB, 0, 0, 1, 1, 1.0, 0, 10, 10, 0, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, localMeetRB, 0, 1, 1, 1, 1.0, 0, 5,
-				10, 0, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl, localMeetRB, 0, 1, 1, 1, 1.0, 0, 5, 10, 0, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, localMeetCoBx, 0, 2, 1, 1, 1.0, 0, 5,
-				30, 20, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, showFieldsChBx, 0, 3, 1, 1, 1.0, 0,
-				20, 10, 0, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, addExProRefChBx, 0, 4, 1, 1, 1.0, 0,
-				20, 10, 0, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, addExFindRefChBx, 0, 5, 1, 1, 1.0, 0,
-				20, 10, 0, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, localMeetCoBx, 0, 2, 1, 1, 1.0, 0, 5, 30, 20, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, showFieldsChBx, 0, 3, 1, 1, 1.0, 0, 20, 10, 0, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, addExProRefChBx, 0, 4, 1, 1, 1.0, 0, 20, 10, 0, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, addExFindRefChBx, 0, 5, 1, 1, 1.0, 0, 20, 10, 0, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
-		abortBttn = new JButton(_("Abort"), Data.getInstance().getIcon(
-				"buttonCancel_16x16.png"));
+		abortBttn = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		abortBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -187,8 +179,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 			}
 		});
 
-		exportBttn = new JButton(_("Export"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
+		exportBttn = new JButton(_("Export"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		exportBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -22,7 +22,6 @@ import java.util.Comparator;
 
 import org.revager.app.model.schema.Meeting;
 
-
 /**
  * This class implements a comparator for Resi meetings.
  */

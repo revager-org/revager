@@ -120,9 +120,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				ActionRegistry.getInstance()
-						.get(SearchHelpAction.class.getName())
-						.actionPerformed(null);
+				ActionRegistry.getInstance().get(SearchHelpAction.class.getName()).actionPerformed(null);
 			}
 		});
 		srchTxtFld.setToolTipText(_("Filter/Search - Enter search item ..."));
@@ -134,8 +132,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 		reset.setIcon(Data.getInstance().getIcon("undo_22x22_0.png"));
 		reset.setRolloverIcon(Data.getInstance().getIcon("undo_22x22.png"));
 		reset.setToolTipText(_("Reset filter"));
-		reset.addActionListener(ActionRegistry.getInstance().get(
-				ResetHelpAction.class.getName()));
+		reset.addActionListener(ActionRegistry.getInstance().get(ResetHelpAction.class.getName()));
 
 		JTextArea descText = new JTextArea(
 				_("Please enter a search item into the input field to filter the contents:"));
@@ -144,30 +141,26 @@ public class HelpBrowserFrame extends AbstractFrame {
 		descText.setForeground(Color.DARK_GRAY);
 		descText.setSelectionColor(Color.WHITE);
 
-		GUITools.addComponent(panelTop, gblTop, descText, 0, 0, 1, 1, 1.0, 0,
-				0, 3, 8, 3, GridBagConstraints.BOTH, GridBagConstraints.WEST);
-		GUITools.addComponent(panelTop, gblTop, srchTxtFld, 0, 1, 1, 1, 1.0, 0,
-				0, 3, 0, 6, GridBagConstraints.BOTH, GridBagConstraints.WEST);
-		GUITools.addComponent(panelTop, gblTop, reset, 1, 1, 1, 1, 0, 0, 0, 0,
-				0, 0, GridBagConstraints.BOTH, GridBagConstraints.WEST);
+		GUITools.addComponent(panelTop, gblTop, descText, 0, 0, 1, 1, 1.0, 0, 0, 3, 8, 3, GridBagConstraints.BOTH,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(panelTop, gblTop, srchTxtFld, 0, 1, 1, 1, 1.0, 0, 0, 3, 0, 6, GridBagConstraints.BOTH,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(panelTop, gblTop, reset, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.WEST);
 
 		addTopComponent(panelTop);
 
 		try {
-			helpStartTitle = Data.getInstance().getHelpData()
-					.getChapterTitle("start");
-			helpStartContent = Data.getInstance().getHelpData()
-					.getChapterContent("start");
+			helpStartTitle = Data.getInstance().getHelpData().getChapterTitle("start");
+			helpStartContent = Data.getInstance().getHelpData().getChapterContent("start");
 		} catch (DataException startMissingError) {
-			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
-					_("Cannot load the start page."), _("Error occured"),
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(), _("Cannot load the start page."),
+					_("Error occured"), JOptionPane.ERROR_MESSAGE);
 		}
 
 		tree = new JTree(getStandardRoot());
 		tree.setModel(new DefaultTreeModel(getStandardRoot()));
-		tree.getSelectionModel().setSelectionMode(
-				TreeSelectionModel.SINGLE_TREE_SELECTION);
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.setBorder(null);
 
 		/* Disallow collapsing the tree */
@@ -177,8 +170,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 			}
 
 			@Override
-			public void treeWillCollapse(TreeExpansionEvent e)
-					throws ExpandVetoException {
+			public void treeWillCollapse(TreeExpansionEvent e) throws ExpandVetoException {
 				throw new ExpandVetoException(e, "you can't collapse this tree");
 			}
 		});
@@ -217,50 +209,34 @@ public class HelpBrowserFrame extends AbstractFrame {
 			public void valueChanged(TreeSelectionEvent arg0) {
 				String path;
 				if (arg0.getNewLeadSelectionPath() != null) {
-					path = arg0.getNewLeadSelectionPath()
-							.getLastPathComponent().toString();
+					path = arg0.getNewLeadSelectionPath().getLastPathComponent().toString();
 				} else {
 					path = helpStartTitle;
 				}
 
 				String titleHtml = "<H1>" + path + "</H1>";
 
-				String[] helpChapters = Data.getInstance()
-						.getResource("helpChapters").split(",");
+				String[] helpChapters = Data.getInstance().getResource("helpChapters").split(",");
 
 				for (int nodeCnt = 0; nodeCnt < helpChapters.length; nodeCnt++) {
 					try {
-						if (path.equals(Data.getInstance().getHelpData()
-								.getChapterTitle(helpChapters[nodeCnt]))) {
-							if (!srchTxtFld.getText().trim().equals("")
-									& nodeCnt != 0) {
-								String searchString = HelpBrowserFrame
-										.getSrchTxtFld().getText();
-								bodyPane.setText(SearchHelpAction
-										.getLocalString(
-												searchString,
-												titleHtml
-														+ Data.getInstance()
-																.getHelpData()
-																.getChapterContent(
-																		helpChapters[nodeCnt])));
+						if (path.equals(Data.getInstance().getHelpData().getChapterTitle(helpChapters[nodeCnt]))) {
+							if (!srchTxtFld.getText().trim().equals("") & nodeCnt != 0) {
+								String searchString = HelpBrowserFrame.getSrchTxtFld().getText();
+								bodyPane.setText(SearchHelpAction.getLocalString(searchString, titleHtml
+										+ Data.getInstance().getHelpData().getChapterContent(helpChapters[nodeCnt])));
 							} else {
 								bodyPane.setText(titleHtml
-										+ Data.getInstance()
-												.getHelpData()
-												.getChapterContent(
-														helpChapters[nodeCnt]));
+										+ Data.getInstance().getHelpData().getChapterContent(helpChapters[nodeCnt]));
 							}
 						} else {
 							if (path.equals("helpTitle")) {
-								bodyPane.setText(titleHtml
-										+ Data.getInstance().getHelpData()
-												.getChapterContent("start"));
+								bodyPane.setText(
+										titleHtml + Data.getInstance().getHelpData().getChapterContent("start"));
 							}
 						}
 					} catch (DataException e) {
-						System.err
-								.println("Error: can't read chapterContent in HelpBrowserFrame");
+						System.err.println("Error: can't read chapterContent in HelpBrowserFrame");
 					}
 
 				}
@@ -308,8 +284,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 		bodyPane.setBorder(null);
 		bodyPane.setContentType("text/html");
 
-		((HTMLDocument) bodyPane.getDocument()).getStyleSheet()
-				.addRule(cssRule);
+		((HTMLDocument) bodyPane.getDocument()).getStyleSheet().addRule(cssRule);
 
 		// base definition is not functional for images in a jar file
 		// ((HTMLDocument)
@@ -325,8 +300,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 					if (ev.getDescription().startsWith("#")) {
 						src.scrollToReference(ev.getDescription().substring(1));
 					} else if (ev.getDescription().startsWith("?")) {
-						String[] link = ev.getDescription().substring(1)
-								.split("#");
+						String[] link = ev.getDescription().substring(1).split("#");
 
 						setHelpChapter(link[0]);
 
@@ -356,8 +330,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 	 * Sets the error page.
 	 */
 	private void setErrorPage() {
-		bodyPane.setText("<H1>" + _("Error") + "</H1>" + "<P>"
-				+ _("Cannot find help page.") + "</P>");
+		bodyPane.setText("<H1>" + _("Error") + "</H1>" + "<P>" + _("Cannot find help page.") + "</P>");
 	}
 
 	/**
@@ -369,12 +342,10 @@ public class HelpBrowserFrame extends AbstractFrame {
 	private void setHelpChapter(String helpChapter) {
 		// ODOT
 		// updateBodyPane();
-		ActionRegistry.getInstance().get(ResetHelpAction.class.getName())
-				.actionPerformed(null);
+		ActionRegistry.getInstance().get(ResetHelpAction.class.getName()).actionPerformed(null);
 
 		try {
-			tree.setSelectionRow(Data.getInstance().getHelpData()
-					.getChapterNumber(helpChapter));
+			tree.setSelectionRow(Data.getInstance().getHelpData().getChapterNumber(helpChapter));
 		} catch (DataException e) {
 			tree.setSelectionRow(-1);
 			setErrorPage();
@@ -523,8 +494,7 @@ public class HelpBrowserFrame extends AbstractFrame {
 		try {
 			chapters = Data.getInstance().getHelpData().getChapters();
 		} catch (DataException e) {
-			System.err
-					.println("Error: no Chapters available in HelpBrowserFrame");
+			System.err.println("Error: no Chapters available in HelpBrowserFrame");
 
 		}
 
@@ -532,11 +502,9 @@ public class HelpBrowserFrame extends AbstractFrame {
 
 		for (int nodeCnt = 1; nodeCnt < chapters.length; nodeCnt++) {
 			try {
-				helpTitle = Data.getInstance().getHelpData()
-						.getChapterTitle(chapters[nodeCnt]);
+				helpTitle = Data.getInstance().getHelpData().getChapterTitle(chapters[nodeCnt]);
 			} catch (DataException e) {
-				System.err
-						.println("Error: can't read ChapterTitel in HelpBrowserFrame");
+				System.err.println("Error: can't read ChapterTitel in HelpBrowserFrame");
 			}
 
 			DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(helpTitle);

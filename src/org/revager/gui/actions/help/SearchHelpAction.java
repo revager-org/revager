@@ -50,46 +50,35 @@ public class SearchHelpAction extends AbstractAction {
 	 * 
 	 * @return the local string
 	 */
-	public static String getLocalString(String searchString,
-			String chapterContent) {
+	public static String getLocalString(String searchString, String chapterContent) {
 
 		String localString = "";
 
 		if (chapterContent.indexOf("<") > 0) {
-			String local = chapterContent.substring(0, chapterContent
-					.indexOf("<"));
+			String local = chapterContent.substring(0, chapterContent.indexOf("<"));
 
 			String localLow = local.toLowerCase();
 			String searchLow = searchString.toLowerCase();
 			if (localLow.indexOf(searchLow) != -1) {
 				String replacement = "";
 				replacement = local.substring(0, localLow.indexOf(searchLow));
-				replacement = replacement.concat(Data.getInstance()
-						.getResource("helpHtmlMarkingBegin"));
-				replacement = replacement.concat(local.substring(localLow
-						.indexOf(searchLow), localLow.indexOf(searchLow)
-						+ searchString.length()));
-				replacement = replacement.concat(Data.getInstance()
-						.getResource("helpHtmlMarkingEnd"));
+				replacement = replacement.concat(Data.getInstance().getResource("helpHtmlMarkingBegin"));
+				replacement = replacement.concat(local.substring(localLow.indexOf(searchLow),
+						localLow.indexOf(searchLow) + searchString.length()));
+				replacement = replacement.concat(Data.getInstance().getResource("helpHtmlMarkingEnd"));
 				localString = localString.concat(replacement);
-				chapterContent = chapterContent.substring(localLow
-						.indexOf(searchLow)
-						+ searchString.length());
+				chapterContent = chapterContent.substring(localLow.indexOf(searchLow) + searchString.length());
 			} else {
 				localString = localString.concat(local);
-				chapterContent = chapterContent.substring(chapterContent
-						.indexOf("<"));
+				chapterContent = chapterContent.substring(chapterContent.indexOf("<"));
 			}
 		}
 		if (chapterContent.indexOf("<") == 0) {
-			localString = localString.concat(chapterContent.substring(0,
-					chapterContent.indexOf(">") + 1));
-			chapterContent = chapterContent.substring(chapterContent
-					.indexOf(">") + 1);
+			localString = localString.concat(chapterContent.substring(0, chapterContent.indexOf(">") + 1));
+			chapterContent = chapterContent.substring(chapterContent.indexOf(">") + 1);
 		}
 		if (chapterContent.indexOf("<") != -1) {
-			localString = localString.concat(getLocalString(searchString,
-					chapterContent));
+			localString = localString.concat(getLocalString(searchString, chapterContent));
 		}
 
 		return localString;
@@ -105,13 +94,8 @@ public class SearchHelpAction extends AbstractAction {
 	public void actionPerformed(ActionEvent SearchHelp) {
 		try {
 
-			HelpBrowserFrame.getBodyPane().setText(
-					"<H1>"
-							+ Data.getInstance().getHelpData().getChapterTitle(
-									"start")
-							+ "</H1>"
-							+ Data.getInstance().getHelpData()
-									.getChapterContent("start"));
+			HelpBrowserFrame.getBodyPane().setText("<H1>" + Data.getInstance().getHelpData().getChapterTitle("start")
+					+ "</H1>" + Data.getInstance().getHelpData().getChapterContent("start"));
 
 		} catch (DataException e) {
 			/*
@@ -130,8 +114,7 @@ public class SearchHelpAction extends AbstractAction {
 		}
 		String searchString = HelpBrowserFrame.getSrchTxtFld().getText();
 
-		DefaultMutableTreeNode root = new DefaultMutableTreeNode(
-				HelpBrowserFrame.getHelpStartTitle());
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode(HelpBrowserFrame.getHelpStartTitle());
 
 		// for-loop starting at 1 because 1-element is start.html
 		for (int nodeCnt = 1; nodeCnt < chapters.length; nodeCnt++) {
@@ -140,24 +123,18 @@ public class SearchHelpAction extends AbstractAction {
 			// Suche in Bezeichnung
 
 			try {
-				helpTitle = Data.getInstance().getHelpData().getChapterTitle(
-						chapters[nodeCnt]);
-				helpChapter = Data.getInstance().getHelpData()
-						.getChapterContent(chapters[nodeCnt]).toString();
+				helpTitle = Data.getInstance().getHelpData().getChapterTitle(chapters[nodeCnt]);
+				helpChapter = Data.getInstance().getHelpData().getChapterContent(chapters[nodeCnt]).toString();
 
 			} catch (DataException ChapterTitelError) {
-				System.out
-						.println("Error: can't read ChapterTitel in HelpBrowserFrame");
+				System.out.println("Error: can't read ChapterTitel in HelpBrowserFrame");
 			}
 
-			for (int index = 0; index < (helpTitle.length()
-					- searchString.length() + 1); index++) {
+			for (int index = 0; index < (helpTitle.length() - searchString.length() + 1); index++) {
 
-				if (searchString.equalsIgnoreCase((helpTitle.substring(index,
-						index + searchString.length())))
+				if (searchString.equalsIgnoreCase((helpTitle.substring(index, index + searchString.length())))
 						& gefunden == false) {
-					DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(
-							helpTitle);
+					DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(helpTitle);
 					root.add(dmtn);
 					gefunden = true;
 
@@ -165,13 +142,10 @@ public class SearchHelpAction extends AbstractAction {
 
 			}
 			if (true) {
-				for (int index = 0; index < (helpChapter.length()
-						- searchString.length() + 1); index++) {
-					if (searchString.equalsIgnoreCase(helpChapter.substring(
-							index, index + searchString.length()))
+				for (int index = 0; index < (helpChapter.length() - searchString.length() + 1); index++) {
+					if (searchString.equalsIgnoreCase(helpChapter.substring(index, index + searchString.length()))
 							& gefunden == false) {
-						DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(
-								helpTitle);
+						DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(helpTitle);
 						root.add(dmtn);
 						gefunden = true;
 
@@ -185,11 +159,9 @@ public class SearchHelpAction extends AbstractAction {
 
 		for (int nodeCnt = 1; nodeCnt < chapters.length; nodeCnt++) {
 			try {
-				helpTitle = Data.getInstance().getHelpData().getChapterTitle(
-						chapters[nodeCnt]);
+				helpTitle = Data.getInstance().getHelpData().getChapterTitle(chapters[nodeCnt]);
 			} catch (DataException ChapterTitelError) {
-				System.out
-						.println("Error: can't read ChapterTitel in HelpBrowserFrame");
+				System.out.println("Error: can't read ChapterTitel in HelpBrowserFrame");
 			}
 		}
 	}

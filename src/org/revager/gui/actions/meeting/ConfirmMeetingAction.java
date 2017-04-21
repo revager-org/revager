@@ -55,9 +55,8 @@ public class ConfirmMeetingAction extends AbstractAction {
 		Meeting newMeeting = new Meeting();
 
 		try {
-			newMeeting.setPlannedDate(GUITools.dateString2Calendar(
-					UI.getInstance().getMeetingDialog().getDateTxtFld()
-							.getText(), dateF));
+			newMeeting.setPlannedDate(
+					GUITools.dateString2Calendar(UI.getInstance().getMeetingDialog().getDateTxtFld().getText(), dateF));
 		} catch (ParseException exc) {
 			newMeeting.setPlannedDate(new GregorianCalendar());
 		}
@@ -73,8 +72,7 @@ public class ConfirmMeetingAction extends AbstractAction {
 			int minute = begin.get(Calendar.MINUTE);
 			int second = begin.get(Calendar.SECOND);
 
-			end = new GregorianCalendar(year, month, dayOfMonth, hourOfDay,
-					minute, second);
+			end = new GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute, second);
 		}
 
 		newMeeting.setPlannedStart(begin);
@@ -89,8 +87,7 @@ public class ConfirmMeetingAction extends AbstractAction {
 		} else {
 			newMeeting.setComments(currentMeeting.getComments());
 			newMeeting.setProtocol(currentMeeting.getProtocol());
-			Application.getInstance().getMeetingMgmt()
-					.editMeeting(currentMeeting, newMeeting);
+			Application.getInstance().getMeetingMgmt().editMeeting(currentMeeting, newMeeting);
 
 		}
 

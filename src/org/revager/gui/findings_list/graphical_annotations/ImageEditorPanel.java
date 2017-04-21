@@ -162,11 +162,9 @@ public class ImageEditorPanel extends JPanel {
 		/*
 		 * Enable anti-aliasing
 		 */
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
 		/*
 		 * Draw the image
@@ -186,8 +184,7 @@ public class ImageEditorPanel extends JPanel {
 	}
 
 	public BufferedImage getImage() {
-		BufferedImage imageOutput = new BufferedImage(image.getWidth(), image
-				.getHeight(), BufferedImage.TYPE_INT_RGB);
+		BufferedImage imageOutput = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2Output = imageOutput.createGraphics();
 
 		paintImage(g2Output);
@@ -212,8 +209,7 @@ public class ImageEditorPanel extends JPanel {
 	}
 
 	public boolean isUndoPossible() {
-		return !annotations.isEmpty()
-				&& !(annotations.size() == 1 && annotations.lastElement() == currentAnnotation);
+		return !annotations.isEmpty() && !(annotations.size() == 1 && annotations.lastElement() == currentAnnotation);
 	}
 
 	public boolean isRedoPossible() {
@@ -246,7 +242,7 @@ public class ImageEditorPanel extends JPanel {
 		for (ImageAnnotation ann : annotationsReverseBackup) {
 			annotationsReverse.add(ann);
 		}
-		
+
 		repaint();
 	}
 

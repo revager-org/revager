@@ -42,11 +42,10 @@ public class OpenExpCSVDialogAction extends AbstractAction {
 	public OpenExpCSVDialogAction() {
 		super();
 
-		putValue(SMALL_ICON,
-				Data.getInstance().getIcon("menuCsvExport_16x16.png"));
+		putValue(SMALL_ICON, Data.getInstance().getIcon("menuCsvExport_16x16.png"));
 		putValue(NAME, _("Export Findings into a CSV File"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*

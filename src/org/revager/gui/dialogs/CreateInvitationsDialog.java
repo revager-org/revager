@@ -72,8 +72,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 	private List<Attendee> selectedAttendees = new ArrayList<Attendee>();
 	private List<JCheckBox> allAttendeesBx = new ArrayList<JCheckBox>();
 	private List<JCheckBox> selectedBx = new ArrayList<JCheckBox>();
-	private AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
 	private JToggleButton selectAll;
 	private JTextField pathTxtFld;
 
@@ -187,11 +186,9 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			JCheckBox attendee = new JCheckBox();
 			attendee.setBackground(Color.WHITE);
 			allAttendeesBx.add(attendee);
-			String roleString = attMgmt.getAttendees().get(index).getRole()
-					.toString();
+			String roleString = attMgmt.getAttendees().get(index).getRole().toString();
 
-			String attendeeName = attMgmt.getAttendees().get(index).getName()
-					+ ", " + _(roleString);
+			String attendeeName = attMgmt.getAttendees().get(index).getName() + ", " + _(roleString);
 
 			int endIndex = 23;
 			if (attendeeName.length() - 1 < endIndex) {
@@ -205,17 +202,14 @@ public class CreateInvitationsDialog extends AbstractDialog {
 				@Override
 				public void itemStateChanged(ItemEvent e) {
 					if (e.getStateChange() == ItemEvent.SELECTED
-							&& !selectedAttendees.contains(attMgmt
-									.getAttendees().get(indexL))) {
+							&& !selectedAttendees.contains(attMgmt.getAttendees().get(indexL))) {
 
-						selectedAttendees.add(attMgmt.getAttendees()
-								.get(indexL));
+						selectedAttendees.add(attMgmt.getAttendees().get(indexL));
 						selectedBx.add(allAttendeesBx.get(indexL));
 
 					} else {
 
-						selectedAttendees.remove(attMgmt.getAttendees().get(
-								indexL));
+						selectedAttendees.remove(attMgmt.getAttendees().get(indexL));
 						selectedBx.remove(allAttendeesBx.get(indexL));
 
 					}
@@ -237,8 +231,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 		JLabel meetingLbl = new JLabel(_("Selected meeting:"));
 
 		meetingsBx = new JComboBox();
-		for (Meeting meet : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting meet : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			TreeMeeting treeMeet = new TreeMeeting();
 			treeMeet.setMeeting(meet);
 
@@ -286,8 +279,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 					selectedBx.clear();
 
 					for (int index = 0; index < attMgmt.getNumberOfAttendees(); index++) {
-						selectedAttendees
-								.add(attMgmt.getAttendees().get(index));
+						selectedAttendees.add(attMgmt.getAttendees().get(index));
 						selectedBx.add(allAttendeesBx.get(index));
 					}
 				} else {
@@ -301,9 +293,8 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		JLabel directory = new JLabel(_("Directory:"));
 		pathTxtFld = new JTextField();
-		JButton browse = GUITools.newImageButton(
-				Data.getInstance().getIcon("buttonBrowse_22x22_0.png"), Data
-						.getInstance().getIcon("buttonBrowse_22x22.png"));
+		JButton browse = GUITools.newImageButton(Data.getInstance().getIcon("buttonBrowse_22x22_0.png"),
+				Data.getInstance().getIcon("buttonBrowse_22x22.png"));
 		browse.setToolTipText(_("Select directory where to store the packages"));
 		browse.setMargin(new Insets(1, 1, 1, 1));
 		browse.addActionListener(new ActionListener() {
@@ -314,8 +305,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 				fileChooser.setFile(null);
 
-				if (fileChooser.showDialog(UI.getInstance()
-						.getCreateInvitationsDialog(),
+				if (fileChooser.showDialog(UI.getInstance().getCreateInvitationsDialog(),
 						FileChooser.MODE_SELECT_DIRECTORY,
 						ResiFileFilter.TYPE_DIRECTORY) == FileChooser.SELECTED_APPROVE) {
 					String dirPath = fileChooser.getDir().getAbsolutePath();
@@ -325,26 +315,26 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(c, gbl, meetingLbl, 0, 0, 1, 1, 0, 0, 20, 5, 0,
-				5, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, meetingsBx, 0, 1, 3, 1, 1.0, 0, 5, 5, 0,
-				5, GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, attendeeLbl, 0, 2, 1, 1, 0, 0, 20, 5, 5,
-				5, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, selectAll, 0, 3, 1, 1, 0, 0, 0, 5, 0, 5,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, scrllPn, 0, 4, 1, 2, 0.0, 1.0, 5, 5, 0,
-				5, GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, rbPanel, 1, 4, 1, 1, 0, 0, 10, 30, 0, 5,
-				GridBagConstraints.VERTICAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, productBx, 1, 5, 1, 1, 0, 1.0, 20, 30, 0,
-				5, GridBagConstraints.VERTICAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, directory, 0, 6, 1, 1, 0, 0, 20, 5, 5, 5,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, pathTxtFld, 0, 7, 2, 1, 1.0, 0, 0, 5, 5,
-				5, GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, browse, 2, 7, 1, 1, 0, 0, 0, 5, 5, 5,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, meetingLbl, 0, 0, 1, 1, 0, 0, 20, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, meetingsBx, 0, 1, 3, 1, 1.0, 0, 5, 5, 0, 5, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, attendeeLbl, 0, 2, 1, 1, 0, 0, 20, 5, 5, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, selectAll, 0, 3, 1, 1, 0, 0, 0, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, scrllPn, 0, 4, 1, 2, 0.0, 1.0, 5, 5, 0, 5, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, rbPanel, 1, 4, 1, 1, 0, 0, 10, 30, 0, 5, GridBagConstraints.VERTICAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, productBx, 1, 5, 1, 1, 0, 1.0, 20, 30, 0, 5, GridBagConstraints.VERTICAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, directory, 0, 6, 1, 1, 0, 0, 20, 5, 5, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, pathTxtFld, 0, 7, 2, 1, 1.0, 0, 0, 5, 5, 5, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, browse, 2, 7, 1, 1, 0, 0, 0, 5, 5, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
 
 	}
 
@@ -371,8 +361,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 		c.setLayout(gbl);
 		clearInvitationsDialog();
 
-		JButton cancel = new JButton(_("Abort"), Data.getInstance().getIcon(
-				"buttonCancel_16x16.png"));
+		JButton cancel = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -382,8 +371,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		addButton(cancel);
 
-		JButton confirm = new JButton(_("Confirm"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
+		JButton confirm = new JButton(_("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		confirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

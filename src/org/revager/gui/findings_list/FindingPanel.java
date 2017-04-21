@@ -88,51 +88,31 @@ public class FindingPanel extends JPanel {
 
 	private GridBagLayout layout = new GridBagLayout();
 
-	private FindingManagement findMgmt = Application.getInstance()
-			.getFindingMgmt();
-	private SeverityManagement sevMgmt = Application.getInstance()
-			.getSeverityMgmt();
+	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
+	private SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
 	private ResiData resiData = Data.getInstance().getResiData();
 
 	private ImageIcon iconAdd = Data.getInstance().getIcon("add_25x25_0.png");
-	private ImageIcon iconRemove = Data.getInstance().getIcon(
-			"remove_25x25_0.png");
+	private ImageIcon iconRemove = Data.getInstance().getIcon("remove_25x25_0.png");
 	private ImageIcon iconEdit = Data.getInstance().getIcon("edit_25x25_0.png");
-	private ImageIcon iconPushUp = Data.getInstance().getIcon(
-			"upArrow_25x25_0.png");
-	private ImageIcon iconPushDown = Data.getInstance().getIcon(
-			"downArrow_25x25_0.png");
-	private ImageIcon iconPushTop = Data.getInstance().getIcon(
-			"pushTop_25x25_0.png");
-	private ImageIcon iconPushBottom = Data.getInstance().getIcon(
-			"pushBottom_25x25_0.png");
-	private ImageIcon iconRemoveFinding = Data.getInstance().getIcon(
-			"delete_25x25_0.png");
-	private ImageIcon iconCloseFinding = Data.getInstance().getIcon(
-			"closeFinding_25x25_0.png");
-	private ImageIcon iconPaste = Data.getInstance().getIcon(
-			"paste_25x25_0.png");
+	private ImageIcon iconPushUp = Data.getInstance().getIcon("upArrow_25x25_0.png");
+	private ImageIcon iconPushDown = Data.getInstance().getIcon("downArrow_25x25_0.png");
+	private ImageIcon iconPushTop = Data.getInstance().getIcon("pushTop_25x25_0.png");
+	private ImageIcon iconPushBottom = Data.getInstance().getIcon("pushBottom_25x25_0.png");
+	private ImageIcon iconRemoveFinding = Data.getInstance().getIcon("delete_25x25_0.png");
+	private ImageIcon iconCloseFinding = Data.getInstance().getIcon("closeFinding_25x25_0.png");
+	private ImageIcon iconPaste = Data.getInstance().getIcon("paste_25x25_0.png");
 
-	private ImageIcon iconRolloverAdd = Data.getInstance().getIcon(
-			"add_25x25.png");
-	private ImageIcon iconRolloverRemove = Data.getInstance().getIcon(
-			"remove_25x25.png");
-	private ImageIcon iconRolloverEdit = Data.getInstance().getIcon(
-			"edit_25x25.png");
-	private ImageIcon iconRolloverPushUp = Data.getInstance().getIcon(
-			"upArrow_25x25.png");
-	private ImageIcon iconRolloverPushDown = Data.getInstance().getIcon(
-			"downArrow_25x25.png");
-	private ImageIcon iconRolloverPushTop = Data.getInstance().getIcon(
-			"pushTop_25x25.png");
-	private ImageIcon iconRolloverPushBottom = Data.getInstance().getIcon(
-			"pushBottom_25x25.png");
-	private ImageIcon iconRolloverRemoveFinding = Data.getInstance().getIcon(
-			"delete_25x25.png");
-	private ImageIcon iconRolloverCloseFinding = Data.getInstance().getIcon(
-			"closeFinding_25x25.png");
-	private ImageIcon iconRolloverPaste = Data.getInstance().getIcon(
-			"paste_25x25.png");
+	private ImageIcon iconRolloverAdd = Data.getInstance().getIcon("add_25x25.png");
+	private ImageIcon iconRolloverRemove = Data.getInstance().getIcon("remove_25x25.png");
+	private ImageIcon iconRolloverEdit = Data.getInstance().getIcon("edit_25x25.png");
+	private ImageIcon iconRolloverPushUp = Data.getInstance().getIcon("upArrow_25x25.png");
+	private ImageIcon iconRolloverPushDown = Data.getInstance().getIcon("downArrow_25x25.png");
+	private ImageIcon iconRolloverPushTop = Data.getInstance().getIcon("pushTop_25x25.png");
+	private ImageIcon iconRolloverPushBottom = Data.getInstance().getIcon("pushBottom_25x25.png");
+	private ImageIcon iconRolloverRemoveFinding = Data.getInstance().getIcon("delete_25x25.png");
+	private ImageIcon iconRolloverCloseFinding = Data.getInstance().getIcon("closeFinding_25x25.png");
+	private ImageIcon iconRolloverPaste = Data.getInstance().getIcon("paste_25x25.png");
 
 	private ImageIcon iconBlank = Data.getInstance().getIcon("blank_25x25.png");
 
@@ -165,37 +145,23 @@ public class FindingPanel extends JPanel {
 	private JScrollPane scrollExtReferences;
 	private JScrollPane scrollAspects;
 
-	private JButton buttonAddReference = GUITools.newImageButton(iconAdd,
-			iconRolloverAdd);
-	private JButton buttonEditReference = GUITools.newImageButton(iconEdit,
-			iconRolloverEdit);
-	private JButton buttonRemoveReference = GUITools.newImageButton(iconRemove,
-			iconRolloverRemove);
+	private JButton buttonAddReference = GUITools.newImageButton(iconAdd, iconRolloverAdd);
+	private JButton buttonEditReference = GUITools.newImageButton(iconEdit, iconRolloverEdit);
+	private JButton buttonRemoveReference = GUITools.newImageButton(iconRemove, iconRolloverRemove);
 
-	private JButton buttonAddExtReference = GUITools.newImageButton(iconAdd,
-			iconRolloverAdd);
-	private JButton buttonRemoveExtReference = GUITools.newImageButton(
-			iconRemove, iconRolloverRemove);
-	private JButton buttonPasteExtReference = GUITools.newImageButton(
-			iconPaste, iconRolloverPaste);
+	private JButton buttonAddExtReference = GUITools.newImageButton(iconAdd, iconRolloverAdd);
+	private JButton buttonRemoveExtReference = GUITools.newImageButton(iconRemove, iconRolloverRemove);
+	private JButton buttonPasteExtReference = GUITools.newImageButton(iconPaste, iconRolloverPaste);
 
-	private JButton buttonAddAspect = GUITools.newImageButton(iconAdd,
-			iconRolloverAdd);
-	private JButton buttonRemoveAspect = GUITools.newImageButton(iconRemove,
-			iconRolloverRemove);
+	private JButton buttonAddAspect = GUITools.newImageButton(iconAdd, iconRolloverAdd);
+	private JButton buttonRemoveAspect = GUITools.newImageButton(iconRemove, iconRolloverRemove);
 
-	private JButton buttonPushUp = GUITools.newImageButton(iconPushUp,
-			iconRolloverPushUp);
-	private JButton buttonPushDown = GUITools.newImageButton(iconPushDown,
-			iconRolloverPushDown);
-	private JButton buttonPushTop = GUITools.newImageButton(iconPushTop,
-			iconRolloverPushTop);
-	private JButton buttonPushBottom = GUITools.newImageButton(iconPushBottom,
-			iconRolloverPushBottom);
-	private JButton buttonCloseFinding = GUITools.newImageButton(
-			iconCloseFinding, iconRolloverCloseFinding);
-	private JButton buttonRemoveFinding = GUITools.newImageButton(
-			iconRemoveFinding, iconRolloverRemoveFinding);
+	private JButton buttonPushUp = GUITools.newImageButton(iconPushUp, iconRolloverPushUp);
+	private JButton buttonPushDown = GUITools.newImageButton(iconPushDown, iconRolloverPushDown);
+	private JButton buttonPushTop = GUITools.newImageButton(iconPushTop, iconRolloverPushTop);
+	private JButton buttonPushBottom = GUITools.newImageButton(iconPushBottom, iconRolloverPushBottom);
+	private JButton buttonCloseFinding = GUITools.newImageButton(iconCloseFinding, iconRolloverCloseFinding);
+	private JButton buttonRemoveFinding = GUITools.newImageButton(iconRemoveFinding, iconRolloverRemoveFinding);
 
 	private JButton buttonDummy = GUITools.newImageButton(iconBlank, iconBlank);
 
@@ -316,8 +282,7 @@ public class FindingPanel extends JPanel {
 
 				int row = tableReferences.getRowCount() - 1;
 
-				tableReferences.scrollRectToVisible(tableReferences
-						.getCellRect(row, 0, false));
+				tableReferences.scrollRectToVisible(tableReferences.getCellRect(row, 0, false));
 				tableReferences.editCellAt(row, 0);
 			}
 		});
@@ -422,8 +387,7 @@ public class FindingPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				updateFocus(tableAspects);
 
-				AddAspToFindPopupWindow popup = new AddAspToFindPopupWindow(UI
-						.getInstance().getProtocolFrame());
+				AddAspToFindPopupWindow popup = new AddAspToFindPopupWindow(UI.getInstance().getProtocolFrame());
 
 				popup.setVisible(true);
 
@@ -471,22 +435,15 @@ public class FindingPanel extends JPanel {
 		 */
 		tableAspects = GUITools.newStandardTable(modelAspects, true);
 		tableReferences = GUITools.newStandardTable(modelReferences, true);
-		tableExtReferences = GUITools
-				.newStandardTable(modelExtReferences, true);
+		tableExtReferences = GUITools.newStandardTable(modelExtReferences, true);
 
-		tableAspects.getColumnModel().getColumn(0)
-				.setHeaderRenderer(new FindingPanelHeadRenderer());
-		tableReferences.getColumnModel().getColumn(0)
-				.setHeaderRenderer(new FindingPanelHeadRenderer());
-		tableExtReferences.getColumnModel().getColumn(0)
-				.setHeaderRenderer(new FindingPanelHeadRenderer());
+		tableAspects.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
+		tableReferences.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
+		tableExtReferences.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
 
-		tableAspects.getColumnModel().getColumn(0)
-				.setCellRenderer(new FindingPanelCellRenderer());
-		tableReferences.getColumnModel().getColumn(0)
-				.setCellRenderer(new FindingPanelCellRenderer());
-		tableExtReferences.getColumnModel().getColumn(0)
-				.setCellRenderer(new FindingPanelCellRenderer());
+		tableAspects.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
+		tableReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
+		tableExtReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
 
 		tableAspects.setRowHeight(29);
 		tableReferences.setRowHeight(29);
@@ -507,20 +464,17 @@ public class FindingPanel extends JPanel {
 					int selRow = tableExtReferences.getSelectedRow();
 
 					if (selRow != -1) {
-						File ref = findMgmt.getExtReferences(finding).get(
-								tableExtReferences.getSelectedRow());
+						File ref = findMgmt.getExtReferences(finding).get(tableExtReferences.getSelectedRow());
 
 						if (AppTools.isReadableWritableImageFile(ref)) {
-							UI.getInstance().getProtocolFrame()
-									.getImageEditor(ref).setVisible(true);
+							UI.getInstance().getProtocolFrame().getImageEditor(ref).setVisible(true);
 						} else {
 							try {
 								Desktop.getDesktop().open(ref);
 							} catch (Exception exc) {
-								JOptionPane.showMessageDialog(UI.getInstance()
-										.getProtocolFrame(), GUITools
-										.getMessagePane(exc.getMessage()),
-										_("Error"), JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
+										GUITools.getMessagePane(exc.getMessage()), _("Error"),
+										JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					}
@@ -610,8 +564,7 @@ public class FindingPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					findMgmt.setLocalizedSeverity(finding, comboSeverity
-							.getSelectedItem().toString());
+					findMgmt.setLocalizedSeverity(finding, comboSeverity.getSelectedItem().toString());
 					resiData.fireDataChanged();
 				}
 			}
@@ -626,8 +579,7 @@ public class FindingPanel extends JPanel {
 		buttonRemoveFinding.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(
-						UI.getInstance().getProtocolFrame(),
+				if (JOptionPane.showConfirmDialog(UI.getInstance().getProtocolFrame(),
 						GUITools.getMessagePane(_("Are you sure you want to remove the selected finding permanently?")),
 						_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					findingsTab.removeCurrentFinding();
@@ -672,17 +624,14 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Add components to compact view panel
 		 */
-		GUITools.addComponent(panelCompactView, layoutCompactView,
-				labelFindingNumber, 0, 0, 1, 1, 0.0, 0.0, 10, 10, 10, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelCompactView, layoutCompactView, labelFindingNumber, 0, 0, 1, 1, 0.0, 0.0, 10, 10, 10,
+				10, GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 
-		GUITools.addComponent(panelCompactView, layoutCompactView,
-				labelFindingDescription, 1, 0, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelCompactView, layoutCompactView, labelFindingDescription, 1, 0, 1, 1, 1.0, 0.0, 10,
+				10, 10, 10, GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 
-		GUITools.addComponent(panelCompactView, layoutCompactView,
-				labelFindingSeverity, 2, 0, 1, 1, 0.0, 0.0, 10, 10, 10, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHEAST);
+		GUITools.addComponent(panelCompactView, layoutCompactView, labelFindingSeverity, 2, 0, 1, 1, 0.0, 0.0, 10, 10,
+				10, 10, GridBagConstraints.BOTH, GridBagConstraints.NORTHEAST);
 
 		/*
 		 * Add components to edit view panel
@@ -690,43 +639,32 @@ public class FindingPanel extends JPanel {
 		JPanel panelStrut = new JPanel();
 		panelStrut.setBackground(EDIT_VIEW_BG);
 
-		GUITools.addComponent(panelEditView, layoutEditView, labelFindingTitle,
-				0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, comboSeverity, 1,
-				0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHEAST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollDescription,
-				0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, panelStrut, 1, 1,
-				1, 1, 0.0, 0.0, 10, 0, 0, 20, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollReferences,
-				2, 1, 1, 1, 1.0, 0.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView,
-				panelButtonsReferences, 3, 1, 1, 1, 0.0, 0.0, 10, 0, 0, 10,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollAspects, 0,
-				2, 1, 1, 1.0, 0.0, 10, 10, 10, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView,
-				panelButtonsAspects, 1, 2, 1, 1, 0.0, 0.0, 10, 0, 10, 20,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView,
-				scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
+		GUITools.addComponent(panelEditView, layoutEditView, labelFindingTitle, 0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10,
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView,
-				panelButtonsExtReferences, 3, 2, 1, 1, 0.0, 0.0, 10, 0, 10, 10,
+		GUITools.addComponent(panelEditView, layoutEditView, comboSeverity, 1, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHEAST);
+		GUITools.addComponent(panelEditView, layoutEditView, scrollDescription, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, panelStrut, 1, 1, 1, 1, 0.0, 0.0, 10, 0, 0, 20,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, scrollReferences, 2, 1, 1, 1, 1.0, 0.0, 10, 10, 0, 10,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, panelButtonsReferences, 3, 1, 1, 1, 0.0, 0.0, 10, 0, 0, 10,
 				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, scrollAspects, 0, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, panelButtonsAspects, 1, 2, 1, 1, 0.0, 0.0, 10, 0, 10, 20,
+				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelEditView, layoutEditView, panelButtonsExtReferences, 3, 2, 1, 1, 0.0, 0.0, 10, 0, 10,
+				10, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
 
 		setEditView();
 
 		if (findMgmt.isFindingEmpty(finding)) {
 			finding.setDescription("");
-			findMgmt.setLocalizedSeverity(finding,
-					sevMgmt.getSeverities().get(0));
+			findMgmt.setLocalizedSeverity(finding, sevMgmt.getSeverities().get(0));
 			resiData.fireDataChanged();
 		}
 
@@ -758,37 +696,29 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Create finding control buttons like push etc.
 		 */
-		GUITools.addComponent(this, layout, buttonPushTop, 0, 0, 1, 1, 0.0,
-				0.0, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, layout, buttonPushUp, 0, 1, 1, 1, 0.0, 0.0,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, layout, buttonCloseFinding, 0, 2, 1, 1,
-				0.0, 1.0, CONTROL_BUTTONS_PADDING + 35,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, layout, buttonPushTop, 0, 0, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, layout, buttonRemoveFinding, 0, 3, 1, 1,
-				0.0, 1.0, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING + 35, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, layout, buttonPushDown, 0, 4, 1, 1, 0.0,
-				0.0, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, layout, buttonPushBottom, 0, 5, 1, 1, 0.0,
-				0.0, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, buttonPushUp, 0, 1, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, buttonCloseFinding, 0, 2, 1, 1, 0.0, 1.0, CONTROL_BUTTONS_PADDING + 35,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, buttonRemoveFinding, 0, 3, 1, 1, 0.0, 1.0, CONTROL_BUTTONS_PADDING,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING + 35, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, buttonPushDown, 0, 4, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, buttonPushBottom, 0, 5, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
 
 		/*
 		 * Add content panel to root panel
 		 */
-		GUITools.addComponent(this, layout, panelEditView, 1, 0, 1, 6, 1.0,
-				0.0, 0, 0, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, layout, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 
 		/*
@@ -802,10 +732,8 @@ public class FindingPanel extends JPanel {
 
 		this.setPreferredSize(COMPACT_VIEW_SIZE);
 
-		this.setToolTipText(finding.getAspects().size() + " " + _("Aspect(s)")
-				+ ", " + finding.getReferences().size() + " "
-				+ _("Reference(s)") + ", "
-				+ finding.getExternalReferences().size() + " " + _("File(s)"));
+		this.setToolTipText(finding.getAspects().size() + " " + _("Aspect(s)") + ", " + finding.getReferences().size()
+				+ " " + _("Reference(s)") + ", " + finding.getExternalReferences().size() + " " + _("File(s)"));
 
 		this.removeAll();
 
@@ -837,14 +765,12 @@ public class FindingPanel extends JPanel {
 		 */
 		buttonDummy.setEnabled(false);
 
-		GUITools.addComponent(this, layout, buttonDummy, 0, 0, 1, 1, 0.0, 0.0,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-
-		GUITools.addComponent(this, layout, panelCompactView, 1, 0, 1, 1, 1.0,
-				0.0, 0, 0, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, layout, buttonDummy, 0, 0, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
+				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
+
+		GUITools.addComponent(this, layout, panelCompactView, 1, 0, 1, 1, 1.0, 0.0, 0, 0, 0, 20,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 	}
 
 	public void updateFindingButtons() {
@@ -908,22 +834,19 @@ public class FindingPanel extends JPanel {
 			}
 
 			if (tableReferences.getRowCount() > 0) {
-				tableReferences.removeRowSelectionInterval(0,
-						tableReferences.getRowCount() - 1);
+				tableReferences.removeRowSelectionInterval(0, tableReferences.getRowCount() - 1);
 			}
 		}
 
 		if (evSource != tableExtReferences) {
 			if (tableExtReferences.getRowCount() > 0) {
-				tableExtReferences.removeRowSelectionInterval(0,
-						tableExtReferences.getRowCount() - 1);
+				tableExtReferences.removeRowSelectionInterval(0, tableExtReferences.getRowCount() - 1);
 			}
 		}
 
 		if (evSource != tableAspects) {
 			if (tableAspects.getRowCount() > 0) {
-				tableAspects.removeRowSelectionInterval(0,
-						tableAspects.getRowCount() - 1);
+				tableAspects.removeRowSelectionInterval(0, tableAspects.getRowCount() - 1);
 			}
 		}
 	}
@@ -965,19 +888,15 @@ public class FindingPanel extends JPanel {
 		}
 
 		@Override
-		public Component getTableCellRendererComponent(JTable table,
-				Object value, boolean isSelected, boolean hasFocus, int row,
-				int column) {
-			setToolTipText(GUITools.getTextAsHtml("<font size=\"5\">"
-					+ (String) value + "</font>"));
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			setToolTipText(GUITools.getTextAsHtml("<font size=\"5\">" + (String) value + "</font>"));
 
-			return super.getTableCellRendererComponent(table, value,
-					isSelected, hasFocus, row, column);
+			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}
 	};
 
-	private class FindingPanelHeadRenderer extends
-			DefaultTableHeaderCellRenderer {
+	private class FindingPanelHeadRenderer extends DefaultTableHeaderCellRenderer {
 		private static final long serialVersionUID = 1L;
 
 		@Override
@@ -993,17 +912,15 @@ public class FindingPanel extends JPanel {
 
 			fileChooser.setFile(null);
 
-			if (fileChooser.showDialog(UI.getInstance().getEditProductDialog(),
-					FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_ALL) == FileChooser.SELECTED_APPROVE) {
+			if (fileChooser.showDialog(UI.getInstance().getEditProductDialog(), FileChooser.MODE_OPEN_FILE,
+					ResiFileFilter.TYPE_ALL) == FileChooser.SELECTED_APPROVE) {
 
-				UI.getInstance().getProtocolFrame()
-						.notifySwitchToProgressMode();
+				UI.getInstance().getProtocolFrame().notifySwitchToProgressMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance().getProtocolFrame()
-								.switchToProgressMode();
+						UI.getInstance().getProtocolFrame().switchToProgressMode();
 					}
 				});
 
@@ -1049,46 +966,37 @@ public class FindingPanel extends JPanel {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getProtocolFrame()
-							.switchToProgressMode(
-									_("Getting image from clipboard ..."));
+					UI.getInstance().getProtocolFrame().switchToProgressMode(_("Getting image from clipboard ..."));
 				}
 			});
 
 			Image img = AppTools.getImageFromClipboard();
 
 			if (img == null) {
-				JOptionPane
-						.showMessageDialog(
-								UI.getInstance().getProtocolFrame(),
-								GUITools.getMessagePane(_("Unfortunately there isn't any image in the clipboard which can be included as a reference.")),
-								_("Information"),
-								JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
+						GUITools.getMessagePane(
+								_("Unfortunately there isn't any image in the clipboard which can be included as a reference.")),
+						_("Information"), JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				Image scalImg = img.getScaledInstance(-1, 250,
-						Image.SCALE_SMOOTH);
+				Image scalImg = img.getScaledInstance(-1, 250, Image.SCALE_SMOOTH);
 
 				JLabel labelImg = new JLabel(new ImageIcon(scalImg));
-				labelImg.setBorder(new CompoundBorder(new EmptyBorder(0, 0, 15,
-						0), new MatteBorder(1, 1, 1, 1, UI.SEPARATOR_COLOR)));
+				labelImg.setBorder(new CompoundBorder(new EmptyBorder(0, 0, 15, 0),
+						new MatteBorder(1, 1, 1, 1, UI.SEPARATOR_COLOR)));
 
 				JTextField inputField = new JTextField();
 				inputField.setText(_("Screenshot"));
 
 				JPanel messagePane = new JPanel(new BorderLayout());
 				messagePane.add(labelImg, BorderLayout.NORTH);
-				messagePane.add(new JLabel(
-						_("Please enter a name for the image:")),
-						BorderLayout.CENTER);
+				messagePane.add(new JLabel(_("Please enter a name for the image:")), BorderLayout.CENTER);
 				messagePane.add(inputField, BorderLayout.SOUTH);
 
 				Object[] options = { _("Save"), _("Edit"), _("Cancel") };
 
-				int action = JOptionPane.showOptionDialog(UI.getInstance()
-						.getProtocolFrame(), messagePane, _("Confirm"),
-						JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+				int action = JOptionPane.showOptionDialog(UI.getInstance().getProtocolFrame(), messagePane,
+						_("Confirm"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options,
+						options[0]);
 
 				String fileName = null;
 
@@ -1112,17 +1020,14 @@ public class FindingPanel extends JPanel {
 				}
 
 				if (action == 1) {
-					int numberOfExtRefs = findMgmt.getExtReferences(finding)
-							.size();
+					int numberOfExtRefs = findMgmt.getExtReferences(finding).size();
 
-					final File extRef = findMgmt.getExtReferences(finding).get(
-							numberOfExtRefs - 1);
+					final File extRef = findMgmt.getExtReferences(finding).get(numberOfExtRefs - 1);
 
 					SwingUtilities.invokeLater(new Runnable() {
 						@Override
 						public void run() {
-							UI.getInstance().getProtocolFrame()
-									.getImageEditor(extRef).setVisible(true);
+							UI.getInstance().getProtocolFrame().getImageEditor(extRef).setVisible(true);
 						}
 					});
 				}

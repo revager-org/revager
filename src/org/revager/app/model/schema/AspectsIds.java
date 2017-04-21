@@ -5,7 +5,6 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-
 package org.revager.app.model.schema;
 
 import java.util.ArrayList;
@@ -16,15 +15,17 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
  * 
- *           Used for referencing aspects by their IDs.
- *         
+ * Used for referencing aspects by their IDs.
  * 
- * <p>Java class for aspectsIdType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for aspectsIdType complex type.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="aspectsIdType">
@@ -41,49 +42,47 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "aspectsIdType", propOrder = {
-    "aspectIds"
-})
+@XmlType(name = "aspectsIdType", propOrder = { "aspectIds" })
 public class AspectsIds {
 
-    @XmlElement(name = "aspect-id", required = true)
-    protected List<String> aspectIds;
+	@XmlElement(name = "aspect-id", required = true)
+	protected List<String> aspectIds;
 
-    /**
-     * Gets the value of the aspectIds property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the aspectIds property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAspectIds().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getAspectIds() {
-        if (aspectIds == null) {
-            aspectIds = new ArrayList<String>();
-        }
-        return this.aspectIds;
-    }
+	/**
+	 * Gets the value of the aspectIds property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the aspectIds property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getAspectIds().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link String }
+	 * 
+	 * 
+	 */
+	public List<String> getAspectIds() {
+		if (aspectIds == null) {
+			aspectIds = new ArrayList<String>();
+		}
+		return this.aspectIds;
+	}
 
-    public boolean isSetAspectIds() {
-        return ((this.aspectIds!= null)&&(!this.aspectIds.isEmpty()));
-    }
+	public boolean isSetAspectIds() {
+		return ((this.aspectIds != null) && (!this.aspectIds.isEmpty()));
+	}
 
-    public void unsetAspectIds() {
-        this.aspectIds = null;
-    }
+	public void unsetAspectIds() {
+		this.aspectIds = null;
+	}
 
 }

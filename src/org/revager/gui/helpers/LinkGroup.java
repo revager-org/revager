@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.revager.gui.UI;
+
 /**
  * The class LinkGroup.
  * 
@@ -35,6 +36,7 @@ public class LinkGroup {
 
 	/**
 	 * Method which adds an Link to the LinkGroup.
+	 * 
 	 * @param link
 	 */
 	public void addLink(HLink link) {
@@ -47,7 +49,7 @@ public class LinkGroup {
 	 */
 	public void resetAllLinks() {
 		for (HLink link : hLinksList) {
-			//link.setBold(false);
+			// link.setBold(false);
 			link.setColor(Color.BLACK);
 			link.setLocalRolloverIcon(link.getLocalDisIcon());
 			link.setLocalIcon(link.getLocalDisIcon());
@@ -63,13 +65,13 @@ public class LinkGroup {
 	public void selectLink(HLink selLink) {
 		for (HLink link : hLinksList) {
 			if (link == selLink) {
-				//link.setBold(true);
+				// link.setBold(true);
 				link.setColor(UI.LINK_COLOR);
 				link.setLocalRolloverIcon(link.getLocalSelIcon());
 				link.setLocalIcon(link.getLocalSelIcon());
 				link.setSelected(true);
 			} else {
-				//link.setBold(false);
+				// link.setBold(false);
 				link.setColor(Color.BLACK);
 				link.setLocalRolloverIcon(link.getLocalDisIcon());
 				link.setLocalIcon(link.getLocalDisIcon());
@@ -80,6 +82,7 @@ public class LinkGroup {
 
 	/**
 	 * Returns the text of the selected Link.
+	 * 
 	 * @return
 	 */
 	public String getSelectedLinkText() {
@@ -92,6 +95,7 @@ public class LinkGroup {
 
 	/**
 	 * Returns the index of the selected Link.
+	 * 
 	 * @return
 	 */
 	public int getSelectedLinkIndex() {

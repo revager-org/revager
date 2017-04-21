@@ -62,26 +62,23 @@ public class PDFCellEventExtRef implements PdfPCellEvent {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.lowagie.text.pdf.PdfPCellEvent#cellLayout(com.lowagie.text.pdf.PdfPCell
-	 * , com.lowagie.text.Rectangle, com.lowagie.text.pdf.PdfContentByte[])
+	 * @see com.lowagie.text.pdf.PdfPCellEvent#cellLayout(com.lowagie.text.pdf.
+	 * PdfPCell , com.lowagie.text.Rectangle,
+	 * com.lowagie.text.pdf.PdfContentByte[])
 	 */
 	@Override
-	public void cellLayout(PdfPCell cell, Rectangle rect,
-			PdfContentByte[] canvas) {
+	public void cellLayout(PdfPCell cell, Rectangle rect, PdfContentByte[] canvas) {
 		PdfContentByte cb = canvas[PdfPTable.LINECANVAS];
 
 		// cb.reset();
 
-		Rectangle attachmentRect = new Rectangle(rect.getLeft() - 25,
-				rect.getTop() - 25, rect.getRight() - rect.getWidth() - 40,
-				rect.getTop() - 10);
+		Rectangle attachmentRect = new Rectangle(rect.getLeft() - 25, rect.getTop() - 25,
+				rect.getRight() - rect.getWidth() - 40, rect.getTop() - 10);
 
 		String fileDesc = file.getName() + " (" + _("File Attachment") + ")";
 
 		try {
-			PdfAnnotation attachment = PdfAnnotation.createFileAttachment(
-					writer, attachmentRect, fileDesc, null,
+			PdfAnnotation attachment = PdfAnnotation.createFileAttachment(writer, attachmentRect, fileDesc, null,
 					file.getAbsolutePath(), file.getName());
 			writer.addAnnotation(attachment);
 		} catch (IOException e) {

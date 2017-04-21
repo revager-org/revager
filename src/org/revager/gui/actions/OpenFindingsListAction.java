@@ -55,16 +55,11 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class OpenFindingsListAction extends AbstractAction {
 
-	private FindingManagement findingMgmt = Application.getInstance()
-			.getFindingMgmt();
-	private SeverityManagement sevMgmt = Application.getInstance()
-			.getSeverityMgmt();
-	private ProtocolManagement protMgmt = Application.getInstance()
-			.getProtocolMgmt();
-	private MeetingManagement meetMgmt = Application.getInstance()
-			.getMeetingMgmt();
-	private AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
+	private FindingManagement findingMgmt = Application.getInstance().getFindingMgmt();
+	private SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
+	private ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
+	private MeetingManagement meetMgmt = Application.getInstance().getMeetingMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
 
 	/**
 	 * Instantiates a new open protocol frame action.
@@ -74,8 +69,8 @@ public class OpenFindingsListAction extends AbstractAction {
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuProt_16x16.png"));
 		putValue(NAME, _("Open/Create Findings List"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*
@@ -92,8 +87,7 @@ public class OpenFindingsListAction extends AbstractAction {
 	public void performActionDirectly() {
 		try {
 			final MainFrame mainFrame = UI.getInstance().getMainFrame();
-			final FindingsListFrame protFrame = UI.getInstance()
-					.getProtocolFrame();
+			final FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
 
 			mainFrame.notifySwitchToProgressMode();
 
@@ -127,8 +121,7 @@ public class OpenFindingsListAction extends AbstractAction {
 				int second = currentTime.get(Calendar.SECOND);
 
 				currentMeet = meetMgmt.addMeeting(currentTime, currentTime,
-						new GregorianCalendar(year, month, dayOfMonth,
-								hourOfDay, minute, second), "");
+						new GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute, second), "");
 			}
 
 			if (currentProt == null) {
@@ -140,8 +133,7 @@ public class OpenFindingsListAction extends AbstractAction {
 				currentProt.setComments("");
 
 				Finding newFind = new Finding();
-				findingMgmt.setLocalizedSeverity(newFind, sevMgmt
-						.getSeverities().get(0));
+				findingMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
 
 				findingMgmt.addFinding(newFind, currentProt);
 
@@ -151,11 +143,8 @@ public class OpenFindingsListAction extends AbstractAction {
 				 */
 				List<Attendee> attendees = attMgmt.getAttendees();
 
-				if (attendees.size() == 1
-						&& UI.getInstance().getAssistantDialog()
-								.isInstantReview()) {
-					protMgmt.addAttendee(attendees.get(0), DatatypeFactory
-							.newInstance().newDuration(0), currentProt);
+				if (attendees.size() == 1 && UI.getInstance().getAssistantDialog().isInstantReview()) {
+					protMgmt.addAttendee(attendees.get(0), DatatypeFactory.newInstance().newDuration(0), currentProt);
 				}
 			}
 

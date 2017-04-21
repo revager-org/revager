@@ -54,8 +54,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		SeverityManagement sevMgmt = Application.getInstance()
-				.getSeverityMgmt();
+		SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
 
 		final MainFrame mainFrame = UI.getInstance().getMainFrame();
 		final FindingsListFrame protFrame = UI.getInstance().getProtocolFrame();
@@ -63,54 +62,42 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 		FileChooser fileChooser = UI.getInstance().getFileChooser();
 		fileChooser.setFile(null);
 
-		Meeting meet = UI.getInstance().getExportCSVDialog()
-				.getSelectedMeeting();
+		Meeting meet = UI.getInstance().getExportCSVDialog().getSelectedMeeting();
 
-		if (fileChooser.showDialog(UI.getInstance().getExportCSVDialog(),
-				FileChooser.MODE_SAVE_FILE, ResiFileFilter.TYPE_CSV) == FileChooser.SELECTED_APPROVE) {
+		if (fileChooser.showDialog(UI.getInstance().getExportCSVDialog(), FileChooser.MODE_SAVE_FILE,
+				ResiFileFilter.TYPE_CSV) == FileChooser.SELECTED_APPROVE) {
 			UI.getInstance().getExportCSVDialog().notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getExportCSVDialog()
-							.switchToProgressMode();
+					UI.getInstance().getExportCSVDialog().switchToProgressMode();
 				}
 			});
 
 			String dir = fileChooser.getFile().getAbsolutePath();
 
 			try {
-				AppCSVProfile profile = Data.getInstance().getAppData()
-						.getCSVProfiles().get(0);
+				AppCSVProfile profile = Data.getInstance().getAppData().getCSVProfiles().get(0);
 
 				Map<String, String> sevMaps = new HashMap<String, String>();
 
-				List<String> mappingList = UI.getInstance()
-						.getExportCSVDialog().getSelColNameList();
+				List<String> mappingList = UI.getInstance().getExportCSVDialog().getSelColNameList();
 
 				for (int index = 0; index < sevMgmt.getSeverities().size(); index++) {
-					sevMaps.put(sevMgmt.getSeverities().get(index),
-							mappingList.get(index));
+					sevMaps.put(sevMgmt.getSeverities().get(index), mappingList.get(index));
 				}
 
-				String reporter = UI.getInstance().getExportCSVDialog()
-						.getReporter();
+				String reporter = UI.getInstance().getExportCSVDialog().getReporter();
 
 				File expFile = null;
 
 				if (UI.getInstance().getExportCSVDialog().exportRev()) {
-					expFile = Application
-							.getInstance()
-							.getImportExportCtl()
-							.exportReviewFindingsCSV(dir, profile, sevMaps,
-									reporter);
+					expFile = Application.getInstance().getImportExportCtl().exportReviewFindingsCSV(dir, profile,
+							sevMaps, reporter);
 				} else {
-					expFile = Application
-							.getInstance()
-							.getImportExportCtl()
-							.exportMeetingFindingsCSV(dir, profile, meet,
-									sevMaps, reporter);
+					expFile = Application.getInstance().getImportExportCtl().exportMeetingFindingsCSV(dir, profile,
+							meet, sevMaps, reporter);
 				}
 
 				UI.getInstance().getExportCSVDialog().notifySwitchToEditMode();
@@ -120,8 +107,7 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 					public void run() {
 						UI.getInstance().getExportCSVDialog().setVisible(false);
 
-						UI.getInstance().getExportCSVDialog()
-								.switchToEditMode();
+						UI.getInstance().getExportCSVDialog().switchToEditMode();
 					}
 				});
 
@@ -129,15 +115,11 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 					@Override
 					public void run() {
 						if (protFrame.isVisible()) {
-							protFrame
-									.setStatusMessage(
-											_("The findings have been exported into a CSV file successfully."),
-											false);
+							protFrame.setStatusMessage(
+									_("The findings have been exported into a CSV file successfully."), false);
 						} else {
-							mainFrame
-									.setStatusMessage(
-											_("The findings have been exported into a CSV file successfully."),
-											false);
+							mainFrame.setStatusMessage(
+									_("The findings have been exported into a CSV file successfully."), false);
 						}
 					}
 				});
@@ -149,14 +131,12 @@ public class ExportCSVWorker extends SwingWorker<Void, Void> {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance().getExportCSVDialog()
-								.switchToEditMode();
+						UI.getInstance().getExportCSVDialog().switchToEditMode();
 					}
 				});
 
-				JOptionPane.showMessageDialog(UI.getInstance()
-						.getExportCSVDialog(), GUITools.getMessagePane(e
-						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(UI.getInstance().getExportCSVDialog(),
+						GUITools.getMessagePane(e.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
 		}

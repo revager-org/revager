@@ -22,7 +22,7 @@ package org.revager.app.model;
  * This is a dummy class for simulating the access to the disabled help.
  */
 public class HelpData {
-	
+
 	private String[] dummyChapters = { "1", "2" };
 
 	/**

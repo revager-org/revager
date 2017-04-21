@@ -24,15 +24,13 @@ import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.model.schema.Protocol;
 
-
 /**
  * The Class FindingsTableModel.
  */
 @SuppressWarnings("serial")
 public class FindingsTableModel extends AbstractTableModel {
 
-	private FindingManagement findMgmt = Application.getInstance()
-			.getFindingMgmt();
+	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
 	private Protocol prot;
 
 	/**

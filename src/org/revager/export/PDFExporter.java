@@ -72,26 +72,23 @@ public abstract class PDFExporter {
 	 * @throws ExportException
 	 *             If an error occurs while instantiating the PDF exporter class
 	 */
-	protected PDFExporter(String filePath, String headTitle,
-			String headLogoPath, String footText) throws ExportException {
-		pdfDoc = new Document(PageSize.A4, PDFTools.cmToPt(2),
-				PDFTools.cmToPt(2), PDFTools.cmToPt(3.5f),
+	protected PDFExporter(String filePath, String headTitle, String headLogoPath, String footText)
+			throws ExportException {
+		pdfDoc = new Document(PageSize.A4, PDFTools.cmToPt(2), PDFTools.cmToPt(2), PDFTools.cmToPt(3.5f),
 				PDFTools.cmToPt(3.2f));
 
 		try {
-			pdfWriter = PdfWriter.getInstance(pdfDoc, new FileOutputStream(
-					filePath));
+			pdfWriter = PdfWriter.getInstance(pdfDoc, new FileOutputStream(filePath));
 		} catch (Exception e) {
 			/*
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(
-					_("Cannot store PDF file. Either you don't have write permissions or the PDF file cannot be created."));
+			throw new ExportException(_(
+					"Cannot store PDF file. Either you don't have write permissions or the PDF file cannot be created."));
 		}
 
-		pdfWriter.setPageEvent(new PDFPageEventHelper(headTitle, headLogoPath,
-				footText));
+		pdfWriter.setPageEvent(new PDFPageEventHelper(headTitle, headLogoPath, footText));
 
 		pdfDoc.addAuthor(Data.getInstance().getResource("appName"));
 		pdfDoc.addCreator(Data.getInstance().getResource("appName"));
@@ -101,10 +98,8 @@ public abstract class PDFExporter {
 		pdfDoc.addSubject(headTitle);
 
 		Rectangle page = pdfDoc.getPageSize();
-		pageWidth = page.getWidth() - pdfDoc.leftMargin()
-				- pdfDoc.rightMargin();
-		pageHeight = page.getHeight() - pdfDoc.topMargin()
-				- pdfDoc.bottomMargin();
+		pageWidth = page.getWidth() - pdfDoc.leftMargin() - pdfDoc.rightMargin();
+		pageHeight = page.getHeight() - pdfDoc.topMargin() - pdfDoc.bottomMargin();
 	}
 
 	/**
@@ -122,8 +117,7 @@ public abstract class PDFExporter {
 
 		fill.setColspan(colspan);
 		fill.setMinimumHeight(height);
-		fill.disableBorderSide(Rectangle.LEFT | Rectangle.RIGHT | Rectangle.TOP
-				| Rectangle.BOTTOM);
+		fill.disableBorderSide(Rectangle.LEFT | Rectangle.RIGHT | Rectangle.TOP | Rectangle.BOTTOM);
 
 		return fill;
 	}

@@ -125,8 +125,7 @@ public class AttendeeDialog extends AbstractDialog {
 		public void focusGained(FocusEvent e) {
 			if (e.getSource() != strengthTbl) {
 				if (strengthTbl.getRowCount() > 0) {
-					strengthTbl.removeRowSelectionInterval(0,
-							strengthTbl.getRowCount() - 1);
+					strengthTbl.removeRowSelectionInterval(0, strengthTbl.getRowCount() - 1);
 
 					updateStrengthButtons();
 				}
@@ -173,8 +172,7 @@ public class AttendeeDialog extends AbstractDialog {
 		try {
 			contactTxtArea.setText(currentAppAttendee.getContact());
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(this,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -276,14 +274,10 @@ public class AttendeeDialog extends AbstractDialog {
 			roleBox.setSelectedItem(_(currentAttendee.getRole().toString()));
 
 			try {
-				currentAppAttendee = Data
-						.getInstance()
-						.getAppData()
-						.getAttendee(currentAttendee.getName(),
-								currentAttendee.getContact());
+				currentAppAttendee = Data.getInstance().getAppData().getAttendee(currentAttendee.getName(),
+						currentAttendee.getContact());
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(this,
-						GUITools.getMessagePane(e.getMessage()), _("Error"),
+				JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e.getMessage()), _("Error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -323,11 +317,9 @@ public class AttendeeDialog extends AbstractDialog {
 
 		directory = GUITools.newImageButton();
 		directory.setIcon(Data.getInstance().getIcon("directory_25x25_0.png"));
-		directory.setRolloverIcon(Data.getInstance().getIcon(
-				"directory_25x25.png"));
+		directory.setRolloverIcon(Data.getInstance().getIcon("directory_25x25.png"));
 		directory.setToolTipText(_("Open Attendee Directory"));
-		directory.addActionListener(ActionRegistry.getInstance().get(
-				SelectAttOutOfDirAction.class.getName()));
+		directory.addActionListener(ActionRegistry.getInstance().get(SelectAttOutOfDirAction.class.getName()));
 		contact = new JLabel(_("Contact information:"));
 
 		contactTxtArea = new JTextArea();
@@ -380,8 +372,7 @@ public class AttendeeDialog extends AbstractDialog {
 
 		addStrength = GUITools.newImageButton();
 		addStrength.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
-		addStrength
-				.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
+		addStrength.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
 		addStrength.setToolTipText(_("Add Strength"));
 
 		addStrength.addActionListener(new ActionListener() {
@@ -392,16 +383,15 @@ public class AttendeeDialog extends AbstractDialog {
 				SwingWorker<Void, Void> showPopupWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						StrengthPopupWindow popup = new StrengthPopupWindow(UI
-								.getInstance().getAttendeeDialog(), title);
+						StrengthPopupWindow popup = new StrengthPopupWindow(UI.getInstance().getAttendeeDialog(),
+								title);
 
 						/*
 						 * Import the standard catalogs, if no catalogs exist in
 						 * the database
 						 */
 						try {
-							if (Data.getInstance().getAppData()
-									.getNumberOfCatalogs() == 0) {
+							if (Data.getInstance().getAppData().getNumberOfCatalogs() == 0) {
 								notifySwitchToProgressMode();
 
 								SwingUtilities.invokeLater(new Runnable() {
@@ -415,8 +405,7 @@ public class AttendeeDialog extends AbstractDialog {
 
 								GUITools.executeSwingWorker(catalogWorker);
 
-								while (!catalogWorker.isDone()
-										&& !catalogWorker.isCancelled()) {
+								while (!catalogWorker.isDone() && !catalogWorker.isCancelled()) {
 									Thread.sleep(500);
 								}
 
@@ -468,10 +457,8 @@ public class AttendeeDialog extends AbstractDialog {
 		buttonPanel.add(addStrength);
 
 		removeStrength = GUITools.newImageButton();
-		removeStrength
-				.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
-		removeStrength.setRolloverIcon(Data.getInstance().getIcon(
-				"remove_25x25.png"));
+		removeStrength.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
+		removeStrength.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
 		removeStrength.setToolTipText(_("Remove Strength"));
 		removeStrength.addActionListener(new ActionListener() {
 			@Override
@@ -492,36 +479,28 @@ public class AttendeeDialog extends AbstractDialog {
 
 		JScrollPane strScrllPn = GUITools.setIntoScrollPane(strengthTbl);
 
-		GUITools.addComponent(contentPane, gbl, name, 0, 0, 1, 1, 0, 0, 0, 20,
-				0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, nameTxtFld, 1, 0, 3, 1, 1.0, 0,
-				0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(contentPane, gbl, name, 0, 0, 1, 1, 0, 0, 0, 20, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, directory, 4, 0, 1, 1, 0, 0, 0,
-				5, 0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, contact, 0, 1, 1, 1, 0, 0, 5,
-				20, 0, 20, GridBagConstraints.NONE,
+		GUITools.addComponent(contentPane, gbl, nameTxtFld, 1, 0, 3, 1, 1.0, 0, 0, 20, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(contentPane, gbl, directory, 4, 0, 1, 1, 0, 0, 0, 5, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, contactScrllPn, 1, 1, 3, 3,
-				1.0, 0.5, 5, 20, 0, 0, GridBagConstraints.BOTH,
+		GUITools.addComponent(contentPane, gbl, contact, 0, 1, 1, 1, 0, 0, 5, 20, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, role, 0, 4, 1, 1, 0, 0, 10, 20,
-				0, 20, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, roleBox, 1, 4, 3, 1, 1.0, 0,
-				10, 20, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(contentPane, gbl, contactScrllPn, 1, 1, 3, 3, 1.0, 0.5, 5, 20, 0, 0,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(contentPane, gbl, role, 0, 4, 1, 1, 0, 0, 10, 20, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, strengthLbl, 0, 5, 1, 1, 0, 0,
-				17, 20, 0, 20, GridBagConstraints.NONE,
+		GUITools.addComponent(contentPane, gbl, roleBox, 1, 4, 3, 1, 1.0, 0, 10, 20, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(contentPane, gbl, strengthLbl, 0, 5, 1, 1, 0, 0, 17, 20, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, strScrllPn, 1, 5, 3, 2, 1.0,
-				0.5, 15, 20, 0, 0, GridBagConstraints.BOTH,
+		GUITools.addComponent(contentPane, gbl, strScrllPn, 1, 5, 3, 2, 1.0, 0.5, 15, 20, 0, 0, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, buttonPanel, 4, 5, 1, 2, 0, 0,
-				17, 5, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(contentPane, gbl, buttonPanel, 4, 5, 1, 2, 0, 0, 17, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 
-		cancelBttn = new JButton(_("Abort"), Data.getInstance().getIcon(
-				"buttonCancel_16x16.png"));
+		cancelBttn = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		cancelBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -539,10 +518,8 @@ public class AttendeeDialog extends AbstractDialog {
 
 		addButton(cancelBttn);
 
-		confirmBttn = new JButton(_("Confirm"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
-		confirmBttn.addActionListener(ActionRegistry.getInstance().get(
-				ConfirmAttendeeAction.class.getName()));
+		confirmBttn = new JButton(_("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
+		confirmBttn.addActionListener(ActionRegistry.getInstance().get(ConfirmAttendeeAction.class.getName()));
 
 		addButton(confirmBttn);
 
@@ -580,8 +557,7 @@ public class AttendeeDialog extends AbstractDialog {
 		 */
 		boolean enable = false;
 
-		if (((String) roleBox.getSelectedItem()).equals(_(Role.REVIEWER
-				.toString()))) {
+		if (((String) roleBox.getSelectedItem()).equals(_(Role.REVIEWER.toString()))) {
 			enable = true;
 		}
 

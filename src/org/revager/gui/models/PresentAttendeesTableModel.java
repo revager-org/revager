@@ -45,8 +45,7 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 	 */
 	public PresentAttendeesTableModel(Protocol currentProt) {
 		prot = currentProt;
-		localAttList = Application.getInstance().getProtocolMgmt()
-				.getAttendees(prot);
+		localAttList = Application.getInstance().getProtocolMgmt().getAttendees(prot);
 
 	}
 
@@ -58,8 +57,7 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 	 */
 	public void setProtocol(Protocol newProt) {
 		prot = newProt;
-		localAttList = Application.getInstance().getProtocolMgmt()
-				.getAttendees(prot);
+		localAttList = Application.getInstance().getProtocolMgmt().getAttendees(prot);
 
 		this.fireTableDataChanged();
 	}
@@ -100,8 +98,7 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 			String roleString = localAttList.get(row).getRole().toString();
 			return _(roleString);
 		} else if (column == 3) {
-			int aspNumber = Application.getInstance().getAttendeeMgmt()
-					.getNumberOfAspects(localAttList.get(row));
+			int aspNumber = Application.getInstance().getAttendeeMgmt().getNumberOfAspects(localAttList.get(row));
 
 			if (aspNumber > 0) {
 				return aspNumber + " " + _("Aspects");
@@ -109,8 +106,8 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 				return "";
 			}
 		} else if (column == 4) {
-			Duration localDur = Application.getInstance().getProtocolMgmt()
-					.getAttendeePrepTime(localAttList.get(row), prot);
+			Duration localDur = Application.getInstance().getProtocolMgmt().getAttendeePrepTime(localAttList.get(row),
+					prot);
 			String hours = String.format("%02d", localDur.getHours());
 			String mins = String.format("%02d", localDur.getMinutes());
 

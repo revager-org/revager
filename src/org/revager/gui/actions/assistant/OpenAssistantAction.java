@@ -51,11 +51,10 @@ public class OpenAssistantAction extends AbstractAction {
 	public OpenAssistantAction() {
 		super();
 
-		putValue(Action.SMALL_ICON,
-				Data.getInstance().getIcon("menuAssistant_16x16.png"));
+		putValue(Action.SMALL_ICON, Data.getInstance().getIcon("menuAssistant_16x16.png"));
 		putValue(Action.NAME, _("Open RevAger Assistant"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*
@@ -73,17 +72,13 @@ public class OpenAssistantAction extends AbstractAction {
 		Status status = UI.getInstance().getStatus();
 
 		if (status == Status.UNSAVED_CHANGES) {
-			int option = JOptionPane
-					.showConfirmDialog(
-							UI.getInstance().getMainFrame(),
-							GUITools.getMessagePane(_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
-							_("Question"), JOptionPane.YES_NO_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE);
+			int option = JOptionPane.showConfirmDialog(UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(
+							_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
+					_("Question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 			if (option == JOptionPane.YES_OPTION) {
-				ActionRegistry.getInstance()
-						.get(SaveReviewAction.class.getName())
-						.actionPerformed(e);
+				ActionRegistry.getInstance().get(SaveReviewAction.class.getName()).actionPerformed(e);
 			}
 
 			if (option == JOptionPane.CANCEL_OPTION) {
@@ -100,7 +95,7 @@ public class OpenAssistantAction extends AbstractAction {
 		UI.getInstance().setStatus(Status.NO_FILE_LOADED);
 
 		mainframe.setAssistantMode(true);
-		
+
 		/*
 		 * Update aspects manager
 		 */
@@ -109,11 +104,8 @@ public class OpenAssistantAction extends AbstractAction {
 		/*
 		 * Prepare assistant dialog
 		 */
-		UI.getInstance()
-				.getAssistantDialog()
-				.setCurrentPnl(
-						UI.getInstance().getAssistantDialog()
-								.getFirstScreenPanel());
+		UI.getInstance().getAssistantDialog()
+				.setCurrentPnl(UI.getInstance().getAssistantDialog().getFirstScreenPanel());
 
 		UI.getInstance().getAssistantDialog().setInstantReview(false);
 		UI.getInstance().getAssistantDialog().updateMessage();

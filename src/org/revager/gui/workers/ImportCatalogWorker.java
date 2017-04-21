@@ -74,8 +74,7 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.switchToProgressMode(_("Importing catalog ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Importing catalog ..."));
 			}
 		});
 
@@ -85,14 +84,12 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 			String catalogName = new File(this.filePath).getName();
 
 			if (catalogName.lastIndexOf(".") != -1) {
-				catalogName = catalogName.substring(0,
-						catalogName.lastIndexOf("."));
+				catalogName = catalogName.substring(0, catalogName.lastIndexOf("."));
 			}
 
 			boolean firstTime = true;
 
-			while (firstTime || appData.getCatalog(catalogName) != null
-					|| catalogName.trim().equals("")) {
+			while (firstTime || appData.getCatalog(catalogName) != null || catalogName.trim().equals("")) {
 				String title = _("Please enter a new name for the catalog:");
 
 				if (!firstTime) {
@@ -100,15 +97,13 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 							+ "\n\n" + title;
 				}
 
-				catalogName = JOptionPane.showInputDialog(UI.getInstance()
-						.getAspectsManagerFrame(), GUITools
-						.getMessagePane(title), catalogName);
+				catalogName = JOptionPane.showInputDialog(UI.getInstance().getAspectsManagerFrame(),
+						GUITools.getMessagePane(title), catalogName);
 
 				firstTime = false;
 			}
 
-			Catalog cat = Application.getInstance().getImportExportCtl()
-					.importCatalogXML(this.filePath);
+			Catalog cat = Application.getInstance().getImportExportCtl().importCatalogXML(this.filePath);
 
 			appCat = appData.newCatalog(catalogName);
 			appCat.setDescription(cat.getDescription());
@@ -133,27 +128,21 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 				public void run() {
 					UI.getInstance().getAspectsManagerFrame().updateTree();
 
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(
-									_("Catalog imported successfully."), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Catalog imported successfully."),
+							false);
 				}
 			});
 		} catch (Exception e) {
-			JOptionPane
-					.showMessageDialog(
-							UI.getInstance().getAspectsManagerFrame(),
-							GUITools.getMessagePane(_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
-									+ "\n\n" + e.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+					GUITools.getMessagePane(
+							_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
+									+ "\n\n" + e.getMessage()),
+					_("Error"), JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(_("Cannot import catalog!"),
-									false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot import catalog!"), false);
 				}
 			});
 		}
@@ -165,8 +154,7 @@ public class ImportCatalogWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.updateTree(catalog, null, null);
+				UI.getInstance().getAspectsManagerFrame().updateTree(catalog, null, null);
 
 				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 			}

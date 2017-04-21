@@ -12,11 +12,9 @@ import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 
-
 public class ImageEditorWriteWorker extends SwingWorker<Void, Void> {
 
-	private FindingManagement findMgmt = Application.getInstance()
-			.getFindingMgmt();
+	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
 
 	private Protocol protocol = null;
 
@@ -36,11 +34,9 @@ public class ImageEditorWriteWorker extends SwingWorker<Void, Void> {
 			}
 		}
 
-		for (String filePath : UI.getInstance().getProtocolFrame()
-				.getImageEditors().keySet()) {
+		for (String filePath : UI.getInstance().getProtocolFrame().getImageEditors().keySet()) {
 			if (absPaths.contains(filePath)) {
-				UI.getInstance().getProtocolFrame().getImageEditors().get(
-						filePath).writeImageToFile();
+				UI.getInstance().getProtocolFrame().getImageEditors().get(filePath).writeImageToFile();
 			}
 		}
 

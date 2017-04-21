@@ -67,8 +67,7 @@ public class ReviewManagement {
 	/**
 	 * The current review file.
 	 */
-	private final String REVIEW_FILE = Data.getInstance().getResource(
-			"reviewFileName");
+	private final String REVIEW_FILE = Data.getInstance().getResource("reviewFileName");
 
 	/**
 	 * The review info document file name.
@@ -78,14 +77,12 @@ public class ReviewManagement {
 	/**
 	 * The prefix to store external references in XML file.
 	 */
-	private final String EXTREF_PREFIX = Data.getInstance().getResource(
-			"extRefURIPrefix");
+	private final String EXTREF_PREFIX = Data.getInstance().getResource("extRefURIPrefix");
 
 	/**
 	 * The directory for external references.
 	 */
-	private final String EXTREF_DIRECTORY = Data.getInstance().getAppData()
-			.getAppDataPath()
+	private final String EXTREF_DIRECTORY = Data.getInstance().getAppData().getAppDataPath()
 			+ Data.getInstance().getResource("extRefsDirectoryName");
 
 	/**
@@ -102,8 +99,7 @@ public class ReviewManagement {
 		try {
 			extRefFileName = new URI(extRefURI).getPath();
 		} catch (URISyntaxException e) {
-			extRefFileName = extRefURI.substring(EXTREF_PREFIX.length())
-					.replace("%20", " ");
+			extRefFileName = extRefURI.substring(EXTREF_PREFIX.length()).replace("%20", " ");
 		}
 
 		if (extRefFileName.startsWith("/")) {
@@ -122,8 +118,7 @@ public class ReviewManagement {
 	 * @return the external reference as URI
 	 */
 	public String getExtRefURI(String fileName) {
-		return URI.create(EXTREF_PREFIX + fileName.replace(" ", "%20"))
-				.toASCIIString();
+		return URI.create(EXTREF_PREFIX + fileName.replace(" ", "%20")).toASCIIString();
 	}
 
 	/**
@@ -148,14 +143,12 @@ public class ReviewManagement {
 		 * Check if a reference with this filename exists in any finding of the
 		 * currently opened review
 		 */
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
 				for (Finding f : prot.getFindings()) {
-					if (f.getExternalReferences().contains(
-							getExtRefURI(fileName))) {
+					if (f.getExternalReferences().contains(getExtRefURI(fileName))) {
 						return true;
 					}
 				}
@@ -166,8 +159,7 @@ public class ReviewManagement {
 		 * Check if a reference with this filename exists in the product
 		 * references
 		 */
-		if (resiData.getReview().getProduct().getReferences()
-				.contains(getExtRefURI(fileName))) {
+		if (resiData.getReview().getProduct().getReferences().contains(getExtRefURI(fileName))) {
 			return true;
 		}
 
@@ -233,8 +225,7 @@ public class ReviewManagement {
 		/*
 		 * Remove duplicate product file references
 		 */
-		List<String> prodRefs = resiData.getReview().getProduct()
-				.getReferences();
+		List<String> prodRefs = resiData.getReview().getProduct().getReferences();
 		List<String> refList = new ArrayList<String>();
 		int i = 0;
 
@@ -265,8 +256,7 @@ public class ReviewManagement {
 			 * Remove references with no file
 			 */
 			if (ref.startsWith(EXTREF_PREFIX)) {
-				File extRefFile = new File(EXTREF_DIRECTORY
-						+ getExtRefFileName(ref));
+				File extRefFile = new File(EXTREF_DIRECTORY + getExtRefFileName(ref));
 
 				if (!extRefFile.exists()) {
 					prodRefs.remove(ref);
@@ -279,8 +269,7 @@ public class ReviewManagement {
 		 * Remove duplicate references in the findings of the currently opened
 		 * review
 		 */
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -309,8 +298,7 @@ public class ReviewManagement {
 		 * Remove invalid and wrong references in the findings of the currently
 		 * opened review
 		 */
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -332,8 +320,7 @@ public class ReviewManagement {
 							/*
 							 * Remove references with no file
 							 */
-							File extRefFile = new File(EXTREF_DIRECTORY
-									+ getExtRefFileName(ref));
+							File extRefFile = new File(EXTREF_DIRECTORY + getExtRefFileName(ref));
 
 							if (!extRefFile.exists()) {
 								f.getExternalReferences().remove(ref);
@@ -366,8 +353,7 @@ public class ReviewManagement {
 			return true;
 		}
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			if (m.getProtocol() != null) {
 				for (Finding f : m.getProtocol().getFindings()) {
 					if (!f.getExternalReferences().isEmpty()) {
@@ -403,13 +389,10 @@ public class ReviewManagement {
 		 * If the review has got a recommendation, then remove all meetings with
 		 * no protocol if they are not canceled.
 		 */
-		if (getRecommendation() != null
-				&& !getRecommendation().trim().equals("")) {
-			MeetingManagement meetMgmt = Application.getInstance()
-					.getMeetingMgmt();
+		if (getRecommendation() != null && !getRecommendation().trim().equals("")) {
+			MeetingManagement meetMgmt = Application.getInstance().getMeetingMgmt();
 
-			for (Meeting m : Application.getInstance().getMeetingMgmt()
-					.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 				if (m.getProtocol() == null && !meetMgmt.isMeetingCanceled(m)) {
 					meetMgmt.removeMeeting(m);
 				}
@@ -439,8 +422,7 @@ public class ReviewManagement {
 		/*
 		 * Trim the strings of the attendees.
 		 */
-		for (Attendee att : Application.getInstance().getAttendeeMgmt()
-				.getAttendees()) {
+		for (Attendee att : Application.getInstance().getAttendeeMgmt().getAttendees()) {
 			att.setContact(att.getContact().trim());
 			att.setName(att.getName().trim());
 		}
@@ -448,8 +430,7 @@ public class ReviewManagement {
 		/*
 		 * Trim the strings of the aspects.
 		 */
-		for (Aspect asp : Application.getInstance().getAspectMgmt()
-				.getAspects()) {
+		for (Aspect asp : Application.getInstance().getAspectMgmt().getAspects()) {
 			asp.setCategory(asp.getCategory().trim());
 			asp.setDirective(asp.getDirective().trim());
 			asp.setDescription(asp.getDescription().trim());
@@ -458,8 +439,7 @@ public class ReviewManagement {
 		/*
 		 * Trim the strings of the meetings and their protocols.
 		 */
-		for (Meeting meet : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting meet : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			if (meet.getCanceled() != null) {
 				meet.setCanceled(meet.getCanceled().trim());
 			}
@@ -480,8 +460,7 @@ public class ReviewManagement {
 				for (AttendeeReference att : prot.getAttendeeReferences()) {
 					if (att.getPreparationTime() == null) {
 						try {
-							att.setPreparationTime(DatatypeFactory
-									.newInstance().newDuration(0));
+							att.setPreparationTime(DatatypeFactory.newInstance().newDuration(0));
 						} catch (DatatypeConfigurationException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -717,12 +696,10 @@ public class ReviewManagement {
 	 *            the new reference
 	 */
 	public void editProductReference(String oldRef, String newRef) {
-		int indexOld = resiData.getReview().getProduct().getReferences()
-				.indexOf(oldRef);
+		int indexOld = resiData.getReview().getProduct().getReferences().indexOf(oldRef);
 
 		if (!newRef.trim().equals("")) {
-			resiData.getReview().getProduct().getReferences()
-					.set(indexOld, newRef);
+			resiData.getReview().getProduct().getReferences().set(indexOld, newRef);
 		}
 
 		resiData.fireDataChanged();
@@ -738,8 +715,7 @@ public class ReviewManagement {
 
 		for (String ref : resiData.getReview().getProduct().getReferences()) {
 			if (ref.startsWith(EXTREF_PREFIX)) {
-				File extRefFile = new File(EXTREF_DIRECTORY
-						+ getExtRefFileName(ref));
+				File extRefFile = new File(EXTREF_DIRECTORY + getExtRefFileName(ref));
 
 				fileRefs.add(extRefFile);
 			}
@@ -777,8 +753,7 @@ public class ReviewManagement {
 	 *         false
 	 */
 	public boolean addExtProdReference(File file) {
-		List<String> prodRefs = resiData.getReview().getProduct()
-				.getReferences();
+		List<String> prodRefs = resiData.getReview().getProduct().getReferences();
 
 		String extRefFile = addExtRefFile(file);
 
@@ -805,8 +780,7 @@ public class ReviewManagement {
 	 *            the file
 	 */
 	public void removeExtProdReference(File file) {
-		List<String> prodRefs = resiData.getReview().getProduct()
-				.getReferences();
+		List<String> prodRefs = resiData.getReview().getProduct().getReferences();
 
 		String extRef = getExtRefURI(file.getName());
 
@@ -888,8 +862,7 @@ public class ReviewManagement {
 	 * @return the number of attendees
 	 */
 	public int getNumberOfAttendees() {
-		return Application.getInstance().getAttendeeMgmt()
-				.getNumberOfAttendees();
+		return Application.getInstance().getAttendeeMgmt().getNumberOfAttendees();
 	}
 
 	/**
@@ -918,8 +891,7 @@ public class ReviewManagement {
 	public int getNumberOfFindings() {
 		int number = 0;
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {

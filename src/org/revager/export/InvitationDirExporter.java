@@ -39,8 +39,7 @@ public class InvitationDirExporter {
 	/**
 	 * Reference to review management.
 	 */
-	private ReviewManagement revMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 	/**
 	 * The review info document.
@@ -80,8 +79,7 @@ public class InvitationDirExporter {
 	 *            true, if external product references should be part of the
 	 *            invitation
 	 */
-	public InvitationDirExporter(String dirPath, Meeting meeting,
-			Attendee attendee, boolean attachProdExtRefs) {
+	public InvitationDirExporter(String dirPath, Meeting meeting, Attendee attendee, boolean attachProdExtRefs) {
 		super();
 
 		this.meeting = meeting;
@@ -114,8 +112,7 @@ public class InvitationDirExporter {
 		/*
 		 * write review info file
 		 */
-		new InvitationPDFExporter(reviewInfoDoc.getAbsolutePath(), meeting,
-				attendee, false).writeToFile();
+		new InvitationPDFExporter(reviewInfoDoc.getAbsolutePath(), meeting, attendee, false).writeToFile();
 
 		/*
 		 * external product references
@@ -129,8 +126,7 @@ public class InvitationDirExporter {
 					 * Not part of unit testing because this exception is only
 					 * thrown if an internal error occurs.
 					 */
-					throw new ExportException(
-							_("Cannot store invitation as directory."));
+					throw new ExportException(_("Cannot store invitation as directory."));
 				}
 			}
 		}

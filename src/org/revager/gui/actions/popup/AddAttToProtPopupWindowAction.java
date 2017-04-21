@@ -26,7 +26,6 @@ import org.revager.gui.UI;
 import org.revager.gui.findings_list.AddAttToFLPopupWindow;
 import org.revager.gui.findings_list.AddAttToFLPopupWindow.ButtonClicked;
 
-
 /**
  * The Class AddAttToProtPopupWindowAction.
  */
@@ -45,8 +44,7 @@ public class AddAttToProtPopupWindowAction extends AbstractAction {
 	 * @param buttonClk
 	 *            the button clk
 	 */
-	public AddAttToProtPopupWindowAction(AddAttToFLPopupWindow popupWin,
-			ButtonClicked buttonClk) {
+	public AddAttToProtPopupWindowAction(AddAttToFLPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}
@@ -60,19 +58,18 @@ public class AddAttToProtPopupWindowAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		boolean isMissing = false;
-		
+
 		popupWindow.getNameTxtFld().setBorder(UI.STANDARD_BORDER_INLINE);
 		popupWindow.getScrllPn().setBorder(UI.STANDARD_BORDER);
-		
+
 		popupWindow.commitSpinnerValues();
-		
+
 		if (popupWindow.getAttName().trim().equals("")) {
 			popupWindow.getNameTxtFld().setBorder(UI.MARKED_BORDER_INLINE);
 			isMissing = true;
 		}
-		
-		if (!isMissing && buttonClick == ButtonClicked.OK
-				|| buttonClick == ButtonClicked.ABORT) {
+
+		if (!isMissing && buttonClick == ButtonClicked.OK || buttonClick == ButtonClicked.ABORT) {
 			popupWindow.setButtonClicked(buttonClick);
 			popupWindow.setVisible(false);
 		}

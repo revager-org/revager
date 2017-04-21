@@ -65,8 +65,7 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 	 * @param helpChapterAnchor
 	 *            the help chapter anchor
 	 */
-	public LoadEmbeddedHelpWorker(JPanel panelHelp, String helpChapter,
-			String helpChapterAnchor) {
+	public LoadEmbeddedHelpWorker(JPanel panelHelp, String helpChapter, String helpChapterAnchor) {
 		this.panelHelp = panelHelp;
 		this.helpChapter = helpChapter;
 		this.helpChapterAnchor = helpChapterAnchor;
@@ -85,8 +84,7 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 		/*
 		 * Preparations for displaying the help
 		 */
-		String cssRules = "body { background-color:"
-				+ AbstractDialog.HELP_BACKGROUND
+		String cssRules = "body { background-color:" + AbstractDialog.HELP_BACKGROUND
 				+ "; font-family: Verdana, Arial, sans-serif; font-size: 12pt; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; } \n"
 				+ "h1 {font-size: 20pt; padding: 0; margin-top: 20px; margin-bottom: 0; }";
 
@@ -94,8 +92,7 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 		helpPane.setContentType("text/html");
 		helpPane.setBorder(null);
 
-		((HTMLDocument) helpPane.getDocument()).getStyleSheet().addRule(
-				cssRules);
+		((HTMLDocument) helpPane.getDocument()).getStyleSheet().addRule(cssRules);
 		// ((HTMLDocument)
 		// helpPane.getDocument()).setBase(getClass().getResource(Data.getInstance().getResource("path.helpDocBase")));
 
@@ -108,15 +105,12 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 					if (ev.getDescription().startsWith("#")) {
 						src.scrollToReference(ev.getDescription().substring(1));
 					} else if (ev.getDescription().startsWith("?")) {
-						String[] link = ev.getDescription().substring(1)
-								.split("#");
+						String[] link = ev.getDescription().substring(1).split("#");
 
 						if (link.length > 1) {
-							UI.getInstance().getHelpBrowserFrame()
-									.showHelp(link[0], link[1]);
+							UI.getInstance().getHelpBrowserFrame().showHelp(link[0], link[1]);
 						} else {
-							UI.getInstance().getHelpBrowserFrame()
-									.showHelp(link[0]);
+							UI.getInstance().getHelpBrowserFrame().showHelp(link[0]);
 						}
 					}
 				}
@@ -127,12 +121,8 @@ public class LoadEmbeddedHelpWorker extends SwingWorker<String, Void> {
 		 * Load help content
 		 */
 		try {
-			htmlString = "<h1>"
-					+ Data.getInstance().getHelpData()
-							.getChapterTitle(this.helpChapter) + "</h1>";
-			htmlString = htmlString
-					+ Data.getInstance().getHelpData()
-							.getChapterContent(this.helpChapter);
+			htmlString = "<h1>" + Data.getInstance().getHelpData().getChapterTitle(this.helpChapter) + "</h1>";
+			htmlString = htmlString + Data.getInstance().getHelpData().getChapterContent(this.helpChapter);
 		} catch (DataException exc) {
 			htmlString = "<h1>" + _("Cannot load help information.") + "</h1>";
 		}

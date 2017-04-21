@@ -31,10 +31,8 @@ public class FindingsTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private FindingManagement findMgmt = Application.getInstance()
-			.getFindingMgmt();
-	private SeverityManagement sevMgmt = Application.getInstance()
-			.getSeverityMgmt();
+	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
+	private SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
 
 	private Protocol protocol = null;
 
@@ -90,8 +88,7 @@ public class FindingsTab extends JPanel {
 				// if (!findMgmt.isFindingEmpty(findMgmt.getFindings(protocol)
 				// .get(listIdLastFinding))) {
 				Finding newFind = new Finding();
-				findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities()
-						.get(0));
+				findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
 				newFind = findMgmt.addFinding(newFind, protocol);
 
 				addFinding(newFind);
@@ -99,8 +96,7 @@ public class FindingsTab extends JPanel {
 			}
 		});
 
-		panelFoot.setBorder(BorderFactory.createMatteBorder(5, 35, 5, 35,
-				panelFoot.getBackground()));
+		panelFoot.setBorder(BorderFactory.createMatteBorder(5, 35, 5, 35, panelFoot.getBackground()));
 
 		panelFoot.add(buttonAddFinding, BorderLayout.WEST);
 		panelFoot.add(labelNumOfFindings, BorderLayout.EAST);
@@ -125,8 +121,7 @@ public class FindingsTab extends JPanel {
 			currentFindingPanel.storeFindingData();
 		}
 
-		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " "
-				+ _("Findings"));
+		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " " + _("Findings"));
 
 		/*
 		 * Update the tooltip
@@ -148,8 +143,7 @@ public class FindingsTab extends JPanel {
 
 		for (String s : sevMgmt.getSeverities()) {
 			if (findingsSev.get(s) != null) {
-				sevOverview = sevOverview + separator + findingsSev.get(s)
-						+ " x " + s;
+				sevOverview = sevOverview + separator + findingsSev.get(s) + " x " + s;
 
 				separator = "; ";
 			}
@@ -187,16 +181,14 @@ public class FindingsTab extends JPanel {
 
 		panelFindingsList.remove(panelStrut);
 
-		GUITools.addComponent(panelFindingsList, layoutFindingsList,
-				currentFindingPanel, 0, currentGridBagPosition, 1, 1, 1.0, 0.0,
-				5, 5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelFindingsList, layoutFindingsList, currentFindingPanel, 0, currentGridBagPosition, 1,
+				1, 1.0, 0.0, 5, 5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
 
 		/*
 		 * Update position of strut panel
 		 */
-		GUITools.addComponent(panelFindingsList, layoutFindingsList,
-				panelStrut, 0, currentGridBagPosition + 1, 1, 1, 1.0, 1.0, 0,
-				0, 0, 0, gblAlignment, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelFindingsList, layoutFindingsList, panelStrut, 0, currentGridBagPosition + 1, 1, 1,
+				1.0, 1.0, 0, 0, 0, 0, gblAlignment, GridBagConstraints.NORTHWEST);
 
 		currentGridBagPosition++;
 
@@ -209,8 +201,7 @@ public class FindingsTab extends JPanel {
 	}
 
 	public void editFinding(Finding finding) {
-		if (currentFindingPanel != null
-				&& currentFindingPanel.getFinding() == finding) {
+		if (currentFindingPanel != null && currentFindingPanel.getFinding() == finding) {
 			return;
 		}
 
@@ -256,8 +247,7 @@ public class FindingsTab extends JPanel {
 		 */
 		if (findMgmt.getNumberOfFindings(protocol) == 0) {
 			Finding newFind = new Finding();
-			findMgmt.setLocalizedSeverity(newFind,
-					sevMgmt.getSeverities().get(0));
+			findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
 			newFind = findMgmt.addFinding(newFind, protocol);
 
 			addFinding(newFind);
@@ -271,15 +261,13 @@ public class FindingsTab extends JPanel {
 			FindingPanel predecFindPanel = null;
 
 			int predecPos = -1;
-			int currPos = gridBagPositions
-					.get(currentFindingPanel.getFinding());
+			int currPos = gridBagPositions.get(currentFindingPanel.getFinding());
 
 			/*
 			 * Find predecessor
 			 */
 			for (Finding find : gridBagPositions.keySet()) {
-				if (gridBagPositions.get(find) < currPos
-						&& gridBagPositions.get(find) > predecPos) {
+				if (gridBagPositions.get(find) < currPos && gridBagPositions.get(find) > predecPos) {
 					predecPos = gridBagPositions.get(find);
 					predecFindPanel = findingPanels.get(find);
 				}
@@ -291,12 +279,10 @@ public class FindingsTab extends JPanel {
 			panelFindingsList.remove(currentFindingPanel);
 			panelFindingsList.remove(predecFindPanel);
 
-			GUITools.addComponent(panelFindingsList, layoutFindingsList,
-					currentFindingPanel, 0, predecPos, 1, 1, 1.0, 0.0, 5, 5, 5,
-					5, gblAlignment, GridBagConstraints.NORTHWEST);
-			GUITools.addComponent(panelFindingsList, layoutFindingsList,
-					predecFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-					gblAlignment, GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelFindingsList, layoutFindingsList, currentFindingPanel, 0, predecPos, 1, 1, 1.0,
+					0.0, 5, 5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelFindingsList, layoutFindingsList, predecFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5,
+					5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
 
 			findMgmt.pushUpFinding(currentFindingPanel.getFinding(), protocol);
 
@@ -305,12 +291,9 @@ public class FindingsTab extends JPanel {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					scrollFindingsList
-							.getVerticalScrollBar()
-							.setValue(
-									scrollFindingsList.getVerticalScrollBar()
-											.getValue()
-											- (FindingPanel.COMPACT_VIEW_SIZE.height + 10));
+					scrollFindingsList.getVerticalScrollBar()
+							.setValue(scrollFindingsList.getVerticalScrollBar().getValue()
+									- (FindingPanel.COMPACT_VIEW_SIZE.height + 10));
 				}
 			});
 
@@ -323,15 +306,13 @@ public class FindingsTab extends JPanel {
 			FindingPanel succFindPanel = null;
 
 			int succPos = currentGridBagPosition + 1;
-			int currPos = gridBagPositions
-					.get(currentFindingPanel.getFinding());
+			int currPos = gridBagPositions.get(currentFindingPanel.getFinding());
 
 			/*
 			 * Find successor
 			 */
 			for (Finding find : gridBagPositions.keySet()) {
-				if (gridBagPositions.get(find) > currPos
-						&& gridBagPositions.get(find) < succPos) {
+				if (gridBagPositions.get(find) > currPos && gridBagPositions.get(find) < succPos) {
 					succPos = gridBagPositions.get(find);
 					succFindPanel = findingPanels.get(find);
 				}
@@ -343,12 +324,10 @@ public class FindingsTab extends JPanel {
 			panelFindingsList.remove(currentFindingPanel);
 			panelFindingsList.remove(succFindPanel);
 
-			GUITools.addComponent(panelFindingsList, layoutFindingsList,
-					currentFindingPanel, 0, succPos, 1, 1, 1.0, 0.0, 5, 5, 5,
-					5, gblAlignment, GridBagConstraints.NORTHWEST);
-			GUITools.addComponent(panelFindingsList, layoutFindingsList,
-					succFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-					gblAlignment, GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelFindingsList, layoutFindingsList, currentFindingPanel, 0, succPos, 1, 1, 1.0,
+					0.0, 5, 5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(panelFindingsList, layoutFindingsList, succFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5,
+					5, 5, 5, gblAlignment, GridBagConstraints.NORTHWEST);
 
 			findMgmt.pushDownFinding(currentFindingPanel.getFinding(), protocol);
 
@@ -357,12 +336,9 @@ public class FindingsTab extends JPanel {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					scrollFindingsList
-							.getVerticalScrollBar()
-							.setValue(
-									scrollFindingsList.getVerticalScrollBar()
-											.getValue()
-											+ (FindingPanel.COMPACT_VIEW_SIZE.height + 10));
+					scrollFindingsList.getVerticalScrollBar()
+							.setValue(scrollFindingsList.getVerticalScrollBar().getValue()
+									+ (FindingPanel.COMPACT_VIEW_SIZE.height + 10));
 				}
 			});
 
@@ -372,8 +348,7 @@ public class FindingsTab extends JPanel {
 
 	public void pushTopCurrentFinding() {
 		if (currentFindingPanel != null) {
-			while (!findMgmt.isTopFinding(currentFindingPanel.getFinding(),
-					protocol)) {
+			while (!findMgmt.isTopFinding(currentFindingPanel.getFinding(), protocol)) {
 				pushUpCurrentFinding();
 			}
 			/*
@@ -416,8 +391,7 @@ public class FindingsTab extends JPanel {
 
 	public void pushBottomCurrentFinding() {
 		if (currentFindingPanel != null) {
-			while (!findMgmt.isBottomFinding(currentFindingPanel.getFinding(),
-					protocol)) {
+			while (!findMgmt.isBottomFinding(currentFindingPanel.getFinding(), protocol)) {
 				pushDownCurrentFinding();
 			}
 		}

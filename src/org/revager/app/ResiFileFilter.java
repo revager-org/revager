@@ -80,28 +80,22 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 	/**
 	 * File ending for review files in the XML format.
 	 */
-	private final String ENDING_REVIEW_XML = "."
-			+ Data.getInstance().getResource("fileEndingReviewXML")
-					.toLowerCase();
+	private final String ENDING_REVIEW_XML = "." + Data.getInstance().getResource("fileEndingReviewXML").toLowerCase();
 
 	/**
 	 * File ending for review files in the ZIP format.
 	 */
-	private final String ENDING_REVIEW_ZIP = "."
-			+ Data.getInstance().getResource("fileEndingReviewZIP")
-					.toLowerCase();
+	private final String ENDING_REVIEW_ZIP = "." + Data.getInstance().getResource("fileEndingReviewZIP").toLowerCase();
 
 	/**
 	 * File ending for catalog files.
 	 */
-	private final String ENDING_CATALOG = "."
-			+ Data.getInstance().getResource("fileEndingCatalog").toLowerCase();
+	private final String ENDING_CATALOG = "." + Data.getInstance().getResource("fileEndingCatalog").toLowerCase();
 
 	/**
 	 * File ending for aspects files.
 	 */
-	private final String ENDING_ASPECTS = "."
-			+ Data.getInstance().getResource("fileEndingAspects").toLowerCase();
+	private final String ENDING_ASPECTS = "." + Data.getInstance().getResource("fileEndingAspects").toLowerCase();
 
 	/**
 	 * The current type.
@@ -139,22 +133,16 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 			break;
 
 		case TYPE_REVIEW:
-			returnValue = path.isDirectory()
-					|| fileName.endsWith(ENDING_REVIEW_ZIP)
-					|| fileName.endsWith(ENDING_REVIEW_XML)
-					|| fileName.endsWith(".xml");
+			returnValue = path.isDirectory() || fileName.endsWith(ENDING_REVIEW_ZIP)
+					|| fileName.endsWith(ENDING_REVIEW_XML) || fileName.endsWith(".xml");
 			break;
 
 		case TYPE_CATALOG:
-			returnValue = path.isDirectory()
-					|| fileName.endsWith(ENDING_CATALOG)
-					|| fileName.endsWith(".xml");
+			returnValue = path.isDirectory() || fileName.endsWith(ENDING_CATALOG) || fileName.endsWith(".xml");
 			break;
 
 		case TYPE_ASPECTS:
-			returnValue = path.isDirectory()
-					|| fileName.endsWith(ENDING_ASPECTS)
-					|| fileName.endsWith(".xml");
+			returnValue = path.isDirectory() || fileName.endsWith(ENDING_ASPECTS) || fileName.endsWith(".xml");
 			break;
 
 		case TYPE_PDF:
@@ -162,8 +150,7 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 			break;
 
 		case TYPE_CSV:
-			returnValue = path.isDirectory() || fileName.endsWith(".csv")
-					|| fileName.endsWith(".txt");
+			returnValue = path.isDirectory() || fileName.endsWith(".csv") || fileName.endsWith(".txt");
 			break;
 
 		case TYPE_ZIP:
@@ -171,9 +158,8 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 			break;
 
 		case TYPE_IMAGES:
-			returnValue = path.isDirectory() || fileName.endsWith(".jpg")
-					|| fileName.endsWith(".jpeg") || fileName.endsWith(".png")
-					|| fileName.endsWith(".gif");
+			returnValue = path.isDirectory() || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")
+					|| fileName.endsWith(".png") || fileName.endsWith(".gif");
 			break;
 
 		default:
@@ -215,42 +201,31 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 			break;
 
 		case TYPE_REVIEW:
-			description = _("Review files")
-					+ " (*"
-					+ ENDING_REVIEW_ZIP
-					+ " *"
-					+ ENDING_REVIEW_XML
-					+ " *.xml)";
+			description = _("Review files") + " (*" + ENDING_REVIEW_ZIP + " *" + ENDING_REVIEW_XML + " *.xml)";
 			break;
 
 		case TYPE_CATALOG:
-			description = _("Catalog files")
-					+ " (*" + ENDING_CATALOG + " *.xml)";
+			description = _("Catalog files") + " (*" + ENDING_CATALOG + " *.xml)";
 			break;
 
 		case TYPE_ASPECTS:
-			description = _("Aspect files")
-					+ " (*" + ENDING_ASPECTS + " *.xml)";
+			description = _("Aspect files") + " (*" + ENDING_ASPECTS + " *.xml)";
 			break;
 
 		case TYPE_PDF:
-			description = _("PDF files")
-					+ " (*.pdf)";
+			description = _("PDF files") + " (*.pdf)";
 			break;
 
 		case TYPE_CSV:
-			description = _("CSV files")
-					+ " (*.csv *.txt)";
+			description = _("CSV files") + " (*.csv *.txt)";
 			break;
 
 		case TYPE_ZIP:
-			description = _("ZIP files")
-					+ " (*.zip)";
+			description = _("ZIP files") + " (*.zip)";
 			break;
 
 		case TYPE_IMAGES:
-			description = _("Image files")
-					+ " (*.jpg *.jpeg *.gif *.png)";
+			description = _("Image files") + " (*.jpg *.jpeg *.gif *.png)";
 			break;
 
 		default:

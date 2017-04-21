@@ -55,9 +55,7 @@ public class InitializeNewReviewAction extends AbstractAction {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						ActionRegistry.getInstance()
-								.get(ConfirmAttendeeAction.class.getName())
-								.actionPerformed(null);
+						ActionRegistry.getInstance().get(ConfirmAttendeeAction.class.getName()).actionPerformed(null);
 
 						assistant.setVisible(false);
 					}

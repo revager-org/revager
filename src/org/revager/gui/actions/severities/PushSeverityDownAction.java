@@ -26,7 +26,6 @@ import javax.swing.JTable;
 import org.revager.app.Application;
 import org.revager.gui.UI;
 
-
 /**
  * The Class PushSeverityDownAction.
  */
@@ -41,23 +40,18 @@ public class PushSeverityDownAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog()
-				.getSeverityTbl();
+		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog().getSeverityTbl();
 
 		int selectedRow = sevTbl.getSelectedRow();
 
-		String localSev = Application.getInstance().getSeverityMgmt()
-				.getSeverities().get(selectedRow);
+		String localSev = Application.getInstance().getSeverityMgmt().getSeverities().get(selectedRow);
 
 		if (selectedRow != -1) {
-			Application.getInstance().getSeverityMgmt().pushDownSeverity(
-					localSev);
+			Application.getInstance().getSeverityMgmt().pushDownSeverity(localSev);
 
-			UI.getInstance().getManageSeveritiesDialog().getStm()
-					.fireTableDataChanged();
+			UI.getInstance().getManageSeveritiesDialog().getStm().fireTableDataChanged();
 
-			sevTbl.scrollRectToVisible(sevTbl.getCellRect(selectedRow + 1, 0,
-					false));
+			sevTbl.scrollRectToVisible(sevTbl.getCellRect(selectedRow + 1, 0, false));
 
 			sevTbl.setRowSelectionInterval(selectedRow + 1, selectedRow + 1);
 		}

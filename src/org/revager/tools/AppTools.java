@@ -44,12 +44,10 @@ public class AppTools {
 	public static String getRandomString() {
 		final int MAX_LENGTH = 20;
 
-		String[] pool = new String[] { "*", "~", "#", "(", ")", "$", "+", "[",
-				"]", "-", "_", ".", ",", "§", "a", "b", "c", "d", "e", "f",
-				"g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
-				"s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D",
-				"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-				"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+		String[] pool = new String[] { "*", "~", "#", "(", ")", "$", "+", "[", "]", "-", "_", ".", ",", "§", "a", "b",
+				"c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+				"x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+				"S", "T", "U", "V", "W", "X", "Y", "Z" };
 
 		int randNumber = (int) ((Math.random() * MAX_LENGTH) + 1);
 		int randChar;
@@ -74,8 +72,7 @@ public class AppTools {
 		// Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
 
 		try {
-			return (Image) Toolkit.getDefaultToolkit().getSystemClipboard()
-					.getData(DataFlavor.imageFlavor);
+			return (Image) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.imageFlavor);
 		} catch (UnsupportedFlavorException e) {
 			return null;
 		} catch (IOException e) {
@@ -98,8 +95,7 @@ public class AppTools {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static File writeImageToPNG(Image image, String filePath)
-			throws IOException {
+	public static File writeImageToPNG(Image image, String filePath) throws IOException {
 		File file = new File(filePath);
 
 		/*
@@ -117,8 +113,7 @@ public class AppTools {
 		int width = image.getWidth(dummyObserver);
 		int height = image.getHeight(dummyObserver);
 
-		BufferedImage bufferedImage = new BufferedImage(width, height,
-				BufferedImage.TYPE_INT_RGB);
+		BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 		bufferedImage.getGraphics().drawImage(image, 0, 0, dummyObserver);
 
@@ -180,8 +175,7 @@ public class AppTools {
 	}
 
 	public static File getJarFile() {
-		URL url = AppTools.class.getProtectionDomain().getCodeSource()
-				.getLocation();
+		URL url = AppTools.class.getProtectionDomain().getCodeSource().getLocation();
 
 		File file = null;
 
@@ -204,8 +198,7 @@ public class AppTools {
 		if (jarLocation.contains(indicator)) {
 			int pos = jarLocation.indexOf(indicator);
 
-			appStubLocation = jarLocation.substring(0, pos)
-					+ ".app/Contents/MacOS/JavaApplicationStub";
+			appStubLocation = jarLocation.substring(0, pos) + ".app/Contents/MacOS/JavaApplicationStub";
 		}
 
 		return appStubLocation;

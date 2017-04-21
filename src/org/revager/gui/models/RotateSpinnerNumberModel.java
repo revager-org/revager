@@ -42,8 +42,7 @@ public class RotateSpinnerNumberModel extends SpinnerNumberModel {
 	 * @param stepSize
 	 *            the step size
 	 */
-	public RotateSpinnerNumberModel(int value, int minimum, int maximum,
-			int stepSize) {
+	public RotateSpinnerNumberModel(int value, int minimum, int maximum, int stepSize) {
 		super(value, minimum, maximum, stepSize);
 		this.max = maximum;
 		this.min = minimum;
@@ -57,9 +56,7 @@ public class RotateSpinnerNumberModel extends SpinnerNumberModel {
 	@Override
 	public Object getNextValue() {
 		Object value = super.getNextValue();
-		if (value == null
-				|| Integer.parseInt(value.toString()) == max
-						+ Integer.parseInt(getStepSize().toString())) {
+		if (value == null || Integer.parseInt(value.toString()) == max + Integer.parseInt(getStepSize().toString())) {
 			super.setValue(min);
 			return super.getValue();
 		}

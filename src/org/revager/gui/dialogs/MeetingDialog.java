@@ -70,21 +70,16 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class MeetingDialog extends AbstractDialog {
 
-	private MeetingManagement meetingMgmt = Application.getInstance()
-			.getMeetingMgmt();
+	private MeetingManagement meetingMgmt = Application.getInstance().getMeetingMgmt();
 
 	private Meeting currentMeeting = null;
 
 	private ObservingTextField dateTxtFld;
 
-	private JSpinner beginMSpinner = new JSpinner(new RotateSpinnerNumberModel(
-			00, 00, 45, 15));
-	private JSpinner beginHSpinner = new JSpinner(new RotateSpinnerNumberModel(
-			00, 00, 23, 1));
-	private JSpinner endMSpinner = new JSpinner(new RotateSpinnerNumberModel(
-			00, 00, 45, 15));
-	private JSpinner endHSpinner = new JSpinner(new RotateSpinnerNumberModel(
-			00, 00, 23, 1));
+	private JSpinner beginMSpinner = new JSpinner(new RotateSpinnerNumberModel(00, 00, 45, 15));
+	private JSpinner beginHSpinner = new JSpinner(new RotateSpinnerNumberModel(00, 00, 23, 1));
+	private JSpinner endMSpinner = new JSpinner(new RotateSpinnerNumberModel(00, 00, 45, 15));
+	private JSpinner endHSpinner = new JSpinner(new RotateSpinnerNumberModel(00, 00, 23, 1));
 
 	private JTextField locationTxtFld;
 	private JCheckBox canceled;
@@ -116,10 +111,8 @@ public class MeetingDialog extends AbstractDialog {
 	 */
 	public Calendar getBegin() {
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MINUTE,
-				Integer.parseInt(beginMSpinner.getValue().toString()));
-		cal.set(Calendar.HOUR_OF_DAY,
-				Integer.parseInt(beginHSpinner.getValue().toString()));
+		cal.set(Calendar.MINUTE, Integer.parseInt(beginMSpinner.getValue().toString()));
+		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(beginHSpinner.getValue().toString()));
 		return cal;
 	}
 
@@ -130,10 +123,8 @@ public class MeetingDialog extends AbstractDialog {
 	 */
 	public Calendar getEnd() {
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MINUTE,
-				Integer.parseInt(endMSpinner.getValue().toString()));
-		cal.set(Calendar.HOUR_OF_DAY,
-				Integer.parseInt(endHSpinner.getValue().toString()));
+		cal.set(Calendar.MINUTE, Integer.parseInt(endMSpinner.getValue().toString()));
+		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endHSpinner.getValue().toString()));
 		return cal;
 	}
 
@@ -254,8 +245,7 @@ public class MeetingDialog extends AbstractDialog {
 			setIcon(Data.getInstance().getIcon("addMeeting_50x50.png"));
 			setHelpChapter("meetings_management", "1");
 
-			DateFormat dateF = DateFormat
-					.getDateInstance(DateFormat.LONG);
+			DateFormat dateF = DateFormat.getDateInstance(DateFormat.LONG);
 
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.DAY_OF_WEEK, 7);
@@ -271,8 +261,7 @@ public class MeetingDialog extends AbstractDialog {
 			locationTxtFld.setText("");
 			canceled.setEnabled(false);
 			canceled.setSelected(false);
-			canceledTxtArea
-					.setText(_("Please enter the reason for canceling the meeting..."));
+			canceledTxtArea.setText(_("Please enter the reason for canceling the meeting..."));
 		} else {
 			setTitle(_("Edit Meeting"));
 			setDescription(_("Here you can edit all information of the selected meeting."));
@@ -281,25 +270,18 @@ public class MeetingDialog extends AbstractDialog {
 			canceled.setEnabled(true);
 
 			Meeting editMeet = null;
-			TreePath path = UI.getInstance().getMainFrame().getMeetingsTree()
-					.getSelectionPath();
-			Object obj = ((DefaultMutableTreeNode) path.getLastPathComponent())
-					.getUserObject();
+			TreePath path = UI.getInstance().getMainFrame().getMeetingsTree().getSelectionPath();
+			Object obj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
 			editMeet = ((TreeMeeting) obj).getMeeting();
 
-			DateFormat dateF = DateFormat
-					.getDateInstance(DateFormat.LONG);
+			DateFormat dateF = DateFormat.getDateInstance(DateFormat.LONG);
 			dateF.setTimeZone(currentMeeting.getPlannedDate().getTimeZone());
 
-			dateTxtFld.setText(dateF
-					.format(editMeet.getPlannedDate().getTime()));
-			beginMSpinner.setValue(editMeet.getPlannedStart().get(
-					Calendar.MINUTE));
-			beginHSpinner.setValue(editMeet.getPlannedStart().get(
-					Calendar.HOUR_OF_DAY));
+			dateTxtFld.setText(dateF.format(editMeet.getPlannedDate().getTime()));
+			beginMSpinner.setValue(editMeet.getPlannedStart().get(Calendar.MINUTE));
+			beginHSpinner.setValue(editMeet.getPlannedStart().get(Calendar.HOUR_OF_DAY));
 			endMSpinner.setValue(editMeet.getPlannedEnd().get(Calendar.MINUTE));
-			endHSpinner.setValue(editMeet.getPlannedEnd().get(
-					Calendar.HOUR_OF_DAY));
+			endHSpinner.setValue(editMeet.getPlannedEnd().get(Calendar.HOUR_OF_DAY));
 			locationTxtFld.setText(editMeet.getPlannedLocation());
 
 			canceled.setEnabled(true);
@@ -311,23 +293,19 @@ public class MeetingDialog extends AbstractDialog {
 		 * Correct the leading zero's
 		 */
 		if ((Integer) beginMSpinner.getValue() == 0) {
-			((NumberEditor) beginMSpinner.getEditor()).getTextField().setText(
-					"00");
+			((NumberEditor) beginMSpinner.getEditor()).getTextField().setText("00");
 		}
 
 		if ((Integer) beginHSpinner.getValue() == 0) {
-			((NumberEditor) beginHSpinner.getEditor()).getTextField().setText(
-					"00");
+			((NumberEditor) beginHSpinner.getEditor()).getTextField().setText("00");
 		}
 
 		if ((Integer) endMSpinner.getValue() == 0) {
-			((NumberEditor) endMSpinner.getEditor()).getTextField().setText(
-					"00");
+			((NumberEditor) endMSpinner.getEditor()).getTextField().setText("00");
 		}
 
 		if ((Integer) endHSpinner.getValue() == 0) {
-			((NumberEditor) endHSpinner.getEditor()).getTextField().setText(
-					"00");
+			((NumberEditor) endHSpinner.getEditor()).getTextField().setText("00");
 		}
 	}
 
@@ -367,26 +345,19 @@ public class MeetingDialog extends AbstractDialog {
 		JPanel spinnerPanel = new JPanel(gbl);
 		JLabel tillLabel = new JLabel(_("to"));
 
-		GUITools.addComponent(spinnerPanel, gbl, beginHSpinner, 0, 0, 1, 1, 0,
-				0, 0, 0, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, beginHSpinner, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(spinnerPanel, gbl, new JLabel(":"), 1, 0, 1, 1,
-				0, 0, 0, 5, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, new JLabel(":"), 1, 0, 1, 1, 0, 0, 0, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(spinnerPanel, gbl, beginMSpinner, 2, 0, 1, 1, 0,
-				0, 0, 5, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, beginMSpinner, 2, 0, 1, 1, 0, 0, 0, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(spinnerPanel, gbl, tillLabel, 3, 0, 1, 1, 1.0, 0,
-				0, 20, 0, 20, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, tillLabel, 3, 0, 1, 1, 1.0, 0, 0, 20, 0, 20, GridBagConstraints.NONE,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(spinnerPanel, gbl, endHSpinner, 4, 0, 1, 1, 0, 0,
-				0, 0, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, endHSpinner, 4, 0, 1, 1, 0, 0, 0, 0, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHEAST);
-		GUITools.addComponent(spinnerPanel, gbl, new JLabel(":"), 5, 0, 1, 1,
-				0, 0, 0, 5, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, new JLabel(":"), 5, 0, 1, 1, 0, 0, 0, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(spinnerPanel, gbl, endMSpinner, 6, 0, 1, 1, 0, 0,
-				0, 5, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(spinnerPanel, gbl, endMSpinner, 6, 0, 1, 1, 0, 0, 0, 5, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHEAST);
 
 		/*
@@ -396,8 +367,7 @@ public class MeetingDialog extends AbstractDialog {
 		JLabel locationLbl = new JLabel(_("Location:"));
 		locationTxtFld = new JTextField();
 
-		canceledTxtArea = new JTextArea(
-				_("Please enter the reason for canceling the meeting..."));
+		canceledTxtArea = new JTextArea(_("Please enter the reason for canceling the meeting..."));
 		canceledTxtArea.setEnabled(false);
 
 		JScrollPane canceledScrllPn = GUITools.setIntoScrllPn(canceledTxtArea);
@@ -429,9 +399,7 @@ public class MeetingDialog extends AbstractDialog {
 		dateTxtFld.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ActionRegistry.getInstance()
-						.get(DatePickerAction.class.getName())
-						.actionPerformed(null);
+				ActionRegistry.getInstance().get(DatePickerAction.class.getName()).actionPerformed(null);
 			}
 
 			@Override
@@ -453,43 +421,37 @@ public class MeetingDialog extends AbstractDialog {
 
 		JButton datePicker = GUITools.newImageButton();
 		datePicker.setToolTipText(_("Select date"));
-		datePicker
-				.setIcon(Data.getInstance().getIcon("datePicker_25x25_0.png"));
-		datePicker.setRolloverIcon(Data.getInstance().getIcon(
-				"datePicker_25x25.png"));
-		datePicker.addActionListener(ActionRegistry.getInstance().get(
-				DatePickerAction.class.getName()));
+		datePicker.setIcon(Data.getInstance().getIcon("datePicker_25x25_0.png"));
+		datePicker.setRolloverIcon(Data.getInstance().getIcon("datePicker_25x25.png"));
+		datePicker.addActionListener(ActionRegistry.getInstance().get(DatePickerAction.class.getName()));
 
 		/*
 		 * 
 		 * adding all created elements to the dialog
 		 */
-		GUITools.addComponent(c, gbl, dateLbl, 0, 0, 1, 1, 0, 0, 10, 5, 0, 5,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, dateTxtFld, 1, 0, 1, 1, 1.0, 0, 10, 5, 0,
-				5, GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, datePicker, 2, 0, 1, 1, 0, 0, 10, 5, 0,
-				5, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, beginLbl, 0, 1, 1, 1, 0, 0, 10, 5, 0, 5,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, spinnerPanel, 1, 1, 2, 1, 1.0, 0, 10, 5,
-				0, 5, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, locationLbl, 0, 2, 1, 1, 0, 0, 15, 5, 0,
-				5, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, locationTxtFld, 1, 2, 2, 2, 1.0, 0, 15,
-				5, 0, 5, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(c, gbl, dateLbl, 0, 0, 1, 1, 0, 0, 10, 5, 0, 5, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, canceled, 0, 3, 1, 1, 0, 0, 25, 5, 0, 5,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(c, gbl, canceledScrllPn, 1, 3, 2, 2, 1.0, 1.0,
-				25, 5, 0, 5, GridBagConstraints.BOTH,
+		GUITools.addComponent(c, gbl, dateTxtFld, 1, 0, 1, 1, 1.0, 0, 10, 5, 0, 5, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, datePicker, 2, 0, 1, 1, 0, 0, 10, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, beginLbl, 0, 1, 1, 1, 0, 0, 10, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, spinnerPanel, 1, 1, 2, 1, 1.0, 0, 10, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, locationLbl, 0, 2, 1, 1, 0, 0, 15, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, locationTxtFld, 1, 2, 2, 2, 1.0, 0, 15, 5, 0, 5, GridBagConstraints.HORIZONTAL,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, canceled, 0, 3, 1, 1, 0, 0, 25, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(c, gbl, canceledScrllPn, 1, 3, 2, 2, 1.0, 1.0, 25, 5, 0, 5, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 
 		/*
 		 * buttons for accepting and canceling
 		 */
-		JButton cancel = new JButton(_("Abort"), Data.getInstance().getIcon(
-				"buttonCancel_16x16.png"));
+		JButton cancel = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -499,10 +461,8 @@ public class MeetingDialog extends AbstractDialog {
 
 		addButton(cancel);
 
-		JButton confirm = new JButton(_("Confirm"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
-		confirm.addActionListener(ActionRegistry.getInstance().get(
-				ConfirmMeetingAction.class.getName()));
+		JButton confirm = new JButton(_("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
+		confirm.addActionListener(ActionRegistry.getInstance().get(ConfirmMeetingAction.class.getName()));
 		addButton(confirm);
 
 		setLocationToCenter();

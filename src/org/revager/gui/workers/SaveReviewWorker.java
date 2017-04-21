@@ -83,16 +83,14 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 				public void run() {
 					mainframe.switchToEditMode();
 
-					mainframe.setStatusMessage(_("Review saved successfully."),
-							false);
+					mainframe.setStatusMessage(_("Review saved successfully."), false);
 				}
 			});
 
 			UI.getInstance().setStatus(UI.Status.DATA_SAVED);
 
 			if (exitApplication) {
-				((ExitAction) ActionRegistry.getInstance().get(
-						ExitAction.class.getName())).exitApplication();
+				((ExitAction) ActionRegistry.getInstance().get(ExitAction.class.getName())).exitApplication();
 			}
 		} catch (Exception e) {
 			mainframe.notifySwitchToEditMode();
@@ -102,15 +100,13 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 				public void run() {
 					mainframe.switchToEditMode();
 
-					mainframe.setStatusMessage(_("Cannot save review file."),
-							false);
+					mainframe.setStatusMessage(_("Cannot save review file."), false);
 				}
 			});
 
-			JOptionPane.showMessageDialog(
-					UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(_("Cannot save review file.")
-							+ "\n\n" + filePath + "\n\n" + e.getMessage()),
+			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(
+							_("Cannot save review file.") + "\n\n" + filePath + "\n\n" + e.getMessage()),
 					_("Error"), JOptionPane.ERROR_MESSAGE);
 		}
 

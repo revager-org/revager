@@ -44,8 +44,8 @@ public class ManageSeveritiesAction extends AbstractAction {
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuManSev_16x16.png"));
 		putValue(NAME, _("Manage Severities"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_G, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_G, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*

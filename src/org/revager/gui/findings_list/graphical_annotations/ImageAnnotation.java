@@ -52,8 +52,7 @@ public class ImageAnnotation {
 		return textAnn;
 	}
 
-	public static ImageAnnotation newEllipseAnnotation(Color color,
-			int thickness) {
+	public static ImageAnnotation newEllipseAnnotation(Color color, int thickness) {
 		ImageAnnotation ellipse = new ImageAnnotation(Type.ELLIPSE);
 
 		ellipse.setColor(color);
@@ -64,8 +63,7 @@ public class ImageAnnotation {
 		return ellipse;
 	}
 
-	public static ImageAnnotation newRectangleAnnotation(Color color,
-			int thickness) {
+	public static ImageAnnotation newRectangleAnnotation(Color color, int thickness) {
 		ImageAnnotation rectangle = new ImageAnnotation(Type.RECTANGLE);
 
 		rectangle.setColor(color);
@@ -133,13 +131,11 @@ public class ImageAnnotation {
 		 * Check if the size is smaller than the minimum size
 		 */
 		if (size.getWidth() < MIN_SIZE.getWidth()) {
-			size = new Dimension((int) MIN_SIZE.getWidth(), (int) size
-					.getHeight());
+			size = new Dimension((int) MIN_SIZE.getWidth(), (int) size.getHeight());
 		}
 
 		if (size.getHeight() < MIN_SIZE.getHeight()) {
-			size = new Dimension((int) size.getWidth(), (int) MIN_SIZE
-					.getHeight());
+			size = new Dimension((int) size.getWidth(), (int) MIN_SIZE.getHeight());
 		}
 
 		/*
@@ -255,8 +251,7 @@ public class ImageAnnotation {
 
 	public void draw(Graphics2D g2, boolean tranparent) {
 		if (tranparent) {
-			g2.setColor(new Color(color.getRed(), color.getGreen(), color
-					.getBlue(), 150));
+			g2.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), 150));
 		} else {
 			g2.setColor(color);
 		}
@@ -274,10 +269,8 @@ public class ImageAnnotation {
 			g2.fill(shape);
 			break;
 		case TEXT:
-			g2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int) (size
-					.getWidth() / 1.4)));
-			g2.drawString(text,
-					(int) (position.getX() + MIN_SIZE.getWidth() + 2),
+			g2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int) (size.getWidth() / 1.4)));
+			g2.drawString(text, (int) (position.getX() + MIN_SIZE.getWidth() + 2),
 					(int) (position.getY() + MIN_SIZE.getHeight() - 2));
 			break;
 

@@ -124,16 +124,14 @@ public class StrengthPopupWindow extends JDialog {
 		cateList = new ArrayList<String>();
 
 		try {
-			for (AppCatalog appCat : Data.getInstance().getAppData()
-					.getCatalogs()) {
+			for (AppCatalog appCat : Data.getInstance().getAppData().getCatalogs()) {
 				for (String cate : appCat.getCategories()) {
 					if (!cateList.contains(cate))
 						cateList.add(cate);
 				}
 			}
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -157,8 +155,7 @@ public class StrengthPopupWindow extends JDialog {
 			}
 		});
 
-		JButton buttonClear = GUITools.newImageButton(Data.getInstance()
-				.getIcon("clear_22x22_0.png"),
+		JButton buttonClear = GUITools.newImageButton(Data.getInstance().getIcon("clear_22x22_0.png"),
 				Data.getInstance().getIcon("clear_22x22.png"));
 		buttonClear.setToolTipText(_("Reset filter"));
 		buttonClear.addActionListener(new ActionListener() {
@@ -176,18 +173,14 @@ public class StrengthPopupWindow extends JDialog {
 
 		creatingAllCatePnl();
 
-		GUITools.addComponent(panelContent, gbl, labelFilter, 0, 0, 2, 1, 0, 0,
-				10, 5, 0, 5, GridBagConstraints.NONE,
+		GUITools.addComponent(panelContent, gbl, labelFilter, 0, 0, 2, 1, 0, 0, 10, 5, 0, 5, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gbl, filterTxtFld, 0, 1, 1, 1, 1.0,
-				0, 5, 5, 10, 5, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gbl, buttonClear, 1, 1, 1, 1, 0.0,
-				0, 5, 0, 10, 5, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gbl, panelCateList, 0, 2, 2, 1,
-				1.0, 1.0, 5, 5, 10, 5, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelContent, gbl, filterTxtFld, 0, 1, 1, 1, 1.0, 0, 5, 5, 10, 5,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelContent, gbl, buttonClear, 1, 1, 1, 1, 0.0, 0, 5, 0, 10, 5,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelContent, gbl, panelCateList, 0, 2, 2, 1, 1.0, 1.0, 5, 5, 10, 5,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 
 		panelBase.add(panelContent, BorderLayout.CENTER);
 
@@ -195,22 +188,16 @@ public class StrengthPopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
-		buttonAbort.addActionListener(new StrengthPopupWindowAction(this,
-				ButtonClicked.ABORT));
+		buttonAbort.addActionListener(new StrengthPopupWindowAction(this, ButtonClicked.ABORT));
 
 		JButton buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
-		buttonConfirm.addActionListener(new StrengthPopupWindowAction(this,
-				ButtonClicked.OK));
+		buttonConfirm.addActionListener(new StrengthPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
@@ -280,16 +267,14 @@ public class StrengthPopupWindow extends JDialog {
 		cateList.clear();
 
 		try {
-			for (AppCatalog appCat : Data.getInstance().getAppData()
-					.getCatalogs()) {
+			for (AppCatalog appCat : Data.getInstance().getAppData().getCatalogs()) {
 				for (String cate : appCat.getCategories(filterTxtFld.getText())) {
 					if (!cateList.contains(cate))
 						cateList.add(cate);
 				}
 			}
 		} catch (Exception exc) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(exc.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -327,12 +312,10 @@ public class StrengthPopupWindow extends JDialog {
 
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					if (e.getStateChange() == ItemEvent.SELECTED
-							&& !selCateList.contains(localSelCate)) {
+					if (e.getStateChange() == ItemEvent.SELECTED && !selCateList.contains(localSelCate)) {
 						selCateList.add(localSelCate);
 
-					} else if (e.getStateChange() == ItemEvent.DESELECTED
-							&& selCateList.contains(localSelCate)) {
+					} else if (e.getStateChange() == ItemEvent.DESELECTED && selCateList.contains(localSelCate)) {
 
 						selCateList.remove(localSelCate);
 
@@ -348,17 +331,15 @@ public class StrengthPopupWindow extends JDialog {
 				}
 			});
 
-			GUITools.addComponent(selCatePnl, gbl, cateBx, 0, -1, 1, 1, 1.0, 0,
-					5, 0, 5, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(selCatePnl, gbl, cateBx, 0, -1, 1, 1, 1.0, 0, 5, 0, 5, 0,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 			categoriesAdded++;
 		}
 
 		if (!selCateList.isEmpty()) {
-			GUITools.addComponent(catePnl, gbl, new JSeparator(), 0, -1, 1, 1,
-					1.0, 0, 5, 0, 5, 5, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(catePnl, gbl, new JSeparator(), 0, -1, 1, 1, 1.0, 0, 5, 0, 5, 5,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 
 		for (String cate : cateList) {
@@ -377,8 +358,7 @@ public class StrengthPopupWindow extends JDialog {
 
 					@Override
 					public void itemStateChanged(ItemEvent e) {
-						if (e.getStateChange() == ItemEvent.SELECTED
-								&& !selCateList.contains(localCate)) {
+						if (e.getStateChange() == ItemEvent.SELECTED && !selCateList.contains(localCate)) {
 							selCateList.add(localCate);
 
 							panelCateList.removeAll();
@@ -389,8 +369,7 @@ public class StrengthPopupWindow extends JDialog {
 							selCatePnl.validate();
 							panelCateList.validate();
 							panelContent.repaint();
-						} else if (e.getStateChange() == ItemEvent.DESELECTED
-								&& selCateList.contains(localCate)) {
+						} else if (e.getStateChange() == ItemEvent.DESELECTED && selCateList.contains(localCate)) {
 
 							selCateList.remove(localCate);
 
@@ -398,21 +377,18 @@ public class StrengthPopupWindow extends JDialog {
 					}
 				});
 
-				GUITools.addComponent(catePnl, gbl, cateBx, 0, -1, 1, 1, 1.0,
-						0, 5, 0, 5, 0, GridBagConstraints.HORIZONTAL,
-						GridBagConstraints.NORTHWEST);
+				GUITools.addComponent(catePnl, gbl, cateBx, 0, -1, 1, 1, 1.0, 0, 5, 0, 5, 0,
+						GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 				categoriesAdded++;
 			}
 
 		}
 
-		GUITools.addComponent(panelCateList, gbl, selCatePnl, 0, -1, 1, 1, 1.0,
-				0, 5, 0, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelCateList, gbl, catePnl, 0, -1, 1, 1, 1.0,
-				1.0, 5, 0, 10, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelCateList, gbl, selCatePnl, 0, -1, 1, 1, 1.0, 0, 5, 0, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelCateList, gbl, catePnl, 0, -1, 1, 1, 1.0, 1.0, 5, 0, 10, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 	}
 
 }

@@ -56,8 +56,7 @@ public class LoadReviewWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		final boolean showAssistantDialog = UI.getInstance()
-				.getAssistantDialog().isVisible();
+		final boolean showAssistantDialog = UI.getInstance().getAssistantDialog().isVisible();
 		final MainFrame mainframe = UI.getInstance().getMainFrame();
 
 		mainframe.notifySwitchToProgressMode();
@@ -83,8 +82,7 @@ public class LoadReviewWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					mainframe.setStatusMessage(
-							_("Review loaded successfully."), false);
+					mainframe.setStatusMessage(_("Review loaded successfully."), false);
 
 					mainframe.switchToEditMode();
 				}
@@ -95,24 +93,20 @@ public class LoadReviewWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					mainframe.setStatusMessage(_("No review in process."),
-							false);
+					mainframe.setStatusMessage(_("No review in process."), false);
 
 					mainframe.switchToClearMode();
 				}
 			});
 
-			JOptionPane.showMessageDialog(
-					null,
-					GUITools.getMessagePane(_("Cannot load review file.")
-							+ "\n\n" + e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(_("Cannot load review file.") + "\n\n" + e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAssistantDialog()
-							.setVisible(showAssistantDialog);
+					UI.getInstance().getAssistantDialog().setVisible(showAssistantDialog);
 				}
 			});
 		}

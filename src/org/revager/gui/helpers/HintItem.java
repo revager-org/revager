@@ -48,8 +48,7 @@ public class HintItem {
 	 * @param helpChapterAnchor
 	 *            the help chapter anchor
 	 */
-	public HintItem(String text, int type, String helpChapter,
-			String helpChapterAnchor) {
+	public HintItem(String text, int type, String helpChapter, String helpChapterAnchor) {
 		super();
 
 		this.text = text;

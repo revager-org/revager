@@ -90,8 +90,7 @@ public abstract class CSVExporter {
 		writeContent();
 
 		try {
-			OutputStreamWriter writer = new OutputStreamWriter(
-					new FileOutputStream(filePath), "UTF-8");
+			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8");
 
 			StringBuilder csvLine = new StringBuilder();
 

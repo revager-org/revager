@@ -55,8 +55,7 @@ public class Arrow2D extends RectangularShape {
 	public Arrow2D() {
 	}
 
-	public Arrow2D(final double x, final double y, final double width,
-			final double height) {
+	public Arrow2D(final double x, final double y, final double width, final double height) {
 		this.minX = x;
 		this.minY = y;
 		this.length = width;
@@ -123,8 +122,7 @@ public class Arrow2D extends RectangularShape {
 	}
 
 	@Override
-	public void setFrame(final double x, final double y, final double width,
-			final double height) {
+	public void setFrame(final double x, final double y, final double width, final double height) {
 		this.minX = x;
 		this.minY = y;
 		this.length = width;
@@ -166,15 +164,12 @@ public class Arrow2D extends RectangularShape {
 	}
 
 	@Override
-	public boolean contains(final double x, final double y, final double width,
-			final double height) {
-		return contains(x, y) && contains(x + width, y)
-				&& contains(x + width, y + height) && contains(x, y + height);
+	public boolean contains(final double x, final double y, final double width, final double height) {
+		return contains(x, y) && contains(x + width, y) && contains(x + width, y + height) && contains(x, y + height);
 	}
 
 	@Override
-	public boolean intersects(final double x, final double y,
-			final double width, final double height) {
+	public boolean intersects(final double x, final double y, final double width, final double height) {
 		final double right = x + width;
 		final double maxX = minX + length;
 		if (x <= maxX && right >= minX) {
@@ -205,14 +200,12 @@ public class Arrow2D extends RectangularShape {
 					double yMaxAtX = 0.5 * thickness;
 					final double centerY = minY + yMaxAtX;
 					if (y >= centerY) {
-						yMaxAtX *= sy0 + (sy1 - sy0)
-								* ((x - minX) / (base - minX));
+						yMaxAtX *= sy0 + (sy1 - sy0) * ((x - minX) / (base - minX));
 						if (!(y - centerY <= yMaxAtX)) {
 							return false;
 						}
 					} else if (top <= centerY) {
-						yMaxAtX *= sy0 + (sy1 - sy0)
-								* ((x - minX) / (base - minX));
+						yMaxAtX *= sy0 + (sy1 - sy0) * ((x - minX) / (base - minX));
 						if (!(centerY - top <= yMaxAtX)) {
 							return false;
 						}
@@ -225,8 +218,7 @@ public class Arrow2D extends RectangularShape {
 	}
 
 	@Override
-	public PathIterator getPathIterator(final AffineTransform at,
-			final double flatness) {
+	public PathIterator getPathIterator(final AffineTransform at, final double flatness) {
 		return new Iterator(at);
 	}
 
@@ -239,8 +231,7 @@ public class Arrow2D extends RectangularShape {
 
 		private final AffineTransform at;
 
-		private final double halfBottom0, halfBottom1, center, halfTop1,
-				halfTop0, base;
+		private final double halfBottom0, halfBottom1, center, halfTop1, halfTop0, base;
 
 		private int code;
 
@@ -373,20 +364,13 @@ public class Arrow2D extends RectangularShape {
 		}
 		if (obj != null && getClass().equals(obj.getClass())) {
 			final Arrow2D cast = (Arrow2D) obj;
-			return Double.doubleToLongBits(thickness) == Double
-					.doubleToLongBits(cast.thickness)
-					&& Double.doubleToLongBits(length) == Double
-							.doubleToLongBits(cast.length)
-					&& Double.doubleToLongBits(minX) == Double
-							.doubleToLongBits(cast.minX)
-					&& Double.doubleToLongBits(minY) == Double
-							.doubleToLongBits(cast.minY)
-					&& Double.doubleToLongBits(sx) == Double
-							.doubleToLongBits(cast.sx)
-					&& Double.doubleToLongBits(sy0) == Double
-							.doubleToLongBits(cast.sy1)
-					&& Double.doubleToLongBits(sy1) == Double
-							.doubleToLongBits(cast.sy0);
+			return Double.doubleToLongBits(thickness) == Double.doubleToLongBits(cast.thickness)
+					&& Double.doubleToLongBits(length) == Double.doubleToLongBits(cast.length)
+					&& Double.doubleToLongBits(minX) == Double.doubleToLongBits(cast.minX)
+					&& Double.doubleToLongBits(minY) == Double.doubleToLongBits(cast.minY)
+					&& Double.doubleToLongBits(sx) == Double.doubleToLongBits(cast.sx)
+					&& Double.doubleToLongBits(sy0) == Double.doubleToLongBits(cast.sy1)
+					&& Double.doubleToLongBits(sy1) == Double.doubleToLongBits(cast.sy0);
 		} else {
 			return false;
 		}
@@ -395,13 +379,9 @@ public class Arrow2D extends RectangularShape {
 	@Override
 	public int hashCode() {
 		final long code = Double.doubleToLongBits(thickness)
-				+ 37
-				* (Double.doubleToLongBits(length) + 37 * (Double
-						.doubleToLongBits(minX) + 37 * (Double
-						.doubleToLongBits(minY) + 37 * (Double
-						.doubleToLongBits(sx) + 37 * (Double
-						.doubleToLongBits(sy0) + 37 * (Double
-						.doubleToLongBits(sy1)))))));
+				+ 37 * (Double.doubleToLongBits(length) + 37 * (Double.doubleToLongBits(minX)
+						+ 37 * (Double.doubleToLongBits(minY) + 37 * (Double.doubleToLongBits(sx)
+								+ 37 * (Double.doubleToLongBits(sy0) + 37 * (Double.doubleToLongBits(sy1)))))));
 		return (int) code + (int) (code >>> 32);
 	}
 

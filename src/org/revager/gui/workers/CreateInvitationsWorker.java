@@ -47,8 +47,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		final CreateInvitationsDialog dialog = UI.getInstance()
-				.getCreateInvitationsDialog();
+		final CreateInvitationsDialog dialog = UI.getInstance().getCreateInvitationsDialog();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -57,8 +56,7 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 			}
 		});
 
-		if (!dialog.getSelectedPath().trim().equals("")
-				&& !dialog.getSelectedAttendees().isEmpty()) {
+		if (!dialog.getSelectedPath().trim().equals("") && !dialog.getSelectedAttendees().isEmpty()) {
 			dialog.notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
@@ -83,11 +81,8 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 						type = InvitationType.ZIP;
 					}
 
-					Application
-							.getInstance()
-							.getImportExportCtl()
-							.exportInvitations(dialog.getSelectedPath(), type,
-									meeting, att, attachProdRefs);
+					Application.getInstance().getImportExportCtl().exportInvitations(dialog.getSelectedPath(), type,
+							meeting, att, attachProdRefs);
 				}
 			} catch (Exception exc) {
 				dialog.notifySwitchToEditMode();
@@ -99,9 +94,8 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 					}
 				});
 
-				JOptionPane.showMessageDialog(UI.getInstance()
-						.getExportCSVDialog(), GUITools.getMessagePane(exc
-						.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(UI.getInstance().getExportCSVDialog(),
+						GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 			}
 
 			dialog.notifySwitchToEditMode();
@@ -112,11 +106,8 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 					dialog.setVisible(false);
 					dialog.switchToEditMode();
 
-					UI.getInstance()
-							.getMainFrame()
-							.setStatusMessage(
-									_("The invitations have been created successfully."),
-									false);
+					UI.getInstance().getMainFrame()
+							.setStatusMessage(_("The invitations have been created successfully."), false);
 				}
 			});
 
@@ -127,7 +118,8 @@ public class CreateInvitationsWorker extends SwingWorker<Void, Void> {
 				public void run() {
 					if (dialog.getSelectedAttendees().isEmpty()) {
 						dialog.markAttScrollPane();
-						dialog.setMessage(_("You have to choose at least one attendee in order to create an invitation."));
+						dialog.setMessage(
+								_("You have to choose at least one attendee in order to create an invitation."));
 
 						return;
 					}

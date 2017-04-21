@@ -5,29 +5,25 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-
 package org.revager.app.model.schema;
 
 import java.util.Calendar;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-public class Adapter3
-    extends XmlAdapter<String, Calendar>
-{
+public class Adapter3 extends XmlAdapter<String, Calendar> {
 
-
-    @Override
+	@Override
 	public Calendar unmarshal(String value) {
-        return (javax.xml.bind.DatatypeConverter.parseTime(value));
-    }
+		return (javax.xml.bind.DatatypeConverter.parseTime(value));
+	}
 
-    @Override
+	@Override
 	public String marshal(Calendar value) {
-        if (value == null) {
-            return null;
-        }
-        return (javax.xml.bind.DatatypeConverter.printTime(value));
-    }
+		if (value == null) {
+			return null;
+		}
+		return (javax.xml.bind.DatatypeConverter.printTime(value));
+	}
 
 }

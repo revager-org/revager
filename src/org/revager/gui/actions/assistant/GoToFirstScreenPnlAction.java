@@ -25,8 +25,8 @@ import javax.swing.AbstractAction;
 import org.revager.gui.UI;
 
 /**
- * The Class GoToFirstScreenPnlAction. Calling this action will set the assistant to
- * the FirstScreenPanel.
+ * The Class GoToFirstScreenPnlAction. Calling this action will set the
+ * assistant to the FirstScreenPanel.
  * 
  * @author D.Casciato
  *
@@ -42,12 +42,12 @@ public class GoToFirstScreenPnlAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAssistantDialog().setCurrentPnl(
-				UI.getInstance().getAssistantDialog().getFirstScreenPanel());
+		UI.getInstance().getAssistantDialog()
+				.setCurrentPnl(UI.getInstance().getAssistantDialog().getFirstScreenPanel());
 		UI.getInstance().getAssistantDialog().updateMessage();
 		UI.getInstance().getAssistantDialog().updateContents();
 		UI.getInstance().getAssistantDialog().updateWizardBttns();
-		
+
 		UI.getInstance().getAssistantDialog().setInstantReview(false);
 	}
 

@@ -24,7 +24,6 @@ import javax.swing.AbstractAction;
 
 import org.revager.gui.UI;
 
-
 /**
  * The Class EditAttendeeAction.
  */
@@ -39,8 +38,7 @@ public class EditAttendeeAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance().getAttendeeDialog().setCurrentAttendee(
-				UI.getInstance().getMainFrame().getSelectedAttendee());
+		UI.getInstance().getAttendeeDialog().setCurrentAttendee(UI.getInstance().getMainFrame().getSelectedAttendee());
 		UI.getInstance().getAttendeeDialog().setVisible(true);
 	}
 

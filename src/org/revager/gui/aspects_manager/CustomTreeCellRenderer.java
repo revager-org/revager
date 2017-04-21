@@ -28,8 +28,7 @@ import it.cnr.imaa.essi.lablib.gui.checkboxtree.CheckboxTreeCellRenderer;
 public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 
 	final ImageIcon ASP_ICON = Data.getInstance().getIcon("aspect_15x15.png");
-	final ImageIcon CATE_ICON = Data.getInstance()
-			.getIcon("category_15x15.png");
+	final ImageIcon CATE_ICON = Data.getInstance().getIcon("category_15x15.png");
 	final ImageIcon CATA_ICON = Data.getInstance().getIcon("catalog_20x20.png");
 
 	private JPanel rendererPanel;
@@ -52,13 +51,11 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		check.setBackground(UIManager.getColor("Tree.textBackground"));
 		label.setForeground(UIManager.getColor("Tree.textForeground"));// Tree.selectionForeground
 	}
-	
+
 	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
-			boolean isSelected, boolean expanded, boolean leaf, int row,
-			boolean hasFocus) {
-		String stringValue = tree.convertValueToText(value, isSelected,
-				expanded, leaf, row, hasFocus);
+	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean isSelected, boolean expanded,
+			boolean leaf, int row, boolean hasFocus) {
+		String stringValue = tree.convertValueToText(value, isSelected, expanded, leaf, row, hasFocus);
 		rendererPanel.setEnabled(tree.isEnabled());
 		check.setSelected(((CheckNode) value).isSelected());
 		label.setFont(tree.getFont());
@@ -88,7 +85,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 
 		return (check.getBounds().contains(x, y));
 	}
-	
+
 	/**
 	 * Gets the preferred size.
 	 * 
@@ -98,8 +95,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		Dimension d_check = check.getPreferredSize();
 		Dimension d_label = label.getPreferredSize();
 		return new Dimension(d_check.width + d_label.width,
-				(d_check.height < d_label.height ? d_label.height + 2
-						: d_check.height + 2));
+				(d_check.height < d_label.height ? d_label.height + 2 : d_check.height + 2));
 	}
 
 	/**
@@ -138,7 +134,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 	 */
 	@SuppressWarnings("serial")
 	public class TreeLabel extends JLabel {
-		
+
 		boolean isSelected;
 
 		boolean hasFocus;
@@ -176,8 +172,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 			if ((str = getText()) != null) {
 				if (0 < str.length()) {
 					if (isSelected) {
-						g.setColor(UIManager
-								.getColor("Tree.selectionBackground"));
+						g.setColor(UIManager.getColor("Tree.selectionBackground"));
 					} else {
 						g.setColor(UIManager.getColor("Tree.textBackground"));
 					}
@@ -189,17 +184,14 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 					Icon currentI = getIcon();
 
 					if (currentI != null) {
-						imageOffset = currentI.getIconWidth()
-								+ Math.max(0, getIconTextGap() - 3);
+						imageOffset = currentI.getIconWidth() + Math.max(0, getIconTextGap() - 3);
 					}
 
 					g.fillRect(imageOffset, 2, d.width - 1 - imageOffset, 21);
 
 					if (hasFocus) {
-						g.setColor(UIManager
-								.getColor("Tree.selectionBorderColor"));
-						g.drawRect(imageOffset, 2, d.width - 1 - imageOffset,
-								20);
+						g.setColor(UIManager.getColor("Tree.selectionBorderColor"));
+						g.drawRect(imageOffset, 2, d.width - 1 - imageOffset, 20);
 					}
 				}
 			}
@@ -216,8 +208,7 @@ public class CustomTreeCellRenderer implements CheckboxTreeCellRenderer {
 		public Dimension getPreferredSize() {
 			Dimension retDimension = super.getPreferredSize();
 			if (retDimension != null) {
-				retDimension = new Dimension(retDimension.width,
-						retDimension.height);
+				retDimension = new Dimension(retDimension.width, retDimension.height);
 			}
 			return retDimension;
 		}

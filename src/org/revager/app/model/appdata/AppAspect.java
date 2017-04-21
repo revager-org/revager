@@ -74,8 +74,8 @@ public class AppAspect {
 	 * @throws DataException
 	 *             If an error occurs while creating the aspect
 	 */
-	public AppAspect(AppCatalog catalog, String directive, String description,
-			String categoryName) throws DataException {
+	public AppAspect(AppCatalog catalog, String directive, String description, String categoryName)
+			throws DataException {
 		super();
 
 		this.catalog = catalog;
@@ -88,10 +88,8 @@ public class AppAspect {
 			/*
 			 * Add new aspect
 			 */
-			PreparedStatement ps = conn
-					.prepareStatement("INSERT INTO Aspects "
-							+ "(directive, description, categoryName, catalogName, sortPos) "
-							+ "VALUES (?, ?, ?, ?, ?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO Aspects "
+					+ "(directive, description, categoryName, catalogName, sortPos) " + "VALUES (?, ?, ?, ?, ?)");
 
 			ps.setString(1, directive);
 			ps.setString(2, description);
@@ -105,8 +103,8 @@ public class AppAspect {
 			 * Add category if it does not exist
 			 */
 			if (!catalog.isCategory(categoryName)) {
-				ps = conn.prepareStatement("INSERT INTO Categories "
-						+ "(name, catalogName, sortPos) " + "VALUES (?, ?, ?)");
+				ps = conn.prepareStatement(
+						"INSERT INTO Categories " + "(name, catalogName, sortPos) " + "VALUES (?, ?, ?)");
 
 				ps.setString(1, categoryName);
 				ps.setString(2, this.catalog.getName());
@@ -118,9 +116,8 @@ public class AppAspect {
 			/*
 			 * Get ID of newly added AppAspect
 			 */
-			ps = conn.prepareStatement("SELECT id FROM Aspects "
-					+ "WHERE sortPos = ? AND categoryName = ? "
-					+ "AND catalogName = ?");
+			ps = conn.prepareStatement(
+					"SELECT id FROM Aspects " + "WHERE sortPos = ? AND categoryName = ? " + "AND catalogName = ?");
 
 			ps.setInt(1, sortPos);
 			ps.setString(2, categoryName);
@@ -142,8 +139,7 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot add new aspect.")
-					+ " [DIRECTIVE = " + directive + "] " + e.getMessage());
+			throw new DataException(_("Cannot add new aspect.") + " [DIRECTIVE = " + directive + "] " + e.getMessage());
 		}
 	}
 
@@ -205,9 +201,7 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT directive FROM Aspects "
-							+ "WHERE id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT directive FROM Aspects " + "WHERE id = ?");
 			ps.setInt(1, this.id);
 
 			ResultSet res = ps.executeQuery();
@@ -220,8 +214,8 @@ public class AppAspect {
 			ps.close();
 			conn.close();
 		} catch (Exception e) {
-			throw new DataException(_("Cannot read directive of the aspect.")
-					+ " [ASPECT_ID = " + this.id + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot read directive of the aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 		}
 
 		return directive;
@@ -240,8 +234,7 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn.prepareStatement("UPDATE Aspects "
-					+ "SET directive=? WHERE id=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE Aspects " + "SET directive=? WHERE id=?");
 			ps.setString(1, dir);
 			ps.setInt(2, this.id);
 
@@ -256,8 +249,8 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot store directive of the aspect.")
-					+ " [ASPECT_ID = " + this.id + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot store directive of the aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 		}
 	}
 
@@ -275,9 +268,7 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT description FROM Aspects "
-							+ "WHERE id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT description FROM Aspects " + "WHERE id = ?");
 			ps.setInt(1, this.id);
 
 			ResultSet res = ps.executeQuery();
@@ -294,8 +285,8 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot read description of the aspect.")
-					+ " [ASPECT_ID = " + this.id + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot read description of the aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 		}
 
 		return description;
@@ -314,8 +305,7 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn.prepareStatement("UPDATE Aspects "
-					+ "SET description=? WHERE id=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE Aspects " + "SET description=? WHERE id=?");
 			ps.setString(1, desc);
 			ps.setInt(2, this.id);
 
@@ -331,9 +321,7 @@ public class AppAspect {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("Cannot store description of the aspect.")
-							+ " [ASPECT_ID = " + this.id + "] "
-							+ e.getMessage());
+					_("Cannot store description of the aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 		}
 	}
 
@@ -351,17 +339,14 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT catalogName FROM Aspects "
-							+ "WHERE id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT catalogName FROM Aspects " + "WHERE id = ?");
 			ps.setInt(1, this.id);
 
 			ResultSet res = ps.executeQuery();
 
 			res.next();
 
-			catalog = Data.getInstance().getAppData()
-					.getCatalog(res.getString("catalogName"));
+			catalog = Data.getInstance().getAppData().getCatalog(res.getString("catalogName"));
 
 			res.close();
 			ps.close();
@@ -391,9 +376,7 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT categoryName FROM Aspects "
-							+ "WHERE id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT categoryName FROM Aspects " + "WHERE id = ?");
 			ps.setInt(1, this.id);
 
 			ResultSet res = ps.executeQuery();
@@ -410,8 +393,8 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot read category of the aspect.")
-					+ " [ASPECT_ID = " + this.id + "] " + e.getMessage());
+			throw new DataException(
+					_("Cannot read category of the aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 		}
 
 		return category;
@@ -431,8 +414,7 @@ public class AppAspect {
 
 		if (!currentCat.equals(cat)) {
 			try {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 
 				PreparedStatement ps;
 
@@ -440,8 +422,8 @@ public class AppAspect {
 				 * Add new category
 				 */
 				if (this.catalog.isCategory(cat) == false) {
-					ps = conn.prepareStatement("INSERT INTO Categories "
-							+ "(name, catalogName, sortPos) VALUES (?, ?, ?)");
+					ps = conn.prepareStatement(
+							"INSERT INTO Categories " + "(name, catalogName, sortPos) VALUES (?, ?, ?)");
 					ps.setString(1, cat);
 					ps.setString(2, this.catalog.getName());
 					ps.setInt(3, this.catalog.getLastSortPosOfCategories() + 1);
@@ -451,8 +433,7 @@ public class AppAspect {
 				/*
 				 * Update aspect
 				 */
-				ps = conn.prepareStatement("UPDATE Aspects "
-						+ "SET categoryName=?, sortPos=? WHERE id=?");
+				ps = conn.prepareStatement("UPDATE Aspects " + "SET categoryName=?, sortPos=? WHERE id=?");
 				ps.setString(1, cat);
 				ps.setInt(2, this.catalog.getLastSortPosOfAspects(cat) + 1);
 				ps.setInt(3, this.id);
@@ -462,8 +443,7 @@ public class AppAspect {
 				 * Remove old category
 				 */
 				if (this.catalog.getNumberOfAspects(currentCat) == 0) {
-					ps = conn.prepareStatement("DELETE FROM Categories "
-							+ "WHERE name = ? AND catalogName = ?");
+					ps = conn.prepareStatement("DELETE FROM Categories " + "WHERE name = ? AND catalogName = ?");
 					ps.setString(1, currentCat);
 					ps.setString(2, catalog.getName());
 					ps.executeUpdate();
@@ -479,9 +459,7 @@ public class AppAspect {
 				 * thrown if there occurs an internal error.
 				 */
 				throw new DataException(
-						_("Cannot store category of the aspect.")
-								+ " [ASPECT_ID = " + this.id + "] "
-								+ e.getMessage());
+						_("Cannot store category of the aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 			}
 		}
 	}
@@ -502,26 +480,22 @@ public class AppAspect {
 
 		if (mode == PushMode.UP) {
 			pushSortPos = getSortPosOfPredecessor();
-			doPush = curSortPos > catalog
-					.getFirstSortPosOfAspects(getCategory());
+			doPush = curSortPos > catalog.getFirstSortPosOfAspects(getCategory());
 		} else if (mode == PushMode.DOWN) {
 			pushSortPos = getSortPosOfSuccessor();
-			doPush = curSortPos < catalog
-					.getLastSortPosOfAspects(getCategory());
+			doPush = curSortPos < catalog.getLastSortPosOfAspects(getCategory());
 		}
 
 		if (doPush) {
 			try {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 				conn.setAutoCommit(false);
 
 				/*
 				 * Update sorting position of the other element
 				 */
-				PreparedStatement ps = conn
-						.prepareStatement("UPDATE Aspects "
-								+ "SET sortPos=? WHERE sortPos=? AND catalogName=? AND categoryName=?");
+				PreparedStatement ps = conn.prepareStatement(
+						"UPDATE Aspects " + "SET sortPos=? WHERE sortPos=? AND catalogName=? AND categoryName=?");
 				ps.setInt(1, curSortPos);
 				ps.setInt(2, pushSortPos);
 				ps.setString(3, catalog.getName());
@@ -531,8 +505,7 @@ public class AppAspect {
 				/*
 				 * Update sorting position of this element
 				 */
-				ps = conn.prepareStatement("UPDATE Aspects "
-						+ "SET sortPos=? WHERE id=?");
+				ps = conn.prepareStatement("UPDATE Aspects " + "SET sortPos=? WHERE id=?");
 				ps.setInt(1, pushSortPos);
 				ps.setInt(2, id);
 				ps.executeUpdate();
@@ -548,8 +521,8 @@ public class AppAspect {
 				 * Not part of the unit testing, because this exception is only
 				 * thrown if there occurs an internal error.
 				 */
-				throw new DataException(_("Cannot move selected aspect.")
-						+ " [ASPECT_ID = " + this.id + "] " + e.getMessage());
+				throw new DataException(
+						_("Cannot move selected aspect.") + " [ASPECT_ID = " + this.id + "] " + e.getMessage());
 			}
 		}
 	}
@@ -612,9 +585,7 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT sortPos FROM Aspects "
-							+ "WHERE id = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT sortPos FROM Aspects " + "WHERE id = ?");
 			ps.setInt(1, this.id);
 
 			ResultSet res = ps.executeQuery();
@@ -631,10 +602,8 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get sorting position of the aspect.")
-							+ " [ASPECT_ID = " + this.id + "] "
-							+ e.getMessage());
+			throw new DataException(_("Cannot get sorting position of the aspect.") + " [ASPECT_ID = " + this.id + "] "
+					+ e.getMessage());
 		}
 
 		return sortPos;
@@ -654,10 +623,8 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT sortPos FROM Aspects "
-							+ "WHERE sortPos < ? AND categoryName = ? AND catalogName = ? "
-							+ "ORDER BY sortPos DESC");
+			PreparedStatement ps = conn.prepareStatement("SELECT sortPos FROM Aspects "
+					+ "WHERE sortPos < ? AND categoryName = ? AND catalogName = ? " + "ORDER BY sortPos DESC");
 			ps.setInt(1, getSortPos());
 			ps.setString(2, getCategory());
 			ps.setString(3, catalog.getName());
@@ -677,10 +644,8 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get sorting position of the aspect.")
-							+ " [ASPECT_ID = " + this.id + "] "
-							+ e.getMessage());
+			throw new DataException(_("Cannot get sorting position of the aspect.") + " [ASPECT_ID = " + this.id + "] "
+					+ e.getMessage());
 		}
 
 		return sortPos;
@@ -700,10 +665,8 @@ public class AppAspect {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT sortPos FROM Aspects "
-							+ "WHERE sortPos > ? AND categoryName = ? AND catalogName = ? "
-							+ "ORDER BY sortPos ASC");
+			PreparedStatement ps = conn.prepareStatement("SELECT sortPos FROM Aspects "
+					+ "WHERE sortPos > ? AND categoryName = ? AND catalogName = ? " + "ORDER BY sortPos ASC");
 			ps.setInt(1, getSortPos());
 			ps.setString(2, getCategory());
 			ps.setString(3, catalog.getName());
@@ -723,10 +686,8 @@ public class AppAspect {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get sorting position of the aspect.")
-							+ " [ASPECT_ID = " + this.id + "] "
-							+ e.getMessage());
+			throw new DataException(_("Cannot get sorting position of the aspect.") + " [ASPECT_ID = " + this.id + "] "
+					+ e.getMessage());
 		}
 
 		return sortPos;

@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.StrengthPopupWindow;
 import org.revager.gui.StrengthPopupWindow.ButtonClicked;
 
-
 /**
  * The Class StrengthPopupWindowAction.
  */
@@ -44,8 +43,7 @@ public class StrengthPopupWindowAction extends AbstractAction {
 	 * @param buttonClk
 	 *            the button clk
 	 */
-	public StrengthPopupWindowAction(StrengthPopupWindow popupWin,
-			ButtonClicked buttonClk) {
+	public StrengthPopupWindowAction(StrengthPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

@@ -45,8 +45,7 @@ public class CommentMeetingAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		MainFrame mainframe = UI.getInstance().getMainFrame();
 
-		if (mainframe.getSelectedMeeting() == null
-				&& mainframe.getSelectedProtocol() == null) {
+		if (mainframe.getSelectedMeeting() == null && mainframe.getSelectedProtocol() == null) {
 			return;
 		}
 
@@ -58,9 +57,8 @@ public class CommentMeetingAction extends AbstractAction {
 			comments = mainframe.getSelectedProtocol().getComments();
 		}
 
-		TextPopupWindow popup = new TextPopupWindow(UI.getInstance()
-				.getMainFrame(), _("Comments on the selected meeting:"),
-				comments, true);
+		TextPopupWindow popup = new TextPopupWindow(UI.getInstance().getMainFrame(),
+				_("Comments on the selected meeting:"), comments, true);
 
 		popup.setVisible(true);
 

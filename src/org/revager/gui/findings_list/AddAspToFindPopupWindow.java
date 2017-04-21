@@ -65,8 +65,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 	private List<Aspect> resiAspList;
 	private List<Aspect> selAspList;
 
-	private AspectManagement aspectMgmt = Application.getInstance()
-			.getAspectMgmt();
+	private AspectManagement aspectMgmt = Application.getInstance().getAspectMgmt();
 	private JTextField filterTxtFld;
 
 	private JPanel aspPnl = new JPanel(gbl);
@@ -160,14 +159,11 @@ public class AddAspToFindPopupWindow extends JDialog {
 
 		creatingAllAspPnl();
 
-		GUITools.addComponent(panelContent, gbl, aspFilLbl, 0, 0, 1, 1, 0, 0,
-				5, 5, 0, 5, GridBagConstraints.NONE,
+		GUITools.addComponent(panelContent, gbl, aspFilLbl, 0, 0, 1, 1, 0, 0, 5, 5, 0, 5, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gbl, filterTxtFld, 0, 1, 1, 1, 1.0,
-				0, 5, 5, 10, 5, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gbl, allAspPnl, 0, 3, 1, 1, 1.0,
-				1.0, 5, 5, 10, 5, GridBagConstraints.BOTH,
+		GUITools.addComponent(panelContent, gbl, filterTxtFld, 0, 1, 1, 1, 1.0, 0, 5, 5, 10, 5,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelContent, gbl, allAspPnl, 0, 3, 1, 1, 1.0, 1.0, 5, 5, 10, 5, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 
 		panelBase.add(panelContent, BorderLayout.CENTER);
@@ -176,27 +172,20 @@ public class AddAspToFindPopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
-		buttonAbort.addActionListener(new AddAspToFindPopupWindowAction(this,
-				ButtonClicked.ABORT));
+		buttonAbort.addActionListener(new AddAspToFindPopupWindowAction(this, ButtonClicked.ABORT));
 
 		JButton buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
-		buttonConfirm.addActionListener(new AddAspToFindPopupWindowAction(this,
-				ButtonClicked.OK));
+		buttonConfirm.addActionListener(new AddAspToFindPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(
-				panelButtons.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 
@@ -259,8 +248,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 			final Aspect localSelAsp = selAsp;
 			JCheckBox aspBx = new JCheckBox();
 
-			String aspStr = selAsp.getDirective().trim() + " ("
-					+ selAsp.getCategory().trim() + ")";
+			String aspStr = selAsp.getDirective().trim() + " (" + selAsp.getCategory().trim() + ")";
 
 			aspBx.setSelected(true);
 			aspBx.setText(aspStr);
@@ -270,12 +258,10 @@ public class AddAspToFindPopupWindow extends JDialog {
 			aspBx.addItemListener(new ItemListener() {
 				@Override
 				public void itemStateChanged(ItemEvent e) {
-					if (e.getStateChange() == ItemEvent.SELECTED
-							&& !selAspList.contains(localSelAsp)) {
+					if (e.getStateChange() == ItemEvent.SELECTED && !selAspList.contains(localSelAsp)) {
 						selAspList.add(localSelAsp);
 
-					} else if (e.getStateChange() == ItemEvent.DESELECTED
-							&& selAspList.contains(localSelAsp)) {
+					} else if (e.getStateChange() == ItemEvent.DESELECTED && selAspList.contains(localSelAsp)) {
 
 						selAspList.remove(localSelAsp);
 
@@ -291,17 +277,15 @@ public class AddAspToFindPopupWindow extends JDialog {
 				}
 			});
 
-			GUITools.addComponent(selAspPnl, gbl, aspBx, 0, -1, 1, 1, 1.0, 0,
-					5, 0, 5, 0, GridBagConstraints.HORIZONTAL,
+			GUITools.addComponent(selAspPnl, gbl, aspBx, 0, -1, 1, 1, 1.0, 0, 5, 0, 5, 0, GridBagConstraints.HORIZONTAL,
 					GridBagConstraints.NORTHWEST);
 
 			aspectsAdded++;
 		}
 
 		if (!selAspList.isEmpty()) {
-			GUITools.addComponent(aspPnl, gbl, new JSeparator(), 0, -1, 1, 1,
-					1.0, 0, 5, 0, 0, 5, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(aspPnl, gbl, new JSeparator(), 0, -1, 1, 1, 1.0, 0, 5, 0, 0, 5,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 
 		for (Aspect asp : resiAspList) {
@@ -312,8 +296,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 			if (!selAspList.contains(asp)) {
 				final Aspect localAsp = asp;
 
-				String aspStr = asp.getDirective().trim() + " ("
-						+ asp.getCategory().trim() + ")";
+				String aspStr = asp.getDirective().trim() + " (" + asp.getCategory().trim() + ")";
 
 				JCheckBox aspBx = new JCheckBox();
 				aspBx.setText(aspStr);
@@ -323,8 +306,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 				aspBx.addItemListener(new ItemListener() {
 					@Override
 					public void itemStateChanged(ItemEvent e) {
-						if (e.getStateChange() == ItemEvent.SELECTED
-								&& !selAspList.contains(localAsp)) {
+						if (e.getStateChange() == ItemEvent.SELECTED && !selAspList.contains(localAsp)) {
 							selAspList.add(localAsp);
 
 							allAspPnl.removeAll();
@@ -335,8 +317,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 							selAspPnl.validate();
 							allAspPnl.validate();
 							panelContent.repaint();
-						} else if (e.getStateChange() == ItemEvent.DESELECTED
-								&& selAspList.contains(localAsp)) {
+						} else if (e.getStateChange() == ItemEvent.DESELECTED && selAspList.contains(localAsp)) {
 
 							selAspList.remove(localAsp);
 
@@ -344,20 +325,17 @@ public class AddAspToFindPopupWindow extends JDialog {
 					}
 				});
 
-				GUITools.addComponent(aspPnl, gbl, aspBx, 0, -1, 1, 1, 1.0, 0,
-						5, 0, 5, 0, GridBagConstraints.HORIZONTAL,
-						GridBagConstraints.NORTHWEST);
+				GUITools.addComponent(aspPnl, gbl, aspBx, 0, -1, 1, 1, 1.0, 0, 5, 0, 5, 0,
+						GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 				aspectsAdded++;
 			}
 
 		}
 
-		GUITools.addComponent(allAspPnl, gbl, selAspPnl, 0, -1, 1, 1, 1.0, 0,
-				5, 0, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(allAspPnl, gbl, selAspPnl, 0, -1, 1, 1, 1.0, 0, 5, 0, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(allAspPnl, gbl, aspPnl, 0, -1, 1, 1, 1.0, 1.0, 5,
-				0, 10, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(allAspPnl, gbl, aspPnl, 0, -1, 1, 1, 1.0, 1.0, 5, 0, 10, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
 
 	}

@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.dialogs.WarningDialog;
 import org.revager.gui.dialogs.WarningDialog.ButtonClicked;
 
-
 /**
  * The Class WarningAction.
  */

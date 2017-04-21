@@ -27,7 +27,6 @@ import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 
-
 /**
  * The Class RemAttFromProtAction.
  */
@@ -43,16 +42,12 @@ public class RemAttFromProtAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Protocol prot = UI.getInstance().getProtocolFrame().getCurrentProt();
-		int selRow = UI.getInstance().getProtocolFrame().getPresentAttTable()
-				.getSelectedRow();
+		int selRow = UI.getInstance().getProtocolFrame().getPresentAttTable().getSelectedRow();
 		if (selRow != -1) {
-			Attendee selAtt = Application.getInstance().getProtocolMgmt()
-					.getAttendees(prot).get(selRow);
-			Application.getInstance().getProtocolMgmt().removeAttendee(selAtt,
-					prot);
+			Attendee selAtt = Application.getInstance().getProtocolMgmt().getAttendees(prot).get(selRow);
+			Application.getInstance().getProtocolMgmt().removeAttendee(selAtt, prot);
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);
-			UI.getInstance().getProtocolFrame().getPatm()
-					.fireTableDataChanged();
+			UI.getInstance().getProtocolFrame().getPatm().fireTableDataChanged();
 			UI.getInstance().getProtocolFrame().updateAttButtons();
 		}
 	}

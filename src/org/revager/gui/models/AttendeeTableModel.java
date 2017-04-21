@@ -81,30 +81,26 @@ public class AttendeeTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		if (columnIndex == 1) {
-			String name = Application.getInstance().getAttendeeMgmt()
-					.getAttendees().get(rowIndex).getName();
-			String contact = Application.getInstance().getAttendeeMgmt()
-					.getAttendees().get(rowIndex).getContact();
+			String name = Application.getInstance().getAttendeeMgmt().getAttendees().get(rowIndex).getName();
+			String contact = Application.getInstance().getAttendeeMgmt().getAttendees().get(rowIndex).getContact();
 
 			return name + "\n\n" + contact;
 		} else if (columnIndex == 2) {
-			String roleString = Application.getInstance().getAttendeeMgmt()
-					.getAttendees().get(rowIndex).getRole().toString();
+			String roleString = Application.getInstance().getAttendeeMgmt().getAttendees().get(rowIndex).getRole()
+					.toString();
 
 			return _(roleString);
 		} else if (columnIndex == 3) {
 			try {
-				String value = String.valueOf(Application.getInstance()
-						.getAttendeeMgmt().getAttendees().get(rowIndex)
+				String value = String.valueOf(Application.getInstance().getAttendeeMgmt().getAttendees().get(rowIndex)
 						.getAspects().getAspectIds().size());
-				
+
 				return value.concat(" ").concat(_("Aspect(s)"));
 			} catch (Exception e) {
 				return "";
 			}
 		} else {
-			JLabel localLbl = new JLabel(Data.getInstance().getIcon(
-					"attendee_20x20.png"));
+			JLabel localLbl = new JLabel(Data.getInstance().getIcon("attendee_20x20.png"));
 			return localLbl;
 		}
 	}

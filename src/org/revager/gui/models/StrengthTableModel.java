@@ -55,8 +55,7 @@ public class StrengthTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return UI.getInstance().getAttendeeDialog().getStrengthList().get(
-				rowIndex);
+		return UI.getInstance().getAttendeeDialog().getStrengthList().get(rowIndex);
 	}
 
 	/*
@@ -67,8 +66,7 @@ public class StrengthTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public void setValueAt(Object insertion, int row, int column) {
-		UI.getInstance().getAttendeeDialog().getStrengthList().set(row,
-				(String) insertion);
+		UI.getInstance().getAttendeeDialog().getStrengthList().set(row, (String) insertion);
 
 		fireTableDataChanged();
 	}

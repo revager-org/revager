@@ -104,8 +104,7 @@ public class FileChooser {
 				index = file.getAbsolutePath().lastIndexOf("\\");
 			}
 
-			File directory = new File(file.getAbsolutePath()
-					.substring(0, index));
+			File directory = new File(file.getAbsolutePath().substring(0, index));
 
 			setDir(directory);
 		}
@@ -209,15 +208,13 @@ public class FileChooser {
 			case MODE_SELECT_DIRECTORY:
 				dialog.setTitle(_("Select Directory..."));
 
-				dialog.setFilenameFilter(new ResiFileFilter(
-						ResiFileFilter.TYPE_DIRECTORY));
+				dialog.setFilenameFilter(new ResiFileFilter(ResiFileFilter.TYPE_DIRECTORY));
 
 				dialog.setMode(FileDialog.LOAD);
 
 				System.setProperty("apple.awt.fileDialogForDirectories", "true");
 				dialog.setVisible(true);
-				System.setProperty("apple.awt.fileDialogForDirectories",
-						"false");
+				System.setProperty("apple.awt.fileDialogForDirectories", "false");
 
 				if (dialog.getDirectory() != null) {
 					setFile(null);
@@ -245,9 +242,7 @@ public class FileChooser {
 						if (!f.exists()) {
 							String errMsg = _("Cannot find the given file. Please select a valid one.");
 
-							JOptionPane.showMessageDialog(
-									getTopLevelAncestor(),
-									GUITools.getMessagePane(errMsg),
+							JOptionPane.showMessageDialog(getTopLevelAncestor(), GUITools.getMessagePane(errMsg),
 									_("Error"), JOptionPane.ERROR_MESSAGE);
 
 							return;
@@ -262,14 +257,12 @@ public class FileChooser {
 						 * Show warning if file exists
 						 */
 						if (f.exists()) {
-							String questMsg = _("There is a file with the given name already existing. Would you like to overwrite it?")
-									+ "\n\n"
-									+ this.getSelectedFile().getAbsolutePath();
+							String questMsg = _(
+									"There is a file with the given name already existing. Would you like to overwrite it?")
+									+ "\n\n" + this.getSelectedFile().getAbsolutePath();
 
-							int result = JOptionPane.showConfirmDialog(
-									getTopLevelAncestor(),
-									GUITools.getMessagePane(questMsg),
-									_("Question"), JOptionPane.YES_NO_OPTION,
+							int result = JOptionPane.showConfirmDialog(getTopLevelAncestor(),
+									GUITools.getMessagePane(questMsg), _("Question"), JOptionPane.YES_NO_OPTION,
 									JOptionPane.QUESTION_MESSAGE);
 							switch (result) {
 							case JOptionPane.YES_OPTION:
@@ -307,8 +300,7 @@ public class FileChooser {
 				/*
 				 * Add choosable file filter to show all files
 				 */
-				dialog.addChoosableFileFilter(new ResiFileFilter(
-						ResiFileFilter.TYPE_ALL));
+				dialog.addChoosableFileFilter(new ResiFileFilter(ResiFileFilter.TYPE_ALL));
 
 				if (resiFileFilterType != ResiFileFilter.TYPE_ALL) {
 					dialog.setFileFilter(filter);
@@ -331,8 +323,7 @@ public class FileChooser {
 				dialog.setApproveButtonText(_("Select"));
 
 				dialog.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				dialog.setFileFilter(new ResiFileFilter(
-						ResiFileFilter.TYPE_DIRECTORY));
+				dialog.setFileFilter(new ResiFileFilter(ResiFileFilter.TYPE_DIRECTORY));
 
 				selected = dialog.showOpenDialog(parent);
 				break;
@@ -352,12 +343,10 @@ public class FileChooser {
 
 				selected = SELECTED_APPROVE;
 			} else if (selected == JFileChooser.ERROR_OPTION) {
-				JOptionPane
-						.showMessageDialog(
-								parent,
-								GUITools.getMessagePane(_("An error occurred while choosing a file or directory!\n\nPlease try again.")),
-								Data.getInstance().getResource("appName"),
-								JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(parent,
+						GUITools.getMessagePane(
+								_("An error occurred while choosing a file or directory!\n\nPlease try again.")),
+						Data.getInstance().getResource("appName"), JOptionPane.ERROR_MESSAGE);
 
 				selected = SELECTED_ERROR;
 			} else {

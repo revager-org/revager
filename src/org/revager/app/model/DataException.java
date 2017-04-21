@@ -35,7 +35,8 @@ public class DataException extends Exception {
 	/**
 	 * Instantiates a new data exception.
 	 * 
-	 * @param message the message
+	 * @param message
+	 *            the message
 	 */
 	public DataException(String message) {
 		super(message);

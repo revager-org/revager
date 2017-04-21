@@ -38,7 +38,6 @@ import javax.swing.border.EmptyBorder;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
-
 /**
  * The Class ProgressGlassPane.
  */
@@ -47,8 +46,7 @@ public class ProgressGlassPane extends JComponent implements KeyListener {
 
 	private final static Border MESSAGE_BORDER = new EmptyBorder(20, 20, 20, 20);
 
-	private final ImageIcon ICON_WAIT = Data.getInstance().getIcon(
-			"wait_32x32.gif");
+	private final ImageIcon ICON_WAIT = Data.getInstance().getIcon("wait_32x32.gif");
 	private JLabel message = new JLabel(ICON_WAIT, SwingConstants.CENTER);
 
 	/**

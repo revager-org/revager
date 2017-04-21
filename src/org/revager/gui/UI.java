@@ -109,26 +109,22 @@ public class UI implements Observer {
 	/**
 	 * The Constant INLINE_BORDER.
 	 */
-	private static final Border INLINE_BORDER = new MatteBorder(2, 2, 2, 2,
-			Color.WHITE);
+	private static final Border INLINE_BORDER = new MatteBorder(2, 2, 2, 2, Color.WHITE);
 
 	/**
 	 * The Constant POPUP_BORDER.
 	 */
-	public static final Border POPUP_BORDER = BorderFactory.createLineBorder(
-			Color.GRAY, 2);
+	public static final Border POPUP_BORDER = BorderFactory.createLineBorder(Color.GRAY, 2);
 
 	/**
 	 * The Constant STANDARD_BORDER.
 	 */
-	public static final Border STANDARD_BORDER = BorderFactory
-			.createLineBorder(SEPARATOR_COLOR, 1);
+	public static final Border STANDARD_BORDER = BorderFactory.createLineBorder(SEPARATOR_COLOR, 1);
 
 	/**
 	 * The Constant MARKED_BORDER.
 	 */
-	public static final Border MARKED_BORDER = BorderFactory.createLineBorder(
-			MARKED_COLOR, 1);
+	public static final Border MARKED_BORDER = BorderFactory.createLineBorder(MARKED_COLOR, 1);
 
 	/**
 	 * The Constant STANDARD_BORDER_INLINE.
@@ -145,32 +141,27 @@ public class UI implements Observer {
 	/**
 	 * The Constant STANDARD_FONT.
 	 */
-	public static final Font STANDARD_FONT = new Font(Font.SANS_SERIF,
-			Font.PLAIN, 12);
+	public static final Font STANDARD_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
 
 	/**
 	 * The Constant LARGE_FONT.
 	 */
-	public static final Font LARGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN,
-			14);
+	public static final Font LARGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
 
 	/**
 	 * The Constant PROTOCOL_FONT.
 	 */
-	public static final Font PROTOCOL_FONT = new Font(Font.SANS_SERIF,
-			Font.PLAIN, 18);
+	public static final Font PROTOCOL_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
 	/**
 	 * The Constant PROTOCOL_FONT_BOLD.
 	 */
-	public static final Font PROTOCOL_FONT_BOLD = new Font(Font.SANS_SERIF,
-			Font.BOLD, 18);
+	public static final Font PROTOCOL_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 18);
 
 	/**
 	 * The Constant PROTOCOL_TITLE_FONT.
 	 */
-	public static final Font PROTOCOL_TITLE_FONT = new Font(Font.SANS_SERIF,
-			Font.BOLD, 22);
+	public static final Font PROTOCOL_TITLE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 22);
 
 	/**
 	 * The Constant TABLE_ROW_HEIGHT.
@@ -427,8 +418,7 @@ public class UI implements Observer {
 	 */
 	public AssistantDialog getAssistantDialog() {
 		if (assistantDialog == null) {
-			assistantDialog = new AssistantDialog(UI.getInstance()
-					.getMainFrame());
+			assistantDialog = new AssistantDialog(UI.getInstance().getMainFrame());
 		}
 
 		return assistantDialog;
@@ -441,8 +431,7 @@ public class UI implements Observer {
 	 */
 	public EditProductDialog getEditProductDialog() {
 		if (editProductDialog == null) {
-			editProductDialog = new EditProductDialog(UI.getInstance()
-					.getMainFrame());
+			editProductDialog = new EditProductDialog(UI.getInstance().getMainFrame());
 		}
 
 		return editProductDialog;
@@ -455,8 +444,7 @@ public class UI implements Observer {
 	 */
 	public ManageSeveritiesDialog getManageSeveritiesDialog() {
 		if (manageSeveritiesDialog == null) {
-			manageSeveritiesDialog = new ManageSeveritiesDialog(UI
-					.getInstance().getMainFrame());
+			manageSeveritiesDialog = new ManageSeveritiesDialog(UI.getInstance().getMainFrame());
 		}
 
 		return manageSeveritiesDialog;
@@ -506,8 +494,7 @@ public class UI implements Observer {
 	 */
 	public AspectsManagerFrame getAspectsManagerFrame() {
 		if (aspectsManagerFrame == null) {
-			aspectsManagerFrame = new AspectsManagerFrame(UI.getInstance()
-					.getMainFrame());
+			aspectsManagerFrame = new AspectsManagerFrame(UI.getInstance().getMainFrame());
 		}
 
 		return aspectsManagerFrame;
@@ -549,8 +536,7 @@ public class UI implements Observer {
 				protocolFrame = new FindingsListFrame(false);
 			}
 
-			if (protocolFullscreen != null
-					&& fullscreen != protocolFrameFullscreen) {
+			if (protocolFullscreen != null && fullscreen != protocolFrameFullscreen) {
 				protocolFrame.setMeeting(protocolFullscreen.getMeeting());
 				protocolFullscreen.setVisible(false);
 			}
@@ -570,8 +556,7 @@ public class UI implements Observer {
 	 */
 	public ExportCSVDialog getExportCSVDialog() {
 		if (exportCSVDialog == null) {
-			exportCSVDialog = new ExportCSVDialog(UI.getInstance()
-					.getMainFrame());
+			exportCSVDialog = new ExportCSVDialog(UI.getInstance().getMainFrame());
 		}
 
 		return exportCSVDialog;
@@ -584,8 +569,7 @@ public class UI implements Observer {
 	 */
 	public ExportPDFProtocolDialog getExportPDFProtocolDialog() {
 		if (exportPDFProtocolDialog == null) {
-			exportPDFProtocolDialog = new ExportPDFProtocolDialog(UI
-					.getInstance().getMainFrame());
+			exportPDFProtocolDialog = new ExportPDFProtocolDialog(UI.getInstance().getMainFrame());
 		}
 
 		return exportPDFProtocolDialog;
@@ -598,8 +582,7 @@ public class UI implements Observer {
 	 */
 	public CreateInvitationsDialog getCreateInvitationsDialog() {
 		if (createInvitationsDialog == null) {
-			createInvitationsDialog = new CreateInvitationsDialog(UI
-					.getInstance().getMainFrame());
+			createInvitationsDialog = new CreateInvitationsDialog(UI.getInstance().getMainFrame());
 		}
 
 		return createInvitationsDialog;
@@ -625,8 +608,7 @@ public class UI implements Observer {
 	 */
 	public CSVProfilesDialog getCSVProfilesDialog() {
 		if (csvProfilesDialog == null) {
-			csvProfilesDialog = new CSVProfilesDialog(UI.getInstance()
-					.getMainFrame());
+			csvProfilesDialog = new CSVProfilesDialog(UI.getInstance().getMainFrame());
 		}
 
 		return csvProfilesDialog;
@@ -690,9 +672,8 @@ public class UI implements Observer {
 		if (platform == Platform.MAC) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 
-			System.setProperty(
-					"com.apple.mrj.application.apple.menu.about.name", Data
-							.getInstance().getResource("appName"));
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name",
+					Data.getInstance().getResource("appName"));
 
 			/*
 			 * Register a hook to save the window position when quit via the app
@@ -701,19 +682,15 @@ public class UI implements Observer {
 			Runnable runner = new Runnable() {
 				@Override
 				public void run() {
-					String path = Data.getInstance().getResiData()
-							.getReviewPath();
+					String path = Data.getInstance().getResiData().getReviewPath();
 
 					try {
 						if (path != null) {
-							Application.getInstance().getApplicationCtl()
-									.storeReview(path);
+							Application.getInstance().getApplicationCtl().storeReview(path);
 
-							Application.getInstance().getApplicationCtl()
-									.clearReview();
+							Application.getInstance().getApplicationCtl().clearReview();
 						} else {
-							Application.getInstance().getApplicationCtl()
-									.backupReview();
+							Application.getInstance().getApplicationCtl().backupReview();
 						}
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
@@ -721,8 +698,7 @@ public class UI implements Observer {
 				}
 			};
 
-			Runtime.getRuntime().addShutdownHook(
-					new Thread(runner, "Window Prefs Hook"));
+			Runtime.getRuntime().addShutdownHook(new Thread(runner, "Window Prefs Hook"));
 		}
 
 		/*
@@ -730,11 +706,9 @@ public class UI implements Observer {
 		 */
 		try {
 			if (platform == Platform.MAC || platform == Platform.WINDOWS) {
-				UIManager.setLookAndFeel(UIManager
-						.getSystemLookAndFeelClassName());
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} else {
-				UIManager
-						.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -750,8 +724,7 @@ public class UI implements Observer {
 		UIManager.put("Table.alternateRowColor", TABLE_ALT_COLOR);
 		UIManager.put("Table.gridColor", SEPARATOR_COLOR);
 		UIManager.put("Table.cellNoFocusBorder", new EmptyBorder(3, 3, 3, 3));
-		UIManager.put("Table.focusSelectedCellHighlightBorder",
-				new EmptyBorder(3, 3, 3, 3));
+		UIManager.put("Table.focusSelectedCellHighlightBorder", new EmptyBorder(3, 3, 3, 3));
 		UIManager.put("Separator.foreground", SEPARATOR_COLOR);
 		UIManager.put("TextArea.font", new FontUIResource(STANDARD_FONT));
 		UIManager.put("TextField.font", new FontUIResource(STANDARD_FONT));
@@ -792,13 +765,11 @@ public class UI implements Observer {
 
 			Object[] options = { _("Restore"), _("Discard") };
 
-			if (JOptionPane
-					.showOptionDialog(
-							mainFrame,
-							GUITools.getMessagePane(_("There is a review which hasn't been stored properly. Would you like to restore and load the review?")),
-							_("Question"), JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, options,
-							options[0]) == JOptionPane.YES_OPTION) {
+			if (JOptionPane.showOptionDialog(mainFrame,
+					GUITools.getMessagePane(
+							_("There is a review which hasn't been stored properly. Would you like to restore and load the review?")),
+					_("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+					options[0]) == JOptionPane.YES_OPTION) {
 				// getMainFrame().setEnabled(true);
 
 				GUITools.executeSwingWorker(new RestoreReviewWorker());

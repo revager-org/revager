@@ -86,8 +86,7 @@ public class EditProductDialog extends AbstractDialog {
 	private JLabel versionLbl = new JLabel(_("Product version:"));
 
 	private ReferenceTableModel rtm = new ReferenceTableModel();
-	private ReviewManagement reviewMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private ReviewManagement reviewMgmt = Application.getInstance().getReviewMgmt();
 
 	private JButton addReference;
 	private JButton removeReference;
@@ -119,8 +118,7 @@ public class EditProductDialog extends AbstractDialog {
 	private SwingWorker<Void, Void> updateWorker = new SwingWorker<Void, Void>() {
 		@Override
 		protected Void doInBackground() throws Exception {
-			long change = Long.parseLong(Data.getInstance().getResource(
-					"keyTypeChangeInMillis"));
+			long change = Long.parseLong(Data.getInstance().getResource("keyTypeChangeInMillis"));
 
 			while (true) {
 				try {
@@ -205,8 +203,7 @@ public class EditProductDialog extends AbstractDialog {
 
 		addReference = GUITools.newImageButton();
 		addReference.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
-		addReference.setRolloverIcon(Data.getInstance()
-				.getIcon("add_25x25.png"));
+		addReference.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
 		addReference.setToolTipText(_("Add Reference"));
 		addReference.addActionListener(new ActionListener() {
 			@Override
@@ -226,26 +223,22 @@ public class EditProductDialog extends AbstractDialog {
 
 				int row = referenceTbl.getRowCount() - 1;
 
-				referenceTbl.scrollRectToVisible(referenceTbl.getCellRect(row,
-						0, false));
+				referenceTbl.scrollRectToVisible(referenceTbl.getCellRect(row, 0, false));
 				referenceTbl.editCellAt(row, 0);
 			}
 		});
 		buttonPanel.add(addReference);
 
 		removeReference = GUITools.newImageButton();
-		removeReference.setIcon(Data.getInstance()
-				.getIcon("remove_25x25_0.png"));
-		removeReference.setRolloverIcon(Data.getInstance().getIcon(
-				"remove_25x25.png"));
+		removeReference.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
+		removeReference.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
 		removeReference.setToolTipText(_("Remove Reference"));
 		removeReference.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = referenceTbl.getSelectedRow();
 
-				String localRef = reviewMgmt.getProductReferences().get(
-						selectedRow);
+				String localRef = reviewMgmt.getProductReferences().get(selectedRow);
 
 				reviewMgmt.removeProductReference(localRef);
 				rtm.fireTableDataChanged();
@@ -255,8 +248,7 @@ public class EditProductDialog extends AbstractDialog {
 
 		editReference = GUITools.newImageButton();
 		editReference.setIcon(Data.getInstance().getIcon("edit_25x25_0.png"));
-		editReference.setRolloverIcon(Data.getInstance().getIcon(
-				"edit_25x25.png"));
+		editReference.setRolloverIcon(Data.getInstance().getIcon("edit_25x25.png"));
 		editReference.setToolTipText(_("Edit Reference"));
 		editReference.addActionListener(new ActionListener() {
 			@Override
@@ -280,16 +272,13 @@ public class EditProductDialog extends AbstractDialog {
 				updateButtons();
 
 				if (e.getClickCount() == 2) {
-					File ref = reviewMgmt.getExtProdRefByName((String) ertm
-							.getValueAt(dataTbl.getSelectedRow(), 0));
+					File ref = reviewMgmt.getExtProdRefByName((String) ertm.getValueAt(dataTbl.getSelectedRow(), 0));
 
 					try {
 						Desktop.getDesktop().open(ref);
 					} catch (Exception exc) {
-						JOptionPane.showMessageDialog(UI.getInstance()
-								.getEditProductDialog(), GUITools
-								.getMessagePane(exc.getMessage()), _("Error"),
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(UI.getInstance().getEditProductDialog(),
+								GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -322,14 +311,11 @@ public class EditProductDialog extends AbstractDialog {
 				SwingWorker<Void, Void> addExtRefWorker = new SwingWorker<Void, Void>() {
 					@Override
 					protected Void doInBackground() throws Exception {
-						FileChooser fileChooser = UI.getInstance()
-								.getFileChooser();
+						FileChooser fileChooser = UI.getInstance().getFileChooser();
 
 						fileChooser.setFile(null);
 
-						if (fileChooser.showDialog(UI.getInstance()
-								.getEditProductDialog(),
-								FileChooser.MODE_OPEN_FILE,
+						if (fileChooser.showDialog(UI.getInstance().getEditProductDialog(), FileChooser.MODE_OPEN_FILE,
 								ResiFileFilter.TYPE_ALL) == FileChooser.SELECTED_APPROVE) {
 
 							notifySwitchToProgressMode();
@@ -379,8 +365,7 @@ public class EditProductDialog extends AbstractDialog {
 
 		removeData = GUITools.newImageButton();
 		removeData.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
-		removeData.setRolloverIcon(Data.getInstance().getIcon(
-				"remove_25x25.png"));
+		removeData.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
 		removeData.setToolTipText(_("Remove File"));
 		removeData.addActionListener(new ActionListener() {
 			@Override
@@ -433,33 +418,26 @@ public class EditProductDialog extends AbstractDialog {
 		refScrllPn = GUITools.setIntoScrollPane(referenceTbl);
 		dataScrllPn = GUITools.setIntoScrollPane(dataTbl);
 
-		GUITools.addComponent(basePanel, gbl, nameLbl, 0, 0, 1, 1, 0.0, 0.0, 0,
-				5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
-		GUITools.addComponent(basePanel, gbl, nameTxtFld, 1, 0, 5, 1, 1.0, 0.0,
-				0, 5, 0, 5, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, versionLbl, 0, 1, 1, 1, 0.0, 0.0,
-				10, 5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
-		GUITools.addComponent(basePanel, gbl, versionTxtFld, 1, 1, 5, 1, 1.0,
-				0.0, 10, 5, 0, 5, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, referenceLbl, 0, 2, 2, 1, 0.0,
-				0.0, 20, 5, 0, 5, GridBagConstraints.NONE,
+		GUITools.addComponent(basePanel, gbl, nameLbl, 0, 0, 1, 1, 0.0, 0.0, 0, 5, 0, 5, GridBagConstraints.NONE,
 				GridBagConstraints.WEST);
-		GUITools.addComponent(basePanel, gbl, refScrllPn, 0, 3, 2, 1, 1.0, 1.0,
-				10, 5, 0, 5, GridBagConstraints.BOTH,
+		GUITools.addComponent(basePanel, gbl, nameTxtFld, 1, 0, 5, 1, 1.0, 0.0, 0, 5, 0, 5,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, versionLbl, 0, 1, 1, 1, 0.0, 0.0, 10, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(basePanel, gbl, versionTxtFld, 1, 1, 5, 1, 1.0, 0.0, 10, 5, 0, 5,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(basePanel, gbl, referenceLbl, 0, 2, 2, 1, 0.0, 0.0, 20, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(basePanel, gbl, refScrllPn, 0, 3, 2, 1, 1.0, 1.0, 10, 5, 0, 5, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, buttonPanel, 3, 3, 1, 1, 0.0,
-				0.0, 10, 5, 0, 20, GridBagConstraints.VERTICAL,
-				GridBagConstraints.NORTH);
-		GUITools.addComponent(basePanel, gbl, dataLbl, 4, 2, 2, 1, 0.0, 0.0,
-				20, 5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
-		GUITools.addComponent(basePanel, gbl, dataScrllPn, 4, 3, 2, 1, 1.0,
-				1.0, 10, 5, 0, 5, GridBagConstraints.BOTH,
+		GUITools.addComponent(basePanel, gbl, buttonPanel, 3, 3, 1, 1, 0.0, 0.0, 10, 5, 0, 20,
+				GridBagConstraints.VERTICAL, GridBagConstraints.NORTH);
+		GUITools.addComponent(basePanel, gbl, dataLbl, 4, 2, 2, 1, 0.0, 0.0, 20, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(basePanel, gbl, dataScrllPn, 4, 3, 2, 1, 1.0, 1.0, 10, 5, 0, 5, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(basePanel, gbl, buttonPanelD, 6, 3, 1, 1, 0.0,
-				0.0, 10, 5, 0, 5, GridBagConstraints.VERTICAL,
-				GridBagConstraints.NORTH);
+		GUITools.addComponent(basePanel, gbl, buttonPanelD, 6, 3, 1, 1, 0.0, 0.0, 10, 5, 0, 5,
+				GridBagConstraints.VERTICAL, GridBagConstraints.NORTH);
 
 		/*
 		 * Run the update worker
@@ -537,8 +515,7 @@ public class EditProductDialog extends AbstractDialog {
 
 		createDialog();
 
-		close = new JButton(_("Close"), Data.getInstance().getIcon(
-				"buttonClose_16x16.png"));
+		close = new JButton(_("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
 		close.addFocusListener(focusListener);
 		close.addActionListener(new ActionListener() {
 			@Override
@@ -595,8 +572,7 @@ public class EditProductDialog extends AbstractDialog {
 
 		if (evSource != referenceTbl) {
 			if (referenceTbl.getRowCount() > 0) {
-				referenceTbl.removeRowSelectionInterval(0,
-						referenceTbl.getRowCount() - 1);
+				referenceTbl.removeRowSelectionInterval(0, referenceTbl.getRowCount() - 1);
 			}
 		}
 

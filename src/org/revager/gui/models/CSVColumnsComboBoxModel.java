@@ -34,8 +34,7 @@ import org.revager.app.model.appdata.AppCSVColumnName;
  * The Class CSVColumnsComboBoxModel.
  */
 @SuppressWarnings("serial")
-public class CSVColumnsComboBoxModel extends AbstractListModel implements
-		ComboBoxModel {
+public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboBoxModel {
 
 	private Map<String, AppCSVColumnName> columns = new HashMap<String, AppCSVColumnName>();
 
@@ -94,8 +93,7 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements
 	 *            the col
 	 */
 	public void setSelectedColumn(AppCSVColumnName col) {
-		Iterator<Entry<String, AppCSVColumnName>> iter = columns.entrySet()
-				.iterator();
+		Iterator<Entry<String, AppCSVColumnName>> iter = columns.entrySet().iterator();
 
 		while (iter.hasNext()) {
 			Entry<String, AppCSVColumnName> entry = iter.next();

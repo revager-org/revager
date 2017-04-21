@@ -67,8 +67,7 @@ public class TextPopupWindow extends JDialog {
 	 * @param multiLine
 	 *            the multi line
 	 */
-	public TextPopupWindow(Window parent, String titleText, String inputText,
-			boolean multiLine) {
+	public TextPopupWindow(Window parent, String titleText, String inputText, boolean multiLine) {
 		super(parent);
 
 		setLayout(new BorderLayout());
@@ -120,27 +119,20 @@ public class TextPopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
-		buttonAbort.addActionListener(new TextPopupWindowAction(this,
-				ButtonClicked.ABORT));
+		buttonAbort.addActionListener(new TextPopupWindowAction(this, ButtonClicked.ABORT));
 
 		JButton buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
-		buttonConfirm.addActionListener(new TextPopupWindowAction(this,
-				ButtonClicked.OK));
+		buttonConfirm.addActionListener(new TextPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(
-				panelButtons.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

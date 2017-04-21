@@ -68,10 +68,8 @@ public class ProtocolManagement {
 	public List<Protocol> getProtocolsWithFindings() {
 		List<Protocol> protocols = new ArrayList<Protocol>();
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
-			if (m.getProtocol() != null
-					&& !m.getProtocol().getFindings().isEmpty()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
+			if (m.getProtocol() != null && !m.getProtocol().getFindings().isEmpty()) {
 				protocols.add(m.getProtocol());
 			}
 		}
@@ -115,8 +113,7 @@ public class ProtocolManagement {
 	 * 
 	 * @return the protocol
 	 */
-	public Protocol setProtocol(Calendar date, Calendar start, Calendar end,
-			String location, Meeting meet) {
+	public Protocol setProtocol(Calendar date, Calendar start, Calendar end, String location, Meeting meet) {
 		Protocol prot = new Protocol();
 
 		prot.setDate(date);

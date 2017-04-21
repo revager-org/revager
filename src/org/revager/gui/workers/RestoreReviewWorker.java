@@ -65,8 +65,7 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					mainframe.setStatusMessage(
-							_("Review restored successfully."), false);
+					mainframe.setStatusMessage(_("Review restored successfully."), false);
 
 					mainframe.switchToEditMode();
 				}
@@ -77,8 +76,7 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					mainframe.setStatusMessage(_("No review in process."),
-							false);
+					mainframe.setStatusMessage(_("No review in process."), false);
 
 					mainframe.switchToClearMode();
 
@@ -90,10 +88,8 @@ public class RestoreReviewWorker extends SwingWorker<Void, Void> {
 
 			UI.getInstance().setStatus(Status.NO_FILE_LOADED);
 
-			JOptionPane.showMessageDialog(
-					UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(_("Cannot restore review.")
-							+ "\n\n" + e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(_("Cannot restore review.") + "\n\n" + e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 

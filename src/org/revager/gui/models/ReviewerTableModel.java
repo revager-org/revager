@@ -63,8 +63,7 @@ public class ReviewerTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		return Application.getInstance().getAttendeeMgmt()
-				.getNumberOfAspects(reviewer);
+		return Application.getInstance().getAttendeeMgmt().getNumberOfAspects(reviewer);
 	}
 
 	/*
@@ -74,8 +73,7 @@ public class ReviewerTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Object getValueAt(int row, int column) {
-		List<Aspect> aspList = Application.getInstance().getAttendeeMgmt()
-				.getAspects(reviewer);
+		List<Aspect> aspList = Application.getInstance().getAttendeeMgmt().getAspects(reviewer);
 
 		if (column == 0) {
 			String direc = aspList.get(row).getDirective();

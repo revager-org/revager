@@ -71,20 +71,17 @@ public class InvitationPDFExporter extends PDFExporter {
 	/**
 	 * Reference to attendee management.
 	 */
-	private static AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
+	private static AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
 
 	/**
 	 * Reference to meeting management.
 	 */
-	private static MeetingManagement meetMgmt = Application.getInstance()
-			.getMeetingMgmt();
+	private static MeetingManagement meetMgmt = Application.getInstance().getMeetingMgmt();
 
 	/**
 	 * Reference to meeting management.
 	 */
-	private static AspectManagement aspMgmt = Application.getInstance()
-			.getAspectMgmt();
+	private static AspectManagement aspMgmt = Application.getInstance().getAspectMgmt();
 
 	/**
 	 * The padding used for tables.
@@ -104,8 +101,7 @@ public class InvitationPDFExporter extends PDFExporter {
 	/**
 	 * The date formatter for dates.
 	 */
-	private DateFormat sdfDate = SimpleDateFormat
-			.getDateInstance(SimpleDateFormat.LONG);
+	private DateFormat sdfDate = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG);
 
 	/**
 	 * The date formatter for times.
@@ -160,12 +156,11 @@ public class InvitationPDFExporter extends PDFExporter {
 	 *             If an error occurs while getting the data to create the
 	 *             invitation
 	 */
-	public InvitationPDFExporter(String filePath, Meeting meeting,
-			Attendee attendee, boolean attachProdExtRefs)
+	public InvitationPDFExporter(String filePath, Meeting meeting, Attendee attendee, boolean attachProdExtRefs)
 			throws ExportException, DataException {
-		super(filePath, _("Invitation") + " · " + getReviewTitle(), appData
-				.getSetting(AppSettingKey.PDF_INVITATION_LOGO), appData
-				.getSetting(AppSettingKey.PDF_INVITATION_FOOT_TEXT));
+		super(filePath, _("Invitation") + " · " + getReviewTitle(),
+				appData.getSetting(AppSettingKey.PDF_INVITATION_LOGO),
+				appData.getSetting(AppSettingKey.PDF_INVITATION_FOOT_TEXT));
 
 		this.meeting = meeting;
 		this.attendee = attendee;
@@ -183,35 +178,28 @@ public class InvitationPDFExporter extends PDFExporter {
 	 */
 	private void writeTitlePage() throws ExportException {
 		try {
-			Font plainFontTitle = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 12);
+			Font plainFontTitle = new Font(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED),
+					12);
 
 			Font boldFontTitle = new Font(
-					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
-							BaseFont.CP1252, BaseFont.EMBEDDED), 12);
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED), 12);
 
-			Font boldItalicFontTitle = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 12);
+			Font boldItalicFontTitle = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 12);
 
-			Font plainFont = new Font(BaseFont.createFont(BaseFont.HELVETICA,
-					BaseFont.CP1252, BaseFont.EMBEDDED), 10);
+			Font plainFont = new Font(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font boldFont = new Font(
-					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
-							BaseFont.CP1252, BaseFont.EMBEDDED), 10);
+			Font boldFont = new Font(BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED),
+					10);
 
-			Font boldItalicFont = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 10);
+			Font boldItalicFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font italicFont = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 10);
+			Font italicFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font italicFontSmall = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 9);
+			Font italicFontSmall = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 9);
 
 			Phrase phraseStrut = new Phrase(" ");
 			phraseStrut.setLeading(leading);
@@ -219,16 +207,11 @@ public class InvitationPDFExporter extends PDFExporter {
 			/*
 			 * date and time of the meeting
 			 */
-			String meetingDate = sdfDate.format(meeting.getPlannedDate()
-					.getTime());
+			String meetingDate = sdfDate.format(meeting.getPlannedDate().getTime());
 
-			String meetingTime = sdfTime.format(meeting.getPlannedStart()
-					.getTime())
-					+ " - "
-					+ sdfTime.format(meeting.getPlannedEnd().getTime())
-					+ " ["
-					+ meeting.getPlannedEnd().getTimeZone().getDisplayName()
-					+ "]";
+			String meetingTime = sdfTime.format(meeting.getPlannedStart().getTime()) + " - "
+					+ sdfTime.format(meeting.getPlannedEnd().getTime()) + " ["
+					+ meeting.getPlannedEnd().getTimeZone().getDisplayName() + "]";
 			;
 
 			/*
@@ -260,13 +243,11 @@ public class InvitationPDFExporter extends PDFExporter {
 			cellRecipient.setBorder(0);
 			cellRecipient.setPadding(0);
 			cellRecipient.addElement(new Phrase(_("To:"), plainFontTitle));
-			cellRecipient.addElement(new Phrase(attendee.getName(),
-					boldFontTitle));
+			cellRecipient.addElement(new Phrase(attendee.getName(), boldFontTitle));
 
 			tableRecipient.addCell(cellRecipient);
 
-			PdfPCell cellDate = new PdfPCell(new Phrase(
-					sdfDate.format(new Date().getTime()), plainFont));
+			PdfPCell cellDate = new PdfPCell(new Phrase(sdfDate.format(new Date().getTime()), plainFont));
 			cellDate.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cellDate.setBorder(0);
 			cellDate.setPadding(0);
@@ -283,16 +264,15 @@ public class InvitationPDFExporter extends PDFExporter {
 			/*
 			 * subject
 			 */
-			cell.addElement(new Phrase(_("Invitation for the Meeting on") + " "
-					+ meetingDate, boldItalicFontTitle));
+			cell.addElement(new Phrase(_("Invitation for the Meeting on") + " " + meetingDate, boldItalicFontTitle));
 
 			cell.addElement(phraseStrut);
 
 			/*
 			 * invitation text
 			 */
-			Phrase phrase = new Phrase(Data.getInstance().getAppData()
-					.getSetting(AppSettingKey.PDF_INVITATION_TEXT), plainFont);
+			Phrase phrase = new Phrase(Data.getInstance().getAppData().getSetting(AppSettingKey.PDF_INVITATION_TEXT),
+					plainFont);
 			phrase.setLeading(leading);
 
 			cell.addElement(phrase);
@@ -323,8 +303,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			table.addCell(cell);
 
 			if (!meeting.getPlannedLocation().equals("")) {
-				cell = new PdfPCell(new Phrase(_("Location") + ": "
-						+ meeting.getPlannedLocation(), italicFont));
+				cell = new PdfPCell(new Phrase(_("Location") + ": " + meeting.getPlannedLocation(), italicFont));
 				cell.setBorder(0);
 				cell.setColspan(2);
 				cell.setPadding(padding);
@@ -347,17 +326,14 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			phrase = new Phrase();
 			phrase.setLeading(leading);
-			phrase.add(new Chunk(MessageFormat.format(
-					_("You are invited as {0} to this review ({1})."),
-					_(attendee.getRole().toString()), getReviewTitle()),
-					boldFont));
+			phrase.add(new Chunk(MessageFormat.format(_("You are invited as {0} to this review ({1})."),
+					_(attendee.getRole().toString()), getReviewTitle()), boldFont));
 
 			cell.addElement(phrase);
 
 			cell.addElement(phraseStrut);
 
-			cell.addElement(new Phrase(resiData.getReview().getDescription(),
-					italicFont));
+			cell.addElement(new Phrase(resiData.getReview().getDescription(), italicFont));
 
 			cell.addElement(phraseStrut);
 
@@ -365,14 +341,12 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Predecessor meeting
 			 */
 			if (meetMgmt.getPredecessorMeeting(meeting) != null) {
-				String preMeetingDate = sdfDate.format(meetMgmt
-						.getPredecessorMeeting(meeting).getProtocol().getDate()
-						.getTime());
+				String preMeetingDate = sdfDate
+						.format(meetMgmt.getPredecessorMeeting(meeting).getProtocol().getDate().getTime());
 
 				cell.addElement(new Phrase(
-						MessageFormat
-								.format(_("This meeting ties up to the review meeting of {0}."),
-										preMeetingDate), plainFont));
+						MessageFormat.format(_("This meeting ties up to the review meeting of {0}."), preMeetingDate),
+						plainFont));
 
 				cell.addElement(phraseStrut);
 			}
@@ -380,13 +354,11 @@ public class InvitationPDFExporter extends PDFExporter {
 			/*
 			 * If there is a product name defined
 			 */
-			if (!Data.getInstance().getResiData().getReview().getProduct()
-					.getName().trim().equals("")) {
+			if (!Data.getInstance().getResiData().getReview().getProduct().getName().trim().equals("")) {
 				/*
 				 * the product of this review
 				 */
-				cell.addElement(new Phrase(
-						_("The following product will be reviewed:"), plainFont));
+				cell.addElement(new Phrase(_("The following product will be reviewed:"), plainFont));
 				cell.addElement(phraseStrut);
 
 				table.addCell(cell);
@@ -394,8 +366,8 @@ public class InvitationPDFExporter extends PDFExporter {
 				/*
 				 * Write name and version of the reviewed product
 				 */
-				Phrase phrName = new Phrase(Data.getInstance().getResiData()
-						.getReview().getProduct().getName(), boldItalicFont);
+				Phrase phrName = new Phrase(Data.getInstance().getResiData().getReview().getProduct().getName(),
+						boldItalicFont);
 				phrName.setLeading(leading);
 
 				PdfPCell cellName = new PdfPCell(phrName);
@@ -410,12 +382,11 @@ public class InvitationPDFExporter extends PDFExporter {
 				/*
 				 * If there is a product version defined
 				 */
-				if (!Data.getInstance().getResiData().getReview().getProduct()
-						.getVersion().trim().equals("")) {
-					Phrase phrVersion = new Phrase(_("Product Version")
-							+ ": "
-							+ Data.getInstance().getResiData().getReview()
-									.getProduct().getVersion(), italicFont);
+				if (!Data.getInstance().getResiData().getReview().getProduct().getVersion().trim().equals("")) {
+					Phrase phrVersion = new Phrase(
+							_("Product Version") + ": "
+									+ Data.getInstance().getResiData().getReview().getProduct().getVersion(),
+							italicFont);
 					phrVersion.setLeading(leading);
 
 					PdfPCell cellVersion = new PdfPCell(phrVersion);
@@ -451,8 +422,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			/*
 			 * Textual references
 			 */
-			for (String ref : Application.getInstance().getReviewMgmt()
-					.getProductReferences()) {
+			for (String ref : Application.getInstance().getReviewMgmt().getProductReferences()) {
 				Phrase phraseRef = new Phrase(ref, italicFontSmall);
 				phraseRef.setLeading(leading);
 
@@ -472,12 +442,10 @@ public class InvitationPDFExporter extends PDFExporter {
 			/*
 			 * External file references
 			 */
-			for (File ref : Application.getInstance().getReviewMgmt()
-					.getExtProdReferences()) {
+			for (File ref : Application.getInstance().getReviewMgmt().getExtProdReferences()) {
 				Phrase phraseRef = new Phrase();
 				phraseRef.add(new Chunk(ref.getName(), italicFontSmall));
-				phraseRef.add(new Chunk(" (" + _("File Attachment") + ")",
-						italicFontSmall));
+				phraseRef.add(new Chunk(" (" + _("File Attachment") + ")", italicFontSmall));
 				phraseRef.setFont(plainFont);
 				phraseRef.setLeading(leading);
 
@@ -516,12 +484,12 @@ public class InvitationPDFExporter extends PDFExporter {
 			if (attendee.getAspects() != null) {
 				phrase.add(new Chunk(
 						_("Please prepare for the review meeting by checking the product for the aspects which are associated to you.")
-								+ " ", plainFont));
+								+ " ",
+						plainFont));
 			}
 
 			List<Attendee> moderators = new ArrayList<Attendee>();
-			for (Attendee a : Application.getInstance().getAttendeeMgmt()
-					.getAttendees()) {
+			for (Attendee a : Application.getInstance().getAttendeeMgmt().getAttendees()) {
 				if (a.getRole() == Role.MODERATOR) {
 					moderators.add(a);
 				}
@@ -529,13 +497,13 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			if (moderators.size() == 1 && attendee.getRole() != Role.MODERATOR) {
 				phrase.add(new Chunk(
-						_("Please do not hesitate to contact the review moderator if you have any questions:")
-								+ " ", plainFont));
-			} else if (moderators.size() > 1
-					&& attendee.getRole() != Role.MODERATOR) {
+						_("Please do not hesitate to contact the review moderator if you have any questions:") + " ",
+						plainFont));
+			} else if (moderators.size() > 1 && attendee.getRole() != Role.MODERATOR) {
 				phrase.add(new Chunk(
 						_("Please do not hesitate to contact one of the review moderators if you have any questions:")
-								+ " ", plainFont));
+								+ " ",
+						plainFont));
 			}
 
 			cell.addElement(phrase);
@@ -559,8 +527,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(
-					_("Cannot generate front page of the PDF document."));
+			throw new ExportException(_("Cannot generate front page of the PDF document."));
 		}
 	}
 
@@ -587,20 +554,17 @@ public class InvitationPDFExporter extends PDFExporter {
 		}
 
 		try {
-			Font descriptionFont = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
+			Font descriptionFont = new Font(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED),
+					10);
 
 			Font directiveFont = new Font(
-					BaseFont.createFont(BaseFont.HELVETICA_BOLD,
-							BaseFont.CP1252, BaseFont.EMBEDDED), 10);
+					BaseFont.createFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font categoryFont = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 10);
+			Font categoryFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
-			Font reviewerFont = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 9);
+			Font reviewerFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 9);
 
 			/*
 			 * Build base table for all attendees
@@ -617,8 +581,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				/*
 				 * Build table for one aspect
 				 */
-				PdfPTable tableAspect = new PdfPTable(new float[] { 0.70f,
-						0.30f });
+				PdfPTable tableAspect = new PdfPTable(new float[] { 0.70f, 0.30f });
 				tableAspect.setWidthPercentage(100);
 				tableAspect.getDefaultCell().setBorderWidth(0);
 				tableAspect.getDefaultCell().setPadding(0);
@@ -639,8 +602,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				cell.setPaddingBottom(padding * 1.5f);
 				cell.addElement(new Phrase(asp.getDirective(), directiveFont));
 				cell.addElement(phraseStrut);
-				cell.addElement(new Phrase(asp.getDescription(),
-						descriptionFont));
+				cell.addElement(new Phrase(asp.getDescription(), descriptionFont));
 
 				/*
 				 * the reviewers of this aspect (moderator only)
@@ -657,8 +619,7 @@ public class InvitationPDFExporter extends PDFExporter {
 
 					for (Attendee att : attMgmt.getAttendees()) {
 						if (attMgmt.hasAspect(asp, att)) {
-							phraseReviewers.add(new Chunk(separator
-									+ att.getName(), reviewerFont));
+							phraseReviewers.add(new Chunk(separator + att.getName(), reviewerFont));
 
 							separator = "  ·  ";
 						}
@@ -715,8 +676,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(
-					_("Cannot put aspects into the PDF document."));
+			throw new ExportException(_("Cannot put aspects into the PDF document."));
 		}
 	}
 
@@ -730,9 +690,8 @@ public class InvitationPDFExporter extends PDFExporter {
 		try {
 			writeTitlePage();
 
-			Font italicFont = new Font(BaseFont.createFont(
-					BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252,
-					BaseFont.EMBEDDED), 10);
+			Font italicFont = new Font(
+					BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED), 10);
 
 			PdfPTable tableAspIntro = new PdfPTable(1);
 			tableAspIntro.setWidthPercentage(100);
@@ -759,9 +718,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			} else if (attendee.getRole() != Role.REVIEWER) {
 				pdfDoc.newPage();
 
-				phraseAspIntro = new Phrase(
-						_("The product will be checked for the following aspects:"),
-						italicFont);
+				phraseAspIntro = new Phrase(_("The product will be checked for the following aspects:"), italicFont);
 
 				cellAspIntro.addElement(phraseAspIntro);
 
@@ -776,9 +733,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(
-					_("Cannot create invitation for the review meeting.")
-							+ "\n\n" + e.getMessage());
+			throw new ExportException(_("Cannot create invitation for the review meeting.") + "\n\n" + e.getMessage());
 		}
 	}
 

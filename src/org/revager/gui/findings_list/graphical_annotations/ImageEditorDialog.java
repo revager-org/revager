@@ -122,8 +122,7 @@ public class ImageEditorDialog extends AbstractDialog {
 
 		setTitle(_("Image Editor"));
 
-		ImageAnnotation annotation = ImageAnnotation.newEllipseAnnotation(
-				currentColor, DEFAULT_THICKNESS);
+		ImageAnnotation annotation = ImageAnnotation.newEllipseAnnotation(currentColor, DEFAULT_THICKNESS);
 
 		this.fileImage = fileImage;
 
@@ -161,17 +160,17 @@ public class ImageEditorDialog extends AbstractDialog {
 
 		ComponentStrut compStrut = new ComponentStrut();
 
-		GUITools.addComponent(panelGbl, gbl, panelImage, 2, 2, 1, 1, 0.0, 0.0,
-				0, 0, 0, 0, GridBagConstraints.BOTH, GridBagConstraints.CENTER);
+		GUITools.addComponent(panelGbl, gbl, panelImage, 2, 2, 1, 1, 0.0, 0.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.CENTER);
 
-		GUITools.addComponent(panelGbl, gbl, compStrut, 1, 1, 3, 1, 1.0, 1.0,
-				0, 0, 0, 0, GridBagConstraints.BOTH, GridBagConstraints.CENTER);
-		GUITools.addComponent(panelGbl, gbl, compStrut, 1, 3, 3, 1, 1.0, 1.0,
-				0, 0, 0, 0, GridBagConstraints.BOTH, GridBagConstraints.CENTER);
-		GUITools.addComponent(panelGbl, gbl, compStrut, 1, 2, 1, 1, 1.0, 0.0,
-				0, 0, 0, 0, GridBagConstraints.BOTH, GridBagConstraints.CENTER);
-		GUITools.addComponent(panelGbl, gbl, compStrut, 3, 2, 1, 1, 1.0, 0.0,
-				0, 0, 0, 0, GridBagConstraints.BOTH, GridBagConstraints.CENTER);
+		GUITools.addComponent(panelGbl, gbl, compStrut, 1, 1, 3, 1, 1.0, 1.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.CENTER);
+		GUITools.addComponent(panelGbl, gbl, compStrut, 1, 3, 3, 1, 1.0, 1.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.CENTER);
+		GUITools.addComponent(panelGbl, gbl, compStrut, 1, 2, 1, 1, 1.0, 0.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.CENTER);
+		GUITools.addComponent(panelGbl, gbl, compStrut, 3, 2, 1, 1, 1.0, 0.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.CENTER);
 
 		JScrollPane scrollImage = new JScrollPane(panelGbl);
 		scrollImage.getVerticalScrollBar().setUnitIncrement(12);
@@ -197,9 +196,8 @@ public class ImageEditorDialog extends AbstractDialog {
 	}
 
 	private void createToolbar() {
-		buttonUndo = GUITools.newImageButton(
-				Data.getInstance().getIcon("undo_50x50_0.png"), Data
-						.getInstance().getIcon("undo_50x50.png"));
+		buttonUndo = GUITools.newImageButton(Data.getInstance().getIcon("undo_50x50_0.png"),
+				Data.getInstance().getIcon("undo_50x50.png"));
 		buttonUndo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -209,9 +207,8 @@ public class ImageEditorDialog extends AbstractDialog {
 		});
 		buttonUndo.setToolTipText(_("Undo"));
 
-		buttonRedo = GUITools.newImageButton(
-				Data.getInstance().getIcon("redo_50x50_0.png"), Data
-						.getInstance().getIcon("redo_50x50.png"));
+		buttonRedo = GUITools.newImageButton(Data.getInstance().getIcon("redo_50x50_0.png"),
+				Data.getInstance().getIcon("redo_50x50.png"));
 		buttonRedo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -223,18 +220,14 @@ public class ImageEditorDialog extends AbstractDialog {
 
 		buttonGroup = new ButtonGroup();
 
-		buttonRectangle = GUITools.newImageToggleButton(Data.getInstance()
-				.getIcon("rectangle_50x50_0.png"),
+		buttonRectangle = GUITools.newImageToggleButton(Data.getInstance().getIcon("rectangle_50x50_0.png"),
 				Data.getInstance().getIcon("rectangle_50x50.png"), null);
-		buttonEllipse = GUITools.newImageToggleButton(Data.getInstance()
-				.getIcon("ellipse_50x50_0.png"),
+		buttonEllipse = GUITools.newImageToggleButton(Data.getInstance().getIcon("ellipse_50x50_0.png"),
 				Data.getInstance().getIcon("ellipse_50x50.png"), null);
-		buttonArrow = GUITools.newImageToggleButton(
-				Data.getInstance().getIcon("arrow_50x50_0.png"), Data
-						.getInstance().getIcon("arrow_50x50.png"), null);
-		buttonText = GUITools.newImageToggleButton(
-				Data.getInstance().getIcon("text_50x50_0.png"), Data
-						.getInstance().getIcon("text_50x50.png"), null);
+		buttonArrow = GUITools.newImageToggleButton(Data.getInstance().getIcon("arrow_50x50_0.png"),
+				Data.getInstance().getIcon("arrow_50x50.png"), null);
+		buttonText = GUITools.newImageToggleButton(Data.getInstance().getIcon("text_50x50_0.png"),
+				Data.getInstance().getIcon("text_50x50.png"), null);
 
 		ActionListener thiknessEnActionL = new ActionListener() {
 			@Override
@@ -258,32 +251,28 @@ public class ImageEditorDialog extends AbstractDialog {
 		buttonRectangle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelImage.setCurrentAnnotation(ImageAnnotation
-						.newRectangleAnnotation(currentColor, currentThickness));
+				panelImage.setCurrentAnnotation(ImageAnnotation.newRectangleAnnotation(currentColor, currentThickness));
 			}
 		});
 
 		buttonEllipse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelImage.setCurrentAnnotation(ImageAnnotation
-						.newEllipseAnnotation(currentColor, currentThickness));
+				panelImage.setCurrentAnnotation(ImageAnnotation.newEllipseAnnotation(currentColor, currentThickness));
 			}
 		});
 
 		buttonArrow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelImage.setCurrentAnnotation(ImageAnnotation
-						.newArrowAnnotation(currentColor));
+				panelImage.setCurrentAnnotation(ImageAnnotation.newArrowAnnotation(currentColor));
 			}
 		});
 
 		buttonText.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TextPopupWindow popup = new TextPopupWindow(
-						getImageEditorDialog(), _("Please enter some text"),
+				TextPopupWindow popup = new TextPopupWindow(getImageEditorDialog(), _("Please enter some text"),
 						currentText, false);
 
 				popup.setVisible(true);
@@ -292,8 +281,7 @@ public class ImageEditorDialog extends AbstractDialog {
 					currentText = popup.getInput();
 				}
 
-				panelImage.setCurrentAnnotation(ImageAnnotation
-						.newTextAnnotation(currentColor, currentText));
+				panelImage.setCurrentAnnotation(ImageAnnotation.newTextAnnotation(currentColor, currentText));
 			}
 		});
 
@@ -304,12 +292,10 @@ public class ImageEditorDialog extends AbstractDialog {
 		buttonGroup.add(buttonArrow);
 		buttonGroup.add(buttonText);
 
-		panelThicknessPreview.setPreferredSize(new Dimension(80,
-				DEFAULT_THICKNESS));
+		panelThicknessPreview.setPreferredSize(new Dimension(80, DEFAULT_THICKNESS));
 		panelThicknessPreview.setBackground(currentColor);
 
-		sliderThickness = new JSlider(SwingConstants.VERTICAL, 1, MAX_THICKNESS,
-				DEFAULT_THICKNESS);
+		sliderThickness = new JSlider(SwingConstants.VERTICAL, 1, MAX_THICKNESS, DEFAULT_THICKNESS);
 		registerInToolTipManager(sliderThickness);
 
 		sliderThickness.addChangeListener(new ChangeListener() {
@@ -317,31 +303,24 @@ public class ImageEditorDialog extends AbstractDialog {
 			public void stateChanged(ChangeEvent e) {
 				currentThickness = sliderThickness.getValue();
 
-				panelImage.getCurrentAnnotation()
-						.setThickness(currentThickness);
+				panelImage.getCurrentAnnotation().setThickness(currentThickness);
 
 				updateThicknessInfo();
 			}
 		});
-		sliderThickness.setPreferredSize(new Dimension((int) sliderThickness
-				.getPreferredSize().getWidth(), 50));
+		sliderThickness.setPreferredSize(new Dimension((int) sliderThickness.getPreferredSize().getWidth(), 50));
 		sliderThickness.setBackground(Color.WHITE);
 
-		GUITools.addComponent(panelThickness, gblThickness,
-				panelThicknessPreview, 2, 2, 1, 1, 0.0, 0.0, 0, 5, 0, 5,
+		GUITools.addComponent(panelThickness, gblThickness, panelThicknessPreview, 2, 2, 1, 1, 0.0, 0.0, 0, 5, 0, 5,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER);
 
-		GUITools.addComponent(panelThickness, gblThickness,
-				new ComponentStrut(), 1, 1, 3, 1, 1.0, 1.0, 0, 0, 0, 0,
+		GUITools.addComponent(panelThickness, gblThickness, new ComponentStrut(), 1, 1, 3, 1, 1.0, 1.0, 0, 0, 0, 0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER);
-		GUITools.addComponent(panelThickness, gblThickness,
-				new ComponentStrut(), 1, 3, 3, 1, 1.0, 1.0, 0, 0, 0, 0,
+		GUITools.addComponent(panelThickness, gblThickness, new ComponentStrut(), 1, 3, 3, 1, 1.0, 1.0, 0, 0, 0, 0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER);
-		GUITools.addComponent(panelThickness, gblThickness,
-				new ComponentStrut(), 1, 2, 1, 1, 1.0, 0.0, 0, 0, 0, 0,
+		GUITools.addComponent(panelThickness, gblThickness, new ComponentStrut(), 1, 2, 1, 1, 1.0, 0.0, 0, 0, 0, 0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER);
-		GUITools.addComponent(panelThickness, gblThickness,
-				new ComponentStrut(), 3, 2, 1, 1, 1.0, 0.0, 0, 0, 0, 0,
+		GUITools.addComponent(panelThickness, gblThickness, new ComponentStrut(), 3, 2, 1, 1, 1.0, 0.0, 0, 0, 0, 0,
 				GridBagConstraints.BOTH, GridBagConstraints.CENTER);
 
 		panelThickness.setBackground(Color.WHITE);
@@ -356,8 +335,7 @@ public class ImageEditorDialog extends AbstractDialog {
 		buttonColor.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Color selectedColor = JColorChooser.showDialog(
-						getImageEditorDialog(), _("Please choose a color"),
+				Color selectedColor = JColorChooser.showDialog(getImageEditorDialog(), _("Please choose a color"),
 						currentColor);
 
 				if (selectedColor != null) {
@@ -366,8 +344,7 @@ public class ImageEditorDialog extends AbstractDialog {
 
 					if (panelThicknessPreview.isEnabled()) {
 						if (currentColor.equals(Color.WHITE)) {
-							panelThicknessPreview
-									.setBackground(Color.LIGHT_GRAY);
+							panelThicknessPreview.setBackground(Color.LIGHT_GRAY);
 						} else {
 							panelThicknessPreview.setBackground(currentColor);
 						}
@@ -405,8 +382,7 @@ public class ImageEditorDialog extends AbstractDialog {
 		panelTop.add(panelTopRight, BorderLayout.EAST);
 		setTopPanel(panelTop);
 
-		buttonCancel = new JButton(_("Abort"), Data.getInstance().getIcon(
-				"buttonCancel_16x16.png"));
+		buttonCancel = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		buttonCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -420,8 +396,7 @@ public class ImageEditorDialog extends AbstractDialog {
 
 		addButton(buttonCancel);
 
-		buttonConfirm = new JButton(_("Confirm"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
+		buttonConfirm = new JButton(_("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -447,13 +422,11 @@ public class ImageEditorDialog extends AbstractDialog {
 	}
 
 	private void updateThicknessInfo() {
-		panelThicknessPreview.setPreferredSize(new Dimension(
-				(int) panelThicknessPreview.getSize().getWidth(),
-				sliderThickness.getValue()));
+		panelThicknessPreview.setPreferredSize(
+				new Dimension((int) panelThicknessPreview.getSize().getWidth(), sliderThickness.getValue()));
 		panelThicknessPreview.revalidate();
 
-		String tooltip = _("Thickness") + ": "
-				+ Integer.toString(sliderThickness.getValue()) + " px";
+		String tooltip = _("Thickness") + ": " + Integer.toString(sliderThickness.getValue()) + " px";
 
 		panelThickness.setToolTipText(tooltip);
 		sliderThickness.setToolTipText(tooltip);
@@ -486,8 +459,7 @@ public class ImageEditorDialog extends AbstractDialog {
 		boolean removeKeyStroke = false;
 		KeyStroke[] ks = imap.keys();
 		if (ks == null || ks.length == 0) {
-			imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SLASH, 0),
-					"backSlash");
+			imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SLASH, 0), "backSlash");
 			removeKeyStroke = true;
 		}
 		// now we can register by ToolTipManager
@@ -505,8 +477,7 @@ public class ImageEditorDialog extends AbstractDialog {
 	private static MouseHandler MOUSE_HANDLER = new MouseHandler();
 
 	// implementation of MouseHandler
-	private static class MouseHandler extends MouseAdapter implements
-			MouseMotionListener {
+	private static class MouseHandler extends MouseAdapter implements MouseMotionListener {
 		private void performAction(MouseEvent e) {
 			JComponent c = (JComponent) e.getComponent();
 			Action action = c.getActionMap().get("postTip");
@@ -514,8 +485,7 @@ public class ImageEditorDialog extends AbstractDialog {
 			// ToolTip with custom delay, but here we just
 			// display it immediately
 			if (action != null) {
-				action.actionPerformed(new ActionEvent(c,
-						ActionEvent.ACTION_PERFORMED, "postTip"));
+				action.actionPerformed(new ActionEvent(c, ActionEvent.ACTION_PERFORMED, "postTip"));
 			}
 		}
 

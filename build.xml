@@ -24,6 +24,9 @@
 
 	<property name="lib.derby" location="${dir.lib}/derby.jar" />
 	<property name="lib.iText" location="${dir.lib}/iText-2.1.7.jar" />
+	<property name="lib.jinput" location="${dir.lib}/jinput-2.0.7.jar" />
+	<property name="lib.jinput.naive" location="${dir.lib}/jinput-native-files/" />
+	<property name="lib.jutils" location="${dir.lib}/jutils-1.0.0.jar" />
 	<property name="lib.junit" location="${dir.lib.dev}/junit-4.7.jar" />
 	<property name="lib.gettexttasks" location="${dir.lib.dev}/gettext-ant-tasks-0.9.7.jar" />
 	<property name="lib.launch4j.linux" location="${dir.lib.dev}/launch4j/launch4j-3.0.1-linux.tgz" />
@@ -35,6 +38,9 @@
 		<pathelement location="${lib.build}" />
 		<pathelement location="${lib.derby}" />
 		<pathelement location="${lib.iText}" />
+		<pathelement location="${lib.jinput}" />
+		<pathelement location="${lib.jinput.naive}" />
+		<pathelement location="${lib.jutils}" />
 		<pathelement location="${lib.junit}" />
 	</path>
 
@@ -145,6 +151,7 @@
 
 		<!-- Build the runnable JAR file -->
 		<jar jarfile="${dir.dist}/${appFileName}_${appVersion}.jar" basedir="${dir.build}" level="9">
+			<!-- <fileset dir="${lib.jinput.naive}" /> -->
 			<manifest>
 				<attribute name="Main-Class" value="org.revager.Main" />
 				<attribute name="Class-Path" value="." />

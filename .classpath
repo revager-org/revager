@@ -6,5 +6,13 @@
 	<classpathentry kind="lib" path="lib/iText-2.1.7.jar"/>
 	<classpathentry kind="lib" path="lib-dev/junit-4.7.jar"/>
 	<classpathentry kind="lib" path="lib/lablib-checkboxtree-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/jinput-2.0.7.jar" sourcepath="lib/jinput-2.0.7-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jutils-1.0.0.jar" sourcepath="lib/jutils-1.0.0-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/jinput-native-files">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="revager/lib/jinput-native-files"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

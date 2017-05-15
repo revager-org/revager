@@ -8,6 +8,7 @@
 package org.revager.app.model.schema;
 
 import java.util.Calendar;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -49,7 +50,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "meetingType", propOrder = { "plannedDate", "plannedStart", "plannedEnd", "plannedLocation", "protocol",
 		"canceled", "comments" })
-public class Meeting {
+public class Meeting extends Observable {
 
 	@XmlElement(name = "planned-date", required = true, type = String.class)
 	@XmlJavaTypeAdapter(Adapter1.class)
@@ -239,6 +240,8 @@ public class Meeting {
 	 */
 	public void setComments(String value) {
 		this.comments = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetComments() {

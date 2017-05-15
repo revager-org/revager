@@ -9,6 +9,7 @@ package org.revager.app.model.schema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -51,7 +52,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "findingType", propOrder = { "id", "severity", "description", "references", "aspects",
 		"externalReferences" })
-public class Finding {
+public class Finding extends Observable {
 
 	@XmlElement(required = true, type = String.class)
 	@XmlJavaTypeAdapter(Adapter4.class)
@@ -113,6 +114,8 @@ public class Finding {
 	 */
 	public void setSeverity(String value) {
 		this.severity = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetSeverity() {
@@ -138,6 +141,8 @@ public class Finding {
 	 */
 	public void setDescription(String value) {
 		this.description = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetDescription() {
@@ -174,6 +179,8 @@ public class Finding {
 	public boolean addReference(String reference) {
 		if (!references.contains(reference)) {
 			references.add(reference);
+			setChanged();
+			notifyObservers();
 			return true;
 		}
 		return false;
@@ -181,13 +188,16 @@ public class Finding {
 
 	public void removeReference(String ref) {
 		references.remove(ref);
-
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean updateReference(String oldReference, String newReference) {
 		if (references.contains(oldReference)) {
 			int index = references.lastIndexOf(oldReference);
 			references.set(index, newReference);
+			setChanged();
+			notifyObservers();
 			return true;
 		}
 		return false;
@@ -231,6 +241,8 @@ public class Finding {
 	public boolean addAspect(String aspect) {
 		if (!this.aspects.contains(aspect)) {
 			aspects.add(aspect);
+			setChanged();
+			notifyObservers();
 			return true;
 		}
 		return false;
@@ -238,6 +250,8 @@ public class Finding {
 
 	public void removeAspect(String asp) {
 		aspects.remove(asp);
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetAspects() {
@@ -277,10 +291,14 @@ public class Finding {
 
 	public void addExternalReferences(String extRefFile) {
 		externalReferences.add(extRefFile);
+		setChanged();
+		notifyObservers();
 	}
 
 	public void removeExternalReferences(String extRef) {
 		externalReferences.remove(extRef);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public boolean isSetExternalReferences() {

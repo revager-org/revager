@@ -10,6 +10,7 @@ package org.revager.app.model.schema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -52,7 +53,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "protocolType", propOrder = { "date", "start", "end", "location", "attendeeReferences", "findings",
 		"comments" })
-public class Protocol {
+public class Protocol extends Observable{
 
 	@XmlElement(required = true, type = String.class)
 	@XmlJavaTypeAdapter(Adapter5.class)
@@ -269,6 +270,8 @@ public class Protocol {
 	 */
 	public void setComments(String value) {
 		this.comments = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetComments() {

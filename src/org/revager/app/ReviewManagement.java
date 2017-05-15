@@ -794,10 +794,7 @@ public class ReviewManagement {
 	 *            the impression
 	 */
 	public void setImpression(String impr) {
-		impr = impr.trim();
-
-		resiData.getReview().setImpression(impr);
-
+		resiData.getReview().setImpression(impr.trim());
 		resiData.fireDataChanged();
 	}
 

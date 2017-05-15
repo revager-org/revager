@@ -11,7 +11,6 @@ import javax.swing.WindowConstants;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import org.revager.app.Application;
-import org.revager.app.ReviewManagement;
 import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Finding;

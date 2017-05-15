@@ -62,12 +62,12 @@ public class Finding {
 	@XmlElement(required = true)
 	protected String description;
 	@XmlElement(name = "reference")
-	protected List<String> references;
+	protected List<String> references = new ArrayList<String>();
 	@XmlElement(name = "aspect")
-	protected List<String> aspects;
+	protected List<String> aspects = new ArrayList<String>();
 	@XmlElement(name = "external-reference")
 	@XmlSchemaType(name = "anyURI")
-	protected List<String> externalReferences;
+	protected List<String> externalReferences = new ArrayList<String>();
 
 	/**
 	 * Gets the value of the id property.
@@ -164,13 +164,33 @@ public class Finding {
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
 	 * 
-	 * 
+	 * @deprecated Don't leak the list.
 	 */
+	@Deprecated
 	public List<String> getReferences() {
-		if (references == null) {
-			references = new ArrayList<String>();
-		}
 		return this.references;
+	}
+
+	public boolean addReference(String reference) {
+		if (!references.contains(reference)) {
+			references.add(reference);
+			return true;
+		}
+		return false;
+	}
+
+	public void removeReference(String ref) {
+		references.remove(ref);
+
+	}
+
+	public boolean updateReference(String oldReference, String newReference) {
+		if (references.contains(oldReference)) {
+			int index = references.lastIndexOf(oldReference);
+			references.set(index, newReference);
+			return true;
+		}
+		return false;
 	}
 
 	public boolean isSetReferences() {
@@ -201,13 +221,23 @@ public class Finding {
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
 	 * 
-	 * 
+	 * @deprecated do not leak the list.
 	 */
+	@Deprecated
 	public List<String> getAspects() {
-		if (aspects == null) {
-			aspects = new ArrayList<String>();
-		}
 		return this.aspects;
+	}
+
+	public boolean addAspect(String aspect) {
+		if (!this.aspects.contains(aspect)) {
+			aspects.add(aspect);
+			return true;
+		}
+		return false;
+	}
+
+	public void removeAspect(String asp) {
+		aspects.remove(asp);
 	}
 
 	public boolean isSetAspects() {
@@ -238,15 +268,21 @@ public class Finding {
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
 	 * 
-	 * 
+	 * @deprecated do not leak the list.
 	 */
+	@Deprecated
 	public List<String> getExternalReferences() {
-		if (externalReferences == null) {
-			externalReferences = new ArrayList<String>();
-		}
 		return this.externalReferences;
 	}
 
+	public void addExternalReferences(String extRefFile) {
+		externalReferences.add(extRefFile);
+	}
+
+	public void removeExternalReferences(String extRef) {
+		externalReferences.remove(extRef);
+	}
+	
 	public boolean isSetExternalReferences() {
 		return ((this.externalReferences != null) && (!this.externalReferences.isEmpty()));
 	}

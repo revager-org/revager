@@ -169,7 +169,6 @@ public class FindingManagement {
 		if (description == null) {
 			description = "";
 		}
-
 		if (severity == null) {
 			severity = "";
 		}
@@ -327,9 +326,7 @@ public class FindingManagement {
 	 *            the finding
 	 */
 	public void addReference(String ref, Finding find) {
-		if (!find.getReferences().contains(ref)) {
-			find.getReferences().add(ref);
-
+		if (find.addReference(ref)) {
 			resiData.fireDataChanged();
 		}
 	}
@@ -343,7 +340,7 @@ public class FindingManagement {
 	 *            the finding
 	 */
 	public void removeReference(String ref, Finding find) {
-		find.getReferences().remove(ref);
+		find.removeReference(ref);
 
 		resiData.fireDataChanged();
 	}
@@ -359,11 +356,7 @@ public class FindingManagement {
 	 *            the new reference
 	 */
 	public void editReference(String oldRef, String newRef, Finding find) {
-		if (find.getReferences().contains(oldRef)) {
-			int index = find.getReferences().lastIndexOf(oldRef);
-
-			find.getReferences().set(index, newRef);
-
+		if (find.updateReference(oldRef, newRef)) {
 			resiData.fireDataChanged();
 		}
 	}
@@ -378,15 +371,11 @@ public class FindingManagement {
 	 */
 	public List<File> getExtReferences(Finding find) {
 		ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
-
 		List<File> list = new ArrayList<File>();
-
 		for (String ref : find.getExternalReferences()) {
 			File extRefFile = new File(EXTREF_DIRECTORY + revMgmt.getExtRefFileName(ref));
-
 			list.add(extRefFile);
 		}
-
 		return list;
 	}
 
@@ -408,7 +397,8 @@ public class FindingManagement {
 		String extRefFile = revMgmt.addExtRefFile(file);
 
 		if (extRefFile != null) {
-			find.getExternalReferences().add(extRefFile);
+			
+			find.addExternalReferences(extRefFile);
 
 			resiData.fireDataChanged();
 
@@ -463,11 +453,8 @@ public class FindingManagement {
 		ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 		String extRef = revMgmt.getExtRefURI(file.getName());
-
 		file.delete();
-
-		find.getExternalReferences().remove(extRef);
-
+		find.addExternalReferences(extRef);
 		resiData.fireDataChanged();
 	}
 
@@ -493,10 +480,7 @@ public class FindingManagement {
 	 */
 	public void addAspect(Aspect asp, Finding find) {
 		String aspect = asp.getDirective() + " (" + asp.getCategory() + ")";
-
-		if (!find.getAspects().contains(aspect)) {
-			find.getAspects().add(aspect);
-
+		if (find.addAspect(aspect)) {
 			resiData.fireDataChanged();
 		}
 	}
@@ -510,10 +494,7 @@ public class FindingManagement {
 	 *            the finding
 	 */
 	public void addAspect(String asp, Finding find) {
-
-		if (!find.getAspects().contains(asp)) {
-			find.getAspects().add(asp);
-
+		if (find.addAspect(asp)) {
 			resiData.fireDataChanged();
 		}
 	}
@@ -527,8 +508,7 @@ public class FindingManagement {
 	 *            the finding
 	 */
 	public void removeAspect(String asp, Finding find) {
-		find.getAspects().remove(asp);
-
+		find.removeAspect(asp);
 		resiData.fireDataChanged();
 	}
 

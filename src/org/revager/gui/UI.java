@@ -50,6 +50,7 @@ import org.revager.gui.dialogs.SettingsDialog;
 import org.revager.gui.dialogs.assistant.AssistantDialog;
 import org.revager.gui.findings_list.FindingsListFrame;
 import org.revager.gui.helpers.FileChooser;
+import org.revager.gui.presentationView.PresentationFrame;
 import org.revager.gui.workers.AutoBackupWorker;
 import org.revager.gui.workers.AutoSaveWorker;
 import org.revager.gui.workers.CheckForNewVersionWorker;
@@ -295,6 +296,8 @@ public class UI implements Observer {
 	 * The platform.
 	 */
 	private Platform platform = Platform.OTHER;
+
+	private PresentationFrame presentationFrame;
 
 	/**
 	 * Gets the status.
@@ -561,6 +564,13 @@ public class UI implements Observer {
 
 		return exportCSVDialog;
 	};
+	
+	public PresentationFrame getPresentationFrame() {
+		if (presentationFrame == null) {
+			presentationFrame = new PresentationFrame();
+		}
+		return presentationFrame;
+	}
 
 	/**
 	 * Gets the export pdf protocol dialog.

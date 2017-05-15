@@ -4,8 +4,8 @@
 
 	<property environment="env" />
 	<property name="debuglevel" value="source,lines,vars" />
-	<property name="target" value="1.6" />
-	<property name="source" value="1.6" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
 
 	<property name="dir.src" location="src" />
 	<property name="dir.lib" location="lib" />
@@ -217,7 +217,7 @@
 	<target name="build-jarbundler" if="isMacOSX" description="Generate runnable app file for Mac OS X">
 		<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${dir.lib.dev}/jarbundler-2.1.0.jar" />
 
-		<jarbundler dir="${dir.dist}" name="${appName}" mainclass="org.revager.Main" jar="${dir.dist}/${appFileName}_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="org.revager" icon="${dir.src}/org/revager/resources/build/macosx/appIcon.icns" jvmversion="1.6+" shortname="${appName}" />
+		<jarbundler dir="${dir.dist}" name="${appName}" mainclass="org.revager.Main" jar="${dir.dist}/${appFileName}_${appVersion}.jar" build="${appBuild}" version="${appVersion}" bundleid="org.revager" icon="${dir.src}/org/revager/resources/build/macosx/appIcon.icns" jvmversion="1.8+" shortname="${appName}" />
 	</target>
 
 

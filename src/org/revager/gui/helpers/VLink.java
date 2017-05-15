@@ -109,14 +109,12 @@ public class VLink extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 	};
 
@@ -247,26 +245,22 @@ public class VLink extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 		});
 		localLbl.addMouseListener(new MouseListener() {
@@ -278,26 +272,22 @@ public class VLink extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 		});
 	}
@@ -327,8 +317,7 @@ public class VLink extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
@@ -346,14 +335,12 @@ public class VLink extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 	};
 

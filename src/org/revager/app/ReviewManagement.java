@@ -453,16 +453,12 @@ public class ReviewManagement {
 				prot.setComments(prot.getComments().trim());
 				prot.setLocation(prot.getLocation().trim());
 
-				// TODO
-				/*
-				 * workaround
-				 */
+				// TODO: workaround
 				for (AttendeeReference att : prot.getAttendeeReferences()) {
 					if (att.getPreparationTime() == null) {
 						try {
 							att.setPreparationTime(DatatypeFactory.newInstance().newDuration(0));
 						} catch (DatatypeConfigurationException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}

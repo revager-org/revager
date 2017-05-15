@@ -105,27 +105,23 @@ public class HLink extends JPanel {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		};
+			// No need to handle event.
+		}
 	};
 
 	/**
@@ -182,14 +178,12 @@ public class HLink extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 	};
 
@@ -380,26 +374,22 @@ public class HLink extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 		});
 		localLbl.addMouseListener(new MouseListener() {
@@ -412,26 +402,22 @@ public class HLink extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				// No need to handle event.
 			}
 		});
 	}
@@ -451,7 +437,6 @@ public class HLink extends JPanel {
 	 * @return
 	 */
 	public ImageIcon getLocalSelIcon() {
-		// TODO Auto-generated method stub
 		return localSelIcon;
 	}
 
@@ -479,15 +464,13 @@ public class HLink extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			if (father != null)
 				father.setHint(rollOverText);
-
 		}
 
 		@Override
@@ -499,14 +482,12 @@ public class HLink extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			// No need to handle event.
 		}
 	};
 
@@ -516,7 +497,6 @@ public class HLink extends JPanel {
 	 * @return
 	 */
 	public JLabel getLocalLbl() {
-		// TODO Auto-generated method stub
 		return localLbl;
 	}
 

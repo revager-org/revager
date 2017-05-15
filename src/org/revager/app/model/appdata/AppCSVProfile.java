@@ -120,9 +120,7 @@ public class AppCSVProfile {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT name FROM CSVProfiles "
-							+ "WHERE name = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT name FROM CSVProfiles " + "WHERE name = ?");
 
 			ps.setString(1, name);
 
@@ -132,16 +130,12 @@ public class AppCSVProfile {
 			 * If a profile with the given name does not exist
 			 */
 			if (!res.next()) {
-				ps = conn
-						.prepareStatement("INSERT INTO CSVProfiles "
-								+ "(name, columnOrder, columnsInFirstLine, encapsulateContent) "
-								+ "VALUES (?, ?, ?, ?)");
+				ps = conn.prepareStatement("INSERT INTO CSVProfiles "
+						+ "(name, columnOrder, columnsInFirstLine, encapsulateContent) " + "VALUES (?, ?, ?, ?)");
 
 				ps.setString(1, name);
-				ps.setString(2, AppCSVColumnName.DESCRIPTION.toString() + "|"
-						+ AppCSVColumnName.REFERENCE.toString() + "|"
-						+ AppCSVColumnName.SEVERITY.toString() + "|"
-						+ AppCSVColumnName.REPORTER.toString());
+				ps.setString(2, AppCSVColumnName.DESCRIPTION.toString() + "|" + AppCSVColumnName.REFERENCE.toString()
+						+ "|" + AppCSVColumnName.SEVERITY.toString() + "|" + AppCSVColumnName.REPORTER.toString());
 				ps.setBoolean(3, true);
 				ps.setBoolean(4, true);
 
@@ -158,8 +152,7 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot add or get CSV profile.")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(_("Cannot add or get CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return new AppCSVProfile(name);
@@ -190,12 +183,10 @@ public class AppCSVProfile {
 
 		if (!this.name.equals(name)) {
 			try {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 				int result = 0;
 
-				PreparedStatement ps = conn
-						.prepareStatement("SELECT COUNT(*) FROM CSVProfiles WHERE name=?");
+				PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM CSVProfiles WHERE name=?");
 				ps.setString(1, name);
 
 				ResultSet res = ps.executeQuery();
@@ -210,8 +201,7 @@ public class AppCSVProfile {
 				 * If there is no attendee with the given name
 				 */
 				if (result == 0) {
-					ps = conn.prepareStatement("UPDATE CSVProfiles "
-							+ "SET name=? WHERE name=?");
+					ps = conn.prepareStatement("UPDATE CSVProfiles " + "SET name=? WHERE name=?");
 
 					ps.setString(1, name);
 					ps.setString(2, this.name);
@@ -232,9 +222,7 @@ public class AppCSVProfile {
 				}
 			} catch (Exception e) {
 				throw new DataException(
-						_("Cannot store name of the CSV profile.")
-								+ " [NAME = " + this.name + "] "
-								+ e.getMessage());
+						_("Cannot store name of the CSV profile.") + " [NAME = " + this.name + "] " + e.getMessage());
 			}
 		}
 	}
@@ -253,9 +241,7 @@ public class AppCSVProfile {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT columnOrder FROM CSVProfiles "
-							+ "WHERE name = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT columnOrder FROM CSVProfiles " + "WHERE name = ?");
 
 			ps.setString(1, this.name);
 
@@ -275,9 +261,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get column order of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get column order of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 
 		return colList;
@@ -292,8 +277,7 @@ public class AppCSVProfile {
 	 * @throws DataException
 	 *             If an error occurs while setting the column order
 	 */
-	public void setColumnOrder(List<AppCSVColumnName> colList)
-			throws DataException {
+	public void setColumnOrder(List<AppCSVColumnName> colList) throws DataException {
 		if (!exists()) {
 			throw notFoundExc;
 		}
@@ -323,12 +307,9 @@ public class AppCSVProfile {
 
 		try {
 			if (checkList.isEmpty()) {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 
-				PreparedStatement ps = conn
-						.prepareStatement("UPDATE CSVProfiles "
-								+ "SET columnOrder=? WHERE name=?");
+				PreparedStatement ps = conn.prepareStatement("UPDATE CSVProfiles " + "SET columnOrder=? WHERE name=?");
 
 				ps.setString(1, colOrder);
 				ps.setString(2, this.name);
@@ -343,9 +324,8 @@ public class AppCSVProfile {
 				throw new DataException();
 			}
 		} catch (Exception e) {
-			throw new DataException(
-					_("Cannot set column order of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot set column order of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 	}
 
@@ -365,8 +345,7 @@ public class AppCSVProfile {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
 			PreparedStatement ps = conn
-					.prepareStatement("SELECT columnsInFirstLine FROM CSVProfiles "
-							+ "WHERE name = ?");
+					.prepareStatement("SELECT columnsInFirstLine FROM CSVProfiles " + "WHERE name = ?");
 			ps.setString(1, this.name);
 
 			ResultSet res = ps.executeQuery();
@@ -383,9 +362,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the requested property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get the requested property of the selected CSV profile.") + " [NAME = "
+					+ this.name + "] " + e.getMessage());
 		}
 
 		return cfl;
@@ -408,8 +386,8 @@ public class AppCSVProfile {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn.prepareStatement("UPDATE CSVProfiles "
-					+ "SET columnsInFirstLine=? WHERE name=?");
+			PreparedStatement ps = conn
+					.prepareStatement("UPDATE CSVProfiles " + "SET columnsInFirstLine=? WHERE name=?");
 			ps.setBoolean(1, cfl);
 			ps.setString(2, this.name);
 
@@ -424,9 +402,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot store property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot store property of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 	}
 
@@ -445,8 +422,7 @@ public class AppCSVProfile {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
 			PreparedStatement ps = conn
-					.prepareStatement("SELECT encapsulateContent FROM CSVProfiles "
-							+ "WHERE name = ?");
+					.prepareStatement("SELECT encapsulateContent FROM CSVProfiles " + "WHERE name = ?");
 			ps.setString(1, this.name);
 
 			ResultSet res = ps.executeQuery();
@@ -463,9 +439,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the requested property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get the requested property of the selected CSV profile.") + " [NAME = "
+					+ this.name + "] " + e.getMessage());
 		}
 
 		return ec;
@@ -488,8 +463,8 @@ public class AppCSVProfile {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn.prepareStatement("UPDATE CSVProfiles "
-					+ "SET encapsulateContent=? WHERE name=?");
+			PreparedStatement ps = conn
+					.prepareStatement("UPDATE CSVProfiles " + "SET encapsulateContent=? WHERE name=?");
 			ps.setBoolean(1, ec);
 			ps.setString(2, this.name);
 
@@ -504,9 +479,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot store property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot store property of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 	}
 
@@ -529,9 +503,8 @@ public class AppCSVProfile {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT columnMapping FROM CSVColumnMappings "
-							+ "WHERE profileName=? AND columnName=?");
+			PreparedStatement ps = conn.prepareStatement(
+					"SELECT columnMapping FROM CSVColumnMappings " + "WHERE profileName=? AND columnName=?");
 			ps.setString(1, this.name);
 			ps.setString(2, col.toString());
 
@@ -549,9 +522,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the requested property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get the requested property of the selected CSV profile.") + " [NAME = "
+					+ this.name + "] " + e.getMessage());
 		}
 
 		return mapping;
@@ -568,16 +540,14 @@ public class AppCSVProfile {
 	 * @throws DataException
 	 *             the data exception
 	 */
-	public boolean existColumnMapping(AppCSVColumnName col)
-			throws DataException {
+	public boolean existColumnMapping(AppCSVColumnName col) throws DataException {
 		boolean existMapping = false;
 
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT columnMapping FROM CSVColumnMappings "
-							+ "WHERE profileName=? AND columnName=?");
+			PreparedStatement ps = conn.prepareStatement(
+					"SELECT columnMapping FROM CSVColumnMappings " + "WHERE profileName=? AND columnName=?");
 			ps.setString(1, this.name);
 			ps.setString(2, col.toString());
 
@@ -595,9 +565,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the requested property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get the requested property of the selected CSV profile.") + " [NAME = "
+					+ this.name + "] " + e.getMessage());
 		}
 
 		return existMapping;
@@ -614,8 +583,7 @@ public class AppCSVProfile {
 	 * @throws DataException
 	 *             If an error occurs while setting the column mapping
 	 */
-	public void setColumnMapping(AppCSVColumnName col, String map)
-			throws DataException {
+	public void setColumnMapping(AppCSVColumnName col, String map) throws DataException {
 		if (!exists()) {
 			throw notFoundExc;
 		}
@@ -626,13 +594,11 @@ public class AppCSVProfile {
 			PreparedStatement ps;
 
 			if (existColumnMapping(col)) {
-				ps = conn.prepareStatement("UPDATE CSVColumnMappings "
-						+ "SET columnMapping=? "
-						+ "WHERE profileName=? AND columnName=?");
+				ps = conn.prepareStatement(
+						"UPDATE CSVColumnMappings " + "SET columnMapping=? " + "WHERE profileName=? AND columnName=?");
 			} else {
 				ps = conn.prepareStatement("INSERT INTO CSVColumnMappings "
-						+ "(columnMapping, profileName, columnName) "
-						+ "VALUES (?, ?, ?)");
+						+ "(columnMapping, profileName, columnName) " + "VALUES (?, ?, ?)");
 			}
 
 			ps.setString(1, map);
@@ -650,9 +616,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot store property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot store property of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 	}
 
@@ -672,12 +637,10 @@ public class AppCSVProfile {
 
 		try {
 			if (getColumnMapping(col) != null) {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 
 				PreparedStatement ps = conn
-						.prepareStatement("DELETE FROM CSVColumnMappings "
-								+ "WHERE profileName=? AND columnName=?");
+						.prepareStatement("DELETE FROM CSVColumnMappings " + "WHERE profileName=? AND columnName=?");
 
 				ps.setString(1, this.name);
 				ps.setString(2, col.toString());
@@ -694,9 +657,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot store property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot store property of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 	}
 
@@ -715,8 +677,7 @@ public class AppCSVProfile {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
 			PreparedStatement ps = conn
-					.prepareStatement("SELECT validMappings FROM CSVSeverityMappings "
-							+ "WHERE profileName = ?");
+					.prepareStatement("SELECT validMappings FROM CSVSeverityMappings " + "WHERE profileName = ?");
 			ps.setString(1, this.name);
 
 			ResultSet res = ps.executeQuery();
@@ -735,9 +696,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get the requested property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get the requested property of the selected CSV profile.") + " [NAME = "
+					+ this.name + "] " + e.getMessage());
 		}
 
 		return mappings;
@@ -753,8 +713,7 @@ public class AppCSVProfile {
 	 * @throws DataException
 	 *             If an error occurs while setting the severity mappings
 	 */
-	public void setValidSeverityMappings(List<String> mappings)
-			throws DataException {
+	public void setValidSeverityMappings(List<String> mappings) throws DataException {
 		if (!exists()) {
 			throw notFoundExc;
 		}
@@ -788,17 +747,15 @@ public class AppCSVProfile {
 			PreparedStatement ps;
 
 			if (mappings.isEmpty()) {
-				ps = conn.prepareStatement("DELETE FROM CSVSeverityMappings "
-						+ "WHERE profileName=?");
+				ps = conn.prepareStatement("DELETE FROM CSVSeverityMappings " + "WHERE profileName=?");
 				ps.setString(1, this.name);
 			} else if (getValidSeverityMappings().isEmpty()) {
-				ps = conn.prepareStatement("INSERT INTO CSVSeverityMappings "
-						+ "(profileName, validMappings) VALUES (?, ?)");
+				ps = conn.prepareStatement(
+						"INSERT INTO CSVSeverityMappings " + "(profileName, validMappings) VALUES (?, ?)");
 				ps.setString(1, this.name);
 				ps.setString(2, maps);
 			} else {
-				ps = conn.prepareStatement("UPDATE CSVSeverityMappings "
-						+ "SET validMappings=? WHERE profileName=?");
+				ps = conn.prepareStatement("UPDATE CSVSeverityMappings " + "SET validMappings=? WHERE profileName=?");
 				ps.setString(1, maps);
 				ps.setString(2, this.name);
 			}
@@ -814,9 +771,8 @@ public class AppCSVProfile {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot store property of the selected CSV profile.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot store property of the selected CSV profile.") + " [NAME = " + this.name
+					+ "] " + e.getMessage());
 		}
 	}
 
@@ -847,8 +803,7 @@ public class AppCSVProfile {
 	 * @throws DataException
 	 *             If an error occurs while getting the sorting position
 	 */
-	private int getSortPosOfSeverityMapping(String mapping)
-			throws DataException {
+	private int getSortPosOfSeverityMapping(String mapping) throws DataException {
 		return getValidSeverityMappings().indexOf(mapping);
 	}
 
@@ -891,8 +846,7 @@ public class AppCSVProfile {
 
 		int sortPos = getSortPosOfSeverityMapping(mapping);
 
-		if (sortPos > getFirstSortPosOfSeverityMappings()
-				&& isValidSeverityMapping(mapping)) {
+		if (sortPos > getFirstSortPosOfSeverityMappings() && isValidSeverityMapping(mapping)) {
 			String otherMapping = mappings.get(sortPos - 1);
 			mappings.set(sortPos - 1, mapping);
 			mappings.set(sortPos, otherMapping);
@@ -921,8 +875,7 @@ public class AppCSVProfile {
 
 		int sortPos = getSortPosOfSeverityMapping(mapping);
 
-		if (sortPos < getLastSortPosOfSeverityMappings()
-				&& isValidSeverityMapping(mapping)) {
+		if (sortPos < getLastSortPosOfSeverityMappings() && isValidSeverityMapping(mapping)) {
 			String otherMapping = mappings.get(sortPos + 1);
 			mappings.set(sortPos + 1, mapping);
 			mappings.set(sortPos, otherMapping);

@@ -104,8 +104,7 @@ public class TreeTools {
 	 * @param expansionState
 	 *            the expansion state
 	 */
-	public static void restoreExpanstionState(JTree tree, int row,
-			String expansionState) {
+	public static void restoreExpanstionState(JTree tree, int row, String expansionState) {
 		StringTokenizer stok = new StringTokenizer(expansionState, ",");
 
 		while (stok.hasMoreTokens()) {

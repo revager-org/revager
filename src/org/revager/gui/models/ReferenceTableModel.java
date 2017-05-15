@@ -23,7 +23,6 @@ import javax.swing.table.AbstractTableModel;
 import org.revager.app.Application;
 import org.revager.gui.UI;
 
-
 /**
  * The Class ReferenceTableModel.
  */
@@ -47,8 +46,7 @@ public class ReferenceTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getRowCount() {
-		return Application.getInstance().getReviewMgmt().getProductReferences()
-				.size();
+		return Application.getInstance().getReviewMgmt().getProductReferences().size();
 	}
 
 	/*
@@ -58,8 +56,7 @@ public class ReferenceTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return Application.getInstance().getReviewMgmt().getProductReferences()
-				.get(rowIndex);
+		return Application.getInstance().getReviewMgmt().getProductReferences().get(rowIndex);
 	}
 
 	/*
@@ -71,8 +68,7 @@ public class ReferenceTableModel extends AbstractTableModel {
 	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		String oldRef = this.getValueAt(row, 0).toString();
-		Application.getInstance().getReviewMgmt().editProductReference(oldRef,
-				insertion.toString());
+		Application.getInstance().getReviewMgmt().editProductReference(oldRef, insertion.toString());
 		this.fireTableDataChanged();
 
 	}

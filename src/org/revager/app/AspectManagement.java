@@ -115,8 +115,7 @@ public class AspectManagement {
 				int index = -1;
 
 				if (att.getAspects() != null) {
-					index = att.getAspects().getAspectIds()
-							.indexOf(asp.getId());
+					index = att.getAspects().getAspectIds().indexOf(asp.getId());
 				}
 
 				if (index != -1) {
@@ -271,8 +270,7 @@ public class AspectManagement {
 		filter = filter.toLowerCase();
 
 		for (Aspect a : getAspects()) {
-			if (a.getDirective().toLowerCase().contains(filter)
-					|| a.getDescription().toLowerCase().contains(filter)) {
+			if (a.getDirective().toLowerCase().contains(filter) || a.getDescription().toLowerCase().contains(filter)) {
 				aspects.add(a);
 			}
 		}
@@ -346,8 +344,7 @@ public class AspectManagement {
 	 * 
 	 * @return the aspect
 	 */
-	public Aspect addAspect(String directive, String description,
-			String category) {
+	public Aspect addAspect(String directive, String description, String category) {
 		Aspect aspect = new Aspect();
 
 		aspect.setDirective(directive);
@@ -390,8 +387,7 @@ public class AspectManagement {
 	 *            the aspect to remove
 	 */
 	public void removeAspect(Aspect asp) {
-		AttendeeManagement attMgmt = Application.getInstance()
-				.getAttendeeMgmt();
+		AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
 
 		if (asp.getId() != null) {
 			for (Attendee att : attMgmt.getAttendees()) {
@@ -418,8 +414,7 @@ public class AspectManagement {
 	 * @return true, if the aspect was edited successfully
 	 */
 	public boolean editAspect(Aspect oldAsp, Aspect newAsp) {
-		if (resiData.getReview().getAspects().contains(oldAsp)
-				&& !isAspect(newAsp)) {
+		if (resiData.getReview().getAspects().contains(oldAsp) && !isAspect(newAsp)) {
 			String id = oldAsp.getId();
 			int index = resiData.getReview().getAspects().indexOf(oldAsp);
 
@@ -500,8 +495,7 @@ public class AspectManagement {
 			int index = resiData.getReview().getAspects().indexOf(asp);
 
 			resiData.getReview().getAspects().remove(index);
-			resiData.getReview().getAspects().add(
-					resiData.getReview().getAspects().size(), asp);
+			resiData.getReview().getAspects().add(resiData.getReview().getAspects().size(), asp);
 
 			resiData.fireDataChanged();
 		}

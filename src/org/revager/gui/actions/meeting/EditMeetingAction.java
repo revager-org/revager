@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.app.model.schema.Meeting;
 import org.revager.gui.UI;
 
-
 /**
  * The Class EditMeetingAction.
  */

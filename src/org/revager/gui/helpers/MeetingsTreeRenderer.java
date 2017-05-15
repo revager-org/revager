@@ -31,7 +31,6 @@ import org.revager.app.MeetingManagement;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
-
 /**
  * The Class MeetingsTreeRenderer.
  */
@@ -40,17 +39,12 @@ public class MeetingsTreeRenderer extends DefaultTreeCellRenderer {
 
 	public static int currentRow = -1;
 
-	private MeetingManagement meetMgmt = Application.getInstance()
-			.getMeetingMgmt();
+	private MeetingManagement meetMgmt = Application.getInstance().getMeetingMgmt();
 
-	private final ImageIcon MEET_ICON = Data.getInstance().getIcon(
-			"meeting_30x30.png");
-	private final ImageIcon MEET_CANCEL_ICON = Data.getInstance().getIcon(
-			"meetingCanceled_30x30.png");
-	private final ImageIcon MEET_NEW_ICON = Data.getInstance().getIcon(
-			"meetingNew_30x30.png");
-	private final ImageIcon PROT_ICON = Data.getInstance().getIcon(
-			"protocol_20x20.png");
+	private final ImageIcon MEET_ICON = Data.getInstance().getIcon("meeting_30x30.png");
+	private final ImageIcon MEET_CANCEL_ICON = Data.getInstance().getIcon("meetingCanceled_30x30.png");
+	private final ImageIcon MEET_NEW_ICON = Data.getInstance().getIcon("meetingNew_30x30.png");
+	private final ImageIcon PROT_ICON = Data.getInstance().getIcon("protocol_20x20.png");
 
 	private final Color DEFAULT_BG = getBackgroundNonSelectionColor();
 
@@ -63,9 +57,8 @@ public class MeetingsTreeRenderer extends DefaultTreeCellRenderer {
 	 * boolean)
 	 */
 	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
-			boolean sel, boolean expanded, boolean leaf, int row,
-			boolean hasFocus) {
+	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf,
+			int row, boolean hasFocus) {
 		DefaultMutableTreeNode currentTreeNode = (DefaultMutableTreeNode) value;
 		Object userObject = currentTreeNode.getUserObject();
 
@@ -77,8 +70,7 @@ public class MeetingsTreeRenderer extends DefaultTreeCellRenderer {
 		} else if (userObject instanceof TreeMeeting) {
 			ImageIcon icon = MEET_ICON;
 
-			if (meetMgmt.isMeetingCanceled(((TreeMeeting) userObject)
-					.getMeeting())) {
+			if (meetMgmt.isMeetingCanceled(((TreeMeeting) userObject).getMeeting())) {
 				icon = MEET_CANCEL_ICON;
 			} else if (((TreeMeeting) userObject).getMeeting().getProtocol() == null) {
 				icon = MEET_NEW_ICON;
@@ -96,8 +88,7 @@ public class MeetingsTreeRenderer extends DefaultTreeCellRenderer {
 			setBackgroundNonSelectionColor(DEFAULT_BG);
 		}
 
-		return super.getTreeCellRendererComponent(tree, value, sel, expanded,
-				leaf, row, hasFocus);
+		return super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 	}
 
 }

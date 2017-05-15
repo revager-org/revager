@@ -76,21 +76,18 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 
 		while (true) {
 			try {
-				intervalInMinutes = Long.parseLong(Data.getInstance()
-						.getAppData()
-						.getSetting(AppSettingKey.APP_AUTO_SAVE_INTERVAL));
+				intervalInMinutes = Long
+						.parseLong(Data.getInstance().getAppData().getSetting(AppSettingKey.APP_AUTO_SAVE_INTERVAL));
 
 				Thread.sleep(intervalInMinutes * 60 * 1000);
 
 				reviewPath = Data.getInstance().getResiData().getReviewPath();
 
 				if (Data.getInstance().getAppData()
-						.getSettingValue(AppSettingKey.APP_DO_AUTO_SAVE) == AppSettingValue.TRUE
-						&& reviewPath != null
+						.getSettingValue(AppSettingKey.APP_DO_AUTO_SAVE) == AppSettingValue.TRUE && reviewPath != null
 						&& UI.getInstance().getStatus() == UI.Status.UNSAVED_CHANGES) {
 
-					Application.getInstance().getApplicationCtl()
-							.storeReview(reviewPath);
+					Application.getInstance().getApplicationCtl().storeReview(reviewPath);
 
 					/*
 					 * Set done message
@@ -99,8 +96,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 						@Override
 						public void run() {
 							for (AbstractFrame af : obsFrames) {
-								af.setStatusMessage(
-										_("Review stored successfully."), false);
+								af.setStatusMessage(_("Review stored successfully."), false);
 							}
 						}
 					});
@@ -115,8 +111,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 					@Override
 					public void run() {
 						for (AbstractFrame af : obsFrames) {
-							af.setStatusMessage(
-									_("Review couldn't be stored!"), false);
+							af.setStatusMessage(_("Review couldn't be stored!"), false);
 						}
 					}
 				});

@@ -75,8 +75,7 @@ public class EditAspectPopupWindow extends JDialog {
 
 	private static final String STANDARD_CATEGORY = _("(No Category)");
 
-	private AspectManagement aspMgmt = Application.getInstance()
-			.getAspectMgmt();
+	private AspectManagement aspMgmt = Application.getInstance().getAspectMgmt();
 	private ApplicationData appData = Data.getInstance().getAppData();
 
 	private Mode mode = null;
@@ -176,8 +175,7 @@ public class EditAspectPopupWindow extends JDialog {
 		textAreaDescription.setLineWrap(true);
 		textAreaDescription.setWrapStyleWord(true);
 		JScrollPane scrollDescription = new JScrollPane(textAreaDescription,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		final JComboBox boxCatalog = new JComboBox();
 		boxCatalog.setEditable(false);
 		final JComboBox boxCategory = new JComboBox();
@@ -212,10 +210,8 @@ public class EditAspectPopupWindow extends JDialog {
 
 				boxCategory.setSelectedIndex(0);
 
-				String selCategory = UI.getInstance().getAspectsManagerFrame()
-						.getSelectedCategory();
-				if (selCategory != null
-						&& appAspect.getCategory().equals(STANDARD_CATEGORY)) {
+				String selCategory = UI.getInstance().getAspectsManagerFrame().getSelectedCategory();
+				if (selCategory != null && appAspect.getCategory().equals(STANDARD_CATEGORY)) {
 					appAspect.setCategory(selCategory);
 				}
 
@@ -243,8 +239,7 @@ public class EditAspectPopupWindow extends JDialog {
 				break;
 			}
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(this,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(this, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			return;
@@ -252,8 +247,7 @@ public class EditAspectPopupWindow extends JDialog {
 
 		textFieldTitle.setCaretPosition(0);
 		textAreaDescription.setCaretPosition(0);
-		((JTextField) boxCategory.getEditor().getEditorComponent())
-				.setCaretPosition(0);
+		((JTextField) boxCategory.getEditor().getEditorComponent()).setCaretPosition(0);
 
 		JTextArea textTitle = GUITools.newPopupTitleArea(title);
 
@@ -265,34 +259,26 @@ public class EditAspectPopupWindow extends JDialog {
 
 		int ins = 5;
 
-		GUITools.addComponent(panelContent, gblContent, labelTitle, 0, 0, 1, 1,
-				1.0, 0.0, ins * 2, ins, ins, ins,
+		GUITools.addComponent(panelContent, gblContent, labelTitle, 0, 0, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gblContent, textFieldTitle, 0, 1,
-				1, 1, 1.0, 0.0, 0, ins, ins, ins,
+		GUITools.addComponent(panelContent, gblContent, textFieldTitle, 0, 1, 1, 1, 1.0, 0.0, 0, ins, ins, ins,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gblContent, labelDescription, 0, 2,
-				1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
+		GUITools.addComponent(panelContent, gblContent, labelDescription, 0, 2, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelContent, gblContent, scrollDescription, 0,
-				3, 1, 1, 1.0, 1.0, 0, ins, ins, ins, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(panelContent, gblContent, scrollDescription, 0, 3, 1, 1, 1.0, 1.0, 0, ins, ins, ins,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 
 		if (mode == Mode.APP_ASPECT || mode == Mode.RESI_ASPECT) {
-			GUITools.addComponent(panelContent, gblContent, labelCategory, 0,
-					4, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
+			GUITools.addComponent(panelContent, gblContent, labelCategory, 0, 4, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
 					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-			GUITools.addComponent(panelContent, gblContent, boxCategory, 0, 5,
-					1, 1, 1.0, 0.0, 0, ins, ins, ins,
+			GUITools.addComponent(panelContent, gblContent, boxCategory, 0, 5, 1, 1, 1.0, 0.0, 0, ins, ins, ins,
 					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 
 		if (mode == Mode.APP_ASPECT) {
-			GUITools.addComponent(panelContent, gblContent, labelCatalog, 0, 6,
-					1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
+			GUITools.addComponent(panelContent, gblContent, labelCatalog, 0, 6, 1, 1, 1.0, 0.0, ins * 2, ins, ins, ins,
 					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-			GUITools.addComponent(panelContent, gblContent, boxCatalog, 0, 7,
-					1, 1, 1.0, 0.0, 0, ins, ins * 2, ins,
+			GUITools.addComponent(panelContent, gblContent, boxCatalog, 0, 7, 1, 1, 1.0, 0.0, 0, ins, ins * 2, ins,
 					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 
@@ -302,10 +288,8 @@ public class EditAspectPopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
 		buttonAbort.addActionListener(new ActionListener() {
 			@Override
@@ -317,16 +301,13 @@ public class EditAspectPopupWindow extends JDialog {
 		});
 
 		JButton buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JTextField boxCatTextField = (JTextField) boxCategory
-						.getEditor().getEditorComponent();
+				JTextField boxCatTextField = (JTextField) boxCategory.getEditor().getEditorComponent();
 
 				textFieldTitle.setBorder(UI.STANDARD_BORDER_INLINE);
 				boxCategory.setBorder(null);
@@ -337,8 +318,7 @@ public class EditAspectPopupWindow extends JDialog {
 					return;
 				}
 
-				if (boxCategory.isVisible()
-						&& boxCatTextField.getText().trim().equals("")) {
+				if (boxCategory.isVisible() && boxCatTextField.getText().trim().equals("")) {
 					boxCategory.setBorder(UI.MARKED_BORDER);
 
 					return;
@@ -366,8 +346,7 @@ public class EditAspectPopupWindow extends JDialog {
 
 						break;
 					case APP_ASPECT:
-						AppCatalog selCatalog = (AppCatalog) boxCatalog
-								.getSelectedItem();
+						AppCatalog selCatalog = (AppCatalog) boxCatalog.getSelectedItem();
 
 						if (selCatalog.equals(appAspect.getCatalog())) {
 							appAspect.setDirective(directive);
@@ -376,21 +355,17 @@ public class EditAspectPopupWindow extends JDialog {
 						} else {
 							appAspect.getCatalog().removeAspect(appAspect);
 
-							appAspect = selCatalog.newAspect(directive,
-									description, category);
+							appAspect = selCatalog.newAspect(directive, description, category);
 						}
 
-						UI.getInstance().getAspectsManagerFrame()
-								.updateTree(null, null, appAspect);
+						UI.getInstance().getAspectsManagerFrame().updateTree(null, null, appAspect);
 
 						break;
 					case APP_CATALOG:
 						appCatalog.setName(textFieldTitle.getText().trim());
-						appCatalog.setDescription(textAreaDescription.getText()
-								.trim());
+						appCatalog.setDescription(textAreaDescription.getText().trim());
 
-						UI.getInstance().getAspectsManagerFrame()
-								.updateTree(appCatalog, null, null);
+						UI.getInstance().getAspectsManagerFrame().updateTree(appCatalog, null, null);
 
 						break;
 
@@ -398,10 +373,8 @@ public class EditAspectPopupWindow extends JDialog {
 						break;
 					}
 				} catch (DataException exc) {
-					JOptionPane.showMessageDialog(((JButton) e.getSource())
-							.getParent().getParent(), GUITools
-							.getMessagePane(exc.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(((JButton) e.getSource()).getParent().getParent(),
+							GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
 
 					return;
 				}
@@ -412,8 +385,7 @@ public class EditAspectPopupWindow extends JDialog {
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(
-				panelButtons.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

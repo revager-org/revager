@@ -21,7 +21,6 @@ package org.revager.gui.helpers;
 import static org.revager.app.model.Data._;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import org.revager.app.model.schema.Meeting;
 
@@ -90,24 +89,16 @@ public class TreeProtocol {
 	@Override
 	public String toString() {
 		try {
-			DateFormat dfDateLong = DateFormat
-					.getDateInstance(DateFormat.LONG);
-			dfDateLong.setTimeZone(meeting.getProtocol().getDate()
-					.getTimeZone());
+			DateFormat dfDateLong = DateFormat.getDateInstance(DateFormat.LONG);
+			dfDateLong.setTimeZone(meeting.getProtocol().getDate().getTimeZone());
 
-			DateFormat dfTimeShort = DateFormat
-					.getTimeInstance(DateFormat.SHORT);
-			dfTimeShort.setTimeZone(meeting.getProtocol().getDate()
-					.getTimeZone());
+			DateFormat dfTimeShort = DateFormat.getTimeInstance(DateFormat.SHORT);
+			dfTimeShort.setTimeZone(meeting.getProtocol().getDate().getTimeZone());
 
-			String date = dfDateLong.format(meeting.getProtocol().getDate()
-					.getTime());
-			String start = dfTimeShort.format(meeting.getProtocol().getStart()
-					.getTime());
-			String end = dfTimeShort.format(meeting.getProtocol().getEnd()
-					.getTime());
-			String timezone = meeting.getProtocol().getEnd().getTimeZone()
-					.getDisplayName();
+			String date = dfDateLong.format(meeting.getProtocol().getDate().getTime());
+			String start = dfTimeShort.format(meeting.getProtocol().getStart().getTime());
+			String end = dfTimeShort.format(meeting.getProtocol().getEnd().getTime());
+			String timezone = meeting.getProtocol().getEnd().getTimeZone().getDisplayName();
 			String location = meeting.getProtocol().getLocation();
 
 			if (!location.trim().equals("")) {
@@ -115,8 +106,8 @@ public class TreeProtocol {
 			}
 
 			String protFrom = _("Findings List of");
-			String protocolName = protFrom + " " + date + " | " + start + " - "
-					+ end + " (" + timezone + ")" + location;
+			String protocolName = protFrom + " " + date + " | " + start + " - " + end + " (" + timezone + ")"
+					+ location;
 
 			return protocolName;
 		} catch (Exception e) {

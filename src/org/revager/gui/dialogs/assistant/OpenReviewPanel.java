@@ -69,14 +69,10 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 	/*
 	 * Image Icons
 	 */
-	private ImageIcon reviewIcon = Data.getInstance().getIcon(
-			"review_40x40_0.png");
-	private ImageIcon reviewRolloverIcon = Data.getInstance().getIcon(
-			"review_40x40.png");
-	private ImageIcon browseIcon = Data.getInstance().getIcon(
-			"open_40x40_0.png");
-	private ImageIcon browseRolloverIcon = Data.getInstance().getIcon(
-			"open_40x40.png");
+	private ImageIcon reviewIcon = Data.getInstance().getIcon("review_40x40_0.png");
+	private ImageIcon reviewRolloverIcon = Data.getInstance().getIcon("review_40x40.png");
+	private ImageIcon browseIcon = Data.getInstance().getIcon("open_40x40_0.png");
+	private ImageIcon browseRolloverIcon = Data.getInstance().getIcon("open_40x40.png");
 
 	/*
 	 * Links and LinkGroup
@@ -104,15 +100,14 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 		public void actionPerformed(ActionEvent e) {
 
 			try {
-				List<String> lastRevs = Data.getInstance().getAppData()
-						.getLastReviews();
-				
+				List<String> lastRevs = Data.getInstance().getAppData().getLastReviews();
+
 				int index = lastRevsGrp.getSelectedLinkIndex();
-				
+
 				String revPath = lastRevs.get(index);
-				
+
 				UI.getInstance().getMainFrame().setAssistantMode(false);
-				
+
 				GUITools.executeSwingWorker(new LoadReviewWorker(revPath));
 			} catch (DataException exc) {
 				// TODO Auto-generated catch block
@@ -132,12 +127,12 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			FileChooser fileChooser = UI.getInstance().getFileChooser();
 
-			if (fileChooser.showDialog(UI.getInstance().getAssistantDialog(),
-					FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
+			if (fileChooser.showDialog(UI.getInstance().getAssistantDialog(), FileChooser.MODE_OPEN_FILE,
+					ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 				String reviewPath = fileChooser.getFile().getAbsolutePath();
-				
+
 				UI.getInstance().getMainFrame().setAssistantMode(false);
-				
+
 				GUITools.executeSwingWorker(new LoadReviewWorker(reviewPath));
 			}
 		}
@@ -180,40 +175,33 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 
 		try {
 			firstRevStrng = lastRevsVector.get(0);
-			firstReviewLnk = new HLink(firstRevStrng, reviewIcon,
-					reviewRolloverIcon, lastRevsGrp);
+			firstReviewLnk = new HLink(firstRevStrng, reviewIcon, reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(firstReviewLnk);
 			lastRevsGrp.selectLink(firstReviewLnk);
-			GUITools.addComponent(this, gbl2, firstReviewLnk, 2, 0, 1, 1, 1.0,
-					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(this, gbl2, firstReviewLnk, 2, 0, 1, 1, 1.0, 0.0, 0, 20, 0, 0,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 			noRevsLbl.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 12));
-			GUITools.addComponent(this, gbl2, noRevsLbl, 2, 0, 1, 1, 1.0, 0.0,
-					15, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(this, gbl2, noRevsLbl, 2, 0, 1, 1, 1.0, 0.0, 15, 20, 0, 0,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 		}
 		try {
 			secondRevStrng = lastRevsVector.get(1);
-			secondReviewLnk = new HLink(secondRevStrng, reviewIcon,
-					reviewRolloverIcon, lastRevsGrp);
+			secondReviewLnk = new HLink(secondRevStrng, reviewIcon, reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(secondReviewLnk);
-			GUITools.addComponent(this, gbl2, secondReviewLnk, 2, 1, 1, 1, 1.0,
-					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(this, gbl2, secondReviewLnk, 2, 1, 1, 1, 1.0, 0.0, 0, 20, 0, 0,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 
 		}
 		try {
 			thirdRevStrng = lastRevsVector.get(2);
-			thirdReviewLnk = new HLink(thirdRevStrng, reviewIcon,
-					reviewRolloverIcon, lastRevsGrp);
+			thirdReviewLnk = new HLink(thirdRevStrng, reviewIcon, reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(thirdReviewLnk);
-			GUITools.addComponent(this, gbl2, thirdReviewLnk, 2, 2, 1, 1, 1.0,
-					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(this, gbl2, thirdReviewLnk, 2, 2, 1, 1, 1.0, 0.0, 0, 20, 0, 0,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 
@@ -221,23 +209,19 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 
 		try {
 			fourthRevStrng = lastRevsVector.get(3);
-			fourthReviewLnk = new HLink(fourthRevStrng, reviewIcon,
-					reviewRolloverIcon, lastRevsGrp);
+			fourthReviewLnk = new HLink(fourthRevStrng, reviewIcon, reviewRolloverIcon, lastRevsGrp);
 			lastRevsGrp.addLink(fourthReviewLnk);
-			GUITools.addComponent(this, gbl2, fourthReviewLnk, 2, 3, 1, 1, 1.0,
-					0.0, 0, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-					GridBagConstraints.NORTHWEST);
+			GUITools.addComponent(this, gbl2, fourthReviewLnk, 2, 3, 1, 1, 1.0, 0.0, 0, 20, 0, 0,
+					GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 		} catch (Exception e) {
 
 		}
-		anotherReviewLnk = new HLink(anotherRevStrng, browseIcon,
-				browseRolloverIcon, null);
+		anotherReviewLnk = new HLink(anotherRevStrng, browseIcon, browseRolloverIcon, null);
 		anotherReviewLnk.setUnderlined(true);
 		anotherReviewLnk.addActionListener(openAnotherRev);
-		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1, 1, 1.0,
-				1.0, 30, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.SOUTHWEST);
+		GUITools.addComponent(this, gbl2, anotherReviewLnk, 2, 4, 1, 1, 1.0, 1.0, 30, 20, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.SOUTHWEST);
 
 	}
 
@@ -254,8 +238,7 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 				vecLastReviews.add(new File(rev).getName());
 			}
 		} catch (DataException exc) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(exc.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 

@@ -26,7 +26,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.UI;
 import org.revager.gui.helpers.DatePicker;
 
-
 /**
  * The Class DatePickerAction.
  */
@@ -42,12 +41,11 @@ public class DatePickerAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// instantiate the DatePicker
-		DatePicker dp = new DatePicker(UI.getInstance().getMeetingDialog(), UI
-				.getInstance().getMeetingDialog().getDateTxtFld());
+		DatePicker dp = new DatePicker(UI.getInstance().getMeetingDialog(),
+				UI.getInstance().getMeetingDialog().getDateTxtFld());
 
 		// previously selected date
-		Date selectedDate = dp.parseDate(UI.getInstance().getMeetingDialog()
-				.getDateTxtFld().getText());
+		Date selectedDate = dp.parseDate(UI.getInstance().getMeetingDialog().getDateTxtFld().getText());
 		dp.setSelectedDate(selectedDate);
 		dp.start(UI.getInstance().getMeetingDialog().getDateTxtFld());
 	};

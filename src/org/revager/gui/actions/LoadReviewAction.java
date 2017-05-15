@@ -48,8 +48,8 @@ public class LoadReviewAction extends AbstractAction {
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuOpen_16x16.png"));
 		putValue(NAME, _("Open Review..."));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*
@@ -64,10 +64,10 @@ public class LoadReviewAction extends AbstractAction {
 
 		fileChooser.setFile(null);
 
-		if (fileChooser.showDialog(UI.getInstance().getMainFrame(),
-				FileChooser.MODE_OPEN_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
+		if (fileChooser.showDialog(UI.getInstance().getMainFrame(), FileChooser.MODE_OPEN_FILE,
+				ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 			String reviewPath = fileChooser.getFile().getAbsolutePath();
-			
+
 			UI.getInstance().getMainFrame().setAssistantMode(false);
 
 			GUITools.executeSwingWorker(new LoadReviewWorker(reviewPath));

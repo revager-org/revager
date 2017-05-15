@@ -19,7 +19,6 @@
 package org.revager.gui.helpers;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import org.revager.app.model.schema.Meeting;
 
@@ -87,27 +86,23 @@ public class TreeMeeting {
 	 */
 	@Override
 	public String toString() {
-		DateFormat dfDateLong = DateFormat
-				.getDateInstance(DateFormat.LONG);
+		DateFormat dfDateLong = DateFormat.getDateInstance(DateFormat.LONG);
 		dfDateLong.setTimeZone(meeting.getPlannedDate().getTimeZone());
 
-		DateFormat dfTimeShort = DateFormat
-				.getTimeInstance(DateFormat.SHORT);
+		DateFormat dfTimeShort = DateFormat.getTimeInstance(DateFormat.SHORT);
 		dfTimeShort.setTimeZone(meeting.getPlannedDate().getTimeZone());
 
 		String date = dfDateLong.format(meeting.getPlannedDate().getTime());
 		String start = dfTimeShort.format(meeting.getPlannedStart().getTime());
 		String end = dfTimeShort.format(meeting.getPlannedEnd().getTime());
-		String timezone = meeting.getPlannedEnd().getTimeZone()
-				.getDisplayName();
+		String timezone = meeting.getPlannedEnd().getTimeZone().getDisplayName();
 		String location = meeting.getPlannedLocation();
 
 		if (!location.trim().equals("")) {
 			location = " | " + location;
 		}
-		
-		String output = date + " | " + start + " - " + end + " (" + timezone
-				+ ")" + location;
+
+		String output = date + " | " + start + " - " + end + " (" + timezone + ")" + location;
 
 		return output;
 	}

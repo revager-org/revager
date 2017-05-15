@@ -36,8 +36,7 @@ public class CSVProfileTableModel extends AbstractTableModel {
 
 	// private AppCSVProfile localProfile;
 
-	private SeverityManagement sevMgmt = Application.getInstance()
-			.getSeverityMgmt();
+	private SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
 
 	private List<String> localColNameList;
 
@@ -49,8 +48,7 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	 * @param selColNameList
 	 *            the sel col name list
 	 */
-	public CSVProfileTableModel(AppCSVProfile currentProfile,
-			List<String> selColNameList) {
+	public CSVProfileTableModel(AppCSVProfile currentProfile, List<String> selColNameList) {
 		// localProfile = currentProfile;
 		localColNameList = selColNameList;
 	}
@@ -122,8 +120,7 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	 * @param selColNameList
 	 *            the sel col name list
 	 */
-	public void setMapsAndProfile(AppCSVProfile currentProfile,
-			List<String> selColNameList) {
+	public void setMapsAndProfile(AppCSVProfile currentProfile, List<String> selColNameList) {
 		// localProfile = currentProfile;
 		localColNameList = selColNameList;
 		fireTableDataChanged();

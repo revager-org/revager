@@ -24,7 +24,6 @@ import org.revager.app.model.schema.Aspects;
 import org.revager.app.model.schema.Catalog;
 import org.revager.app.model.schema.Review;
 
-
 /**
  * This class is a sub-class of Data an handles all data concerning the Resi XML
  * schema.

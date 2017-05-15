@@ -58,15 +58,11 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		boolean showFields = UI.getInstance().getExportPDFProtocolDialog()
-				.showFields();
-		boolean addExProRef = UI.getInstance().getExportPDFProtocolDialog()
-				.addExProRef();
-		boolean addExFindRef = UI.getInstance().getExportPDFProtocolDialog()
-				.addExFindRef();
+		boolean showFields = UI.getInstance().getExportPDFProtocolDialog().showFields();
+		boolean addExProRef = UI.getInstance().getExportPDFProtocolDialog().addExProRef();
+		boolean addExFindRef = UI.getInstance().getExportPDFProtocolDialog().addExFindRef();
 
-		Meeting meet = UI.getInstance().getExportPDFProtocolDialog()
-				.getSelectedMeeting();
+		Meeting meet = UI.getInstance().getExportPDFProtocolDialog().getSelectedMeeting();
 
 		FileChooser fileChooser = UI.getInstance().getFileChooser();
 
@@ -90,23 +86,19 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 				dayStr = "0" + dayStr;
 			}
 
-			fileName = year + "-" + monthStr + "-" + dayStr + "_"
-					+ _("Review_Meeting_Findings_List");
+			fileName = year + "-" + monthStr + "-" + dayStr + "_" + _("Review_Meeting_Findings_List");
 		}
 
 		fileChooser.setFile(new File(fileName));
 
-		if (fileChooser.showDialog(UI.getInstance()
-				.getExportPDFProtocolDialog(), FileChooser.MODE_SAVE_FILE,
+		if (fileChooser.showDialog(UI.getInstance().getExportPDFProtocolDialog(), FileChooser.MODE_SAVE_FILE,
 				ResiFileFilter.TYPE_PDF) == FileChooser.SELECTED_APPROVE) {
-			UI.getInstance().getExportPDFProtocolDialog()
-					.notifySwitchToProgressMode();
+			UI.getInstance().getExportPDFProtocolDialog().notifySwitchToProgressMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getExportPDFProtocolDialog()
-							.switchToProgressMode();
+					UI.getInstance().getExportPDFProtocolDialog().switchToProgressMode();
 				}
 			});
 
@@ -115,30 +107,21 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 
 			try {
 				if (UI.getInstance().getExportPDFProtocolDialog().exportRev()) {
-					expFile = Application
-							.getInstance()
-							.getImportExportCtl()
-							.exportReviewProtocolPDF(filePath, showFields,
-									addExProRef, addExFindRef);
+					expFile = Application.getInstance().getImportExportCtl().exportReviewProtocolPDF(filePath,
+							showFields, addExProRef, addExFindRef);
 				} else {
-					expFile = Application
-							.getInstance()
-							.getImportExportCtl()
-							.exportMeetingProtocolPDF(filePath, meet,
-									showFields, addExProRef, addExFindRef);
+					expFile = Application.getInstance().getImportExportCtl().exportMeetingProtocolPDF(filePath, meet,
+							showFields, addExProRef, addExFindRef);
 				}
 
-				UI.getInstance().getExportPDFProtocolDialog()
-						.notifySwitchToEditMode();
+				UI.getInstance().getExportPDFProtocolDialog().notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance().getExportPDFProtocolDialog()
-								.setVisible(false);
+						UI.getInstance().getExportPDFProtocolDialog().setVisible(false);
 
-						UI.getInstance().getExportPDFProtocolDialog()
-								.switchToEditMode();
+						UI.getInstance().getExportPDFProtocolDialog().switchToEditMode();
 					}
 				});
 
@@ -146,15 +129,11 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 					@Override
 					public void run() {
 						if (protFrame.isVisible()) {
-							protFrame
-									.setStatusMessage(
-											_("The findings list has been exported as a PDF file successfully."),
-											false);
+							protFrame.setStatusMessage(
+									_("The findings list has been exported as a PDF file successfully."), false);
 						} else {
-							mainFrame
-									.setStatusMessage(
-											_("The findings list has been exported as a PDF file successfully."),
-											false);
+							mainFrame.setStatusMessage(
+									_("The findings list has been exported as a PDF file successfully."), false);
 						}
 					}
 				});
@@ -162,26 +141,22 @@ public class ExportPDFProtocolWorker extends SwingWorker<Void, Void> {
 				try {
 					Desktop.getDesktop().open(expFile);
 				} catch (IOException e) {
-					JOptionPane
-							.showMessageDialog(
-									null,
-									GUITools.getMessagePane(_("RevAger cannot find a PDF viewer on your machine. Please install a PDF Viewer, and open the findings list manually.")),
-									_("Error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							GUITools.getMessagePane(
+									_("RevAger cannot find a PDF viewer on your machine. Please install a PDF Viewer, and open the findings list manually.")),
+							_("Error"), JOptionPane.ERROR_MESSAGE);
 				}
 			} catch (Exception exc) {
-				UI.getInstance().getExportPDFProtocolDialog()
-						.notifySwitchToEditMode();
+				UI.getInstance().getExportPDFProtocolDialog().notifySwitchToEditMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance().getExportPDFProtocolDialog()
-								.switchToEditMode();
+						UI.getInstance().getExportPDFProtocolDialog().switchToEditMode();
 					}
 				});
 
-				JOptionPane.showMessageDialog(null,
-						GUITools.getMessagePane(exc.getMessage()), _("Error"),
+				JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 

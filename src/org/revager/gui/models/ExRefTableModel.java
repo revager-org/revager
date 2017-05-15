@@ -24,15 +24,13 @@ import org.revager.app.Application;
 import org.revager.app.ReviewManagement;
 import org.revager.gui.UI;
 
-
 /**
  * The Class ExRefTableModel.
  */
 @SuppressWarnings("serial")
 public class ExRefTableModel extends AbstractTableModel {
 
-	private ReviewManagement revMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 	/*
 	 * (non-Javadoc)

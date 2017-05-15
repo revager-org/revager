@@ -59,8 +59,7 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.switchToProgressMode(_("Importing catalog ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Importing catalog ..."));
 			}
 		});
 
@@ -78,29 +77,22 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 				/*
 				 * Import catalog from file
 				 */
-				URL catalog = getClass().getResource(
-						pathCatalogs + catalogName + "." + fileEnding);
-				File catalogFile = new File(pathWorkDir + "catalog."
-						+ fileEnding);
+				URL catalog = getClass().getResource(pathCatalogs + catalogName + "." + fileEnding);
+				File catalogFile = new File(pathWorkDir + "catalog." + fileEnding);
 
-				UI.getInstance().getAspectsManagerFrame()
-						.notifySwitchToProgressMode();
+				UI.getInstance().getAspectsManagerFrame().notifySwitchToProgressMode();
 
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance()
-								.getAspectsManagerFrame()
-								.switchToProgressMode(
-										_("Importing catalog ...") + " "
-												+ catalogName);
+						UI.getInstance().getAspectsManagerFrame()
+								.switchToProgressMode(_("Importing catalog ...") + " " + catalogName);
 					}
 				});
 
 				FileTools.copyFile(catalog, catalogFile);
 
-				Catalog resiCatalog = Application.getInstance()
-						.getImportExportCtl()
+				Catalog resiCatalog = Application.getInstance().getImportExportCtl()
 						.importCatalogXML(catalogFile.getAbsolutePath());
 
 				catalogFile.delete();
@@ -121,8 +113,7 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 				appCatalog.setDescription(resiCatalog.getDescription());
 
 				for (Aspect asp : resiCatalog.getAspects().getAspects()) {
-					appCatalog.newAspect(asp.getDirective(),
-							asp.getDescription(), asp.getCategory());
+					appCatalog.newAspect(asp.getDirective(), asp.getDescription(), asp.getCategory());
 				}
 
 				SwingUtilities.invokeLater(new Runnable() {
@@ -130,28 +121,21 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 					public void run() {
 						UI.getInstance().getAspectsManagerFrame().updateTree();
 
-						UI.getInstance()
-								.getAspectsManagerFrame()
-								.setStatusMessage(
-										_("Catalog imported successfully."),
-										false);
+						UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Catalog imported successfully."),
+								false);
 					}
 				});
 			} catch (Exception e) {
-				JOptionPane
-						.showMessageDialog(
-								UI.getInstance().getAspectsManagerFrame(),
-								GUITools.getMessagePane(_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
-										+ "\n\n" + e.getMessage()), _("Error"),
-								JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
+						GUITools.getMessagePane(
+								_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
+										+ "\n\n" + e.getMessage()),
+						_("Error"), JOptionPane.ERROR_MESSAGE);
 
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance()
-								.getAspectsManagerFrame()
-								.setStatusMessage(_("Cannot import catalog!"),
-										false);
+						UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot import catalog!"), false);
 					}
 				});
 			}
@@ -164,8 +148,7 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.updateTree(catalog, null, null);
+				UI.getInstance().getAspectsManagerFrame().updateTree(catalog, null, null);
 
 				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 			}

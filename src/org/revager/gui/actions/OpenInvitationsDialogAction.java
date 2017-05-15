@@ -42,11 +42,10 @@ public class OpenInvitationsDialogAction extends AbstractAction {
 	public OpenInvitationsDialogAction() {
 		super();
 
-		putValue(SMALL_ICON,
-				Data.getInstance().getIcon("menuCreateInv_16x16.png"));
+		putValue(SMALL_ICON, Data.getInstance().getIcon("menuCreateInv_16x16.png"));
 		putValue(NAME, _("Create Invitations"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*

@@ -55,8 +55,7 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() throws Exception {
-		final boolean showAssistantDialog = UI.getInstance()
-				.getAssistantDialog().isVisible();
+		final boolean showAssistantDialog = UI.getInstance().getAssistantDialog().isVisible();
 		final MainFrame mainframe = UI.getInstance().getMainFrame();
 
 		mainframe.notifySwitchToProgressMode();
@@ -78,30 +77,22 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					mainframe.setStatusMessage(
-							_("New review created successfully."), false);
+					mainframe.setStatusMessage(_("New review created successfully."), false);
 
 					if (instantReview) {
-						UI.getInstance().getEditProductDialog()
-								.setVisible(true);
+						UI.getInstance().getEditProductDialog().setVisible(true);
 
-						String prodName = Application.getInstance()
-								.getReviewMgmt().getProductName();
+						String prodName = Application.getInstance().getReviewMgmt().getProductName();
 
 						if (!prodName.trim().equals("")) {
-							Application
-									.getInstance()
-									.getReviewMgmt()
-									.setReviewName(
-											_("Review of") + " " + prodName);
+							Application.getInstance().getReviewMgmt().setReviewName(_("Review of") + " " + prodName);
 						}
 
 						/*
 						 * Run OpenFindingsListAction
 						 */
-						OpenFindingsListAction action = (OpenFindingsListAction) ActionRegistry
-								.getInstance().get(
-										OpenFindingsListAction.class.getName());
+						OpenFindingsListAction action = (OpenFindingsListAction) ActionRegistry.getInstance()
+								.get(OpenFindingsListAction.class.getName());
 
 						action.performActionDirectly();
 					}
@@ -117,24 +108,20 @@ public class NewReviewWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					mainframe.setStatusMessage(_("No review in process."),
-							false);
+					mainframe.setStatusMessage(_("No review in process."), false);
 
 					mainframe.switchToClearMode();
 				}
 			});
 
-			JOptionPane.showMessageDialog(
-					UI.getInstance().getMainFrame(),
-					GUITools.getMessagePane(_("Cannot create new review file.")
-							+ "\n\n" + e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(_("Cannot create new review file.") + "\n\n" + e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAssistantDialog()
-							.setVisible(showAssistantDialog);
+					UI.getInstance().getAssistantDialog().setVisible(showAssistantDialog);
 				}
 			});
 		}

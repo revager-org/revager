@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.findings_list.AddAspToFindPopupWindow;
 import org.revager.gui.findings_list.AddAspToFindPopupWindow.ButtonClicked;
 
-
 /**
  * The Class AddAspToFindPopupWindowAction.
  */
@@ -44,8 +43,7 @@ public class AddAspToFindPopupWindowAction extends AbstractAction {
 	 * @param buttonClk
 	 *            the button clk
 	 */
-	public AddAspToFindPopupWindowAction(AddAspToFindPopupWindow popupWin,
-			ButtonClicked buttonClk) {
+	public AddAspToFindPopupWindowAction(AddAspToFindPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

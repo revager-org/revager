@@ -44,8 +44,8 @@ public class OpenAspectsManagerAction extends AbstractAction {
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuAspMan_16x16.png"));
 		putValue(NAME, _("Manage Aspects"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_R, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*
@@ -56,10 +56,8 @@ public class OpenAspectsManagerAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		UI.getInstance()
-				.getAspectsManagerFrame()
-				.setSelectedReviewer(
-						UI.getInstance().getMainFrame().getSelectedAttendee());
+		UI.getInstance().getAspectsManagerFrame()
+				.setSelectedReviewer(UI.getInstance().getMainFrame().getSelectedAttendee());
 		UI.getInstance().getAssistantDialog().setVisible(false);
 		UI.getInstance().getAspectsManagerFrame().setVisible(true);
 	}

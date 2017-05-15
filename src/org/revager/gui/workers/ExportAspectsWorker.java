@@ -75,8 +75,7 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.switchToProgressMode(_("Exporting aspects ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Exporting aspects ..."));
 			}
 		});
 
@@ -93,31 +92,24 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 				asps.getAspects().add(asp);
 			}
 
-			Application.getInstance().getImportExportCtl()
-					.exportAspectsXML(this.filePath, asps);
+			Application.getInstance().getImportExportCtl().exportAspectsXML(this.filePath, asps);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(
-									_("Aspects exported successfully."), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Aspects exported successfully."),
+							false);
 				}
 			});
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(
-									_("Cannot export the selected aspects!"),
-									false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot export the selected aspects!"),
+							false);
 				}
 			});
 		}

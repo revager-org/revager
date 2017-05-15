@@ -95,8 +95,7 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 	 * @param footText
 	 *            the foot text
 	 */
-	public PDFPageEventHelper(String headTitle, String headLogoPath,
-			String footText) {
+	public PDFPageEventHelper(String headTitle, String headLogoPath, String footText) {
 		if (headLogoPath == null || headLogoPath.equals("")) {
 			headLogoPath = null;
 		}
@@ -177,8 +176,7 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 
 		try {
 			Rectangle page = document.getPageSize();
-			float pageWidth = page.getWidth() - document.leftMargin()
-					- document.rightMargin();
+			float pageWidth = page.getWidth() - document.leftMargin() - document.rightMargin();
 
 			/*
 			 * Write marks
@@ -188,12 +186,10 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			/*
 			 * Define fonts
 			 */
-			headBaseFont = BaseFont.createFont(BaseFont.HELVETICA,
-					BaseFont.CP1252, BaseFont.EMBEDDED);
+			headBaseFont = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED);
 			Font headFont = new Font(headBaseFont, headFontSize);
 
-			footBaseFont = BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE,
-					BaseFont.CP1252, BaseFont.EMBEDDED);
+			footBaseFont = BaseFont.createFont(BaseFont.HELVETICA_OBLIQUE, BaseFont.CP1252, BaseFont.EMBEDDED);
 			Font footFont = new Font(footBaseFont, footFontSize);
 
 			/*
@@ -232,8 +228,7 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 
 			if (headLogoPath != null) {
 				Image headLogo = Image.getInstance(headLogoPath);
-				headLogo.scaleToFit(PDFTools.cmToPt(5.0f),
-						PDFTools.cmToPt(1.1f));
+				headLogo.scaleToFit(PDFTools.cmToPt(5.0f), PDFTools.cmToPt(1.1f));
 
 				PdfPCell cellLogo = new PdfPCell(headLogo);
 				cellLogo.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -255,12 +250,8 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			head.addCell(cellFill);
 
 			head.setTotalWidth(pageWidth);
-			head.writeSelectedRows(
-					0,
-					-1,
-					document.leftMargin(),
-					page.getHeight() - document.topMargin()
-							+ head.getTotalHeight(), writer.getDirectContent());
+			head.writeSelectedRows(0, -1, document.leftMargin(),
+					page.getHeight() - document.topMargin() + head.getTotalHeight(), writer.getDirectContent());
 
 			/*
 			 * Write foot
@@ -293,8 +284,7 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			PdfContentByte contentByte = writer.getDirectContent();
 			contentByte.saveState();
 
-			String text = MessageFormat.format(_("Page {0} of") + " ",
-					writer.getPageNumber());
+			String text = MessageFormat.format(_("Page {0} of") + " ", writer.getPageNumber());
 
 			float textSize = footBaseFont.getWidthPoint(text, footFontSize);
 			float textBase = document.bottom() - PDFTools.cmToPt(1.26f);
@@ -303,8 +293,7 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 
 			float adjust;
 			if (footText.trim().equals("")) {
-				adjust = (pageWidth / 2) - (textSize / 2)
-						- footBaseFont.getWidthPoint("0", footFontSize);
+				adjust = (pageWidth / 2) - (textSize / 2) - footBaseFont.getWidthPoint("0", footFontSize);
 			} else {
 				adjust = 0;
 			}
@@ -312,15 +301,13 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			contentByte.setTextMatrix(document.left() + adjust, textBase);
 			contentByte.showText(text);
 			contentByte.endText();
-			contentByte.addTemplate(template, document.left() + adjust
-					+ textSize, textBase);
+			contentByte.addTemplate(template, document.left() + adjust + textSize, textBase);
 
 			contentByte.stroke();
 			contentByte.restoreState();
 
 			foot.setTotalWidth(pageWidth);
-			foot.writeSelectedRows(0, -1, document.leftMargin(),
-					document.bottomMargin(), writer.getDirectContent());
+			foot.writeSelectedRows(0, -1, document.leftMargin(), document.bottomMargin(), writer.getDirectContent());
 		} catch (Exception e) {
 			/*
 			 * Not part of unit testing because this exception is only thrown if

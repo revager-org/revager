@@ -29,7 +29,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.WindowConstants;
 
 import org.revager.app.model.Data;
@@ -51,13 +50,11 @@ public class AssistantDialog extends AbstractDialog {
 	private Container currentPnl;
 	private FirstScreenPanel firstScreenPanel = new FirstScreenPanel(this);
 	private OpenReviewPanel openReviewPanel = new OpenReviewPanel(this);
-	private Container addAttendeePanel = UI.getInstance().getAttendeeDialog()
-			.getContentPane();
+	private Container addAttendeePanel = UI.getInstance().getAttendeeDialog().getContentPane();
 
 	private boolean instantReview = false;
 
-	private ImageIcon revagerIcon = Data.getInstance().getIcon(
-			"revager_50x50.png");
+	private ImageIcon revagerIcon = Data.getInstance().getIcon("revager_50x50.png");
 
 	/**
 	 * Action to shut down the application.
@@ -74,17 +71,18 @@ public class AssistantDialog extends AbstractDialog {
 	/**
 	 * Action to initialize a new review.
 	 */
-	private ActionListener initQuickRev = ActionRegistry.getInstance().get(
-			InitializeNewReviewAction.class.getName());
+	private ActionListener initQuickRev = ActionRegistry.getInstance().get(InitializeNewReviewAction.class.getName());
 
 	/*
 	 * Strings
 	 */
 	private String firstScreenDescStrng = _("Welcome to RevAger!");
 
-	private String openRevDescStrng = _("You can select a mode and a review from the list of reviews. If your review isn't in the list, you can load it by choosing 'Select another review...'.");
+	private String openRevDescStrng = _(
+			"You can select a mode and a review from the list of reviews. If your review isn't in the list, you can load it by choosing 'Select another review...'.");
 
-	private String addAttDescStrng = _("Here you can manage some personal details. They will be used during the review.");
+	private String addAttDescStrng = _(
+			"Here you can manage some personal details. They will be used during the review.");
 
 	/*
 	 * 
@@ -92,8 +90,7 @@ public class AssistantDialog extends AbstractDialog {
 	 */
 	private JButton backBttn = new JButton();
 	private JButton finishBttn = new JButton();
-	private ImageIcon confirmIcon = Data.getInstance().getIcon(
-			"buttonOk_16x16.png");
+	private ImageIcon confirmIcon = Data.getInstance().getIcon("buttonOk_16x16.png");
 	private String confirmString = _("Confirm");
 
 	/**
@@ -164,8 +161,7 @@ public class AssistantDialog extends AbstractDialog {
 		setIcon(revagerIcon);
 		setCurrentPnl(firstScreenPanel);
 		getContentPane().setLayout(new BorderLayout());
-		backBttn.addActionListener(ActionRegistry.getInstance().get(
-				GoToFirstScreenPnlAction.class.getName()));
+		backBttn.addActionListener(ActionRegistry.getInstance().get(GoToFirstScreenPnlAction.class.getName()));
 
 		setTitle(_("RevAger Assistant"));
 
@@ -244,8 +240,7 @@ public class AssistantDialog extends AbstractDialog {
 			this.getContentPane().add(addAttendeePanel, BorderLayout.CENTER);
 
 			UI.getInstance().getAttendeeDialog().setCurrentAttendee(null);
-			UI.getInstance().getAttendeeDialog().getNameTxtFld()
-					.setText(System.getProperty("user.name"));
+			UI.getInstance().getAttendeeDialog().getNameTxtFld().setText(System.getProperty("user.name"));
 		} else if (currentPnl == openReviewPanel) {
 			this.getContentPane().add(openReviewPanel, BorderLayout.CENTER);
 		}
@@ -280,8 +275,7 @@ public class AssistantDialog extends AbstractDialog {
 		if (!vis) {
 			UI.getInstance().resetAttendeeDialog();
 		} else {
-			addAttendeePanel = UI.getInstance().getAttendeeDialog()
-					.getContentPane();
+			addAttendeePanel = UI.getInstance().getAttendeeDialog().getContentPane();
 		}
 
 		super.setVisible(vis);

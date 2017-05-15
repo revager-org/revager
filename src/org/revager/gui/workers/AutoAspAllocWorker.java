@@ -42,8 +42,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 	/**
 	 * Reference to attendee management
 	 */
-	private AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
 
 	/**
 	 * The aspects to allocate.
@@ -79,8 +78,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.switchToProgressMode(_("Allocating aspects ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Allocating aspects ..."));
 			}
 		});
 
@@ -100,18 +98,14 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame()
-							.setStatusMessage(_("Aspects allocated."), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Aspects allocated."), false);
 				}
 			});
 		} else {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(_("Cannot allocate aspects!"),
-									false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot allocate aspects!"), false);
 				}
 			});
 		}
@@ -158,8 +152,7 @@ public class AutoAspAllocWorker extends SwingWorker<Void, Void> {
 		}
 
 		for (Attendee rev : reviewers) {
-			if (attMgmt.getNumberOfAspects(rev) < attMgmt
-					.getNumberOfAspects(reviewer) && rev != exception) {
+			if (attMgmt.getNumberOfAspects(rev) < attMgmt.getNumberOfAspects(reviewer) && rev != exception) {
 				reviewer = rev;
 			}
 		}

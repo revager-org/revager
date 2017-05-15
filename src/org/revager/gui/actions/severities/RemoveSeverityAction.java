@@ -36,7 +36,8 @@ import org.revager.gui.dialogs.WarningDialog.ButtonClicked;
 @SuppressWarnings("serial")
 public class RemoveSeverityAction extends AbstractAction {
 
-	private String message = _("If you remove a severity, this will affect the whole review. Removed severities will be replaced by the next higher one. Would you really like to remove the selected severity?");
+	private String message = _(
+			"If you remove a severity, this will affect the whole review. Removed severities will be replaced by the next higher one. Would you really like to remove the selected severity?");
 
 	/*
 	 * (non-Javadoc)
@@ -47,15 +48,13 @@ public class RemoveSeverityAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		boolean dontShowAgain = UI.getInstance().getManageSeveritiesDialog()
-				.isDontShowAgain();
+		boolean dontShowAgain = UI.getInstance().getManageSeveritiesDialog().isDontShowAgain();
 
 		/*
 		 * showing warning dialog when check box was never set
 		 */
 		if (!dontShowAgain) {
-			WarningDialog remSevDialog = new WarningDialog(UI.getInstance()
-					.getManageSeveritiesDialog(), message);
+			WarningDialog remSevDialog = new WarningDialog(UI.getInstance().getManageSeveritiesDialog(), message);
 
 			remSevDialog.setVisible(true);
 
@@ -63,10 +62,8 @@ public class RemoveSeverityAction extends AbstractAction {
 				removeSev();
 			}
 
-			UI.getInstance().getManageSeveritiesDialog()
-					.setDontShowAgain(remSevDialog.isDontShowAgain());
-		} else if (UI.getInstance().getManageSeveritiesDialog()
-				.isDontShowAgain()) {
+			UI.getInstance().getManageSeveritiesDialog().setDontShowAgain(remSevDialog.isDontShowAgain());
+		} else if (UI.getInstance().getManageSeveritiesDialog().isDontShowAgain()) {
 			/*
 			 * else delete selected severity
 			 */
@@ -86,13 +83,11 @@ public class RemoveSeverityAction extends AbstractAction {
 	private void removeSev() {
 		SeverityManagement sevMan = Application.getInstance().getSeverityMgmt();
 
-		int selectedRow = UI.getInstance().getManageSeveritiesDialog()
-				.getSeverityTbl().getSelectedRow();
+		int selectedRow = UI.getInstance().getManageSeveritiesDialog().getSeverityTbl().getSelectedRow();
 
 		sevMan.removeSeverity(sevMan.getSeverities().get(selectedRow));
 
-		UI.getInstance().getManageSeveritiesDialog().getStm()
-				.fireTableDataChanged();
+		UI.getInstance().getManageSeveritiesDialog().getStm().fireTableDataChanged();
 	}
 
 }

@@ -52,15 +52,13 @@ public class FindingManagement {
 	/**
 	 * The directory in which the external references are stored.
 	 */
-	private final String EXTREF_DIRECTORY = Data.getInstance().getAppData()
-			.getAppDataPath()
+	private final String EXTREF_DIRECTORY = Data.getInstance().getAppData().getAppDataPath()
 			+ Data.getInstance().getResource("extRefsDirectoryName");
 
 	/**
 	 * The work directory for temporary files.
 	 */
-	private final String WORK_DIRECTORY = Data.getInstance().getAppData()
-			.getAppDataPath()
+	private final String WORK_DIRECTORY = Data.getInstance().getAppData().getAppDataPath()
 			+ Data.getInstance().getResource("workDirectoryName");
 
 	/**
@@ -71,8 +69,7 @@ public class FindingManagement {
 	public int getLastId() {
 		int lastId = 0;
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -93,8 +90,7 @@ public class FindingManagement {
 	public void refactorIds() {
 		List<Integer> idList = new ArrayList<Integer>();
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -256,8 +252,7 @@ public class FindingManagement {
 	 */
 	public boolean isFindingEmpty(Finding find) {
 		boolean noAspects = find.getAspects().isEmpty();
-		boolean noDesc = find.getDescription() == null
-				|| find.getDescription().trim().equals("");
+		boolean noDesc = find.getDescription() == null || find.getDescription().trim().equals("");
 		boolean noExtRefs = find.getExternalReferences().isEmpty();
 		boolean noRefs = find.getReferences().isEmpty();
 
@@ -277,8 +272,7 @@ public class FindingManagement {
 	 * @return true, if the given finding is not complete
 	 */
 	public boolean isFindingNotComplete(Finding find) {
-		boolean noDesc = find.getDescription() == null
-				|| find.getDescription().trim().equals("");
+		boolean noDesc = find.getDescription() == null || find.getDescription().trim().equals("");
 
 		if (noDesc) {
 			return true;
@@ -388,8 +382,7 @@ public class FindingManagement {
 		List<File> list = new ArrayList<File>();
 
 		for (String ref : find.getExternalReferences()) {
-			File extRefFile = new File(EXTREF_DIRECTORY
-					+ revMgmt.getExtRefFileName(ref));
+			File extRefFile = new File(EXTREF_DIRECTORY + revMgmt.getExtRefFileName(ref));
 
 			list.add(extRefFile);
 		}
@@ -548,8 +541,7 @@ public class FindingManagement {
 	public boolean areAllFindingsComplete(Protocol prot) {
 		boolean comp = true;
 		for (Finding find : prot.getFindings()) {
-			if (find.getDescription() == null
-					|| find.getDescription().trim().equals("")) {
+			if (find.getDescription() == null || find.getDescription().trim().equals("")) {
 				comp = false;
 			}
 		}

@@ -73,14 +73,12 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.switchToProgressMode(_("Importing aspects ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Importing aspects ..."));
 			}
 		});
 
 		try {
-			Aspects asps = Application.getInstance().getImportExportCtl()
-					.importAspectsXML(this.filePath);
+			Aspects asps = Application.getInstance().getImportExportCtl().importAspectsXML(this.filePath);
 
 			for (Aspect asp : asps.getAspects()) {
 				String cate = asp.getCategory();
@@ -100,27 +98,21 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(
-									_("Aspects imported successfully."), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Aspects imported successfully."),
+							false);
 				}
 			});
 		} catch (Exception e) {
-			JOptionPane
-					.showMessageDialog(
-							null,
-							GUITools.getMessagePane(_("Cannot import selected file. The content isn't conform to the expected format (Resi XML Schema).")
-									+ "\n\n" + e.getMessage()), _("Error"),
-							JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					GUITools.getMessagePane(
+							_("Cannot import selected file. The content isn't conform to the expected format (Resi XML Schema).")
+									+ "\n\n" + e.getMessage()),
+					_("Error"), JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(_("Cannot import aspects!"),
-									false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot import aspects!"), false);
 				}
 			});
 		}
@@ -130,8 +122,7 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.updateTree(catalog, null, null);
+				UI.getInstance().getAspectsManagerFrame().updateTree(catalog, null, null);
 
 				UI.getInstance().getAspectsManagerFrame().switchToEditMode();
 			}

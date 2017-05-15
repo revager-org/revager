@@ -136,8 +136,7 @@ public class MeetingManagement {
 	 * 
 	 * @return the meeting
 	 */
-	public Meeting addMeeting(Calendar date, Calendar start, Calendar end,
-			String location) {
+	public Meeting addMeeting(Calendar date, Calendar start, Calendar end, String location) {
 		Meeting meeting = new Meeting();
 
 		meeting.setPlannedDate(date);
@@ -164,8 +163,7 @@ public class MeetingManagement {
 		if (!resiData.getReview().getMeetings().contains(meet)) {
 			resiData.getReview().getMeetings().add(meet);
 
-			Collections.sort(resiData.getReview().getMeetings(), Application
-					.getInstance().getMeetingComp());
+			Collections.sort(resiData.getReview().getMeetings(), Application.getInstance().getMeetingComp());
 
 			resiData.fireDataChanged();
 		}

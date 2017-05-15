@@ -71,7 +71,7 @@ public class LanguagePopupWindow extends JDialog {
 	private JPanel inputPnl = new JPanel(gbl);
 	private JPanel panelBase = GUITools.newPopupBasePanel();
 
-	Locale romanian = new Locale("ro","RO");
+	Locale romanian = new Locale("ro", "RO");
 	/*
 	 * Strings
 	 */
@@ -82,30 +82,21 @@ public class LanguagePopupWindow extends JDialog {
 	/*
 	 * ImageIcons
 	 */
-	private ImageIcon germanIcon = Data.getInstance().getIcon(
-			"de_16x11_0.png");
-	private ImageIcon germanRolloverIcon = Data.getInstance().getIcon(
-			"de_16x11.png");
-	private ImageIcon englishIcon = Data.getInstance().getIcon(
-			"gb_16x11_0.png");
-	private ImageIcon englishRolloverIcon = Data.getInstance().getIcon(
-			"gb_16x11.png");
-	private ImageIcon romanianIcon = Data.getInstance().getIcon(
-			"ro_16x11_0.png");
-	private ImageIcon romanianRolloverIcon = Data.getInstance().getIcon(
-			"ro_16x11.png");
+	private ImageIcon germanIcon = Data.getInstance().getIcon("de_16x11_0.png");
+	private ImageIcon germanRolloverIcon = Data.getInstance().getIcon("de_16x11.png");
+	private ImageIcon englishIcon = Data.getInstance().getIcon("gb_16x11_0.png");
+	private ImageIcon englishRolloverIcon = Data.getInstance().getIcon("gb_16x11.png");
+	private ImageIcon romanianIcon = Data.getInstance().getIcon("ro_16x11_0.png");
+	private ImageIcon romanianRolloverIcon = Data.getInstance().getIcon("ro_16x11.png");
 	private String currentLang;
 
 	/*
 	 * Links and LinkGroup
 	 */
 	private LinkGroup languageGrp = new LinkGroup();
-	private HLink germanHLnk = new HLink(germanStrng, germanIcon,
-			germanRolloverIcon, languageGrp);
-	private HLink englishHLnk = new HLink(englishStrng, englishIcon,
-			englishRolloverIcon, languageGrp);
-	private HLink romanianHLnk = new HLink(romanianStrng, romanianIcon,
-			romanianRolloverIcon, languageGrp);
+	private HLink germanHLnk = new HLink(germanStrng, germanIcon, germanRolloverIcon, languageGrp);
+	private HLink englishHLnk = new HLink(englishStrng, englishIcon, englishRolloverIcon, languageGrp);
+	private HLink romanianHLnk = new HLink(romanianStrng, romanianIcon, romanianRolloverIcon, languageGrp);
 
 	/**
 	 * Returns the selected language.
@@ -113,11 +104,9 @@ public class LanguagePopupWindow extends JDialog {
 	 * @return
 	 */
 	public String getSelectedLanguage() {
-		if (languageGrp.getSelectedLinkText().contains(
-				Locale.GERMAN.getDisplayLanguage()))
+		if (languageGrp.getSelectedLinkText().contains(Locale.GERMAN.getDisplayLanguage()))
 			return Locale.GERMAN.getLanguage();
-		else if(languageGrp.getSelectedLinkText().contains(
-			 romanian.getDisplayLanguage()))
+		else if (languageGrp.getSelectedLinkText().contains(romanian.getDisplayLanguage()))
 			return romanian.getLanguage();
 		else
 			return Locale.ENGLISH.getLanguage();
@@ -158,17 +147,12 @@ public class LanguagePopupWindow extends JDialog {
 		else if (currentLang.equals(Locale.ENGLISH.getLanguage()))
 			languageGrp.selectLink(englishHLnk);
 
-		GUITools.addComponent(inputPnl, gbl, germanHLnk, 0, 0, 1, 1, 1.0, 1.0,
-				10, 10, 0, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPnl, gbl, germanHLnk, 0, 0, 1, 1, 1.0, 1.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(inputPnl, gbl, romanianHLnk, 0, 1, 1, 1, 1.0, 1.0,
-				10, 10, 0, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPnl, gbl, romanianHLnk, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
-		GUITools.addComponent(inputPnl, gbl, englishHLnk, 0, 2, 1, 1, 1.0, 1.0,
-				10, 10, 10, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPnl, gbl, englishHLnk, 0, 2, 1, 1, 1.0, 1.0, 10, 10, 10, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.CENTER);
-		
-		
 
 		panelBase.add(inputPnl, BorderLayout.CENTER);
 
@@ -176,27 +160,20 @@ public class LanguagePopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
-		buttonAbort.addActionListener(new LanguagePopupWindowAction(this,
-				ButtonClicked.ABORT));
+		buttonAbort.addActionListener(new LanguagePopupWindowAction(this, ButtonClicked.ABORT));
 
 		JButton buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
-		buttonConfirm.addActionListener(new LanguagePopupWindowAction(this,
-				ButtonClicked.OK));
+		buttonConfirm.addActionListener(new LanguagePopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(
-				panelButtons.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 

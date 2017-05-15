@@ -46,11 +46,9 @@ public class AddSeverityAction extends AbstractAction {
 
 		Application.getInstance().getSeverityMgmt().addSeverity(placeHolder);
 
-		UI.getInstance().getManageSeveritiesDialog().getStm()
-				.fireTableDataChanged();
+		UI.getInstance().getManageSeveritiesDialog().getStm().fireTableDataChanged();
 
-		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog()
-				.getSeverityTbl();
+		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog().getSeverityTbl();
 
 		int row = sevTbl.getRowCount() - 1;
 

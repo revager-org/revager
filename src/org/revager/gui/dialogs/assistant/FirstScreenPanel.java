@@ -78,49 +78,37 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	private String newReviewStrng = AppTools.cutString(_("Schedule new review"), max);
 	private String quickstartStrng = AppTools.cutString(_("Quickstart"), max);
 
-	private String quickRevTooltipStrng = _("Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections.");
+	private String quickRevTooltipStrng = _(
+			"Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections.");
 	private String newRevTooltipStrng = _("Select this if you would like to organize a review as moderator.");
 	private String openRevTooltipStrng = _("Select this if you would like to open an existing review.");
 	private String selectLanguageTooltipStrng = _("Select this if you want to change the language of the application.");
-	private String openAspectsMngrTooltipStrng = _("Select this if you would like to manage the catalogs and aspects in the Aspects Manager.");
+	private String openAspectsMngrTooltipStrng = _(
+			"Select this if you would like to manage the catalogs and aspects in the Aspects Manager.");
 
 	/*
 	 * ImageIcons
 	 */
-	private ImageIcon moderatorIcon = Data.getInstance().getIcon(
-			"moderator_128x128_0.png");
-	private ImageIcon moderatorRolloverIcon = Data.getInstance().getIcon(
-			"moderator_128x128.png");
-	private ImageIcon openRevIcon = Data.getInstance().getIcon(
-			"scribe_128x128_0.png");
-	private ImageIcon openRevRolloverIcon = Data.getInstance().getIcon(
-			"scribe_128x128.png");
-	private ImageIcon quickstartIcon = Data.getInstance().getIcon(
-			"instantReview_128x128_0.png");
-	private ImageIcon quickstartRolloverIcon = Data.getInstance().getIcon(
-			"instantReview_128x128.png");
-	private ImageIcon languageIcon = Data.getInstance().getIcon(
-			"language_31x20_0.png");
-	private ImageIcon languageRolloverIcon = Data.getInstance().getIcon(
-			"language_31x20.png");
-	private ImageIcon aspectsManagerIcon = Data.getInstance().getIcon(
-			"aspectsManager_25x25_0.png");
-	private ImageIcon aspectsManagerRolloverIcon = Data.getInstance().getIcon(
-			"aspectsManager_25x25.png");
+	private ImageIcon moderatorIcon = Data.getInstance().getIcon("moderator_128x128_0.png");
+	private ImageIcon moderatorRolloverIcon = Data.getInstance().getIcon("moderator_128x128.png");
+	private ImageIcon openRevIcon = Data.getInstance().getIcon("scribe_128x128_0.png");
+	private ImageIcon openRevRolloverIcon = Data.getInstance().getIcon("scribe_128x128.png");
+	private ImageIcon quickstartIcon = Data.getInstance().getIcon("instantReview_128x128_0.png");
+	private ImageIcon quickstartRolloverIcon = Data.getInstance().getIcon("instantReview_128x128.png");
+	private ImageIcon languageIcon = Data.getInstance().getIcon("language_31x20_0.png");
+	private ImageIcon languageRolloverIcon = Data.getInstance().getIcon("language_31x20.png");
+	private ImageIcon aspectsManagerIcon = Data.getInstance().getIcon("aspectsManager_25x25_0.png");
+	private ImageIcon aspectsManagerRolloverIcon = Data.getInstance().getIcon("aspectsManager_25x25.png");
 
 	/*
 	 * Links
 	 */
-	private VLink newReviewLnk = new VLink(newReviewStrng, moderatorIcon,
-			moderatorRolloverIcon);
-	private VLink quickstartLnk = new VLink(quickstartStrng, quickstartIcon,
-			quickstartRolloverIcon);
-	private VLink openReviewLnk = new VLink(openRevStrng, openRevIcon,
-			openRevRolloverIcon);
-	private HLink selectLanguageLnk = new HLink(languageStrng, languageIcon,
-			languageRolloverIcon, null);
-	private HLink openAspManagerLnk = new HLink(aspectsManagerStrng,
-			aspectsManagerIcon, aspectsManagerRolloverIcon, null);
+	private VLink newReviewLnk = new VLink(newReviewStrng, moderatorIcon, moderatorRolloverIcon);
+	private VLink quickstartLnk = new VLink(quickstartStrng, quickstartIcon, quickstartRolloverIcon);
+	private VLink openReviewLnk = new VLink(openRevStrng, openRevIcon, openRevRolloverIcon);
+	private HLink selectLanguageLnk = new HLink(languageStrng, languageIcon, languageRolloverIcon, null);
+	private HLink openAspManagerLnk = new HLink(aspectsManagerStrng, aspectsManagerIcon, aspectsManagerRolloverIcon,
+			null);
 
 	/**
 	 * Constructor
@@ -143,14 +131,11 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 		selectLanguageLnk.setFather(this);
 		openAspManagerLnk.setFather(this);
 
-		newReviewLnk.addActionListener(ActionRegistry.getInstance().get(
-				InitializeNewReviewAction.class.getName()));
+		newReviewLnk.addActionListener(ActionRegistry.getInstance().get(InitializeNewReviewAction.class.getName()));
 
-		openReviewLnk.addActionListener(ActionRegistry.getInstance().get(
-				GoToOpenRevPnlAction.class.getName()));
-		quickstartLnk.addActionListener(ActionRegistry.getInstance().get(
-				GoToAddAttPnlAction.class.getName()));
-		
+		openReviewLnk.addActionListener(ActionRegistry.getInstance().get(GoToOpenRevPnlAction.class.getName()));
+		quickstartLnk.addActionListener(ActionRegistry.getInstance().get(GoToAddAttPnlAction.class.getName()));
+
 		selectLanguageLnk.addActionListener(selectLanguageAction);
 		openAspManagerLnk.addActionListener(openAspMngrAction);
 
@@ -165,24 +150,18 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 		openAspManagerLnk.addRolloverText(openAspectsMngrTooltipStrng);
 
 		this.setLayout(gbl1);
-		GUITools.addComponent(this, gbl1, newReviewLnk, 0, 0, 1, 1, 1.0, 1.0,
-				0, 20, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl1, newReviewLnk, 0, 0, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, quickstartLnk, 1, 0, 1, 1, 1.0, 1.0,
-				0, 20, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl1, quickstartLnk, 1, 0, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, openReviewLnk, 2, 0, 1, 1, 1.0, 1.0,
-				0, 20, 0, 20, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl1, openReviewLnk, 2, 0, 1, 1, 1.0, 1.0, 0, 20, 0, 20, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, dottedSprtr, 0, 1, 3, 1, 1.0, 0.0,
-				20, 20, 0, 20, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.CENTER);
-		GUITools.addComponent(this, gbl1, selectLanguageLnk, 0, 2, 1, 1, 1.0,
-				0.0, 20, 20, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl1, openAspManagerLnk, 2, 2, 1, 1, 1.0,
-				0.0, 20, 0, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHEAST);
+		GUITools.addComponent(this, gbl1, dottedSprtr, 0, 1, 3, 1, 1.0, 0.0, 20, 20, 0, 20,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER);
+		GUITools.addComponent(this, gbl1, selectLanguageLnk, 0, 2, 1, 1, 1.0, 0.0, 20, 20, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl1, openAspManagerLnk, 2, 2, 1, 1, 1.0, 0.0, 20, 0, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHEAST);
 
 	}
 

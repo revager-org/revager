@@ -18,14 +18,25 @@
  */
 package org.revager.gui.helpers;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseMotionAdapter;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
-
 
 /**
  * The Class ProgressGlassPane.
@@ -35,8 +46,7 @@ public class ProgressGlassPane extends JComponent implements KeyListener {
 
 	private final static Border MESSAGE_BORDER = new EmptyBorder(20, 20, 20, 20);
 
-	private final ImageIcon ICON_WAIT = Data.getInstance().getIcon(
-			"wait_32x32.gif");
+	private final ImageIcon ICON_WAIT = Data.getInstance().getIcon("wait_32x32.gif");
 	private JLabel message = new JLabel(ICON_WAIT, SwingConstants.CENTER);
 
 	/**

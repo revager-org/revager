@@ -14,8 +14,7 @@ public class LanguagePopupWindowAction extends AbstractAction {
 
 	private ButtonClicked buttonClick = null;
 
-	public LanguagePopupWindowAction(LanguagePopupWindow popupWin,
-			ButtonClicked buttonClk) {
+	public LanguagePopupWindowAction(LanguagePopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

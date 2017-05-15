@@ -31,8 +31,7 @@ import org.revager.app.model.schema.Finding;
  */
 @SuppressWarnings("serial")
 public class FindAspTableModel extends AbstractTableModel {
-	private FindingManagement findingMgmt = Application.getInstance()
-			.getFindingMgmt();
+	private FindingManagement findingMgmt = Application.getInstance().getFindingMgmt();
 	private Finding localFind;
 
 	/**

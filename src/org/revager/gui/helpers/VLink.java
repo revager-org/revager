@@ -224,10 +224,10 @@ public class VLink extends JPanel {
 		localLbl.addMouseListener(localListener);
 		localBttn.addMouseListener(localListener);
 
-		GUITools.addComponent(localPnl, gbl, localBttn, 0, 0, 1, 1, 0.0, 0.0,
-				0, 0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTH);
-		GUITools.addComponent(localPnl, gbl, localLbl, 0, 1, 1, 1, 0.0, 0.0, 5,
-				0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTH);
+		GUITools.addComponent(localPnl, gbl, localBttn, 0, 0, 1, 1, 0.0, 0.0, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTH);
+		GUITools.addComponent(localPnl, gbl, localLbl, 0, 1, 1, 1, 0.0, 0.0, 5, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTH);
 
 	}
 

@@ -72,8 +72,7 @@ public class ExportCSVDialog extends AbstractDialog {
 
 	private JComboBox localMeetCoBx;
 
-	private ProtocolManagement protMgmt = Application.getInstance()
-			.getProtocolMgmt();
+	private ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
 
 	private JButton abortBttn;
 
@@ -97,8 +96,7 @@ public class ExportCSVDialog extends AbstractDialog {
 
 	private CSVProfileTableModel cptm = new CSVProfileTableModel(null, null);
 
-	private SeverityManagement sevMgmt = Application.getInstance()
-			.getSeverityMgmt();
+	private SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
 
 	/*
 	 * 
@@ -179,8 +177,7 @@ public class ExportCSVDialog extends AbstractDialog {
 		try {
 			csvProfileList = appData.getCSVProfiles();
 		} catch (DataException exc) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(exc.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			return;
@@ -200,8 +197,7 @@ public class ExportCSVDialog extends AbstractDialog {
 					selProfile = csvProfileList.get(index);
 					genValidSevMapList();
 					genSelValidSevMapList();
-					cptm.setMapsAndProfile(selProfile,
-							selValidSeverityMappingsList);
+					cptm.setMapsAndProfile(selProfile, selValidSeverityMappingsList);
 					setComBoBoxEditAndRend();
 				}
 			}
@@ -211,8 +207,7 @@ public class ExportCSVDialog extends AbstractDialog {
 		/*
 		 * generating tablemodel and setting the model
 		 */
-		cptm = new CSVProfileTableModel(selProfile,
-				selValidSeverityMappingsList);
+		cptm = new CSVProfileTableModel(selProfile, selValidSeverityMappingsList);
 		sevTbl.setModel(cptm);
 
 		setComBoBoxEditAndRend();
@@ -243,34 +238,25 @@ public class ExportCSVDialog extends AbstractDialog {
 		JLabel reporterLbl = new JLabel(_("Bug Reporter:"));
 		JLabel csvProfileLbl = new JLabel(_("CSV Profile:"));
 
-		GUITools.addComponent(this, gbl, compRevRB, 0, 0, 1, 1, 1.0, 0, 10, 10,
-				0, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl, compRevRB, 0, 0, 1, 1, 1.0, 0, 10, 10, 0, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, localMeetRB, 0, 1, 1, 1, 1.0, 0, 5,
-				10, 0, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl, localMeetRB, 0, 1, 1, 1, 1.0, 0, 5, 10, 0, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, localMeetCoBx, 0, 2, 1, 1, 1.0, 0, 5,
-				10, 20, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl, localMeetCoBx, 0, 2, 1, 1, 1.0, 0, 5, 10, 20, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, reporterLbl, 0, 3, 1, 1, 1.0, 0, 15, 10, 0, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, reporterLbl, 0, 3, 1, 1, 1.0, 0, 15,
-				10, 0, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, reporterTxtFld, 0, 4, 1, 1, 1.0, 0, 5,
-				10, 20, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(this, gbl, reporterTxtFld, 0, 4, 1, 1, 1.0, 0, 5, 10, 20, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+
+		GUITools.addComponent(this, gbl, csvProfileLbl, 0, 5, 1, 1, 1.0, 0, 15, 10, 0, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, csvProfileCoBx, 0, 6, 1, 1, 1.0, 0, 5, 10, 10, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, sevScrllPn, 0, 7, 1, 1, 1.0, 1.0, 5, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 
-		GUITools.addComponent(this, gbl, csvProfileLbl, 0, 5, 1, 1, 1.0, 0, 15,
-				10, 0, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, csvProfileCoBx, 0, 6, 1, 1, 1.0, 0, 5,
-				10, 10, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, sevScrllPn, 0, 7, 1, 1, 1.0, 1.0, 5,
-				10, 0, 10, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-
-		abortBttn = new JButton(_("Abort"), Data.getInstance().getIcon(
-				"buttonCancel_16x16.png"));
+		abortBttn = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		abortBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -278,8 +264,7 @@ public class ExportCSVDialog extends AbstractDialog {
 			}
 		});
 
-		exportBttn = new JButton(_("Export"), Data.getInstance().getIcon(
-				"buttonOk_16x16.png"));
+		exportBttn = new JButton(_("Export"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		exportBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -300,8 +285,7 @@ public class ExportCSVDialog extends AbstractDialog {
 				if (!profile.getValidSeverityMappings().isEmpty())
 					csvProfileCoBx.addItem(profile.getName());
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(null,
-						GUITools.getMessagePane(e.getMessage()), _("Error"),
+				JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -311,8 +295,7 @@ public class ExportCSVDialog extends AbstractDialog {
 	 * Sets the com bo box edit and rend.
 	 */
 	private void setComBoBoxEditAndRend() {
-		String[] columnNameArray = validSeverityMappingsList
-				.toArray(new String[0]);
+		String[] columnNameArray = validSeverityMappingsList.toArray(new String[0]);
 
 		int vColIndex = 1;
 
@@ -330,8 +313,7 @@ public class ExportCSVDialog extends AbstractDialog {
 		try {
 			validSeverityMappingsList = selProfile.getValidSeverityMappings();
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -343,12 +325,10 @@ public class ExportCSVDialog extends AbstractDialog {
 		selValidSeverityMappingsList = new ArrayList<String>();
 		for (int index = 0; index < sevMgmt.getNumberOfSeverities(); index++) {
 			if (index < validSeverityMappingsList.size()) {
-				selValidSeverityMappingsList.add(validSeverityMappingsList
-						.get(index));
+				selValidSeverityMappingsList.add(validSeverityMappingsList.get(index));
 			} else if (validSeverityMappingsList.size() != 0) {
 				int lastElement = validSeverityMappingsList.size() - 1;
-				selValidSeverityMappingsList.add(validSeverityMappingsList
-						.get(lastElement));
+				selValidSeverityMappingsList.add(validSeverityMappingsList.get(lastElement));
 			}
 		}
 	}

@@ -129,9 +129,8 @@ public class GUITools {
 	 * @param z
 	 *            a GridBagConstraints constant
 	 */
-	public static void addComponent(Container cont, GridBagLayout gbl,
-			Component c, int x, int y, int width, int height, double weightx,
-			double weighty, int t, int l, int b, int r, int i, int z) {
+	public static void addComponent(Container cont, GridBagLayout gbl, Component c, int x, int y, int width, int height,
+			double weightx, double weighty, int t, int l, int b, int r, int i, int z) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(t, l, b, r);
 		gbc.fill = i;
@@ -158,8 +157,7 @@ public class GUITools {
 	 * 
 	 * @return the newly created image button
 	 */
-	public static JButton newImageButton(ImageIcon icon,
-			ImageIcon rolloverIcon, Action action) {
+	public static JButton newImageButton(ImageIcon icon, ImageIcon rolloverIcon, Action action) {
 		JButton button = new JButton(action);
 		button.setToolTipText(button.getText());
 		button.setText(null);
@@ -191,8 +189,7 @@ public class GUITools {
 	 * 
 	 * @return the newly created image button
 	 */
-	public static JToggleButton newImageToggleButton(ImageIcon icon,
-			ImageIcon rolloverIcon, Action action) {
+	public static JToggleButton newImageToggleButton(ImageIcon icon, ImageIcon rolloverIcon, Action action) {
 		JToggleButton button = new JToggleButton(action);
 		button.setToolTipText(button.getText());
 		button.setText(null);
@@ -314,13 +311,11 @@ public class GUITools {
 			}
 
 			@Override
-			public boolean editCellAt(int row, int column,
-					java.util.EventObject e) {
+			public boolean editCellAt(int row, int column, java.util.EventObject e) {
 				boolean result = super.editCellAt(row, column, e);
 				final Component editor = getEditorComponent();
 
-				TableCellRenderer renderer = this.getColumnModel()
-						.getColumn(column).getCellRenderer();
+				TableCellRenderer renderer = this.getColumnModel().getColumn(column).getCellRenderer();
 
 				Font cellFont = null;
 
@@ -340,8 +335,7 @@ public class GUITools {
 						});
 					}
 
-					((JTextComponent) editor)
-							.setBorder(UI.MARKED_BORDER_INLINE);
+					((JTextComponent) editor).setBorder(UI.MARKED_BORDER_INLINE);
 
 					if (cellFont != null) {
 						((JTextComponent) editor).setFont(cellFont);
@@ -358,16 +352,14 @@ public class GUITools {
 				TableCellRenderer renderer = super.getCellRenderer(row, column);
 
 				if (renderer instanceof DefaultTableCellRenderer) {
-					((DefaultTableCellRenderer) renderer)
-							.setBorder(new EmptyBorder(3, 3, 3, 3));
+					((DefaultTableCellRenderer) renderer).setBorder(new EmptyBorder(3, 3, 3, 3));
 				}
 
 				return renderer;
 			}
 
 			@Override
-			public Component prepareRenderer(TableCellRenderer renderer,
-					int row, int col) {
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component comp = super.prepareRenderer(renderer, row, col);
 
 				/*
@@ -387,10 +379,8 @@ public class GUITools {
 				 */
 				JComponent jcomp = (JComponent) comp;
 
-				if (comp == jcomp
-						&& renderer instanceof DefaultTableCellRenderer) {
-					String toolTip = ((DefaultTableCellRenderer) renderer)
-							.getToolTipText();
+				if (comp == jcomp && renderer instanceof DefaultTableCellRenderer) {
+					String toolTip = ((DefaultTableCellRenderer) renderer).getToolTipText();
 
 					if (toolTip != null && !toolTip.trim().equals("")) {
 						jcomp.setToolTipText(toolTip);
@@ -507,8 +497,7 @@ public class GUITools {
 	public static JScrollPane setIntoScrllPn(JTextArea txt) {
 		txt.setLineWrap(true);
 		txt.setWrapStyleWord(true);
-		JScrollPane scrllPn = new JScrollPane(txt,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane scrllPn = new JScrollPane(txt, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		return scrllPn;
@@ -582,8 +571,7 @@ public class GUITools {
 					currPos = currPos + part.lastIndexOf(' ');
 				}
 
-				text = text.substring(0, currPos) + "\n"
-						+ text.substring(currPos + 1);
+				text = text.substring(0, currPos) + "\n" + text.substring(currPos + 1);
 
 				currPos++;
 			}
@@ -603,16 +591,13 @@ public class GUITools {
 	 *            the spinner
 	 */
 	public static void formatSpinner(JSpinner sp, boolean hideBorder) {
-		JSpinner.DefaultEditor defEditor = (JSpinner.DefaultEditor) sp
-				.getEditor();
+		JSpinner.DefaultEditor defEditor = (JSpinner.DefaultEditor) sp.getEditor();
 		JFormattedTextField ftf = defEditor.getTextField();
 		ftf.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
-		InternationalFormatter intFormatter = (InternationalFormatter) ftf
-				.getFormatter();
+		InternationalFormatter intFormatter = (InternationalFormatter) ftf.getFormatter();
 		DecimalFormat decimalFormat = (DecimalFormat) intFormatter.getFormat();
 		decimalFormat.applyPattern("00");
-		DecimalFormatSymbols geSymbols = new DecimalFormatSymbols(Data
-				.getInstance().getLocale());
+		DecimalFormatSymbols geSymbols = new DecimalFormatSymbols(Data.getInstance().getLocale());
 		decimalFormat.setDecimalFormatSymbols(geSymbols);
 
 		if (hideBorder) {
@@ -633,8 +618,7 @@ public class GUITools {
 	 * @throws ParseException
 	 *             If an error occurs while parsing the date string
 	 */
-	public static Calendar dateString2Calendar(String s, DateFormat df)
-			throws ParseException {
+	public static Calendar dateString2Calendar(String s, DateFormat df) throws ParseException {
 		Calendar cal = Calendar.getInstance();
 		Date d1 = df.parse(s);
 		cal.setTime(d1);
@@ -685,8 +669,7 @@ public class GUITools {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				scrollPane.getVerticalScrollBar().setValue(
-						scrollPane.getVerticalScrollBar().getMinimum());
+				scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMinimum());
 			}
 		});
 	}
@@ -700,8 +683,7 @@ public class GUITools {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				scrollPane.getVerticalScrollBar().setValue(
-						scrollPane.getVerticalScrollBar().getMaximum());
+				scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
 			}
 		});
 	}

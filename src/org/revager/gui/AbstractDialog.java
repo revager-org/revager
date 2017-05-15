@@ -68,32 +68,27 @@ public abstract class AbstractDialog extends JDialog {
 	/**
 	 * Icon to open the help.
 	 */
-	private final ImageIcon ICON_OPEN_HELP = Data.getInstance().getIcon(
-			"help_26x26.png");
+	private final ImageIcon ICON_OPEN_HELP = Data.getInstance().getIcon("help_26x26.png");
 
 	/**
 	 * Icon to close the help.
 	 */
-	private final ImageIcon ICON_CLOSE_HELP = Data.getInstance().getIcon(
-			"closeHelp_26x26.png");
+	private final ImageIcon ICON_CLOSE_HELP = Data.getInstance().getIcon("closeHelp_26x26.png");
 
 	/**
 	 * Rollover open help icon.
 	 */
-	private final ImageIcon ICON_OPEN_HELP_ROLLOVER = Data.getInstance()
-			.getIcon("helpRollover_26x26.png");
+	private final ImageIcon ICON_OPEN_HELP_ROLLOVER = Data.getInstance().getIcon("helpRollover_26x26.png");
 
 	/**
 	 * Rollover close help icon.
 	 */
-	private final ImageIcon ICON_CLOSE_HELP_ROLLOVER = Data.getInstance()
-			.getIcon("closeHelpRollover_26x26.png");
+	private final ImageIcon ICON_CLOSE_HELP_ROLLOVER = Data.getInstance().getIcon("closeHelpRollover_26x26.png");
 
 	/**
 	 * The wait animation.
 	 */
-	private final ImageIcon ICON_WAIT = Data.getInstance().getIcon(
-			"wait_32x32.gif");
+	private final ImageIcon ICON_WAIT = Data.getInstance().getIcon("wait_32x32.gif");
 
 	/**
 	 * The parent of the dialog.
@@ -310,9 +305,7 @@ public abstract class AbstractDialog extends JDialog {
 	public void setMinimumSize(Dimension minimumSize) {
 		super.setMinimumSize(minimumSize);
 
-		panelBase.setMinimumSize(new Dimension(
-				(int) minimumSize.getWidth() - 20, (int) minimumSize
-						.getHeight()));
+		panelBase.setMinimumSize(new Dimension((int) minimumSize.getWidth() - 20, (int) minimumSize.getHeight()));
 	}
 
 	/*
@@ -339,10 +332,8 @@ public abstract class AbstractDialog extends JDialog {
 	 * Sets the location to center.
 	 */
 	public void setLocationToCenter() {
-		int posX = (int) ((int) (this.parent.getSize().getWidth() / 2) - (this
-				.getSize().getWidth() / 2));
-		int posY = (int) ((int) (this.parent.getSize().getHeight() / 2) - (this
-				.getSize().getHeight() / 2));
+		int posX = (int) ((int) (this.parent.getSize().getWidth() / 2) - (this.getSize().getWidth() / 2));
+		int posY = (int) ((int) (this.parent.getSize().getHeight() / 2) - (this.getSize().getHeight() / 2));
 
 		setLocation(posX, posY);
 	}
@@ -398,9 +389,8 @@ public abstract class AbstractDialog extends JDialog {
 	 * @param weighty
 	 *            the horizontal weight
 	 */
-	protected void gblAdd(GridBagLayout gbl, Container container,
-			Component component, int posx, int posy, int width, int height,
-			Insets insets, double weightx, double weighty) {
+	protected void gblAdd(GridBagLayout gbl, Container container, Component component, int posx, int posy, int width,
+			int height, Insets insets, double weightx, double weighty) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = posx;
 		gbc.gridy = posy;
@@ -452,12 +442,9 @@ public abstract class AbstractDialog extends JDialog {
 		textDescription.setSelectionColor(Color.WHITE);
 		textDescription.setBorder(null);
 
-		gblAdd(gblTop, panelGridTop, labelTitle, 0, 0, 1, 1, new Insets(10, 10,
-				10, 10), 0.0, 0.0);
-		gblAdd(gblTop, panelGridTop, labelIcon, 1, 0, 1, 2, new Insets(10, 20,
-				10, 20), 0.0, 0.0);
-		gblAdd(gblTop, panelGridTop, panelDescTB, 0, 1, 1, 1, new Insets(0, 10,
-				10, 10), 1.0, 1.0);
+		gblAdd(gblTop, panelGridTop, labelTitle, 0, 0, 1, 1, new Insets(10, 10, 10, 10), 0.0, 0.0);
+		gblAdd(gblTop, panelGridTop, labelIcon, 1, 0, 1, 2, new Insets(10, 20, 10, 20), 0.0, 0.0);
+		gblAdd(gblTop, panelGridTop, panelDescTB, 0, 1, 1, 1, new Insets(0, 10, 10, 10), 1.0, 1.0);
 
 		panelTop.add(panelGridTop, BorderLayout.CENTER);
 		panelTop.setBorder(new MatteBorder(0, 0, 1, 0, UI.SEPARATOR_COLOR));
@@ -503,10 +490,8 @@ public abstract class AbstractDialog extends JDialog {
 
 		panelBottom.setBorder(new MatteBorder(1, 0, 0, 0, UI.SEPARATOR_COLOR));
 
-		gblAdd(gblBottom, panelBottom, panelHelpButton, 0, 0, 1, 1, new Insets(
-				5, 5, 5, 5), 1.0, 1.0);
-		gblAdd(gblBottom, panelBottom, panelButtons, 1, 0, 1, 1, new Insets(5,
-				5, 5, 5), 1.0, 1.0);
+		gblAdd(gblBottom, panelBottom, panelHelpButton, 0, 0, 1, 1, new Insets(5, 5, 5, 5), 1.0, 1.0);
+		gblAdd(gblBottom, panelBottom, panelButtons, 1, 0, 1, 1, new Insets(5, 5, 5, 5), 1.0, 1.0);
 
 		/*
 		 * Build content pane with padding
@@ -515,8 +500,7 @@ public abstract class AbstractDialog extends JDialog {
 
 		panelGridContent.setLayout(gblContent);
 
-		gblAdd(gblContent, panelGridContent, panelContent, 0, 0, 1, 1,
-				new Insets(25, 15, 30, 15), 1.0, 1.0);
+		gblAdd(gblContent, panelGridContent, panelContent, 0, 0, 1, 1, new Insets(25, 15, 30, 15), 1.0, 1.0);
 
 		panelContent.setLayout(null);
 
@@ -597,8 +581,7 @@ public abstract class AbstractDialog extends JDialog {
 			/*
 			 * Show "wait..." as label
 			 */
-			JLabel wait = new JLabel(_("Loading help ..."), ICON_WAIT,
-					SwingConstants.CENTER);
+			JLabel wait = new JLabel(_("Loading help ..."), ICON_WAIT, SwingConstants.CENTER);
 
 			panelHelp.setLayout(new BorderLayout());
 			panelHelp.add(wait, BorderLayout.CENTER);
@@ -614,8 +597,7 @@ public abstract class AbstractDialog extends JDialog {
 			splitPane.setContinuousLayout(true);
 
 			int expandArea = 400;
-			int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize()
-					.getWidth();
+			int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 			int dialogWidth = originalWidth + expandArea;
 
 			if (this.getX() + dialogWidth > screenWidth) {
@@ -629,15 +611,13 @@ public abstract class AbstractDialog extends JDialog {
 			/*
 			 * Load help content
 			 */
-			LoadEmbeddedHelpWorker worker = new LoadEmbeddedHelpWorker(
-					panelHelp, helpChapter, helpChapterAnchor);
+			LoadEmbeddedHelpWorker worker = new LoadEmbeddedHelpWorker(panelHelp, helpChapter, helpChapterAnchor);
 
 			GUITools.executeSwingWorker(worker);
 		} else {
 			helpOpened = false;
 
-			setSize(new Dimension(originalWidth, (int) this.getSize()
-					.getHeight()));
+			setSize(new Dimension(originalWidth, (int) this.getSize().getHeight()));
 
 			setContentPane(panelBase);
 		}

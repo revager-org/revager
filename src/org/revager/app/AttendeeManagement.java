@@ -121,8 +121,7 @@ public class AttendeeManagement {
 			/*
 			 * Rename attendee references
 			 */
-			for (Meeting m : Application.getInstance().getMeetingMgmt()
-					.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {
@@ -165,8 +164,7 @@ public class AttendeeManagement {
 		/*
 		 * Remove duplicate references
 		 */
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			List<String> idList = new ArrayList<String>();
 			Protocol prot = m.getProtocol();
 
@@ -191,8 +189,7 @@ public class AttendeeManagement {
 		/*
 		 * Remove wrong references
 		 */
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -252,12 +249,12 @@ public class AttendeeManagement {
 		if (!resiData.getReview().getAttendees().contains(DUMMY_ATTENDEE)) {
 			resiData.getReview().getAttendees().add(DUMMY_ATTENDEE);
 		}
-		
+
 		ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
-		
+
 		for (Meeting meet : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = meet.getProtocol();
-			
+
 			if (prot != null && !protMgmt.isAttendee(DUMMY_ATTENDEE, prot)) {
 				protMgmt.addAttendee(DUMMY_ATTENDEE, null, prot);
 			}
@@ -312,7 +309,7 @@ public class AttendeeManagement {
 		for (Attendee a : resiData.getReview().getAttendees()) {
 			if (a.getId().equals(Integer.toString(id))) {
 				att = a;
-				
+
 				break;
 			}
 		}
@@ -367,8 +364,7 @@ public class AttendeeManagement {
 	 * 
 	 * @return the added attendee
 	 */
-	public Attendee addAttendee(String name, String contact, Role role,
-			List<Aspect> aspects) {
+	public Attendee addAttendee(String name, String contact, Role role, List<Aspect> aspects) {
 		Attendee attendee = new Attendee();
 
 		attendee.setName(name);
@@ -400,8 +396,7 @@ public class AttendeeManagement {
 	 * 
 	 * @return the added attendee
 	 */
-	public Attendee addAttendee(AppAttendee appAtt, Role role,
-			List<Aspect> aspects) {
+	public Attendee addAttendee(AppAttendee appAtt, Role role, List<Aspect> aspects) {
 		String contact;
 		try {
 			contact = appAtt.getContact();
@@ -427,14 +422,12 @@ public class AttendeeManagement {
 	public Attendee addAttendee(Attendee att) {
 		Attendee attendee = null;
 
-		if (!resiData.getReview().getAttendees().contains(att)
-				&& !isAttendee(att)) {
+		if (!resiData.getReview().getAttendees().contains(att) && !isAttendee(att)) {
 			att.setId(Integer.toString((getLastId() + 1)));
 
 			resiData.getReview().getAttendees().add(att);
 
-			Collections.sort(resiData.getReview().getAttendees(), Application
-					.getInstance().getAttendeeComp());
+			Collections.sort(resiData.getReview().getAttendees(), Application.getInstance().getAttendeeComp());
 
 			resiData.fireDataChanged();
 
@@ -485,8 +478,7 @@ public class AttendeeManagement {
 	 * @return true, if editing of the given old attendee was succesful
 	 */
 	public boolean editAttendee(Attendee oldAtt, Attendee newAtt) {
-		if (resiData.getReview().getAttendees().contains(oldAtt)
-				&& !isAttendee(newAtt)) {
+		if (resiData.getReview().getAttendees().contains(oldAtt) && !isAttendee(newAtt)) {
 			String id = oldAtt.getId();
 			int index = resiData.getReview().getAttendees().indexOf(oldAtt);
 
@@ -514,14 +506,12 @@ public class AttendeeManagement {
 	public List<Meeting> getMeetings(Attendee att) {
 		List<Meeting> meetingList = new ArrayList<Meeting>();
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
 				for (AttendeeReference ar : prot.getAttendeeReferences()) {
-					if (ar.getAttendee().equals(att.getId())
-							&& !meetingList.contains(m)) {
+					if (ar.getAttendee().equals(att.getId()) && !meetingList.contains(m)) {
 						meetingList.add(m);
 					}
 				}
@@ -545,10 +535,8 @@ public class AttendeeManagement {
 		for (Attendee a : resiData.getReview().getAttendees()) {
 			if (a == att && a.getAspects() != null) {
 				for (String aspId : a.getAspects().getAspectIds()) {
-					if (Application.getInstance().getAspectMgmt()
-							.getAspect(aspId) != null) {
-						aspectList.add(Application.getInstance()
-								.getAspectMgmt().getAspect(aspId));
+					if (Application.getInstance().getAspectMgmt().getAspect(aspId) != null) {
+						aspectList.add(Application.getInstance().getAspectMgmt().getAspect(aspId));
 					}
 				}
 			}
@@ -736,8 +724,7 @@ public class AttendeeManagement {
 			int index = getAspects(att).indexOf(asp);
 
 			att.getAspects().getAspectIds().remove(index);
-			att.getAspects().getAspectIds()
-					.add(getAspects(att).size(), asp.getId());
+			att.getAspects().getAspectIds().add(getAspects(att).size(), asp.getId());
 
 			resiData.fireDataChanged();
 		}
@@ -814,8 +801,7 @@ public class AttendeeManagement {
 		List<Attendee> attList = new ArrayList<Attendee>();
 
 		for (Attendee att : getAttendees()) {
-			if (att.getAspects() != null
-					&& att.getAspects().getAspectIds().contains(asp.getId())) {
+			if (att.getAspects() != null && att.getAspects().getAspectIds().contains(asp.getId())) {
 				attList.add(att);
 			}
 		}
@@ -835,10 +821,8 @@ public class AttendeeManagement {
 		List<String> strengths = new ArrayList<String>();
 
 		try {
-			for (AppAttendee appAtt : Data.getInstance().getAppData()
-					.getAttendees()) {
-				if (att.getName().equals(appAtt.getName())
-						&& att.getContact().equals(appAtt.getContact())) {
+			for (AppAttendee appAtt : Data.getInstance().getAppData().getAttendees()) {
+				if (att.getName().equals(appAtt.getName()) && att.getContact().equals(appAtt.getContact())) {
 					strengths = appAtt.getStrengths();
 				}
 			}

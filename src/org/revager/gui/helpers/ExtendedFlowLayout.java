@@ -69,8 +69,7 @@ public class ExtendedFlowLayout extends FlowLayout {
 						width = d.width;
 						height = d.height;
 					} else {
-						if (width + d.width > target.getWidth() - insets.left
-								- insets.right - getHgap() * 2) {
+						if (width + d.width > target.getWidth() - insets.left - insets.right - getHgap() * 2) {
 							dim.height += height + getVgap();
 							dim.width = Math.max(dim.width, width);
 							width = d.width;
@@ -83,8 +82,7 @@ public class ExtendedFlowLayout extends FlowLayout {
 				}
 			}
 			dim.height += height + getVgap() * 2 + insets.top + insets.bottom;
-			dim.width = Math.max(dim.width, width) + getHgap() * 2
-					+ insets.left + insets.right;
+			dim.width = Math.max(dim.width, width) + getHgap() * 2 + insets.left + insets.right;
 			return dim;
 		}
 	}
@@ -112,8 +110,7 @@ public class ExtendedFlowLayout extends FlowLayout {
 						width = d.width;
 						height = d.height;
 					} else {
-						if (width + d.width > target.getWidth() - insets.left
-								- insets.right - getHgap() * 2) {
+						if (width + d.width > target.getWidth() - insets.left - insets.right - getHgap() * 2) {
 							dim.height += height + getVgap();
 							dim.width = Math.max(dim.width, width);
 							width = d.width;
@@ -126,8 +123,7 @@ public class ExtendedFlowLayout extends FlowLayout {
 				}
 			}
 			dim.height += height + getVgap() * 2 + insets.top + insets.bottom;
-			dim.width = Math.max(dim.width, width) + getHgap() * 2
-					+ insets.left + insets.right;
+			dim.width = Math.max(dim.width, width) + getHgap() * 2 + insets.left + insets.right;
 			return dim;
 		}
 	}

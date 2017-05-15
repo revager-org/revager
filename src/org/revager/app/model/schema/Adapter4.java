@@ -5,27 +5,23 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-
 package org.revager.app.model.schema;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-public class Adapter4
-    extends XmlAdapter<String, Integer>
-{
+public class Adapter4 extends XmlAdapter<String, Integer> {
 
-
-    @Override
+	@Override
 	public Integer unmarshal(String value) {
-        return (javax.xml.bind.DatatypeConverter.parseInt(value));
-    }
+		return (javax.xml.bind.DatatypeConverter.parseInt(value));
+	}
 
-    @Override
+	@Override
 	public String marshal(Integer value) {
-        if (value == null) {
-            return null;
-        }
-        return (javax.xml.bind.DatatypeConverter.printInt(value));
-    }
+		if (value == null) {
+			return null;
+		}
+		return (javax.xml.bind.DatatypeConverter.printInt(value));
+	}
 
 }

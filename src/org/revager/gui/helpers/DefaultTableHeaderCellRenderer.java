@@ -6,9 +6,9 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.UIManager;
-import javax.swing.RowSorter.SortKey;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
@@ -72,10 +72,9 @@ public class DefaultTableHeaderCellRenderer extends DefaultTableCellRenderer {
 	 *      Object, boolean, boolean, int, int)
 	 */
 	@Override
-	public Component getTableCellRendererComponent(JTable table, Object value,
-			boolean isSelected, boolean hasFocus, int row, int column) {
-		super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-				row, column);
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
+		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		setIcon(getIcon(table, column));
 		setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		return this;

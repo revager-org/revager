@@ -63,8 +63,7 @@ public class Main {
 			if (args[0].trim().equals("-data")) {
 				argData = args[1].trim();
 
-				Data.getInstance().getAppData()
-						.setCustomAppDataDirectory(argData);
+				Data.getInstance().getAppData().setCustomAppDataDirectory(argData);
 			}
 		}
 
@@ -86,8 +85,7 @@ public class Main {
 			/*
 			 * Set the language
 			 */
-			String lang = Data.getInstance().getAppData()
-					.getSetting(AppSettingKey.APP_LANGUAGE);
+			String lang = Data.getInstance().getAppData().getSetting(AppSettingKey.APP_LANGUAGE);
 
 			if (lang == null) {
 				lang = Locale.getDefault().getLanguage();
@@ -97,8 +95,7 @@ public class Main {
 				lang = Locale.ENGLISH.getLanguage();
 			}
 
-			Data.getInstance().getAppData()
-					.setSetting(AppSettingKey.APP_LANGUAGE, lang);
+			Data.getInstance().getAppData().setSetting(AppSettingKey.APP_LANGUAGE, lang);
 
 			Data.getInstance().setLocale(new Locale(lang));
 
@@ -114,8 +111,7 @@ public class Main {
 
 			SwingUtilities.invokeLater(ui);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			System.err.println(e.getMessage());
@@ -131,8 +127,7 @@ public class Main {
 		String appPath = AppTools.getJarFile().getAbsolutePath();
 		String javaStubPath = AppTools.getJavaAppStubLocation();
 
-		if (appPath.toLowerCase().endsWith(".jar")
-				&& UI.getInstance().getPlatform() == UI.Platform.MAC
+		if (appPath.toLowerCase().endsWith(".jar") && UI.getInstance().getPlatform() == UI.Platform.MAC
 				&& javaStubPath != null) {
 			if (argData != null) {
 				pb = new ProcessBuilder(javaStubPath, "-data", argData);
@@ -147,8 +142,7 @@ public class Main {
 			}
 
 			if (argData != null) {
-				pb = new ProcessBuilder(javaBinary, "-jar", appPath, "-data",
-						argData);
+				pb = new ProcessBuilder(javaBinary, "-jar", appPath, "-data", argData);
 			} else {
 				pb = new ProcessBuilder(javaBinary, "-jar", appPath);
 			}
@@ -165,11 +159,10 @@ public class Main {
 		try {
 			pb.start();
 		} catch (Exception e) {
-			JOptionPane
-					.showMessageDialog(
-							UI.getInstance().getMainFrame(),
-							GUITools.getMessagePane(_("The application cannot be restarted automatically on your system. Please start up RevAger manually after it has been closed.")),
-							_("Warning"), JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(
+							_("The application cannot be restarted automatically on your system. Please start up RevAger manually after it has been closed.")),
+					_("Warning"), JOptionPane.WARNING_MESSAGE);
 		}
 
 		exitApplication();
@@ -198,14 +191,12 @@ public class Main {
 		String oldDataPath = null;
 		String newDataPath = null;
 
-		String currentDirectory = new File(ApplicationData.class
-				.getProtectionDomain().getCodeSource().getLocation().getPath())
-				.getAbsolutePath();
+		String currentDirectory = new File(
+				ApplicationData.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getAbsolutePath();
 
 		int endIndex = currentDirectory.lastIndexOf(File.separator);
 
-		String[] possibleDirectories = {
-				System.getProperty("user.home") + File.separator,
+		String[] possibleDirectories = { System.getProperty("user.home") + File.separator,
 				currentDirectory = currentDirectory.substring(0, endIndex + 1),
 				System.getProperty("user.dir") + File.separator };
 
@@ -213,14 +204,11 @@ public class Main {
 		 * Look for an existing old data path
 		 */
 		for (String dir : possibleDirectories) {
-			if (new File(dir
-					+ Data.getInstance().getResource("dataDirectoryNameOld"))
-					.exists() && oldDataPathFound == false) {
+			if (new File(dir + Data.getInstance().getResource("dataDirectoryNameOld")).exists()
+					&& oldDataPathFound == false) {
 				oldDataPathFound = true;
 
-				oldDataPath = dir
-						+ Data.getInstance()
-								.getResource("dataDirectoryNameOld");
+				oldDataPath = dir + Data.getInstance().getResource("dataDirectoryNameOld");
 			}
 		}
 
@@ -228,9 +216,8 @@ public class Main {
 		 * Look for an existing new data path
 		 */
 		for (String dir : possibleDirectories) {
-			if (new File(dir
-					+ Data.getInstance().getResource("dataDirectoryName"))
-					.exists() && newDataPathExist == false) {
+			if (new File(dir + Data.getInstance().getResource("dataDirectoryName")).exists()
+					&& newDataPathExist == false) {
 				newDataPathExist = true;
 			}
 		}
@@ -242,8 +229,7 @@ public class Main {
 			if (new File(dir).canWrite() && newDataPathFound == false) {
 				newDataPathFound = true;
 
-				newDataPath = dir
-						+ Data.getInstance().getResource("dataDirectoryName");
+				newDataPath = dir + Data.getInstance().getResource("dataDirectoryName");
 			}
 		}
 
@@ -251,18 +237,15 @@ public class Main {
 		 * Ask user to migrate old data
 		 */
 		if (oldDataPathFound && newDataPathFound && !newDataPathExist) {
-			if (JOptionPane
-					.showConfirmDialog(
-							null,
-							GUITools.getMessagePane(_("RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?")),
-							_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if (JOptionPane.showConfirmDialog(null,
+					GUITools.getMessagePane(
+							_("RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?")),
+					_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				try {
-					FileTools.copyDirectory(new File(oldDataPath), new File(
-							newDataPath));
+					FileTools.copyDirectory(new File(oldDataPath), new File(newDataPath));
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null,
-							GUITools.getMessagePane(e.getMessage()),
-							_("Error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+							JOptionPane.ERROR_MESSAGE);
 
 					System.err.println(e.getMessage());
 				}

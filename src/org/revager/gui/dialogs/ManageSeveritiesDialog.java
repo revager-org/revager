@@ -34,7 +34,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -68,8 +67,7 @@ public class ManageSeveritiesDialog extends AbstractDialog {
 
 	private JTable severityTbl = GUITools.newStandardTable(stm, false);
 
-	private JLabel nameLbl = new JLabel(
-			_("Severities for the findings in this review:"));
+	private JLabel nameLbl = new JLabel(_("Severities for the findings in this review:"));
 
 	private JPanel buttonPanel = new JPanel(new GridLayout(7, 1));
 
@@ -138,68 +136,51 @@ public class ManageSeveritiesDialog extends AbstractDialog {
 	public void generateElements() {
 		JButton addSeverity = GUITools.newImageButton();
 		addSeverity.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
-		addSeverity
-				.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
+		addSeverity.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
 		addSeverity.setToolTipText(_("Add Severity"));
-		addSeverity.addActionListener(ActionRegistry.getInstance().get(
-				AddSeverityAction.class.getName()));
+		addSeverity.addActionListener(ActionRegistry.getInstance().get(AddSeverityAction.class.getName()));
 		buttonPanel.add(addSeverity);
 
 		removeSeverity = GUITools.newImageButton();
-		removeSeverity
-				.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
-		removeSeverity.setRolloverIcon(Data.getInstance().getIcon(
-				"remove_25x25.png"));
+		removeSeverity.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
+		removeSeverity.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
 		removeSeverity.setToolTipText(_("Remove Severity"));
-		removeSeverity.addActionListener(ActionRegistry.getInstance().get(
-				RemoveSeverityAction.class.getName()));
+		removeSeverity.addActionListener(ActionRegistry.getInstance().get(RemoveSeverityAction.class.getName()));
 		buttonPanel.add(removeSeverity);
 
 		editSeverity = GUITools.newImageButton();
 		editSeverity.setIcon(Data.getInstance().getIcon("edit_25x25_0.png"));
-		editSeverity.setRolloverIcon(Data.getInstance().getIcon(
-				"edit_25x25.png"));
+		editSeverity.setRolloverIcon(Data.getInstance().getIcon("edit_25x25.png"));
 		editSeverity.setToolTipText(_("Edit Severity"));
-		editSeverity.addActionListener(ActionRegistry.getInstance().get(
-				EditSeverityAction.class.getName()));
+		editSeverity.addActionListener(ActionRegistry.getInstance().get(EditSeverityAction.class.getName()));
 		buttonPanel.add(editSeverity);
 
 		severityTop = GUITools.newImageButton();
 		severityTop.setIcon(Data.getInstance().getIcon("pushTop_25x25_0.png"));
-		severityTop.setRolloverIcon(Data.getInstance().getIcon(
-				"pushTop_25x25.png"));
+		severityTop.setRolloverIcon(Data.getInstance().getIcon("pushTop_25x25.png"));
 		severityTop.setToolTipText(_("Push to the top"));
-		severityTop.addActionListener(ActionRegistry.getInstance().get(
-				PushSeverityTopAction.class.getName()));
+		severityTop.addActionListener(ActionRegistry.getInstance().get(PushSeverityTopAction.class.getName()));
 		buttonPanel.add(severityTop);
 
 		severityUp = GUITools.newImageButton();
 		severityUp.setIcon(Data.getInstance().getIcon("upArrow_25x25_0.png"));
-		severityUp.setRolloverIcon(Data.getInstance().getIcon(
-				"upArrow_25x25.png"));
+		severityUp.setRolloverIcon(Data.getInstance().getIcon("upArrow_25x25.png"));
 		severityUp.setToolTipText(_("Push up"));
-		severityUp.addActionListener(ActionRegistry.getInstance().get(
-				PushSeverityUpAction.class.getName()));
+		severityUp.addActionListener(ActionRegistry.getInstance().get(PushSeverityUpAction.class.getName()));
 		buttonPanel.add(severityUp);
 
 		severityDown = GUITools.newImageButton();
-		severityDown.setIcon(Data.getInstance()
-				.getIcon("downArrow_25x25_0.png"));
-		severityDown.setRolloverIcon(Data.getInstance().getIcon(
-				"downArrow_25x25.png"));
+		severityDown.setIcon(Data.getInstance().getIcon("downArrow_25x25_0.png"));
+		severityDown.setRolloverIcon(Data.getInstance().getIcon("downArrow_25x25.png"));
 		severityDown.setToolTipText(_("Push down"));
-		severityDown.addActionListener(ActionRegistry.getInstance().get(
-				PushSeverityDownAction.class.getName()));
+		severityDown.addActionListener(ActionRegistry.getInstance().get(PushSeverityDownAction.class.getName()));
 		buttonPanel.add(severityDown);
 
 		severityBottom = GUITools.newImageButton();
-		severityBottom.setIcon(Data.getInstance().getIcon(
-				"pushBottom_25x25_0.png"));
-		severityBottom.setRolloverIcon(Data.getInstance().getIcon(
-				"pushBottom_25x25.png"));
+		severityBottom.setIcon(Data.getInstance().getIcon("pushBottom_25x25_0.png"));
+		severityBottom.setRolloverIcon(Data.getInstance().getIcon("pushBottom_25x25.png"));
 		severityBottom.setToolTipText(_("Push to the bottom"));
-		severityBottom.addActionListener(ActionRegistry.getInstance().get(
-				PushSeverityBottomAction.class.getName()));
+		severityBottom.addActionListener(ActionRegistry.getInstance().get(PushSeverityBottomAction.class.getName()));
 		buttonPanel.add(severityBottom);
 
 		scrllPn = GUITools.setIntoScrollPane(severityTbl);
@@ -228,13 +209,11 @@ public class ManageSeveritiesDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(contentPane, gbl, nameLbl, 0, 0, 1, 1, 0, 0, 0,
-				5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
-		GUITools.addComponent(contentPane, gbl, scrllPn, 0, 1, 2, 2, 1.0, 1.0,
-				10, 5, 0, 5, GridBagConstraints.BOTH,
+		GUITools.addComponent(contentPane, gbl, nameLbl, 0, 0, 1, 1, 0, 0, 0, 5, 0, 5, GridBagConstraints.NONE,
+				GridBagConstraints.WEST);
+		GUITools.addComponent(contentPane, gbl, scrllPn, 0, 1, 2, 2, 1.0, 1.0, 10, 5, 0, 5, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(contentPane, gbl, buttonPanel, 2, 1, 2, 1, 0, 0,
-				10, 5, 0, 5, GridBagConstraints.VERTICAL,
+		GUITools.addComponent(contentPane, gbl, buttonPanel, 2, 1, 2, 1, 0, 0, 10, 5, 0, 5, GridBagConstraints.VERTICAL,
 				GridBagConstraints.NORTH);
 
 	}
@@ -253,7 +232,8 @@ public class ManageSeveritiesDialog extends AbstractDialog {
 		super(parent);
 
 		setTitle(_("Manage Severities"));
-		setDescription(_("The order of the severities for the findings affects the entire review and represents their relevance (decreasing from top to bottom in the list)."));
+		setDescription(_(
+				"The order of the severities for the findings affects the entire review and represents their relevance (decreasing from top to bottom in the list)."));
 		setIcon(Data.getInstance().getIcon("severities_50x50.png"));
 
 		setHelpChapter("severities_management");
@@ -265,8 +245,7 @@ public class ManageSeveritiesDialog extends AbstractDialog {
 		severityTbl.setShowGrid(false);
 		severityTbl.setShowHorizontalLines(true);
 
-		JButton close = new JButton(_("Close"), Data.getInstance().getIcon(
-				"buttonClose_16x16.png"));
+		JButton close = new JButton(_("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
 		close.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

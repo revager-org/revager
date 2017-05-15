@@ -66,8 +66,7 @@ public class AboutDialog extends AbstractDialog {
 		Font fontTitle = new Font(Font.SANS_SERIF, Font.BOLD, 15);
 		Font fontNormal = UI.STANDARD_FONT;
 
-		JLabel appNameLbl = new JLabel(Data.getInstance()
-				.getResource("appName"));
+		JLabel appNameLbl = new JLabel(Data.getInstance().getResource("appName"));
 		appNameLbl.setFont(fontTitle);
 
 		JLabel versionLbl = new JLabel(_("Version:"));
@@ -81,23 +80,18 @@ public class AboutDialog extends AbstractDialog {
 		JLabel emailLbl = new JLabel(_("E-mail:"));
 		emailLbl.setFont(fontNormal);
 
-		JLabel appVersionLbl = new JLabel(Data.getInstance().getResource(
-				"appVersion"));
+		JLabel appVersionLbl = new JLabel(Data.getInstance().getResource("appVersion"));
 		appVersionLbl.setFont(fontNormal);
 
-		JLabel appReleaseLbl = new JLabel(Data.getInstance().getResource(
-				"appRelease"));
+		JLabel appReleaseLbl = new JLabel(Data.getInstance().getResource("appRelease"));
 		appReleaseLbl.setFont(fontNormal);
 
-		JLabel appBuildLbl = new JLabel(Data.getInstance().getResource(
-				"appBuild"));
+		JLabel appBuildLbl = new JLabel(Data.getInstance().getResource("appBuild"));
 		appBuildLbl.setFont(fontNormal);
 
-		JLabel authorInternetLbl = new JLabel(Data.getInstance().getResource(
-				"authorInternet"));
+		JLabel authorInternetLbl = new JLabel(Data.getInstance().getResource("authorInternet"));
 		authorInternetLbl.setFont(fontNormal);
-		authorInternetLbl.setCursor(Cursor
-				.getPredefinedCursor(Cursor.HAND_CURSOR));
+		authorInternetLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		authorInternetLbl.setBorder(new MatteBorder(0, 0, 1, 0, UI.LINK_COLOR));
 		authorInternetLbl.setForeground(UI.LINK_COLOR);
 		authorInternetLbl.addMouseListener(new MouseListener() {
@@ -120,9 +114,7 @@ public class AboutDialog extends AbstractDialog {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				try {
-					Desktop.getDesktop().browse(
-							new URI(Data.getInstance().getResource(
-									"authorInternet")));
+					Desktop.getDesktop().browse(new URI(Data.getInstance().getResource("authorInternet")));
 				} catch (Exception exc) {
 					/*
 					 * do nothing
@@ -131,11 +123,9 @@ public class AboutDialog extends AbstractDialog {
 			}
 		});
 
-		JLabel authorEmailLbl = new JLabel(Data.getInstance().getResource(
-				"authorEmail"));
+		JLabel authorEmailLbl = new JLabel(Data.getInstance().getResource("authorEmail"));
 		authorEmailLbl.setFont(fontNormal);
-		authorEmailLbl
-				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		authorEmailLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		authorEmailLbl.setBorder(new MatteBorder(0, 0, 1, 0, UI.LINK_COLOR));
 		authorEmailLbl.setForeground(UI.LINK_COLOR);
 		authorEmailLbl.addMouseListener(new MouseListener() {
@@ -158,11 +148,8 @@ public class AboutDialog extends AbstractDialog {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				try {
-					Desktop.getDesktop().mail(
-							new URI("mailto:"
-									+ Data.getInstance().getResource(
-											"authorEmail")
-									+ "?subject=RevAger%20Feedback"));
+					Desktop.getDesktop().mail(new URI(
+							"mailto:" + Data.getInstance().getResource("authorEmail") + "?subject=RevAger%20Feedback"));
 				} catch (Exception exc) {
 					/*
 					 * do nothing
@@ -171,36 +158,34 @@ public class AboutDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(this, gbl, appNameLbl, 0, 0, 1, 1, 2, 1, 0, 25,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, versionLbl, 0, 1, 1, 1, 1, 1, 0, 25,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, appVersionLbl, 1, 1, 1, 1, 1, 1, 0, 0,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, buildLbl, 0, 2, 1, 1, 1, 1, 0, 25, 0,
-				0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, appBuildLbl, 1, 2, 1, 1, 1, 1, 0, 0,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, releaseLbl, 0, 3, 1, 1, 1, 1, 0, 25,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, appReleaseLbl, 1, 3, 1, 1, 1, 1, 0, 0,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, homepageLbl, 0, 4, 1, 1, 1, 1, 0, 25,
-				0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, authorInternetLbl, 1, 4, 1, 1, 1, 1,
-				0, 0, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(this, gbl, appNameLbl, 0, 0, 1, 1, 2, 1, 0, 25, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, emailLbl, 0, 5, 1, 1, 1, 1, 0, 25, 0,
-				0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, authorEmailLbl, 1, 5, 1, 1, 1, 1, 0,
-				0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, versionLbl, 0, 1, 1, 1, 1, 1, 0, 25, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, appVersionLbl, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, buildLbl, 0, 2, 1, 1, 1, 1, 0, 25, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, appBuildLbl, 1, 2, 1, 1, 1, 1, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, releaseLbl, 0, 3, 1, 1, 1, 1, 0, 25, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, appReleaseLbl, 1, 3, 1, 1, 1, 1, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, homepageLbl, 0, 4, 1, 1, 1, 1, 0, 25, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, authorInternetLbl, 1, 4, 1, 1, 1, 1, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, emailLbl, 0, 5, 1, 1, 1, 1, 0, 25, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, authorEmailLbl, 1, 5, 1, 1, 1, 1, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
 
 		setMinimumSize(new Dimension(350, 400));
 		setSize(350, 400);
 		setResizable(false);
 
-		JButton cancel = new JButton(_("Close"), Data.getInstance().getIcon(
-				"buttonClose_16x16.png"));
+		JButton cancel = new JButton(_("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
 		cancel.addActionListener(new ActionListener() {
 
 			@Override

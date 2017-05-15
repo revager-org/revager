@@ -85,12 +85,11 @@ public class MeetingProtocolPDFExporter extends ProtocolPDFExporter {
 	 *             If an error occurs while getting the data for the export
 	 *             process
 	 */
-	public MeetingProtocolPDFExporter(String filePath, Meeting meeting,
-			boolean showSignFields, boolean attachProdExtRefs,
-			boolean attachFindExtRefs) throws ExportException, DataException {
-		super(filePath, _("List of Findings") + " · " + reviewTitle, appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO), appData
-				.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
+	public MeetingProtocolPDFExporter(String filePath, Meeting meeting, boolean showSignFields,
+			boolean attachProdExtRefs, boolean attachFindExtRefs) throws ExportException, DataException {
+		super(filePath, _("List of Findings") + " · " + reviewTitle,
+				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO),
+				appData.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
 		this.meeting = meeting;
 		this.showSignFields = showSignFields;

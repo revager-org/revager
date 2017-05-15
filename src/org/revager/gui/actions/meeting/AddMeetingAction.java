@@ -42,11 +42,10 @@ public class AddMeetingAction extends AbstractAction {
 	public AddMeetingAction() {
 		super();
 
-		putValue(SMALL_ICON, Data.getInstance()
-				.getIcon("menuNewMeet_16x16.png"));
+		putValue(SMALL_ICON, Data.getInstance().getIcon("menuNewMeet_16x16.png"));
 		putValue(NAME, _("Add Meeting"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_I, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/*

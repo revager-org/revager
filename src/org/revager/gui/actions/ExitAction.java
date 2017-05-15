@@ -50,8 +50,8 @@ public class ExitAction extends AbstractAction {
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuExit_16x16.png"));
 		putValue(NAME, _("Close Application"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask()));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**
@@ -72,21 +72,16 @@ public class ExitAction extends AbstractAction {
 		Status status = UI.getInstance().getStatus();
 
 		if (status == Status.UNSAVED_CHANGES) {
-			int option = JOptionPane
-					.showConfirmDialog(
-							UI.getInstance().getMainFrame(),
-							GUITools.getMessagePane(_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
-							_("Question"), JOptionPane.YES_NO_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE);
+			int option = JOptionPane.showConfirmDialog(UI.getInstance().getMainFrame(),
+					GUITools.getMessagePane(
+							_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
+					_("Question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 			if (option == JOptionPane.YES_OPTION) {
-				((SaveReviewAction) ActionRegistry.getInstance().get(
-						SaveReviewAction.class.getName()))
+				((SaveReviewAction) ActionRegistry.getInstance().get(SaveReviewAction.class.getName()))
 						.setExitApplication(true);
 
-				ActionRegistry.getInstance()
-						.get(SaveReviewAction.class.getName())
-						.actionPerformed(e);
+				ActionRegistry.getInstance().get(SaveReviewAction.class.getName()).actionPerformed(e);
 			}
 
 			if (option == JOptionPane.NO_OPTION) {

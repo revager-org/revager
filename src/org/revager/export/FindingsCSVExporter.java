@@ -40,14 +40,12 @@ public class FindingsCSVExporter extends CSVExporter {
 	/**
 	 * Reference to the review management.
 	 */
-	private ReviewManagement revMgmt = Application.getInstance()
-			.getReviewMgmt();
+	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 	/**
 	 * Reference to the findings management.
 	 */
-	private FindingManagement findMgmt = Application.getInstance()
-			.getFindingMgmt();
+	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
 
 	/**
 	 * The column order.
@@ -81,8 +79,7 @@ public class FindingsCSVExporter extends CSVExporter {
 	 * @param reporter
 	 *            the bug reporter
 	 */
-	public FindingsCSVExporter(AppCSVProfile csvProfile,
-			Map<String, String> severityMappings, List<Finding> findings,
+	public FindingsCSVExporter(AppCSVProfile csvProfile, Map<String, String> severityMappings, List<Finding> findings,
 			String reporter) {
 		super();
 
@@ -150,8 +147,7 @@ public class FindingsCSVExporter extends CSVExporter {
 			for (AppCSVColumnName col : columnOrder) {
 				switch (col) {
 				case DESCRIPTION:
-					csvLine[index] = f.getDescription() + " ("
-							+ _("Review Findings") + " " + f.getId() + ")";
+					csvLine[index] = f.getDescription() + " (" + _("Review Findings") + " " + f.getId() + ")";
 					break;
 
 				case REFERENCE:
@@ -166,12 +162,10 @@ public class FindingsCSVExporter extends CSVExporter {
 						refs = "--";
 					}
 
-					String references = MessageFormat
-							.format(_("Finding {0} of Review \"{1}\" ** Product: {2} (Version: {3}) **** {4}"),
-									Integer.toString(f.getId()),
-									revMgmt.getReviewName(),
-									revMgmt.getProductName(),
-									revMgmt.getProductVersion(), refs);
+					String references = MessageFormat.format(
+							_("Finding {0} of Review \"{1}\" ** Product: {2} (Version: {3}) **** {4}"),
+							Integer.toString(f.getId()), revMgmt.getReviewName(), revMgmt.getProductName(),
+							revMgmt.getProductVersion(), refs);
 
 					csvLine[index] = references;
 					break;
@@ -181,11 +175,8 @@ public class FindingsCSVExporter extends CSVExporter {
 					break;
 
 				case SEVERITY:
-					if (severityMappings != null
-							&& severityMappings.get(findMgmt
-									.getLocalizedSeverity(f)) != null) {
-						csvLine[index] = severityMappings.get(findMgmt
-								.getLocalizedSeverity(f));
+					if (severityMappings != null && severityMappings.get(findMgmt.getLocalizedSeverity(f)) != null) {
+						csvLine[index] = severityMappings.get(findMgmt.getLocalizedSeverity(f));
 					} else {
 						csvLine[index] = findMgmt.getLocalizedSeverity(f);
 					}

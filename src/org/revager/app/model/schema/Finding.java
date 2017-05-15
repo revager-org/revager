@@ -5,11 +5,11 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-
 package org.revager.app.model.schema;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,15 +17,17 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
 /**
- * A finding is some error or comment on the
- *             product in order of its examination against an aspect.
- *          
+ * A finding is some error or comment on the product in order of its examination
+ * against an aspect.
  * 
- * <p>Java class for findingType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for findingType complex type.
+ * 
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="findingType">
@@ -47,225 +49,210 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "findingType", propOrder = {
-    "id",
-    "severity",
-    "description",
-    "references",
-    "aspects",
-    "externalReferences"
-})
+@XmlType(name = "findingType", propOrder = { "id", "severity", "description", "references", "aspects",
+		"externalReferences" })
 public class Finding {
 
-    @XmlElement(required = true, type = String.class)
-    @XmlJavaTypeAdapter(Adapter4 .class)
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected Integer id;
-    @XmlElement(required = true)
-    protected String severity;
-    @XmlElement(required = true)
-    protected String description;
-    @XmlElement(name = "reference")
-    protected List<String> references;
-    @XmlElement(name = "aspect")
-    protected List<String> aspects;
-    @XmlElement(name = "external-reference")
-    @XmlSchemaType(name = "anyURI")
-    protected List<String> externalReferences;
+	@XmlElement(required = true, type = String.class)
+	@XmlJavaTypeAdapter(Adapter4.class)
+	@XmlSchemaType(name = "nonNegativeInteger")
+	protected Integer id;
+	@XmlElement(required = true)
+	protected String severity;
+	@XmlElement(required = true)
+	protected String description;
+	@XmlElement(name = "reference")
+	protected List<String> references;
+	@XmlElement(name = "aspect")
+	protected List<String> aspects;
+	@XmlElement(name = "external-reference")
+	@XmlSchemaType(name = "anyURI")
+	protected List<String> externalReferences;
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public Integer getId() {
-        return id;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public Integer getId() {
+		return id;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(Integer value) {
-        this.id = value;
-    }
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setId(Integer value) {
+		this.id = value;
+	}
 
-    public boolean isSetId() {
-        return (this.id!= null);
-    }
+	public boolean isSetId() {
+		return (this.id != null);
+	}
 
-    /**
-     * Gets the value of the severity property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSeverity() {
-        return severity;
-    }
+	/**
+	 * Gets the value of the severity property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getSeverity() {
+		return severity;
+	}
 
-    /**
-     * Sets the value of the severity property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSeverity(String value) {
-        this.severity = value;
-    }
+	/**
+	 * Sets the value of the severity property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setSeverity(String value) {
+		this.severity = value;
+	}
 
-    public boolean isSetSeverity() {
-        return (this.severity!= null);
-    }
+	public boolean isSetSeverity() {
+		return (this.severity != null);
+	}
 
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Gets the value of the description property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
-    }
+	/**
+	 * Sets the value of the description property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setDescription(String value) {
+		this.description = value;
+	}
 
-    public boolean isSetDescription() {
-        return (this.description!= null);
-    }
+	public boolean isSetDescription() {
+		return (this.description != null);
+	}
 
-    /**
-     * Gets the value of the references property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the references property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getReferences().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getReferences() {
-        if (references == null) {
-            references = new ArrayList<String>();
-        }
-        return this.references;
-    }
+	/**
+	 * Gets the value of the references property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the references property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getReferences().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link String }
+	 * 
+	 * 
+	 */
+	public List<String> getReferences() {
+		if (references == null) {
+			references = new ArrayList<String>();
+		}
+		return this.references;
+	}
 
-    public boolean isSetReferences() {
-        return ((this.references!= null)&&(!this.references.isEmpty()));
-    }
+	public boolean isSetReferences() {
+		return ((this.references != null) && (!this.references.isEmpty()));
+	}
 
-    public void unsetReferences() {
-        this.references = null;
-    }
+	public void unsetReferences() {
+		this.references = null;
+	}
 
-    /**
-     * Gets the value of the aspects property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the aspects property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAspects().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getAspects() {
-        if (aspects == null) {
-            aspects = new ArrayList<String>();
-        }
-        return this.aspects;
-    }
+	/**
+	 * Gets the value of the aspects property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the aspects property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getAspects().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link String }
+	 * 
+	 * 
+	 */
+	public List<String> getAspects() {
+		if (aspects == null) {
+			aspects = new ArrayList<String>();
+		}
+		return this.aspects;
+	}
 
-    public boolean isSetAspects() {
-        return ((this.aspects!= null)&&(!this.aspects.isEmpty()));
-    }
+	public boolean isSetAspects() {
+		return ((this.aspects != null) && (!this.aspects.isEmpty()));
+	}
 
-    public void unsetAspects() {
-        this.aspects = null;
-    }
+	public void unsetAspects() {
+		this.aspects = null;
+	}
 
-    /**
-     * Gets the value of the externalReferences property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the externalReferences property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getExternalReferences().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getExternalReferences() {
-        if (externalReferences == null) {
-            externalReferences = new ArrayList<String>();
-        }
-        return this.externalReferences;
-    }
+	/**
+	 * Gets the value of the externalReferences property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the externalReferences property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getExternalReferences().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link String }
+	 * 
+	 * 
+	 */
+	public List<String> getExternalReferences() {
+		if (externalReferences == null) {
+			externalReferences = new ArrayList<String>();
+		}
+		return this.externalReferences;
+	}
 
-    public boolean isSetExternalReferences() {
-        return ((this.externalReferences!= null)&&(!this.externalReferences.isEmpty()));
-    }
+	public boolean isSetExternalReferences() {
+		return ((this.externalReferences != null) && (!this.externalReferences.isEmpty()));
+	}
 
-    public void unsetExternalReferences() {
-        this.externalReferences = null;
-    }
+	public void unsetExternalReferences() {
+		this.externalReferences = null;
+	}
 
 }

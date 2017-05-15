@@ -68,8 +68,7 @@ public class SeverityManagement {
 				getDefLangSeverities().add(index, updatedSev);
 			}
 
-			for (Meeting m : Application.getInstance().getMeetingMgmt()
-					.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {
@@ -89,8 +88,7 @@ public class SeverityManagement {
 	public void validateSeverities() {
 		String highestSev = getDefLangSeverities().get(0);
 
-		for (Meeting m : Application.getInstance().getMeetingMgmt()
-				.getMeetings()) {
+		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
 
 			if (prot != null) {
@@ -168,12 +166,10 @@ public class SeverityManagement {
 		String replaceSeverity = null;
 
 		if (isSeverity(sev)) {
-			if (getDefLangSeverities().indexOf(sev) == 0
-					&& getDefLangSeverities().size() > 1) {
+			if (getDefLangSeverities().indexOf(sev) == 0 && getDefLangSeverities().size() > 1) {
 				replaceSeverity = getDefLangSeverities().get(1);
 			} else {
-				replaceSeverity = getDefLangSeverities().get(
-						getDefLangSeverities().indexOf(sev) - 1);
+				replaceSeverity = getDefLangSeverities().get(getDefLangSeverities().indexOf(sev) - 1);
 			}
 		}
 
@@ -211,8 +207,7 @@ public class SeverityManagement {
 		if (isSeverityRemovable(sev)) {
 			String replaceSeverity = getReplaceSeverity(sev);
 
-			for (Meeting m : Application.getInstance().getMeetingMgmt()
-					.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {
@@ -252,8 +247,7 @@ public class SeverityManagement {
 				getDefLangSeverities().add(index, newSev);
 			}
 
-			for (Meeting m : Application.getInstance().getMeetingMgmt()
-					.getMeetings()) {
+			for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 				Protocol prot = m.getProtocol();
 
 				if (prot != null) {
@@ -275,8 +269,7 @@ public class SeverityManagement {
 	 * @return the number of severities
 	 */
 	public int getNumberOfSeverities() {
-		return Application.getInstance().getReviewMgmt()
-				.getNumberOfSeverities();
+		return Application.getInstance().getReviewMgmt().getNumberOfSeverities();
 	}
 
 	/**

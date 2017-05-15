@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.DirectoryPopupWindow;
 import org.revager.gui.DirectoryPopupWindow.ButtonClicked;
 
-
 /**
  * The Class DirectoryPopupWindowAction.
  */
@@ -44,8 +43,7 @@ public class DirectoryPopupWindowAction extends AbstractAction {
 	 * @param buttonClk
 	 *            the button clk
 	 */
-	public DirectoryPopupWindowAction(DirectoryPopupWindow popupWin,
-			ButtonClicked buttonClk) {
+	public DirectoryPopupWindowAction(DirectoryPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

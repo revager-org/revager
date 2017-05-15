@@ -19,6 +19,7 @@
 package org.revager.app.model.appdata;
 
 import static org.revager.app.model.Data._;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,8 +49,7 @@ public class AppAttendee {
 	 * This is exception is thrown if an attendee could not be found.
 	 */
 	private DataException notFoundExc = new DataException(
-			_("Attendee does not exist!") + " [NAME = " + this.name
-					+ ", CONTACT = " + this.contact + "]");
+			_("Attendee does not exist!") + " [NAME = " + this.name + ", CONTACT = " + this.contact + "]");
 
 	/**
 	 * Internally used contructor to create a new instance of this class by the
@@ -101,8 +101,7 @@ public class AppAttendee {
 		boolean isEqual = false;
 
 		try {
-			if (this.name.equals(otherAtt.getName())
-					&& this.contact.equals(otherAtt.getContact())) {
+			if (this.name.equals(otherAtt.getName()) && this.contact.equals(otherAtt.getContact())) {
 				isEqual = true;
 			}
 		} catch (DataException e) {
@@ -125,8 +124,7 @@ public class AppAttendee {
 	 *             If an error occurs while checking the existence
 	 */
 	public boolean exists() throws DataException {
-		return Data.getInstance().getAppData()
-				.isAttendee(this.name, this.contact);
+		return Data.getInstance().getAppData().isAttendee(this.name, this.contact);
 	}
 
 	/**
@@ -142,14 +140,12 @@ public class AppAttendee {
 	 * @throws DataException
 	 *             If an error occurs while creating a new instance
 	 */
-	public static AppAttendee newInstance(String name, String contact)
-			throws DataException {
+	public static AppAttendee newInstance(String name, String contact) throws DataException {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
 			PreparedStatement ps = conn
-					.prepareStatement("SELECT name,contact FROM Attendees "
-							+ "WHERE name = ? AND contact = ?");
+					.prepareStatement("SELECT name,contact FROM Attendees " + "WHERE name = ? AND contact = ?");
 
 			ps.setString(1, name);
 			ps.setString(2, contact);
@@ -160,8 +156,7 @@ public class AppAttendee {
 			 * If an attendee with the given name does not exist
 			 */
 			if (!res.next()) {
-				ps = conn.prepareStatement("INSERT INTO Attendees "
-						+ "(name, contact) VALUES (?, ?)");
+				ps = conn.prepareStatement("INSERT INTO Attendees " + "(name, contact) VALUES (?, ?)");
 
 				ps.setString(1, name);
 				ps.setString(2, contact);
@@ -179,8 +174,7 @@ public class AppAttendee {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot add or get attendee.")
-					+ " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(_("Cannot add or get attendee.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return new AppAttendee(name, contact);
@@ -244,8 +238,7 @@ public class AppAttendee {
 	 * @throws DataException
 	 *             If an error occurs while setting attendee's name and contact
 	 */
-	public void setNameAndContact(String name, String contact)
-			throws DataException {
+	public void setNameAndContact(String name, String contact) throws DataException {
 		if (!exists()) {
 			throw notFoundExc;
 		}
@@ -259,8 +252,7 @@ public class AppAttendee {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT COUNT(*) FROM Attendees WHERE name=? AND contact=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM Attendees WHERE name=? AND contact=?");
 			ps.setString(1, name);
 			ps.setString(2, contact);
 
@@ -276,8 +268,7 @@ public class AppAttendee {
 			 * If there is no attendee with the given name and contact
 			 */
 			if (result == 0) {
-				ps = conn.prepareStatement("UPDATE Attendees "
-						+ "SET name=?, contact=? WHERE name=? AND contact=?");
+				ps = conn.prepareStatement("UPDATE Attendees " + "SET name=?, contact=? WHERE name=? AND contact=?");
 
 				ps.setString(1, name);
 				ps.setString(2, contact);
@@ -292,9 +283,8 @@ public class AppAttendee {
 				 * If strengths for this attendee exist, update the attendee
 				 * strengths table
 				 */
-				ps = conn
-						.prepareStatement("UPDATE AttendeesStrengths "
-								+ "SET attendeeName=?, attendeeContact=? WHERE attendeeName=? AND attendeeContact=?");
+				ps = conn.prepareStatement("UPDATE AttendeesStrengths "
+						+ "SET attendeeName=?, attendeeContact=? WHERE attendeeName=? AND attendeeContact=?");
 
 				ps.setString(1, name);
 				ps.setString(2, contact);
@@ -320,10 +310,7 @@ public class AppAttendee {
 		} catch (Exception e) {
 			throw new DataException(
 					_("Cannot store attendee! There may be an attendee with the given name and contact information already existing.")
-							+ " [NAME = "
-							+ this.name
-							+ ", CONTACT = "
-							+ this.contact + "] " + e.getMessage());
+							+ " [NAME = " + this.name + ", CONTACT = " + this.contact + "] " + e.getMessage());
 		}
 	}
 
@@ -341,9 +328,8 @@ public class AppAttendee {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT categoryName FROM AttendeesStrengths "
-							+ "WHERE attendeeName=? AND attendeeContact=? ORDER BY categoryName ASC");
+			PreparedStatement ps = conn.prepareStatement("SELECT categoryName FROM AttendeesStrengths "
+					+ "WHERE attendeeName=? AND attendeeContact=? ORDER BY categoryName ASC");
 
 			ps.setString(1, this.name);
 			ps.setString(2, this.contact);
@@ -362,9 +348,8 @@ public class AppAttendee {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot get strengths of the selected attendee.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot get strengths of the selected attendee.") + " [NAME = " + this.name + "] "
+					+ e.getMessage());
 		}
 
 		return contact;
@@ -387,9 +372,8 @@ public class AppAttendee {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("SELECT * FROM AttendeesStrengths "
-							+ "WHERE attendeeName=? AND attendeeContact=? AND categoryName=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM AttendeesStrengths "
+					+ "WHERE attendeeName=? AND attendeeContact=? AND categoryName=?");
 			ps.setString(1, this.name);
 			ps.setString(2, this.contact);
 			ps.setString(3, str);
@@ -408,9 +392,8 @@ public class AppAttendee {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(
-					_("Cannot detect wether the given category is a strength of the attendee or not.")
-							+ " [NAME = " + this.name + "] " + e.getMessage());
+			throw new DataException(_("Cannot detect wether the given category is a strength of the attendee or not.")
+					+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
 		return isStr;
@@ -432,12 +415,10 @@ public class AppAttendee {
 
 		if (!isStrength(str)) {
 			try {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 
-				PreparedStatement ps = conn
-						.prepareStatement("INSERT INTO AttendeesStrengths "
-								+ "(attendeeName, attendeeContact, categoryName) VALUES (?, ?, ?)");
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO AttendeesStrengths "
+						+ "(attendeeName, attendeeContact, categoryName) VALUES (?, ?, ?)");
 
 				ps.setString(1, this.name);
 				ps.setString(2, this.contact);
@@ -455,9 +436,7 @@ public class AppAttendee {
 				 * thrown if there occurs an internal error.
 				 */
 				throw new DataException(
-						_("Cannot assign strength to the attendee.")
-								+ " [NAME = " + this.name + "] "
-								+ e.getMessage());
+						_("Cannot assign strength to the attendee.") + " [NAME = " + this.name + "] " + e.getMessage());
 			}
 		}
 	}
@@ -481,9 +460,8 @@ public class AppAttendee {
 		try {
 			Connection conn = Data.getInstance().getAppData().openConnection();
 
-			PreparedStatement ps = conn
-					.prepareStatement("UPDATE AttendeesStrengths "
-							+ "SET categoryName=? WHERE attendeeName=? AND attendeeContact=? AND categoryName=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE AttendeesStrengths "
+					+ "SET categoryName=? WHERE attendeeName=? AND attendeeContact=? AND categoryName=?");
 
 			ps.setString(1, newStr);
 			ps.setString(2, this.name);
@@ -521,12 +499,10 @@ public class AppAttendee {
 
 		if (isStrength(str)) {
 			try {
-				Connection conn = Data.getInstance().getAppData()
-						.openConnection();
+				Connection conn = Data.getInstance().getAppData().openConnection();
 
-				PreparedStatement ps = conn
-						.prepareStatement("DELETE FROM AttendeesStrengths "
-								+ "WHERE attendeeName=? AND attendeeContact=? AND categoryName=?");
+				PreparedStatement ps = conn.prepareStatement("DELETE FROM AttendeesStrengths "
+						+ "WHERE attendeeName=? AND attendeeContact=? AND categoryName=?");
 
 				ps.setString(1, this.name);
 				ps.setString(2, this.contact);
@@ -544,9 +520,7 @@ public class AppAttendee {
 				 * thrown if there occurs an internal error.
 				 */
 				throw new DataException(
-						_("Cannot remove strength of the attendee.")
-								+ " [NAME = " + this.name + "] "
-								+ e.getMessage());
+						_("Cannot remove strength of the attendee.") + " [NAME = " + this.name + "] " + e.getMessage());
 			}
 		}
 	}

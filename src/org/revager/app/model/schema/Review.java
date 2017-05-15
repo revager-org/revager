@@ -5,28 +5,28 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-
 package org.revager.app.model.schema;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * A review that is about a specimen in
- *             several versions. The specimen is checked by some reviewers
- *             against defined aspects in several review sessions. For
- *             further information about technical reviews see Ludewig, J.
- *             and Lichter, H. (2008): Software Engineering. dpunkt.verlag
- *             GmbH.
+ * A review that is about a specimen in several versions. The specimen is
+ * checked by some reviewers against defined aspects in several review sessions.
+ * For further information about technical reviews see Ludewig, J. and Lichter,
+ * H. (2008): Software Engineering. dpunkt.verlag GmbH.
  * 
- * <p>Java class for reviewType complex type.
+ * <p>
+ * Java class for reviewType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="reviewType">
@@ -52,346 +52,316 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "reviewType", propOrder = {
-    "name",
-    "description",
-    "product",
-    "attendees",
-    "aspects",
-    "severities",
-    "meetings",
-    "impression",
-    "recommendation",
-    "comments"
-})
+@XmlType(name = "reviewType", propOrder = { "name", "description", "product", "attendees", "aspects", "severities",
+		"meetings", "impression", "recommendation", "comments" })
 public class Review {
 
-    @XmlElement(required = true)
-    protected String name;
-    @XmlElement(required = true)
-    protected String description;
-    @XmlElement(required = true)
-    protected Product product;
-    @XmlElement(name = "attendee", required = true)
-    protected List<Attendee> attendees;
-    @XmlElement(name = "aspect", required = true)
-    protected List<Aspect> aspects;
-    @XmlElement(required = true)
-    protected Severities severities;
-    @XmlElement(name = "meeting", required = true)
-    protected List<Meeting> meetings;
-    @XmlElement(required = true)
-    protected String impression;
-    @XmlElement(required = true)
-    protected String recommendation;
-    @XmlElement(required = true)
-    protected String comments;
+	@XmlElement(required = true)
+	protected String name;
+	@XmlElement(required = true)
+	protected String description;
+	@XmlElement(required = true)
+	protected Product product;
+	@XmlElement(name = "attendee", required = true)
+	protected List<Attendee> attendees;
+	@XmlElement(name = "aspect", required = true)
+	protected List<Aspect> aspects;
+	@XmlElement(required = true)
+	protected Severities severities;
+	@XmlElement(name = "meeting", required = true)
+	protected List<Meeting> meetings;
+	@XmlElement(required = true)
+	protected String impression;
+	@XmlElement(required = true)
+	protected String recommendation;
+	@XmlElement(required = true)
+	protected String comments;
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the value of the name property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	/**
+	 * Sets the value of the name property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
+	public boolean isSetName() {
+		return (this.name != null);
+	}
 
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Gets the value of the description property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
-    }
+	/**
+	 * Sets the value of the description property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setDescription(String value) {
+		this.description = value;
+	}
 
-    public boolean isSetDescription() {
-        return (this.description!= null);
-    }
+	public boolean isSetDescription() {
+		return (this.description != null);
+	}
 
-    /**
-     * Gets the value of the product property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Product }
-     *     
-     */
-    public Product getProduct() {
-        return product;
-    }
+	/**
+	 * Gets the value of the product property.
+	 * 
+	 * @return possible object is {@link Product }
+	 * 
+	 */
+	public Product getProduct() {
+		return product;
+	}
 
-    /**
-     * Sets the value of the product property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Product }
-     *     
-     */
-    public void setProduct(Product value) {
-        this.product = value;
-    }
+	/**
+	 * Sets the value of the product property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Product }
+	 * 
+	 */
+	public void setProduct(Product value) {
+		this.product = value;
+	}
 
-    public boolean isSetProduct() {
-        return (this.product!= null);
-    }
+	public boolean isSetProduct() {
+		return (this.product != null);
+	}
 
-    /**
-     * Gets the value of the attendees property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attendees property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAttendees().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Attendee }
-     * 
-     * 
-     */
-    public List<Attendee> getAttendees() {
-        if (attendees == null) {
-            attendees = new ArrayList<Attendee>();
-        }
-        return this.attendees;
-    }
+	/**
+	 * Gets the value of the attendees property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the attendees property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getAttendees().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Attendee
+	 * }
+	 * 
+	 * 
+	 */
+	public List<Attendee> getAttendees() {
+		if (attendees == null) {
+			attendees = new ArrayList<Attendee>();
+		}
+		return this.attendees;
+	}
 
-    public boolean isSetAttendees() {
-        return ((this.attendees!= null)&&(!this.attendees.isEmpty()));
-    }
+	public boolean isSetAttendees() {
+		return ((this.attendees != null) && (!this.attendees.isEmpty()));
+	}
 
-    public void unsetAttendees() {
-        this.attendees = null;
-    }
+	public void unsetAttendees() {
+		this.attendees = null;
+	}
 
-    /**
-     * Gets the value of the aspects property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the aspects property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAspects().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Aspect }
-     * 
-     * 
-     */
-    public List<Aspect> getAspects() {
-        if (aspects == null) {
-            aspects = new ArrayList<Aspect>();
-        }
-        return this.aspects;
-    }
+	/**
+	 * Gets the value of the aspects property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the aspects property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getAspects().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Aspect }
+	 * 
+	 * 
+	 */
+	public List<Aspect> getAspects() {
+		if (aspects == null) {
+			aspects = new ArrayList<Aspect>();
+		}
+		return this.aspects;
+	}
 
-    public boolean isSetAspects() {
-        return ((this.aspects!= null)&&(!this.aspects.isEmpty()));
-    }
+	public boolean isSetAspects() {
+		return ((this.aspects != null) && (!this.aspects.isEmpty()));
+	}
 
-    public void unsetAspects() {
-        this.aspects = null;
-    }
+	public void unsetAspects() {
+		this.aspects = null;
+	}
 
-    /**
-     * Gets the value of the severities property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Severities }
-     *     
-     */
-    public Severities getSeverities() {
-        return severities;
-    }
+	/**
+	 * Gets the value of the severities property.
+	 * 
+	 * @return possible object is {@link Severities }
+	 * 
+	 */
+	public Severities getSeverities() {
+		return severities;
+	}
 
-    /**
-     * Sets the value of the severities property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Severities }
-     *     
-     */
-    public void setSeverities(Severities value) {
-        this.severities = value;
-    }
+	/**
+	 * Sets the value of the severities property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Severities }
+	 * 
+	 */
+	public void setSeverities(Severities value) {
+		this.severities = value;
+	}
 
-    public boolean isSetSeverities() {
-        return (this.severities!= null);
-    }
+	public boolean isSetSeverities() {
+		return (this.severities != null);
+	}
 
-    /**
-     * Gets the value of the meetings property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the meetings property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getMeetings().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Meeting }
-     * 
-     * 
-     */
-    public List<Meeting> getMeetings() {
-        if (meetings == null) {
-            meetings = new ArrayList<Meeting>();
-        }
-        return this.meetings;
-    }
+	/**
+	 * Gets the value of the meetings property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the meetings property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getMeetings().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Meeting }
+	 * 
+	 * 
+	 */
+	public List<Meeting> getMeetings() {
+		if (meetings == null) {
+			meetings = new ArrayList<Meeting>();
+		}
+		return this.meetings;
+	}
 
-    public boolean isSetMeetings() {
-        return ((this.meetings!= null)&&(!this.meetings.isEmpty()));
-    }
+	public boolean isSetMeetings() {
+		return ((this.meetings != null) && (!this.meetings.isEmpty()));
+	}
 
-    public void unsetMeetings() {
-        this.meetings = null;
-    }
+	public void unsetMeetings() {
+		this.meetings = null;
+	}
 
-    /**
-     * Gets the value of the impression property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getImpression() {
-        return impression;
-    }
+	/**
+	 * Gets the value of the impression property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getImpression() {
+		return impression;
+	}
 
-    /**
-     * Sets the value of the impression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setImpression(String value) {
-        this.impression = value;
-    }
+	/**
+	 * Sets the value of the impression property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setImpression(String value) {
+		this.impression = value;
+	}
 
-    public boolean isSetImpression() {
-        return (this.impression!= null);
-    }
+	public boolean isSetImpression() {
+		return (this.impression != null);
+	}
 
-    /**
-     * Gets the value of the recommendation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRecommendation() {
-        return recommendation;
-    }
+	/**
+	 * Gets the value of the recommendation property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getRecommendation() {
+		return recommendation;
+	}
 
-    /**
-     * Sets the value of the recommendation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRecommendation(String value) {
-        this.recommendation = value;
-    }
+	/**
+	 * Sets the value of the recommendation property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setRecommendation(String value) {
+		this.recommendation = value;
+	}
 
-    public boolean isSetRecommendation() {
-        return (this.recommendation!= null);
-    }
+	public boolean isSetRecommendation() {
+		return (this.recommendation != null);
+	}
 
-    /**
-     * Gets the value of the comments property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getComments() {
-        return comments;
-    }
+	/**
+	 * Gets the value of the comments property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getComments() {
+		return comments;
+	}
 
-    /**
-     * Sets the value of the comments property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setComments(String value) {
-        this.comments = value;
-    }
+	/**
+	 * Sets the value of the comments property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setComments(String value) {
+		this.comments = value;
+	}
 
-    public boolean isSetComments() {
-        return (this.comments!= null);
-    }
+	public boolean isSetComments() {
+		return (this.comments != null);
+	}
 
 }

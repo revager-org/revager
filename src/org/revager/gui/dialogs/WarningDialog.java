@@ -102,22 +102,18 @@ public class WarningDialog extends JDialog {
 		JLabel messageLabel = GUITools.getMessagePane(message);
 
 		JButton canceleBttn = new JButton(_("No"));
-		canceleBttn
-				.addActionListener(new WarningAction(this, ButtonClicked.NO));
+		canceleBttn.addActionListener(new WarningAction(this, ButtonClicked.NO));
 		JButton acceptBttn = new JButton(_("Yes"));
-		acceptBttn
-				.addActionListener(new WarningAction(this, ButtonClicked.YES));
+		acceptBttn.addActionListener(new WarningAction(this, ButtonClicked.YES));
 
-		GUITools.addComponent(this, gbl, messageLabel, 0, 0, 2, 1, 1.0, 0, 20,
-				10, 0, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl, messageLabel, 0, 0, 2, 1, 1.0, 0, 20, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, dontShowAgainBx, 0, 1, 2, 1, 1.0, 0,
-				15, 10, 15, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(this, gbl, dontShowAgainBx, 0, 1, 2, 1, 1.0, 0, 15, 10, 15, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, acceptBttn, 0, 2, 1, 1, 1.0, 0, 5, 5,
-				25, 5, GridBagConstraints.NONE, GridBagConstraints.CENTER);
-		GUITools.addComponent(this, gbl, canceleBttn, 1, 2, 1, 1, 1.0, 0, 5, 5,
-				25, 5, GridBagConstraints.NONE, GridBagConstraints.CENTER);
+		GUITools.addComponent(this, gbl, acceptBttn, 0, 2, 1, 1, 1.0, 0, 5, 5, 25, 5, GridBagConstraints.NONE,
+				GridBagConstraints.CENTER);
+		GUITools.addComponent(this, gbl, canceleBttn, 1, 2, 1, 1, 1.0, 0, 5, 5, 25, 5, GridBagConstraints.NONE,
+				GridBagConstraints.CENTER);
 
 		pack();
 

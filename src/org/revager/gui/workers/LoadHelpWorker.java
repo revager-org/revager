@@ -81,11 +81,9 @@ public class LoadHelpWorker extends SwingWorker<Void, Void> {
 			public void run() {
 				try {
 					if (helpChapter != null && helpChapterAnchor != null) {
-						UI.getInstance().getHelpBrowserFrame()
-								.showHelp(helpChapter, helpChapterAnchor);
+						UI.getInstance().getHelpBrowserFrame().showHelp(helpChapter, helpChapterAnchor);
 					} else if (helpChapter != null && helpChapterAnchor == null) {
-						UI.getInstance().getHelpBrowserFrame()
-								.showHelp(helpChapter);
+						UI.getInstance().getHelpBrowserFrame().showHelp(helpChapter);
 					} else {
 						UI.getInstance().getHelpBrowserFrame().showHelp();
 					}

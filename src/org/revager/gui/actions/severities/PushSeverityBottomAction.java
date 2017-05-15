@@ -26,7 +26,6 @@ import javax.swing.JTable;
 import org.revager.app.Application;
 import org.revager.gui.UI;
 
-
 /**
  * The Class PushSeverityBottomAction.
  */
@@ -41,26 +40,20 @@ public class PushSeverityBottomAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog()
-				.getSeverityTbl();
+		JTable sevTbl = UI.getInstance().getManageSeveritiesDialog().getSeverityTbl();
 
 		int selectedRow = sevTbl.getSelectedRow();
 
-		String localSev = Application.getInstance().getSeverityMgmt()
-				.getSeverities().get(selectedRow);
+		String localSev = Application.getInstance().getSeverityMgmt().getSeverities().get(selectedRow);
 
 		if (selectedRow != -1) {
-			Application.getInstance().getSeverityMgmt().pushBottomSeverity(
-					localSev);
+			Application.getInstance().getSeverityMgmt().pushBottomSeverity(localSev);
 
-			UI.getInstance().getManageSeveritiesDialog().getStm()
-					.fireTableDataChanged();
+			UI.getInstance().getManageSeveritiesDialog().getStm().fireTableDataChanged();
 
-			int numberOfSevs = Application.getInstance().getSeverityMgmt()
-					.getNumberOfSeverities();
+			int numberOfSevs = Application.getInstance().getSeverityMgmt().getNumberOfSeverities();
 
-			sevTbl.scrollRectToVisible(sevTbl.getCellRect(numberOfSevs - 1, 0,
-					false));
+			sevTbl.scrollRectToVisible(sevTbl.getCellRect(numberOfSevs - 1, 0, false));
 
 			sevTbl.setRowSelectionInterval(numberOfSevs - 1, numberOfSevs - 1);
 		}

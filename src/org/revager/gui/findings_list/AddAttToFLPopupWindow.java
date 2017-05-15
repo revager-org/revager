@@ -134,8 +134,7 @@ public class AddAttToFLPopupWindow extends JDialog {
 		int hours = Integer.parseInt(durHSpinner.getValue().toString());
 		int mins = Integer.parseInt(durMSpinner.getValue().toString());
 		try {
-			return DatatypeFactory.newInstance().newDurationDayTime(true, 0,
-					hours, mins, 0);
+			return DatatypeFactory.newInstance().newDurationDayTime(true, 0, hours, mins, 0);
 		} catch (DatatypeConfigurationException e) {
 			return null;
 		}
@@ -160,8 +159,7 @@ public class AddAttToFLPopupWindow extends JDialog {
 	 * @param editing
 	 *            the editing
 	 */
-	public AddAttToFLPopupWindow(Window parent, String titleText,
-			Boolean editing) {
+	public AddAttToFLPopupWindow(Window parent, String titleText, Boolean editing) {
 		super(parent);
 
 		toFront();
@@ -195,18 +193,16 @@ public class AddAttToFLPopupWindow extends JDialog {
 		 * Hide border if the application runs on Mac OS X
 		 */
 		boolean hideBorder = UI.getInstance().getPlatform() == UI.Platform.MAC;
-		
+
 		GUITools.formatSpinner(durHSpinner, hideBorder);
 		GUITools.formatSpinner(durMSpinner, hideBorder);
 
 		if ((Integer) durHSpinner.getValue() == 0) {
-			((NumberEditor) durHSpinner.getEditor()).getTextField().setText(
-					"00");
+			((NumberEditor) durHSpinner.getEditor()).getTextField().setText("00");
 		}
 
 		if ((Integer) durMSpinner.getValue() == 0) {
-			((NumberEditor) durMSpinner.getEditor()).getTextField().setText(
-					"00");
+			((NumberEditor) durMSpinner.getEditor()).getTextField().setText("00");
 		}
 
 		JPanel spinnerPanel = new JPanel(gbl);
@@ -215,18 +211,14 @@ public class AddAttToFLPopupWindow extends JDialog {
 		JLabel hoursLbl = new JLabel(_("Hour(s)"));
 		JLabel minLbl = new JLabel(_("Minute(s)"));
 
-		GUITools.addComponent(spinnerPanel, gbl, durHSpinner, 1, 0, 1, 1, 0.0,
-				0.0, 5, 0, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.WEST);
-		GUITools.addComponent(spinnerPanel, gbl, hoursLbl, 2, 0, 1, 1, 1.0, 0,
-				5, 5, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.WEST);
-		GUITools.addComponent(spinnerPanel, gbl, durMSpinner, 3, 0, 1, 1, 0.0,
-				0.0, 5, 5, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.WEST);
-		GUITools.addComponent(spinnerPanel, gbl, minLbl, 4, 0, 1, 1, 1.0, 0.0,
-				5, 5, 0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.WEST);
+		GUITools.addComponent(spinnerPanel, gbl, durHSpinner, 1, 0, 1, 1, 0.0, 0.0, 5, 0, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
+		GUITools.addComponent(spinnerPanel, gbl, hoursLbl, 2, 0, 1, 1, 1.0, 0, 5, 5, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
+		GUITools.addComponent(spinnerPanel, gbl, durMSpinner, 3, 0, 1, 1, 0.0, 0.0, 5, 5, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
+		GUITools.addComponent(spinnerPanel, gbl, minLbl, 4, 0, 1, 1, 1.0, 0.0, 5, 5, 0, 0,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
 
 		roleBx = new JComboBox();
 		for (Role x : Role.values()) {
@@ -238,23 +230,17 @@ public class AddAttToFLPopupWindow extends JDialog {
 
 		inputPanel.setBackground(Color.WHITE);
 
-		GUITools.addComponent(inputPanel, gbl, nameLbl, 0, 0, 1, 1, 0, 0, 5,
-				10, 0, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, nameLbl, 0, 0, 1, 1, 0, 0, 5, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, nameTxtFld, 0, 1, 1, 1, 1.0, 0,
-				5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(inputPanel, gbl, nameTxtFld, 0, 1, 1, 1, 1.0, 0, 5, 10, 20, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(inputPanel, gbl, roleLbl, 0, 2, 1, 1, 0, 0, 5, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, roleLbl, 0, 2, 1, 1, 0, 0, 5,
-				10, 0, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, roleBx, 0, 3, 1, 1, 1.0, 0, 5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, roleBx, 0, 3, 1, 1, 1.0, 0, 5,
-				10, 20, 10, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(inputPanel, gbl, contactLbl, 0, 6, 1, 1, 1.0, 0, 5, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, contactLbl, 0, 6, 1, 1, 1.0, 0,
-				5, 10, 0, 10, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, scrllPn, 0, 7, 1, 2, 1.0, 1.0,
-				5, 10, 20, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPanel, gbl, scrllPn, 0, 7, 1, 2, 1.0, 1.0, 5, 10, 20, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
 
 		panelBase.add(inputPanel, BorderLayout.CENTER);
@@ -262,30 +248,25 @@ public class AddAttToFLPopupWindow extends JDialog {
 		/*
 		 * adding duration to popup
 		 */
-		GUITools.addComponent(inputPanel, gbl, durLbl, 0, 4, 1, 1, 1.0, 0, 5,
-				10, 0, 0, GridBagConstraints.HORIZONTAL,
+		GUITools.addComponent(inputPanel, gbl, durLbl, 0, 4, 1, 1, 1.0, 0, 5, 10, 0, 0, GridBagConstraints.HORIZONTAL,
 				GridBagConstraints.WEST);
-		GUITools.addComponent(inputPanel, gbl, spinnerPanel, 0, 5, 1, 1, 1.0,
-				0, 5, 10, 20, 10, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(inputPanel, gbl, spinnerPanel, 0, 5, 1, 1, 1.0, 0, 5, 10, 20, 10,
+				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
 		Dimension popupSize = new Dimension(260, 400);
 
 		if (editing) {
-			Protocol prot = UI.getInstance().getProtocolFrame()
-					.getCurrentProt();
-			int selRow = UI.getInstance().getProtocolFrame()
-					.getPresentAttTable().getSelectedRow();
-			selAtt = Application.getInstance().getProtocolMgmt()
-					.getAttendees(prot).get(selRow);
+			Protocol prot = UI.getInstance().getProtocolFrame().getCurrentProt();
+			int selRow = UI.getInstance().getProtocolFrame().getPresentAttTable().getSelectedRow();
+			selAtt = Application.getInstance().getProtocolMgmt().getAttendees(prot).get(selRow);
 
 			nameTxtFld.setText(selAtt.getName());
 			roleBx.setSelectedItem(_(selAtt.getRole().toString()));
 			contactTxtArea.setText(selAtt.getContact());
-			durHSpinner.setValue(Application.getInstance().getProtocolMgmt()
-					.getAttendeePrepTime(selAtt, prot).getHours());
-			durMSpinner.setValue(Application.getInstance().getProtocolMgmt()
-					.getAttendeePrepTime(selAtt, prot).getMinutes());
+			durHSpinner
+					.setValue(Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getHours());
+			durMSpinner.setValue(
+					Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getMinutes());
 
 		}
 
@@ -293,27 +274,20 @@ public class AddAttToFLPopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
-		buttonAbort.addActionListener(new AddAttToProtPopupWindowAction(this,
-				ButtonClicked.ABORT));
+		buttonAbort.addActionListener(new AddAttToProtPopupWindowAction(this, ButtonClicked.ABORT));
 
 		buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
-		buttonConfirm.addActionListener(new AddAttToProtPopupWindowAction(this,
-				ButtonClicked.OK));
+		buttonConfirm.addActionListener(new AddAttToProtPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(
-				panelButtons.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 
@@ -360,15 +334,13 @@ public class AddAttToFLPopupWindow extends JDialog {
 
 	public void commitSpinnerValues() {
 		try {
-			((NumberEditor) durHSpinner.getEditor()).getTextField()
-					.commitEdit();
+			((NumberEditor) durHSpinner.getEditor()).getTextField().commitEdit();
 		} catch (ParseException e) {
 			durHSpinner.setValue(0);
 		}
 
 		try {
-			((NumberEditor) durMSpinner.getEditor()).getTextField()
-					.commitEdit();
+			((NumberEditor) durMSpinner.getEditor()).getTextField().commitEdit();
 		} catch (ParseException e) {
 			durMSpinner.setValue(0);
 		}

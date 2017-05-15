@@ -30,7 +30,6 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
@@ -71,19 +70,16 @@ public class XMLResiIO implements ResiIO {
 
 		eventHandler = new XMLResiValidationEventHandler();
 
-		SchemaFactory schemaFactory = SchemaFactory
-				.newInstance(javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
 		try {
-			resiSchema = schemaFactory.newSchema(getClass().getResource(
-					Data.getInstance().getResource("path.schema")));
+			resiSchema = schemaFactory.newSchema(getClass().getResource(Data.getInstance().getResource("path.schema")));
 		} catch (SAXException e) {
 			/*
 			 * Not part of unit testing because the exception is only thrown if
 			 * an internal error occur.
 			 */
-			System.err.println("Error while loading Resi XML schema: "
-					+ Data.getInstance().getResource("path.schema"));
+			System.err.println("Error while loading Resi XML schema: " + Data.getInstance().getResource("path.schema"));
 		}
 	}
 
@@ -94,8 +90,7 @@ public class XMLResiIO implements ResiIO {
 	 * @throws JAXBException
 	 *             if setting up the unmarshaller fails
 	 */
-	private Unmarshaller getUnmarshaller(JAXBContext context,
-			ValidationMode mode) throws JAXBException {
+	private Unmarshaller getUnmarshaller(JAXBContext context, ValidationMode mode) throws JAXBException {
 		Unmarshaller uma = context.createUnmarshaller();
 
 		/*
@@ -116,8 +111,7 @@ public class XMLResiIO implements ResiIO {
 	 * @throws JAXBException
 	 *             if setting up the marshaller fails
 	 */
-	private Marshaller getMarshaller(JAXBContext context, ValidationMode mode)
-			throws JAXBException {
+	private Marshaller getMarshaller(JAXBContext context, ValidationMode mode) throws JAXBException {
 		Marshaller ma = context.createMarshaller();
 
 		/*
@@ -129,9 +123,8 @@ public class XMLResiIO implements ResiIO {
 		}
 
 		ma.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		ma.setProperty(Marshaller.JAXB_SCHEMA_LOCATION,
-				"http://www.informatik.uni-stuttgart.de/iste/se "
-						+ Data.getInstance().getResource("xmlSchemaLocation"));
+		ma.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.informatik.uni-stuttgart.de/iste/se "
+				+ Data.getInstance().getResource("xmlSchemaLocation"));
 
 		return ma;
 	}
@@ -150,9 +143,8 @@ public class XMLResiIO implements ResiIO {
 		JAXBElement<Aspects> asp = null;
 
 		try {
-			asp = getUnmarshaller(JAXBContext.newInstance(Aspects.class),
-					ValidationMode.STRICT).unmarshal(
-					new StreamSource(new File(filePath)), Aspects.class);
+			asp = getUnmarshaller(JAXBContext.newInstance(Aspects.class), ValidationMode.STRICT)
+					.unmarshal(new StreamSource(new File(filePath)), Aspects.class);
 
 			/*
 			 * Set the aspects object
@@ -182,9 +174,8 @@ public class XMLResiIO implements ResiIO {
 		JAXBElement<Catalog> cat = null;
 
 		try {
-			cat = getUnmarshaller(JAXBContext.newInstance(Catalog.class),
-					ValidationMode.STRICT).unmarshal(
-					new StreamSource(new File(filePath)), Catalog.class);
+			cat = getUnmarshaller(JAXBContext.newInstance(Catalog.class), ValidationMode.STRICT)
+					.unmarshal(new StreamSource(new File(filePath)), Catalog.class);
 
 			/*
 			 * Set the catalog object
@@ -217,9 +208,8 @@ public class XMLResiIO implements ResiIO {
 			// URI fileUri = new File(filePath).toURI();
 			// InputStream fileStream = fileUri.toURL().openStream();
 
-			rev = getUnmarshaller(JAXBContext.newInstance(Review.class),
-					ValidationMode.STRICT).unmarshal(
-					new StreamSource(new File(filePath)), Review.class);
+			rev = getUnmarshaller(JAXBContext.newInstance(Review.class), ValidationMode.STRICT)
+					.unmarshal(new StreamSource(new File(filePath)), Review.class);
 
 			/*
 			 * Set the review object
@@ -252,15 +242,13 @@ public class XMLResiIO implements ResiIO {
 		String filePath;
 
 		try {
-			filePath = Data.getInstance().getAppData().getSetting(
-					AppSettingKey.APP_LAST_REVIEW_PATH);
+			filePath = Data.getInstance().getAppData().getSetting(AppSettingKey.APP_LAST_REVIEW_PATH);
 		} catch (DataException e) {
 			/*
 			 * Not part of unit testing because the exception is only thrown if
 			 * an internal error occur.
 			 */
-			throw new ResiIOException(
-					"Cannot read the path of backuped review file.");
+			throw new ResiIOException("Cannot read the path of backuped review file.");
 		}
 
 		/*
@@ -271,9 +259,8 @@ public class XMLResiIO implements ResiIO {
 
 		try {
 
-			rev = getUnmarshaller(JAXBContext.newInstance(Review.class),
-					ValidationMode.TOLERANT).unmarshal(
-					new StreamSource(new File(backupPath)), Review.class);
+			rev = getUnmarshaller(JAXBContext.newInstance(Review.class), ValidationMode.TOLERANT)
+					.unmarshal(new StreamSource(new File(backupPath)), Review.class);
 
 			/*
 			 * Set the review object
@@ -301,12 +288,10 @@ public class XMLResiIO implements ResiIO {
 	@Override
 	public void storeAspects(String filePath) throws ResiIOException {
 		try {
-			getMarshaller(JAXBContext.newInstance(Aspects.class),
-					ValidationMode.STRICT).marshal(
-					new JAXBElement<Aspects>(new QName(
-							"http://www.informatik.uni-stuttgart.de/iste/se",
-							"aspects", ""), Aspects.class, Data.getInstance()
-							.getResiData().getAspects()), new File(filePath));
+			getMarshaller(JAXBContext.newInstance(Aspects.class), ValidationMode.STRICT).marshal(
+					new JAXBElement<Aspects>(new QName("http://www.informatik.uni-stuttgart.de/iste/se", "aspects", ""),
+							Aspects.class, Data.getInstance().getResiData().getAspects()),
+					new File(filePath));
 
 		} catch (Exception e) {
 			throw new ResiIOException(eventHandler.getMessage());
@@ -330,12 +315,10 @@ public class XMLResiIO implements ResiIO {
 	@Override
 	public void storeCatalog(String filePath) throws ResiIOException {
 		try {
-			getMarshaller(JAXBContext.newInstance(Catalog.class),
-					ValidationMode.STRICT).marshal(
-					new JAXBElement<Catalog>(new QName(
-							"http://www.informatik.uni-stuttgart.de/iste/se",
-							"catalog", ""), Catalog.class, Data.getInstance()
-							.getResiData().getCatalog()), new File(filePath));
+			getMarshaller(JAXBContext.newInstance(Catalog.class), ValidationMode.STRICT).marshal(
+					new JAXBElement<Catalog>(new QName("http://www.informatik.uni-stuttgart.de/iste/se", "catalog", ""),
+							Catalog.class, Data.getInstance().getResiData().getCatalog()),
+					new File(filePath));
 
 		} catch (Exception e) {
 			throw new ResiIOException(eventHandler.getMessage());
@@ -359,12 +342,10 @@ public class XMLResiIO implements ResiIO {
 	@Override
 	public void storeReview(String filePath) throws ResiIOException {
 		try {
-			getMarshaller(JAXBContext.newInstance(Review.class),
-					ValidationMode.STRICT).marshal(
-					new JAXBElement<Review>(new QName(
-							"http://www.informatik.uni-stuttgart.de/iste/se",
-							"review", ""), Review.class, Data.getInstance()
-							.getResiData().getReview()), new File(filePath));
+			getMarshaller(JAXBContext.newInstance(Review.class), ValidationMode.STRICT).marshal(
+					new JAXBElement<Review>(new QName("http://www.informatik.uni-stuttgart.de/iste/se", "review", ""),
+							Review.class, Data.getInstance().getResiData().getReview()),
+					new File(filePath));
 		} catch (Exception e) {
 			throw new ResiIOException(eventHandler.getMessage());
 		}
@@ -391,12 +372,10 @@ public class XMLResiIO implements ResiIO {
 				+ Data.getInstance().getResource("revBakFileName");
 
 		try {
-			getMarshaller(JAXBContext.newInstance(Review.class),
-					ValidationMode.TOLERANT).marshal(
-					new JAXBElement<Review>(new QName(
-							"http://www.informatik.uni-stuttgart.de/iste/se",
-							"review", ""), Review.class, Data.getInstance()
-							.getResiData().getReview()), new File(backupPath));
+			getMarshaller(JAXBContext.newInstance(Review.class), ValidationMode.TOLERANT).marshal(
+					new JAXBElement<Review>(new QName("http://www.informatik.uni-stuttgart.de/iste/se", "review", ""),
+							Review.class, Data.getInstance().getResiData().getReview()),
+					new File(backupPath));
 		} catch (Exception e) {
 			/*
 			 * Not part of unit testing because the exception is only thrown if
@@ -415,15 +394,13 @@ public class XMLResiIO implements ResiIO {
 		}
 
 		try {
-			Data.getInstance().getAppData().setSetting(
-					AppSettingKey.APP_LAST_REVIEW_PATH, filePath);
+			Data.getInstance().getAppData().setSetting(AppSettingKey.APP_LAST_REVIEW_PATH, filePath);
 		} catch (DataException e) {
 			/*
 			 * Not part of unit testing because the exception is only thrown if
 			 * an internal error occur.
 			 */
-			throw new ResiIOException(
-					"Cannot save the path of backuped review file.");
+			throw new ResiIOException("Cannot save the path of backuped review file.");
 		}
 	}
 

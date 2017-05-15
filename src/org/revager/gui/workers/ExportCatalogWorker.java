@@ -75,8 +75,7 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame()
-						.switchToProgressMode(_("Exporting catalog ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Exporting catalog ..."));
 			}
 		});
 
@@ -103,30 +102,24 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 				}
 			}
 
-			Application.getInstance().getImportExportCtl()
-					.exportCatalogXML(this.filePath, cat);
+			Application.getInstance().getImportExportCtl().exportCatalogXML(this.filePath, cat);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(
-									_("Catalog exported successfully."), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Catalog exported successfully."),
+							false);
 				}
 			});
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,
-					GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance()
-							.getAspectsManagerFrame()
-							.setStatusMessage(
-									_("Cannot export selected catalog!"), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot export selected catalog!"),
+							false);
 				}
 			});
 		}

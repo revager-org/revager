@@ -113,8 +113,7 @@ public class FileTools {
 
 		fileStream = source.openStream();
 
-		fileReader = new BufferedReader(new InputStreamReader(fileStream,
-				"UTF-8"));
+		fileReader = new BufferedReader(new InputStreamReader(fileStream, "UTF-8"));
 
 		byte[] buffer = new byte[1024];
 		int length;
@@ -139,8 +138,7 @@ public class FileTools {
 	 * @throws IOException
 	 *             if an error occurs while copying the directory
 	 */
-	public static void copyDirectory(File source, File target)
-			throws IOException {
+	public static void copyDirectory(File source, File target) throws IOException {
 		if (!target.exists()) {
 			target.mkdir();
 		}
@@ -163,7 +161,8 @@ public class FileTools {
 	 * special characters are not allowed in file names. These characters will
 	 * be replaced.
 	 * 
-	 * @param fileName the given file name
+	 * @param fileName
+	 *            the given file name
 	 * @return the corrected file name
 	 */
 	public static String validateFileName(String fileName) {
@@ -222,8 +221,8 @@ public class FileTools {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static void writeToZip(List<File> files, File zipFile,
-			boolean urlEncoded, boolean transformUmlauts) throws IOException {
+	public static void writeToZip(List<File> files, File zipFile, boolean urlEncoded, boolean transformUmlauts)
+			throws IOException {
 		/*
 		 * Open the Zip
 		 */
@@ -300,8 +299,7 @@ public class FileTools {
 	 * @throws IOException
 	 *             if an error occurs while extracting the zip file
 	 */
-	public static void extractZipFile(File zipFile, File targetDirectory,
-			boolean urlEncoded) throws IOException {
+	public static void extractZipFile(File zipFile, File targetDirectory, boolean urlEncoded) throws IOException {
 		final FileInputStream fis = new FileInputStream(zipFile);
 		final ZipInputStream zip = new ZipInputStream(fis);
 
@@ -382,8 +380,7 @@ public class FileTools {
 	 * 
 	 * @return true, if the list contains the given file name
 	 */
-	private static boolean containsFileName(String fileName,
-			List<String> fileNames) {
+	private static boolean containsFileName(String fileName, List<String> fileNames) {
 		for (String fn : fileNames) {
 			if (fn.equals(fileName)) {
 				return true;
@@ -408,8 +405,7 @@ public class FileTools {
 	 * 
 	 * @return true if copy was successful; otherwise false
 	 */
-	private static boolean copyStream(InputStream source, OutputStream target,
-			boolean closeTarget) {
+	private static boolean copyStream(InputStream source, OutputStream target, boolean closeTarget) {
 		/*
 		 * The buffer size for chunking
 		 */
@@ -436,8 +432,7 @@ public class FileTools {
 			 * keep reading till hit EOF
 			 */
 			int bytesRead;
-			while ((bytesRead = readBytesBlocking(source, ba, 0, chunkSize,
-					READ_TIMEOUT)) > 0) {
+			while ((bytesRead = readBytesBlocking(source, ba, 0, chunkSize, READ_TIMEOUT)) > 0) {
 				target.write(ba, 0, bytesRead);
 			}
 
@@ -481,8 +476,8 @@ public class FileTools {
 	 * @throws IOException
 	 *             if an error occurs while reading the block
 	 */
-	private static int readBytesBlocking(InputStream in, byte b[], int off,
-			int len, int timeoutInMillis) throws IOException {
+	private static int readBytesBlocking(InputStream in, byte b[], int off, int len, int timeoutInMillis)
+			throws IOException {
 		final int SLEEP_TIME = 100;
 
 		int totalBytesRead = 0;
@@ -490,9 +485,7 @@ public class FileTools {
 
 		long whenToGiveUp = System.currentTimeMillis() + timeoutInMillis;
 
-		while (totalBytesRead < len
-				&& (bytesRead = in.read(b, off + totalBytesRead, len
-						- totalBytesRead)) >= 0) {
+		while (totalBytesRead < len && (bytesRead = in.read(b, off + totalBytesRead, len - totalBytesRead)) >= 0) {
 			if (bytesRead == 0) {
 				try {
 					if (System.currentTimeMillis() >= whenToGiveUp) {

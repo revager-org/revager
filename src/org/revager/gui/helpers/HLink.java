@@ -332,8 +332,7 @@ public class HLink extends JPanel {
 	 * @param icon
 	 * @param rolloverIcon
 	 */
-	public HLink(String text, ImageIcon icon, ImageIcon rolloverIcon,
-			LinkGroup group) {
+	public HLink(String text, ImageIcon icon, ImageIcon rolloverIcon, LinkGroup group) {
 		super();
 		this.setLayout(gbl);
 		this.localGroup = group;
@@ -355,13 +354,10 @@ public class HLink extends JPanel {
 		localBttn.addMouseListener(selectionListener);
 		localLbl.addMouseListener(selectionListener);
 
-		GUITools.addComponent(localPnl, gbl, localBttn, 0, 0, 1, 1, 0.0, 1.0,
-				0, 0, 0, 0, GridBagConstraints.BOTH,
+		GUITools.addComponent(localPnl, gbl, localBttn, 0, 0, 1, 1, 0.0, 1.0, 0, 0, 0, 0, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools
-				.addComponent(localPnl, gbl, localLbl, 1, 0, 1, 1, 1.0, 1.0, 0,
-						5, 0, 0, GridBagConstraints.BOTH,
-						GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(localPnl, gbl, localLbl, 1, 0, 1, 1, 1.0, 1.0, 0, 5, 0, 0, GridBagConstraints.BOTH,
+				GridBagConstraints.NORTHWEST);
 
 		Dimension size = new Dimension(10, 50);
 		setMinimumSize(size);

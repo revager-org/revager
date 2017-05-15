@@ -66,8 +66,8 @@ public class AbstractFrame extends JFrame {
 	/**
 	 * The ICO n_ frame.
 	 */
-	private final Image ICON_FRAME = new ImageIcon(getClass().getResource(
-			Data.getInstance().getResource("path.appIcon"))).getImage();
+	private final Image ICON_FRAME = new ImageIcon(
+			getClass().getResource(Data.getInstance().getResource("path.appIcon"))).getImage();
 
 	/**
 	 * The HINT s_ background.
@@ -82,50 +82,42 @@ public class AbstractFrame extends JFrame {
 	/**
 	 * The ICO n_ help.
 	 */
-	private final ImageIcon ICON_HELP = Data.getInstance().getIcon(
-			"hintHelp_22x22_0.png");
+	private final ImageIcon ICON_HELP = Data.getInstance().getIcon("hintHelp_22x22_0.png");
 
 	/**
 	 * The ICO n_ hel p_ rollover.
 	 */
-	private final ImageIcon ICON_HELP_ROLLOVER = Data.getInstance().getIcon(
-			"hintHelp_22x22.png");
+	private final ImageIcon ICON_HELP_ROLLOVER = Data.getInstance().getIcon("hintHelp_22x22.png");
 
 	/**
 	 * The ICO n_ ope n_ hints.
 	 */
-	private final ImageIcon ICON_OPEN_HINTS = Data.getInstance().getIcon(
-			"openHints_16x16_0.png");
+	private final ImageIcon ICON_OPEN_HINTS = Data.getInstance().getIcon("openHints_16x16_0.png");
 
 	/**
 	 * The ICO n_ clos e_ hints.
 	 */
-	private final ImageIcon ICON_CLOSE_HINTS = Data.getInstance().getIcon(
-			"closeHints_16x16_0.png");
+	private final ImageIcon ICON_CLOSE_HINTS = Data.getInstance().getIcon("closeHints_16x16_0.png");
 
 	/**
 	 * The ICO n_ ope n_ hint s_ rollover.
 	 */
-	private final ImageIcon ICON_OPEN_HINTS_ROLLOVER = Data.getInstance()
-			.getIcon("openHints_16x16.png");
+	private final ImageIcon ICON_OPEN_HINTS_ROLLOVER = Data.getInstance().getIcon("openHints_16x16.png");
 
 	/**
 	 * The ICO n_ clos e_ hint s_ rollover.
 	 */
-	private final ImageIcon ICON_CLOSE_HINTS_ROLLOVER = Data.getInstance()
-			.getIcon("closeHints_16x16.png");
+	private final ImageIcon ICON_CLOSE_HINTS_ROLLOVER = Data.getInstance().getIcon("closeHints_16x16.png");
 
 	/**
 	 * The ICO n_ wai t_ small.
 	 */
-	private final ImageIcon ICON_WAIT_SMALL = Data.getInstance().getIcon(
-			"wait_16x16.gif");
+	private final ImageIcon ICON_WAIT_SMALL = Data.getInstance().getIcon("wait_16x16.gif");
 
 	/**
 	 * The ICO n_ blank.
 	 */
-	private final ImageIcon ICON_BLANK = Data.getInstance().getIcon(
-			"blank_16x16.png");
+	private final ImageIcon ICON_BLANK = Data.getInstance().getIcon("blank_16x16.png");
 
 	/**
 	 * The progress pane.
@@ -368,8 +360,7 @@ public class AbstractFrame extends JFrame {
 	 *            the in progress
 	 */
 	public void setStatusMessage(String message, boolean inProgress) {
-		this.statusMessage.setText(this.formatTime.format(new Date().getTime())
-				+ " | " + message);
+		this.statusMessage.setText(this.formatTime.format(new Date().getTime()) + " | " + message);
 
 		if (inProgress == true) {
 			this.statusInProgress.setIcon(ICON_WAIT_SMALL);
@@ -394,10 +385,8 @@ public class AbstractFrame extends JFrame {
 	public void setLocationToCenter() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		int posX = (int) ((int) (screenSize.getWidth() / 2) - (this.getSize()
-				.getWidth() / 2));
-		int posY = (int) ((int) (screenSize.getHeight() / 2) - (this.getSize()
-				.getHeight() / 2));
+		int posX = (int) ((int) (screenSize.getWidth() / 2) - (this.getSize().getWidth() / 2));
+		int posY = (int) ((int) (screenSize.getHeight() / 2) - (this.getSize().getHeight() / 2));
 
 		setLocation(posX, posY);
 	}
@@ -430,9 +419,8 @@ public class AbstractFrame extends JFrame {
 	 * @param anchor
 	 *            the anchor
 	 */
-	protected void gblAdd(GridBagLayout gbl, Container container,
-			Component component, int posx, int posy, int width, int height,
-			Insets insets, int fill, int anchor, double weightx, double weighty) {
+	protected void gblAdd(GridBagLayout gbl, Container container, Component component, int posx, int posy, int width,
+			int height, Insets insets, int fill, int anchor, double weightx, double weighty) {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = posx;
 		gbc.gridy = posy;
@@ -471,12 +459,10 @@ public class AbstractFrame extends JFrame {
 	 * @param weighty
 	 *            the weighty
 	 */
-	protected void gblAdd(GridBagLayout gbl, Container container,
-			Component component, int posx, int posy, int width, int height,
-			Insets insets, double weightx, double weighty) {
-		gblAdd(gbl, container, component, posx, posy, width, height, insets,
-				GridBagConstraints.BOTH, GridBagConstraints.BASELINE, weightx,
-				weighty);
+	protected void gblAdd(GridBagLayout gbl, Container container, Component component, int posx, int posy, int width,
+			int height, Insets insets, double weightx, double weighty) {
+		gblAdd(gbl, container, component, posx, posy, width, height, insets, GridBagConstraints.BOTH,
+				GridBagConstraints.BASELINE, weightx, weighty);
 	}
 
 	/**
@@ -527,8 +513,7 @@ public class AbstractFrame extends JFrame {
 		JPanel panelGridTop = new JPanel();
 		panelGridTop.setLayout(gblTop);
 		panelGridTop.setBackground(Color.WHITE);
-		gblAdd(gblTop, panelGridTop, panelBorderTop, 0, 0, 1, 1, new Insets(0,
-				0, 0, 10), 1.0, 1.0);
+		gblAdd(gblTop, panelGridTop, panelBorderTop, 0, 0, 1, 1, new Insets(0, 0, 0, 10), 1.0, 1.0);
 
 		panelTop.add(panelGridTop, BorderLayout.CENTER);
 		panelTop.setBorder(new MatteBorder(0, 0, 1, 0, UI.SEPARATOR_COLOR));
@@ -565,16 +550,12 @@ public class AbstractFrame extends JFrame {
 		 */
 		int ins = 6;
 
-		gblAdd(gblBottom, panelBottom, panelBorderHints, 0, 0, 3, 1,
-				new Insets(0, 0, 0, 0), 1.0, 1.0);
-		gblAdd(gblBottom, panelBottom, statusMessage, 0, 1, 1, 1, new Insets(0,
-				7, 0, 7), GridBagConstraints.WEST, GridBagConstraints.WEST,
-				0.0, 1.0);
-		gblAdd(gblBottom, panelBottom, statusInProgress, 1, 1, 1, 1,
-				new Insets(6, 6, 6, 6), GridBagConstraints.WEST,
+		gblAdd(gblBottom, panelBottom, panelBorderHints, 0, 0, 3, 1, new Insets(0, 0, 0, 0), 1.0, 1.0);
+		gblAdd(gblBottom, panelBottom, statusMessage, 0, 1, 1, 1, new Insets(0, 7, 0, 7), GridBagConstraints.WEST,
+				GridBagConstraints.WEST, 0.0, 1.0);
+		gblAdd(gblBottom, panelBottom, statusInProgress, 1, 1, 1, 1, new Insets(6, 6, 6, 6), GridBagConstraints.WEST,
 				GridBagConstraints.WEST, 1.0, 1.0);
-		gblAdd(gblBottom, panelBottom, buttonHints, 2, 1, 1, 1, new Insets(ins,
-				ins, ins, ins), GridBagConstraints.EAST,
+		gblAdd(gblBottom, panelBottom, buttonHints, 2, 1, 1, 1, new Insets(ins, ins, ins, ins), GridBagConstraints.EAST,
 				GridBagConstraints.EAST, 1.0, 1.0);
 
 		/*
@@ -584,8 +565,7 @@ public class AbstractFrame extends JFrame {
 
 		panelGridContent.setLayout(gblContent);
 
-		gblAdd(gblContent, panelGridContent, panelContent, 0, 0, 1, 1,
-				new Insets(15, 15, 15, 15), 1.0, 1.0);
+		gblAdd(gblContent, panelGridContent, panelContent, 0, 0, 1, 1, new Insets(15, 15, 15, 15), 1.0, 1.0);
 
 		panelContent.setLayout(null);
 
@@ -736,8 +716,7 @@ public class AbstractFrame extends JFrame {
 			/*
 			 * Add vertical strut
 			 */
-			gblAdd(gblHints, panelHints, new JLabel(), 0, 0, 1, 1, new Insets(
-					10, 0, 0, 0), 0.0, 1.0);
+			gblAdd(gblHints, panelHints, new JLabel(), 0, 0, 1, 1, new Insets(10, 0, 0, 0), 0.0, 1.0);
 
 			Iterator<HintItem> iter = hints.iterator();
 			int i = 1;
@@ -781,11 +760,9 @@ public class AbstractFrame extends JFrame {
 				text.setSelectionColor(HINTS_BACKGROUND);
 				text.setBorder(null);
 
-				gblAdd(gblHints, panelHints, labelIcon, 0, 2 * i, 1, 1,
-						new Insets(0, 15, 5, 0), GridBagConstraints.WEST,
-						GridBagConstraints.WEST, 0.0, 1.0);
-				gblAdd(gblHints, panelHints, text, 1, 2 * i, 1, 1, new Insets(
-						10, 15, 5, 15), GridBagConstraints.BOTH,
+				gblAdd(gblHints, panelHints, labelIcon, 0, 2 * i, 1, 1, new Insets(0, 15, 5, 0),
+						GridBagConstraints.WEST, GridBagConstraints.WEST, 0.0, 1.0);
+				gblAdd(gblHints, panelHints, text, 1, 2 * i, 1, 1, new Insets(10, 15, 5, 15), GridBagConstraints.BOTH,
 						GridBagConstraints.WEST, 1.0, 1.0);
 
 				// TODO HELP IS CURRENTLY DISABLED!
@@ -871,8 +848,7 @@ public class AbstractFrame extends JFrame {
 	 * Switch to edit mode.
 	 */
 	public void switchToEditMode() {
-		if (lastSwitchToClearMode < lastSwitchToEditMode
-				&& lastSwitchToEditMode > lastSwitchToProgressMode) {
+		if (lastSwitchToClearMode < lastSwitchToEditMode && lastSwitchToEditMode > lastSwitchToProgressMode) {
 			// panelBase.remove(panelGridContent);
 			// panelBase.add(panelGridContent, BorderLayout.CENTER);
 
@@ -901,8 +877,7 @@ public class AbstractFrame extends JFrame {
 	 *            the text
 	 */
 	public void switchToProgressMode(String text) {
-		if (lastSwitchToProgressMode > lastSwitchToEditMode
-				&& lastSwitchToClearMode < lastSwitchToProgressMode) {
+		if (lastSwitchToProgressMode > lastSwitchToEditMode && lastSwitchToClearMode < lastSwitchToProgressMode) {
 			// panelBase.remove(panelGridContent);
 
 			// panelBase.revalidate();
@@ -917,8 +892,7 @@ public class AbstractFrame extends JFrame {
 	 * Switch to clear mode.
 	 */
 	public void switchToClearMode() {
-		if (lastSwitchToClearMode > lastSwitchToEditMode
-				&& lastSwitchToClearMode > lastSwitchToProgressMode) {
+		if (lastSwitchToClearMode > lastSwitchToEditMode && lastSwitchToClearMode > lastSwitchToProgressMode) {
 			// panelBase.remove(panelGridContent);
 
 			// panelBase.revalidate();
@@ -945,8 +919,7 @@ public class AbstractFrame extends JFrame {
 			if (hintsOpened == false) {
 				hintsOpened = true;
 
-				panelBorderHints.setBorder(new MatteBorder(0, 0, 1, 0,
-						UI.SEPARATOR_COLOR));
+				panelBorderHints.setBorder(new MatteBorder(0, 0, 1, 0, UI.SEPARATOR_COLOR));
 				panelBorderHints.add(panelHints, BorderLayout.CENTER);
 				panelBorderHints.add(panelBorderStrut, BorderLayout.SOUTH);
 				panelBorderHints.revalidate();

@@ -41,9 +41,7 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class SaveReviewAsAction extends AbstractAction {
 
-	private static final String ENDING_XML = "."
-			+ Data.getInstance().getResource("fileEndingReviewXML")
-					.toLowerCase();
+	private static final String ENDING_XML = "." + Data.getInstance().getResource("fileEndingReviewXML").toLowerCase();
 
 	private boolean exitApplication = false;
 
@@ -73,36 +71,31 @@ public class SaveReviewAsAction extends AbstractAction {
 		FileChooser fileChooser = UI.getInstance().getFileChooser();
 
 		if (Data.getInstance().getResiData().getReviewPath() != null) {
-			fileChooser.setFile(new File(Data.getInstance().getResiData()
-					.getReviewPath()));
+			fileChooser.setFile(new File(Data.getInstance().getResiData().getReviewPath()));
 		} else {
-			fileChooser.setFile(new File(Application.getInstance()
-					.getApplicationCtl().getReviewNameSuggestion()));
+			fileChooser.setFile(new File(Application.getInstance().getApplicationCtl().getReviewNameSuggestion()));
 		}
 
-		if (fileChooser.showDialog(UI.getInstance().getMainFrame(),
-				FileChooser.MODE_SAVE_FILE, ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
+		if (fileChooser.showDialog(UI.getInstance().getMainFrame(), FileChooser.MODE_SAVE_FILE,
+				ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 			String reviewPath = fileChooser.getFile().getAbsolutePath();
 
 			Object[] options = { _("Ignore"), _("Correct") };
 
 			if (revMgmt.hasExtRefs()
-					&& (reviewPath.trim().toLowerCase().endsWith(ENDING_XML) || reviewPath
-							.trim().toLowerCase().endsWith(".xml"))
-					&& JOptionPane
-							.showOptionDialog(
-									UI.getInstance().getMainFrame(),
-									GUITools.getMessagePane(_("This review contains attachments. It is not possible to store them inside the XML file, so they'll get lost.")),
-									_("Question"), JOptionPane.YES_NO_OPTION,
-									JOptionPane.QUESTION_MESSAGE, null,
-									options, options[0]) == JOptionPane.NO_OPTION) {
+					&& (reviewPath.trim().toLowerCase().endsWith(ENDING_XML)
+							|| reviewPath.trim().toLowerCase().endsWith(".xml"))
+					&& JOptionPane.showOptionDialog(UI.getInstance().getMainFrame(),
+							GUITools.getMessagePane(
+									_("This review contains attachments. It is not possible to store them inside the XML file, so they'll get lost.")),
+							_("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+							options[0]) == JOptionPane.NO_OPTION) {
 				this.setExitApplication(exitApp);
 				this.actionPerformed(e);
 
 				return;
 			} else {
-				GUITools.executeSwingWorker(new SaveReviewWorker(reviewPath,
-						exitApp));
+				GUITools.executeSwingWorker(new SaveReviewWorker(reviewPath, exitApp));
 			}
 		}
 	}

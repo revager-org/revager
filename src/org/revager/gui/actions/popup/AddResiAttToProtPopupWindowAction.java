@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.findings_list.AddResiAttToFLPopupWindow;
 import org.revager.gui.findings_list.AddResiAttToFLPopupWindow.ButtonClicked;
 
-
 /**
  * The Class AddResiAttToProtPopupWindowAction.
  */
@@ -44,8 +43,7 @@ public class AddResiAttToProtPopupWindowAction extends AbstractAction {
 	 * @param buttonClk
 	 *            the button clk
 	 */
-	public AddResiAttToProtPopupWindowAction(
-			AddResiAttToFLPopupWindow popupWin, ButtonClicked buttonClk) {
+	public AddResiAttToProtPopupWindowAction(AddResiAttToFLPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}
@@ -59,9 +57,9 @@ public class AddResiAttToProtPopupWindowAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		popupWindow.commitSpinnerValues();
-		
+
 		popupWindow.setButtonClicked(buttonClick);
-		
+
 		popupWindow.setVisible(false);
 	}
 

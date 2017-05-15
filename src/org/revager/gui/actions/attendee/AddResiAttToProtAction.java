@@ -43,27 +43,21 @@ public class AddResiAttToProtAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AddResiAttToFLPopupWindow popup = new AddResiAttToFLPopupWindow(UI
-				.getInstance().getProtocolFrame());
+		AddResiAttToFLPopupWindow popup = new AddResiAttToFLPopupWindow(UI.getInstance().getProtocolFrame());
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == AddResiAttToFLPopupWindow.ButtonClicked.OK) {
 			Attendee localAtt;
 			Duration prep = popup.getDuration();
-			Protocol prot = UI.getInstance().getProtocolFrame()
-					.getCurrentProt();
+			Protocol prot = UI.getInstance().getProtocolFrame().getCurrentProt();
 
-			String attId = popup.getAttendeeIds().get(
-					popup.getAttendeeBx().getSelectedIndex());
+			String attId = popup.getAttendeeIds().get(popup.getAttendeeBx().getSelectedIndex());
 
-			localAtt = Application.getInstance().getAttendeeMgmt().getAttendee(
-					Integer.parseInt(attId));
+			localAtt = Application.getInstance().getAttendeeMgmt().getAttendee(Integer.parseInt(attId));
 
-			Application.getInstance().getProtocolMgmt().addAttendee(localAtt,
-					prep, prot);
+			Application.getInstance().getProtocolMgmt().addAttendee(localAtt, prep, prot);
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);
-			UI.getInstance().getProtocolFrame().getPatm()
-					.fireTableDataChanged();
+			UI.getInstance().getProtocolFrame().getPatm().fireTableDataChanged();
 			UI.getInstance().getProtocolFrame().updateAttButtons();
 
 		}

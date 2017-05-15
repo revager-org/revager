@@ -68,16 +68,14 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground() {
-		long intervalInSeconds = Long.parseLong(Data.getInstance().getResource(
-				"autoBackupIntervalInSec"));
+		long intervalInSeconds = Long.parseLong(Data.getInstance().getResource("autoBackupIntervalInSec"));
 
 		while (true) {
 			try {
 				Thread.sleep(intervalInSeconds * 1000);
 
 				if (UI.getInstance().getStatus() == UI.Status.UNSAVED_CHANGES) {
-					Application.getInstance().getApplicationCtl()
-							.backupReview();
+					Application.getInstance().getApplicationCtl().backupReview();
 
 					/*
 					 * Set done message
@@ -86,8 +84,7 @@ public class AutoBackupWorker extends SwingWorker<Void, Void> {
 						@Override
 						public void run() {
 							for (AbstractFrame af : obsFrames) {
-								af.setStatusMessage(_("Auto backup done."),
-										false);
+								af.setStatusMessage(_("Auto backup done."), false);
 							}
 						}
 					});

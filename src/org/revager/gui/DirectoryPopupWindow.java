@@ -113,21 +113,16 @@ public class DirectoryPopupWindow extends JDialog {
 
 		filterLbl = new JLabel(_("Filter:"));
 		attFilterLbl = new JLabel(_("Filtered attendees:"));
-		deleteBttn = GUITools.newImageButton(
-				Data.getInstance().getIcon("remove_25x25_0.png"), Data
-						.getInstance().getIcon("remove_25x25.png"));
+		deleteBttn = GUITools.newImageButton(Data.getInstance().getIcon("remove_25x25_0.png"),
+				Data.getInstance().getIcon("remove_25x25.png"));
 		deleteBttn.setToolTipText(_("Remove attendee from address book"));
 		deleteBttn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					AppAttendee localAtt = (AppAttendee) attendeeBx
-							.getSelectedItem();
-					Data.getInstance()
-							.getAppData()
-							.removeAttendee(localAtt.getName(),
-									localAtt.getContact());
+					AppAttendee localAtt = (AppAttendee) attendeeBx.getSelectedItem();
+					Data.getInstance().getAppData().removeAttendee(localAtt.getName(), localAtt.getContact());
 					if (attendeeBx.getItemCount() > 1)
 						attendeeBx.removeItem(attendeeBx.getSelectedItem());
 					else
@@ -151,15 +146,13 @@ public class DirectoryPopupWindow extends JDialog {
 				attendeeBx = new JComboBox();
 
 				try {
-					filteredAtt = Data.getInstance().getAppData()
-							.getAttendees(filterTxtFld.getText());
+					filteredAtt = Data.getInstance().getAppData().getAttendees(filterTxtFld.getText());
 				} catch (DataException e) {
 					filteredAtt = new ArrayList<AppAttendee>();
 				}
 				for (AppAttendee appAtt : filteredAtt) {
 					try {
-						if (!appAtt.getName().equals("Test")
-								&& !appAtt.getContact().equals("Test"))
+						if (!appAtt.getName().equals("Test") && !appAtt.getContact().equals("Test"))
 							attendeeBx.addItem(appAtt);
 					} catch (DataException e) {
 						if (!appAtt.getName().equals("Test"))
@@ -176,20 +169,15 @@ public class DirectoryPopupWindow extends JDialog {
 			}
 		});
 
-		GUITools.addComponent(inputPanel, gbl, filterLbl, 0, 0, 2, 1, 0, 0, 15,
-				10, 0, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, filterLbl, 0, 0, 2, 1, 0, 0, 15, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, filterTxtFld, 0, 1, 2, 1, 1.0,
-				0, 5, 10, 0, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPanel, gbl, filterTxtFld, 0, 1, 2, 1, 1.0, 0, 5, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, attFilterLbl, 0, 2, 2, 1, 0, 0,
-				5, 10, 0, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, attFilterLbl, 0, 2, 2, 1, 0, 0, 5, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, attendeeBx, 0, 3, 1, 1, 1.0, 0,
-				5, 10, 20, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPanel, gbl, attendeeBx, 0, 3, 1, 1, 1.0, 0, 5, 10, 20, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, deleteBttn, 1, 3, 1, 1, 0, 0, 5,
-				0, 20, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, deleteBttn, 1, 3, 1, 1, 0, 0, 5, 0, 20, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 
 		panelBase.add(inputPanel, BorderLayout.CENTER);
@@ -202,27 +190,20 @@ public class DirectoryPopupWindow extends JDialog {
 		 * The buttons to abort and confirm the input
 		 */
 		JButton buttonAbort = GUITools.newImageButton();
-		buttonAbort.setIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24_0.png"));
-		buttonAbort.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonCancel_24x24.png"));
+		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
+		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
 		buttonAbort.setToolTipText(_("Abort"));
-		buttonAbort.addActionListener(new DirectoryPopupWindowAction(this,
-				ButtonClicked.ABORT));
+		buttonAbort.addActionListener(new DirectoryPopupWindowAction(this, ButtonClicked.ABORT));
 
 		JButton buttonConfirm = GUITools.newImageButton();
-		buttonConfirm.setIcon(Data.getInstance()
-				.getIcon("buttonOk_24x24_0.png"));
-		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon(
-				"buttonOk_24x24.png"));
+		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
+		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
 		buttonConfirm.setToolTipText(_("Confirm"));
-		buttonConfirm.addActionListener(new DirectoryPopupWindowAction(this,
-				ButtonClicked.OK));
+		buttonConfirm.addActionListener(new DirectoryPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());
 		panelButtons.setBackground(UI.POPUP_BACKGROUND);
-		panelButtons.setBorder(BorderFactory.createLineBorder(
-				panelButtons.getBackground(), 3));
+		panelButtons.setBorder(BorderFactory.createLineBorder(panelButtons.getBackground(), 3));
 		panelButtons.add(buttonAbort, BorderLayout.WEST);
 		panelButtons.add(buttonConfirm, BorderLayout.EAST);
 
@@ -255,10 +236,8 @@ public class DirectoryPopupWindow extends JDialog {
 	private void createAttendeeBx() {
 
 		try {
-			for (AppAttendee appAtt : Data.getInstance().getAppData()
-					.getAttendees()) {
-				if (!appAtt.getName().equals("Test")
-						&& !appAtt.getContact().equals("Test"))
+			for (AppAttendee appAtt : Data.getInstance().getAppData().getAttendees()) {
+				if (!appAtt.getName().equals("Test") && !appAtt.getContact().equals("Test"))
 					attendeeBx.addItem(appAtt);
 				else if (!appAtt.getName().equals("Test"))
 					attendeeBx.addItem(appAtt);
@@ -295,20 +274,15 @@ public class DirectoryPopupWindow extends JDialog {
 	private void clearPopup() {
 		inputPanel.removeAll();
 		inputPanel.validate();
-		GUITools.addComponent(inputPanel, gbl, filterLbl, 0, 0, 2, 1, 0, 0, 15,
-				10, 0, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, filterLbl, 0, 0, 2, 1, 0, 0, 15, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, filterTxtFld, 0, 1, 2, 1, 1.0,
-				0, 5, 10, 0, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPanel, gbl, filterTxtFld, 0, 1, 2, 1, 1.0, 0, 5, 10, 0, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, attFilterLbl, 0, 2, 2, 1, 0, 0,
-				5, 10, 0, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, attFilterLbl, 0, 2, 2, 1, 0, 0, 5, 10, 0, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, attendeeBx, 0, 3, 1, 1, 1.0, 0,
-				5, 10, 20, 10, GridBagConstraints.BOTH,
+		GUITools.addComponent(inputPanel, gbl, attendeeBx, 0, 3, 1, 1, 1.0, 0, 5, 10, 20, 10, GridBagConstraints.BOTH,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(inputPanel, gbl, deleteBttn, 1, 3, 1, 1, 0, 0, 5,
-				0, 20, 10, GridBagConstraints.NONE,
+		GUITools.addComponent(inputPanel, gbl, deleteBttn, 1, 3, 1, 1, 0, 0, 5, 0, 20, 10, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 		inputPanel.validate();
 		inputPanel.repaint();

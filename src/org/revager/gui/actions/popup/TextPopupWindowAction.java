@@ -25,7 +25,6 @@ import javax.swing.AbstractAction;
 import org.revager.gui.TextPopupWindow;
 import org.revager.gui.TextPopupWindow.ButtonClicked;
 
-
 /**
  * The Class TextPopupWindowAction.
  */
@@ -44,8 +43,7 @@ public class TextPopupWindowAction extends AbstractAction {
 	 * @param buttonClk
 	 *            the button clk
 	 */
-	public TextPopupWindowAction(TextPopupWindow popupWin,
-			ButtonClicked buttonClk) {
+	public TextPopupWindowAction(TextPopupWindow popupWin, ButtonClicked buttonClk) {
 		this.popupWindow = popupWin;
 		this.buttonClick = buttonClk;
 	}

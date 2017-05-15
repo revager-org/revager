@@ -53,10 +53,8 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class ReviewerPanel extends JPanel implements Observer {
 
-	private AttendeeManagement attMgmt = Application.getInstance()
-			.getAttendeeMgmt();
-	private AspectManagement aspMgmt = Application.getInstance()
-			.getAspectMgmt();
+	private AttendeeManagement attMgmt = Application.getInstance().getAttendeeMgmt();
+	private AspectManagement aspMgmt = Application.getInstance().getAspectMgmt();
 
 	private JTable table = null;
 	private ReviewerTableModel tableModel = null;
@@ -83,8 +81,8 @@ public class ReviewerPanel extends JPanel implements Observer {
 				if (selRow != -1) {
 					Aspect aspect = attMgmt.getAspects(reviewer).get(selRow);
 
-					EditAspectPopupWindow popup = new EditAspectPopupWindow(UI
-							.getInstance().getAspectsManagerFrame(), aspect);
+					EditAspectPopupWindow popup = new EditAspectPopupWindow(UI.getInstance().getAspectsManagerFrame(),
+							aspect);
 
 					popup.setVisible(true);
 
@@ -136,25 +134,22 @@ public class ReviewerPanel extends JPanel implements Observer {
 		 */
 		DefaultTableCellRenderer cellRend = new DefaultTableCellRenderer() {
 			@Override
-			public Component getTableCellRendererComponent(JTable table,
-					Object value, boolean isSelected, boolean hasFocus,
-					int row, int column) {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
 				String content = (String) value;
 
 				setToolTipText(GUITools.getTextAsHtml(content));
 
 				content = content.split("\n")[0];
 
-				return super.getTableCellRendererComponent(table, content,
-						isSelected, hasFocus, row, column);
+				return super.getTableCellRendererComponent(table, content, isSelected, hasFocus, row, column);
 			}
 		};
 		table.getColumnModel().getColumn(0).setCellRenderer(cellRend);
 		table.getColumnModel().getColumn(1).setCellRenderer(cellRend);
 
-		buttonRemove = GUITools.newImageButton(
-				Data.getInstance().getIcon("remove_25x25_0.png"), Data
-						.getInstance().getIcon("remove_25x25.png"));
+		buttonRemove = GUITools.newImageButton(Data.getInstance().getIcon("remove_25x25_0.png"),
+				Data.getInstance().getIcon("remove_25x25.png"));
 		buttonRemove.setToolTipText(_("Remove selected aspect"));
 		buttonRemove.addActionListener(new ActionListener() {
 			@Override
@@ -165,8 +160,7 @@ public class ReviewerPanel extends JPanel implements Observer {
 					Aspect asp = attMgmt.getAspects(reviewer).get(selRow);
 					attMgmt.removeAspect(asp, reviewer);
 
-					if (selRow == attMgmt.getNumberOfAspects(reviewer)
-							&& selRow > 0) {
+					if (selRow == attMgmt.getNumberOfAspects(reviewer) && selRow > 0) {
 						table.setRowSelectionInterval(selRow - 1, selRow - 1);
 					} else if (attMgmt.getNumberOfAspects(reviewer) > 0) {
 						table.setRowSelectionInterval(selRow, selRow);
@@ -178,15 +172,13 @@ public class ReviewerPanel extends JPanel implements Observer {
 			}
 		});
 
-		buttonEdit = GUITools.newImageButton(
-				Data.getInstance().getIcon("edit_25x25_0.png"), Data
-						.getInstance().getIcon("edit_25x25.png"));
+		buttonEdit = GUITools.newImageButton(Data.getInstance().getIcon("edit_25x25_0.png"),
+				Data.getInstance().getIcon("edit_25x25.png"));
 		buttonEdit.setToolTipText(_("Edit selected aspect"));
 		buttonEdit.addActionListener(editAction);
 
-		buttonPushUp = GUITools.newImageButton(
-				Data.getInstance().getIcon("upArrow_25x25_0.png"), Data
-						.getInstance().getIcon("upArrow_25x25.png"));
+		buttonPushUp = GUITools.newImageButton(Data.getInstance().getIcon("upArrow_25x25_0.png"),
+				Data.getInstance().getIcon("upArrow_25x25.png"));
 		buttonPushUp.setToolTipText(_("Push up item"));
 		buttonPushUp.addActionListener(new ActionListener() {
 			@Override
@@ -206,17 +198,15 @@ public class ReviewerPanel extends JPanel implements Observer {
 			}
 		});
 
-		buttonPushDown = GUITools.newImageButton(
-				Data.getInstance().getIcon("downArrow_25x25_0.png"), Data
-						.getInstance().getIcon("downArrow_25x25.png"));
+		buttonPushDown = GUITools.newImageButton(Data.getInstance().getIcon("downArrow_25x25_0.png"),
+				Data.getInstance().getIcon("downArrow_25x25.png"));
 		buttonPushDown.setToolTipText(_("Push down item"));
 		buttonPushDown.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selRow = table.getSelectedRow();
 
-				if (selRow != -1
-						&& selRow < attMgmt.getNumberOfAspects(reviewer) - 1) {
+				if (selRow != -1 && selRow < attMgmt.getNumberOfAspects(reviewer) - 1) {
 					Aspect asp = attMgmt.getAspects(reviewer).get(selRow);
 					attMgmt.pushDownAspect(reviewer, asp);
 
@@ -228,8 +218,8 @@ public class ReviewerPanel extends JPanel implements Observer {
 			}
 		});
 
-		JLabel labelName = new JLabel(reviewer.getName(), Data.getInstance()
-				.getIcon("attendee_16x16.png"), SwingConstants.LEFT);
+		JLabel labelName = new JLabel(reviewer.getName(), Data.getInstance().getIcon("attendee_16x16.png"),
+				SwingConstants.LEFT);
 
 		/*
 		 * Build the layout
@@ -237,19 +227,17 @@ public class ReviewerPanel extends JPanel implements Observer {
 		GridBagLayout gbl = new GridBagLayout();
 		this.setLayout(gbl);
 
-		GUITools.addComponent(this, gbl, labelName, 0, 0, 2, 1, 0.0, 0.0, 0, 0,
-				7, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, GUITools.setIntoScrollPane(table), 0,
-				1, 1, 4, 1.0, 1.0, 0, 0, 0, 7, GridBagConstraints.BOTH,
+		GUITools.addComponent(this, gbl, labelName, 0, 0, 2, 1, 0.0, 0.0, 0, 0, 7, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, buttonEdit, 1, 1, 1, 1, 0.0, 0.0, 0,
-				0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, buttonRemove, 1, 2, 1, 1, 0.0, 0.0, 0,
-				0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, buttonPushUp, 1, 3, 1, 1, 0.0, 0.0, 0,
-				0, 0, 0, GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gbl, buttonPushDown, 1, 4, 1, 1, 0.0, 0.0,
-				0, 0, 0, 0, GridBagConstraints.NONE,
+		GUITools.addComponent(this, gbl, GUITools.setIntoScrollPane(table), 0, 1, 1, 4, 1.0, 1.0, 0, 0, 0, 7,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, buttonEdit, 1, 1, 1, 1, 0.0, 0.0, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, buttonRemove, 1, 2, 1, 1, 0.0, 0.0, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, buttonPushUp, 1, 3, 1, 1, 0.0, 0.0, 0, 0, 0, 0, GridBagConstraints.NONE,
+				GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, gbl, buttonPushDown, 1, 4, 1, 1, 0.0, 0.0, 0, 0, 0, 0, GridBagConstraints.NONE,
 				GridBagConstraints.NORTHWEST);
 
 		/*

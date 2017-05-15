@@ -44,20 +44,16 @@ public class SelectAttOutOfDirAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent ev) {
 		if (UI.getInstance().getAttendeeDialog().isVisible())
-			popup = new DirectoryPopupWindow(UI.getInstance()
-					.getAttendeeDialog(), _("Directory"));
+			popup = new DirectoryPopupWindow(UI.getInstance().getAttendeeDialog(), _("Directory"));
 		else if (UI.getInstance().getAssistantDialog().isVisible())
-			popup = new DirectoryPopupWindow(UI.getInstance()
-					.getAssistantDialog(), _("Directory"));
+			popup = new DirectoryPopupWindow(UI.getInstance().getAssistantDialog(), _("Directory"));
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == DirectoryPopupWindow.ButtonClicked.OK) {
 			if (popup.getAttendeeBx().getSelectedItem() != null) {
-				AppAttendee appAtt = ((AppAttendee) popup.getAttendeeBx()
-						.getSelectedItem());
+				AppAttendee appAtt = ((AppAttendee) popup.getAttendeeBx().getSelectedItem());
 
-				UI.getInstance().getAttendeeDialog()
-						.setCurrentAppAttendee(appAtt);
+				UI.getInstance().getAttendeeDialog().setCurrentAppAttendee(appAtt);
 			}
 		}
 	}

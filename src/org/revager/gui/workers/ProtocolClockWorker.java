@@ -91,8 +91,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 		if (startingPoint == 0) {
 			this.startingPoint = System.currentTimeMillis();
 		} else {
-			this.startingPoint = startingPoint
-					+ (System.currentTimeMillis() - pausePoint);
+			this.startingPoint = startingPoint + (System.currentTimeMillis() - pausePoint);
 		}
 
 		this.clockRunning = true;

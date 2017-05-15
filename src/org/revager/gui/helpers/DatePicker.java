@@ -54,14 +54,12 @@ import org.revager.tools.GUITools;
 /**
  * This class is inspirated by.
  */
-public class DatePicker extends Observable implements Runnable,
-		WindowFocusListener {
+public class DatePicker extends Observable implements Runnable, WindowFocusListener {
 
 	/**
 	 * Internally used font with plain style
 	 */
-	protected static final Font FONT_PLAIN = new Font(Font.DIALOG, Font.PLAIN,
-			12);
+	protected static final Font FONT_PLAIN = new Font(Font.DIALOG, Font.PLAIN, 12);
 
 	/**
 	 * Internally used font with bold style
@@ -72,8 +70,7 @@ public class DatePicker extends Observable implements Runnable,
 	 * This sub-class represents a label for a single day.
 	 */
 	@SuppressWarnings("serial")
-	public static class DayLabel extends JLabel implements MouseInputListener,
-			MouseMotionListener {
+	public static class DayLabel extends JLabel implements MouseInputListener, MouseMotionListener {
 		private DatePicker parent;
 
 		private Border oldBorder;
@@ -183,9 +180,8 @@ public class DatePicker extends Observable implements Runnable,
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent
-		 * )
+		 * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.
+		 * MouseEvent )
 		 */
 		@Override
 		public void mouseDragged(MouseEvent e) {
@@ -195,9 +191,8 @@ public class DatePicker extends Observable implements Runnable,
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent
-		 * )
+		 * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.
+		 * MouseEvent )
 		 */
 		@Override
 		public void mouseMoved(MouseEvent e) {
@@ -339,14 +334,12 @@ public class DatePicker extends Observable implements Runnable,
 			Dimension d = new Dimension(20, 20);
 			Box box = new Box(BoxLayout.X_AXIS);
 
-			ImageIcon icon = Data.getInstance().getIcon(
-					"datePrevYear_16x16_0.png");
+			ImageIcon icon = Data.getInstance().getIcon("datePrevYear_16x16_0.png");
 
 			preyear = GUITools.newImageButton();
 			preyear.setToolTipText(parent.getString("prevYear"));
 			preyear.setIcon(icon);
-			preyear.setRolloverIcon(Data.getInstance().getIcon(
-					"datePrevYear_16x16.png"));
+			preyear.setRolloverIcon(Data.getInstance().getIcon("datePrevYear_16x16.png"));
 			preyear.addActionListener(this);
 			preyear.setPreferredSize(d);
 			preyear.setBorder(null);
@@ -361,8 +354,7 @@ public class DatePicker extends Observable implements Runnable,
 			premon = GUITools.newImageButton();
 			premon.setToolTipText(parent.getString("prevMonth"));
 			premon.setIcon(icon);
-			premon.setRolloverIcon(Data.getInstance().getIcon(
-					"datePrevMonth_16x16.png"));
+			premon.setRolloverIcon(Data.getInstance().getIcon("datePrevMonth_16x16.png"));
 			premon.addActionListener(this);
 			premon.setPreferredSize(d);
 			premon.setBorder(null);
@@ -379,8 +371,7 @@ public class DatePicker extends Observable implements Runnable,
 			nextmon = GUITools.newImageButton();
 			nextmon.setToolTipText(parent.getString("nextMonth"));
 			nextmon.setIcon(icon);
-			nextmon.setRolloverIcon(Data.getInstance().getIcon(
-					"dateNextMonth_16x16.png"));
+			nextmon.setRolloverIcon(Data.getInstance().getIcon("dateNextMonth_16x16.png"));
 			nextmon.setPreferredSize(d);
 			nextmon.addActionListener(this);
 			nextmon.setBorder(null);
@@ -395,8 +386,7 @@ public class DatePicker extends Observable implements Runnable,
 			nextyear = GUITools.newImageButton();
 			nextyear.setToolTipText(parent.getString("nextYear"));
 			nextyear.setIcon(icon);
-			nextyear.setRolloverIcon(Data.getInstance().getIcon(
-					"dateNextYear_16x16.png"));
+			nextyear.setRolloverIcon(Data.getInstance().getIcon("dateNextYear_16x16.png"));
 			nextyear.setPreferredSize(d);
 			nextyear.addActionListener(this);
 			nextyear.setBorder(null);
@@ -499,8 +489,7 @@ public class DatePicker extends Observable implements Runnable,
 				remove(lbl);
 			}
 
-			lbl = new JLabel(parent.getString("month." + c.get(Calendar.MONTH))
-					+ ", " + c.get(Calendar.YEAR));
+			lbl = new JLabel(parent.getString("month." + c.get(Calendar.MONTH)) + ", " + c.get(Calendar.YEAR));
 
 			lbl.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -512,9 +501,8 @@ public class DatePicker extends Observable implements Runnable,
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
-		 * )
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.
+		 * ActionEvent )
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -543,8 +531,7 @@ public class DatePicker extends Observable implements Runnable,
 				if (src == monthBox) {
 					c.set(Calendar.MONTH, jcb.getSelectedIndex());
 				} else if (e.getSource() == yearBox) {
-					c.set(Calendar.YEAR,
-							years[jcb.getSelectedIndex()].intValue());
+					c.set(Calendar.YEAR, years[jcb.getSelectedIndex()].intValue());
 					setYearComboBox(c);
 				}
 
@@ -576,9 +563,8 @@ public class DatePicker extends Observable implements Runnable,
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
-		 * )
+		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.
+		 * ActionEvent )
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -639,7 +625,7 @@ public class DatePicker extends Observable implements Runnable,
 		screen.addWindowFocusListener(this);
 		screen.setSize(200, 200);
 		screen.setModal(true);
-		
+
 		// screen.setUndecorated(true);
 		screen.setResizable(false);
 		screen.setTitle(_("RevAger"));
@@ -665,13 +651,10 @@ public class DatePicker extends Observable implements Runnable,
 		JPanel panelBottom = new JPanel(new BorderLayout());
 
 		JButton buttonClose = GUITools.newImageButton();
-		buttonClose.setIcon(Data.getInstance().getIcon(
-				"datePickerClose_18x18_0.png"));
-		buttonClose.setRolloverIcon(Data.getInstance().getIcon(
-				"datePickerClose_18x18.png"));
+		buttonClose.setIcon(Data.getInstance().getIcon("datePickerClose_18x18_0.png"));
+		buttonClose.setRolloverIcon(Data.getInstance().getIcon("datePickerClose_18x18.png"));
 		buttonClose.setToolTipText(getString("close"));
-		buttonClose.setBorder(BorderFactory.createLineBorder(screen
-				.getContentPane().getBackground(), 4));
+		buttonClose.setBorder(BorderFactory.createLineBorder(screen.getContentPane().getBackground(), 4));
 		buttonClose.addActionListener(new DatePickerCloseAction(screen));
 
 		/*
@@ -1020,9 +1003,8 @@ public class DatePicker extends Observable implements Runnable,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * java.awt.event.WindowFocusListener#windowLostFocus(java.awt.event.WindowEvent
-	 * )
+	 * @see java.awt.event.WindowFocusListener#windowLostFocus(java.awt.event.
+	 * WindowEvent )
 	 */
 	@Override
 	public void windowLostFocus(WindowEvent e) {

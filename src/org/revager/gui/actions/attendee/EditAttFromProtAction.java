@@ -44,19 +44,16 @@ public class EditAttFromProtAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AddAttToFLPopupWindow popup = new AddAttToFLPopupWindow(UI
-				.getInstance().getProtocolFrame(), _("Edit Attendee"), true);
+		AddAttToFLPopupWindow popup = new AddAttToFLPopupWindow(UI.getInstance().getProtocolFrame(), _("Edit Attendee"),
+				true);
 		popup.setVisible(true);
 
 		if (popup.getButtonClicked() == AddAttToFLPopupWindow.ButtonClicked.OK) {
 
-			Protocol prot = UI.getInstance().getProtocolFrame()
-					.getCurrentProt();
+			Protocol prot = UI.getInstance().getProtocolFrame().getCurrentProt();
 
-			int selRow = UI.getInstance().getProtocolFrame()
-					.getPresentAttTable().getSelectedRow();
-			Attendee oldAtt = Application.getInstance().getProtocolMgmt()
-					.getAttendees(prot).get(selRow);
+			int selRow = UI.getInstance().getProtocolFrame().getPresentAttTable().getSelectedRow();
+			Attendee oldAtt = Application.getInstance().getProtocolMgmt().getAttendees(prot).get(selRow);
 			Attendee localAtt = new Attendee();
 
 			localAtt.setName(popup.getAttName());
@@ -65,15 +62,12 @@ public class EditAttFromProtAction extends AbstractAction {
 			localAtt.setAspects(oldAtt.getAspects());
 
 			Duration dur = popup.getDuration();
-			Application.getInstance().getProtocolMgmt()
-					.setAttendeePrepTime(dur, oldAtt, prot);
+			Application.getInstance().getProtocolMgmt().setAttendeePrepTime(dur, oldAtt, prot);
 
-			Application.getInstance().getAttendeeMgmt()
-					.editAttendee(oldAtt, localAtt);
+			Application.getInstance().getAttendeeMgmt().editAttendee(oldAtt, localAtt);
 
 			UI.getInstance().getProtocolFrame().getPatm().setProtocol(prot);
-			UI.getInstance().getProtocolFrame().getPatm()
-					.fireTableDataChanged();
+			UI.getInstance().getProtocolFrame().getPatm().fireTableDataChanged();
 			UI.getInstance().getProtocolFrame().updateAttButtons();
 
 		}

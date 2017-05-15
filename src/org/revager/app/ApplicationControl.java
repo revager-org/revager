@@ -57,37 +57,30 @@ public class ApplicationControl {
 	/**
 	 * The path to the current review file.
 	 */
-	private static final File REVIEW_FILE = new File(Data.getInstance()
-			.getAppData().getAppDataPath()
-			+ Data.getInstance().getResource("reviewFileName"));
+	private static final File REVIEW_FILE = new File(
+			Data.getInstance().getAppData().getAppDataPath() + Data.getInstance().getResource("reviewFileName"));
 
 	/**
 	 * The path to the backup review file.
 	 */
-	private static final File REVIEW_BACKUP_FILE = new File(Data.getInstance()
-			.getAppData().getAppDataPath()
-			+ Data.getInstance().getResource("revBakFileName"));
+	private static final File REVIEW_BACKUP_FILE = new File(
+			Data.getInstance().getAppData().getAppDataPath() + Data.getInstance().getResource("revBakFileName"));
 
 	/**
 	 * The path to the directory for external references.
 	 */
-	private static final File EXTREFS_DIRECTORY = new File(Data.getInstance()
-			.getAppData().getAppDataPath()
-			+ Data.getInstance().getResource("extRefsDirectoryName"));
+	private static final File EXTREFS_DIRECTORY = new File(
+			Data.getInstance().getAppData().getAppDataPath() + Data.getInstance().getResource("extRefsDirectoryName"));
 
 	/**
 	 * The file ending for reviews in ZIP format.
 	 */
-	private static final String ENDING_ZIP = "."
-			+ Data.getInstance().getResource("fileEndingReviewZIP")
-					.toLowerCase();
+	private static final String ENDING_ZIP = "." + Data.getInstance().getResource("fileEndingReviewZIP").toLowerCase();
 
 	/**
 	 * The file ending for reviews in XML format.
 	 */
-	private static final String ENDING_XML = "."
-			+ Data.getInstance().getResource("fileEndingReviewXML")
-					.toLowerCase();
+	private static final String ENDING_XML = "." + Data.getInstance().getResource("fileEndingReviewXML").toLowerCase();
 
 	/**
 	 * The alternative file ending for reviews in XML format.
@@ -121,20 +114,17 @@ public class ApplicationControl {
 		/*
 		 * Set standard severities
 		 */
-		Data.getInstance().getResiData().getReview()
-				.setSeverities(new Severities());
+		Data.getInstance().getResiData().getReview().setSeverities(new Severities());
 
 		List<String> stdSev = Data.getDefLangSeverities();
-		Data.getInstance().getResiData().getReview().getSeverities()
-				.getSeverities().addAll(stdSev);
+		Data.getInstance().getResiData().getReview().getSeverities().getSeverities().addAll(stdSev);
 
 		/*
 		 * Set empty product
 		 */
 		Data.getInstance().getResiData().getReview().setProduct(new Product());
 		Data.getInstance().getResiData().getReview().getProduct().setName("");
-		Data.getInstance().getResiData().getReview().getProduct()
-				.setVersion("");
+		Data.getInstance().getResiData().getReview().getProduct().setVersion("");
 
 		Application.getInstance().getReviewMgmt().addDummyProdReference();
 
@@ -174,16 +164,13 @@ public class ApplicationControl {
 	 * @throws ApplicationException
 	 *             the application exception
 	 */
-	public synchronized void storeReview(String filePath)
-			throws ResiIOException, IOException, ApplicationException {
-		if (filePath.startsWith(Data.getInstance().getAppData()
-				.getAppDataPath())) {
+	public synchronized void storeReview(String filePath) throws ResiIOException, IOException, ApplicationException {
+		if (filePath.startsWith(Data.getInstance().getAppData().getAppDataPath())) {
 			throw new ApplicationException(
 					_("It is not possible to store and open application data. Please choose another location."));
 		}
 
-		if (!filePath.trim().equals("")
-				&& !filePath.toLowerCase().trim().endsWith(ENDING_ZIP)
+		if (!filePath.trim().equals("") && !filePath.toLowerCase().trim().endsWith(ENDING_ZIP)
 				&& !filePath.toLowerCase().trim().endsWith(ENDING_XML)
 				&& !filePath.toLowerCase().trim().endsWith(ENDING_XML_ALT)) {
 			filePath = filePath + ENDING_ZIP;
@@ -221,10 +208,8 @@ public class ApplicationControl {
 	 * @throws ApplicationException
 	 *             the application exception
 	 */
-	public synchronized void loadReview(String filePath)
-			throws ResiIOException, IOException, ApplicationException {
-		if (filePath.startsWith(Data.getInstance().getAppData()
-				.getAppDataPath())) {
+	public synchronized void loadReview(String filePath) throws ResiIOException, IOException, ApplicationException {
+		if (filePath.startsWith(Data.getInstance().getAppData().getAppDataPath())) {
 			throw new ApplicationException(
 					_("It is not possible to store and open application data. Please choose another location."));
 		}
@@ -280,8 +265,7 @@ public class ApplicationControl {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private void storeReviewAsZIP(String filePath) throws ResiIOException,
-			IOException {
+	private void storeReviewAsZIP(String filePath) throws ResiIOException, IOException {
 		io.storeReview(REVIEW_FILE.getPath());
 
 		List<File> reviewFiles = FileTools.getListOfFiles(EXTREFS_DIRECTORY);
@@ -317,14 +301,12 @@ public class ApplicationControl {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private void loadReviewFromZIP(String filePath) throws ResiIOException,
-			IOException {
+	private void loadReviewFromZIP(String filePath) throws ResiIOException, IOException {
 		clearReview();
 
 		FileTools.extractZipFile(new File(filePath), EXTREFS_DIRECTORY, true);
 
-		File tempReviewFile = new File(EXTREFS_DIRECTORY.getPath() + "/"
-				+ REVIEW_FILE.getName());
+		File tempReviewFile = new File(EXTREFS_DIRECTORY.getPath() + "/" + REVIEW_FILE.getName());
 
 		FileTools.copyFile(tempReviewFile, REVIEW_FILE);
 
@@ -341,8 +323,7 @@ public class ApplicationControl {
 	 * @throws DataException
 	 *             the data exception
 	 */
-	public synchronized void backupReview() throws ResiIOException,
-			DataException {
+	public synchronized void backupReview() throws ResiIOException, DataException {
 		io.storeReviewBackup();
 	}
 
@@ -354,8 +335,7 @@ public class ApplicationControl {
 	 * @throws DataException
 	 *             the data exception
 	 */
-	public synchronized void restoreReview() throws ResiIOException,
-			DataException {
+	public synchronized void restoreReview() throws ResiIOException, DataException {
 		if (isReviewRestorable()) {
 			Data.getInstance().getResiData().clearReview();
 
@@ -391,8 +371,7 @@ public class ApplicationControl {
 
 		String reviewName = revMgmt.getReviewName().trim().replace(" ", "_");
 		String productName = revMgmt.getProductName().trim().replace(" ", "_");
-		String productVersion = revMgmt.getProductVersion().trim()
-				.replace(" ", "_");
+		String productVersion = revMgmt.getProductVersion().trim().replace(" ", "_");
 
 		String reviewFileName = sdf.format(new Date().getTime()) + "_";
 

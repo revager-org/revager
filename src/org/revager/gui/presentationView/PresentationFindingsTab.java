@@ -1,5 +1,6 @@
 package org.revager.gui.presentationView;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,7 +16,7 @@ import org.revager.app.model.schema.Finding;
 public class PresentationFindingsTab extends JPanel {
 
 	private static final long serialVersionUID = -7499170906423144396L;
-
+	
 	private JPanel statusPanel;
 	private CurrentFindingPanel currentFindingPanel;
 
@@ -23,7 +24,7 @@ public class PresentationFindingsTab extends JPanel {
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		currentFindingPanel = new CurrentFindingPanel(new Finding());
+		currentFindingPanel = new CurrentFindingPanel();
 		
 		this.add(currentFindingPanel);
 		

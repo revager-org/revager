@@ -4,6 +4,7 @@ import static org.revager.app.model.Data._;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,8 +27,8 @@ import org.revager.tools.GUITools;
 public class CurrentFindingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1898465156775918217L;
-
-	private Finding finding = null;
+	
+	private Finding finding = new Finding();
 
 	private GridBagLayout layoutEditView = new GridBagLayout();
 	private JPanel panelEditView = new JPanel(layoutEditView);
@@ -49,10 +50,8 @@ public class CurrentFindingPanel extends JPanel {
 	private JScrollPane scrollExtReferences;
 	private JScrollPane scrollAspects;
 
-	public CurrentFindingPanel(Finding finding) {
+	public CurrentFindingPanel() {
 		super();
-
-		this.finding = finding;
 
 		this.setLayout(layoutEditView);
 		this.setBackground(Color.WHITE);
@@ -88,18 +87,18 @@ public class CurrentFindingPanel extends JPanel {
 		/*
 		 * Create content panel
 		 */
+		panelEditView.setPreferredSize(new Dimension(100, 280));
 		panelEditView.setBorder(UI.STANDARD_BORDER);
+		panelEditView.setBackground(UI.EDIT_VIEW_BG);
 
 		labelFindingSeverity.setFont(UI.PROTOCOL_FONT);
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
 		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
-		labelFindingTitle.setText(_("Finding") + " " + finding.getId());
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
 		GUITools.scrollToTop(scrollDescription);
 
-		textDescription.setText(finding.getDescription());
 		textDescription.setEditable(false);
 		textDescription.setFont(UI.PROTOCOL_FONT);
 
@@ -128,12 +127,19 @@ public class CurrentFindingPanel extends JPanel {
 
 	public void setFinding(Finding finding) {
 		this.finding = finding;
+		updateDisplay();
 	}
 
 	public Finding getFinding() {
 		return finding;
 	}
 
+	private void updateDisplay() {
+		textDescription.setText(finding.getDescription());
+		labelFindingTitle.setText(_("Finding") + " " + finding.getId());
+	}
+	
+	
 	private class FindingPanelCellRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = 1L;
 

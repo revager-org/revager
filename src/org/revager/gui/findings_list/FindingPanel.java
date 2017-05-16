@@ -75,9 +75,6 @@ public class FindingPanel extends JPanel {
 	public static final Dimension EDIT_VIEW_SIZE = new Dimension(100, 280);
 	public static final Dimension COMPACT_VIEW_SIZE = new Dimension(100, 45);
 
-	private static final Color EDIT_VIEW_BG = new Color(255, 255, 204);
-	private static final Color COMPACT_VIEW_BG = new Color(229, 226, 226);
-
 	private Type type = Type.EDIT_VIEW;
 
 	private Finding finding = null;
@@ -510,10 +507,10 @@ public class FindingPanel extends JPanel {
 		 * Create content panel
 		 */
 		panelEditView.setBorder(UI.STANDARD_BORDER);
-		panelEditView.setBackground(EDIT_VIEW_BG);
+		panelEditView.setBackground(UI.EDIT_VIEW_BG);
 
 		panelCompactView.setBorder(UI.STANDARD_BORDER);
-		panelCompactView.setBackground(COMPACT_VIEW_BG);
+		panelCompactView.setBackground(UI.COMPACT_VIEW_BG);
 
 		labelFindingDescription.setFont(UI.PROTOCOL_FONT);
 
@@ -637,7 +634,7 @@ public class FindingPanel extends JPanel {
 		 * Add components to edit view panel
 		 */
 		JPanel panelStrut = new JPanel();
-		panelStrut.setBackground(EDIT_VIEW_BG);
+		panelStrut.setBackground(UI.EDIT_VIEW_BG);
 
 		GUITools.addComponent(panelEditView, layoutEditView, labelFindingTitle, 0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10,
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
@@ -746,7 +743,7 @@ public class FindingPanel extends JPanel {
 			panelCompactView.setBackground(UI.MARKED_COLOR.brighter());
 		} else {
 			panelCompactView.setBorder(UI.STANDARD_BORDER);
-			panelCompactView.setBackground(COMPACT_VIEW_BG);
+			panelCompactView.setBackground(UI.COMPACT_VIEW_BG);
 		}
 
 		storeFindingData();

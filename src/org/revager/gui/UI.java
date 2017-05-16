@@ -63,6 +63,8 @@ import org.revager.tools.GUITools;
  */
 public class UI implements Observer {
 
+	public static final Color EDIT_VIEW_BG = new Color(255, 255, 204);
+	public static final Color COMPACT_VIEW_BG = new Color(229, 226, 226);
 	/*
 	 * Some static constants which are used in the UI
 	 */

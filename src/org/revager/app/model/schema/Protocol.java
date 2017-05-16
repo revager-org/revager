@@ -53,7 +53,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "protocolType", propOrder = { "date", "start", "end", "location", "attendeeReferences", "findings",
 		"comments" })
-public class Protocol extends Observable{
+public class Protocol extends Observable {
 
 	@XmlElement(required = true, type = String.class)
 	@XmlJavaTypeAdapter(Adapter5.class)
@@ -72,7 +72,7 @@ public class Protocol extends Observable{
 	@XmlElement(name = "attendee", required = true)
 	protected List<AttendeeReference> attendeeReferences;
 	@XmlElement(name = "finding", required = true)
-	protected List<Finding> findings;
+	protected List<Finding> findings = new ArrayList<Finding>();
 	@XmlElement(required = true)
 	protected String comments;
 
@@ -234,12 +234,10 @@ public class Protocol extends Observable{
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link Finding }
 	 * 
-	 * 
+	 * @deprecated Do not leak list.
 	 */
+	@Deprecated
 	public List<Finding> getFindings() {
-		if (findings == null) {
-			findings = new ArrayList<Finding>();
-		}
 		return this.findings;
 	}
 
@@ -278,4 +276,18 @@ public class Protocol extends Observable{
 		return (this.comments != null);
 	}
 
+	public boolean addFinding(Finding finding) {
+		if (!findings.contains(finding)) {
+			findings.add(finding);
+			setChanged();
+			notifyObservers(finding);
+			return true;
+		}
+		return false;
+	}
+	
+	public void removeFinding(Finding finding) {
+		findings.remove(finding);
+	}
+	
 }

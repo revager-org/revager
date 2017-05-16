@@ -14,7 +14,9 @@ import org.revager.app.Application;
 import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Finding;
+import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
+import org.revager.app.model.schema.Review;
 import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 
@@ -31,18 +33,63 @@ public class PresentationFrame extends JFrame {
 
 	public PresentationFrame() {
 		super();
+		buildGUI();
+		Application instance = Application.getInstance();
+		MainFrame mainFrame = UI.getInstance().getMainFrame();
 		ResiData resiData = Data.getInstance().getResiData();
-		resiData.getReview().addObserver(new Observer() {
-			
+
+		Protocol protocol = mainFrame.getSelectedProtocol();
+		Meeting meeting = instance.getProtocolMgmt().getMeeting(protocol);
+		Review review = resiData.getReview();
+		for (Finding finding : protocol.getFindings()) {
+			finding.addObserver(new Observer() {
+
+				@Override
+				public void update(Observable o, Object arg) {
+					displayFindingsTab();
+					tabPanelFinding.updateFinding((Finding) o);
+				}
+			});
+		}
+
+		review.addObserver(new Observer() {
+
 			@Override
 			public void update(Observable o, Object arg) {
 				displayGeneralTab();
+				tabPanelProtocol.updateTabData((Review) o);
 			}
 		});
-		
-	
-		
-		buildGUI();
+
+		meeting.addObserver(new Observer() {
+			@Override
+			public void update(Observable o, Object arg) {
+				displayGeneralTab();
+				tabPanelProtocol.updateTabData((Meeting) o);
+			}
+		});
+
+		protocol.addObserver(new Observer() {
+
+			@Override
+			public void update(Observable o, Object arg) {
+				displayGeneralTab();
+				tabPanelProtocol.updateTabData((Protocol) o);
+				if (arg instanceof Finding) {
+					Finding finding = (Finding) arg;
+					tabPanelFinding.updateFinding(finding);
+					finding.addObserver(new Observer() {
+
+						@Override
+						public void update(Observable o, Object arg) {
+							displayFindingsTab();
+							tabPanelFinding.updateFinding((Finding) o);
+						}
+					});
+				}
+			}
+		});
+
 	}
 
 	private void buildGUI() {

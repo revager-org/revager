@@ -68,45 +68,22 @@ public class FindingManagement {
 	 */
 	public int getLastId() {
 		int lastId = 0;
-
 		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
 			Protocol prot = m.getProtocol();
-
-			if (prot != null) {
-				for (Finding f : prot.getFindings()) {
-					if (f.getId() > lastId) {
-						lastId = f.getId();
-					}
+			if (prot == null) {
+				continue;
+			}
+			for (Finding f : prot.getFindings()) {
+				Integer id = f.getId();
+				if (id == null) {
+					continue;
+				}
+				if (id > lastId) {
+					lastId = id;
 				}
 			}
 		}
-
 		return lastId;
-	}
-
-	/**
-	 * Refactor the ids of findings only if there are conflicts.
-	 */
-	public void refactorIds() {
-		List<Integer> idList = new ArrayList<Integer>();
-
-		for (Meeting m : Application.getInstance().getMeetingMgmt().getMeetings()) {
-			Protocol prot = m.getProtocol();
-
-			if (prot != null) {
-				for (Finding f : prot.getFindings()) {
-					if (idList.contains(f.getId())) {
-						f.setId(getLastId() + 1);
-
-						idList.add(f.getId());
-					} else {
-						idList.add(f.getId());
-					}
-				}
-			}
-		}
-
-		resiData.fireDataChanged();
 	}
 
 	/**
@@ -165,17 +142,14 @@ public class FindingManagement {
 	 */
 	public Finding addFinding(String description, String severity, Protocol prot) {
 		Finding finding = new Finding();
-
 		if (description == null) {
 			description = "";
 		}
 		if (severity == null) {
 			severity = "";
 		}
-
 		finding.setDescription(description);
 		setLocalizedSeverity(finding, severity);
-
 		return addFinding(finding, prot);
 	}
 
@@ -190,16 +164,11 @@ public class FindingManagement {
 	 * @return the added finding
 	 */
 	public Finding addFinding(Finding find, Protocol prot) {
-		if (!prot.getFindings().contains(find)) {
+		if (prot.addFinding(find)) {
 			find.setId(getLastId() + 1);
-
-			prot.getFindings().add(find);
-
 			resiData.fireDataChanged();
-
 			return find;
 		}
-
 		return null;
 	}
 
@@ -212,34 +181,35 @@ public class FindingManagement {
 	 *            the protocol
 	 */
 	public void removeFinding(Finding find, Protocol prot) {
-		prot.getFindings().remove(find);
-
+		prot.removeFinding(find);
 		resiData.fireDataChanged();
 	}
 
-	/**
-	 * Replaces a finding in the given protocol by another one.
-	 * 
-	 * @param oldFind
-	 *            the old finding
-	 * @param newFind
-	 *            the new finding
-	 * @param prot
-	 *            the protocol
-	 */
-	public void editFinding(Finding oldFind, Finding newFind, Protocol prot) {
-		if (prot.getFindings().contains(oldFind)) {
-			int id = oldFind.getId();
-			int index = prot.getFindings().indexOf(oldFind);
-
-			prot.getFindings().remove(oldFind);
-
-			newFind.setId(id);
-			prot.getFindings().add(index, newFind);
-
-			resiData.fireDataChanged();
-		}
-	}
+	// /**
+	// * Replaces a finding in the given protocol by another one.
+	// *
+	// * @param oldFind
+	// * the old finding
+	// * @param newFind
+	// * the new finding
+	// * @param prot
+	// * the protocol
+	// */
+	// public void editFinding(Finding oldFind, Finding newFind, Protocol prot)
+	// {
+	// if (prot.getFindings().contains(oldFind)) {
+	// // TODO: continue
+	// int id = oldFind.getId();
+	// int index = prot.getFindings().indexOf(oldFind);
+	//
+	// prot.removeFinding(oldFind);
+	//
+	// newFind.setId(id);
+	// prot.getFindings().add(index, newFind);
+	//
+	// resiData.fireDataChanged();
+	// }
+	// }
 
 	/**
 	 * Checks if the given finding is empty.
@@ -397,7 +367,7 @@ public class FindingManagement {
 		String extRefFile = revMgmt.addExtRefFile(file);
 
 		if (extRefFile != null) {
-			
+
 			find.addExternalReferences(extRefFile);
 
 			resiData.fireDataChanged();
@@ -538,6 +508,7 @@ public class FindingManagement {
 	 */
 	public void pushUpFinding(Finding find, Protocol prot) {
 		if (!isTopFinding(find, prot)) {
+			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
 
 			prot.getFindings().remove(index);
@@ -557,6 +528,7 @@ public class FindingManagement {
 	 */
 	public void pushDownFinding(Finding find, Protocol prot) {
 		if (!isBottomFinding(find, prot)) {
+			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
 
 			prot.getFindings().remove(index);
@@ -576,6 +548,7 @@ public class FindingManagement {
 	 */
 	public void pushTopFinding(Finding find, Protocol prot) {
 		if (!isTopFinding(find, prot)) {
+			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
 
 			prot.getFindings().remove(index);
@@ -595,6 +568,7 @@ public class FindingManagement {
 	 */
 	public void pushBottomFinding(Finding find, Protocol prot) {
 		if (!isTopFinding(find, prot)) {
+			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
 
 			prot.getFindings().remove(index);

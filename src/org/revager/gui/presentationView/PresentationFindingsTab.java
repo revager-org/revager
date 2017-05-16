@@ -17,7 +17,7 @@ public class PresentationFindingsTab extends JPanel {
 	private static final long serialVersionUID = -7499170906423144396L;
 
 	private JPanel statusPanel;
-	private JPanel currentFindingPanel;
+	private CurrentFindingPanel currentFindingPanel;
 
 	public PresentationFindingsTab() {
 		super();
@@ -75,9 +75,6 @@ public class PresentationFindingsTab extends JPanel {
 	}
 
 	public void updateFinding(Finding finding) {
-		System.out.println(finding.getDescription());
-		System.out.println(finding.getSeverity());
-		System.out.println(finding.getExternalReferences());
-		
+		currentFindingPanel.setFinding(finding);
 	}
 }

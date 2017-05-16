@@ -376,7 +376,6 @@ public class ReviewManagement {
 		 */
 		Application.getInstance().getAspectMgmt().refactorIds();
 		Application.getInstance().getAttendeeMgmt().refactorIds();
-		Application.getInstance().getFindingMgmt().refactorIds();
 
 		Application.getInstance().getMeetingMgmt().initDummyMeeting();
 

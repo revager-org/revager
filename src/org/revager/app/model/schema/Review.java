@@ -363,6 +363,8 @@ public class Review extends Observable {
 	 */
 	public void setComments(String value) {
 		this.comments = value;
+		// TODO: needed?
+		System.out.println("Needed? Review-class");
 	}
 
 	public boolean isSetComments() {

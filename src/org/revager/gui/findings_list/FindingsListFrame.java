@@ -825,10 +825,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		GUITools.formatSpinner(beginHSpinner, hideBorder);
 		GUITools.formatSpinner(beginMSpinner, hideBorder);
 
-		dateF.setTimeZone(currentProt.getDate().getTimeZone()); // TODO: In some
-																// cases
-																// 'currentProt.getDate()'
-																// returns null.
+		// TODO: In some cases 'currentProt.getDate()' returns null.
+		dateF.setTimeZone(currentProt.getDate().getTimeZone());
 		dateTxtFld.setText(dateF.format(currentProt.getDate().getTime()));
 
 		int beginHours = currentProt.getStart().get(Calendar.HOUR_OF_DAY);

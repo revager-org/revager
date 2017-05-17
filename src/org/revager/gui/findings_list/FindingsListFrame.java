@@ -497,7 +497,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				clockWorker.resetClock();
-
 				updateClockButtons();
 			}
 		});
@@ -1030,6 +1029,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 					.parseInt(Data.getInstance().getAppData().getSetting(AppSettingKey.APP_PROTOCOL_WARNING_TIME));
 
 			if (seconds > warningTime * 60 && showWarning && !clockWorker.isWarningDisplayed()) {
+				clockWorker.setWarningDisplayed(true);
 				String message = MessageFormat.format(
 						translate("This review meeting is running for {0} minutes already. Therefore it is recommended to finalize the meeting now and continue the review at a later point in time."),
 						Integer.toString(warningTime));
@@ -1037,7 +1037,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(), GUITools.getMessagePane(message),
 						translate("Information"), JOptionPane.INFORMATION_MESSAGE);
 
-				clockWorker.setWarningDisplayed(true);
 			}
 		} catch (Exception e) {
 			/*
@@ -1074,7 +1073,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			nativeFullscrSupported = false;
 		}
 
-		UI.getInstance().getProtocolClockWorker().addObserverFrame(this);
+		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
+			Object value = evt.getNewValue();
+			if (value instanceof Integer) {
+				updateClock((int) value);
+				updateCurrentTime();
+			}
+		});
 
 		setTitle(translate("List of Findings"));
 		setStatusMessage(translate("List of findings successfully loaded."), false);

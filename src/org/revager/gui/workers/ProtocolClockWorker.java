@@ -18,144 +18,61 @@
  */
 package org.revager.gui.workers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
-
-import org.revager.gui.findings_list.FindingsListFrame;
 
 /**
  * Worker for the clock in the protocol window.
  */
 public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 
-	/**
-	 * True if the warning was displayed.
-	 */
 	private boolean warningDisplayed = false;
-
-	/**
-	 * The starting time.
-	 */
 	private long startingPoint = 0;
-
-	/**
-	 * The pause time.
-	 */
 	private long pausePoint = 0;
-
-	/**
-	 * True if the clock is running.
-	 */
 	private boolean clockRunning = false;
 
-	/**
-	 * The protocol frames.
-	 */
-	private List<FindingsListFrame> protocolFrames = new ArrayList<FindingsListFrame>();
-
-	/**
-	 * Adds the given protocol frame as observer to the clock.
-	 * 
-	 * @param pf
-	 *            the protocol frame
-	 */
-	public void addObserverFrame(FindingsListFrame pf) {
-		protocolFrames.add(pf);
-	}
-
-	/**
-	 * Removes the given protocol frame as observer from the clock.
-	 * 
-	 * @param pf
-	 *            the protocol frame
-	 */
-	public void removeObserverFrame(FindingsListFrame pf) {
-		protocolFrames.remove(pf);
-	}
-
-	/**
-	 * Stops the clock.
-	 */
 	public void stopClock() {
 		this.clockRunning = false;
 		this.pausePoint = System.currentTimeMillis();
 	}
 
-	/**
-	 * Starts the clock.
-	 */
 	public void startClock() {
 		if (startingPoint == 0) {
 			this.startingPoint = System.currentTimeMillis();
 		} else {
 			this.startingPoint = startingPoint + (System.currentTimeMillis() - pausePoint);
 		}
-
 		this.clockRunning = true;
 	}
 
-	/**
-	 * Resets the clock.
-	 */
 	public void resetClock() {
 		this.startingPoint = 0;
 		this.clockRunning = false;
 		this.warningDisplayed = false;
-
-		for (FindingsListFrame pf : protocolFrames) {
-			pf.updateClock(0);
-		}
+		firePropertyChange("clock", -1, 0);
 	}
 
-	/**
-	 * Checks if the clock is running.
-	 * 
-	 * @return true, if the clock is running
-	 */
 	public boolean isClockRunning() {
 		return clockRunning;
 	}
 
-	/**
-	 * @return the warningDisplayed
-	 */
 	public boolean isWarningDisplayed() {
 		return warningDisplayed;
 	}
 
-	/**
-	 * @param warningDisplayed
-	 *            the warningDisplayed to set
-	 */
 	public void setWarningDisplayed(boolean warningDisplayed) {
 		this.warningDisplayed = warningDisplayed;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.SwingWorker#doInBackground()
-	 */
 	@Override
 	protected Void doInBackground() throws Exception {
 		while (true) {
-
-			for (final FindingsListFrame pf : protocolFrames) {
+			SwingUtilities.invokeLater(() -> {
 				if (clockRunning) {
-					SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							pf.updateClock((int) ((System.currentTimeMillis() - startingPoint) / 1000));
-
-							pf.updateCurrentTime();
-						}
-					});
+					int seconds = (int) (System.currentTimeMillis() - startingPoint) / 1000;
+					firePropertyChange("clock", -1, seconds);
 				}
-			}
-
+			});
 			Thread.sleep(1000);
 		}
 	}

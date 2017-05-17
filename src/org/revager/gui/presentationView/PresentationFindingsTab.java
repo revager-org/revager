@@ -12,6 +12,7 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
 import org.revager.app.model.schema.Finding;
+import org.revager.gui.UI;
 
 public class PresentationFindingsTab extends JPanel {
 
@@ -41,6 +42,7 @@ public class PresentationFindingsTab extends JPanel {
 		statusPanel.setLayout(BagLayout);
 		
 		JLabel title = new JLabel("title");
+		title.setFont(UI.LARGE_FONT);
 		title.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_title = new GridBagConstraints();
 		gbc_title.gridwidth = 3;

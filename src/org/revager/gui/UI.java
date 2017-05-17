@@ -154,17 +154,20 @@ public class UI implements Observer {
 	/**
 	 * The Constant PROTOCOL_FONT.
 	 */
-	public static final Font PROTOCOL_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+	public static final Font VERY_LARGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
 	/**
 	 * The Constant PROTOCOL_FONT_BOLD.
 	 */
-	public static final Font PROTOCOL_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 18);
+	public static final Font VERY_LARGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 18);
 
 	/**
 	 * The Constant PROTOCOL_TITLE_FONT.
 	 */
-	public static final Font PROTOCOL_TITLE_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 22);
+	public static final Font HUGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 22);
+	
+	public static final Font VERY_HUGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
+	public static final Font VERY_HUGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 25);
 
 	/**
 	 * The Constant TABLE_ROW_HEIGHT.

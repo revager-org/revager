@@ -1,6 +1,6 @@
 package org.revager.gui.presentationView;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -36,32 +36,32 @@ public class PresentationProtocolTab extends JPanel {
 		this.setLayout(gridBagLayout);
 
 		JLabel impressionLabel = new JLabel("general impression");
-		impressionLabel.setFont(UI.PROTOCOL_FONT_BOLD);
+		impressionLabel.setFont(UI.VERY_LARGE_FONT_BOLD);
 		generalImpressionTextArea = new JTextArea();
 		generalImpressionTextArea.setEditable(false);
 		generalImpressionTextArea.setRows(4);
-		generalImpressionTextArea.setFont(UI.PROTOCOL_FONT);
+		generalImpressionTextArea.setFont(UI.VERY_LARGE_FONT);
 
-		JLabel recLbl = new JLabel(_("Final recommendation for the product:"));
-		recLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		JLabel recLbl = new JLabel(translate("Final recommendation for the product:"));
+		recLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 		recommendationTextField = new JTextArea();
 		recommendationTextField.setRows(1);
 		recommendationTextField.setEditable(false);
-		recommendationTextField.setFont(UI.PROTOCOL_FONT);
+		recommendationTextField.setFont(UI.VERY_LARGE_FONT);
 
-		JLabel meetCommLbl = new JLabel(_("Comments on the meeting:"));
-		meetCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		JLabel meetCommLbl = new JLabel(translate("Comments on the meeting:"));
+		meetCommLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 		meetingCommentTextArea = new JTextArea();
 		meetingCommentTextArea.setEditable(false);
 		meetingCommentTextArea.setRows(4);
-		meetingCommentTextArea.setFont(UI.PROTOCOL_FONT);
+		meetingCommentTextArea.setFont(UI.VERY_LARGE_FONT);
 
-		JLabel protCommLbl = new JLabel(_("Comments on the list of findings:"));
-		protCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		JLabel protCommLbl = new JLabel(translate("Comments on the list of findings:"));
+		protCommLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 		protocolCommentTextArea = new JTextArea();
 		protocolCommentTextArea.setEditable(false);
 		protocolCommentTextArea.setRows(4);
-		protocolCommentTextArea.setFont(UI.PROTOCOL_FONT);
+		protocolCommentTextArea.setFont(UI.VERY_LARGE_FONT);
 
 		meetCommScrllPn = GUITools.setIntoScrllPn(meetingCommentTextArea);
 		meetCommScrllPn.setMinimumSize(meetCommScrllPn.getPreferredSize());

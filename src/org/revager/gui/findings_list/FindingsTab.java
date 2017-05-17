@@ -72,7 +72,7 @@ public class FindingsTab extends JPanel {
 		 */
 		JPanel panelFoot = new JPanel(new BorderLayout());
 
-		labelNumOfFindings.setFont(UI.PROTOCOL_FONT);
+		labelNumOfFindings.setFont(UI.VERY_LARGE_FONT);
 
 		buttonAddFinding.setIcon(Data.getInstance().getIcon("add_25x25.png"));
 		buttonAddFinding.addActionListener(new ActionListener() {

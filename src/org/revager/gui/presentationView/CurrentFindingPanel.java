@@ -1,6 +1,6 @@
 package org.revager.gui.presentationView;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -91,16 +91,16 @@ public class CurrentFindingPanel extends JPanel {
 		panelEditView.setBorder(UI.STANDARD_BORDER);
 		panelEditView.setBackground(UI.EDIT_VIEW_BG);
 
-		labelFindingSeverity.setFont(UI.PROTOCOL_FONT);
+		labelFindingSeverity.setFont(UI.VERY_LARGE_FONT);
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
-		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
+		labelFindingTitle.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
 		GUITools.scrollToTop(scrollDescription);
 
 		textDescription.setEditable(false);
-		textDescription.setFont(UI.PROTOCOL_FONT);
+		textDescription.setFont(UI.VERY_LARGE_FONT);
 
 		JPanel panelStrut = new JPanel();
 
@@ -136,7 +136,7 @@ public class CurrentFindingPanel extends JPanel {
 
 	private void updateDisplay() {
 		textDescription.setText(finding.getDescription());
-		labelFindingTitle.setText(_("Finding") + " " + finding.getId());
+		labelFindingTitle.setText(translate("Finding") + " " + finding.getId());
 	}
 	
 	
@@ -145,7 +145,7 @@ public class CurrentFindingPanel extends JPanel {
 
 		@Override
 		public Font getFont() {
-			return UI.PROTOCOL_FONT;
+			return UI.VERY_LARGE_FONT;
 		}
 
 		@Override
@@ -161,7 +161,7 @@ public class CurrentFindingPanel extends JPanel {
 
 		@Override
 		public Font getFont() {
-			return UI.PROTOCOL_FONT;
+			return UI.VERY_LARGE_FONT;
 		}
 	};
 

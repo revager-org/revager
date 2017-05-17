@@ -63,12 +63,12 @@ public class Finding extends Observable {
 	@XmlElement(required = true)
 	protected String description;
 	@XmlElement(name = "reference")
-	protected List<String> references = new ArrayList<String>();
+	protected List<String> references = new ArrayList<>();
 	@XmlElement(name = "aspect")
-	protected List<String> aspects = new ArrayList<String>();
+	protected List<String> aspects = new ArrayList<>();
 	@XmlElement(name = "external-reference")
 	@XmlSchemaType(name = "anyURI")
-	protected List<String> externalReferences = new ArrayList<String>();
+	protected List<String> externalReferences = new ArrayList<>();
 
 	/**
 	 * Gets the value of the id property.

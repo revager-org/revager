@@ -72,7 +72,7 @@ public class Protocol extends Observable {
 	@XmlElement(name = "attendee", required = true)
 	protected List<AttendeeReference> attendeeReferences;
 	@XmlElement(name = "finding", required = true)
-	protected List<Finding> findings = new ArrayList<Finding>();
+	protected List<Finding> findings = new ArrayList<>();
 	@XmlElement(required = true)
 	protected String comments;
 

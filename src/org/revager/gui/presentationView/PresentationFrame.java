@@ -42,51 +42,32 @@ public class PresentationFrame extends JFrame {
 		Meeting meeting = instance.getProtocolMgmt().getMeeting(protocol);
 		Review review = resiData.getReview();
 		for (Finding finding : protocol.getFindings()) {
-			finding.addObserver(new Observer() {
-
-				@Override
-				public void update(Observable o, Object arg) {
-					displayFindingsTab();
-					tabPanelFinding.updateFinding((Finding) o);
-				}
+			finding.addObserver((o, arg) -> {
+				displayFindingsTab();
+				tabPanelFinding.updateFinding((Finding) o);
 			});
 		}
 
-		review.addObserver(new Observer() {
-
-			@Override
-			public void update(Observable o, Object arg) {
-				displayGeneralTab();
-				tabPanelProtocol.updateTabData((Review) o);
-			}
+		review.addObserver((o, arg) -> {
+			displayGeneralTab();
+			tabPanelProtocol.updateTabData((Review) o);
 		});
 
-		meeting.addObserver(new Observer() {
-			@Override
-			public void update(Observable o, Object arg) {
-				displayGeneralTab();
-				tabPanelProtocol.updateTabData((Meeting) o);
-			}
+		meeting.addObserver((o, arg) -> {
+			displayGeneralTab();
+			tabPanelProtocol.updateTabData((Meeting) o);
 		});
 
-		protocol.addObserver(new Observer() {
-
-			@Override
-			public void update(Observable o, Object arg) {
-				displayGeneralTab();
-				tabPanelProtocol.updateTabData((Protocol) o);
-				if (arg instanceof Finding) {
-					Finding finding = (Finding) arg;
-					tabPanelFinding.updateFinding(finding);
-					finding.addObserver(new Observer() {
-
-						@Override
-						public void update(Observable o, Object arg) {
-							displayFindingsTab();
-							tabPanelFinding.updateFinding((Finding) o);
-						}
-					});
-				}
+		protocol.addObserver((o, arg) -> {
+			displayGeneralTab();
+			tabPanelProtocol.updateTabData((Protocol) o);
+			if (arg instanceof Finding) {
+				Finding finding = (Finding) arg;
+				tabPanelFinding.updateFinding(finding);
+				finding.addObserver((o2, arg2) -> {
+					displayFindingsTab();
+					tabPanelFinding.updateFinding((Finding) o2);
+				});
 			}
 		});
 
@@ -96,25 +77,22 @@ public class PresentationFrame extends JFrame {
 		setTitle("tasdfsdf");
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		setLayout(new BorderLayout());
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				tabPanelProtocol = new PresentationProtocolTab();
-				tabPanelFinding = new PresentationFindingsTab();
-				tabbedPane.add(tabPanelProtocol, GENERAL_TAB_ID);
-				tabbedPane.add(tabPanelFinding, FINDINGS_TAB_ID);
+		SwingUtilities.invokeLater(() -> {
+			tabPanelProtocol = new PresentationProtocolTab();
+			tabPanelFinding = new PresentationFindingsTab();
+			tabbedPane.add(tabPanelProtocol, GENERAL_TAB_ID);
+			tabbedPane.add(tabPanelFinding, FINDINGS_TAB_ID);
 
-				// Hide bar displaying the tabs to select.
-				tabbedPane.setUI(new BasicTabbedPaneUI() {
-					@Override
-					protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
-						return 0;
-					}
-				});
+			// Hide bar displaying the tabs to select.
+			tabbedPane.setUI(new BasicTabbedPaneUI() {
+				@Override
+				protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
+					return 0;
+				}
+			});
 
-				add(tabbedPane);
-				tabbedPane.setSelectedIndex(GENERAL_TAB_ID);
-			}
+			add(tabbedPane);
+			tabbedPane.setSelectedIndex(GENERAL_TAB_ID);
 		});
 	}
 

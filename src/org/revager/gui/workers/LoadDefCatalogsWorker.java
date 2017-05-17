@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.File;
 import java.net.URL;
@@ -59,7 +59,7 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Importing catalog ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(translate("Importing catalog ..."));
 			}
 		});
 
@@ -86,7 +86,7 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 					@Override
 					public void run() {
 						UI.getInstance().getAspectsManagerFrame()
-								.switchToProgressMode(_("Importing catalog ...") + " " + catalogName);
+								.switchToProgressMode(translate("Importing catalog ...") + " " + catalogName);
 					}
 				});
 
@@ -121,21 +121,21 @@ public class LoadDefCatalogsWorker extends SwingWorker<Void, Void> {
 					public void run() {
 						UI.getInstance().getAspectsManagerFrame().updateTree();
 
-						UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Catalog imported successfully."),
+						UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Catalog imported successfully."),
 								false);
 					}
 				});
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(UI.getInstance().getAspectsManagerFrame(),
 						GUITools.getMessagePane(
-								_("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
+								translate("Cannot import selected file. The content is not conform to the expected format (Resi XML Schema).")
 										+ "\n\n" + e.getMessage()),
-						_("Error"), JOptionPane.ERROR_MESSAGE);
+						translate("Error"), JOptionPane.ERROR_MESSAGE);
 
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot import catalog!"), false);
+						UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Cannot import catalog!"), false);
 					}
 				});
 			}

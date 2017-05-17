@@ -18,7 +18,7 @@
  */
 package org.revager.gui.findings_list;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -168,7 +168,7 @@ public class AddAttToFLPopupWindow extends JDialog {
 
 		// setUndecorated(true);
 		setResizable(false);
-		setTitle(_("RevAger"));
+		setTitle(translate("RevAger"));
 
 		setModal(true);
 
@@ -178,10 +178,10 @@ public class AddAttToFLPopupWindow extends JDialog {
 
 		panelBase.add(textTitle, BorderLayout.NORTH);
 
-		JLabel durLbl = new JLabel(_("Preparation time:"));
-		JLabel roleLbl = new JLabel(_("Role:"));
-		JLabel contactLbl = new JLabel(_("Contact information:"));
-		JLabel nameLbl = new JLabel(_("Name:"));
+		JLabel durLbl = new JLabel(translate("Preparation time:"));
+		JLabel roleLbl = new JLabel(translate("Role:"));
+		JLabel contactLbl = new JLabel(translate("Contact information:"));
+		JLabel nameLbl = new JLabel(translate("Name:"));
 
 		contactTxtArea = new JTextArea();
 		nameTxtFld = new JTextField();
@@ -208,8 +208,8 @@ public class AddAttToFLPopupWindow extends JDialog {
 		JPanel spinnerPanel = new JPanel(gbl);
 		spinnerPanel.setBackground(null);
 
-		JLabel hoursLbl = new JLabel(_("Hour(s)"));
-		JLabel minLbl = new JLabel(_("Minute(s)"));
+		JLabel hoursLbl = new JLabel(translate("Hour(s)"));
+		JLabel minLbl = new JLabel(translate("Minute(s)"));
 
 		GUITools.addComponent(spinnerPanel, gbl, durHSpinner, 1, 0, 1, 1, 0.0, 0.0, 5, 0, 0, 0,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
@@ -223,7 +223,7 @@ public class AddAttToFLPopupWindow extends JDialog {
 		roleBx = new JComboBox();
 		for (Role x : Role.values()) {
 			String roleString = x.toString();
-			roleBx.addItem(_(roleString));
+			roleBx.addItem(translate(roleString));
 		}
 
 		scrllPn = GUITools.setIntoScrllPn(contactTxtArea);
@@ -261,7 +261,7 @@ public class AddAttToFLPopupWindow extends JDialog {
 			selAtt = Application.getInstance().getProtocolMgmt().getAttendees(prot).get(selRow);
 
 			nameTxtFld.setText(selAtt.getName());
-			roleBx.setSelectedItem(_(selAtt.getRole().toString()));
+			roleBx.setSelectedItem(translate(selAtt.getRole().toString()));
 			contactTxtArea.setText(selAtt.getContact());
 			durHSpinner
 					.setValue(Application.getInstance().getProtocolMgmt().getAttendeePrepTime(selAtt, prot).getHours());
@@ -276,13 +276,13 @@ public class AddAttToFLPopupWindow extends JDialog {
 		JButton buttonAbort = GUITools.newImageButton();
 		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(_("Abort"));
+		buttonAbort.setToolTipText(translate("Abort"));
 		buttonAbort.addActionListener(new AddAttToProtPopupWindowAction(this, ButtonClicked.ABORT));
 
 		buttonConfirm = GUITools.newImageButton();
 		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
-		buttonConfirm.setToolTipText(_("Confirm"));
+		buttonConfirm.setToolTipText(translate("Confirm"));
 		buttonConfirm.addActionListener(new AddAttToProtPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());

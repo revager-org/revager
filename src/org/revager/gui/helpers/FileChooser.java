@@ -18,7 +18,7 @@
  */
 package org.revager.gui.helpers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Dialog;
 import java.awt.FileDialog;
@@ -168,7 +168,7 @@ public class FileChooser {
 
 			switch (chooserMode) {
 			case MODE_OPEN_FILE:
-				dialog.setTitle(_("Open File..."));
+				dialog.setTitle(translate("Open File..."));
 
 				dialog.setDirectory(this.dir.getAbsolutePath());
 				if (this.file != null) {
@@ -187,7 +187,7 @@ public class FileChooser {
 				break;
 
 			case MODE_SAVE_FILE:
-				dialog.setTitle(_("Save File..."));
+				dialog.setTitle(translate("Save File..."));
 
 				dialog.setDirectory(this.dir.getAbsolutePath());
 				if (this.file != null) {
@@ -206,7 +206,7 @@ public class FileChooser {
 				break;
 
 			case MODE_SELECT_DIRECTORY:
-				dialog.setTitle(_("Select Directory..."));
+				dialog.setTitle(translate("Select Directory..."));
 
 				dialog.setFilenameFilter(new ResiFileFilter(ResiFileFilter.TYPE_DIRECTORY));
 
@@ -240,10 +240,10 @@ public class FileChooser {
 					 */
 					if (getDialogType() == OPEN_DIALOG) {
 						if (!f.exists()) {
-							String errMsg = _("Cannot find the given file. Please select a valid one.");
+							String errMsg = translate("Cannot find the given file. Please select a valid one.");
 
 							JOptionPane.showMessageDialog(getTopLevelAncestor(), GUITools.getMessagePane(errMsg),
-									_("Error"), JOptionPane.ERROR_MESSAGE);
+									translate("Error"), JOptionPane.ERROR_MESSAGE);
 
 							return;
 						}
@@ -257,12 +257,12 @@ public class FileChooser {
 						 * Show warning if file exists
 						 */
 						if (f.exists()) {
-							String questMsg = _(
+							String questMsg = translate(
 									"There is a file with the given name already existing. Would you like to overwrite it?")
 									+ "\n\n" + this.getSelectedFile().getAbsolutePath();
 
 							int result = JOptionPane.showConfirmDialog(getTopLevelAncestor(),
-									GUITools.getMessagePane(questMsg), _("Question"), JOptionPane.YES_NO_OPTION,
+									GUITools.getMessagePane(questMsg), translate("Question"), JOptionPane.YES_NO_OPTION,
 									JOptionPane.QUESTION_MESSAGE);
 							switch (result) {
 							case JOptionPane.YES_OPTION:
@@ -293,7 +293,7 @@ public class FileChooser {
 
 			switch (chooserMode) {
 			case MODE_OPEN_FILE:
-				dialog.setDialogTitle(_("Open File..."));
+				dialog.setDialogTitle(translate("Open File..."));
 
 				dialog.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
@@ -310,7 +310,7 @@ public class FileChooser {
 				break;
 
 			case MODE_SAVE_FILE:
-				dialog.setDialogTitle(_("Save File..."));
+				dialog.setDialogTitle(translate("Save File..."));
 
 				dialog.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				dialog.setFileFilter(filter);
@@ -319,8 +319,8 @@ public class FileChooser {
 				break;
 
 			case MODE_SELECT_DIRECTORY:
-				dialog.setDialogTitle(_("Select Directory..."));
-				dialog.setApproveButtonText(_("Select"));
+				dialog.setDialogTitle(translate("Select Directory..."));
+				dialog.setApproveButtonText(translate("Select"));
 
 				dialog.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				dialog.setFileFilter(new ResiFileFilter(ResiFileFilter.TYPE_DIRECTORY));
@@ -345,7 +345,7 @@ public class FileChooser {
 			} else if (selected == JFileChooser.ERROR_OPTION) {
 				JOptionPane.showMessageDialog(parent,
 						GUITools.getMessagePane(
-								_("An error occurred while choosing a file or directory!\n\nPlease try again.")),
+								translate("An error occurred while choosing a file or directory!\n\nPlease try again.")),
 						Data.getInstance().getResource("appName"), JOptionPane.ERROR_MESSAGE);
 
 				selected = SELECTED_ERROR;

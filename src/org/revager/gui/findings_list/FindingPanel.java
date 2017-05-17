@@ -1,6 +1,6 @@
 package org.revager.gui.findings_list;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -256,12 +256,12 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Set tooltips for buttons
 		 */
-		buttonCloseFinding.setToolTipText(_("Close Edit View of this Finding"));
-		buttonRemoveFinding.setToolTipText(_("Remove this Finding"));
-		buttonPushUp.setToolTipText(_("Push up Finding"));
-		buttonPushDown.setToolTipText(_("Push down Finding"));
-		buttonPushTop.setToolTipText(_("Push Finding to the top"));
-		buttonPushBottom.setToolTipText(_("Push Finding to the bottom"));
+		buttonCloseFinding.setToolTipText(translate("Close Edit View of this Finding"));
+		buttonRemoveFinding.setToolTipText(translate("Remove this Finding"));
+		buttonPushUp.setToolTipText(translate("Push up Finding"));
+		buttonPushDown.setToolTipText(translate("Push down Finding"));
+		buttonPushTop.setToolTipText(translate("Push Finding to the top"));
+		buttonPushBottom.setToolTipText(translate("Push Finding to the bottom"));
 
 		/*
 		 * Buttons for references table
@@ -276,7 +276,7 @@ public class FindingPanel extends JPanel {
 					tableReferences.getCellEditor().stopCellEditing();
 				}
 
-				String ref = _("Please enter a reference");
+				String ref = translate("Please enter a reference");
 				findMgmt.addReference(ref, finding);
 				modelReferences.fireTableDataChanged();
 
@@ -320,9 +320,9 @@ public class FindingPanel extends JPanel {
 			}
 		});
 
-		buttonAddReference.setToolTipText(_("Add Reference"));
-		buttonRemoveReference.setToolTipText(_("Remove Reference"));
-		buttonEditReference.setToolTipText(_("Edit Reference"));
+		buttonAddReference.setToolTipText(translate("Add Reference"));
+		buttonRemoveReference.setToolTipText(translate("Remove Reference"));
+		buttonEditReference.setToolTipText(translate("Edit Reference"));
 
 		buttonRemoveReference.setEnabled(false);
 		buttonEditReference.setEnabled(false);
@@ -369,9 +369,9 @@ public class FindingPanel extends JPanel {
 			}
 		});
 
-		buttonAddExtReference.setToolTipText(_("Add File"));
-		buttonRemoveExtReference.setToolTipText(_("Remove file"));
-		buttonPasteExtReference.setToolTipText(_("Paste Image from Clipboard"));
+		buttonAddExtReference.setToolTipText(translate("Add File"));
+		buttonRemoveExtReference.setToolTipText(translate("Remove file"));
+		buttonPasteExtReference.setToolTipText(translate("Paste Image from Clipboard"));
 
 		buttonRemoveExtReference.setEnabled(false);
 
@@ -422,8 +422,8 @@ public class FindingPanel extends JPanel {
 			}
 		});
 
-		buttonAddAspect.setToolTipText(_("Add Aspect(s)"));
-		buttonRemoveAspect.setToolTipText(_("Remove Aspect(s)"));
+		buttonAddAspect.setToolTipText(translate("Add Aspect(s)"));
+		buttonRemoveAspect.setToolTipText(translate("Remove Aspect(s)"));
 
 		buttonRemoveAspect.setEnabled(false);
 
@@ -473,7 +473,7 @@ public class FindingPanel extends JPanel {
 								Desktop.getDesktop().open(ref);
 							} catch (Exception exc) {
 								JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
-										GUITools.getMessagePane(exc.getMessage()), _("Error"),
+										GUITools.getMessagePane(exc.getMessage()), translate("Error"),
 										JOptionPane.ERROR_MESSAGE);
 							}
 						}
@@ -523,7 +523,7 @@ public class FindingPanel extends JPanel {
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
 		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
-		labelFindingTitle.setText(_("Finding") + " " + finding.getId());
+		labelFindingTitle.setText(translate("Finding") + " " + finding.getId());
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
 		GUITools.scrollToTop(scrollDescription);
@@ -580,8 +580,8 @@ public class FindingPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (JOptionPane.showConfirmDialog(UI.getInstance().getProtocolFrame(),
-						GUITools.getMessagePane(_("Are you sure you want to remove the selected finding permanently?")),
-						_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						GUITools.getMessagePane(translate("Are you sure you want to remove the selected finding permanently?")),
+						translate("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					findingsTab.removeCurrentFinding();
 				}
 			}
@@ -732,8 +732,8 @@ public class FindingPanel extends JPanel {
 
 		this.setPreferredSize(COMPACT_VIEW_SIZE);
 
-		this.setToolTipText(finding.getAspects().size() + " " + _("Aspect(s)") + ", " + finding.getReferences().size()
-				+ " " + _("Reference(s)") + ", " + finding.getExternalReferences().size() + " " + _("File(s)"));
+		this.setToolTipText(finding.getAspects().size() + " " + translate("Aspect(s)") + ", " + finding.getReferences().size()
+				+ " " + translate("Reference(s)") + ", " + finding.getExternalReferences().size() + " " + translate("File(s)"));
 
 		this.removeAll();
 
@@ -754,7 +754,7 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Update labels
 		 */
-		labelFindingNumber.setText(_("Finding") + " " + finding.getId());
+		labelFindingNumber.setText(translate("Finding") + " " + finding.getId());
 
 		labelFindingSeverity.setText(findMgmt.getLocalizedSeverity(finding));
 
@@ -966,7 +966,7 @@ public class FindingPanel extends JPanel {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getProtocolFrame().switchToProgressMode(_("Getting image from clipboard ..."));
+					UI.getInstance().getProtocolFrame().switchToProgressMode(translate("Getting image from clipboard ..."));
 				}
 			});
 
@@ -975,8 +975,8 @@ public class FindingPanel extends JPanel {
 			if (img == null) {
 				JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
 						GUITools.getMessagePane(
-								_("Unfortunately there isn't any image in the clipboard which can be included as a reference.")),
-						_("Information"), JOptionPane.INFORMATION_MESSAGE);
+								translate("Unfortunately there isn't any image in the clipboard which can be included as a reference.")),
+						translate("Information"), JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				Image scalImg = img.getScaledInstance(-1, 250, Image.SCALE_SMOOTH);
 
@@ -985,17 +985,17 @@ public class FindingPanel extends JPanel {
 						new MatteBorder(1, 1, 1, 1, UI.SEPARATOR_COLOR)));
 
 				JTextField inputField = new JTextField();
-				inputField.setText(_("Screenshot"));
+				inputField.setText(translate("Screenshot"));
 
 				JPanel messagePane = new JPanel(new BorderLayout());
 				messagePane.add(labelImg, BorderLayout.NORTH);
-				messagePane.add(new JLabel(_("Please enter a name for the image:")), BorderLayout.CENTER);
+				messagePane.add(new JLabel(translate("Please enter a name for the image:")), BorderLayout.CENTER);
 				messagePane.add(inputField, BorderLayout.SOUTH);
 
-				Object[] options = { _("Save"), _("Edit"), _("Cancel") };
+				Object[] options = { translate("Save"), translate("Edit"), translate("Cancel") };
 
 				int action = JOptionPane.showOptionDialog(UI.getInstance().getProtocolFrame(), messagePane,
-						_("Confirm"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options,
+						translate("Confirm"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options,
 						options[0]);
 
 				String fileName = null;

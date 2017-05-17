@@ -18,7 +18,7 @@
  */
 package org.revager.app;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -193,43 +193,43 @@ public class ResiFileFilter extends FileFilter implements FilenameFilter {
 
 		switch (type) {
 		case TYPE_ALL:
-			description = _("All files");
+			description = translate("All files");
 			break;
 
 		case TYPE_DIRECTORY:
-			description = _("Directory");
+			description = translate("Directory");
 			break;
 
 		case TYPE_REVIEW:
-			description = _("Review files") + " (*" + ENDING_REVIEW_ZIP + " *" + ENDING_REVIEW_XML + " *.xml)";
+			description = translate("Review files") + " (*" + ENDING_REVIEW_ZIP + " *" + ENDING_REVIEW_XML + " *.xml)";
 			break;
 
 		case TYPE_CATALOG:
-			description = _("Catalog files") + " (*" + ENDING_CATALOG + " *.xml)";
+			description = translate("Catalog files") + " (*" + ENDING_CATALOG + " *.xml)";
 			break;
 
 		case TYPE_ASPECTS:
-			description = _("Aspect files") + " (*" + ENDING_ASPECTS + " *.xml)";
+			description = translate("Aspect files") + " (*" + ENDING_ASPECTS + " *.xml)";
 			break;
 
 		case TYPE_PDF:
-			description = _("PDF files") + " (*.pdf)";
+			description = translate("PDF files") + " (*.pdf)";
 			break;
 
 		case TYPE_CSV:
-			description = _("CSV files") + " (*.csv *.txt)";
+			description = translate("CSV files") + " (*.csv *.txt)";
 			break;
 
 		case TYPE_ZIP:
-			description = _("ZIP files") + " (*.zip)";
+			description = translate("ZIP files") + " (*.zip)";
 			break;
 
 		case TYPE_IMAGES:
-			description = _("Image files") + " (*.jpg *.jpeg *.gif *.png)";
+			description = translate("Image files") + " (*.jpg *.jpeg *.gif *.png)";
 			break;
 
 		default:
-			description = _("All files");
+			description = translate("All files");
 			break;
 		}
 

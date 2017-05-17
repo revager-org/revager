@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 
@@ -65,7 +65,7 @@ public class InitializeNewReviewAction extends AbstractAction {
 
 				GUITools.executeSwingWorker(new NewReviewWorker(true));
 			} else {
-				String message = _("Please enter the name of the attendee.");
+				String message = translate("Please enter the name of the attendee.");
 
 				assistant.setMessage(message);
 

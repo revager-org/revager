@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions.attendee;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 
@@ -79,7 +79,7 @@ public class ConfirmAttendeeAction extends AbstractAction {
 		}
 
 		if (nameMissing) {
-			message = _("Please enter the name of the attendee.");
+			message = translate("Please enter the name of the attendee.");
 
 			attDialog.setMessage(message);
 			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
@@ -109,7 +109,7 @@ public class ConfirmAttendeeAction extends AbstractAction {
 					currAppAtt.addStrength(str);
 				}
 			} catch (DataException e) {
-				JOptionPane.showMessageDialog(attDialog, GUITools.getMessagePane(e.getMessage()), _("Error"),
+				JOptionPane.showMessageDialog(attDialog, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -126,7 +126,7 @@ public class ConfirmAttendeeAction extends AbstractAction {
 				if (!Application.getInstance().getAttendeeMgmt().isAttendee(newAtt)) {
 					Application.getInstance().getAttendeeMgmt().addAttendee(attName, attContact, attRole, null);
 				} else {
-					attDialog.setMessage(_(
+					attDialog.setMessage(translate(
 							"There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
 
 					return;
@@ -136,7 +136,7 @@ public class ConfirmAttendeeAction extends AbstractAction {
 
 				if (Application.getInstance().getAttendeeComp().compare(currAtt, newAtt) != 0) {
 					if (!Application.getInstance().getAttendeeMgmt().editAttendee(currAtt, newAtt)) {
-						attDialog.setMessage(_(
+						attDialog.setMessage(translate(
 								"There is an attendee with the given information already existing. Please change the name, the contact information or the role of the attendee you would like to add."));
 
 						return;

@@ -18,7 +18,7 @@
  */
 package org.revager.app.model.appdata;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,7 +49,7 @@ public class AppAttendee {
 	 * This is exception is thrown if an attendee could not be found.
 	 */
 	private DataException notFoundExc = new DataException(
-			_("Attendee does not exist!") + " [NAME = " + this.name + ", CONTACT = " + this.contact + "]");
+			translate("Attendee does not exist!") + " [NAME = " + this.name + ", CONTACT = " + this.contact + "]");
 
 	/**
 	 * Internally used contructor to create a new instance of this class by the
@@ -174,7 +174,7 @@ public class AppAttendee {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot add or get attendee.") + " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(translate("Cannot add or get attendee.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return new AppAttendee(name, contact);
@@ -309,7 +309,7 @@ public class AppAttendee {
 			}
 		} catch (Exception e) {
 			throw new DataException(
-					_("Cannot store attendee! There may be an attendee with the given name and contact information already existing.")
+					translate("Cannot store attendee! There may be an attendee with the given name and contact information already existing.")
 							+ " [NAME = " + this.name + ", CONTACT = " + this.contact + "] " + e.getMessage());
 		}
 	}
@@ -348,7 +348,7 @@ public class AppAttendee {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot get strengths of the selected attendee.") + " [NAME = " + this.name + "] "
+			throw new DataException(translate("Cannot get strengths of the selected attendee.") + " [NAME = " + this.name + "] "
 					+ e.getMessage());
 		}
 
@@ -392,7 +392,7 @@ public class AppAttendee {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot detect wether the given category is a strength of the attendee or not.")
+			throw new DataException(translate("Cannot detect wether the given category is a strength of the attendee or not.")
 					+ " [NAME = " + this.name + "] " + e.getMessage());
 		}
 
@@ -436,7 +436,7 @@ public class AppAttendee {
 				 * thrown if there occurs an internal error.
 				 */
 				throw new DataException(
-						_("Cannot assign strength to the attendee.") + " [NAME = " + this.name + "] " + e.getMessage());
+						translate("Cannot assign strength to the attendee.") + " [NAME = " + this.name + "] " + e.getMessage());
 			}
 		}
 	}
@@ -520,7 +520,7 @@ public class AppAttendee {
 				 * thrown if there occurs an internal error.
 				 */
 				throw new DataException(
-						_("Cannot remove strength of the attendee.") + " [NAME = " + this.name + "] " + e.getMessage());
+						translate("Cannot remove strength of the attendee.") + " [NAME = " + this.name + "] " + e.getMessage());
 			}
 		}
 	}

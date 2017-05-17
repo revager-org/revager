@@ -18,7 +18,7 @@
  */
 package org.revager.gui.findings_list;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -332,8 +332,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 					exc.printStackTrace();
 
 					JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
-							GUITools.getMessagePane(_("Severe problem occurred! RevAger has to be restarted.")),
-							_("Problem occurred"), JOptionPane.ERROR_MESSAGE);
+							GUITools.getMessagePane(translate("Severe problem occurred! RevAger has to be restarted.")),
+							translate("Problem occurred"), JOptionPane.ERROR_MESSAGE);
 
 					ExitAction exitAction = ((ExitAction) ActionRegistry.getInstance().get(ExitAction.class.getName()));
 
@@ -354,10 +354,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 				tabbedPane.setTabPlacement(SwingConstants.TOP);
 
-				tabbedPane.add(_("Organizational"), tabPanelOrg);
-				tabbedPane.add(_("Impression"), tabGenImp);
-				tabbedPane.add(_("Findings"), tabPanelFindings);
-				tabbedPane.add(_("Comments & Recommendation"), tabPanelCommAndRec);
+				tabbedPane.add(translate("Organizational"), tabPanelOrg);
+				tabbedPane.add(translate("Impression"), tabGenImp);
+				tabbedPane.add(translate("Findings"), tabPanelFindings);
+				tabbedPane.add(translate("Comments & Recommendation"), tabPanelCommAndRec);
 
 				tabbedPane.addChangeListener(tabChangeListener);
 
@@ -377,7 +377,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		tbConfirmProt = GUITools.newImageButton(Data.getInstance().getIcon("confirmProtocol_50x50_0.png"),
 				Data.getInstance().getIcon("confirmProtocol_50x50.png"));
-		tbConfirmProt.setToolTipText(_("Confirm and close list of findings"));
+		tbConfirmProt.setToolTipText(translate("Confirm and close list of findings"));
 		tbConfirmProt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -400,7 +400,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon("PDFExport_50x50_0.png"),
 				Data.getInstance().getIcon("PDFExport_50x50.png"));
-		tbPdfExport.setToolTipText(_("Export List of Findings as PDF File"));
+		tbPdfExport.setToolTipText(translate("Export List of Findings as PDF File"));
 		tbPdfExport.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -414,7 +414,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon("CSVExport_50x50_0.png"),
 				Data.getInstance().getIcon("CSVExport_50x50.png"));
-		tbCsvExport.setToolTipText(_("Export List of Findings as CSV File"));
+		tbCsvExport.setToolTipText(translate("Export List of Findings as CSV File"));
 		tbCsvExport.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -431,11 +431,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		if (fullscreen) {
 			tbFullscreen.setIcon(Data.getInstance().getIcon("fullscreenClose_50x50_0.png"));
 			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon("fullscreenClose_50x50.png"));
-			tbFullscreen.setToolTipText(_("Exit Fullscreen"));
+			tbFullscreen.setToolTipText(translate("Exit Fullscreen"));
 		} else {
 			tbFullscreen.setIcon(Data.getInstance().getIcon("fullscreen_50x50_0.png"));
 			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon("fullscreen_50x50.png"));
-			tbFullscreen.setToolTipText(_("Change to Fullscreen mode"));
+			tbFullscreen.setToolTipText(translate("Change to Fullscreen mode"));
 		}
 		tbFullscreen.addActionListener(new ActionListener() {
 			@Override
@@ -479,7 +479,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		clockButtonReset = GUITools.newImageButton(Data.getInstance().getIcon("clockReset_24x24_0.png"),
 				Data.getInstance().getIcon("clockReset_24x24.png"));
-		clockButtonReset.setToolTipText(_("Reset Stop Watch"));
+		clockButtonReset.setToolTipText(translate("Reset Stop Watch"));
 		clockButtonReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -508,11 +508,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		if (clockWorker.isClockRunning()) {
 			clockButtonStart.setIcon(Data.getInstance().getIcon("clockPause_24x24_0.png"));
 			clockButtonStart.setRolloverIcon(Data.getInstance().getIcon("clockPause_24x24.png"));
-			clockButtonStart.setToolTipText(_("Pause Stop Watch"));
+			clockButtonStart.setToolTipText(translate("Pause Stop Watch"));
 		} else {
 			clockButtonStart.setIcon(Data.getInstance().getIcon("clockStart_24x24_0.png"));
 			clockButtonStart.setRolloverIcon(Data.getInstance().getIcon("clockStart_24x24.png"));
-			clockButtonStart.setToolTipText(_("Start Stop Watch"));
+			clockButtonStart.setToolTipText(translate("Start Stop Watch"));
 		}
 	}
 
@@ -528,28 +528,28 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		addResiAtt = GUITools.newImageButton();
 		addResiAtt.setIcon(Data.getInstance().getIcon("addResiAtt_25x25_0.png"));
 		addResiAtt.setRolloverIcon(Data.getInstance().getIcon("addResiAtt_25x25.png"));
-		addResiAtt.setToolTipText(_("Add Attendee from the Attendee Pool"));
+		addResiAtt.setToolTipText(translate("Add Attendee from the Attendee Pool"));
 		addResiAtt.addActionListener(ActionRegistry.getInstance().get(AddResiAttToProtAction.class.getName()));
 		attendeeButtons.add(addResiAtt);
 
 		addAttendee = GUITools.newImageButton();
 		addAttendee.setIcon(Data.getInstance().getIcon("addAttendee_25x25_0.png"));
 		addAttendee.setRolloverIcon(Data.getInstance().getIcon("addAttendee_25x25.png"));
-		addAttendee.setToolTipText(_("Add Attendee"));
+		addAttendee.setToolTipText(translate("Add Attendee"));
 		addAttendee.addActionListener(ActionRegistry.getInstance().get(AddAttToProtAction.class.getName()));
 		attendeeButtons.add(addAttendee);
 
 		removeAttendee = GUITools.newImageButton();
 		removeAttendee.setIcon(Data.getInstance().getIcon("removeAttendee_25x25_0.png"));
 		removeAttendee.setRolloverIcon(Data.getInstance().getIcon("removeAttendee_25x25.png"));
-		removeAttendee.setToolTipText(_("Remove Attendee"));
+		removeAttendee.setToolTipText(translate("Remove Attendee"));
 		removeAttendee.addActionListener(ActionRegistry.getInstance().get(RemAttFromProtAction.class.getName()));
 		attendeeButtons.add(removeAttendee);
 
 		editAttendee = GUITools.newImageButton();
 		editAttendee.setIcon(Data.getInstance().getIcon("editAttendee_25x25_0.png"));
 		editAttendee.setRolloverIcon(Data.getInstance().getIcon("editAttendee_25x25.png"));
-		editAttendee.setToolTipText(_("Edit Attendee"));
+		editAttendee.setToolTipText(translate("Edit Attendee"));
 		editAttendee.addActionListener(ActionRegistry.getInstance().get(EditAttFromProtAction.class.getName()));
 		attendeeButtons.add(editAttendee);
 
@@ -673,7 +673,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		scrllP = GUITools.setIntoScrollPane(presentAttTable);
 		scrllP.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		scrllP.setToolTipText(_("Add Attendee to Meeting"));
+		scrllP.setToolTipText(translate("Add Attendee to Meeting"));
 		scrllP.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -701,7 +701,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		JLabel labelAttendees = new JLabel(_("Attendees of the current meeting:"));
+		JLabel labelAttendees = new JLabel(translate("Attendees of the current meeting:"));
 		labelAttendees.setFont(UI.PROTOCOL_TITLE_FONT);
 
 		GUITools.addComponent(attPanel, gbl, labelAttendees, 0, 0, 2, 1, 1.0, 0.0, 20, 20, 0, 20,
@@ -713,7 +713,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	}
 
 	private void createImpPanel() {
-		JLabel impLbl = new JLabel(_("General impression of the product:"));
+		JLabel impLbl = new JLabel(translate("General impression of the product:"));
 		impLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
 		impTxtArea = new JTextArea();
@@ -740,16 +740,16 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Creates the bottom org panel.
 	 */
 	private void createBottomOrgPanel() {
-		JLabel locationLbl = new JLabel(_("Location:"));
+		JLabel locationLbl = new JLabel(translate("Location:"));
 		locationLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel dateLbl = new JLabel(_("Date:"));
+		JLabel dateLbl = new JLabel(translate("Date:"));
 		dateLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel beginLbl = new JLabel(_("Period of time:"));
+		JLabel beginLbl = new JLabel(translate("Period of time:"));
 		beginLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel tillLabel = new JLabel(_("to"));
+		JLabel tillLabel = new JLabel(translate("to"));
 		tillLabel.setFont(UI.PROTOCOL_FONT_BOLD);
 
 		clockLabel.setFont(UI.PROTOCOL_FONT_BOLD);
@@ -908,13 +908,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void createCommAndRatePanel() {
 
-		JLabel recLbl = new JLabel(_("Final recommendation for the product:"));
+		JLabel recLbl = new JLabel(translate("Final recommendation for the product:"));
 		recLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel meetCommLbl = new JLabel(_("Comments on the meeting:"));
+		JLabel meetCommLbl = new JLabel(translate("Comments on the meeting:"));
 		meetCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
-		JLabel protCommLbl = new JLabel(_("Comments on the list of findings:"));
+		JLabel protCommLbl = new JLabel(translate("Comments on the list of findings:"));
 		protCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
 
 		meetCommTxtArea = new JTextArea();
@@ -1018,11 +1018,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 			if (seconds > warningTime * 60 && showWarning && !clockWorker.isWarningDisplayed()) {
 				String message = MessageFormat.format(
-						_("This review meeting is running for {0} minutes already. Therefore it is recommended to finalize the meeting now and continue the review at a later point in time."),
+						translate("This review meeting is running for {0} minutes already. Therefore it is recommended to finalize the meeting now and continue the review at a later point in time."),
 						Integer.toString(warningTime));
 
 				JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(), GUITools.getMessagePane(message),
-						_("Information"), JOptionPane.INFORMATION_MESSAGE);
+						translate("Information"), JOptionPane.INFORMATION_MESSAGE);
 
 				clockWorker.setWarningDisplayed(true);
 			}
@@ -1063,8 +1063,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		UI.getInstance().getProtocolClockWorker().addObserverFrame(this);
 
-		setTitle(_("List of Findings"));
-		setStatusMessage(_("List of findings successfully loaded."), false);
+		setTitle(translate("List of Findings"));
+		setStatusMessage(translate("List of findings successfully loaded."), false);
 
 		getContentPane().setLayout(new BorderLayout());
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1432,24 +1432,24 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		setNumberOfHints(2);
 
 		hintAtt = new HintItem(
-				_("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
+				translate("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
 				HintItem.WARNING);
 
 		hintImpr = new HintItem(
-				_("Please enter the general impression for the product into the provided text field (Tab 'Impression')."),
+				translate("Please enter the general impression for the product into the provided text field (Tab 'Impression')."),
 				HintItem.WARNING);
 
 		hintRec = new HintItem(
-				_("Please enter the final recommendation for the product into the provided text field (Tab 'Comments & Recommendation')."),
+				translate("Please enter the final recommendation for the product into the provided text field (Tab 'Comments & Recommendation')."),
 				HintItem.WARNING);
 
-		hintFind = new HintItem(_("For every finding enter at least a description (Tab 'Findings')."),
+		hintFind = new HintItem(translate("For every finding enter at least a description (Tab 'Findings')."),
 				HintItem.WARNING);
 
-		hintOk = new HintItem(_("The meeting data and its list of findings is complete."), HintItem.OK);
+		hintOk = new HintItem(translate("The meeting data and its list of findings is complete."), HintItem.OK);
 
 		hintInfoNewFinding = new HintItem(
-				_("In order to add a new finding to the list of findings use the 'Add Finding' button (Tab 'Findings')."),
+				translate("In order to add a new finding to the list of findings use the 'Add Finding' button (Tab 'Findings')."),
 				HintItem.INFO);
 	}
 

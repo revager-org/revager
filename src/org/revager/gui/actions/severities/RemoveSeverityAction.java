@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions.severities;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 
@@ -36,7 +36,7 @@ import org.revager.gui.dialogs.WarningDialog.ButtonClicked;
 @SuppressWarnings("serial")
 public class RemoveSeverityAction extends AbstractAction {
 
-	private String message = _(
+	private String message = translate(
 			"If you remove a severity, this will affect the whole review. Removed severities will be replaced by the next higher one. Would you really like to remove the selected severity?");
 
 	/*

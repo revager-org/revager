@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
@@ -80,10 +80,10 @@ public class EditProductDialog extends AbstractDialog {
 	private JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
 	private JPanel buttonPanelD = new JPanel(new GridLayout(4, 1));
 
-	private JLabel referenceLbl = new JLabel(_("Product reference(s):"));
-	private JLabel dataLbl = new JLabel(_("Product file(s):"));
-	private JLabel nameLbl = new JLabel(_("Product name:"));
-	private JLabel versionLbl = new JLabel(_("Product version:"));
+	private JLabel referenceLbl = new JLabel(translate("Product reference(s):"));
+	private JLabel dataLbl = new JLabel(translate("Product file(s):"));
+	private JLabel nameLbl = new JLabel(translate("Product name:"));
+	private JLabel versionLbl = new JLabel(translate("Product version:"));
 
 	private ReferenceTableModel rtm = new ReferenceTableModel();
 	private ReviewManagement reviewMgmt = Application.getInstance().getReviewMgmt();
@@ -204,7 +204,7 @@ public class EditProductDialog extends AbstractDialog {
 		addReference = GUITools.newImageButton();
 		addReference.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
 		addReference.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
-		addReference.setToolTipText(_("Add Reference"));
+		addReference.setToolTipText(translate("Add Reference"));
 		addReference.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -212,7 +212,7 @@ public class EditProductDialog extends AbstractDialog {
 					referenceTbl.getCellEditor().stopCellEditing();
 				}
 
-				String placeHolder = _("New reference");
+				String placeHolder = translate("New reference");
 
 				reviewMgmt.removeProductReference(placeHolder);
 				reviewMgmt.addProductReference(placeHolder);
@@ -232,7 +232,7 @@ public class EditProductDialog extends AbstractDialog {
 		removeReference = GUITools.newImageButton();
 		removeReference.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
 		removeReference.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
-		removeReference.setToolTipText(_("Remove Reference"));
+		removeReference.setToolTipText(translate("Remove Reference"));
 		removeReference.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -249,7 +249,7 @@ public class EditProductDialog extends AbstractDialog {
 		editReference = GUITools.newImageButton();
 		editReference.setIcon(Data.getInstance().getIcon("edit_25x25_0.png"));
 		editReference.setRolloverIcon(Data.getInstance().getIcon("edit_25x25.png"));
-		editReference.setToolTipText(_("Edit Reference"));
+		editReference.setToolTipText(translate("Edit Reference"));
 		editReference.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -278,7 +278,7 @@ public class EditProductDialog extends AbstractDialog {
 						Desktop.getDesktop().open(ref);
 					} catch (Exception exc) {
 						JOptionPane.showMessageDialog(UI.getInstance().getEditProductDialog(),
-								GUITools.getMessagePane(exc.getMessage()), _("Error"), JOptionPane.ERROR_MESSAGE);
+								GUITools.getMessagePane(exc.getMessage()), translate("Error"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -303,7 +303,7 @@ public class EditProductDialog extends AbstractDialog {
 		addData = GUITools.newImageButton();
 		addData.setIcon(Data.getInstance().getIcon("add_25x25_0.png"));
 		addData.setRolloverIcon(Data.getInstance().getIcon("add_25x25.png"));
-		addData.setToolTipText(_("Add File"));
+		addData.setToolTipText(translate("Add File"));
 		addData.addFocusListener(focusListener);
 		addData.addActionListener(new ActionListener() {
 			@Override
@@ -323,7 +323,7 @@ public class EditProductDialog extends AbstractDialog {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									switchToProgressMode(_("Adding file ..."));
+									switchToProgressMode(translate("Adding file ..."));
 								}
 							});
 
@@ -366,7 +366,7 @@ public class EditProductDialog extends AbstractDialog {
 		removeData = GUITools.newImageButton();
 		removeData.setIcon(Data.getInstance().getIcon("remove_25x25_0.png"));
 		removeData.setRolloverIcon(Data.getInstance().getIcon("remove_25x25.png"));
-		removeData.setToolTipText(_("Remove File"));
+		removeData.setToolTipText(translate("Remove File"));
 		removeData.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -382,7 +382,7 @@ public class EditProductDialog extends AbstractDialog {
 						SwingUtilities.invokeLater(new Runnable() {
 							@Override
 							public void run() {
-								switchToProgressMode(_("Removing file ..."));
+								switchToProgressMode(translate("Removing file ..."));
 							}
 						});
 
@@ -465,25 +465,25 @@ public class EditProductDialog extends AbstractDialog {
 		String version = versionTxtFld.getText();
 
 		if (referenceTbl.isEditing()) {
-			setMessage(_("Press enter to add the reference finally."));
+			setMessage(translate("Press enter to add the reference finally."));
 
 			return;
 		}
 
 		if (name.trim().equals("")) {
-			setMessage(_("Please enter the name of the product."));
+			setMessage(translate("Please enter the name of the product."));
 			nameTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
 			return;
 		}
 
 		if (version.trim().equals("")) {
-			setMessage(_("Please enter the version number of the product."));
+			setMessage(translate("Please enter the version number of the product."));
 			versionTxtFld.setBorder(UI.MARKED_BORDER_INLINE);
 			return;
 		}
 
 		if (size < 1) {
-			setMessage(_("Please enter at least one reference for the product."));
+			setMessage(translate("Please enter at least one reference for the product."));
 			refScrllPn.setBorder(UI.MARKED_BORDER);
 			dataScrllPn.setBorder(UI.MARKED_BORDER);
 			return;
@@ -503,8 +503,8 @@ public class EditProductDialog extends AbstractDialog {
 	public EditProductDialog(Frame parent) {
 		super(parent);
 
-		setTitle(_("Specify the Product"));
-		setDescription(_("Here you can set the name, version and references of the product."));
+		setTitle(translate("Specify the Product"));
+		setDescription(translate("Here you can set the name, version and references of the product."));
 		setIcon(Data.getInstance().getIcon("edit_64x64.png"));
 
 		basePanel.setLayout(gbl);
@@ -515,7 +515,7 @@ public class EditProductDialog extends AbstractDialog {
 
 		createDialog();
 
-		close = new JButton(_("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
+		close = new JButton(translate("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
 		close.addFocusListener(focusListener);
 		close.addActionListener(new ActionListener() {
 			@Override

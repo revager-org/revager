@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -104,7 +104,7 @@ public class FindRefTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public String getColumnName(int column) {
-		return _("References");
+		return translate("References");
 	}
 
 }

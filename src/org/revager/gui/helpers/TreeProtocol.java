@@ -18,7 +18,7 @@
  */
 package org.revager.gui.helpers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.text.DateFormat;
 
@@ -105,7 +105,7 @@ public class TreeProtocol {
 				location = " | " + location;
 			}
 
-			String protFrom = _("Findings List of");
+			String protFrom = translate("Findings List of");
 			String protocolName = protFrom + " " + date + " | " + start + " - " + end + " (" + timezone + ")"
 					+ location;
 

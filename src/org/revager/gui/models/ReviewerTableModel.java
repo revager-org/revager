@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.List;
 
@@ -93,9 +93,9 @@ public class ReviewerTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		if (column == 1) {
-			return _("Category");
+			return translate("Category");
 		} else {
-			return _("Aspect");
+			return translate("Aspect");
 		}
 	}
 

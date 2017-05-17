@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -38,10 +38,10 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboB
 
 	private Map<String, AppCSVColumnName> columns = new HashMap<String, AppCSVColumnName>();
 
-	private final String DESCRIPTION = _("Description");
-	private final String REFERENCE = _("Reference");
-	private final String SEVERITY = _("Severity");
-	private final String REPORTER = _("Bug Reporter");
+	private final String DESCRIPTION = translate("Description");
+	private final String REFERENCE = translate("Reference");
+	private final String SEVERITY = translate("Severity");
+	private final String REPORTER = translate("Bug Reporter");
 
 	private String selection = null;
 

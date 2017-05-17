@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.List;
 
@@ -96,12 +96,12 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 			return "<html><b>" + name + "</b><br>" + contact + "</html>";
 		} else if (column == 2) {
 			String roleString = localAttList.get(row).getRole().toString();
-			return _(roleString);
+			return translate(roleString);
 		} else if (column == 3) {
 			int aspNumber = Application.getInstance().getAttendeeMgmt().getNumberOfAspects(localAttList.get(row));
 
 			if (aspNumber > 0) {
-				return aspNumber + " " + _("Aspects");
+				return aspNumber + " " + translate("Aspects");
 			} else {
 				return "";
 			}
@@ -111,7 +111,7 @@ public class PresentAttendeesTableModel extends AbstractTableModel {
 			String hours = String.format("%02d", localDur.getHours());
 			String mins = String.format("%02d", localDur.getMinutes());
 
-			return _("Preparation time") + ": " + hours + ":" + mins;
+			return translate("Preparation time") + ": " + hours + ":" + mins;
 		} else
 			return null;
 	}

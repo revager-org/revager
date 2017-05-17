@@ -18,7 +18,7 @@
  */
 package org.revager.export;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import org.revager.app.Application;
 import org.revager.app.model.ApplicationData;
@@ -88,7 +88,7 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 	 */
 	public ReviewProtocolPDFExporter(String filePath, boolean showSignFields, boolean attachProdExtRefs,
 			boolean attachFindExtRefs) throws ExportException, DataException {
-		super(filePath, _("List of Findings") + " · " + reviewTitle,
+		super(filePath, translate("List of Findings") + " · " + reviewTitle,
 				appData.getSetting(AppSettingKey.PDF_PROTOCOL_LOGO),
 				appData.getSetting(AppSettingKey.PDF_PROTOCOL_FOOT_TEXT));
 
@@ -125,7 +125,7 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 				table.setWidthPercentage(100);
 
 				PdfPCell cellSignIntro = new PdfPCell(
-						new Phrase(_("The following persons participated in the whole review:"), introFont));
+						new Phrase(translate("The following persons participated in the whole review:"), introFont));
 				cellSignIntro.setBorderWidth(0);
 				cellSignIntro.setPadding(padding);
 				cellSignIntro.setPaddingBottom(PDFTools.cmToPt(0.8f));
@@ -155,7 +155,7 @@ public class ReviewProtocolPDFExporter extends ProtocolPDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(_("Cannot create PDF document."));
+			throw new ExportException(translate("Cannot create PDF document."));
 		}
 	}
 

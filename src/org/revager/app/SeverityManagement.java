@@ -130,7 +130,7 @@ public class SeverityManagement {
 		List<String> list = new ArrayList<String>();
 
 		for (String sev : getDefLangSeverities()) {
-			list.add(Data._(sev));
+			list.add(Data.translate(sev));
 		}
 
 		return list;

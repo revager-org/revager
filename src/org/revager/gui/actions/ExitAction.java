@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -49,7 +49,7 @@ public class ExitAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuExit_16x16.png"));
-		putValue(NAME, _("Close Application"));
+		putValue(NAME, translate("Close Application"));
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
@@ -74,8 +74,8 @@ public class ExitAction extends AbstractAction {
 		if (status == Status.UNSAVED_CHANGES) {
 			int option = JOptionPane.showConfirmDialog(UI.getInstance().getMainFrame(),
 					GUITools.getMessagePane(
-							_("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
-					_("Question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+							translate("There are unsaved changes in the review. Would you like to save them now?\n\nAttention: If you choose 'No' all unsaved information will get lost.")),
+					translate("Question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 			if (option == JOptionPane.YES_OPTION) {
 				((SaveReviewAction) ActionRegistry.getInstance().get(SaveReviewAction.class.getName()))

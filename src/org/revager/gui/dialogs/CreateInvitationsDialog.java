@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -188,7 +188,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			allAttendeesBx.add(attendee);
 			String roleString = attMgmt.getAttendees().get(index).getRole().toString();
 
-			String attendeeName = attMgmt.getAttendees().get(index).getName() + ", " + _(roleString);
+			String attendeeName = attMgmt.getAttendees().get(index).getName() + ", " + translate(roleString);
 
 			int endIndex = 23;
 			if (attendeeName.length() - 1 < endIndex) {
@@ -228,7 +228,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			attPanel.add(attendee);
 		}
 
-		JLabel meetingLbl = new JLabel(_("Selected meeting:"));
+		JLabel meetingLbl = new JLabel(translate("Selected meeting:"));
 
 		meetingsBx = new JComboBox();
 		for (Meeting meet : Application.getInstance().getMeetingMgmt().getMeetings()) {
@@ -239,20 +239,20 @@ public class CreateInvitationsDialog extends AbstractDialog {
 		}
 
 		productBx = new JCheckBox();
-		productBx.setText(_("Attach product to invitation packages"));
+		productBx.setText(translate("Attach product to invitation packages"));
 
 		JPanel rbPanel = new JPanel(new GridLayout(3, 1));
 
 		ButtonGroup buttonG = new ButtonGroup();
-		pdfRB = new JRadioButton(_("Package as PDF file"), true);
+		pdfRB = new JRadioButton(translate("Package as PDF file"), true);
 		rbPanel.add(pdfRB);
 		buttonG.add(pdfRB);
 
-		zipRB = new JRadioButton(_("Package as ZIP file"));
+		zipRB = new JRadioButton(translate("Package as ZIP file"));
 		rbPanel.add(zipRB);
 		buttonG.add(zipRB);
 
-		dirRB = new JRadioButton(_("Package as sub directory"));
+		dirRB = new JRadioButton(translate("Package as sub directory"));
 		rbPanel.add(dirRB);
 		buttonG.add(dirRB);
 
@@ -262,9 +262,9 @@ public class CreateInvitationsDialog extends AbstractDialog {
 		scrllPn.setPreferredSize(new Dimension(230, 300));
 		scrllPn.setMinimumSize(new Dimension(230, 300));
 
-		JLabel attendeeLbl = new JLabel(_("Attendees:"));
+		JLabel attendeeLbl = new JLabel(translate("Attendees:"));
 
-		selectAll = new JToggleButton(_("Select All"));
+		selectAll = new JToggleButton(translate("Select All"));
 		selectAll.setFocusable(false);
 		selectAll.addItemListener(new ItemListener() {
 
@@ -291,11 +291,11 @@ public class CreateInvitationsDialog extends AbstractDialog {
 			}
 		});
 
-		JLabel directory = new JLabel(_("Directory:"));
+		JLabel directory = new JLabel(translate("Directory:"));
 		pathTxtFld = new JTextField();
 		JButton browse = GUITools.newImageButton(Data.getInstance().getIcon("buttonBrowse_22x22_0.png"),
 				Data.getInstance().getIcon("buttonBrowse_22x22.png"));
-		browse.setToolTipText(_("Select directory where to store the packages"));
+		browse.setToolTipText(translate("Select directory where to store the packages"));
 		browse.setMargin(new Insets(1, 1, 1, 1));
 		browse.addActionListener(new ActionListener() {
 
@@ -353,15 +353,15 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		pack();
 
-		setTitle(_("Create Invitations"));
-		setDescription(_("Here you can create invitations for the attendees."));
+		setTitle(translate("Create Invitations"));
+		setDescription(translate("Here you can create invitations for the attendees."));
 		setIcon(Data.getInstance().getIcon("createInvitations_64x64.png"));
 
 		setHelpChapter("invitations_management", "1");
 		c.setLayout(gbl);
 		clearInvitationsDialog();
 
-		JButton cancel = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
+		JButton cancel = new JButton(translate("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -371,7 +371,7 @@ public class CreateInvitationsDialog extends AbstractDialog {
 
 		addButton(cancel);
 
-		JButton confirm = new JButton(_("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
+		JButton confirm = new JButton(translate("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		confirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

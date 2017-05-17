@@ -18,7 +18,7 @@
  */
 package org.revager.export;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.FileOutputStream;
 
@@ -84,7 +84,7 @@ public abstract class PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(_(
+			throw new ExportException(translate(
 					"Cannot store PDF file. Either you don't have write permissions or the PDF file cannot be created."));
 		}
 

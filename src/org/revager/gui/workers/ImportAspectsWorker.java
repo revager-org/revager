@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -73,7 +73,7 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Importing aspects ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(translate("Importing aspects ..."));
 			}
 		});
 
@@ -85,11 +85,11 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 				String dir = asp.getDirective();
 
 				if (cate.trim().equals("")) {
-					cate = _("(No Category)");
+					cate = translate("(No Category)");
 				}
 
 				if (dir.trim().equals("")) {
-					dir = _("(No Directive)");
+					dir = translate("(No Directive)");
 				}
 
 				catalog.newAspect(dir, asp.getDescription(), cate);
@@ -98,21 +98,21 @@ public class ImportAspectsWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Aspects imported successfully."),
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Aspects imported successfully."),
 							false);
 				}
 			});
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					GUITools.getMessagePane(
-							_("Cannot import selected file. The content isn't conform to the expected format (Resi XML Schema).")
+							translate("Cannot import selected file. The content isn't conform to the expected format (Resi XML Schema).")
 									+ "\n\n" + e.getMessage()),
-					_("Error"), JOptionPane.ERROR_MESSAGE);
+					translate("Error"), JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot import aspects!"), false);
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Cannot import aspects!"), false);
 				}
 			});
 		}

@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -47,7 +47,7 @@ public class LoadReviewAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuOpen_16x16.png"));
-		putValue(NAME, _("Open Review..."));
+		putValue(NAME, translate("Open Review..."));
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}

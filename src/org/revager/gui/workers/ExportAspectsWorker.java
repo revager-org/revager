@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.List;
 
@@ -75,7 +75,7 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Exporting aspects ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(translate("Exporting aspects ..."));
 			}
 		});
 
@@ -97,18 +97,18 @@ public class ExportAspectsWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Aspects exported successfully."),
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Aspects exported successfully."),
 							false);
 				}
 			});
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot export the selected aspects!"),
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Cannot export the selected aspects!"),
 							false);
 				}
 			});

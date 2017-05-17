@@ -21,12 +21,10 @@ public class OpenPresentationView extends AbstractAction {
 
 	public void performActionDirectly() {
 		final PresentationFrame presentationFrame = UI.getInstance().getPresentationFrame();
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				presentationFrame.setVisible(true);
-			}
+
+		SwingUtilities.invokeLater(() -> {
+			presentationFrame.loadScreen();
+			presentationFrame.setVisible(true);
 		});
 	}
 

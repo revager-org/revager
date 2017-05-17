@@ -1,13 +1,10 @@
 package org.revager.gui.presentationView;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import static org.revager.app.model.appdata.AppSettingKey.APP_PROTOCOL_WARNING_TIME;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.RenderingHints;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +15,6 @@ import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
-import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.app.model.schema.Finding;
 import org.revager.gui.UI;
 
@@ -28,13 +24,22 @@ public class StatusPanel extends JPanel {
 	private Finding finding;
 	private JProgressBar totalDurationProgress;
 	private JLabel findingTimeField;
-	private JPanel hurryUpPanel;
+	private HurryUpImage hurryUpImage;
 	private JLabel continueDiscussionField;
 	private JLabel votingsField;
+	private int totalProtocolSeconds;
 
 	public StatusPanel() {
+		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
+			Object seconds = evt.getNewValue();
+			if (seconds instanceof Integer) {
+				this.totalProtocolSeconds = (int) seconds;
+				updateDisplay();
+			}
+		});
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.rowWeights = new double[] { 0.225, 0.1, 0.225, 0.225, 0.225 };
+		gridBagLayout.rowWeights = new double[] { 0.2, 0.2, 0.2, 0.2, 0.2 };
 		gridBagLayout.columnWeights = new double[] { 0.03, 0.17, 0.8 };
 		setLayout(gridBagLayout);
 		setBackground(UI.BLUE_BACKGROUND_COLOR);
@@ -55,27 +60,35 @@ public class StatusPanel extends JPanel {
 		updateDisplay();
 	}
 
-	private void updateDisplay()  {
+	private void updateDisplay() {
 		ApplicationData appData = Data.getInstance().getAppData();
-		// TODO APR: update display.
-		totalDurationProgress.setMaximum(120);
-		totalDurationProgress.setValue(100);
-		int maxReviewTime = 0;
+		int maxProtocolSeconds;
 		try {
-			maxReviewTime = Integer
-					.parseInt(appData.getSetting(AppSettingKey.APP_PROTOCOL_WARNING_TIME));
-		} catch (DataException e) {
+			maxProtocolSeconds = Integer.parseInt(appData.getSetting(APP_PROTOCOL_WARNING_TIME)) * 60;
+		} catch (DataException | NumberFormatException e) {
+			maxProtocolSeconds = 120 * 60;
 		}
-		System.out.println(maxReviewTime);
-		totalDurationProgress
-				.setString(maxReviewTime * totalDurationProgress.getValue() / totalDurationProgress.getMaximum() + "min");
+		int maxFindingSeconds;
+		try {
+			maxFindingSeconds = Integer.parseInt(appData.getSetting(AppSettingKey.APP_FINDING_WARNING_TIME)) * 60;
+		} catch (DataException | NumberFormatException e) {
+			maxFindingSeconds = 5 * 60;
+		}
+
+		totalDurationProgress.setMaximum(maxProtocolSeconds);
+		totalDurationProgress.setValue(totalProtocolSeconds);
+		// TODO: translate.
+		totalDurationProgress.setString(totalProtocolSeconds / 60 + "min " + totalProtocolSeconds % 60 + "sec");
+		// TODO: finish.
 		findingTimeField.setText("sdf");
-		// hurryUpPanel.
+		// TODO: do not use totalProtocolSeconds
+		hurryUpImage.setImageOpacity((float) totalProtocolSeconds / maxFindingSeconds);
 		continueDiscussionField.setText("2/3");
 		votingsField.setText("1/2");
 	}
 
 	private void addTitle() {
+		// TODO: translate
 		JLabel title = new JLabel("title");
 		title.setBackground(UI.EDIT_VIEW_BG);
 		title.setOpaque(true);
@@ -131,7 +144,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void addHurryUp() {
-		hurryUpPanel = new HurryUpImage();
+		hurryUpImage = new HurryUpImage();
 		GridBagConstraints hurryUpPanelGridConstraints = new GridBagConstraints();
 		hurryUpPanelGridConstraints.fill = GridBagConstraints.BOTH;
 		hurryUpPanelGridConstraints.gridheight = GridBagConstraints.REMAINDER;
@@ -139,7 +152,7 @@ public class StatusPanel extends JPanel {
 		hurryUpPanelGridConstraints.gridx = 2;
 		hurryUpPanelGridConstraints.gridy = 2;
 		hurryUpPanelGridConstraints.anchor = GridBagConstraints.SOUTHEAST;
-		add(hurryUpPanel, hurryUpPanelGridConstraints);
+		add(hurryUpImage, hurryUpPanelGridConstraints);
 	}
 
 	private void addContinueDiscussion() {

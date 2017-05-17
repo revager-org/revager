@@ -1,8 +1,6 @@
 package org.revager.gui.presentationView;
 
 import java.awt.BorderLayout;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -10,14 +8,12 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
-import org.revager.app.Application;
 import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.app.model.schema.Review;
-import org.revager.gui.MainFrame;
 import org.revager.gui.UI;
 
 public class PresentationFrame extends JFrame {
@@ -34,12 +30,14 @@ public class PresentationFrame extends JFrame {
 	public PresentationFrame() {
 		super();
 		buildGUI();
-		Application instance = Application.getInstance();
-		MainFrame mainFrame = UI.getInstance().getMainFrame();
+	}
+
+	public void loadScreen() {
 		ResiData resiData = Data.getInstance().getResiData();
-		Protocol protocol = mainFrame.getSelectedProtocol();
-		Meeting meeting = instance.getProtocolMgmt().getMeeting(protocol);
 		Review review = resiData.getReview();
+
+		Meeting meeting = UI.getInstance().getProtocolFrame().getMeeting();
+		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
 		for (Finding finding : protocol.getFindings()) {
 			finding.addObserver((o, arg) -> {
 				displayFindingsTab();
@@ -69,13 +67,11 @@ public class PresentationFrame extends JFrame {
 				});
 			}
 		});
-
 	}
 
 	private void buildGUI() {
-		setTitle("tasdfsdf");
-		// TODO: decide.
-//		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		// TODO: Translate string.
+		setTitle("Presentation View");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		SwingUtilities.invokeLater(() -> {

@@ -5,7 +5,6 @@ import java.awt.Font;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import org.revager.app.model.DataException;
 import org.revager.app.model.schema.Finding;
 
 public class PresentationFindingsTab extends JPanel {

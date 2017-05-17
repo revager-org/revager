@@ -106,6 +106,7 @@ import org.revager.gui.helpers.HintItem;
 import org.revager.gui.helpers.ObservingTextField;
 import org.revager.gui.models.PresentAttendeesTableModel;
 import org.revager.gui.models.RotateSpinnerNumberModel;
+import org.revager.gui.presentationView.PresentationFrame;
 import org.revager.gui.workers.ImageEditorWriteWorker;
 import org.revager.gui.workers.ProtocolClockWorker;
 import org.revager.tools.GUITools;
@@ -140,9 +141,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JPanel tabGenImp = new JPanel(gbl);
 	private JPanel bottomOrgPanel = new JPanel(gbl);
 
+	private JButton tbConfirmProt;
 	private JButton tbPdfExport;
 	private JButton tbCsvExport;
-	private JButton tbConfirmProt;
+	private JButton tbPresenationView;
 	private JButton tbFullscreen;
 
 	private JPanel attPanel = new JPanel(gbl);
@@ -388,6 +390,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				GUITools.executeSwingWorker(new ImageEditorWriteWorker(currentProt));
 
 				setVisible(false);
+				UI.getInstance().getPresentationFrame().setVisible(false);
 			}
 		});
 
@@ -423,6 +426,16 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		});
 
 		addTopComponent(tbCsvExport);
+
+		tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("arrow_50x50_0.png"),
+				Data.getInstance().getIcon("arrow_50x50.png"));
+		// TODO: add Text
+		tbPresenationView.setToolTipText(_("asdf"));
+		tbPresenationView.addActionListener((e) -> {
+			PresentationFrame presentationFrame = UI.getInstance().getPresentationFrame();
+			presentationFrame.setVisible(!presentationFrame.isVisible());
+		});
+		addTopComponent(tbPresenationView);
 
 		/*
 		 * Fullscreen

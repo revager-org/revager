@@ -1,83 +1,36 @@
 package org.revager.gui.presentationView;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Font;
 
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
 
+import org.revager.app.model.DataException;
 import org.revager.app.model.schema.Finding;
-import org.revager.gui.UI;
 
 public class PresentationFindingsTab extends JPanel {
 
 	private static final long serialVersionUID = -7499170906423144396L;
-	
-	private JPanel statusPanel;
-	private CurrentFindingPanel currentFindingPanel;
+
+	public static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 30);
+	public static final Font STANDARD_STATUS_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 30);
+
+	private PreviousFindingPanel previousFindingPanel = new PreviousFindingPanel();
+	private CurrentFindingPanel currentFindingPanel = new CurrentFindingPanel();
+	private StatusPanel statusPanel;
 
 	public PresentationFindingsTab() {
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-		currentFindingPanel = new CurrentFindingPanel();
-		
+		this.add(previousFindingPanel);
 		this.add(currentFindingPanel);
-		
-		createStatusPanel();
+		statusPanel = new StatusPanel();
 		this.add(statusPanel);
-		statusPanel.revalidate();
-
-	}
-
-	private void createStatusPanel() {
-		statusPanel = new JPanel();
-		
-		GridBagLayout BagLayout = new GridBagLayout();
-		statusPanel.setLayout(BagLayout);
-		
-		JLabel title = new JLabel("title");
-		title.setFont(UI.LARGE_FONT);
-		title.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_title = new GridBagConstraints();
-		gbc_title.gridwidth = 3;
-		gbc_title.insets = new Insets(0, 0, 5, 0);
-		gbc_title.gridx = 0;
-		gbc_title.gridy = 0;
-		statusPanel.add(title, gbc_title);
-		
-		JLabel lblNewLabel = new JLabel("Dauer");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
-		statusPanel.add(lblNewLabel, gbc_lblNewLabel);
-		
-		JProgressBar progressBar = new JProgressBar();
-		GridBagConstraints gbc_progressBar = new GridBagConstraints();
-		gbc_progressBar.insets = new Insets(0, 0, 5, 0);
-		gbc_progressBar.gridwidth = 2;
-		gbc_progressBar.gridx = 1;
-		gbc_progressBar.gridy = 1;
-		statusPanel.add(progressBar, gbc_progressBar);
-		
-		JLabel zeitBefund = new JLabel("Zeit Befund");
-		zeitBefund.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_zeitBefund = new GridBagConstraints();
-		gbc_zeitBefund.insets = new Insets(0, 0, 5, 5);
-		gbc_zeitBefund.gridx = 0;
-		gbc_zeitBefund.gridy = 2;
-		statusPanel.add(zeitBefund, gbc_zeitBefund);
-		
 	}
 
 	public void updateFinding(Finding finding) {
+		previousFindingPanel.setFiding(currentFindingPanel.getFinding());
 		currentFindingPanel.setFinding(finding);
+		statusPanel.setFinding(finding);
 	}
 }

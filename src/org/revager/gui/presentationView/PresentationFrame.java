@@ -37,7 +37,6 @@ public class PresentationFrame extends JFrame {
 		Application instance = Application.getInstance();
 		MainFrame mainFrame = UI.getInstance().getMainFrame();
 		ResiData resiData = Data.getInstance().getResiData();
-
 		Protocol protocol = mainFrame.getSelectedProtocol();
 		Meeting meeting = instance.getProtocolMgmt().getMeeting(protocol);
 		Review review = resiData.getReview();
@@ -75,7 +74,9 @@ public class PresentationFrame extends JFrame {
 
 	private void buildGUI() {
 		setTitle("tasdfsdf");
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		// TODO: decide.
+//		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		SwingUtilities.invokeLater(() -> {
 			tabPanelProtocol = new PresentationProtocolTab();

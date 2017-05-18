@@ -33,7 +33,9 @@ public class PresentationFindingsTab extends JPanel {
 
 	public void updateFinding(Finding finding) {
 		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
-		
+		if (finding == null) {
+			return;
+		}
 		currentFindingPanel.setFinding(finding);
 		if (lastFinding != finding) {
 			System.out.println("check for NPE");

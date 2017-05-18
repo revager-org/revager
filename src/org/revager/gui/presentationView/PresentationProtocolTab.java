@@ -35,7 +35,7 @@ public class PresentationProtocolTab extends JPanel {
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 
-		JLabel impressionLabel = new JLabel(_("General impression of the product:"));
+		JLabel impressionLabel = new JLabel(translate("General impression of the product:"));
 		impressionLabel.setFont(UI.VERY_LARGE_FONT_BOLD);
 		generalImpressionTextArea = new JTextArea();
 		generalImpressionTextArea.setEditable(false);

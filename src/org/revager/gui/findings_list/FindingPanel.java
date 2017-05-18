@@ -512,14 +512,14 @@ public class FindingPanel extends JPanel {
 		panelCompactView.setBorder(UI.STANDARD_BORDER);
 		panelCompactView.setBackground(UI.COMPACT_VIEW_BG);
 
-		labelFindingDescription.setFont(UI.PROTOCOL_FONT);
+		labelFindingDescription.setFont(UI.VERY_LARGE_FONT);
 
-		labelFindingNumber.setFont(UI.PROTOCOL_FONT_BOLD);
+		labelFindingNumber.setFont(UI.VERY_LARGE_FONT_BOLD);
 
-		labelFindingSeverity.setFont(UI.PROTOCOL_FONT);
+		labelFindingSeverity.setFont(UI.VERY_LARGE_FONT);
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
-		labelFindingTitle.setFont(UI.PROTOCOL_FONT_BOLD);
+		labelFindingTitle.setFont(UI.VERY_LARGE_FONT_BOLD);
 		labelFindingTitle.setText(translate("Finding") + " " + finding.getId());
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
@@ -527,7 +527,7 @@ public class FindingPanel extends JPanel {
 
 		textDescription.setText(finding.getDescription());
 		textDescription.addFocusListener(focusListener);
-		textDescription.setFont(UI.PROTOCOL_FONT);
+		textDescription.setFont(UI.VERY_LARGE_FONT);
 		textDescription.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -549,7 +549,7 @@ public class FindingPanel extends JPanel {
 			}
 		});
 
-		comboSeverity.setFont(UI.PROTOCOL_FONT_BOLD);
+		comboSeverity.setFont(UI.VERY_LARGE_FONT_BOLD);
 		for (String sev : sevMgmt.getSeverities()) {
 			comboSeverity.addItem(sev);
 		}
@@ -881,7 +881,7 @@ public class FindingPanel extends JPanel {
 
 		@Override
 		public Font getFont() {
-			return UI.PROTOCOL_FONT;
+			return UI.VERY_LARGE_FONT;
 		}
 
 		@Override
@@ -898,7 +898,7 @@ public class FindingPanel extends JPanel {
 
 		@Override
 		public Font getFont() {
-			return UI.PROTOCOL_FONT;
+			return UI.VERY_LARGE_FONT;
 		}
 	};
 

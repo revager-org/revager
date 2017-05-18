@@ -1,6 +1,6 @@
 package org.revager.gui.presentationView;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -76,7 +76,7 @@ public class PreviousFindingPanel extends JPanel {
 	private void updateDisplay() {
 		// TODO: update Display.
 		// TODO: translatee
-		labelFindingTitle.setText("Vorheriger Befund: " + _("Finding") + " " + finding.getId());
+		labelFindingTitle.setText("Vorheriger Befund: " + translate("Finding") + " " + finding.getId());
 		textDescription.setText(finding.getDescription());
 	}
 

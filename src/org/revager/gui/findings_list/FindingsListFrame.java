@@ -430,7 +430,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("arrow_50x50_0.png"),
 				Data.getInstance().getIcon("arrow_50x50.png"));
 		// TODO: add Text
-		tbPresenationView.setToolTipText(_("asdf"));
+		tbPresenationView.setToolTipText(translate("asdf"));
 		tbPresenationView.addActionListener((e) -> {
 			PresentationFrame presentationFrame = UI.getInstance().getPresentationFrame();
 			presentationFrame.setVisible(!presentationFrame.isVisible());
@@ -462,7 +462,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		/*
 		 * current time
 		 */
-		clockCurrentTime.setFont(UI.PROTOCOL_FONT);
+		clockCurrentTime.setFont(UI.VERY_LARGE_FONT);
 
 		addTopRightComp(clockCurrentTime);
 
@@ -471,7 +471,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		 */
 		addTopRightComp(new JLabel(Data.getInstance().getIcon("blank_50x50.png")));
 
-		clockLabel.setFont(UI.PROTOCOL_FONT);
+		clockLabel.setFont(UI.VERY_LARGE_FONT);
 
 		clockButtonStart = GUITools.newImageButton();
 
@@ -606,7 +606,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				label.setOpaque(true);
 				label.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-				label.setFont(UI.PROTOCOL_FONT);
+				label.setFont(UI.VERY_LARGE_FONT);
 
 				if (isSelected) {
 					label.setBackground(presentAttTable.getSelectionBackground());
@@ -714,7 +714,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		});
 
 		JLabel labelAttendees = new JLabel(translate("Attendees of the current meeting:"));
-		labelAttendees.setFont(UI.PROTOCOL_TITLE_FONT);
+		labelAttendees.setFont(UI.HUGE_FONT_BOLD);
 
 		GUITools.addComponent(attPanel, gbl, labelAttendees, 0, 0, 2, 1, 1.0, 0.0, 20, 20, 0, 20,
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
@@ -726,10 +726,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private void createImpPanel() {
 		JLabel impLbl = new JLabel(translate("General impression of the product:"));
-		impLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		impLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		impTxtArea = new JTextArea();
-		impTxtArea.setFont(UI.PROTOCOL_FONT);
+		impTxtArea.setFont(UI.VERY_LARGE_FONT);
 
 		impTxtArea.addKeyListener(updateListener);
 		impTxtArea.addKeyListener(tabKeyListener);
@@ -753,21 +753,21 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	private void createBottomOrgPanel() {
 		JLabel locationLbl = new JLabel(translate("Location:"));
-		locationLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		locationLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		JLabel dateLbl = new JLabel(translate("Date:"));
-		dateLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		dateLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		JLabel beginLbl = new JLabel(translate("Period of time:"));
-		beginLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		beginLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		JLabel tillLabel = new JLabel(translate("to"));
-		tillLabel.setFont(UI.PROTOCOL_FONT_BOLD);
+		tillLabel.setFont(UI.VERY_LARGE_FONT_BOLD);
 
-		clockLabel.setFont(UI.PROTOCOL_FONT_BOLD);
+		clockLabel.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		dateTxtFld = new ObservingTextField();
-		dateTxtFld.setFont(UI.PROTOCOL_FONT);
+		dateTxtFld.setFont(UI.VERY_LARGE_FONT);
 
 		dateTxtFld.setFocusable(false);
 		dateTxtFld.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -814,10 +814,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		endMSpinner = new JSpinner(new RotateSpinnerNumberModel(00, 00, 59, 1));
 		endHSpinner = new JSpinner(new RotateSpinnerNumberModel(00, 00, 23, 1));
 
-		beginMSpinner.setFont(UI.PROTOCOL_FONT);
-		beginHSpinner.setFont(UI.PROTOCOL_FONT);
-		endHSpinner.setFont(UI.PROTOCOL_FONT);
-		endMSpinner.setFont(UI.PROTOCOL_FONT);
+		beginMSpinner.setFont(UI.VERY_LARGE_FONT);
+		beginHSpinner.setFont(UI.VERY_LARGE_FONT);
+		endHSpinner.setFont(UI.VERY_LARGE_FONT);
+		endMSpinner.setFont(UI.VERY_LARGE_FONT);
 
 		beginMSpinner.addChangeListener(spinnerChangeListener);
 		beginHSpinner.addChangeListener(spinnerChangeListener);
@@ -825,7 +825,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		endMSpinner.addChangeListener(spinnerChangeListener);
 
 		locationTxtFld = new JTextField();
-		locationTxtFld.setFont(UI.PROTOCOL_FONT);
+		locationTxtFld.setFont(UI.VERY_LARGE_FONT);
 
 		/*
 		 * Hide border if the application runs on Mac OS X
@@ -874,10 +874,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		spinnerPanel.setOpaque(false);
 
 		JLabel labelDoubleDot1 = new JLabel(":");
-		labelDoubleDot1.setFont(UI.PROTOCOL_FONT_BOLD);
+		labelDoubleDot1.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		JLabel labelDoubleDot2 = new JLabel(":");
-		labelDoubleDot2.setFont(UI.PROTOCOL_FONT_BOLD);
+		labelDoubleDot2.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		GUITools.addComponent(spinnerPanel, gbl, beginHSpinner, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0,
 				GridBagConstraints.VERTICAL, GridBagConstraints.NORTHWEST);
@@ -921,25 +921,25 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private void createCommAndRatePanel() {
 
 		JLabel recLbl = new JLabel(translate("Final recommendation for the product:"));
-		recLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		recLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		JLabel meetCommLbl = new JLabel(translate("Comments on the meeting:"));
-		meetCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		meetCommLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		JLabel protCommLbl = new JLabel(translate("Comments on the list of findings:"));
-		protCommLbl.setFont(UI.PROTOCOL_FONT_BOLD);
+		protCommLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		meetCommTxtArea = new JTextArea();
 		meetCommTxtArea.setRows(4);
-		meetCommTxtArea.setFont(UI.PROTOCOL_FONT);
+		meetCommTxtArea.setFont(UI.VERY_LARGE_FONT);
 
 		protCommTxtArea = new JTextArea();
 		protCommTxtArea.setRows(4);
-		protCommTxtArea.setFont(UI.PROTOCOL_FONT);
+		protCommTxtArea.setFont(UI.VERY_LARGE_FONT);
 
 		recBx = new JComboBox();
 		recBx.setEditable(true);
-		recBx.setFont(UI.PROTOCOL_FONT);
+		recBx.setFont(UI.VERY_LARGE_FONT);
 
 		/*
 		 * adding focus and tab listeners to TextAreas

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
+import org.apache.derby.iapi.services.io.NewByteArrayInputStream;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -19,12 +20,14 @@ import org.revager.app.model.schema.Finding;
 import org.revager.gui.UI;
 
 public class StatusPanel extends JPanel {
+
 	private static final long serialVersionUID = 4044468994799470896L;
 
 	private Finding finding;
 	private JProgressBar totalDurationProgress;
 	private JLabel findingTimeField;
 	private HurryUpImage hurryUpImage;
+	private JLabel breakField;
 	private JLabel continueDiscussionField;
 	private JLabel votingsField;
 	private int totalProtocolSeconds;
@@ -39,7 +42,7 @@ public class StatusPanel extends JPanel {
 		});
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.rowWeights = new double[] { 0.2, 0.2, 0.2, 0.2, 0.2 };
+		gridBagLayout.rowWeights = new double[] { 0.16, 0.16, 0.16, 0.16, 0.16, 0.16 };
 		gridBagLayout.columnWeights = new double[] { 0.03, 0.17, 0.8 };
 		setLayout(gridBagLayout);
 		setBackground(UI.BLUE_BACKGROUND_COLOR);
@@ -47,6 +50,7 @@ public class StatusPanel extends JPanel {
 		addTitle();
 		addTotalTime();
 		addFindingTime();
+		addBreak();
 		addHurryUp();
 		addContinueDiscussion();
 		addVotings();
@@ -151,8 +155,28 @@ public class StatusPanel extends JPanel {
 		hurryUpPanelGridConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		hurryUpPanelGridConstraints.gridx = 2;
 		hurryUpPanelGridConstraints.gridy = 2;
+		hurryUpPanelGridConstraints.insets = new Insets(15, 15, 15, 15);
 		hurryUpPanelGridConstraints.anchor = GridBagConstraints.SOUTHEAST;
 		add(hurryUpImage, hurryUpPanelGridConstraints);
+	}
+
+	private void addBreak() {
+		JLabel breakLabel = new JLabel("Pause:");
+		breakLabel.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
+		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
+		continueDiscussionLabelGridConstraints.gridx = 0;
+		continueDiscussionLabelGridConstraints.gridy = 3;
+		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
+		add(breakLabel, continueDiscussionLabelGridConstraints);
+
+		breakField = new JLabel();
+		breakField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		GridBagConstraints breakFieldGridConstraints = new GridBagConstraints();
+		breakFieldGridConstraints.gridx = 1;
+		breakFieldGridConstraints.gridy = 3;
+		breakFieldGridConstraints.anchor = GridBagConstraints.WEST;
+		add(breakField, breakFieldGridConstraints);
 	}
 
 	private void addContinueDiscussion() {
@@ -161,7 +185,7 @@ public class StatusPanel extends JPanel {
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
 		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
 		continueDiscussionLabelGridConstraints.gridx = 0;
-		continueDiscussionLabelGridConstraints.gridy = 3;
+		continueDiscussionLabelGridConstraints.gridy = 4;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(continueDiscussionLabel, continueDiscussionLabelGridConstraints);
 
@@ -169,7 +193,7 @@ public class StatusPanel extends JPanel {
 		continueDiscussionField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionFieldGridConstraints = new GridBagConstraints();
 		continueDiscussionFieldGridConstraints.gridx = 1;
-		continueDiscussionFieldGridConstraints.gridy = 3;
+		continueDiscussionFieldGridConstraints.gridy = 4;
 		continueDiscussionFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(continueDiscussionField, continueDiscussionFieldGridConstraints);
 	}
@@ -180,7 +204,7 @@ public class StatusPanel extends JPanel {
 		GridBagConstraints votingLabelGridConstraints = new GridBagConstraints();
 		votingLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
 		votingLabelGridConstraints.gridx = 0;
-		votingLabelGridConstraints.gridy = 4;
+		votingLabelGridConstraints.gridy = 5;
 		votingLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(votingsLabel, votingLabelGridConstraints);
 
@@ -188,7 +212,7 @@ public class StatusPanel extends JPanel {
 		votingsField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
 		GridBagConstraints votingsFieldGridConstraints = new GridBagConstraints();
 		votingsFieldGridConstraints.gridx = 1;
-		votingsFieldGridConstraints.gridy = 4;
+		votingsFieldGridConstraints.gridy = 5;
 		votingsFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(votingsField, votingsFieldGridConstraints);
 	}

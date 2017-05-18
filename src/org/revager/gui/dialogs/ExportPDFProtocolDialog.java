@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -114,8 +114,8 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 	public ExportPDFProtocolDialog(Frame parent) {
 		super(parent);
 
-		setTitle(_("Export Findings as PDF File"));
-		setDescription(_("Here you can export the findings as a PDF file."));
+		setTitle(translate("Export Findings as PDF File"));
+		setDescription(translate("Here you can export the findings as a PDF file."));
 		setIcon(Data.getInstance().getIcon("PDFExport_50x50.png"));
 
 		setHelpChapter("protocol", "9");
@@ -130,18 +130,18 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 		setLocationToCenter();
 
 		ButtonGroup radioBttnGrp = new ButtonGroup();
-		compRevRB = new JRadioButton(_("All findings of the review"), true);
+		compRevRB = new JRadioButton(translate("All findings of the review"), true);
 		radioBttnGrp.add(compRevRB);
 
-		String fieldsStr = _("Include signing fields for the present attendees.");
-		String addFindRStr = _("Attach files which belong to the findings.");
-		String addProExRefStr = _("Attach file(s) of the product");
+		String fieldsStr = translate("Include signing fields for the present attendees.");
+		String addFindRStr = translate("Attach files which belong to the findings.");
+		String addProExRefStr = translate("Attach file(s) of the product");
 
 		showFieldsChBx = new JCheckBox(fieldsStr);
 		addExFindRefChBx = new JCheckBox(addFindRStr);
 		addExProRefChBx = new JCheckBox(addProExRefStr);
 
-		String locMeetStr = _("Export the findings of a certain meeting only:");
+		String locMeetStr = translate("Export the findings of a certain meeting only:");
 		JRadioButton localMeetRB = new JRadioButton(locMeetStr);
 		localMeetRB.addItemListener(new ItemListener() {
 			@Override
@@ -171,7 +171,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 		GUITools.addComponent(this, gbl, addExFindRefChBx, 0, 5, 1, 1, 1.0, 0, 20, 10, 0, 10,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
 
-		abortBttn = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
+		abortBttn = new JButton(translate("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		abortBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +179,7 @@ public class ExportPDFProtocolDialog extends AbstractDialog {
 			}
 		});
 
-		exportBttn = new JButton(_("Export"), Data.getInstance().getIcon("buttonOk_16x16.png"));
+		exportBttn = new JButton(translate("Export"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		exportBttn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

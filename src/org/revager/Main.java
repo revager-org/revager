@@ -18,7 +18,7 @@
  */
 package org.revager;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.File;
 import java.io.IOException;
@@ -111,7 +111,7 @@ public class Main {
 
 			SwingUtilities.invokeLater(ui);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			System.err.println(e.getMessage());
@@ -161,8 +161,8 @@ public class Main {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
 					GUITools.getMessagePane(
-							_("The application cannot be restarted automatically on your system. Please start up RevAger manually after it has been closed.")),
-					_("Warning"), JOptionPane.WARNING_MESSAGE);
+							translate("The application cannot be restarted automatically on your system. Please start up RevAger manually after it has been closed.")),
+					translate("Warning"), JOptionPane.WARNING_MESSAGE);
 		}
 
 		exitApplication();
@@ -239,12 +239,12 @@ public class Main {
 		if (oldDataPathFound && newDataPathFound && !newDataPathExist) {
 			if (JOptionPane.showConfirmDialog(null,
 					GUITools.getMessagePane(
-							_("RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?")),
-					_("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+							translate("RevAger has detected an existing review data folder from an earlier version of this application. Do you want to use the data for the new version of RevAger?")),
+					translate("Question"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				try {
 					FileTools.copyDirectory(new File(oldDataPath), new File(newDataPath));
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+					JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 							JOptionPane.ERROR_MESSAGE);
 
 					System.err.println(e.getMessage());

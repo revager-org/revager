@@ -18,7 +18,7 @@
  */
 package org.revager.app.model;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -152,7 +152,7 @@ public class HelpDataOrig {
 			 * Not part of unit testing because this exception only is thrown if
 			 * an internal error occurs which cannot be provoked.
 			 */
-			throw new DataException(_("Cannot load help information."));
+			throw new DataException(translate("Cannot load help information."));
 		}
 
 		/*
@@ -181,14 +181,14 @@ public class HelpDataOrig {
 					 * Not part of unit testing because normally you don't have
 					 * any chapters without a title.
 					 */
-					helpChaptersTitle[i] = _("<no title>");
+					helpChaptersTitle[i] = translate("<no title>");
 				}
 			} catch (Exception e) {
 				/*
 				 * Not part of unit testing because this exception only is
 				 * thrown if an internal error occurs which cannot be provoked.
 				 */
-				throw new DataException(_("Cannot load help information."));
+				throw new DataException(translate("Cannot load help information."));
 			}
 
 		}
@@ -274,7 +274,7 @@ public class HelpDataOrig {
 		}
 
 		if (title == null) {
-			throw new DataException(_("Cannot find requested help chapter.") + " [CHAPTER = " + chapter + "]");
+			throw new DataException(translate("Cannot find requested help chapter.") + " [CHAPTER = " + chapter + "]");
 		}
 
 		return title;
@@ -305,7 +305,7 @@ public class HelpDataOrig {
 		}
 
 		if (htmlCode == null) {
-			throw new DataException(_("Cannot find requested help chapter.") + " [CHAPTER = " + chapter + "]");
+			throw new DataException(translate("Cannot find requested help chapter.") + " [CHAPTER = " + chapter + "]");
 		}
 
 		return htmlCode;

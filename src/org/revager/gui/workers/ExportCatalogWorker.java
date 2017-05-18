@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -75,7 +75,7 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(_("Exporting catalog ..."));
+				UI.getInstance().getAspectsManagerFrame().switchToProgressMode(translate("Exporting catalog ..."));
 			}
 		});
 
@@ -107,18 +107,18 @@ public class ExportCatalogWorker extends SwingWorker<Void, Void> {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Catalog exported successfully."),
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Catalog exported successfully."),
 							false);
 				}
 			});
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					UI.getInstance().getAspectsManagerFrame().setStatusMessage(_("Cannot export selected catalog!"),
+					UI.getInstance().getAspectsManagerFrame().setStatusMessage(translate("Cannot export selected catalog!"),
 							false);
 				}
 			});

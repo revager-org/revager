@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -52,7 +52,7 @@ public class SaveReviewAsAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuSaveAs_16x16.png"));
-		putValue(NAME, _("Save Review as..."));
+		putValue(NAME, translate("Save Review as..."));
 	}
 
 	/*
@@ -80,15 +80,15 @@ public class SaveReviewAsAction extends AbstractAction {
 				ResiFileFilter.TYPE_REVIEW) == FileChooser.SELECTED_APPROVE) {
 			String reviewPath = fileChooser.getFile().getAbsolutePath();
 
-			Object[] options = { _("Ignore"), _("Correct") };
+			Object[] options = { translate("Ignore"), translate("Correct") };
 
 			if (revMgmt.hasExtRefs()
 					&& (reviewPath.trim().toLowerCase().endsWith(ENDING_XML)
 							|| reviewPath.trim().toLowerCase().endsWith(".xml"))
 					&& JOptionPane.showOptionDialog(UI.getInstance().getMainFrame(),
 							GUITools.getMessagePane(
-									_("This review contains attachments. It is not possible to store them inside the XML file, so they'll get lost.")),
-							_("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+									translate("This review contains attachments. It is not possible to store them inside the XML file, so they'll get lost.")),
+							translate("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
 							options[0]) == JOptionPane.NO_OPTION) {
 				this.setExitApplication(exitApp);
 				this.actionPerformed(e);

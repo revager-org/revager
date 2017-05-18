@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions.meeting;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 
@@ -58,7 +58,7 @@ public class CommentMeetingAction extends AbstractAction {
 		}
 
 		TextPopupWindow popup = new TextPopupWindow(UI.getInstance().getMainFrame(),
-				_("Comments on the selected meeting:"), comments, true);
+				translate("Comments on the selected meeting:"), comments, true);
 
 		popup.setVisible(true);
 

@@ -18,7 +18,7 @@
  */
 package org.revager.export;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.text.MessageFormat;
 
@@ -284,7 +284,7 @@ public class PDFPageEventHelper extends PdfPageEventHelper {
 			PdfContentByte contentByte = writer.getDirectContent();
 			contentByte.saveState();
 
-			String text = MessageFormat.format(_("Page {0} of") + " ", writer.getPageNumber());
+			String text = MessageFormat.format(translate("Page {0} of") + " ", writer.getPageNumber());
 
 			float textSize = footBaseFont.getWidthPoint(text, footFontSize);
 			float textBase = document.bottom() - PDFTools.cmToPt(1.26f);

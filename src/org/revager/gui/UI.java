@@ -18,7 +18,7 @@
  */
 package org.revager.gui;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -763,12 +763,12 @@ public class UI implements Observer {
 
 			// getMainFrame().setEnabled(false);
 
-			Object[] options = { _("Restore"), _("Discard") };
+			Object[] options = { translate("Restore"), translate("Discard") };
 
 			if (JOptionPane.showOptionDialog(mainFrame,
 					GUITools.getMessagePane(
-							_("There is a review which hasn't been stored properly. Would you like to restore and load the review?")),
-					_("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+							translate("There is a review which hasn't been stored properly. Would you like to restore and load the review?")),
+					translate("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
 					options[0]) == JOptionPane.YES_OPTION) {
 				// getMainFrame().setEnabled(true);
 

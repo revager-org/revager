@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,9 +139,9 @@ public class AspectTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		if (column == 0) {
-			return _("Aspect");
+			return translate("Aspect");
 		} else {
-			return _("Reviewers");
+			return translate("Reviewers");
 		}
 	}
 

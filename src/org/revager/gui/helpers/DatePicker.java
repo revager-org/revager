@@ -7,7 +7,7 @@
  */
 package org.revager.gui.helpers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -628,7 +628,7 @@ public class DatePicker extends Observable implements Runnable, WindowFocusListe
 
 		// screen.setUndecorated(true);
 		screen.setResizable(false);
-		screen.setTitle(_("RevAger"));
+		screen.setTitle(translate("RevAger"));
 
 		screen.getContentPane().setLayout(new BorderLayout());
 		screen.getContentPane().add(panelBase, BorderLayout.CENTER);
@@ -925,60 +925,60 @@ public class DatePicker extends Observable implements Runnable, WindowFocusListe
 	 */
 	public String getString(String key) {
 		if (key.equals("month.0")) {
-			return _("January");
+			return translate("January");
 		} else if (key.equals("month.1")) {
-			return _("February");
+			return translate("February");
 		} else if (key.equals("month.2")) {
-			return _("March");
+			return translate("March");
 		} else if (key.equals("month.3")) {
-			return _("April");
+			return translate("April");
 		} else if (key.equals("month.4")) {
-			return _("May");
+			return translate("May");
 		} else if (key.equals("month.5")) {
-			return _("June");
+			return translate("June");
 		} else if (key.equals("month.6")) {
-			return _("July");
+			return translate("July");
 		} else if (key.equals("month.7")) {
-			return _("August");
+			return translate("August");
 		} else if (key.equals("month.8")) {
-			return _("September");
+			return translate("September");
 		} else if (key.equals("month.9")) {
-			return _("October");
+			return translate("October");
 		} else if (key.equals("month.10")) {
-			return _("November");
+			return translate("November");
 		} else if (key.equals("month.11")) {
-			return _("December");
+			return translate("December");
 		} else if (key.equals("week.0")) {
-			return _("Mon");
+			return translate("Mon");
 		} else if (key.equals("week.1")) {
-			return _("Tue");
+			return translate("Tue");
 		} else if (key.equals("week.2")) {
-			return _("Wed");
+			return translate("Wed");
 		} else if (key.equals("week.3")) {
-			return _("Thu");
+			return translate("Thu");
 		} else if (key.equals("week.4")) {
-			return _("Fri");
+			return translate("Fri");
 		} else if (key.equals("week.5")) {
-			return _("Sat");
+			return translate("Sat");
 		} else if (key.equals("week.6")) {
-			return _("Sun");
+			return translate("Sun");
 		} else if (key.equals("prevMonth")) {
-			return _("Previous month");
+			return translate("Previous month");
 		} else if (key.equals("nextMonth")) {
-			return _("Next month");
+			return translate("Next month");
 		} else if (key.equals("prevYear")) {
-			return _("Previous year");
+			return translate("Previous year");
 		} else if (key.equals("nextYear")) {
-			return _("Next year");
+			return translate("Next year");
 		} else if (key.equals("close")) {
-			return _("Close");
+			return translate("Close");
 		} else if (key.equals("hint")) {
-			return _("Please choose a date...");
+			return translate("Please choose a date...");
 		} else if (key.equals("tooltip")) {
-			return _("Calendar");
+			return translate("Calendar");
 		}
 
-		return _(key);
+		return translate(key);
 	}
 
 	/**

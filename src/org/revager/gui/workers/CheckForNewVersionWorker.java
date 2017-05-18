@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Desktop;
 import java.net.URL;
@@ -64,14 +64,14 @@ public class CheckForNewVersionWorker extends SwingWorker<Void, Void> {
 				String remoteVersion = versionProp.getProperty("version", localVersion);
 
 				String newVersionAvail = MessageFormat.format(
-						_("A new version of RevAger is available!\n\nLatest version: {0}\nYour version: {1}\n\nPlease choose 'Update' to get the latest version. If you don't like to see this message again, you can turn it off in the application settings."),
+						translate("A new version of RevAger is available!\n\nLatest version: {0}\nYour version: {1}\n\nPlease choose 'Update' to get the latest version. If you don't like to see this message again, you can turn it off in the application settings."),
 						remoteVersion, localVersion);
 
 				if (remoteBuild > localBuild) {
-					Object[] options = { _("Update RevAger"), _("Ignore") };
+					Object[] options = { translate("Update RevAger"), translate("Ignore") };
 
 					if (JOptionPane.showOptionDialog(UI.getInstance().getMainFrame(),
-							GUITools.getMessagePane(newVersionAvail), _("Question"), JOptionPane.YES_NO_OPTION,
+							GUITools.getMessagePane(newVersionAvail), translate("Question"), JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION) {
 						Desktop.getDesktop()
 								.browse(new URL(Data.getInstance().getResource("currVerBrowseURL")).toURI());

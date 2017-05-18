@@ -233,20 +233,20 @@ public class Data {
 	 *            the string to translate
 	 * @return translated string or the id
 	 */
-	public static String _(String id) {
+	public static String translate(String id) {
 		/*
 		 * Some special handling of the roles
 		 */
 		if (id.equals(Role.MODERATOR.toString())) {
-			return _("Moderator");
+			return translate("Moderator");
 		} else if (id.equals(Role.AUTHOR.toString())) {
-			return _("Author");
+			return translate("Author");
 		} else if (id.equals(Role.CUSTOMER.toString())) {
-			return _("Customer");
+			return translate("Customer");
 		} else if (id.equals(Role.REVIEWER.toString())) {
-			return _("Reviewer");
+			return translate("Reviewer");
 		} else if (id.equals(Role.SCRIBE.toString())) {
-			return _("Scribe");
+			return translate("Scribe");
 		}
 
 		try {
@@ -269,19 +269,19 @@ public class Data {
 		List<String> list = new ArrayList<String>();
 
 		list.add("Not rated");
-		_("Not rated");
+		translate("Not rated");
 
 		list.add("Critical error");
-		_("Critical error");
+		translate("Critical error");
 
 		list.add("Main error");
-		_("Main error");
+		translate("Main error");
 
 		list.add("Minor error");
-		_("Minor error");
+		translate("Minor error");
 
 		list.add("Good");
-		_("Good");
+		translate("Good");
 
 		return list;
 	}
@@ -295,7 +295,7 @@ public class Data {
 		List<String> list = new ArrayList<String>();
 
 		for (String sev : getDefLangSeverities()) {
-			list.add(_(sev));
+			list.add(translate(sev));
 		}
 
 		return list;
@@ -312,7 +312,7 @@ public class Data {
 	 */
 	public static String getDefLangSeverity(String severity) {
 		for (String sev : getDefLangSeverities()) {
-			if (severity.equals(_(sev))) {
+			if (severity.equals(translate(sev))) {
 				return sev;
 			}
 		}
@@ -329,22 +329,22 @@ public class Data {
 		List<String> list = new ArrayList<String>();
 
 		list.add("Accepted");
-		_("Accepted");
+		translate("Accepted");
 
 		list.add("Accepted (changes required)");
-		_("Accepted (changes required)");
+		translate("Accepted (changes required)");
 
 		list.add("Not accepted");
-		_("Not accepted");
+		translate("Not accepted");
 
 		list.add("Not finished");
-		_("Not finished");
+		translate("Not finished");
 
 		list.add("Not finished (changes required)");
-		_("Not finished (changes required)");
+		translate("Not finished (changes required)");
 
 		list.add("Not finished (complete revision required)");
-		_("Not finished (complete revision required)");
+		translate("Not finished (complete revision required)");
 
 		return list;
 	}
@@ -358,7 +358,7 @@ public class Data {
 		List<String> list = new ArrayList<String>();
 
 		for (String rec : getDefLangRecommendations()) {
-			list.add(_(rec));
+			list.add(translate(rec));
 		}
 
 		return list;
@@ -375,7 +375,7 @@ public class Data {
 	 */
 	public static String getDefLangRecommendation(String recommendation) {
 		for (String rec : getDefLangRecommendations()) {
-			if (recommendation.equals(_(rec))) {
+			if (recommendation.equals(translate(rec))) {
 				return rec;
 			}
 		}
@@ -389,7 +389,7 @@ public class Data {
 	 * @return the default invitation text
 	 */
 	public static String getDefLangInvitationText() {
-		_("You are invited to the review meeting. Please consider the information which are part of this document.");
+		translate("You are invited to the review meeting. Please consider the information which are part of this document.");
 
 		return "You are invited to the review meeting. Please consider the information which are part of this document.";
 	}

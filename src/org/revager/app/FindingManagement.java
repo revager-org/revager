@@ -289,7 +289,7 @@ public class FindingManagement {
 	 * @return The localized severity
 	 */
 	public String getLocalizedSeverity(Finding find) {
-		return Data._(find.getSeverity());
+		return Data.translate(find.getSeverity());
 	}
 
 	/**

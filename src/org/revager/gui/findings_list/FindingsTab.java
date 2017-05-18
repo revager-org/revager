@@ -1,6 +1,6 @@
 package org.revager.gui.findings_list;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -46,7 +46,7 @@ public class FindingsTab extends JPanel {
 
 	private JPanel panelStrut = new JPanel();
 
-	private JButton buttonAddFinding = new JButton(_("Add Finding"));
+	private JButton buttonAddFinding = new JButton(translate("Add Finding"));
 	private JLabel labelNumOfFindings = new JLabel();
 
 	private Map<Finding, Integer> gridBagPositions = new HashMap<Finding, Integer>();
@@ -121,7 +121,7 @@ public class FindingsTab extends JPanel {
 			currentFindingPanel.storeFindingData();
 		}
 
-		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " " + _("Findings"));
+		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " " + translate("Findings"));
 
 		/*
 		 * Update the tooltip

@@ -18,7 +18,7 @@
  */
 package org.revager.export;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
 import java.io.File;
@@ -106,7 +106,7 @@ public class InvitationPDFExporter extends PDFExporter {
 	/**
 	 * The date formatter for times.
 	 */
-	private DateFormat sdfTime = new SimpleDateFormat(_("HH:mm"));
+	private DateFormat sdfTime = new SimpleDateFormat(translate("HH:mm"));
 
 	/**
 	 * The meeting.
@@ -131,7 +131,7 @@ public class InvitationPDFExporter extends PDFExporter {
 		String title = resiData.getReview().getName();
 
 		if (title.trim().equals("")) {
-			title = _("Review Meeting");
+			title = translate("Review Meeting");
 		}
 
 		return title;
@@ -158,7 +158,7 @@ public class InvitationPDFExporter extends PDFExporter {
 	 */
 	public InvitationPDFExporter(String filePath, Meeting meeting, Attendee attendee, boolean attachProdExtRefs)
 			throws ExportException, DataException {
-		super(filePath, _("Invitation") + " · " + getReviewTitle(),
+		super(filePath, translate("Invitation") + " · " + getReviewTitle(),
 				appData.getSetting(AppSettingKey.PDF_INVITATION_LOGO),
 				appData.getSetting(AppSettingKey.PDF_INVITATION_FOOT_TEXT));
 
@@ -242,7 +242,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			PdfPCell cellRecipient = new PdfPCell();
 			cellRecipient.setBorder(0);
 			cellRecipient.setPadding(0);
-			cellRecipient.addElement(new Phrase(_("To:"), plainFontTitle));
+			cellRecipient.addElement(new Phrase(translate("To:"), plainFontTitle));
 			cellRecipient.addElement(new Phrase(attendee.getName(), boldFontTitle));
 
 			tableRecipient.addCell(cellRecipient);
@@ -264,7 +264,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			/*
 			 * subject
 			 */
-			cell.addElement(new Phrase(_("Invitation for the Meeting on") + " " + meetingDate, boldItalicFontTitle));
+			cell.addElement(new Phrase(translate("Invitation for the Meeting on") + " " + meetingDate, boldItalicFontTitle));
 
 			cell.addElement(phraseStrut);
 
@@ -303,7 +303,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			table.addCell(cell);
 
 			if (!meeting.getPlannedLocation().equals("")) {
-				cell = new PdfPCell(new Phrase(_("Location") + ": " + meeting.getPlannedLocation(), italicFont));
+				cell = new PdfPCell(new Phrase(translate("Location") + ": " + meeting.getPlannedLocation(), italicFont));
 				cell.setBorder(0);
 				cell.setColspan(2);
 				cell.setPadding(padding);
@@ -326,8 +326,8 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			phrase = new Phrase();
 			phrase.setLeading(leading);
-			phrase.add(new Chunk(MessageFormat.format(_("You are invited as {0} to this review ({1})."),
-					_(attendee.getRole().toString()), getReviewTitle()), boldFont));
+			phrase.add(new Chunk(MessageFormat.format(translate("You are invited as {0} to this review ({1})."),
+					translate(attendee.getRole().toString()), getReviewTitle()), boldFont));
 
 			cell.addElement(phrase);
 
@@ -345,7 +345,7 @@ public class InvitationPDFExporter extends PDFExporter {
 						.format(meetMgmt.getPredecessorMeeting(meeting).getProtocol().getDate().getTime());
 
 				cell.addElement(new Phrase(
-						MessageFormat.format(_("This meeting ties up to the review meeting of {0}."), preMeetingDate),
+						MessageFormat.format(translate("This meeting ties up to the review meeting of {0}."), preMeetingDate),
 						plainFont));
 
 				cell.addElement(phraseStrut);
@@ -358,7 +358,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				/*
 				 * the product of this review
 				 */
-				cell.addElement(new Phrase(_("The following product will be reviewed:"), plainFont));
+				cell.addElement(new Phrase(translate("The following product will be reviewed:"), plainFont));
 				cell.addElement(phraseStrut);
 
 				table.addCell(cell);
@@ -384,7 +384,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				 */
 				if (!Data.getInstance().getResiData().getReview().getProduct().getVersion().trim().equals("")) {
 					Phrase phrVersion = new Phrase(
-							_("Product Version") + ": "
+							translate("Product Version") + ": "
 									+ Data.getInstance().getResiData().getReview().getProduct().getVersion(),
 							italicFont);
 					phrVersion.setLeading(leading);
@@ -445,7 +445,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			for (File ref : Application.getInstance().getReviewMgmt().getExtProdReferences()) {
 				Phrase phraseRef = new Phrase();
 				phraseRef.add(new Chunk(ref.getName(), italicFontSmall));
-				phraseRef.add(new Chunk(" (" + _("File Attachment") + ")", italicFontSmall));
+				phraseRef.add(new Chunk(" (" + translate("File Attachment") + ")", italicFontSmall));
 				phraseRef.setFont(plainFont);
 				phraseRef.setLeading(leading);
 
@@ -483,7 +483,7 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			if (attendee.getAspects() != null) {
 				phrase.add(new Chunk(
-						_("Please prepare for the review meeting by checking the product for the aspects which are associated to you.")
+						translate("Please prepare for the review meeting by checking the product for the aspects which are associated to you.")
 								+ " ",
 						plainFont));
 			}
@@ -497,11 +497,11 @@ public class InvitationPDFExporter extends PDFExporter {
 
 			if (moderators.size() == 1 && attendee.getRole() != Role.MODERATOR) {
 				phrase.add(new Chunk(
-						_("Please do not hesitate to contact the review moderator if you have any questions:") + " ",
+						translate("Please do not hesitate to contact the review moderator if you have any questions:") + " ",
 						plainFont));
 			} else if (moderators.size() > 1 && attendee.getRole() != Role.MODERATOR) {
 				phrase.add(new Chunk(
-						_("Please do not hesitate to contact one of the review moderators if you have any questions:")
+						translate("Please do not hesitate to contact one of the review moderators if you have any questions:")
 								+ " ",
 						plainFont));
 			}
@@ -527,7 +527,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(_("Cannot generate front page of the PDF document."));
+			throw new ExportException(translate("Cannot generate front page of the PDF document."));
 		}
 	}
 
@@ -676,7 +676,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(_("Cannot put aspects into the PDF document."));
+			throw new ExportException(translate("Cannot put aspects into the PDF document."));
 		}
 	}
 
@@ -707,7 +707,7 @@ public class InvitationPDFExporter extends PDFExporter {
 				pdfDoc.newPage();
 
 				phraseAspIntro = new Phrase(
-						_("Please prepare for the review meeting by checking the product for the following aspects step by step:"),
+						translate("Please prepare for the review meeting by checking the product for the following aspects step by step:"),
 						italicFont);
 
 				cellAspIntro.addElement(phraseAspIntro);
@@ -718,7 +718,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			} else if (attendee.getRole() != Role.REVIEWER) {
 				pdfDoc.newPage();
 
-				phraseAspIntro = new Phrase(_("The product will be checked for the following aspects:"), italicFont);
+				phraseAspIntro = new Phrase(translate("The product will be checked for the following aspects:"), italicFont);
 
 				cellAspIntro.addElement(phraseAspIntro);
 
@@ -733,7 +733,7 @@ public class InvitationPDFExporter extends PDFExporter {
 			 * Not part of unit testing because this exception is only thrown if
 			 * an internal error occurs.
 			 */
-			throw new ExportException(_("Cannot create invitation for the review meeting.") + "\n\n" + e.getMessage());
+			throw new ExportException(translate("Cannot create invitation for the review meeting.") + "\n\n" + e.getMessage());
 		}
 	}
 

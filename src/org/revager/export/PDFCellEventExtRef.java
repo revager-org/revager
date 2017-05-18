@@ -18,7 +18,7 @@
  */
 package org.revager.export;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.File;
 import java.io.IOException;
@@ -75,7 +75,7 @@ public class PDFCellEventExtRef implements PdfPCellEvent {
 		Rectangle attachmentRect = new Rectangle(rect.getLeft() - 25, rect.getTop() - 25,
 				rect.getRight() - rect.getWidth() - 40, rect.getTop() - 10);
 
-		String fileDesc = file.getName() + " (" + _("File Attachment") + ")";
+		String fileDesc = file.getName() + " (" + translate("File Attachment") + ")";
 
 		try {
 			PdfAnnotation attachment = PdfAnnotation.createFileAttachment(writer, attachmentRect, fileDesc, null,

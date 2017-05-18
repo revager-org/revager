@@ -18,7 +18,7 @@
  */
 package org.revager.gui.findings_list;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -107,14 +107,14 @@ public class AddAspToFindPopupWindow extends JDialog {
 
 		// setUndecorated(true);
 		setResizable(false);
-		setTitle(_("RevAger"));
+		setTitle(translate("RevAger"));
 
 		setModal(true);
 
 		JPanel panelBase = GUITools.newPopupBasePanel();
 
 		JTextArea textTitle = GUITools
-				.newPopupTitleArea(_("Please select the aspects which should be added to the finding:"));
+				.newPopupTitleArea(translate("Please select the aspects which should be added to the finding:"));
 
 		panelBase.add(textTitle, BorderLayout.NORTH);
 
@@ -127,7 +127,7 @@ public class AddAspToFindPopupWindow extends JDialog {
 		resiAspList = aspectMgmt.getAspects();
 		selAspList = new ArrayList<Aspect>();
 
-		JLabel aspFilLbl = new JLabel(_("Filter:"));
+		JLabel aspFilLbl = new JLabel(translate("Filter:"));
 		filterTxtFld = new JTextField();
 
 		filterTxtFld.addKeyListener(new KeyListener() {
@@ -174,13 +174,13 @@ public class AddAspToFindPopupWindow extends JDialog {
 		JButton buttonAbort = GUITools.newImageButton();
 		buttonAbort.setIcon(Data.getInstance().getIcon("buttonCancel_24x24_0.png"));
 		buttonAbort.setRolloverIcon(Data.getInstance().getIcon("buttonCancel_24x24.png"));
-		buttonAbort.setToolTipText(_("Abort"));
+		buttonAbort.setToolTipText(translate("Abort"));
 		buttonAbort.addActionListener(new AddAspToFindPopupWindowAction(this, ButtonClicked.ABORT));
 
 		JButton buttonConfirm = GUITools.newImageButton();
 		buttonConfirm.setIcon(Data.getInstance().getIcon("buttonOk_24x24_0.png"));
 		buttonConfirm.setRolloverIcon(Data.getInstance().getIcon("buttonOk_24x24.png"));
-		buttonConfirm.setToolTipText(_("Confirm"));
+		buttonConfirm.setToolTipText(translate("Confirm"));
 		buttonConfirm.addActionListener(new AddAspToFindPopupWindowAction(this, ButtonClicked.OK));
 
 		JPanel panelButtons = new JPanel(new BorderLayout());

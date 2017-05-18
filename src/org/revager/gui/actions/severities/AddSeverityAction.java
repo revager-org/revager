@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions.severities;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 
@@ -42,7 +42,7 @@ public class AddSeverityAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		String placeHolder = _("New severity");
+		String placeHolder = translate("New severity");
 
 		Application.getInstance().getSeverityMgmt().addSeverity(placeHolder);
 

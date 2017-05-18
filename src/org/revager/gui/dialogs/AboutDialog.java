@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -58,7 +58,7 @@ public class AboutDialog extends AbstractDialog {
 	 */
 	public AboutDialog(Frame parent) {
 		super(parent);
-		setTitle(_("About RevAger"));
+		setTitle(translate("About RevAger"));
 		setDescription(null);
 		setIcon(Data.getInstance().getIcon("RevAger_300x74.png"));
 		setLayout(gbl);
@@ -69,15 +69,15 @@ public class AboutDialog extends AbstractDialog {
 		JLabel appNameLbl = new JLabel(Data.getInstance().getResource("appName"));
 		appNameLbl.setFont(fontTitle);
 
-		JLabel versionLbl = new JLabel(_("Version:"));
+		JLabel versionLbl = new JLabel(translate("Version:"));
 		versionLbl.setFont(fontNormal);
-		JLabel buildLbl = new JLabel(_("Build:"));
+		JLabel buildLbl = new JLabel(translate("Build:"));
 		buildLbl.setFont(fontNormal);
-		JLabel releaseLbl = new JLabel(_("Date of Release:"));
+		JLabel releaseLbl = new JLabel(translate("Date of Release:"));
 		releaseLbl.setFont(fontNormal);
-		JLabel homepageLbl = new JLabel(_("Homepage:"));
+		JLabel homepageLbl = new JLabel(translate("Homepage:"));
 		homepageLbl.setFont(fontNormal);
-		JLabel emailLbl = new JLabel(_("E-mail:"));
+		JLabel emailLbl = new JLabel(translate("E-mail:"));
 		emailLbl.setFont(fontNormal);
 
 		JLabel appVersionLbl = new JLabel(Data.getInstance().getResource("appVersion"));
@@ -185,7 +185,7 @@ public class AboutDialog extends AbstractDialog {
 		setSize(350, 400);
 		setResizable(false);
 
-		JButton cancel = new JButton(_("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
+		JButton cancel = new JButton(translate("Close"), Data.getInstance().getIcon("buttonClose_16x16.png"));
 		cancel.addActionListener(new ActionListener() {
 
 			@Override

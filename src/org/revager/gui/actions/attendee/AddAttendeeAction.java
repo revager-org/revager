@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions.attendee;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,7 @@ public class AddAttendeeAction extends AbstractAction {
 		super();
 
 		putValue(SMALL_ICON, Data.getInstance().getIcon("menuNewAtt_16x16.png"));
-		putValue(NAME, _("Add Attendee"));
+		putValue(NAME, translate("Add Attendee"));
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_T, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}

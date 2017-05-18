@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.List;
 
@@ -134,9 +134,9 @@ public class CSVProfileTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		if (column == 0)
-			return _("Review Severity");
+			return translate("Review Severity");
 		else
-			return _("Mapping");
+			return translate("Mapping");
 
 	}
 

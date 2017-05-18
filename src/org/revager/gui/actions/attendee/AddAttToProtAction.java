@@ -18,7 +18,7 @@
  */
 package org.revager.gui.actions.attendee;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.event.ActionEvent;
 
@@ -45,7 +45,7 @@ public class AddAttToProtAction extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AddAttToFLPopupWindow popup = new AddAttToFLPopupWindow(UI.getInstance().getProtocolFrame(), _("Add Attendee"),
+		AddAttToFLPopupWindow popup = new AddAttToFLPopupWindow(UI.getInstance().getProtocolFrame(), translate("Add Attendee"),
 				false);
 		popup.setVisible(true);
 

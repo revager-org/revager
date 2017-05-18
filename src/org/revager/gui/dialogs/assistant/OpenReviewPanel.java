@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs.assistant;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -59,8 +59,8 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 	/*
 	 * Strings
 	 */
-	private String anotherRevStrng = _("Select another review...");
-	private String noRevsStrng = _("No reviews available");
+	private String anotherRevStrng = translate("Select another review...");
+	private String noRevsStrng = translate("No reviews available");
 	private String firstRevStrng;
 	private String secondRevStrng;
 	private String thirdRevStrng;
@@ -238,7 +238,7 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 				vecLastReviews.add(new File(rev).getName());
 			}
 		} catch (DataException exc) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(exc.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 

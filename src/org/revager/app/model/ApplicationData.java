@@ -18,7 +18,7 @@
  */
 package org.revager.app.model;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.File;
 import java.sql.Connection;
@@ -159,7 +159,7 @@ public class ApplicationData extends Observable {
 				 * thrown if there occurs an internal error while creating the
 				 * tables.
 				 */
-				throw new DataException(_("Cannot create tables in the database.") + " [ERROR = " + e.getErrorCode()
+				throw new DataException(translate("Cannot create tables in the database.") + " [ERROR = " + e.getErrorCode()
 						+ " " + e.getMessage() + "]");
 			}
 
@@ -194,7 +194,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_(
+			throw new DataException(translate(
 					"Cannot open or create the database for storing application data. Maybe RevAger is running already."));
 		}
 
@@ -495,7 +495,7 @@ public class ApplicationData extends Observable {
 		ps.executeUpdate();
 
 		ps.setString(1, AppSettingKey.PDF_INVITATION_TEXT.toString());
-		ps.setString(2, _(Data.getDefLangInvitationText()));
+		ps.setString(2, translate(Data.getDefLangInvitationText()));
 		ps.executeUpdate();
 
 		/*
@@ -651,7 +651,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot retrieve the requested application settings.") + " [SETTING = " + key
+			throw new DataException(translate("Cannot retrieve the requested application settings.") + " [SETTING = " + key
 					+ "] " + e.getMessage());
 		}
 
@@ -659,7 +659,7 @@ public class ApplicationData extends Observable {
 		 * Translate the invitation text
 		 */
 		if (key == AppSettingKey.PDF_INVITATION_TEXT && setting.equals(Data.getDefLangInvitationText())) {
-			setting = _(setting);
+			setting = translate(setting);
 		}
 
 		return setting;
@@ -706,7 +706,7 @@ public class ApplicationData extends Observable {
 		/*
 		 * Check if the translation text is the original one
 		 */
-		if (key == AppSettingKey.PDF_INVITATION_TEXT && value.equals(_(Data.getDefLangInvitationText()))) {
+		if (key == AppSettingKey.PDF_INVITATION_TEXT && value.equals(translate(Data.getDefLangInvitationText()))) {
 			value = Data.getDefLangInvitationText();
 		}
 
@@ -736,7 +736,7 @@ public class ApplicationData extends Observable {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("Cannot store application settings.") + " [SETTING = " + key + "] " + e.getMessage());
+					translate("Cannot store application settings.") + " [SETTING = " + key + "] " + e.getMessage());
 		}
 	}
 
@@ -791,7 +791,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot load the list of recent reviews.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot load the list of recent reviews.") + " " + e.getMessage());
 		}
 
 		return lastReviews;
@@ -850,7 +850,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot add the current review to the list of recent reviews.") + " (" + filePath
+			throw new DataException(translate("Cannot add the current review to the list of recent reviews.") + " (" + filePath
 					+ ") " + e.getMessage());
 		}
 	}
@@ -883,7 +883,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot remove the review from the list of recent reviews.") + " (" + filePath
+			throw new DataException(translate("Cannot remove the review from the list of recent reviews.") + " (" + filePath
 					+ ") " + e.getMessage());
 		}
 	}
@@ -919,7 +919,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot load catalogs from the catalog library.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot load catalogs from the catalog library.") + " " + e.getMessage());
 		}
 
 		return catalogs;
@@ -986,7 +986,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot find requested catalog.") + " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(translate("Cannot find requested catalog.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return catalog;
@@ -1120,7 +1120,7 @@ public class ApplicationData extends Observable {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("An error occured while removing a catalog.") + " [NAME = " + name + "] " + e.getMessage());
+					translate("An error occured while removing a catalog.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1167,7 +1167,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot get the number of catalogs in the library.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot get the number of catalogs in the library.") + " " + e.getMessage());
 		}
 
 		return numberOfCatalogs;
@@ -1204,7 +1204,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot get the first sorting position of the catalogs.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot get the first sorting position of the catalogs.") + " " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1241,7 +1241,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot get the last sorting position of the catalogs.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot get the last sorting position of the catalogs.") + " " + e.getMessage());
 		}
 
 		return sortPos;
@@ -1277,7 +1277,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot load attendees from the database.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot load attendees from the database.") + " " + e.getMessage());
 		}
 
 		return attendees;
@@ -1356,7 +1356,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot find requested attendee. The requested attendee may not be existing.")
+			throw new DataException(translate("Cannot find requested attendee. The requested attendee may not be existing.")
 					+ " [NAME = " + name + "] " + e.getMessage());
 		}
 
@@ -1439,7 +1439,7 @@ public class ApplicationData extends Observable {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("An error occurred while removing an attendee.") + " [NAME = " + name + "] " + e.getMessage());
+					translate("An error occurred while removing an attendee.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1486,7 +1486,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot get the number of attendees in the database.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot get the number of attendees in the database.") + " " + e.getMessage());
 		}
 
 		return numberOfAttendees;
@@ -1522,7 +1522,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot load any CSV profile from the database.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot load any CSV profile from the database.") + " " + e.getMessage());
 		}
 
 		return profiles;
@@ -1589,7 +1589,7 @@ public class ApplicationData extends Observable {
 			 * thrown if there occurs an internal error.
 			 */
 			throw new DataException(
-					_("Cannot load the requested CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
+					translate("Cannot load the requested CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 
 		return profile;
@@ -1665,7 +1665,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot remove the CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
+			throw new DataException(translate("Cannot remove the CSV profile.") + " [NAME = " + name + "] " + e.getMessage());
 		}
 	}
 
@@ -1712,7 +1712,7 @@ public class ApplicationData extends Observable {
 			 * Not part of the unit testing, because this exception is only
 			 * thrown if there occurs an internal error.
 			 */
-			throw new DataException(_("Cannot get the number of catalogs in the library.") + " " + e.getMessage());
+			throw new DataException(translate("Cannot get the number of catalogs in the library.") + " " + e.getMessage());
 		}
 
 		return numberOfCSVProfiles;

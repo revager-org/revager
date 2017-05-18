@@ -18,7 +18,7 @@
  */
 package org.revager.app;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,7 +72,7 @@ public class ReviewManagement {
 	/**
 	 * The review info document file name.
 	 */
-	private final String REVIEW_INFO_DOC = _("Review_Information.pdf");
+	private final String REVIEW_INFO_DOC = translate("Review_Information.pdf");
 
 	/**
 	 * The prefix to store external references in XML file.
@@ -830,7 +830,7 @@ public class ReviewManagement {
 	 * @return recommendation of the review
 	 */
 	public String getRecommendation() {
-		return Data._(resiData.getReview().getRecommendation());
+		return Data.translate(resiData.getReview().getRecommendation());
 	}
 
 	/**

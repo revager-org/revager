@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -38,7 +38,7 @@ import org.revager.tools.GUITools;
 @SuppressWarnings("serial")
 public class WarningDialog extends JDialog {
 
-	private String dontShowAgainString = _("Don't show this dialog during the current session again.");
+	private String dontShowAgainString = translate("Don't show this dialog during the current session again.");
 
 	private JCheckBox dontShowAgainBx = new JCheckBox(dontShowAgainString);
 
@@ -97,13 +97,13 @@ public class WarningDialog extends JDialog {
 		super(parent);
 		setLayout(gbl);
 		setModal(true);
-		setTitle(_("Attention!"));
+		setTitle(translate("Attention!"));
 
 		JLabel messageLabel = GUITools.getMessagePane(message);
 
-		JButton canceleBttn = new JButton(_("No"));
+		JButton canceleBttn = new JButton(translate("No"));
 		canceleBttn.addActionListener(new WarningAction(this, ButtonClicked.NO));
-		JButton acceptBttn = new JButton(_("Yes"));
+		JButton acceptBttn = new JButton(translate("Yes"));
 		acceptBttn.addActionListener(new WarningAction(this, ButtonClicked.YES));
 
 		GUITools.addComponent(this, gbl, messageLabel, 0, 0, 2, 1, 1.0, 0, 20, 10, 0, 10, GridBagConstraints.BOTH,

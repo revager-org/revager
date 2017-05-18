@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs.assistant;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -72,18 +72,18 @@ public class FirstScreenPanel extends AbstractDialogPanel {
 	 */
 	int max = 27;
 
-	private String openRevStrng = AppTools.cutString(_("Open existing review"), max);
-	private String languageStrng = AppTools.cutString(_("Select language"), max);
-	private String aspectsManagerStrng = AppTools.cutString(_("Open Aspects Manager"), max);
-	private String newReviewStrng = AppTools.cutString(_("Schedule new review"), max);
-	private String quickstartStrng = AppTools.cutString(_("Quickstart"), max);
+	private String openRevStrng = AppTools.cutString(translate("Open existing review"), max);
+	private String languageStrng = AppTools.cutString(translate("Select language"), max);
+	private String aspectsManagerStrng = AppTools.cutString(translate("Open Aspects Manager"), max);
+	private String newReviewStrng = AppTools.cutString(translate("Schedule new review"), max);
+	private String quickstartStrng = AppTools.cutString(translate("Quickstart"), max);
 
-	private String quickRevTooltipStrng = _(
+	private String quickRevTooltipStrng = translate(
 			"Select this if you would like to start a review immediately as a single reviewer. This option is perfect for quick reviews of a website or even for car inspections.");
-	private String newRevTooltipStrng = _("Select this if you would like to organize a review as moderator.");
-	private String openRevTooltipStrng = _("Select this if you would like to open an existing review.");
-	private String selectLanguageTooltipStrng = _("Select this if you want to change the language of the application.");
-	private String openAspectsMngrTooltipStrng = _(
+	private String newRevTooltipStrng = translate("Select this if you would like to organize a review as moderator.");
+	private String openRevTooltipStrng = translate("Select this if you would like to open an existing review.");
+	private String selectLanguageTooltipStrng = translate("Select this if you want to change the language of the application.");
+	private String openAspectsMngrTooltipStrng = translate(
 			"Select this if you would like to manage the catalogs and aspects in the Aspects Manager.");
 
 	/*

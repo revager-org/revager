@@ -18,7 +18,7 @@
  */
 package org.revager.gui.dialogs;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -114,7 +114,7 @@ public class SettingsDialog extends AbstractDialog {
 	public SettingsDialog(Frame parent) {
 		super(parent);
 
-		setTitle(_("Application Settings"));
+		setTitle(translate("Application Settings"));
 		setIcon(Data.getInstance().getIcon("settingsDialog_64x64.png"));
 		setHelpChapter("options");
 
@@ -133,10 +133,10 @@ public class SettingsDialog extends AbstractDialog {
 		});
 
 		panelGeneral.setOpaque(true);
-		tabbedPane.addTab(_("General"), Data.getInstance().getIcon("tabGeneral_24x24.png"), panelGeneral);
+		tabbedPane.addTab(translate("General"), Data.getInstance().getIcon("tabGeneral_24x24.png"), panelGeneral);
 
 		panelPDF.setOpaque(true);
-		tabbedPane.addTab(_("PDF Export"), Data.getInstance().getIcon("tabPDF_24x24.png"), panelPDF);
+		tabbedPane.addTab(translate("PDF Export"), Data.getInstance().getIcon("tabPDF_24x24.png"), panelPDF);
 
 		getContentPane().setLayout(new BorderLayout());
 
@@ -145,7 +145,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * buttons
 		 */
-		JButton buttonConfirm = new JButton(_("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
+		JButton buttonConfirm = new JButton(translate("Confirm"), Data.getInstance().getIcon("buttonOk_16x16.png"));
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -153,7 +153,7 @@ public class SettingsDialog extends AbstractDialog {
 			}
 		});
 
-		JButton buttonCancel = new JButton(_("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
+		JButton buttonCancel = new JButton(translate("Abort"), Data.getInstance().getIcon("buttonCancel_16x16.png"));
 		buttonCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -192,7 +192,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Auto save
 		 */
-		String autoSaveText = _("Save review every {0} minutes automatically.");
+		String autoSaveText = translate("Save review every {0} minutes automatically.");
 		String[] textParts = autoSaveText.split("\\{0\\}");
 
 		String textPart1 = "";
@@ -229,7 +229,7 @@ public class SettingsDialog extends AbstractDialog {
 		 * Check updates
 		 */
 		checkboxCheckUpdates = new JCheckBox(
-				_("Check if a new version of RevAger is available during application start."));
+				translate("Check if a new version of RevAger is available during application start."));
 		checkboxCheckUpdates.setFocusPainted(false);
 
 		GridBagLayout gblCheckUpdates = new GridBagLayout();
@@ -241,7 +241,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Show hints by default
 		 */
-		checkboxShowHints = new JCheckBox(_("Show hints in dialogs by default."));
+		checkboxShowHints = new JCheckBox(translate("Show hints in dialogs by default."));
 		checkboxShowHints.setFocusPainted(false);
 
 		GridBagLayout gblShowHints = new GridBagLayout();
@@ -253,7 +253,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Highlight fields
 		 */
-		checkboxHighlightFields = new JCheckBox(_("Highlight obligatory input fields."));
+		checkboxHighlightFields = new JCheckBox(translate("Highlight obligatory input fields."));
 		checkboxHighlightFields.setFocusPainted(false);
 
 		GridBagLayout gblHighlightFields = new GridBagLayout();
@@ -265,7 +265,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Allow usage of fullscreen mode
 		 */
-		checkboxFullscreen = new JCheckBox(_("Allow usage of fullscreen mode (EXPERIMENTAL)."));
+		checkboxFullscreen = new JCheckBox(translate("Allow usage of fullscreen mode (EXPERIMENTAL)."));
 		checkboxFullscreen.setFocusPainted(false);
 
 		GridBagLayout gblFullscreen = new GridBagLayout();
@@ -277,7 +277,7 @@ public class SettingsDialog extends AbstractDialog {
 		/*
 		 * Protocol warning
 		 */
-		String warnText = _("Show warning while creating a findings list after {0} minutes.");
+		String warnText = translate("Show warning while creating a findings list after {0} minutes.");
 		String[] warnParts = warnText.split("\\{0\\}");
 
 		String warnPart1 = "";
@@ -337,8 +337,8 @@ public class SettingsDialog extends AbstractDialog {
 				if (!currentLang.equals(selectedLang) && !langChangeHintAlreadyDisplayed) {
 					int option = JOptionPane.showConfirmDialog(UI.getInstance().getSettingsDialog(),
 							GUITools.getMessagePane(
-									_("You have to restart the application in order finalize the change of language. Restart now?")),
-							_("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+									translate("You have to restart the application in order finalize the change of language. Restart now?")),
+							translate("Question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 					langChangeHintAlreadyDisplayed = true;
 
@@ -358,7 +358,7 @@ public class SettingsDialog extends AbstractDialog {
 		GridBagLayout gblLanguage = new GridBagLayout();
 		JPanel panelLanguage = new JPanel(gblLanguage);
 
-		GUITools.addComponent(panelLanguage, gblLanguage, new JLabel(_("Language:")), 0, 0, 1, 1, 0.0, 0.0, 5, 42, 5, 5,
+		GUITools.addComponent(panelLanguage, gblLanguage, new JLabel(translate("Language:")), 0, 0, 1, 1, 0.0, 0.0, 5, 42, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelLanguage, gblLanguage, boxLanguage, 1, 0, 1, 1, 0.0, 0.0, 5, 5, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
@@ -392,7 +392,7 @@ public class SettingsDialog extends AbstractDialog {
 		 */
 		GridBagLayout gblPdfProtocol = new GridBagLayout();
 		JPanel panelPdfProtocol = new JPanel(gblPdfProtocol);
-		panelPdfProtocol.setBorder(BorderFactory.createTitledBorder(_("Findings list as PDF file")));
+		panelPdfProtocol.setBorder(BorderFactory.createTitledBorder(translate("Findings list as PDF file")));
 
 		labelImageProtocol = new JLabel();
 		labelImageProtocol.setOpaque(true);
@@ -401,7 +401,7 @@ public class SettingsDialog extends AbstractDialog {
 
 		JButton buttonBrowseProt = GUITools.newImageButton(Data.getInstance().getIcon("buttonBrowse_22x22_0.png"),
 				Data.getInstance().getIcon("buttonBrowse_22x22.png"));
-		buttonBrowseProt.setToolTipText(_("Choose an Image..."));
+		buttonBrowseProt.setToolTipText(translate("Choose an Image..."));
 		buttonBrowseProt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -416,7 +416,7 @@ public class SettingsDialog extends AbstractDialog {
 
 		JButton buttonClearProt = GUITools.newImageButton(Data.getInstance().getIcon("clear_22x22_0.png"),
 				Data.getInstance().getIcon("clear_22x22.png"));
-		buttonClearProt.setToolTipText(_("Remove Image"));
+		buttonClearProt.setToolTipText(translate("Remove Image"));
 		buttonClearProt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -426,7 +426,7 @@ public class SettingsDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(panelPdfProtocol, gblPdfProtocol, new JLabel(_("Displayed image:")), 0, 0, 1, 1, 0.0, 1.0,
+		GUITools.addComponent(panelPdfProtocol, gblPdfProtocol, new JLabel(translate("Displayed image:")), 0, 0, 1, 1, 0.0, 1.0,
 				5, 5, 5, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelPdfProtocol, gblPdfProtocol, buttonClearProt, 1, 0, 1, 1, 0.0, 1.0, 5, 5, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
@@ -437,7 +437,7 @@ public class SettingsDialog extends AbstractDialog {
 
 		textFootProtocol = new JTextField();
 
-		GUITools.addComponent(panelPdfProtocol, gblPdfProtocol, new JLabel(_("Displayed foot text:")), 0, 1, 4, 1, 0.0,
+		GUITools.addComponent(panelPdfProtocol, gblPdfProtocol, new JLabel(translate("Displayed foot text:")), 0, 1, 4, 1, 0.0,
 				0.0, 5, 5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelPdfProtocol, gblPdfProtocol, textFootProtocol, 0, 2, 4, 1, 1.0, 0.0, 5, 5, 5, 5,
 				GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
@@ -447,7 +447,7 @@ public class SettingsDialog extends AbstractDialog {
 		 */
 		GridBagLayout gblPdfInvitation = new GridBagLayout();
 		JPanel panelPdfInvitation = new JPanel(gblPdfInvitation);
-		panelPdfInvitation.setBorder(BorderFactory.createTitledBorder(_("Invitations as PDF file:")));
+		panelPdfInvitation.setBorder(BorderFactory.createTitledBorder(translate("Invitations as PDF file:")));
 
 		labelImageInvitation = new JLabel();
 		labelImageInvitation.setOpaque(true);
@@ -456,7 +456,7 @@ public class SettingsDialog extends AbstractDialog {
 
 		JButton buttonBrowseInv = GUITools.newImageButton(Data.getInstance().getIcon("buttonBrowse_22x22_0.png"),
 				Data.getInstance().getIcon("buttonBrowse_22x22.png"));
-		buttonBrowseInv.setToolTipText(_("Choose an Image..."));
+		buttonBrowseInv.setToolTipText(translate("Choose an Image..."));
 		buttonBrowseInv.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -471,7 +471,7 @@ public class SettingsDialog extends AbstractDialog {
 
 		JButton buttonClearInv = GUITools.newImageButton(Data.getInstance().getIcon("clear_22x22_0.png"),
 				Data.getInstance().getIcon("clear_22x22.png"));
-		buttonClearInv.setToolTipText(_("Remove Image"));
+		buttonClearInv.setToolTipText(translate("Remove Image"));
 		buttonClearInv.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -481,7 +481,7 @@ public class SettingsDialog extends AbstractDialog {
 			}
 		});
 
-		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, new JLabel(_("Displayed image:")), 0, 0, 1, 1, 0.0,
+		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, new JLabel(translate("Displayed image:")), 0, 0, 1, 1, 0.0,
 				1.0, 5, 5, 5, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, buttonClearInv, 1, 0, 1, 1, 0.0, 1.0, 5, 5, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
@@ -495,14 +495,14 @@ public class SettingsDialog extends AbstractDialog {
 		textInvitation.setWrapStyleWord(true);
 		textInvitation.setRows(3);
 
-		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, new JLabel(_("Text of invitations:")), 0, 1, 4, 1,
+		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, new JLabel(translate("Text of invitations:")), 0, 1, 4, 1,
 				0.0, 0.0, 5, 5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, GUITools.setIntoScrllPn(textInvitation), 0, 2, 4, 1,
 				1.0, 0.0, 5, 5, 5, 5, GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
 
 		textFootInvitation = new JTextField();
 
-		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, new JLabel(_("Displayed foot text:")), 0, 3, 4, 1,
+		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, new JLabel(translate("Displayed foot text:")), 0, 3, 4, 1,
 				0.0, 0.0, 5, 5, 0, 5, GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelPdfInvitation, gblPdfInvitation, textFootInvitation, 0, 4, 4, 1, 1.0, 0.0, 5, 5, 5,
 				5, GridBagConstraints.HORIZONTAL, GridBagConstraints.WEST);
@@ -538,10 +538,10 @@ public class SettingsDialog extends AbstractDialog {
 		 * Dialog description
 		 */
 		if (tabbedPane.getSelectedComponent() == panelGeneral) {
-			setDescription(_(
+			setDescription(translate(
 					"Here you can set some application options. They will be saved in the database independently of any particular review."));
 		} else if (tabbedPane.getSelectedComponent() == panelPDF) {
-			setDescription(_(
+			setDescription(translate(
 					"Here you can set some options concerning the PDF export. They will be saved in the database independently of any particular review."));
 		} else {
 			setDescription("");
@@ -601,7 +601,7 @@ public class SettingsDialog extends AbstractDialog {
 			String language = ((Language) boxLanguage.getSelectedItem()).getLangCode();
 			appData.setSetting(AppSettingKey.APP_LANGUAGE, language);
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -649,7 +649,7 @@ public class SettingsDialog extends AbstractDialog {
 			appData.setSetting(AppSettingKey.PDF_INVITATION_FOOT_TEXT, textFootInvitation.getText());
 			appData.setSetting(AppSettingKey.PDF_INVITATION_TEXT, textInvitation.getText());
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -720,7 +720,7 @@ public class SettingsDialog extends AbstractDialog {
 				}
 			}
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -763,7 +763,7 @@ public class SettingsDialog extends AbstractDialog {
 				textInvitation.setText("");
 			}
 		} catch (DataException e) {
-			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), _("Error"),
+			JOptionPane.showMessageDialog(null, GUITools.getMessagePane(e.getMessage()), translate("Error"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

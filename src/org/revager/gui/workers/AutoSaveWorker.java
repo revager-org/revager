@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -96,7 +96,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 						@Override
 						public void run() {
 							for (AbstractFrame af : obsFrames) {
-								af.setStatusMessage(_("Review stored successfully."), false);
+								af.setStatusMessage(translate("Review stored successfully."), false);
 							}
 						}
 					});
@@ -111,7 +111,7 @@ public class AutoSaveWorker extends SwingWorker<Void, Void> {
 					@Override
 					public void run() {
 						for (AbstractFrame af : obsFrames) {
-							af.setStatusMessage(_("Review couldn't be stored!"), false);
+							af.setStatusMessage(translate("Review couldn't be stored!"), false);
 						}
 					}
 				});

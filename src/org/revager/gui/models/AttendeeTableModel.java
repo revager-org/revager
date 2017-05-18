@@ -18,7 +18,7 @@
  */
 package org.revager.gui.models;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
@@ -64,11 +64,11 @@ public class AttendeeTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int column) {
 		if (column == 1)
-			return _("Name");
+			return translate("Name");
 		else if (column == 2)
-			return _("Role");
+			return translate("Role");
 		else if (column == 3)
-			return _("Aspects");
+			return translate("Aspects");
 		else
 			return null;
 	}
@@ -89,13 +89,13 @@ public class AttendeeTableModel extends AbstractTableModel {
 			String roleString = Application.getInstance().getAttendeeMgmt().getAttendees().get(rowIndex).getRole()
 					.toString();
 
-			return _(roleString);
+			return translate(roleString);
 		} else if (columnIndex == 3) {
 			try {
 				String value = String.valueOf(Application.getInstance().getAttendeeMgmt().getAttendees().get(rowIndex)
 						.getAspects().getAspectIds().size());
 
-				return value.concat(" ").concat(_("Aspect(s)"));
+				return value.concat(" ").concat(translate("Aspect(s)"));
 			} catch (Exception e) {
 				return "";
 			}

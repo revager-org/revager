@@ -18,7 +18,7 @@
  */
 package org.revager.gui.workers;
 
-import static org.revager.app.model.Data._;
+import static org.revager.app.model.Data.translate;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -69,7 +69,7 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				mainframe.switchToProgressMode(_("Saving review ..."));
+				mainframe.switchToProgressMode(translate("Saving review ..."));
 			}
 		});
 
@@ -83,7 +83,7 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 				public void run() {
 					mainframe.switchToEditMode();
 
-					mainframe.setStatusMessage(_("Review saved successfully."), false);
+					mainframe.setStatusMessage(translate("Review saved successfully."), false);
 				}
 			});
 
@@ -100,14 +100,14 @@ public class SaveReviewWorker extends SwingWorker<Void, Void> {
 				public void run() {
 					mainframe.switchToEditMode();
 
-					mainframe.setStatusMessage(_("Cannot save review file."), false);
+					mainframe.setStatusMessage(translate("Cannot save review file."), false);
 				}
 			});
 
 			JOptionPane.showMessageDialog(UI.getInstance().getMainFrame(),
 					GUITools.getMessagePane(
-							_("Cannot save review file.") + "\n\n" + filePath + "\n\n" + e.getMessage()),
-					_("Error"), JOptionPane.ERROR_MESSAGE);
+							translate("Cannot save review file.") + "\n\n" + filePath + "\n\n" + e.getMessage()),
+					translate("Error"), JOptionPane.ERROR_MESSAGE);
 		}
 
 		return null;

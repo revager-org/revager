@@ -1,12 +1,13 @@
 package org.revager.gui.presentationView;
 
+import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.NORTHWEST;
 import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -29,22 +30,16 @@ public class CurrentFindingPanel extends JPanel {
 	private static final long serialVersionUID = 1898465156775918217L;
 
 	private transient Finding finding = new Finding();
-
-	private GridBagLayout layoutEditView = new GridBagLayout();
-	private JPanel panelEditView = new JPanel(layoutEditView);
-
+	private GridBagLayout layout = new GridBagLayout();
 	private JLabel labelFindingTitle = new JLabel();
 	private JLabel labelFindingSeverity = new JLabel();
 	private JTextArea textDescription = new JTextArea();
-
 	private FindRefTableModel modelReferences;
 	private FindExtRefTableModel modelExtReferences;
 	private FindAspTableModel modelAspects;
-
 	private JTable tableReferences;
 	private JTable tableExtReferences;
 	private JTable tableAspects;
-
 	private JScrollPane scrollDescription;
 	private JScrollPane scrollReferences;
 	private JScrollPane scrollExtReferences;
@@ -53,8 +48,10 @@ public class CurrentFindingPanel extends JPanel {
 	public CurrentFindingPanel() {
 		super();
 
-		this.setLayout(layoutEditView);
-		this.setBackground(Color.WHITE);
+		setLayout(layout);
+		setPreferredSize(new Dimension(100, 280));
+		setBorder(UI.STANDARD_BORDER);
+		setBackground(UI.EDIT_VIEW_BG);
 
 		modelReferences = new FindRefTableModel(finding);
 		modelExtReferences = new FindExtRefTableModel(finding);
@@ -84,13 +81,6 @@ public class CurrentFindingPanel extends JPanel {
 		scrollReferences.getViewport().setBackground(Color.WHITE);
 		scrollExtReferences.getViewport().setBackground(Color.WHITE);
 
-		/*
-		 * Create content panel
-		 */
-		panelEditView.setPreferredSize(new Dimension(100, 280));
-		panelEditView.setBorder(UI.STANDARD_BORDER);
-		panelEditView.setBackground(UI.EDIT_VIEW_BG);
-
 		labelFindingSeverity.setFont(UI.VERY_LARGE_FONT);
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
@@ -102,23 +92,11 @@ public class CurrentFindingPanel extends JPanel {
 		textDescription.setEditable(false);
 		textDescription.setFont(UI.VERY_LARGE_FONT);
 
-		JPanel panelStrut = new JPanel();
-
-		GUITools.addComponent(panelEditView, layoutEditView, labelFindingTitle, 0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollDescription, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, panelStrut, 1, 1, 1, 1, 0.0, 0.0, 10, 0, 0, 20,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollReferences, 2, 1, 1, 1, 1.0, 0.0, 10, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollAspects, 0, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-
-		GUITools.addComponent(this, layoutEditView, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, labelFindingTitle, 0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollDescription, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollReferences, 2, 1, 1, 1, 1.0, 0.0, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollAspects, 0, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10, BOTH, NORTHWEST);
 	}
 
 	public void setFinding(Finding finding) {
@@ -131,8 +109,8 @@ public class CurrentFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
+		labelFindingTitle.setText(translate("Current Finding: ") + translate("Finding") + " " + finding.getId());
 		textDescription.setText(finding.getDescription());
-		labelFindingTitle.setText(translate("Finding") + " " + finding.getId());
 	}
 
 	private class FindingPanelCellRenderer extends DefaultTableCellRenderer {

@@ -99,23 +99,21 @@ public class PresentationFrame extends JFrame {
 		setTitle(translate("Presentation View"));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		SwingUtilities.invokeLater(() -> {
-			tabPanelProtocol = new PresentationProtocolTab();
-			tabPanelFinding = new PresentationFindingsTab();
-			tabbedPane.add(tabPanelFinding, FINDINGS_TAB_ID);
-			tabbedPane.add(tabPanelProtocol, GENERAL_TAB_ID);
-			displayGeneralTab();
 
-			// Hide bar displaying the tabs to select.
-			tabbedPane.setUI(new BasicTabbedPaneUI() {
-				@Override
-				protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
-					return 0;
-				}
-			});
+		tabPanelProtocol = new PresentationProtocolTab();
+		tabPanelFinding = new PresentationFindingsTab();
+		tabbedPane.add(tabPanelFinding, FINDINGS_TAB_ID);
+		tabbedPane.add(tabPanelProtocol, GENERAL_TAB_ID);
+		displayGeneralTab();
 
-			add(tabbedPane);
+		// Hide bar displaying the tabs to select.
+		tabbedPane.setUI(new BasicTabbedPaneUI() {
+			@Override
+			protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
+				return 0;
+			}
 		});
+		add(tabbedPane);
 	}
 
 	public void displayGeneralTab() {

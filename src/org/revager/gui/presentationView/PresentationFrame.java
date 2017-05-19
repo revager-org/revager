@@ -47,6 +47,7 @@ public class PresentationFrame extends JFrame {
 		displayGeneralTab();
 		tabPanelProtocol.updateTabData((Review) o);
 	};
+
 	/**
 	 * Always use the same listener, to prevent that we register, with different
 	 * listener instances, multiple times.
@@ -55,6 +56,7 @@ public class PresentationFrame extends JFrame {
 		displayGeneralTab();
 		tabPanelProtocol.updateTabData((Meeting) o);
 	};
+
 	/**
 	 * Always use the same listener, to prevent that we register, with different
 	 * listener instances, multiple times.
@@ -71,15 +73,15 @@ public class PresentationFrame extends JFrame {
 		}
 	};
 
+	public PresentationFrame() {
+		super();
+		buildGUI();
+	}
+
 	@Override
 	public void setVisible(boolean b) {
 		addObjectListeners();
 		super.setVisible(b);
-	}
-
-	public PresentationFrame() {
-		super();
-		buildGUI();
 	}
 
 	private void addObjectListeners() {

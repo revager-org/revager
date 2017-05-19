@@ -504,7 +504,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 						ActionRegistry.getInstance().get(EditMeetingAction.class.getName()).actionPerformed(null);
 					} else if (getSelectedProtocol() != null) {
 						ActionRegistry.getInstance().get(OpenFindingsListAction.class.getName()).actionPerformed(null);
-						ActionRegistry.getInstance().get(OpenPresentationView.class.getName()).actionPerformed(null);
 					}
 				}
 			}

@@ -45,12 +45,11 @@ public class StatusPanel extends JPanel {
 		});
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.rowWeights = new double[] { 0.16, 0.16, 0.16, 0.16, 0.16, 0.16 };
+		gridBagLayout.rowWeights = new double[] { 0.16, 0.16, 0.16, 0.16, 0.16 };
 		gridBagLayout.columnWeights = new double[] { 0.03, 0.17, 0.8 };
 		setLayout(gridBagLayout);
 		setBackground(UI.BLUE_BACKGROUND_COLOR);
 
-		addTitle();
 		addTotalTime();
 		addFindingTime();
 		addBreak();
@@ -89,21 +88,6 @@ public class StatusPanel extends JPanel {
 		hurryUpImage.setImageOpacity((float) totalProtocolSeconds / maxFindingSeconds);
 		continueDiscussionField.setText("2/3");
 		votingsField.setText("1/2");
-	}
-
-	private void addTitle() {
-		// TODO: translate
-		JLabel title = new JLabel("title");
-		title.setBackground(UI.EDIT_VIEW_BG);
-		title.setOpaque(true);
-		title.setFont(STANDARD_STATUS_FONT_BOLD);
-		title.setHorizontalTextPosition(SwingConstants.LEADING);
-		GridBagConstraints titleGridConstraints = new GridBagConstraints();
-		titleGridConstraints.gridwidth = GridBagConstraints.REMAINDER;
-		titleGridConstraints.insets = new Insets(0, 0, 5, 0);
-		titleGridConstraints.gridx = 0;
-		titleGridConstraints.gridy = 0;
-		add(title, titleGridConstraints);
 	}
 
 	private void addTotalTime() {

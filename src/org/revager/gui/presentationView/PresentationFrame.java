@@ -1,6 +1,10 @@
 package org.revager.gui.presentationView;
 
+import static org.revager.app.model.Data.translate;
+
 import java.awt.BorderLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -18,67 +22,89 @@ import org.revager.gui.UI;
 
 public class PresentationFrame extends JFrame {
 
-	public static final int GENERAL_TAB_ID = 0;
-	public static final int FINDINGS_TAB_ID = 1;
+	public static final int FINDINGS_TAB_ID = 0;
+	public static final int GENERAL_TAB_ID = 1;
 
 	private static final long serialVersionUID = 1459457125329301470L;
 
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private PresentationFindingsTab tabPanelFinding;
 	private PresentationProtocolTab tabPanelProtocol;
+	/**
+	 * Always use the same listener, to prevent that we register, with different
+	 * listener instances, multiple times.
+	 */
+	private final transient Observer findingListener = (Observable o, Object arg) -> {
+		displayFindingsTab();
+		tabPanelFinding.updateFinding((Finding) o);
+	};
+
+	/**
+	 * Always use the same listener, to prevent that we register, with different
+	 * listener instances, multiple times.
+	 */
+	private final transient Observer reviewListener = (Observable o, Object arg) -> {
+		displayGeneralTab();
+		tabPanelProtocol.updateTabData((Review) o);
+	};
+	/**
+	 * Always use the same listener, to prevent that we register, with different
+	 * listener instances, multiple times.
+	 */
+	private final transient Observer meetingListener = (Observable o, Object arg) -> {
+		displayGeneralTab();
+		tabPanelProtocol.updateTabData((Meeting) o);
+	};
+	/**
+	 * Always use the same listener, to prevent that we register, with different
+	 * listener instances, multiple times.
+	 */
+	private final transient Observer protocolListener = (Observable o, Object arg) -> {
+		if (arg instanceof Finding) {
+			// A finding was added to the protocol. We don't care, that the
+			// protocol "changed".
+			Finding finding = (Finding) arg;
+			finding.addObserver(findingListener);
+		} else {
+			displayGeneralTab();
+			tabPanelProtocol.updateTabData((Protocol) o);
+		}
+	};
+
+	@Override
+	public void setVisible(boolean b) {
+		addObjectListeners();
+		super.setVisible(b);
+	}
 
 	public PresentationFrame() {
 		super();
 		buildGUI();
 	}
 
-	public void loadScreen() {
-		ResiData resiData = Data.getInstance().getResiData();
-		Review review = resiData.getReview();
-
+	private void addObjectListeners() {
+		Review review = Data.getInstance().getResiData().getReview();
 		Meeting meeting = UI.getInstance().getProtocolFrame().getMeeting();
 		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
+		review.addObserver(reviewListener);
+		meeting.addObserver(meetingListener);
+		protocol.addObserver(protocolListener);
 		for (Finding finding : protocol.getFindings()) {
-			finding.addObserver((o, arg) -> {
-				displayFindingsTab();
-				tabPanelFinding.updateFinding((Finding) o);
-			});
+			finding.addObserver(findingListener);
 		}
-
-		review.addObserver((o, arg) -> {
-			displayGeneralTab();
-			tabPanelProtocol.updateTabData((Review) o);
-		});
-
-		meeting.addObserver((o, arg) -> {
-			displayGeneralTab();
-			tabPanelProtocol.updateTabData((Meeting) o);
-		});
-
-		protocol.addObserver((o, arg) -> {
-			displayGeneralTab();
-			tabPanelProtocol.updateTabData((Protocol) o);
-			if (arg instanceof Finding) {
-				Finding finding = (Finding) arg;
-				tabPanelFinding.updateFinding(finding);
-				finding.addObserver((o2, arg2) -> {
-					displayFindingsTab();
-					tabPanelFinding.updateFinding((Finding) o2);
-				});
-			}
-		});
 	}
 
 	private void buildGUI() {
 		// TODO: Translate string.
-		setTitle("Presentation View");
+		setTitle(translate("Presentation View"));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		SwingUtilities.invokeLater(() -> {
 			tabPanelProtocol = new PresentationProtocolTab();
 			tabPanelFinding = new PresentationFindingsTab();
-			tabbedPane.add(tabPanelProtocol, GENERAL_TAB_ID);
 			tabbedPane.add(tabPanelFinding, FINDINGS_TAB_ID);
+			tabbedPane.add(tabPanelProtocol, GENERAL_TAB_ID);
+			displayGeneralTab();
 
 			// Hide bar displaying the tabs to select.
 			tabbedPane.setUI(new BasicTabbedPaneUI() {
@@ -89,7 +115,6 @@ public class PresentationFrame extends JFrame {
 			});
 
 			add(tabbedPane);
-			tabbedPane.setSelectedIndex(GENERAL_TAB_ID);
 		});
 	}
 

@@ -27,8 +27,8 @@ import org.revager.tools.GUITools;
 public class CurrentFindingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1898465156775918217L;
-	
-	private Finding finding = new Finding();
+
+	private transient Finding finding = new Finding();
 
 	private GridBagLayout layoutEditView = new GridBagLayout();
 	private JPanel panelEditView = new JPanel(layoutEditView);
@@ -116,13 +116,9 @@ public class CurrentFindingPanel extends JPanel {
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 		GUITools.addComponent(panelEditView, layoutEditView, scrollExtReferences, 2, 2, 1, 1, 1.0, 0.0, 10, 10, 10, 10,
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		
-		
-		GUITools.addComponent(this, layoutEditView, panelEditView, 1, 0, 1, 6, 1.0,
-				0.0, 0, 0, 0, 20, GridBagConstraints.BOTH,
-				GridBagConstraints.NORTHWEST);
-		
-		this.setVisible(true);
+
+		GUITools.addComponent(this, layoutEditView, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20,
+				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
 	}
 
 	public void setFinding(Finding finding) {
@@ -138,8 +134,7 @@ public class CurrentFindingPanel extends JPanel {
 		textDescription.setText(finding.getDescription());
 		labelFindingTitle.setText(translate("Finding") + " " + finding.getId());
 	}
-	
-	
+
 	private class FindingPanelCellRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = 1L;
 

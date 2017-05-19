@@ -64,8 +64,6 @@ public class PreviousFindingPanel extends JPanel {
 
 		GUITools.addComponent(this, layoutEditView, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20,
 				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-
-		this.setVisible(true);
 	}
 
 	public void setFiding(Finding finding) {

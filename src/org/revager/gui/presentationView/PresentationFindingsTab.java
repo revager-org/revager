@@ -5,10 +5,7 @@ import java.awt.Font;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import org.revager.app.Application;
 import org.revager.app.model.schema.Finding;
-import org.revager.app.model.schema.Protocol;
-import org.revager.gui.UI;
 
 public class PresentationFindingsTab extends JPanel {
 
@@ -20,7 +17,7 @@ public class PresentationFindingsTab extends JPanel {
 	private PreviousFindingPanel previousFindingPanel = new PreviousFindingPanel();
 	private CurrentFindingPanel currentFindingPanel = new CurrentFindingPanel();
 	private StatusPanel statusPanel;
-	private transient Finding lastFinding = new Finding();
+	private transient Finding lastFinding;
 
 	public PresentationFindingsTab() {
 		super();
@@ -32,16 +29,14 @@ public class PresentationFindingsTab extends JPanel {
 	}
 
 	public void updateFinding(Finding finding) {
-		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
 		if (finding == null) {
 			return;
 		}
 		currentFindingPanel.setFinding(finding);
 		if (lastFinding != finding) {
-			System.out.println("check for NPE");
-			System.out.println(Application.getInstance().getFindingMgmt().getFinding(lastFinding.getId(), protocol));
-			System.out.println(Application.getInstance().getFindingMgmt().getFinding(finding.getId(), protocol));
-			previousFindingPanel.setFiding(lastFinding);
+			if (lastFinding != null) {
+				previousFindingPanel.setFiding(lastFinding);
+			}
 			lastFinding = finding;
 		}
 		statusPanel.setFinding(finding);

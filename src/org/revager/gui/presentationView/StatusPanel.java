@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
-import org.apache.derby.iapi.services.io.NewByteArrayInputStream;
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
@@ -54,9 +53,6 @@ public class StatusPanel extends JPanel {
 		addHurryUp();
 		addContinueDiscussion();
 		addVotings();
-
-		revalidate();
-		repaint();
 	}
 
 	public void setFinding(Finding finding) {

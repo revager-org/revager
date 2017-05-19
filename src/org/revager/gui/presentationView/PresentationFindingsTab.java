@@ -11,9 +11,6 @@ public class PresentationFindingsTab extends JPanel {
 
 	private static final long serialVersionUID = -7499170906423144396L;
 
-	public static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 35);
-	public static final Font STANDARD_STATUS_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 35);
-
 	private PreviousFindingPanel previousFindingPanel = new PreviousFindingPanel();
 	private CurrentFindingPanel currentFindingPanel = new CurrentFindingPanel();
 	private StatusPanel statusPanel;

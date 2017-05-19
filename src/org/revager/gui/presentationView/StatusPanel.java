@@ -2,6 +2,7 @@ package org.revager.gui.presentationView;
 
 import static org.revager.app.model.appdata.AppSettingKey.APP_PROTOCOL_WARNING_TIME;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,6 +21,9 @@ import org.revager.gui.UI;
 
 public class StatusPanel extends JPanel {
 
+	public static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 35);
+	public static final Font STANDARD_STATUS_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 35);
+	
 	private static final long serialVersionUID = 4044468994799470896L;
 
 	private Finding finding;
@@ -92,7 +96,7 @@ public class StatusPanel extends JPanel {
 		JLabel title = new JLabel("title");
 		title.setBackground(UI.EDIT_VIEW_BG);
 		title.setOpaque(true);
-		title.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT_BOLD);
+		title.setFont(STANDARD_STATUS_FONT_BOLD);
 		title.setHorizontalTextPosition(SwingConstants.LEADING);
 		GridBagConstraints titleGridConstraints = new GridBagConstraints();
 		titleGridConstraints.gridwidth = GridBagConstraints.REMAINDER;
@@ -104,7 +108,7 @@ public class StatusPanel extends JPanel {
 
 	private void addTotalTime() {
 		JLabel totalDurationLabel = new JLabel("Gesamtdauer:");
-		totalDurationLabel.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		totalDurationLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints totalDurationGridConstraints = new GridBagConstraints();
 		totalDurationGridConstraints.insets = new Insets(0, 0, 0, 5);
 		totalDurationGridConstraints.gridx = 0;
@@ -113,7 +117,7 @@ public class StatusPanel extends JPanel {
 		add(totalDurationLabel, totalDurationGridConstraints);
 
 		totalDurationProgress = new JProgressBar();
-		totalDurationProgress.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		totalDurationProgress.setFont(STANDARD_STATUS_FONT);
 		totalDurationProgress.setStringPainted(true);
 		GridBagConstraints totalDurationProgressGridConstraints = new GridBagConstraints();
 		totalDurationProgressGridConstraints.fill = GridBagConstraints.BOTH;
@@ -126,7 +130,7 @@ public class StatusPanel extends JPanel {
 
 	private void addFindingTime() {
 		JLabel findingTimeLabel = new JLabel("Befunddauer:");
-		findingTimeLabel.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		findingTimeLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints findingTimeLabelGridConstraints = new GridBagConstraints();
 		findingTimeLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
 		findingTimeLabelGridConstraints.gridx = 0;
@@ -135,7 +139,7 @@ public class StatusPanel extends JPanel {
 		add(findingTimeLabel, findingTimeLabelGridConstraints);
 
 		findingTimeField = new JLabel();
-		findingTimeField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		findingTimeField.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints findingTimeFieldGridConstraints = new GridBagConstraints();
 		findingTimeFieldGridConstraints.gridx = 1;
 		findingTimeFieldGridConstraints.gridy = 2;
@@ -158,7 +162,7 @@ public class StatusPanel extends JPanel {
 
 	private void addBreak() {
 		JLabel breakLabel = new JLabel("Pause:");
-		breakLabel.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		breakLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
 		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
 		continueDiscussionLabelGridConstraints.gridx = 0;
@@ -167,7 +171,7 @@ public class StatusPanel extends JPanel {
 		add(breakLabel, continueDiscussionLabelGridConstraints);
 
 		breakField = new JLabel();
-		breakField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		breakField.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints breakFieldGridConstraints = new GridBagConstraints();
 		breakFieldGridConstraints.gridx = 1;
 		breakFieldGridConstraints.gridy = 3;
@@ -177,7 +181,7 @@ public class StatusPanel extends JPanel {
 
 	private void addContinueDiscussion() {
 		JLabel continueDiscussionLabel = new JLabel("Mehr Fokus auf die Diskussion:");
-		continueDiscussionLabel.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		continueDiscussionLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
 		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
 		continueDiscussionLabelGridConstraints.gridx = 0;
@@ -186,7 +190,7 @@ public class StatusPanel extends JPanel {
 		add(continueDiscussionLabel, continueDiscussionLabelGridConstraints);
 
 		continueDiscussionField = new JLabel();
-		continueDiscussionField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		continueDiscussionField.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionFieldGridConstraints = new GridBagConstraints();
 		continueDiscussionFieldGridConstraints.gridx = 1;
 		continueDiscussionFieldGridConstraints.gridy = 4;
@@ -196,7 +200,7 @@ public class StatusPanel extends JPanel {
 
 	private void addVotings() {
 		JLabel votingsLabel = new JLabel("Abgestimmt:");
-		votingsLabel.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		votingsLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints votingLabelGridConstraints = new GridBagConstraints();
 		votingLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
 		votingLabelGridConstraints.gridx = 0;
@@ -205,7 +209,7 @@ public class StatusPanel extends JPanel {
 		add(votingsLabel, votingLabelGridConstraints);
 
 		votingsField = new JLabel();
-		votingsField.setFont(PresentationFindingsTab.STANDARD_STATUS_FONT);
+		votingsField.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints votingsFieldGridConstraints = new GridBagConstraints();
 		votingsFieldGridConstraints.gridx = 1;
 		votingsFieldGridConstraints.gridy = 5;

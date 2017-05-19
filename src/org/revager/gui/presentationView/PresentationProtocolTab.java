@@ -1,8 +1,13 @@
 package org.revager.gui.presentationView;
 
+import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.NONE;
+import static java.awt.GridBagConstraints.NORTHWEST;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static org.revager.app.model.Data.translate;
 
-import java.awt.GridBagConstraints;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -14,87 +19,90 @@ import javax.swing.border.EmptyBorder;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.app.model.schema.Review;
-import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
 public class PresentationProtocolTab extends JPanel {
 
 	private static final long serialVersionUID = 1377208308219097378L;
 
-	private GridBagLayout gridBagLayout;
+	public static final Font LABLE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
+	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 19);
 
-	private JTextArea recommendationTextField;
-	private JTextArea generalImpressionTextArea;
+	private GridBagLayout layout = new GridBagLayout();
+	private JTextArea impressionTextArea;
+	private JTextArea recommendationField;
 	private JTextArea meetingCommentTextArea;
 	private JTextArea protocolCommentTextArea;
-	private JScrollPane meetCommScrllPn;
-	private JScrollPane protCommScrllPn;
+	private JScrollPane impressionField;
+	private JScrollPane meetingCommentField;
+	private JScrollPane protocolCommentField;
 
 	public PresentationProtocolTab() {
 		super();
-		gridBagLayout = new GridBagLayout();
-		this.setLayout(gridBagLayout);
+		this.setLayout(layout);
 
 		JLabel impressionLabel = new JLabel(translate("General impression of the product:"));
-		impressionLabel.setFont(UI.VERY_LARGE_FONT_BOLD);
-		generalImpressionTextArea = new JTextArea();
-		generalImpressionTextArea.setEditable(false);
-		generalImpressionTextArea.setRows(4);
-		generalImpressionTextArea.setFont(UI.VERY_LARGE_FONT);
+		impressionLabel.setFont(LABLE_FONT);
+		impressionTextArea = new JTextArea();
+		impressionTextArea.setEditable(false);
+		impressionTextArea.setLineWrap(true);
+		impressionTextArea.setWrapStyleWord(true);
+		impressionTextArea.setFont(TEXT_FONT);
 
-		JLabel recLbl = new JLabel(translate("Final recommendation for the product:"));
-		recLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
-		recommendationTextField = new JTextArea();
-		recommendationTextField.setRows(1);
-		recommendationTextField.setEditable(false);
-		recommendationTextField.setFont(UI.VERY_LARGE_FONT);
+		JLabel recommendationLabel = new JLabel(translate("Final recommendation for the product:"));
+		recommendationLabel.setFont(LABLE_FONT);
+		recommendationField = new JTextArea();
+		recommendationField.setRows(1);
+		recommendationField.setEditable(false);
+		recommendationField.setFont(TEXT_FONT);
 
-		JLabel meetCommLbl = new JLabel(translate("Comments on the meeting:"));
-		meetCommLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
+		JLabel meetingCommentLabel = new JLabel(translate("Comments on the meeting:"));
+		meetingCommentLabel.setFont(LABLE_FONT);
 		meetingCommentTextArea = new JTextArea();
 		meetingCommentTextArea.setEditable(false);
-		meetingCommentTextArea.setRows(4);
-		meetingCommentTextArea.setFont(UI.VERY_LARGE_FONT);
+		meetingCommentTextArea.setLineWrap(true);
+		meetingCommentTextArea.setWrapStyleWord(true);
+		meetingCommentTextArea.setFont(TEXT_FONT);
 
-		JLabel protCommLbl = new JLabel(translate("Comments on the list of findings:"));
-		protCommLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
+		JLabel protocalCommentLabel = new JLabel(translate("Comments on the list of findings:"));
+		protocalCommentLabel.setFont(LABLE_FONT);
 		protocolCommentTextArea = new JTextArea();
 		protocolCommentTextArea.setEditable(false);
-		protocolCommentTextArea.setRows(4);
-		protocolCommentTextArea.setFont(UI.VERY_LARGE_FONT);
+		protocolCommentTextArea.setLineWrap(true);
+		protocolCommentTextArea.setWrapStyleWord(true);
+		protocolCommentTextArea.setFont(TEXT_FONT);
 
-		meetCommScrllPn = GUITools.setIntoScrllPn(meetingCommentTextArea);
-		meetCommScrllPn.setMinimumSize(meetCommScrllPn.getPreferredSize());
-		GUITools.scrollToTop(meetCommScrllPn);
+		impressionField = new JScrollPane(impressionTextArea, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
+		impressionField.setMinimumSize(impressionField.getPreferredSize());
+		impressionField.setMaximumSize(impressionField.getSize());
+		impressionField.setPreferredSize(impressionField.getSize());
+		GUITools.scrollToTop(impressionField);
 
-		protCommScrllPn = GUITools.setIntoScrllPn(protocolCommentTextArea);
-		protCommScrllPn.setMinimumSize(protCommScrllPn.getPreferredSize());
-		GUITools.scrollToTop(protCommScrllPn);
+		meetingCommentField = new JScrollPane(meetingCommentTextArea, VERTICAL_SCROLLBAR_AS_NEEDED,
+				HORIZONTAL_SCROLLBAR_NEVER);
+		meetingCommentField.setMinimumSize(meetingCommentField.getPreferredSize());
+		GUITools.scrollToTop(meetingCommentField);
 
-		GUITools.addComponent(this, gridBagLayout, impressionLabel, 0, 1, 2, 1, 0.0, 0.0, 20, 10, 0, 10,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gridBagLayout, generalImpressionTextArea, 0, 2, 2, 1, 1.0, 0.0, 5, 10, 0, 10,
-				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
+		protocolCommentField = new JScrollPane(protocolCommentTextArea, VERTICAL_SCROLLBAR_AS_NEEDED,
+				HORIZONTAL_SCROLLBAR_NEVER);
+		protocolCommentField.setMinimumSize(protocolCommentField.getPreferredSize());
+		GUITools.scrollToTop(protocolCommentField);
 
-		GUITools.addComponent(this, gridBagLayout, recLbl, 0, 3, 2, 1, 0.0, 0.0, 20, 10, 0, 10, GridBagConstraints.NONE,
-				GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gridBagLayout, recommendationTextField, 0, 4, 2, 1, 1.0, 0.0, 5, 10, 0, 10,
-				GridBagConstraints.HORIZONTAL, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gridBagLayout, meetCommLbl, 0, 5, 1, 1, 1.0, 0.0, 15, 10, 0, 10,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gridBagLayout, meetCommScrllPn, 0, 6, 1, 1, 1.0, 1.0, 5, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gridBagLayout, protCommLbl, 1, 5, 1, 1, 1.0, 0.0, 15, 10, 0, 10,
-				GridBagConstraints.NONE, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(this, gridBagLayout, protCommScrllPn, 1, 6, 1, 1, 1.0, 1.0, 5, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, impressionLabel, 0, 1, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, impressionField, 0, 2, 1, 1, 1, 1, 5, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, recommendationLabel, 0, 3, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, recommendationField, 0, 4, 1, 1, 1, 0, 5, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, meetingCommentLabel, 0, 5, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, meetingCommentField, 0, 6, 1, 1, 1, 1, 5, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, protocalCommentLabel, 0, 7, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, protocolCommentField, 0, 8, 1, 1, 1, 1, 5, 10, 0, 10, BOTH, NORTHWEST);
 
 		this.setBorder(new EmptyBorder(0, 10, 20, 10));
 	}
 
 	public void updateTabData(Review review) {
-		generalImpressionTextArea.setText(review.getImpression());
-		recommendationTextField.setText(review.getRecommendation());
+		impressionTextArea.setText(review.getImpression());
+		recommendationField.setText(review.getRecommendation());
 	}
 
 	public void updateTabData(Protocol protocol) {
@@ -104,4 +112,5 @@ public class PresentationProtocolTab extends JPanel {
 	public void updateTabData(Meeting meeting) {
 		meetingCommentTextArea.setText(meeting.getComments());
 	}
+
 }

@@ -2,18 +2,17 @@ package org.revager.gui.presentationView;
 
 import static org.revager.app.model.Data.translate;
 
-import java.awt.BorderLayout;
+import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import org.revager.app.model.Data;
-import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
@@ -100,8 +99,7 @@ public class PresentationFrame extends JFrame {
 		// TODO: Translate string.
 		setTitle(translate("Presentation View"));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setLayout(new BorderLayout());
-
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		tabPanelProtocol = new PresentationProtocolTab();
 		tabPanelFinding = new PresentationFindingsTab();
 		tabbedPane.add(tabPanelFinding, FINDINGS_TAB_ID);

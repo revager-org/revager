@@ -10,7 +10,6 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
 
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
@@ -23,7 +22,7 @@ public class StatusPanel extends JPanel {
 
 	public static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 35);
 	public static final Font STANDARD_STATUS_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 35);
-	
+
 	private static final long serialVersionUID = 4044468994799470896L;
 
 	private Finding finding;

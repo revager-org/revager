@@ -82,6 +82,7 @@ public class StatusPanel extends JPanel {
 		totalDurationProgress.setString(totalProtocolSeconds / 60 + "min " + totalProtocolSeconds % 60 + "sec");
 		// TODO: finish.
 		findingTimeField.setText("TODO 10min 10sec");
+		breakField.setText("TODO 1/2");
 		// TODO: do not use totalProtocolSeconds
 		hurryUpImage.setImageOpacity((float) totalProtocolSeconds / maxFindingSeconds);
 		continueDiscussionField.setText("TODO 2/3");
@@ -163,7 +164,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void addContinueDiscussion() {
-		JLabel continueDiscussionLabel = new JLabel("Mehr Fokus auf die Diskussion:");
+		JLabel continueDiscussionLabel = new JLabel("Diskussionsfokus:");
 		continueDiscussionLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
 		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 15);

@@ -103,14 +103,37 @@ public class PresentationProtocolTab extends JPanel {
 	public void updateTabData(Review review) {
 		impressionTextArea.setText(review.getImpression());
 		recommendationField.setText(review.getRecommendation());
+		updateFontSizes(impressionTextArea, impressionField);
 	}
 
 	public void updateTabData(Protocol protocol) {
 		protocolCommentTextArea.setText(protocol.getComments());
+		updateFontSizes(protocolCommentTextArea, protocolCommentField);
 	}
 
 	public void updateTabData(Meeting meeting) {
 		meetingCommentTextArea.setText(meeting.getComments());
+		updateFontSizes(meetingCommentTextArea, meetingCommentField);
 	}
 
+	private void updateFontSizes(JTextArea area, JScrollPane scrollPane) {
+		// TODO: check what to do.
+		// SwingUtilities.invokeLater(() -> {
+		// area.setFont(TEXT_FONT);
+		// Thread thread = new Thread(() -> {
+		// int size = area.getFont().getSize();
+		// while (scrollPane.getVerticalScrollBar().isVisible() && size > 0) {
+		// size = Math.max(1, size - 5);
+		// area.setText(area.getText());
+		// area.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
+		// try {
+		// Thread.sleep(5);
+		// } catch (InterruptedException e) {
+		// }
+		// }
+		//
+		// });
+		// thread.start();
+		// });
+	}
 }

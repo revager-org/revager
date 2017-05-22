@@ -2,7 +2,6 @@ package org.revager.gui.presentationView;
 
 import static org.revager.app.model.Data.translate;
 
-import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 

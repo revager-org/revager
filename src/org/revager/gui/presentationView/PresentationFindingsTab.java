@@ -1,7 +1,5 @@
 package org.revager.gui.presentationView;
 
-import java.awt.Font;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 

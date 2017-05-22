@@ -25,7 +25,7 @@ public class StatusPanel extends JPanel {
 
 	private static final long serialVersionUID = 4044468994799470896L;
 
-	private Finding finding;
+	private transient Finding finding;
 	private JProgressBar totalDurationProgress;
 	private JLabel findingTimeField;
 	private HurryUpImage hurryUpImage;

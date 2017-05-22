@@ -21,7 +21,7 @@ public class PreviousFindingPanel extends JPanel {
 
 	private static final long serialVersionUID = 110372565207228520L;
 
-	private Finding finding = new Finding();
+	private transient Finding finding = new Finding();
 	private GridBagLayout layout = new GridBagLayout();
 	private JLabel titleLable = new JLabel();
 	private JLabel severityLable = new JLabel();
@@ -39,15 +39,15 @@ public class PreviousFindingPanel extends JPanel {
 
 		titleLable.setText(translate("Previous Finding: "));
 		titleLable.setFont(UI.VERY_LARGE_FONT_BOLD);
-		
+
 		descriptionTextField = GUITools.setIntoScrllPn(descriptionTextArea);
 		GUITools.scrollToTop(descriptionTextField);
 
 		descriptionTextArea.setEditable(false);
 		descriptionTextArea.setFont(UI.VERY_LARGE_FONT);
 
-		GUITools.addComponent(this, layout, titleLable,           0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, EAST);
-		GUITools.addComponent(this, layout, severityLable,        1, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, EAST);
+		GUITools.addComponent(this, layout, titleLable, 0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, EAST);
+		GUITools.addComponent(this, layout, severityLable, 1, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, EAST);
 		GUITools.addComponent(this, layout, descriptionTextField, 0, 1, 2, 1, 1.0, 1.0, 10, 10, 10, 10, BOTH, EAST);
 	}
 
@@ -57,11 +57,10 @@ public class PreviousFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		// TODO: update Display.
 		// TODO: translate
 		titleLable.setText(translate("Previous Finding: ") + translate("Finding") + " " + finding.getId());
-		descriptionTextArea.setText(finding.getDescription());
 		severityLable.setText(finding.getSeverity());
+		descriptionTextArea.setText(finding.getDescription());
 	}
 
 }

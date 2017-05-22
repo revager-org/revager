@@ -20,65 +20,28 @@ package org.revager.gui.models;
 
 import static org.revager.app.model.Data.translate;
 
-import javax.swing.table.AbstractTableModel;
-
-import org.revager.app.Application;
-import org.revager.app.FindingManagement;
 import org.revager.app.model.schema.Finding;
 
 /**
  * The Class FindAspTableModel.
  */
 @SuppressWarnings("serial")
-public class FindAspTableModel extends AbstractTableModel {
-	private FindingManagement findingMgmt = Application.getInstance().getFindingMgmt();
-	private Finding localFind;
+public class FindAspTableModel extends AbstractFindingTableModel {
 
-	/**
-	 * Instantiates a new find asp table model.
-	 * 
-	 * @param currentFinding
-	 *            the current finding
-	 */
 	public FindAspTableModel(Finding currentFinding) {
-		localFind = currentFinding;
+		super(currentFinding);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getColumnCount()
-	 */
-	@Override
-	public int getColumnCount() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getRowCount()
-	 */
 	@Override
 	public int getRowCount() {
 		return findingMgmt.getAspects(localFind).size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return findingMgmt.getAspects(localFind).get(rowIndex);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
-	 */
 	@Override
 	public String getColumnName(int column) {
 		return translate("Aspect(s)");

@@ -1,6 +1,8 @@
 package org.revager.gui.presentationView;
 
 import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.EAST;
+import static java.awt.GridBagConstraints.NONE;
 import static java.awt.GridBagConstraints.NORTHWEST;
 import static org.revager.app.model.Data.translate;
 
@@ -92,11 +94,13 @@ public class CurrentFindingPanel extends JPanel {
 		textDescription.setEditable(false);
 		textDescription.setFont(UI.VERY_LARGE_FONT);
 
-		GUITools.addComponent(this, layout, labelFindingTitle, 0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollDescription, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollReferences, 1, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollAspects, 0, 2, 1, 1, 0.5, 0.5, 10, 10, 10, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollExtReferences, 1, 2, 1, 1, 0.5, 0.5, 10, 10, 10, 10, BOTH, NORTHWEST);
+		// TODO: fix jumping when severity is changed.
+		GUITools.addComponent(this, layout, labelFindingTitle,    0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, labelFindingSeverity, 1, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, EAST);
+		GUITools.addComponent(this, layout, scrollDescription,    0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollReferences,     1, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollAspects,        0, 2, 1, 1, 0.5, 0.5, 10, 10, 10, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollExtReferences,  1, 2, 1, 1, 0.5, 0.5, 10, 10, 10, 10, BOTH, NORTHWEST);
 	}
 
 	public void setFinding(Finding finding) {
@@ -110,6 +114,7 @@ public class CurrentFindingPanel extends JPanel {
 
 	private void updateDisplay() {
 		labelFindingTitle.setText(translate("Current Finding: ") + translate("Finding") + " " + finding.getId());
+		labelFindingSeverity.setText(finding.getSeverity());
 		textDescription.setText(finding.getDescription());
 		modelReferences.setFinding(finding);
 		modelReferences.fireTableDataChanged();

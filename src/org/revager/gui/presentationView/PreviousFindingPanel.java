@@ -1,7 +1,8 @@
 package org.revager.gui.presentationView;
 
 import static java.awt.GridBagConstraints.BOTH;
-import static java.awt.GridBagConstraints.NORTHWEST;
+import static java.awt.GridBagConstraints.EAST;
+import static java.awt.GridBagConstraints.NONE;
 import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
@@ -45,8 +46,9 @@ public class PreviousFindingPanel extends JPanel {
 		descriptionTextArea.setEditable(false);
 		descriptionTextArea.setFont(UI.VERY_LARGE_FONT);
 
-		GUITools.addComponent(this, layout, titleLable,           0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, descriptionTextField, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 10, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, titleLable,           0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, EAST);
+		GUITools.addComponent(this, layout, severityLable,        1, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, EAST);
+		GUITools.addComponent(this, layout, descriptionTextField, 0, 1, 2, 1, 1.0, 1.0, 10, 10, 10, 10, BOTH, EAST);
 	}
 
 	public void setFiding(Finding finding) {

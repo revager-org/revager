@@ -1,9 +1,16 @@
 package org.revager.gui.presentationView;
 
-import javax.swing.BoxLayout;
+import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.HORIZONTAL;
+import static java.awt.GridBagConstraints.WEST;
+
+import java.awt.Color;
+import java.awt.GridBagLayout;
+
 import javax.swing.JPanel;
 
 import org.revager.app.model.schema.Finding;
+import org.revager.tools.GUITools;
 
 public class PresentationFindingsTab extends JPanel {
 
@@ -11,16 +18,19 @@ public class PresentationFindingsTab extends JPanel {
 
 	private PreviousFindingPanel previousFindingPanel = new PreviousFindingPanel();
 	private CurrentFindingPanel currentFindingPanel = new CurrentFindingPanel();
-	private StatusPanel statusPanel;
+	private StatusPanel statusPanel = new StatusPanel();
 	private transient Finding lastFinding;
 
 	public PresentationFindingsTab() {
 		super();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.add(previousFindingPanel);
-		this.add(currentFindingPanel);
-		statusPanel = new StatusPanel();
-		this.add(statusPanel);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		setLayout(gridBagLayout);
+		setBackground(Color.WHITE);
+
+		GUITools.addComponent(this, gridBagLayout, previousFindingPanel, 0, 0, 1, 1, 1.0, 0.5, 10, 10, 5, 10, BOTH,
+				WEST);
+		GUITools.addComponent(this, gridBagLayout, currentFindingPanel, 0, 1, 1, 1, 1.0, 1.0, 5, 10, 5, 10, BOTH, WEST);
+		GUITools.addComponent(this, gridBagLayout, statusPanel, 0, 2, 1, 1, 1.0, 0.0, 5, 0, 0, 0, HORIZONTAL, WEST);
 	}
 
 	public void updateFinding(Finding finding) {

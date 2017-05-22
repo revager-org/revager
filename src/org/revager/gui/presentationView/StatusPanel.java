@@ -44,7 +44,6 @@ public class StatusPanel extends JPanel {
 		});
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.rowWeights = new double[] { 0.16, 0.16, 0.16, 0.16, 0.16 };
 		gridBagLayout.columnWeights = new double[] { 0.03, 0.17, 0.8 };
 		setLayout(gridBagLayout);
 		setBackground(UI.BLUE_BACKGROUND_COLOR);
@@ -82,18 +81,18 @@ public class StatusPanel extends JPanel {
 		// TODO: translate.
 		totalDurationProgress.setString(totalProtocolSeconds / 60 + "min " + totalProtocolSeconds % 60 + "sec");
 		// TODO: finish.
-		findingTimeField.setText("sdf");
+		findingTimeField.setText("TODO 10min 10sec");
 		// TODO: do not use totalProtocolSeconds
 		hurryUpImage.setImageOpacity((float) totalProtocolSeconds / maxFindingSeconds);
-		continueDiscussionField.setText("2/3");
-		votingsField.setText("1/2");
+		continueDiscussionField.setText("TODO 2/3");
+		votingsField.setText("TODO 1/2");
 	}
 
 	private void addTotalTime() {
 		JLabel totalDurationLabel = new JLabel("Gesamtdauer:");
 		totalDurationLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints totalDurationGridConstraints = new GridBagConstraints();
-		totalDurationGridConstraints.insets = new Insets(0, 0, 0, 5);
+		totalDurationGridConstraints.insets = new Insets(15, 0, 0, 15);
 		totalDurationGridConstraints.gridx = 0;
 		totalDurationGridConstraints.gridy = 1;
 		totalDurationGridConstraints.anchor = GridBagConstraints.EAST;
@@ -103,6 +102,7 @@ public class StatusPanel extends JPanel {
 		totalDurationProgress.setFont(STANDARD_STATUS_FONT);
 		totalDurationProgress.setStringPainted(true);
 		GridBagConstraints totalDurationProgressGridConstraints = new GridBagConstraints();
+		totalDurationProgressGridConstraints.insets = new Insets(15, 0, 0, 15);
 		totalDurationProgressGridConstraints.fill = GridBagConstraints.BOTH;
 		totalDurationProgressGridConstraints.gridwidth = 2;
 		totalDurationProgressGridConstraints.gridx = 1;
@@ -115,7 +115,7 @@ public class StatusPanel extends JPanel {
 		JLabel findingTimeLabel = new JLabel("Befunddauer:");
 		findingTimeLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints findingTimeLabelGridConstraints = new GridBagConstraints();
-		findingTimeLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
+		findingTimeLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
 		findingTimeLabelGridConstraints.gridx = 0;
 		findingTimeLabelGridConstraints.gridy = 2;
 		findingTimeLabelGridConstraints.anchor = GridBagConstraints.EAST;
@@ -147,7 +147,7 @@ public class StatusPanel extends JPanel {
 		JLabel breakLabel = new JLabel("Pause:");
 		breakLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
-		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
+		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
 		continueDiscussionLabelGridConstraints.gridx = 0;
 		continueDiscussionLabelGridConstraints.gridy = 3;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
@@ -166,7 +166,7 @@ public class StatusPanel extends JPanel {
 		JLabel continueDiscussionLabel = new JLabel("Mehr Fokus auf die Diskussion:");
 		continueDiscussionLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
-		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
+		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
 		continueDiscussionLabelGridConstraints.gridx = 0;
 		continueDiscussionLabelGridConstraints.gridy = 4;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
@@ -185,7 +185,7 @@ public class StatusPanel extends JPanel {
 		JLabel votingsLabel = new JLabel("Abgestimmt:");
 		votingsLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints votingLabelGridConstraints = new GridBagConstraints();
-		votingLabelGridConstraints.insets = new Insets(0, 0, 0, 5);
+		votingLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
 		votingLabelGridConstraints.gridx = 0;
 		votingLabelGridConstraints.gridy = 5;
 		votingLabelGridConstraints.anchor = GridBagConstraints.EAST;

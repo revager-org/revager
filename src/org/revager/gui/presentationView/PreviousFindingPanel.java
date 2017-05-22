@@ -1,9 +1,10 @@
 package org.revager.gui.presentationView;
 
+import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.NORTHWEST;
 import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -20,50 +21,32 @@ public class PreviousFindingPanel extends JPanel {
 	private static final long serialVersionUID = 110372565207228520L;
 
 	private Finding finding = new Finding();
-
-	private GridBagLayout layoutEditView = new GridBagLayout();
-	private JPanel panelEditView = new JPanel(layoutEditView);
-
-	private JLabel labelFindingTitle = new JLabel();
-	private JLabel labelFindingSeverity = new JLabel();
-	private JTextArea textDescription = new JTextArea();
-
-	private JScrollPane scrollDescription;
+	private GridBagLayout layout = new GridBagLayout();
+	private JLabel titleLable = new JLabel();
+	private JLabel severityLable = new JLabel();
+	private JTextArea descriptionTextArea = new JTextArea();
+	private JScrollPane descriptionTextField;
 
 	public PreviousFindingPanel() {
 		super();
+		setLayout(layout);
+		setBackground(UI.COMPACT_VIEW_BG);
+		setBorder(UI.STANDARD_BORDER);
 
-		this.setLayout(layoutEditView);
-		this.setBackground(Color.WHITE);
+		severityLable.setFont(UI.VERY_LARGE_FONT);
+		severityLable.setForeground(Color.DARK_GRAY);
 
-		// panelEditView.setPreferredSize(new Dimension(100, 80));
-		panelEditView.setBorder(UI.STANDARD_BORDER);
-		panelEditView.setBackground(UI.COMPACT_VIEW_BG);
+		titleLable.setText(translate("Previous Finding: "));
+		titleLable.setFont(UI.VERY_LARGE_FONT_BOLD);
+		
+		descriptionTextField = GUITools.setIntoScrllPn(descriptionTextArea);
+		GUITools.scrollToTop(descriptionTextField);
 
-		labelFindingSeverity.setFont(UI.VERY_LARGE_FONT);
-		labelFindingSeverity.setForeground(Color.DARK_GRAY);
+		descriptionTextArea.setEditable(false);
+		descriptionTextArea.setFont(UI.VERY_LARGE_FONT);
 
-		// TODO: translage
-		labelFindingTitle.setText("Vorheriger Befund: ");
-		labelFindingTitle.setFont(UI.VERY_LARGE_FONT_BOLD);
-
-		scrollDescription = GUITools.setIntoScrllPn(textDescription);
-		GUITools.scrollToTop(scrollDescription);
-
-		textDescription.setEditable(false);
-		textDescription.setFont(UI.VERY_LARGE_FONT);
-
-		JPanel panelStrut = new JPanel();
-
-		GUITools.addComponent(panelEditView, layoutEditView, labelFindingTitle, 0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, scrollDescription, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-		GUITools.addComponent(panelEditView, layoutEditView, panelStrut, 1, 1, 1, 1, 0.0, 0.0, 10, 0, 0, 20,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-
-		GUITools.addComponent(this, layoutEditView, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20,
-				GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
+		GUITools.addComponent(this, layout, titleLable,           0, 0, 2, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, descriptionTextField, 0, 1, 1, 1, 1.0, 1.0, 10, 10, 10, 10, BOTH, NORTHWEST);
 	}
 
 	public void setFiding(Finding finding) {
@@ -73,9 +56,10 @@ public class PreviousFindingPanel extends JPanel {
 
 	private void updateDisplay() {
 		// TODO: update Display.
-		// TODO: translatee
-		labelFindingTitle.setText("Vorheriger Befund: " + translate("Finding") + " " + finding.getId());
-		textDescription.setText(finding.getDescription());
+		// TODO: translate
+		titleLable.setText(translate("Previous Finding: ") + translate("Finding") + " " + finding.getId());
+		descriptionTextArea.setText(finding.getDescription());
+		severityLable.setText(finding.getSeverity());
 	}
 
 }

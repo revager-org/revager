@@ -16,6 +16,7 @@ import org.revager.app.model.Data;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Finding;
+import org.revager.gamecontroller.Dashboard;
 import org.revager.gui.UI;
 
 public class StatusPanel extends JPanel {
@@ -33,15 +34,10 @@ public class StatusPanel extends JPanel {
 	private JLabel continueDiscussionField;
 	private JLabel votingsField;
 	private int totalProtocolSeconds;
+	private Dashboard dashboard;
 
 	public StatusPanel() {
-		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
-			Object seconds = evt.getNewValue();
-			if (seconds instanceof Integer) {
-				this.totalProtocolSeconds = (int) seconds;
-				updateDisplay();
-			}
-		});
+		dashboard = new Dashboard();
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 0.03, 0.17, 0.8 };
@@ -54,10 +50,25 @@ public class StatusPanel extends JPanel {
 		addHurryUp();
 		addContinueDiscussion();
 		addVotings();
+
+		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
+			Object seconds = evt.getNewValue();
+			if (seconds instanceof Integer) {
+				Object oldSeconds = evt.getOldValue();
+				if (oldSeconds instanceof Integer) {
+					if ((int) oldSeconds == 0) {
+						dashboard.resetBreak();
+					}
+				}
+				this.totalProtocolSeconds = (int) seconds;
+				updateDisplay();
+			}
+		});
 	}
 
 	public void setFinding(Finding finding) {
 		this.finding = finding;
+		dashboard.setFinding(finding);
 		updateDisplay();
 	}
 
@@ -80,13 +91,12 @@ public class StatusPanel extends JPanel {
 		totalDurationProgress.setValue(totalProtocolSeconds);
 		// TODO: translate.
 		totalDurationProgress.setString(totalProtocolSeconds / 60 + "min " + totalProtocolSeconds % 60 + "sec");
-		// TODO: finish.
-		findingTimeField.setText("TODO 10min 10sec");
-		breakField.setText("TODO 1/2");
+		findingTimeField.setText(dashboard.getFindingTimeText());
+		breakField.setText(dashboard.getBreakText());
 		// TODO: do not use totalProtocolSeconds
 		hurryUpImage.setImageOpacity((float) totalProtocolSeconds / maxFindingSeconds);
-		continueDiscussionField.setText("TODO 2/3");
-		votingsField.setText("TODO 1/2");
+		continueDiscussionField.setText("" + dashboard.getContinue());
+		votingsField.setText("" + dashboard.getVotings());
 	}
 
 	private void addTotalTime() {

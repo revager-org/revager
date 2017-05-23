@@ -95,6 +95,7 @@ public class PresentationFrame extends JFrame {
 	}
 
 	private void buildGUI() {
+		// TODO: open full screen.
 		// TODO: Translate string.
 		setTitle(translate("Presentation View"));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

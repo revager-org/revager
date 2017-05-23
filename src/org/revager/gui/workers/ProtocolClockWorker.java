@@ -30,6 +30,8 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 	private long startingPoint = 0;
 	private long pausePoint = 0;
 	private boolean clockRunning = false;
+	private int seconds;
+	private int oldSeconds;
 
 	public void stopClock() {
 		this.clockRunning = false;
@@ -69,8 +71,9 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 		while (true) {
 			SwingUtilities.invokeLater(() -> {
 				if (clockRunning) {
-					int seconds = (int) (System.currentTimeMillis() - startingPoint) / 1000;
-					firePropertyChange("clock", -1, seconds);
+					oldSeconds = seconds;
+					seconds = (int) (System.currentTimeMillis() - startingPoint) / 1000;
+					firePropertyChange("clock",  oldSeconds, seconds);
 				}
 			});
 			Thread.sleep(1000);

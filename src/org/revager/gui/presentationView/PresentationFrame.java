@@ -2,7 +2,12 @@ package org.revager.gui.presentationView;
 
 import static org.revager.app.model.Data.translate;
 
+import java.awt.Canvas;
 import java.awt.Frame;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -115,6 +120,7 @@ public class PresentationFrame extends JFrame {
 		});
 		add(tabbedPane);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
+		showOnSecondScreen();
 	}
 
 	public void displayGeneralTab() {
@@ -123,6 +129,14 @@ public class PresentationFrame extends JFrame {
 
 	public void displayFindingsTab() {
 		tabbedPane.setSelectedIndex(FINDINGS_TAB_ID);
+	}
+
+	private void showOnSecondScreen() {
+		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] graphicsDevice = graphicsEnvironment.getScreenDevices();
+		if (graphicsDevice.length > 1) {
+			setLocation(graphicsDevice[1].getDefaultConfiguration().getBounds().x, getY());
+		}
 	}
 
 }

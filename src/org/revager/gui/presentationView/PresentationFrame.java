@@ -2,6 +2,7 @@ package org.revager.gui.presentationView;
 
 import static org.revager.app.model.Data.translate;
 
+import java.awt.Frame;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -95,7 +96,6 @@ public class PresentationFrame extends JFrame {
 	}
 
 	private void buildGUI() {
-		// TODO: open full screen.
 		// TODO: Translate string.
 		setTitle(translate("Presentation View"));
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -114,6 +114,7 @@ public class PresentationFrame extends JFrame {
 			}
 		});
 		add(tabbedPane);
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 	}
 
 	public void displayGeneralTab() {

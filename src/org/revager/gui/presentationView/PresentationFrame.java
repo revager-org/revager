@@ -98,7 +98,7 @@ public class PresentationFrame extends JFrame {
 	private void buildGUI() {
 		// TODO: Translate string.
 		setTitle(translate("Presentation View"));
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		tabPanelProtocol = new PresentationProtocolTab();
 		tabPanelFinding = new PresentationFindingsTab();

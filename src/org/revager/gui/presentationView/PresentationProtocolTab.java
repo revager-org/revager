@@ -30,10 +30,10 @@ public class PresentationProtocolTab extends JPanel {
 	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 19);
 
 	private GridBagLayout layout = new GridBagLayout();
-	private JTextArea impressionTextArea;
-	private JTextArea recommendationField;
-	private JTextArea meetingCommentTextArea;
-	private JTextArea protocolCommentTextArea;
+	private HighlightedTextArea impressionTextArea;
+	private HighlightedTextArea recommendationField;
+	private HighlightedTextArea meetingCommentTextArea;
+	private HighlightedTextArea protocolCommentTextArea;
 	private JScrollPane impressionField;
 	private JScrollPane meetingCommentField;
 	private JScrollPane protocolCommentField;
@@ -44,7 +44,7 @@ public class PresentationProtocolTab extends JPanel {
 
 		JLabel impressionLabel = new JLabel(translate("General impression of the product:"));
 		impressionLabel.setFont(LABLE_FONT);
-		impressionTextArea = new JTextArea();
+		impressionTextArea = new HighlightedTextArea();
 		impressionTextArea.setEditable(false);
 		impressionTextArea.setLineWrap(true);
 		impressionTextArea.setWrapStyleWord(true);
@@ -52,14 +52,14 @@ public class PresentationProtocolTab extends JPanel {
 
 		JLabel recommendationLabel = new JLabel(translate("Final recommendation for the product:"));
 		recommendationLabel.setFont(LABLE_FONT);
-		recommendationField = new JTextArea();
+		recommendationField = new HighlightedTextArea();
 		recommendationField.setRows(1);
 		recommendationField.setEditable(false);
 		recommendationField.setFont(TEXT_FONT);
 
 		JLabel meetingCommentLabel = new JLabel(translate("Comments on the meeting:"));
 		meetingCommentLabel.setFont(LABLE_FONT);
-		meetingCommentTextArea = new JTextArea();
+		meetingCommentTextArea = new HighlightedTextArea();
 		meetingCommentTextArea.setEditable(false);
 		meetingCommentTextArea.setLineWrap(true);
 		meetingCommentTextArea.setWrapStyleWord(true);
@@ -67,7 +67,7 @@ public class PresentationProtocolTab extends JPanel {
 
 		JLabel protocalCommentLabel = new JLabel(translate("Comments on the list of findings:"));
 		protocalCommentLabel.setFont(LABLE_FONT);
-		protocolCommentTextArea = new JTextArea();
+		protocolCommentTextArea = new HighlightedTextArea();
 		protocolCommentTextArea.setEditable(false);
 		protocolCommentTextArea.setLineWrap(true);
 		protocolCommentTextArea.setWrapStyleWord(true);

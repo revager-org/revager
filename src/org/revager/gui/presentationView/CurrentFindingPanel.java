@@ -4,6 +4,7 @@ import static java.awt.GridBagConstraints.BOTH;
 import static java.awt.GridBagConstraints.EAST;
 import static java.awt.GridBagConstraints.NONE;
 import static java.awt.GridBagConstraints.NORTHWEST;
+import static java.awt.GridBagConstraints.WEST;
 import static org.revager.app.model.Data.translate;
 
 import java.awt.Color;
@@ -49,7 +50,6 @@ public class CurrentFindingPanel extends JPanel {
 
 	public CurrentFindingPanel() {
 		super();
-
 		setLayout(layout);
 		setPreferredSize(new Dimension(100, 280));
 		setBorder(UI.STANDARD_BORDER);
@@ -94,9 +94,8 @@ public class CurrentFindingPanel extends JPanel {
 		textDescription.setEditable(false);
 		textDescription.setFont(UI.VERY_LARGE_FONT);
 
-		// TODO: fix jumping when severity is changed.
-		GUITools.addComponent(this, layout, labelFindingTitle,    0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, NORTHWEST);
-		GUITools.addComponent(this, layout, labelFindingSeverity, 1, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, EAST);
+		GUITools.addComponent(this, layout, labelFindingTitle,    0, 0, 1, 1, 1.0, 0.0, 10, 10, 0, 10, NONE, WEST);
+		GUITools.addComponent(this, layout, labelFindingSeverity, 1, 0, 1, 1, 0.5, 0.0, 10, 10, 0, 10, NONE, EAST);
 		GUITools.addComponent(this, layout, scrollDescription,    0, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, scrollReferences,     1, 1, 1, 1, 1.0, 1.0, 10, 10, 0, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, scrollAspects,        0, 2, 1, 1, 0.5, 0.5, 10, 10, 10, 10, BOTH, NORTHWEST);
@@ -113,6 +112,11 @@ public class CurrentFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
+		Dimension size = new Dimension(200, (int) labelFindingSeverity.getPreferredSize().getHeight());
+		labelFindingSeverity.setHorizontalAlignment(JLabel.RIGHT);
+		labelFindingSeverity.setMaximumSize(size);
+		labelFindingSeverity.setMinimumSize(size);
+		labelFindingSeverity.setPreferredSize(size);
 		labelFindingTitle.setText(translate("Current Finding:") + " " + translate("Finding") + " " + finding.getId());
 		labelFindingSeverity.setText(translate(finding.getSeverity()));
 		textDescription.setText(finding.getDescription());

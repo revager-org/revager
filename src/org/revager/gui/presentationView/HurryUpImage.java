@@ -31,7 +31,7 @@ public class HurryUpImage extends JPanel {
 		final int sideLength = Math.min(getWidth(), getHeight());
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, internOpacity));
-		g2d.drawImage(image, 0, 0, sideLength, sideLength, this);
+		g2d.drawImage(image, getWidth() - sideLength, getHeight() - sideLength, sideLength, sideLength, this);
 	}
 
 	public void setInternImageOpacity(float internOpacity) {

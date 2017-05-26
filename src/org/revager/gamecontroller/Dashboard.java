@@ -83,8 +83,8 @@ public class Dashboard {
 		return getFindingStatus().getVotings();
 	}
 
-	public String getFindingTimeText() {
-		return getFindingStatus().getFindingTimeString();
+	public int getFindingTime() {
+		return getFindingStatus().getFindingTime();
 	}
 
 	public String getBreakText() {

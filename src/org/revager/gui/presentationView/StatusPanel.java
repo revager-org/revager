@@ -82,14 +82,17 @@ public class StatusPanel extends JPanel {
 
 		totalDurationProgress.setMaximum(maxProtocolSeconds);
 		totalDurationProgress.setValue(totalProtocolSeconds);
-		totalDurationProgress
-				.setString(totalProtocolSeconds / 60 + translate("min") + " " + totalProtocolSeconds % 60 + "sec");
-		findingTimeField.setText(dashboard.getFindingTimeText());
+		totalDurationProgress.setString(intTimeToString(totalProtocolSeconds));
+		int findingTime = dashboard.getFindingTime();
+		findingTimeField.setText(intTimeToString(findingTime));
 		breakField.setText(dashboard.getBreakText());
-		// TODO: do not use totalProtocolSeconds
-		hurryUpImage.setImageOpacity((float) totalProtocolSeconds / maxFindingSeconds);
-		continueDiscussionField.setText("" + dashboard.getContinue());
-		votingsField.setText("" + dashboard.getVotings());
+		hurryUpImage.setImageOpacity((float) findingTime / maxFindingSeconds);
+		continueDiscussionField.setText(Integer.toString(dashboard.getContinue()));
+		votingsField.setText(Integer.toString(dashboard.getVotings()));
+	}
+
+	private String intTimeToString(int seconds) {
+		return seconds / 60 + translate("min") + " " + seconds % 60 + "sec";
 	}
 
 	private void addTotalTime() {

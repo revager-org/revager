@@ -1,6 +1,12 @@
 package org.revager.gamecontroller;
 
+import static org.revager.app.model.Data.translate;
+
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import org.revager.app.model.schema.Finding;
 import org.revager.gui.UI;
@@ -79,8 +85,17 @@ public class Dashboard {
 		return getFindingStatus().getYawn();
 	}
 
-	public int getVotings() {
-		return getFindingStatus().getVotings();
+	public String getVotings() {
+		return Integer.toString(getFindingStatus().getVotings().size());
+	}
+
+	public String getVotingsDetails() {
+		Collection<Vote> votings = getFindingStatus().getVotings();
+		int numberOfVotes = votings.size();
+		if (numberOfVotes != maxVotes) {
+			return "<html><em>" + translate("waiting for all votes...") + "</em><html>";
+		}
+		return buildVoteCountString(votings).toString();
 	}
 
 	public int getFindingTime() {
@@ -88,7 +103,7 @@ public class Dashboard {
 	}
 
 	public String getBreakText() {
-		return "" + breaks;
+		return Integer.toString(breaks);
 	}
 
 	public void rumble() {
@@ -100,6 +115,43 @@ public class Dashboard {
 		for (FindingStatus findingStatus : findingStatuses.values()) {
 			findingStatus.resetFindingTime();
 		}
+	}
+
+	private StringBuilder buildVoteCountString(Collection<Vote> votings) {
+		EnumMap<Vote, Integer> voteCountMap = createVoteCountMap(votings);
+		StringBuilder builder = new StringBuilder();
+		builder.append("<html>");
+		int globalMaxCount = 0;
+		while (!voteCountMap.isEmpty()) {
+			Entry<Vote, Integer> max = new SimpleEntry<>(null, 0);
+			for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
+				if (entry.getValue() > max.getValue()) {
+					max = entry;
+				}
+			}
+			builder.append(max.getValue());
+			builder.append("x ");
+			globalMaxCount = Math.max(globalMaxCount, max.getValue());
+			if (max.getValue() == globalMaxCount) {
+				builder.append("<strong>" + max.getKey() + "</strong>");
+			} else {
+				builder.append(max.getKey());
+			}
+			builder.append("; ");
+			voteCountMap.remove(max.getKey());
+		}
+		builder.append("</html>");
+		return builder;
+	}
+
+	private EnumMap<Vote, Integer> createVoteCountMap(Collection<Vote> votings) {
+		EnumMap<Vote, Integer> map = new EnumMap<>(Vote.class);
+		for (Vote vote : votings) {
+			int count = map.getOrDefault(vote, 0);
+			count++;
+			map.put(vote, count);
+		}
+		return map;
 	}
 
 	private FindingStatus getFindingStatus() {

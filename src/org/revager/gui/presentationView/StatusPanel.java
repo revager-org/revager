@@ -1,5 +1,6 @@
 package org.revager.gui.presentationView;
 
+import static org.revager.app.model.Data.translate;
 import static org.revager.app.model.appdata.AppSettingKey.APP_PROTOCOL_WARNING_TIME;
 
 import java.awt.Font;
@@ -13,7 +14,6 @@ import javax.swing.JProgressBar;
 
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
-import static org.revager.app.model.Data.translate;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Finding;
@@ -22,10 +22,9 @@ import org.revager.gui.UI;
 
 public class StatusPanel extends JPanel {
 
-	public static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 35);
-	public static final Font STANDARD_STATUS_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 35);
-
 	private static final long serialVersionUID = 4044468994799470896L;
+	private static final Font SMALL_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
+	private static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 35);
 
 	private JProgressBar totalDurationProgress;
 	private JLabel findingTimeField;
@@ -35,12 +34,13 @@ public class StatusPanel extends JPanel {
 	private JLabel votingsField;
 	private int totalProtocolSeconds;
 	private transient Dashboard dashboard;
+	private JLabel votingsDetailsField;
 
 	public StatusPanel() {
 		dashboard = new Dashboard();
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWeights = new double[] { 0.03, 0.17, 0.8 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0 };
 		setLayout(gridBagLayout);
 		setBackground(UI.BLUE_BACKGROUND_COLOR);
 
@@ -50,6 +50,7 @@ public class StatusPanel extends JPanel {
 		addHurryUp();
 		addContinueDiscussion();
 		addVotings();
+		addVotingsDetails();
 
 		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
 			Object seconds = evt.getNewValue();
@@ -88,7 +89,8 @@ public class StatusPanel extends JPanel {
 		breakField.setText(dashboard.getBreakText());
 		hurryUpImage.setImageOpacity((float) findingTime / maxFindingSeconds);
 		continueDiscussionField.setText(Integer.toString(dashboard.getContinue()));
-		votingsField.setText(Integer.toString(dashboard.getVotings()));
+		votingsField.setText(dashboard.getVotings());
+		votingsDetailsField.setText(dashboard.getVotingsDetails());
 	}
 
 	private String intTimeToString(int seconds) {
@@ -205,6 +207,25 @@ public class StatusPanel extends JPanel {
 		votingsFieldGridConstraints.gridy = 5;
 		votingsFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(votingsField, votingsFieldGridConstraints);
+	}
+
+	private void addVotingsDetails() {
+		JLabel votingsDetailsLabel = new JLabel(translate("Votes:"));
+		votingsDetailsLabel.setFont(STANDARD_STATUS_FONT);
+		GridBagConstraints votingDetailsLabelGridConstraints = new GridBagConstraints();
+		votingDetailsLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
+		votingDetailsLabelGridConstraints.gridx = 0;
+		votingDetailsLabelGridConstraints.gridy = 6;
+		votingDetailsLabelGridConstraints.anchor = GridBagConstraints.EAST;
+		add(votingsDetailsLabel, votingDetailsLabelGridConstraints);
+
+		votingsDetailsField = new JLabel();
+		votingsDetailsField.setFont(SMALL_STATUS_FONT);
+		GridBagConstraints votingsDetailsFieldGridConstraints = new GridBagConstraints();
+		votingsDetailsFieldGridConstraints.gridx = 1;
+		votingsDetailsFieldGridConstraints.gridy = 6;
+		votingsDetailsFieldGridConstraints.anchor = GridBagConstraints.WEST;
+		add(votingsDetailsField, votingsDetailsFieldGridConstraints);
 	}
 
 }

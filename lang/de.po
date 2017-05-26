@@ -340,6 +340,10 @@ msgstr "Hauptfehler"
 msgid "Minor error"
 msgstr "Nebenfehler"
 
+#: src/org/revager/app/model/Data.java:285
+msgid "(Possible) no error"
+msgstr "(Wahrscheinlich) kein Fehler"
+
 #: src/org/revager/app/model/Data.java:286
 msgid "Good"
 msgstr "Gut"
@@ -1034,6 +1038,11 @@ msgstr "Die Befunde konnten nicht in das PDF-Dokument geschrieben werden."
 #: src/org/revager/export/ReviewProtocolPDFExporter.java:133
 msgid "The following persons participated in the whole review:"
 msgstr "Folgende Teilnehmer waren während des gesamten Reviews anwesend:"
+
+#: src/org/revager/gamecontroller/Dashboard.java:96
+msgid "waiting for all votes..."
+msgstr "warte auf alle Stimmen..."
+
 
 #: src/org/revager/gui/AbstractDialog.java:481
 msgid "Show/hide help"
@@ -2490,6 +2499,50 @@ msgstr "Review-Protokoll als PDF-Datei exportieren"
 msgid "Export List of Findings as CSV File"
 msgstr "Review-Protokoll als CSV-Datei exportieren"
 
+#: src/org/revager/gui/findings_list/FindingsListFrame.java:433
+msgid "Open Presentation View"
+msgstr "Presentationsansicht öffnen"
+
+#: src/org/revager/gui/dialogs/SettingsDialog.java:267
+msgid "Automatically open presentation view for data projector."
+msgstr "Öffne Presentationsansicht für den Beamer automatisch."
+
+#: src/org/revager/gui/presentationView/PresentationFrame.java:102
+msgid "Presentation View"
+msgstr "Presentationsansicht"
+
+#: src/org/revager/gui/presentationView/PreviousFindingPanel.java:61
+msgid "Previous Finding:"
+msgstr "Vorheriger Befund:"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:89
+msgid "min"
+msgstr "min"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:98
+msgid "sec"
+msgstr "sek"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:102
+msgid "Total Duration:"
+msgstr "Gesamtdauer:"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:125
+msgid "Finding Duration:"
+msgstr "Befunddauer:"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:157
+msgid "Break:"
+msgstr "Pause:"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:176
+msgid "Focus on Discussion:"
+msgstr "Diskussionsfokus:"
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:214
+msgid "Votes:"
+msgstr "Stimmen:"
+
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:454
 msgid "Exit Fullscreen"
 msgstr "Vollbildansicht verlassen"
@@ -2823,6 +2876,10 @@ msgstr "Referenzen"
 #: src/org/revager/gui/models/PresentAttendeesTableModel.java:117
 msgid "Preparation time"
 msgstr "Vorbereitungszeit"
+
+#: src/org/revager/gui/presentationView/CurrentFindingPanel.java:116
+msgid "Current Finding:"
+msgstr "Aktueller Befund:"
 
 #: src/org/revager/gui/models/ReviewerTableModel.java:98
 msgid "Category"

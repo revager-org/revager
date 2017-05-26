@@ -403,7 +403,7 @@ public class Data {
 	 * @return list of default catalogs
 	 */
 	public static List<String> getDefaultCatalogs() {
-		List catalogs = new ArrayList<String>();
+		ArrayList<String> catalogs = new ArrayList<>();
 
 		String pathCatalogs = getInstance().getResource("path.catalogs") + getInstance().getLocale().getLanguage()
 				+ "/";

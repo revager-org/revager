@@ -34,9 +34,9 @@ import org.revager.app.model.appdata.AppCSVColumnName;
  * The Class CSVColumnsComboBoxModel.
  */
 @SuppressWarnings("serial")
-public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboBoxModel {
+public class CSVColumnsComboBoxModel extends AbstractListModel<String> implements ComboBoxModel<String> {
 
-	private Map<String, AppCSVColumnName> columns = new HashMap<String, AppCSVColumnName>();
+	private Map<String, AppCSVColumnName> columns = new HashMap<>();
 
 	private final String DESCRIPTION = translate("Description");
 	private final String REFERENCE = translate("Reference");
@@ -57,13 +57,8 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboB
 		columns.put(REPORTER, AppCSVColumnName.REPORTER);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.ComboBoxModel#getSelectedItem()
-	 */
 	@Override
-	public Object getSelectedItem() {
+	public String getSelectedItem() {
 		return selection;
 	}
 
@@ -76,11 +71,6 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboB
 		return columns.get(getSelectedItem());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.ComboBoxModel#setSelectedItem(java.lang.Object)
-	 */
 	@Override
 	public void setSelectedItem(Object item) {
 		selection = item.toString();
@@ -104,13 +94,8 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboB
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.ListModel#getElementAt(int)
-	 */
 	@Override
-	public Object getElementAt(int index) {
+	public String getElementAt(int index) {
 		switch (index) {
 		case 0:
 			return DESCRIPTION;
@@ -126,11 +111,6 @@ public class CSVColumnsComboBoxModel extends AbstractListModel implements ComboB
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.ListModel#getSize()
-	 */
 	@Override
 	public int getSize() {
 		return AppCSVColumnName.values().length;

@@ -168,10 +168,7 @@ public class Finding extends Observable {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
-	 * 
-	 * @deprecated Don't leak the list.
 	 */
-	@Deprecated
 	public List<String> getReferences() {
 		return this.references;
 	}
@@ -230,10 +227,7 @@ public class Finding extends Observable {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
-	 * 
-	 * @deprecated do not leak the list.
 	 */
-	@Deprecated
 	public List<String> getAspects() {
 		return this.aspects;
 	}
@@ -281,10 +275,7 @@ public class Finding extends Observable {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
-	 * 
-	 * @deprecated do not leak the list.
 	 */
-	@Deprecated
 	public List<String> getExternalReferences() {
 		return this.externalReferences;
 	}

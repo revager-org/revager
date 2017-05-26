@@ -233,10 +233,7 @@ public class Protocol extends Observable {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link Finding }
-	 * 
-	 * @deprecated Do not leak list.
 	 */
-	@Deprecated
 	public List<Finding> getFindings() {
 		return this.findings;
 	}

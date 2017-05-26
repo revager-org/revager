@@ -2,12 +2,9 @@ package org.revager.gui.presentationView;
 
 import static org.revager.app.model.Data.translate;
 
-import java.awt.Canvas;
 import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 

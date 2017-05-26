@@ -13,13 +13,16 @@ public class VoteEvent extends DashBoardEvent {
 
 	@Override
 	public boolean waitWithCallback() {
+		if (dashboard.getVoteForOwner(eventFinding, owner) != null) {
+			return false;
+		}
 		dashboard.addVoteToQueue(eventFinding, owner, vote);
 		return !dashboard.isVotingComplete(eventFinding);
 	}
 
 	@Override
 	public void callback() {
-		dashboard.addVote(eventFinding, owner, vote);
+		dashboard.addOrRemoveVote(eventFinding, owner, vote);
 	}
 
 }

@@ -46,19 +46,22 @@ public class Dashboard {
 	public void setFinding(Finding finding) {
 		findingStatuses.putIfAbsent(finding, new FindingStatus());
 		this.finding = finding;
-
 	}
 
 	public Finding getFinding() {
 		return finding;
 	}
 
+	public Vote getVoteForOwner(Finding eventFinding, int owner) {
+		return getFindingStatus(eventFinding).getVoteForOwner(owner);
+	}
+
 	public void addVoteToQueue(Finding eventFinding, int owner, Vote vote) {
 		getFindingStatus(eventFinding).addVoteToQueue(owner, vote);
 	}
 
-	public synchronized void addVote(Finding eventFinding, int owner, Vote vote) {
-		getFindingStatus(eventFinding).addVote(owner, vote);
+	public synchronized void addOrRemoveVote(Finding eventFinding, int owner, Vote vote) {
+		getFindingStatus(eventFinding).addOrRemoveVote(owner, vote);
 	}
 
 	public synchronized void addBreak() {

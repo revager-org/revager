@@ -143,7 +143,7 @@ public class Dashboard {
 			builder.append(sizeLevel);
 			builder.append("em;\">");
 			builder.append(max.getValue());
-			builder.append("x ");
+			builder.append("x");
 			builder.append(max.getKey());
 			builder.append("; ");
 			builder.append("</span>");

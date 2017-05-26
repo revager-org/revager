@@ -27,7 +27,6 @@ public class StatusPanel extends JPanel {
 
 	private static final long serialVersionUID = 4044468994799470896L;
 
-	private transient Finding finding;
 	private JProgressBar totalDurationProgress;
 	private JLabel findingTimeField;
 	private HurryUpImage hurryUpImage;
@@ -35,7 +34,7 @@ public class StatusPanel extends JPanel {
 	private JLabel continueDiscussionField;
 	private JLabel votingsField;
 	private int totalProtocolSeconds;
-	private Dashboard dashboard;
+	private transient Dashboard dashboard;
 
 	public StatusPanel() {
 		dashboard = new Dashboard();
@@ -62,7 +61,6 @@ public class StatusPanel extends JPanel {
 	}
 
 	public void setFinding(Finding finding) {
-		this.finding = finding;
 		dashboard.setFinding(finding);
 		updateDisplay();
 	}

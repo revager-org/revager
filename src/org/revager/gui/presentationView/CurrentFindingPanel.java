@@ -112,7 +112,7 @@ public class CurrentFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		Dimension size = new Dimension(200, (int) labelFindingSeverity.getPreferredSize().getHeight());
+		Dimension size = new Dimension(200, (int) labelFindingTitle.getPreferredSize().getHeight());
 		labelFindingSeverity.setHorizontalAlignment(JLabel.RIGHT);
 		labelFindingSeverity.setMaximumSize(size);
 		labelFindingSeverity.setMinimumSize(size);

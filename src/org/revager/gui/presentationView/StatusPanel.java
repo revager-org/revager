@@ -92,11 +92,11 @@ public class StatusPanel extends JPanel {
 	}
 
 	private String intTimeToString(int seconds) {
-		return seconds / 60 + translate("min") + " " + seconds % 60 + "sec";
+		return seconds / 60 + translate("min") + " " + seconds % 60 + translate("sec");
 	}
 
 	private void addTotalTime() {
-		JLabel totalDurationLabel = new JLabel("Gesamtdauer:");
+		JLabel totalDurationLabel = new JLabel(translate("Total Duration:"));
 		totalDurationLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints totalDurationGridConstraints = new GridBagConstraints();
 		totalDurationGridConstraints.insets = new Insets(15, 0, 0, 15);
@@ -119,7 +119,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void addFindingTime() {
-		JLabel findingTimeLabel = new JLabel("Befunddauer:");
+		JLabel findingTimeLabel = new JLabel(translate("Finding Duration:"));
 		findingTimeLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints findingTimeLabelGridConstraints = new GridBagConstraints();
 		findingTimeLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
@@ -146,12 +146,12 @@ public class StatusPanel extends JPanel {
 		hurryUpPanelGridConstraints.gridx = 2;
 		hurryUpPanelGridConstraints.gridy = 2;
 		hurryUpPanelGridConstraints.insets = new Insets(15, 15, 15, 15);
-		hurryUpPanelGridConstraints.anchor = GridBagConstraints.SOUTHEAST;
+		hurryUpPanelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(hurryUpImage, hurryUpPanelGridConstraints);
 	}
 
 	private void addBreak() {
-		JLabel breakLabel = new JLabel("Pause:");
+		JLabel breakLabel = new JLabel(translate("Break:"));
 		breakLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
 		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
@@ -170,7 +170,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void addContinueDiscussion() {
-		JLabel continueDiscussionLabel = new JLabel("Diskussionsfokus:");
+		JLabel continueDiscussionLabel = new JLabel(translate("Focus on Discussion:"));
 		continueDiscussionLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionLabelGridConstraints = new GridBagConstraints();
 		continueDiscussionLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
@@ -189,7 +189,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void addVotings() {
-		JLabel votingsLabel = new JLabel("Abgestimmt:");
+		JLabel votingsLabel = new JLabel(translate("Voted:"));
 		votingsLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints votingLabelGridConstraints = new GridBagConstraints();
 		votingLabelGridConstraints.insets = new Insets(0, 0, 0, 15);

@@ -263,8 +263,8 @@ public class SettingsDialog extends AbstractDialog {
 		GUITools.addComponent(panelHighlightFields, gblHighlightFields, checkboxHighlightFields, 0, 0, 1, 1, 0.0, 0.0,
 				5, 20, 5, 0, GridBagConstraints.NONE, GridBagConstraints.WEST);
 
-		// TODO: translate
-		checkboxAutoPresentationView = new JCheckBox("Automatically open presentation view for data projector.");
+		checkboxAutoPresentationView = new JCheckBox(
+				translate("Automatically open presentation view for data projector."));
 		checkboxAutoPresentationView.setFocusPainted(false);
 		GridBagLayout gblPresentationView = new GridBagLayout();
 		JPanel panelPresentationView = new JPanel(gblPresentationView);

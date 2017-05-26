@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import org.revager.app.model.Data;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.app.model.schema.Review;
@@ -102,7 +103,7 @@ public class PresentationProtocolTab extends JPanel {
 
 	public void updateTabData(Review review) {
 		impressionTextArea.setText(review.getImpression());
-		recommendationField.setText(review.getRecommendation());
+		recommendationField.setText(Data.translate(review.getRecommendation()));
 		updateFontSizes(impressionTextArea, impressionField);
 	}
 

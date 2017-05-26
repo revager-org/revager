@@ -113,8 +113,8 @@ public class CurrentFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		labelFindingTitle.setText(translate("Current Finding: ") + translate("Finding") + " " + finding.getId());
-		labelFindingSeverity.setText(finding.getSeverity());
+		labelFindingTitle.setText(translate("Current Finding:") + " " + translate("Finding") + " " + finding.getId());
+		labelFindingSeverity.setText(translate(finding.getSeverity()));
 		textDescription.setText(finding.getDescription());
 		modelReferences.setFinding(finding);
 		modelReferences.fireTableDataChanged();

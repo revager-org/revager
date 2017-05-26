@@ -37,7 +37,7 @@ public class PreviousFindingPanel extends JPanel {
 		severityLable.setFont(UI.VERY_LARGE_FONT);
 		severityLable.setForeground(Color.DARK_GRAY);
 
-		titleLable.setText(translate("Previous Finding: "));
+		titleLable.setText(translate("Previous Finding:"));
 		titleLable.setFont(UI.VERY_LARGE_FONT_BOLD);
 
 		descriptionTextField = GUITools.setIntoScrllPn(descriptionTextArea);
@@ -57,9 +57,8 @@ public class PreviousFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		// TODO: translate
-		titleLable.setText(translate("Previous Finding: ") + translate("Finding") + " " + finding.getId());
-		severityLable.setText(finding.getSeverity());
+		titleLable.setText(translate("Previous Finding:") + " "+ translate("Finding") + " " + finding.getId());
+		severityLable.setText(translate(finding.getSeverity()));
 		descriptionTextArea.setText(finding.getDescription());
 	}
 

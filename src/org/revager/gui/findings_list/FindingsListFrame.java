@@ -429,9 +429,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("arrow_50x50_0.png"),
 				Data.getInstance().getIcon("arrow_50x50.png"));
-		// TODO: add Text
-		tbPresenationView.setToolTipText(translate("asdf"));
-		tbPresenationView.addActionListener((e) -> {
+		tbPresenationView.setToolTipText(translate("Open Presentation View"));
+		tbPresenationView.addActionListener((ActionEvent e) -> {
 			PresentationFrame presentationFrame = UI.getInstance().getPresentationFrame();
 			presentationFrame.setVisible(!presentationFrame.isVisible());
 		});

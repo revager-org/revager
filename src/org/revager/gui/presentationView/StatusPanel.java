@@ -13,6 +13,7 @@ import javax.swing.JProgressBar;
 
 import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
+import static org.revager.app.model.Data.translate;
 import org.revager.app.model.DataException;
 import org.revager.app.model.appdata.AppSettingKey;
 import org.revager.app.model.schema.Finding;
@@ -83,8 +84,8 @@ public class StatusPanel extends JPanel {
 
 		totalDurationProgress.setMaximum(maxProtocolSeconds);
 		totalDurationProgress.setValue(totalProtocolSeconds);
-		// TODO: translate.
-		totalDurationProgress.setString(totalProtocolSeconds / 60 + "min " + totalProtocolSeconds % 60 + "sec");
+		totalDurationProgress
+				.setString(totalProtocolSeconds / 60 + translate("min") + " " + totalProtocolSeconds % 60 + "sec");
 		findingTimeField.setText(dashboard.getFindingTimeText());
 		breakField.setText(dashboard.getBreakText());
 		// TODO: do not use totalProtocolSeconds

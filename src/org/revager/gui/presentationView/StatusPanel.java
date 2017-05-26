@@ -23,7 +23,6 @@ import org.revager.gui.UI;
 public class StatusPanel extends JPanel {
 
 	private static final long serialVersionUID = 4044468994799470896L;
-	private static final Font SMALL_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
 	private static final Font STANDARD_STATUS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 35);
 
 	private JProgressBar totalDurationProgress;
@@ -34,7 +33,6 @@ public class StatusPanel extends JPanel {
 	private JLabel votingsField;
 	private int totalProtocolSeconds;
 	private transient Dashboard dashboard;
-	private JLabel votingsDetailsField;
 
 	public StatusPanel() {
 		dashboard = new Dashboard();
@@ -50,7 +48,6 @@ public class StatusPanel extends JPanel {
 		addHurryUp();
 		addContinueDiscussion();
 		addVotings();
-		addVotingsDetails();
 
 		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
 			Object seconds = evt.getNewValue();
@@ -89,8 +86,7 @@ public class StatusPanel extends JPanel {
 		breakField.setText(dashboard.getBreakText());
 		hurryUpImage.setImageOpacity((float) findingTime / maxFindingSeconds);
 		continueDiscussionField.setText(Integer.toString(dashboard.getContinue()));
-		votingsField.setText(dashboard.getVotings());
-		votingsDetailsField.setText(dashboard.getVotingsDetails());
+		votingsField.setText(dashboard.getVotingsDetails());
 	}
 
 	private String intTimeToString(int seconds) {
@@ -191,7 +187,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void addVotings() {
-		JLabel votingsLabel = new JLabel(translate("Voted:"));
+		JLabel votingsLabel = new JLabel(translate("Votes:"));
 		votingsLabel.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints votingLabelGridConstraints = new GridBagConstraints();
 		votingLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
@@ -207,25 +203,6 @@ public class StatusPanel extends JPanel {
 		votingsFieldGridConstraints.gridy = 5;
 		votingsFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(votingsField, votingsFieldGridConstraints);
-	}
-
-	private void addVotingsDetails() {
-		JLabel votingsDetailsLabel = new JLabel(translate("Votes:"));
-		votingsDetailsLabel.setFont(STANDARD_STATUS_FONT);
-		GridBagConstraints votingDetailsLabelGridConstraints = new GridBagConstraints();
-		votingDetailsLabelGridConstraints.insets = new Insets(0, 0, 0, 15);
-		votingDetailsLabelGridConstraints.gridx = 0;
-		votingDetailsLabelGridConstraints.gridy = 6;
-		votingDetailsLabelGridConstraints.anchor = GridBagConstraints.EAST;
-		add(votingsDetailsLabel, votingDetailsLabelGridConstraints);
-
-		votingsDetailsField = new JLabel();
-		votingsDetailsField.setFont(SMALL_STATUS_FONT);
-		GridBagConstraints votingsDetailsFieldGridConstraints = new GridBagConstraints();
-		votingsDetailsFieldGridConstraints.gridx = 1;
-		votingsDetailsFieldGridConstraints.gridy = 6;
-		votingsDetailsFieldGridConstraints.anchor = GridBagConstraints.WEST;
-		add(votingsDetailsField, votingsDetailsFieldGridConstraints);
 	}
 
 }

@@ -85,15 +85,17 @@ public class Dashboard {
 		return getFindingStatus().getYawn();
 	}
 
-	public String getVotings() {
-		return Integer.toString(getFindingStatus().getVotings().size());
-	}
-
 	public String getVotingsDetails() {
 		Collection<Vote> votings = getFindingStatus().getVotings();
 		int numberOfVotes = votings.size();
 		if (numberOfVotes != maxVotes) {
-			return "<html><em>" + translate("waiting for all votes...") + "</em><html>";
+			StringBuilder builder = new StringBuilder();
+			builder.append("<html>");
+			builder.append(numberOfVotes);
+			builder.append("x <em>(");
+			builder.append(translate("waiting for all votes..."));
+			builder.append(")</em><html>");
+			return builder.toString();
 		}
 		return buildVoteCountString(votings).toString();
 	}
@@ -121,7 +123,8 @@ public class Dashboard {
 		EnumMap<Vote, Integer> voteCountMap = createVoteCountMap(votings);
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html>");
-		int globalMaxCount = 0;
+		float sizeLevel = 1.5f;
+		int lastCount = Integer.MAX_VALUE;
 		while (!voteCountMap.isEmpty()) {
 			Entry<Vote, Integer> max = new SimpleEntry<>(null, 0);
 			for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
@@ -129,15 +132,18 @@ public class Dashboard {
 					max = entry;
 				}
 			}
+			builder.append("<span style=\"font-size:");
+			if (lastCount != max.getValue()) {
+				lastCount = Math.min(lastCount, max.getValue());
+				sizeLevel = 2 * sizeLevel / 3;
+			}
+			builder.append(sizeLevel);
+			builder.append("em;\">");
 			builder.append(max.getValue());
 			builder.append("x ");
-			globalMaxCount = Math.max(globalMaxCount, max.getValue());
-			if (max.getValue() == globalMaxCount) {
-				builder.append("<strong>" + max.getKey() + "</strong>");
-			} else {
-				builder.append(max.getKey());
-			}
+			builder.append(max.getKey());
 			builder.append("; ");
+			builder.append("</span>");
 			voteCountMap.remove(max.getKey());
 		}
 		builder.append("</html>");

@@ -3,19 +3,34 @@ package org.revager.gamecontroller;
 import java.util.HashMap;
 
 import org.revager.app.model.schema.Finding;
+import org.revager.gui.UI;
 
 public class Dashboard {
 
-	private final HashMap<Integer, Vote> votes = new HashMap<>();
-	private final HashMap<Integer, Vote> votesInQueue = new HashMap<>();
+	private final HashMap<Finding, FindingStatus> findingStatuses = new HashMap<>();
 
 	private int breaks = 0;
-	private int yawns = 0;
 	private int maxVotes = 0;
 	private Finding finding;
+	private ControllerManager controllerManager;
 
 	public Dashboard() {
-		new ControllerManager(this);
+		controllerManager = new ControllerManager(this);
+		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
+			Object newValue = evt.getNewValue();
+			if (newValue instanceof Integer) {
+				Object oldValue = evt.getOldValue();
+				if (oldValue instanceof Integer) {
+					int newSeconds = (int) newValue;
+					int oldSeconds = (int) oldValue;
+					if (oldSeconds == 0) {
+						resetTime();
+					} else if (oldSeconds < newSeconds) {
+						getFindingStatus().addFindingTime(newSeconds - oldSeconds);
+					}
+				}
+			}
+		});
 	}
 
 	public void setNumberControllers(int length) {
@@ -23,24 +38,21 @@ public class Dashboard {
 	}
 
 	public void setFinding(Finding finding) {
-		// TODO: save yawn etc to finding.
+		findingStatuses.putIfAbsent(finding, new FindingStatus());
 		this.finding = finding;
+
 	}
 
 	public Finding getFinding() {
 		return finding;
 	}
 
-	public synchronized void addVoteToQueue(Finding eventFinding, int owner, Vote vote) {
-		// TODO: make finding aware.
-		synchronized (votesInQueue) {
-			votesInQueue.put(owner, vote);
-		}
+	public void addVoteToQueue(Finding eventFinding, int owner, Vote vote) {
+		getFindingStatus(eventFinding).addVoteToQueue(owner, vote);
 	}
 
 	public synchronized void addVote(Finding eventFinding, int owner, Vote vote) {
-		// TODO: make finding aware.
-		votes.put(owner, vote);
+		getFindingStatus(eventFinding).addVote(owner, vote);
 	}
 
 	public synchronized void addBreak() {
@@ -51,46 +63,47 @@ public class Dashboard {
 		return breaks;
 	}
 
-	public synchronized void addYawn(Finding eventFinding) {
-		// TODO: make finding aware.
-		yawns++;
-	}
-
-	public synchronized void resetFindingRelevant() {
-		// TODO: Remove when made finding aware.
-		votes.clear();
-		votesInQueue.clear();
-		yawns = 0;
+	public void addYawn(Finding eventFinding) {
+		getFindingStatus(eventFinding).addYawn();
 	}
 
 	public synchronized boolean isVotingComplete(Finding eventFinding) {
-		// TODO: make finding aware.
-		synchronized (votesInQueue) {
-			return votesInQueue.size() == maxVotes;
-		}
+		return getFindingStatus(eventFinding).isVotingComplete(maxVotes);
 	}
 
-	public void resetBreak() {
+	private void resetBreak() {
 		breaks = 0;
 	}
 
 	public int getContinue() {
-		// TODO: make finding aware.
-		return yawns;
+		return getFindingStatus().getYawn();
 	}
 
 	public int getVotings() {
-		// TODO: make finding aware.
-		return votes.size();
+		return getFindingStatus().getVotings();
 	}
 
 	public String getFindingTimeText() {
-		// TODO: make finding aware.
-		return "TODO 10min 10sec";
+		return getFindingStatus().getFindingTimeString();
 	}
 
 	public String getBreakText() {
 		return "" + breaks;
+	}
+
+	private void resetTime() {
+		resetBreak();
+		for (FindingStatus findingStatus : findingStatuses.values()) {
+			findingStatus.resetFindingTime();
+		}
+	}
+
+	private FindingStatus getFindingStatus() {
+		return getFindingStatus(finding);
+	}
+
+	private FindingStatus getFindingStatus(Finding finding) {
+		return findingStatuses.getOrDefault(finding, new FindingStatus());
 	}
 
 }

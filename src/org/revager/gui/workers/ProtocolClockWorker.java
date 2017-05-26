@@ -26,6 +26,8 @@ import javax.swing.SwingWorker;
  */
 public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 
+	private static final String PROPERTY_STRING_CLOCK = "clock";
+
 	private boolean warningDisplayed = false;
 	private long startingPoint = 0;
 	private long pausePoint = 0;
@@ -51,7 +53,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 		this.startingPoint = 0;
 		this.clockRunning = false;
 		this.warningDisplayed = false;
-		firePropertyChange("clock", -1, 0);
+		firePropertyChange(PROPERTY_STRING_CLOCK, oldSeconds, 0);
 	}
 
 	public boolean isClockRunning() {
@@ -73,7 +75,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 				if (clockRunning) {
 					oldSeconds = seconds;
 					seconds = (int) (System.currentTimeMillis() - startingPoint) / 1000;
-					firePropertyChange("clock",  oldSeconds, seconds);
+					firePropertyChange(PROPERTY_STRING_CLOCK, oldSeconds, seconds);
 				}
 			});
 			Thread.sleep(1000);

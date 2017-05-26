@@ -32,4 +32,5 @@ public abstract class DashBoardEvent {
 	}
 
 	public abstract void callback();
+
 }

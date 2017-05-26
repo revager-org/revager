@@ -54,12 +54,6 @@ public class StatusPanel extends JPanel {
 		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
 			Object seconds = evt.getNewValue();
 			if (seconds instanceof Integer) {
-				Object oldSeconds = evt.getOldValue();
-				if (oldSeconds instanceof Integer) {
-					if ((int) oldSeconds == 0) {
-						dashboard.resetBreak();
-					}
-				}
 				this.totalProtocolSeconds = (int) seconds;
 				updateDisplay();
 			}

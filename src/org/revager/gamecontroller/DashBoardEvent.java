@@ -22,6 +22,7 @@ public abstract class DashBoardEvent {
 				} catch (InterruptedException e) {
 				}
 			}
+			dashboard.rumble();
 			callback();
 		});
 		thread.start();

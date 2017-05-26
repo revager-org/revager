@@ -1,21 +1,28 @@
 package org.revager.gamecontroller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.Controller.Type;
 import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
+import net.java.games.input.Rumbler;
 
 public class ControllerManager {
 
 	private Dashboard dashboard;
+	private List<Controller> controllers = new ArrayList<>();
 
 	public ControllerManager(Dashboard dashboard) {
 		this.dashboard = dashboard;
 		ControllerEnvironment defaultEnvironment = ControllerEnvironment.getDefaultEnvironment();
 		int controllerCounter = 0;
-		for (Controller controller : defaultEnvironment.getControllers()) {
+		controllers = Arrays.asList(defaultEnvironment.getControllers());
+		for (Controller controller : controllers) {
 			if (controller.getType() == Type.MOUSE || controller.getType() == Type.KEYBOARD) {
 				System.out.println("filtered out : " + controller.getType());
 				continue;
@@ -28,6 +35,24 @@ public class ControllerManager {
 			setupControllerQueue(controller);
 			// }
 		}
+	}
+
+	public synchronized void rumble() {
+		Thread thread = new Thread(() -> {
+			for (Controller controllers : controllers) {
+				List<Rumbler> rumblers = Arrays.asList(controllers.getRumblers());
+				rumblers.stream().forEach(r -> r.rumble(1.0f));
+			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+			}
+			for (Controller controllers : controllers) {
+				List<Rumbler> rumblers = Arrays.asList(controllers.getRumblers());
+				rumblers.stream().forEach(r -> r.rumble(0.0f));
+			}
+		});
+		thread.start();
 	}
 
 	private void setupControllerQueue(Controller controller) {

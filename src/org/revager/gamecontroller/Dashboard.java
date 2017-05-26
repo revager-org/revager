@@ -91,6 +91,10 @@ public class Dashboard {
 		return "" + breaks;
 	}
 
+	public void rumble() {
+		controllerManager.rumble();
+	}
+
 	private void resetTime() {
 		resetBreak();
 		for (FindingStatus findingStatus : findingStatuses.values()) {

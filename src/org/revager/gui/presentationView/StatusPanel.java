@@ -38,7 +38,7 @@ public class StatusPanel extends JPanel {
 		dashboard = new Dashboard();
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 1.0 };
 		setLayout(gridBagLayout);
 		setBackground(UI.BLUE_BACKGROUND_COLOR);
 

@@ -78,7 +78,7 @@ public class ProtocolClockWorker extends SwingWorker<Void, Void> {
 					firePropertyChange(PROPERTY_STRING_CLOCK, oldSeconds, seconds);
 				}
 			});
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		}
 	}
 }

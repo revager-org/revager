@@ -29,7 +29,7 @@ public class Dashboard {
 				if (oldValue instanceof Integer) {
 					int newSeconds = (int) newValue;
 					int oldSeconds = (int) oldValue;
-					if (oldSeconds == 0) {
+					if (oldSeconds == 0 || newSeconds == 0) {
 						resetTime();
 					} else if (oldSeconds < newSeconds) {
 						getFindingStatus().addFindingTime(newSeconds - oldSeconds);

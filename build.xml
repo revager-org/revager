@@ -89,7 +89,7 @@
 
 	<target name="lang-update" description="Extract and merge the language files" depends="lang-init">
 		<!-- Extract strings from Java sources and store them inside a .pot file -->
-		<gettext-extract keysFile="lang.pot" poDirectory="lang" keywords="-k -k_ --from-code=UTF-8 --no-wrap">
+		<gettext-extract keysFile="lang.pot" poDirectory="lang" keywords="-k -ktranslate --from-code=UTF-8 --no-wrap">
 			<fileset dir="${dir.src}" includes="**/*.java" />
 		</gettext-extract>
 

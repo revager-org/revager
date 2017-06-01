@@ -21,7 +21,6 @@ package org.revager.gui.findings_list;
 import static org.revager.app.model.Data.translate;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -32,8 +31,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -120,7 +117,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private final ImageIcon ICON_TAB_OK = Data.getInstance().getIcon("tabOk_24x24.png");
 	private final ImageIcon ICON_TAB_WARN = Data.getInstance().getIcon("tabWarning_24x24.png");
 
-	private Map<String, ImageEditorDialog> imageEditors = new HashMap<String, ImageEditorDialog>();
+	private Map<String, ImageEditorDialog> imageEditors = new HashMap<>();
 
 	private boolean componentMarked = false;
 
@@ -129,11 +126,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private boolean bodyCreated = false;
 
-	private GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	private transient GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
+	private transient FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
 
-	private ApplicationData appData = Data.getInstance().getAppData();
+	private transient ApplicationData appData = Data.getInstance().getAppData();
 
 	private GridBagLayout gbl = new GridBagLayout();
 	private JTabbedPane tabbedPane = new JTabbedPane();
@@ -155,22 +152,22 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	/*
 	 * Hint items
 	 */
-	private HintItem hintAtt;
-	private HintItem hintImpr;
-	private HintItem hintRec;
-	private HintItem hintFind;
-	private HintItem hintOk;
-	private HintItem hintInfoNewFinding;
+	private transient HintItem hintAtt;
+	private transient HintItem hintImpr;
+	private transient HintItem hintRec;
+	private transient HintItem hintFind;
+	private transient HintItem hintOk;
+	private transient HintItem hintInfoNewFinding;
 
 	/*
 	 * things for finding tab
 	 */
-	private Protocol currentProt;
+	private transient Protocol currentProt;
 
 	private FindingsTab tabPanelFindings;
 
 	private SimpleDateFormat sdfCurrentTime = new SimpleDateFormat("d. MMMM yyyy | HH:mm");
-	private ProtocolClockWorker clockWorker = UI.getInstance().getProtocolClockWorker();
+	private transient ProtocolClockWorker clockWorker = UI.getInstance().getProtocolClockWorker();
 	private JLabel clockLabel = new JLabel();
 	private JLabel clockCurrentTime = new JLabel();
 	private JButton clockButtonStart;
@@ -180,9 +177,9 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private JTable presentAttTable;
 
-	private List<Attendee> presentAttList;
+	private transient  List<Attendee> presentAttList;
 
-	private Meeting currentMeet = null;
+	private transient Meeting currentMeet = null;
 	private JSpinner beginMSpinner;
 	private JSpinner beginHSpinner;
 	private JSpinner endMSpinner;
@@ -196,8 +193,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JScrollPane meetCommScrllPn;
 	private JScrollPane protCommScrllPn;
 
-	private ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
-	private ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
+	private transient ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
+	private transient ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 	/*
 	 * attendee buttons
 	 */
@@ -237,7 +234,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * 
 	 * @return the meeting
 	 */
-	public Meeting getMeeting() {
+	public synchronized Meeting getMeeting() {
 		return currentMeet;
 	}
 
@@ -310,65 +307,59 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * Creates the body.
 	 */
 	private void createBody() {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					attPanel.removeAll();
-					createAttPanel();
-					attPanel.validate();
+		SwingUtilities.invokeLater(() -> {
+			try {
+				attPanel.removeAll();
+				createAttPanel();
+				attPanel.validate();
 
-					bottomOrgPanel.removeAll();
-					createBottomOrgPanel();
-					bottomOrgPanel.validate();
+				bottomOrgPanel.removeAll();
+				createBottomOrgPanel();
+				bottomOrgPanel.validate();
 
-					tabGenImp.removeAll();
-					createImpPanel();
-					tabGenImp.validate();
+				tabGenImp.removeAll();
+				createImpPanel();
+				tabGenImp.validate();
 
-					tabPanelCommAndRec.removeAll();
-					createCommAndRatePanel();
-					tabPanelCommAndRec.validate();
-				} catch (Exception exc) {
-					// Workaround for a threading problem
-					exc.printStackTrace();
+				tabPanelCommAndRec.removeAll();
+				createCommAndRatePanel();
+				tabPanelCommAndRec.validate();
+			} catch (Exception exc) {
+				// Workaround for a threading problem
+				exc.printStackTrace();
 
-					JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
-							GUITools.getMessagePane(translate("Severe problem occurred! RevAger has to be restarted.")),
-							translate("Problem occurred"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(),
+						GUITools.getMessagePane(translate("Severe problem occurred! RevAger has to be restarted.")),
+						translate("Problem occurred"), JOptionPane.ERROR_MESSAGE);
 
-					ExitAction exitAction = ((ExitAction) ActionRegistry.getInstance().get(ExitAction.class.getName()));
+				ExitAction exitAction = ((ExitAction) ActionRegistry.getInstance().get(ExitAction.class.getName()));
 
-					exitAction.setRestartAgain(true);
-					exitAction.actionPerformed(null);
-				}
+				exitAction.setRestartAgain(true);
+				exitAction.actionPerformed(null);
 			}
 		});
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				// Set current list of findings
-				tabPanelFindings = new FindingsTab(currentProt);
-				// Create tab panel
-				tabbedPane.removeAll();
-				tabbedPane.removeChangeListener(tabChangeListener);
+		SwingUtilities.invokeLater(() -> {
+			// Set current list of findings
+			tabPanelFindings = new FindingsTab(currentProt);
+			// Create tab panel
+			tabbedPane.removeAll();
+			tabbedPane.removeChangeListener(tabChangeListener);
 
-				tabbedPane.setTabPlacement(SwingConstants.TOP);
+			tabbedPane.setTabPlacement(SwingConstants.TOP);
 
-				tabbedPane.add(translate("Organizational"), tabPanelOrg);
-				tabbedPane.add(translate("Impression"), tabGenImp);
-				tabbedPane.add(translate("Findings"), tabPanelFindings);
-				tabbedPane.add(translate("Comments & Recommendation"), tabPanelCommAndRec);
+			tabbedPane.add(translate("Organizational"), tabPanelOrg);
+			tabbedPane.add(translate("Impression"), tabGenImp);
+			tabbedPane.add(translate("Findings"), tabPanelFindings);
+			tabbedPane.add(translate("Comments & Recommendation"), tabPanelCommAndRec);
 
-				tabbedPane.addChangeListener(tabChangeListener);
+			tabbedPane.addChangeListener(tabChangeListener);
 
-				// Add tab panel to content area
-				add(tabbedPane);
+			// Add tab panel to content area
+			add(tabbedPane);
 
-				// Indicate that body has been created
-				bodyCreated = true;
-			}
+			// Indicate that body has been created
+			bodyCreated = true;
 		});
 	}
 
@@ -380,18 +371,15 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tbConfirmProt = GUITools.newImageButton(Data.getInstance().getIcon("confirmProtocol_50x50_0.png"),
 				Data.getInstance().getIcon("confirmProtocol_50x50.png"));
 		tbConfirmProt.setToolTipText(translate("Confirm and close list of findings"));
-		tbConfirmProt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (protCommTxtArea.getText().trim().equals("")) {
-					currentProt.setComments("");
-				}
-
-				GUITools.executeSwingWorker(new ImageEditorWriteWorker(currentProt));
-
-				setVisible(false);
-				UI.getInstance().getPresentationFrame().setVisible(false);
+		tbConfirmProt.addActionListener(e -> {
+			if ("".equals(protCommTxtArea.getText().trim())) {
+				currentProt.setComments("");
 			}
+
+			GUITools.executeSwingWorker(new ImageEditorWriteWorker(currentProt));
+
+			setVisible(false);
+			UI.getInstance().getPresentationFrame().setVisible(false);
 		});
 
 		addTopComponent(tbConfirmProt);
@@ -404,26 +392,14 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon("PDFExport_50x50_0.png"),
 				Data.getInstance().getIcon("PDFExport_50x50.png"));
 		tbPdfExport.setToolTipText(translate("Export List of Findings as PDF File"));
-		tbPdfExport.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				UI.getInstance().getExportPDFProtocolDialog().setVisible(true);
-
-			}
-		});
+		tbPdfExport.addActionListener(e -> UI.getInstance().getExportPDFProtocolDialog().setVisible(true));
 
 		addTopComponent(tbPdfExport);
 
 		tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon("CSVExport_50x50_0.png"),
 				Data.getInstance().getIcon("CSVExport_50x50.png"));
 		tbCsvExport.setToolTipText(translate("Export List of Findings as CSV File"));
-		tbCsvExport.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getExportCSVDialog().setVisible(true);
-			}
-		});
+		tbCsvExport.addActionListener(e -> UI.getInstance().getExportCSVDialog().setVisible(true));
 
 		addTopComponent(tbCsvExport);
 
@@ -449,12 +425,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			tbFullscreen.setRolloverIcon(Data.getInstance().getIcon("fullscreen_50x50.png"));
 			tbFullscreen.setToolTipText(translate("Change to Fullscreen mode"));
 		}
-		tbFullscreen.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UI.getInstance().getProtocolFrame(!isFullscreen()).setVisible(true);
-			}
-		});
+		tbFullscreen.addActionListener(e -> UI.getInstance().getProtocolFrame(!isFullscreen()).setVisible(true));
 
 		addTopComponent(tbFullscreen);
 
@@ -474,30 +445,21 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		clockButtonStart = GUITools.newImageButton();
 
-		clockButtonStart.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (clockWorker.isClockRunning()) {
-					clockWorker.stopClock();
-
-					updateClockButtons();
-				} else {
-					clockWorker.startClock();
-
-					updateClockButtons();
-				}
+		clockButtonStart.addActionListener(e -> {
+			if (clockWorker.isClockRunning()) {
+				clockWorker.stopClock();
+			} else {
+				clockWorker.startClock();
 			}
+			updateClockButtons();
 		});
 
 		clockButtonReset = GUITools.newImageButton(Data.getInstance().getIcon("clockReset_24x24_0.png"),
 				Data.getInstance().getIcon("clockReset_24x24.png"));
 		clockButtonReset.setToolTipText(translate("Reset Stop Watch"));
-		clockButtonReset.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				clockWorker.resetClock();
-				updateClockButtons();
-			}
+		clockButtonReset.addActionListener(e -> {
+			clockWorker.resetClock();
+			updateClockButtons();
 		});
 
 		addTopRightComp(clockButtonReset);
@@ -597,34 +559,30 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 		});
 
-		TableCellRenderer renderer = new TableCellRenderer() {
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-					boolean hasFocus, int row, int column) {
-				JLabel label = new JLabel((String) value);
-				label.setOpaque(true);
-				label.setBorder(new EmptyBorder(5, 5, 5, 5));
+		TableCellRenderer renderer = (table, value, isSelected, hasFocus, row, column) -> {
+			JLabel label = new JLabel((String) value);
+			label.setOpaque(true);
+			label.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-				label.setFont(UI.VERY_LARGE_FONT);
+			label.setFont(UI.VERY_LARGE_FONT);
 
-				if (isSelected) {
-					label.setBackground(presentAttTable.getSelectionBackground());
-				} else {
-					int localRow = row;
+			if (isSelected) {
+				label.setBackground(presentAttTable.getSelectionBackground());
+			} else {
+				int localRow = row;
 
-					while (localRow > 0) {
-						localRow = localRow - 2;
-					}
-
-					if (localRow == 0) {
-						label.setBackground(UI.TABLE_ALT_COLOR);
-					} else {
-						label.setBackground(presentAttTable.getBackground());
-					}
+				while (localRow > 0) {
+					localRow = localRow - 2;
 				}
 
-				return label;
+				if (localRow == 0) {
+					label.setBackground(UI.TABLE_ALT_COLOR);
+				} else {
+					label.setBackground(presentAttTable.getBackground());
+				}
 			}
+
+			return label;
 		};
 
 		for (int i = 1; i <= 4; i++) {
@@ -632,32 +590,23 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 
 		TableColumn col = presentAttTable.getColumnModel().getColumn(0);
-		col.setCellRenderer(new TableCellRenderer() {
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-					boolean hasFocus, int row, int column) {
-				JPanel localPnl = new JPanel();
-
-				localPnl.add(new JLabel(Data.getInstance().getIcon("attendee_40x40.png")));
-
-				if (isSelected) {
-					localPnl.setBackground(presentAttTable.getSelectionBackground());
-				} else {
-					int localRow = row;
-
-					while (localRow > 0) {
-						localRow = localRow - 2;
-					}
-
-					if (localRow == 0) {
-						localPnl.setBackground(UI.TABLE_ALT_COLOR);
-					} else {
-						localPnl.setBackground(presentAttTable.getBackground());
-					}
+		col.setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+			JPanel localPnl = new JPanel();
+			localPnl.add(new JLabel(Data.getInstance().getIcon("attendee_40x40.png")));
+			if (isSelected) {
+				localPnl.setBackground(presentAttTable.getSelectionBackground());
+			} else {
+				int localRow = row;
+				while (localRow > 0) {
+					localRow = localRow - 2;
 				}
-
-				return localPnl;
+				if (localRow == 0) {
+					localPnl.setBackground(UI.TABLE_ALT_COLOR);
+				} else {
+					localPnl.setBackground(presentAttTable.getBackground());
+				}
 			}
+			return localPnl;
 		});
 		presentAttTable.addMouseListener(new MouseListener() {
 			@Override
@@ -1033,7 +982,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			if (seconds > warningTime * 60 && showWarning && !clockWorker.isWarningDisplayed()) {
 				clockWorker.setWarningDisplayed(true);
 				String message = MessageFormat.format(
-						translate("This review meeting is running for {0} minutes already. Therefore it is recommended to finalize the meeting now and continue the review at a later point in time."),
+						translate(
+								"This review meeting is running for {0} minutes already. Therefore it is recommended to finalize the meeting now and continue the review at a later point in time."),
 						Integer.toString(warningTime));
 
 				JOptionPane.showMessageDialog(UI.getInstance().getProtocolFrame(), GUITools.getMessagePane(message),
@@ -1281,7 +1231,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	}
 
 	private long updateTime = System.currentTimeMillis();
-	private KeyListener updateListener = new KeyListener() {
+	private transient KeyListener updateListener = new KeyListener() {
 		@Override
 		public void keyPressed(KeyEvent e) {
 		}
@@ -1296,7 +1246,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 	};
 
-	private KeyListener tabKeyListener = new KeyListener() {
+	private transient KeyListener tabKeyListener = new KeyListener() {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			Object evSrc = e.getSource();
@@ -1322,23 +1272,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 	};
 
-	private ChangeListener spinnerChangeListener = new ChangeListener() {
+	private transient ChangeListener spinnerChangeListener = e -> updateTime = System.currentTimeMillis();
 
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			updateTime = System.currentTimeMillis();
-		}
-	};
+	private transient ItemListener itemListener = e -> updateTime = System.currentTimeMillis();
 
-	private ItemListener itemListener = new ItemListener() {
-
-		@Override
-		public void itemStateChanged(ItemEvent e) {
-			updateTime = System.currentTimeMillis();
-		}
-	};
-
-	private SwingWorker<Void, Void> updateWorker = new SwingWorker<Void, Void>() {
+	private transient SwingWorker<Void, Void> updateWorker = new SwingWorker<Void, Void>() {
 		@Override
 		protected Void doInBackground() throws Exception {
 			long change = Long.parseLong(Data.getInstance().getResource("keyTypeChangeInMillis"));
@@ -1346,23 +1284,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			while (true) {
 				try {
 					Thread.sleep(change);
-
 					long diff = System.currentTimeMillis() - updateTime;
-
 					if (diff >= change && diff < change * 3) {
 						updateResiData();
-
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-							public void run() {
-								updateHints();
-							}
-						});
+						SwingUtilities.invokeLater(() -> updateHints());
 					}
 				} catch (Exception e) {
-					/*
-					 * do nothing and wait for the next run of this worker
-					 */
 				}
 			}
 		}
@@ -1452,15 +1379,18 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		setNumberOfHints(2);
 
 		hintAtt = new HintItem(
-				translate("Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
+				translate(
+						"Please add at least one attendee to the meeting by choosing one from the attendees pool or create a new one (Tab 'Organizational')."),
 				HintItem.WARNING);
 
 		hintImpr = new HintItem(
-				translate("Please enter the general impression for the product into the provided text field (Tab 'Impression')."),
+				translate(
+						"Please enter the general impression for the product into the provided text field (Tab 'Impression')."),
 				HintItem.WARNING);
 
 		hintRec = new HintItem(
-				translate("Please enter the final recommendation for the product into the provided text field (Tab 'Comments & Recommendation')."),
+				translate(
+						"Please enter the final recommendation for the product into the provided text field (Tab 'Comments & Recommendation')."),
 				HintItem.WARNING);
 
 		hintFind = new HintItem(translate("For every finding enter at least a description (Tab 'Findings')."),
@@ -1469,7 +1399,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		hintOk = new HintItem(translate("The meeting data and its list of findings is complete."), HintItem.OK);
 
 		hintInfoNewFinding = new HintItem(
-				translate("In order to add a new finding to the list of findings use the 'Add Finding' button (Tab 'Findings')."),
+				translate(
+						"In order to add a new finding to the list of findings use the 'Add Finding' button (Tab 'Findings')."),
 				HintItem.INFO);
 	}
 
@@ -1482,37 +1413,26 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 
 		boolean warningErrorHints = false;
-
-		List<HintItem> hints = new ArrayList<HintItem>();
-
+		List<HintItem> hints = new ArrayList<>();
 		unmarkAllComponents();
-
-		if (protMgmt.getAttendees(currentProt).size() == 0) {
+		if (protMgmt.getAttendees(currentProt).isEmpty()) {
 			hints.add(hintAtt);
-
 			if (tabPanelOrg.isVisible()) {
 				markComponent(scrllP);
 			}
-
 			warningErrorHints = true;
-
 			tabbedPane.setIconAt(0, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(0, ICON_TAB_OK);
 		}
-
-		if (revMgmt.getImpression().trim().equals("")) {
+		if ("".equals(revMgmt.getImpression().trim())) {
 			hints.add(hintImpr);
-
 			if (tabGenImp.isVisible()) {
 				if (revMgmt.getImpression().trim().equals("")) {
 					markComponent(impScrllPn);
 				}
-
 			}
-
 			warningErrorHints = true;
-
 			tabbedPane.setIconAt(1, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(1, ICON_TAB_OK);
@@ -1520,19 +1440,15 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		if (!findMgmt.areAllFindingsComplete(currentProt)) {
 			hints.add(hintFind);
-
 			warningErrorHints = true;
-
 			tabbedPane.setIconAt(2, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(2, ICON_TAB_OK);
 		}
 
-		if (revMgmt.getRecommendation().trim().equals("")) {
+		if ("".equals(revMgmt.getRecommendation().trim())) {
 			hints.add(hintRec);
-
 			if (tabPanelCommAndRec.isVisible()) {
-
 				if (revMgmt.getRecommendation().trim().equals("")) {
 					markComponent(recBx);
 				}
@@ -1550,7 +1466,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 
 		hints.add(hintInfoNewFinding);
-
 		setHints(hints);
 	}
 

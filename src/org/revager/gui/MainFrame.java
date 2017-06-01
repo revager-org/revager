@@ -97,7 +97,6 @@ import org.revager.gui.actions.OpenExpCSVDialogAction;
 import org.revager.gui.actions.OpenExpPDFDialogAction;
 import org.revager.gui.actions.OpenFindingsListAction;
 import org.revager.gui.actions.OpenInvitationsDialogAction;
-import org.revager.gui.actions.OpenPresentationView;
 import org.revager.gui.actions.SaveReviewAction;
 import org.revager.gui.actions.SaveReviewAsAction;
 import org.revager.gui.actions.assistant.OpenAssistantAction;
@@ -171,7 +170,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JMenuItem csvProfiles;
 
 	private JMenu menuHelp;
-	private JMenuItem openHelp;
 	private JMenuItem aboutHelp;
 
 	/*
@@ -186,7 +184,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 	private JButton tbCsvExport;
 	private JButton tbNewMeeting;
 	private JButton tbShowAssistant;
-	private JButton tbShowHelp;
 	private JButton tbSaveReview;
 	private JButton tbNewReview;
 	private JButton tbOpenReview;
@@ -817,17 +814,6 @@ public class MainFrame extends AbstractFrame implements Observer {
 				ActionRegistry.getInstance().get(SaveReviewAction.class.getName()));
 
 		addTopComponent(tbSaveReview);
-
-		// TODO HELP IS CURRENTLY DISABLED!
-
-		// tbShowHelp = GUITools.newImageButton(
-		// Data.getInstance().getIcon("tbShowHelp_50x50_0.png"), Data
-		// .getInstance().getIcon("tbShowHelp_50x50.png"));
-		// tbShowHelp.setToolTipText(translate("Open RevAger Help"));
-		// tbShowHelp.addActionListener(ActionRegistry.getInstance().get(
-		// OpenHelpAction.class.getName()));
-		//
-		// addTopComponent(tbShowHelp);
 
 		tbManageSeverities = GUITools.newImageButton(Data.getInstance().getIcon("severities_50x50_0.png"),
 				Data.getInstance().getIcon("severities_50x50.png"),

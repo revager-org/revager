@@ -37,9 +37,7 @@ public class HighlightedTextArea extends JTextArea {
 			}
 			int counter = keepHighlightedCounter.decrementAndGet();
 			if (counter == 0) {
-				SwingUtilities.invokeLater(() -> {
-					setBackground(Color.WHITE);
-				});
+				SwingUtilities.invokeLater(() -> setBackground(Color.WHITE));
 			}
 		});
 		thread.start();

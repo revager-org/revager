@@ -67,6 +67,7 @@ import javax.swing.table.TableModel;
 import javax.swing.text.InternationalFormatter;
 import javax.swing.text.JTextComponent;
 
+import org.jdesktop.swingx.prompt.PromptSupport;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
@@ -686,5 +687,11 @@ public class GUITools {
 				scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
 			}
 		});
+	}
+
+	public static void addPlaceholderSupport(JTextComponent component, String placeholderText) {
+		PromptSupport.setPrompt(placeholderText, component);
+		PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, component);
+		PromptSupport.setFontStyle(Font.ITALIC | Font.BOLD, component);
 	}
 }

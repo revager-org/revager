@@ -734,6 +734,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		impTxtArea.addKeyListener(tabKeyListener);
 
 		impTxtArea.setText(revMgmt.getImpression().trim());
+		GUITools.addPlaceholderSupport(impTxtArea, translate("TRANSLATE"));
 
 		impScrllPn = GUITools.setIntoScrllPn(impTxtArea);
 		GUITools.scrollToTop(impScrllPn);
@@ -931,10 +932,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		meetCommTxtArea = new JTextArea();
 		meetCommTxtArea.setRows(4);
 		meetCommTxtArea.setFont(UI.VERY_LARGE_FONT);
+		GUITools.addPlaceholderSupport(meetCommTxtArea, translate("TRANSLATE"));
 
 		protCommTxtArea = new JTextArea();
 		protCommTxtArea.setRows(4);
 		protCommTxtArea.setFont(UI.VERY_LARGE_FONT);
+		GUITools.addPlaceholderSupport(protCommTxtArea, translate("TRANSLATE"));
 
 		recBx = new JComboBox();
 		recBx.setEditable(true);

@@ -6,6 +6,7 @@ import static java.awt.GridBagConstraints.NORTHWEST;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static org.revager.app.model.Data.translate;
+import static org.revager.tools.GUITools.addPlaceholderSupport;
 
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -44,11 +45,7 @@ public class PresentationProtocolTab extends JPanel {
 
 		JLabel impressionLabel = new JLabel(translate("General impression of the product:"));
 		impressionLabel.setFont(LABLE_FONT);
-		impressionTextArea = new HighlightedTextArea();
-		impressionTextArea.setEditable(false);
-		impressionTextArea.setLineWrap(true);
-		impressionTextArea.setWrapStyleWord(true);
-		impressionTextArea.setFont(TEXT_FONT);
+		impressionTextArea = createTextArea(translate("TRANSLATE"));
 
 		JLabel recommendationLabel = new JLabel(translate("Final recommendation for the product:"));
 		recommendationLabel.setFont(LABLE_FONT);
@@ -56,22 +53,15 @@ public class PresentationProtocolTab extends JPanel {
 		recommendationField.setRows(1);
 		recommendationField.setEditable(false);
 		recommendationField.setFont(TEXT_FONT);
+		addPlaceholderSupport(recommendationField, translate("TRANSLATE"));
 
 		JLabel meetingCommentLabel = new JLabel(translate("Comments on the meeting:"));
 		meetingCommentLabel.setFont(LABLE_FONT);
-		meetingCommentTextArea = new HighlightedTextArea();
-		meetingCommentTextArea.setEditable(false);
-		meetingCommentTextArea.setLineWrap(true);
-		meetingCommentTextArea.setWrapStyleWord(true);
-		meetingCommentTextArea.setFont(TEXT_FONT);
+		meetingCommentTextArea = createTextArea(translate("TRANSLATE"));
 
 		JLabel protocalCommentLabel = new JLabel(translate("Comments on the list of findings:"));
 		protocalCommentLabel.setFont(LABLE_FONT);
-		protocolCommentTextArea = new HighlightedTextArea();
-		protocolCommentTextArea.setEditable(false);
-		protocolCommentTextArea.setLineWrap(true);
-		protocolCommentTextArea.setWrapStyleWord(true);
-		protocolCommentTextArea.setFont(TEXT_FONT);
+		protocolCommentTextArea = createTextArea(translate("TRANSLATE"));
 
 		impressionField = new JScrollPane(impressionTextArea, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
 		impressionField.setMinimumSize(impressionField.getPreferredSize());
@@ -115,6 +105,16 @@ public class PresentationProtocolTab extends JPanel {
 	public void updateTabData(Meeting meeting) {
 		meetingCommentTextArea.setText(meeting.getComments());
 		updateFontSizes(meetingCommentTextArea, meetingCommentField);
+	}
+
+	private HighlightedTextArea createTextArea(String placeholderText) {
+		HighlightedTextArea textArea = new HighlightedTextArea();
+		textArea.setEditable(false);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setFont(TEXT_FONT);
+		addPlaceholderSupport(textArea, placeholderText);
+		return textArea;
 	}
 
 	private void updateFontSizes(JTextArea area, JScrollPane scrollPane) {

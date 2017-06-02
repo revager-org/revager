@@ -7,18 +7,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FindingStatus {
 
 	private final ConcurrentHashMap<Integer, Vote> votes = new ConcurrentHashMap<>();
-	private final ConcurrentHashMap<Integer, Vote> votesInQueue = new ConcurrentHashMap<>();
 	private AtomicInteger yawns = new AtomicInteger(0);
 	private AtomicInteger findingTime = new AtomicInteger(0);
-
-	public void addVoteToQueue(int owner, Vote vote) {
-		votesInQueue.put(owner, vote);
-	}
 
 	public void addOrRemoveVote(int owner, Vote vote) {
 		if (!votes.remove(owner, vote)) {
 			votes.put(owner, vote);
-			votesInQueue.remove(owner, vote);
 		}
 	}
 
@@ -27,7 +21,7 @@ public class FindingStatus {
 	}
 
 	public boolean isVotingComplete(int maxVotes) {
-		return votesInQueue.size() + votes.size() == maxVotes;
+		return votes.size() == maxVotes;
 	}
 
 	public int getYawn() {

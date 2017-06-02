@@ -56,10 +56,6 @@ public class Dashboard {
 		return getFindingStatus(eventFinding).getVoteForOwner(owner);
 	}
 
-	public void addVoteToQueue(Finding eventFinding, int owner, Vote vote) {
-		getFindingStatus(eventFinding).addVoteToQueue(owner, vote);
-	}
-
 	public synchronized void addOrRemoveVote(Finding eventFinding, int owner, Vote vote) {
 		getFindingStatus(eventFinding).addOrRemoveVote(owner, vote);
 	}

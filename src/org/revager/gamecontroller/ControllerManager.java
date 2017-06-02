@@ -36,17 +36,23 @@ public class ControllerManager {
 
 	public synchronized void rumble() {
 		Thread thread = new Thread(() -> {
-			for (Controller controllers : controllers) {
-				List<Rumbler> rumblers = Arrays.asList(controllers.getRumblers());
-				rumblers.stream().forEach(r -> r.rumble(1.0f));
-			}
 			try {
-				Thread.sleep(100);
+				float intensity = 1.0f;
+				for (int i = 0; i < 4; i++) {
+					for (Controller controller : controllers) {
+						for (Rumbler rumbler : controller.getRumblers()) {
+							rumbler.rumble(intensity);
+						}
+						intensity *= 0.98f;
+					}
+					Thread.sleep(40);
+				}
+				for (Controller controller : controllers) {
+					for (Rumbler rumbler : controller.getRumblers()) {
+						rumbler.rumble(0.0f);
+					}
+				}
 			} catch (InterruptedException e) {
-			}
-			for (Controller controllers : controllers) {
-				List<Rumbler> rumblers = Arrays.asList(controllers.getRumblers());
-				rumblers.stream().forEach(r -> r.rumble(0.0f));
 			}
 		});
 		thread.start();

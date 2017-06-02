@@ -23,17 +23,14 @@ public class ControllerManager {
 		int controllerCounter = 0;
 		controllers = Arrays.asList(defaultEnvironment.getControllers());
 		for (Controller controller : controllers) {
-			if (controller.getType() == Type.MOUSE || controller.getType() == Type.KEYBOARD) {
+			if (controller.getType() == Type.STICK) {
+				controllerCounter++;
+				dashboard.setNumberControllers(controllerCounter);
+				setupControllerQueue(controller);
+			} else {
 				System.out.println("filtered out : " + controller.getType());
-				continue;
+
 			}
-			controllerCounter++;
-			dashboard.setNumberControllers(controllerCounter);
-			System.out.println(controller.getType());
-			// if (controller.getType() == Type.STICK) {
-			// controller.poll();
-			setupControllerQueue(controller);
-			// }
 		}
 	}
 

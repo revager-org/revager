@@ -19,13 +19,13 @@ public abstract class DashBoardEvent {
 		Thread thread = new Thread(() -> {
 			long millis = MINIMUM_WAIT_MILLIS + RANDOM.nextInt(1000 * 4);
 			while (0 < millis) {
+				if (!waitWithCallback()) {
+					break;
+				}
 				millis -= CHECK_STEPS_MILLIS;
 				try {
 					Thread.sleep(CHECK_STEPS_MILLIS);
 				} catch (InterruptedException e) {
-				}
-				if (!waitWithCallback()) {
-					break;
 				}
 			}
 			callback();

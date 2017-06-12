@@ -6,8 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,25 +73,15 @@ public class FindingsTab extends JPanel {
 		labelNumOfFindings.setFont(UI.VERY_LARGE_FONT);
 
 		buttonAddFinding.setIcon(Data.getInstance().getIcon("add_25x25.png"));
-		buttonAddFinding.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (currentFindingPanel != null) {
-					currentFindingPanel.storeFindingData();
-				}
-
-				// int listIdLastFinding =
-				// findMgmt.getNumberOfFindings(protocol) - 1;
-
-				// if (!findMgmt.isFindingEmpty(findMgmt.getFindings(protocol)
-				// .get(listIdLastFinding))) {
-				Finding newFind = new Finding();
-				findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
-				newFind = findMgmt.addFinding(newFind, protocol);
-
-				addFinding(newFind);
-				// }
+		buttonAddFinding.addActionListener(e -> {
+			if (currentFindingPanel != null) {
+				currentFindingPanel.storeFindingData();
 			}
+			Finding newFind = new Finding();
+			findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
+			newFind = findMgmt.addFinding(newFind, protocol);
+
+			addFinding(newFind);
 		});
 
 		panelFoot.setBorder(BorderFactory.createMatteBorder(5, 35, 5, 35, panelFoot.getBackground()));

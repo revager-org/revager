@@ -2511,6 +2511,18 @@ msgstr "Öffne Presentationsansicht für den Beamer automatisch."
 msgid "Presentation View"
 msgstr "Presentationsansicht"
 
+#: src/org/revager/gui/presentationView/PresentationProtocolTab.java:51
+msgid "What is your general impression of the prodcut? Write this down before documenting findings. When you finished with documenting findings, continue with the recommendation and the comments of the meeting and of the list of findings."
+msgstr "Was ist Ihr genereller Eindruck vom Prüfling? Notieren Sie diesen bevor Sie die Befunde dokumentieren. Nach dem dokumentieren der Befunde, fahren Sie mit der Bewertung und den Kommentaren zur Sitzung und zum Protokoll fort."
+
+#: src/org/revager/gui/presentationView/PresentationProtocolTab.java:61
+msgid "Is there anything to say about the meeting?"
+msgstr "Gibt es etwas zur Sitzung anzumerken?"
+
+#: src/org/revager/gui/presentationView/PresentationProtocolTab.java:65
+msgid "Is there anything to say about the findings?"
+msgstr "Gibt es etwas zum Protokoll anzumerken?"
+
 #: src/org/revager/gui/presentationView/PreviousFindingPanel.java:61
 msgid "Previous Finding:"
 msgstr "Vorheriger Befund:"

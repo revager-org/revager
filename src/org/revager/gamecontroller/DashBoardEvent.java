@@ -8,7 +8,6 @@ public abstract class DashBoardEvent {
 
 	private static final Random RANDOM = new Random();
 	private static final long MINIMUM_WAIT_MILLIS = 1000 * 2L;
-	private static final long CHECK_STEPS_MILLIS = 100L;
 
 	protected final Finding eventFinding;
 	protected final Dashboard dashboard;
@@ -17,14 +16,10 @@ public abstract class DashBoardEvent {
 		this.dashboard = dashboard;
 		this.eventFinding = dashboard.getFinding();
 		Thread thread = new Thread(() -> {
-			long millis = MINIMUM_WAIT_MILLIS + RANDOM.nextInt(1000 * 4);
-			while (0 < millis) {
-				if (!waitWithCallback()) {
-					break;
-				}
-				millis -= CHECK_STEPS_MILLIS;
+			if (waitWithCallback()) {
+				long millis = MINIMUM_WAIT_MILLIS + RANDOM.nextInt(1000 * 4);
 				try {
-					Thread.sleep(CHECK_STEPS_MILLIS);
+					Thread.sleep(millis);
 				} catch (InterruptedException e) {
 				}
 			}
@@ -32,7 +27,6 @@ public abstract class DashBoardEvent {
 			dashboard.rumble();
 		});
 		thread.start();
-
 	}
 
 	public boolean waitWithCallback() {

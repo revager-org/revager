@@ -1,13 +1,11 @@
 package org.revager.gui.presentationView;
 
 import static java.awt.GridBagConstraints.BOTH;
-import static java.awt.GridBagConstraints.HORIZONTAL;
 import static java.awt.GridBagConstraints.NONE;
 import static java.awt.GridBagConstraints.NORTHWEST;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static org.revager.app.model.Data.translate;
-import static org.revager.tools.GUITools.addPlaceholderSupport;
 
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -30,7 +28,7 @@ public class PresentationProtocolTab extends JPanel {
 	private static final long serialVersionUID = 1377208308219097378L;
 
 	public static final Font LABLE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
-	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 
 	private GridBagLayout layout = new GridBagLayout();
 	private HighlightedTextArea impressionTextArea;
@@ -54,7 +52,8 @@ public class PresentationProtocolTab extends JPanel {
 
 		JLabel recommendationLabel = new JLabel(translate("Final recommendation for the product:"));
 		recommendationLabel.setFont(LABLE_FONT);
-		recommendationField = createTextArea(StringUtils.join(Data.getDefLangRecommendations(), ", "));
+		recommendationField = createTextArea(StringUtils.join(Data.getDefaultRecommendations(), ", "));
+		recommendationField.setRows(2);
 
 		JLabel meetingCommentLabel = new JLabel(translate("Comments on the meeting:"));
 		meetingCommentLabel.setFont(LABLE_FONT);
@@ -109,12 +108,10 @@ public class PresentationProtocolTab extends JPanel {
 	}
 
 	private HighlightedTextArea createTextArea(String placeholderText) {
-		HighlightedTextArea textArea = new HighlightedTextArea();
+		HighlightedTextArea textArea = new HighlightedTextArea(TEXT_FONT, placeholderText);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
-		textArea.setFont(TEXT_FONT);
-		addPlaceholderSupport(textArea, placeholderText);
 		return textArea;
 	}
 

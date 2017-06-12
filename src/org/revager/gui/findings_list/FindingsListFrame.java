@@ -403,8 +403,8 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		addTopComponent(tbCsvExport);
 
-		tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("arrow_50x50_0.png"),
-				Data.getInstance().getIcon("arrow_50x50.png"));
+		tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("tv_50x50_0.png"),
+				Data.getInstance().getIcon("tv_50x50.png"));
 		tbPresenationView.setToolTipText(translate("Open Presentation View"));
 		tbPresenationView.addActionListener((ActionEvent e) -> {
 			PresentationFrame presentationFrame = UI.getInstance().getPresentationFrame();

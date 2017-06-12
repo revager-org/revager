@@ -721,7 +721,7 @@ public class FindingPanel extends JPanel {
 		/*
 		 * Get the focus
 		 */
-		textDescription.requestFocusInWindow();
+		SwingUtilities.invokeLater(() -> textDescription.requestFocusInWindow());
 	}
 
 	private void setCompactView() {

@@ -206,9 +206,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private DateFormat dateF = SimpleDateFormat.getDateInstance(DateFormat.LONG);
 
-	/*
-	 * Change listener for the tabbed pane
-	 */
 	private ChangeListener tabChangeListener = new ChangeListener() {
 		@Override
 		public void stateChanged(ChangeEvent e) {
@@ -216,39 +213,18 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 	};
 
-	/**
-	 * Gets the patm.
-	 * 
-	 * @return the patm
-	 */
 	public PresentAttendeesTableModel getPatm() {
 		return patm;
 	}
 
-	/**
-	 * Gets the meeting.
-	 * 
-	 * @return the meeting
-	 */
 	public synchronized Meeting getMeeting() {
 		return currentMeet;
 	}
 
-	/**
-	 * Gets the current prot.
-	 * 
-	 * @return the current prot
-	 */
 	public Protocol getCurrentProt() {
 		return currentProt;
 	}
 
-	/**
-	 * Sets the meeting.
-	 * 
-	 * @param meet
-	 *            the new meeting
-	 */
 	public synchronized void setMeeting(Meeting meet) {
 		currentMeet = meet;
 		currentProt = meet.getProtocol();
@@ -259,38 +235,18 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		createBody();
 	}
 
-	/**
-	 * Gets the present att table.
-	 * 
-	 * @return the present att table
-	 */
 	public JTable getPresentAttTable() {
 		return presentAttTable;
 	}
 
-	/**
-	 * Gets the present att list.
-	 * 
-	 * @return the present att list
-	 */
 	public List<Attendee> getPresentAttList() {
 		return presentAttList;
 	}
 
-	/**
-	 * Checks if is fullscreen.
-	 * 
-	 * @return true, if is fullscreen
-	 */
 	public boolean isFullscreen() {
 		return fullscreen;
 	}
 
-	/**
-	 * Gets the date txt fld.
-	 * 
-	 * @return the date txt fld
-	 */
 	public ObservingTextField getDateTxtFld() {
 		return dateTxtFld;
 	}
@@ -299,9 +255,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	// creating whole component//
 	// //////////////////////////
 
-	/**
-	 * Creates the body.
-	 */
 	private void createBody() {
 		SwingUtilities.invokeLater(() -> {
 			try {
@@ -359,9 +312,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		});
 	}
 
-	/**
-	 * Creates the tool bar.
-	 */
 	private void createToolBar() {
 
 		tbConfirmProt = GUITools.newImageButton(Data.getInstance().getIcon("confirmProtocol_50x50_0.png"),
@@ -470,9 +420,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		updateCurrentTime();
 	}
 
-	/**
-	 * Update clock buttons.
-	 */
 	private void updateClockButtons() {
 		if (clockWorker.isClockRunning()) {
 			clockButtonStart.setIcon(Data.getInstance().getIcon("clockPause_24x24_0.png"));
@@ -485,9 +432,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 	}
 
-	/**
-	 * Creates the att panel.
-	 */
 	private void createAttPanel() {
 		GridLayout grid = new GridLayout(4, 1);
 		grid.setVgap(8);
@@ -693,9 +637,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tabGenImp.setBorder(new EmptyBorder(0, 10, 20, 10));
 	}
 
-	/**
-	 * Creates the bottom org panel.
-	 */
 	private void createBottomOrgPanel() {
 		JLabel locationLbl = new JLabel(translate("Location:"));
 		locationLbl.setFont(UI.VERY_LARGE_FONT_BOLD);
@@ -860,9 +801,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		updateAttButtons();
 	}
 
-	/**
-	 * Creates the comm and rate panel.
-	 */
 	private void createCommAndRatePanel() {
 
 		JLabel recLbl = new JLabel(translate("Final recommendation for the product:"));
@@ -932,20 +870,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		tabPanelCommAndRec.setBorder(new EmptyBorder(0, 10, 20, 10));
 	}
 
-	/**
-	 * Resets the clock.
-	 */
 	public void resetClock() {
 		clockWorker.resetClock();
 		updateClockButtons();
 	}
 
-	/**
-	 * Update clock.
-	 * 
-	 * @param seconds
-	 *            the seconds
-	 */
 	public void updateClock(int seconds) {
 		String hrs = Integer.toString(seconds / (60 * 60));
 		String min = Integer.toString((seconds / 60) % 60);
@@ -965,9 +894,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		clockLabel.setText(hrs + ":" + min + ":" + sec);
 
-		/*
-		 * Show warning message
-		 */
 		try {
 			boolean showWarning = Data.getInstance().getAppData()
 					.getSettingValue(AppSettingKey.APP_SHOW_PROTOCOL_WARNING) == AppSettingValue.TRUE;
@@ -987,25 +913,13 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 			}
 		} catch (Exception e) {
-			/*
-			 * do nothing
-			 */
 		}
 	}
 
-	/**
-	 * Update current time.
-	 */
 	public void updateCurrentTime() {
 		clockCurrentTime.setText(sdfCurrentTime.format(new Date().getTime()));
 	}
 
-	/**
-	 * Instantiates a new protocol frame.
-	 * 
-	 * @param fullscreen
-	 *            the fullscreen
-	 */
 	public FindingsListFrame(boolean fullscreen) {
 		super();
 
@@ -1123,21 +1037,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		GUITools.executeSwingWorker(updateWorker);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		SwingUtilities.invokeLater(() -> updateHints());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.Window#setVisible(boolean)
-	 */
 	@Override
 	public void setVisible(boolean vis) {
 		updateClockButtons();
@@ -1194,9 +1098,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		UI.getInstance().getMainFrame().setVisible(!protFrameVisible);
 	}
 
-	/**
-	 * Update att buttons.
-	 */
 	public void updateAttButtons() {
 		if (presentAttTable.getSelectedRow() == -1) {
 			removeAttendee.setEnabled(false);
@@ -1319,9 +1220,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	}
 
-	/**
-	 * Unmark all components.
-	 */
 	private void unmarkAllComponents() {
 		dateTxtFld.setBorder(UI.STANDARD_BORDER_INLINE);
 		scrllP.setBorder(UI.STANDARD_BORDER);
@@ -1332,12 +1230,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		componentMarked = false;
 	}
 
-	/**
-	 * Mark component.
-	 * 
-	 * @param comp
-	 *            the component to mark
-	 */
 	private void markComponent(JComponent comp) {
 		boolean mark = false;
 
@@ -1361,9 +1253,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		}
 	}
 
-	/**
-	 * Creates the hints.
-	 */
 	private void createHints() {
 		setNumberOfHints(2);
 
@@ -1393,9 +1282,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				HintItem.INFO);
 	}
 
-	/**
-	 * Update hints.
-	 */
 	private void updateHints() {
 		if (!bodyCreated) {
 			return;

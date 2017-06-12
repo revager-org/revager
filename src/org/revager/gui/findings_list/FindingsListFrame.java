@@ -623,7 +623,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		impTxtArea.addKeyListener(tabKeyListener);
 
 		impTxtArea.setText(revMgmt.getImpression().trim());
-		GUITools.addPlaceholderSupport(impTxtArea, translate("TRANSLATE"));
 
 		impScrllPn = GUITools.setIntoScrllPn(impTxtArea);
 		GUITools.scrollToTop(impScrllPn);

@@ -1,6 +1,7 @@
 package org.revager.gui.presentationView;
 
 import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.HORIZONTAL;
 import static java.awt.GridBagConstraints.NONE;
 import static java.awt.GridBagConstraints.NORTHWEST;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
@@ -17,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.model.Data;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
@@ -28,7 +30,7 @@ public class PresentationProtocolTab extends JPanel {
 	private static final long serialVersionUID = 1377208308219097378L;
 
 	public static final Font LABLE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
-	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 19);
+	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
 	private GridBagLayout layout = new GridBagLayout();
 	private HighlightedTextArea impressionTextArea;
@@ -45,23 +47,22 @@ public class PresentationProtocolTab extends JPanel {
 
 		JLabel impressionLabel = new JLabel(translate("General impression of the product:"));
 		impressionLabel.setFont(LABLE_FONT);
-		impressionTextArea = createTextArea(translate("TRANSLATE"));
+		impressionTextArea = createTextArea(
+				translate("What is your general impression of the prodcut? Write this down before documenting "
+						+ "findings. When you finished with documenting findings, continue with "
+						+ "the recommendation and the comments of the meeting and of the list of findings."));
 
 		JLabel recommendationLabel = new JLabel(translate("Final recommendation for the product:"));
 		recommendationLabel.setFont(LABLE_FONT);
-		recommendationField = new HighlightedTextArea();
-		recommendationField.setRows(1);
-		recommendationField.setEditable(false);
-		recommendationField.setFont(TEXT_FONT);
-		addPlaceholderSupport(recommendationField, translate("TRANSLATE"));
+		recommendationField = createTextArea(StringUtils.join(Data.getDefLangRecommendations(), ", "));
 
 		JLabel meetingCommentLabel = new JLabel(translate("Comments on the meeting:"));
 		meetingCommentLabel.setFont(LABLE_FONT);
-		meetingCommentTextArea = createTextArea(translate("TRANSLATE"));
+		meetingCommentTextArea = createTextArea(translate("Is there anything to say about the meeting?"));
 
 		JLabel protocalCommentLabel = new JLabel(translate("Comments on the list of findings:"));
 		protocalCommentLabel.setFont(LABLE_FONT);
-		protocolCommentTextArea = createTextArea(translate("TRANSLATE"));
+		protocolCommentTextArea = createTextArea(translate("Is there anything to say about the findings?"));
 
 		impressionField = new JScrollPane(impressionTextArea, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
 		impressionField.setMinimumSize(impressionField.getPreferredSize());
@@ -82,7 +83,7 @@ public class PresentationProtocolTab extends JPanel {
 		GUITools.addComponent(this, layout, impressionLabel, 0, 1, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
 		GUITools.addComponent(this, layout, impressionField, 0, 2, 1, 1, 1, 1, 5, 10, 0, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, recommendationLabel, 0, 3, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
-		GUITools.addComponent(this, layout, recommendationField, 0, 4, 1, 1, 1, 0, 5, 10, 0, 10, NONE, NORTHWEST);
+		GUITools.addComponent(this, layout, recommendationField, 0, 4, 1, 1, 1, 0, 5, 10, 0, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, meetingCommentLabel, 0, 5, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);
 		GUITools.addComponent(this, layout, meetingCommentField, 0, 6, 1, 1, 1, 1, 5, 10, 0, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, protocalCommentLabel, 0, 7, 1, 1, 1, 0, 15, 10, 0, 10, NONE, NORTHWEST);

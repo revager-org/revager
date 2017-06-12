@@ -6,14 +6,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import org.revager.app.Application;
@@ -84,6 +91,8 @@ public class FindingsTab extends JPanel {
 			addFinding(newFind);
 		});
 
+		addShortcuts();
+
 		panelFoot.setBorder(BorderFactory.createMatteBorder(5, 35, 5, 35, panelFoot.getBackground()));
 
 		panelFoot.add(buttonAddFinding, BorderLayout.WEST);
@@ -98,6 +107,22 @@ public class FindingsTab extends JPanel {
 		for (Finding find : findMgmt.getFindings(protocol)) {
 			addFinding(find);
 		}
+	}
+
+	private void addShortcuts() {
+		String actionName = "new-finding-shortcut";
+		Action action = new AbstractAction(actionName) {
+			private static final long serialVersionUID = -6152661043135947261L;
+
+			public void actionPerformed(ActionEvent e) {
+				buttonAddFinding.doClick();
+			}
+		};
+		action.putValue(Action.ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		buttonAddFinding.getActionMap().put(actionName, action);
+		buttonAddFinding.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+				.put((KeyStroke) action.getValue(Action.ACCELERATOR_KEY), actionName);
 	}
 
 	public Protocol getProtocol() {

@@ -178,7 +178,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private JTable presentAttTable;
 
-	private transient  List<Attendee> presentAttList;
+	private transient List<Attendee> presentAttList;
 
 	private transient Meeting currentMeet = null;
 	private JSpinner beginMSpinner;
@@ -212,12 +212,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private ChangeListener tabChangeListener = new ChangeListener() {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					updateHints();
-				}
-			});
+			SwingUtilities.invokeLater(() -> updateHints());
 		}
 	};
 
@@ -1135,12 +1130,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				updateHints();
-			}
-		});
+		SwingUtilities.invokeLater(() -> updateHints());
 	}
 
 	/*

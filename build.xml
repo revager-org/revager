@@ -24,7 +24,7 @@
 
 	<property name="lib.derby" location="${dir.lib}/derby.jar" />
 	<property name="lib.iText" location="${dir.lib}/iText-2.1.7.jar" />
-	<property name="lib.commons-lang3" location="${dir.lib}/commons-lang3-3.5.jar" />
+	<property name="lib.commons-lang3" location="${dir.lib}/commons-lang3-3.6.jar" />
 	<property name="lib.jinput" location="${dir.lib}/jinput-2.0.7.jar" />
 	<property name="lib.jinput.naive" location="${dir.lib}/jinput-native-files/" />
 	<property name="lib.jutils" location="${dir.lib}/jutils-1.0.0.jar" />

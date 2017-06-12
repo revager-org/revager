@@ -329,7 +329,7 @@ public class Data {
 	 * @return the list of default recommendations in the default language
 	 */
 	public static List<String> getDefLangRecommendations() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 
 		list.add("Accepted");
 		translate("Accepted");
@@ -358,7 +358,7 @@ public class Data {
 	 * @return list of default recommendations
 	 */
 	public static List<String> getDefaultRecommendations() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 
 		for (String rec : getDefLangRecommendations()) {
 			list.add(translate(rec));

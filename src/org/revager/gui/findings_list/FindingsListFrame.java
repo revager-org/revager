@@ -77,6 +77,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.ProtocolManagement;
@@ -372,7 +373,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				Data.getInstance().getIcon("confirmProtocol_50x50.png"));
 		tbConfirmProt.setToolTipText(translate("Confirm and close list of findings"));
 		tbConfirmProt.addActionListener(e -> {
-			if ("".equals(protCommTxtArea.getText().trim())) {
+			if (StringUtils.isBlank(protCommTxtArea.getText())) {
 				currentProt.setComments("");
 			}
 
@@ -1097,12 +1098,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (protCommTxtArea.getText().trim().equals("")) {
+				if (StringUtils.isBlank(protCommTxtArea.getText())) {
 					currentProt.setComments("");
 				}
-
 				GUITools.executeSwingWorker(new ImageEditorWriteWorker(currentProt));
-
 				setVisible(false);
 			}
 
@@ -1425,12 +1424,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		} else {
 			tabbedPane.setIconAt(0, ICON_TAB_OK);
 		}
-		if ("".equals(revMgmt.getImpression().trim())) {
+		if (StringUtils.isBlank(revMgmt.getImpression())) {
 			hints.add(hintImpr);
-			if (tabGenImp.isVisible()) {
-				if (revMgmt.getImpression().trim().equals("")) {
-					markComponent(impScrllPn);
-				}
+			if (tabGenImp.isVisible() && StringUtils.isBlank(revMgmt.getImpression())) {
+				markComponent(impScrllPn);
 			}
 			warningErrorHints = true;
 			tabbedPane.setIconAt(1, ICON_TAB_WARN);
@@ -1446,12 +1443,10 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			tabbedPane.setIconAt(2, ICON_TAB_OK);
 		}
 
-		if ("".equals(revMgmt.getRecommendation().trim())) {
+		if (StringUtils.isBlank(revMgmt.getRecommendation())) {
 			hints.add(hintRec);
-			if (tabPanelCommAndRec.isVisible()) {
-				if (revMgmt.getRecommendation().trim().equals("")) {
-					markComponent(recBx);
-				}
+			if (tabPanelCommAndRec.isVisible() && StringUtils.isBlank(revMgmt.getRecommendation())) {
+				markComponent(recBx);
 			}
 
 			warningErrorHints = true;

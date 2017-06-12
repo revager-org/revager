@@ -9,7 +9,9 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.AbstractAction;
@@ -23,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.SeverityManagement;
@@ -136,45 +139,30 @@ public class FindingsTab extends JPanel {
 
 		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " " + translate("Findings"));
 
-		/*
-		 * Update the tooltip
-		 */
+		// Update the tooltip
 		Map<String, Integer> findingsSev = new HashMap<>();
-
 		for (Finding f : findMgmt.getFindings(protocol)) {
 			String severity = findMgmt.getLocalizedSeverity(f);
-
-			if (findingsSev.get(severity) == null) {
-				findingsSev.put(severity, 1);
-			} else {
-				findingsSev.put(severity, findingsSev.get(severity) + 1);
-			}
+			int severityCount = findingsSev.getOrDefault(severity, 0) + 1;
+			findingsSev.put(severity, severityCount);
 		}
 
-		String sevOverview = "";
-		String separator = "";
-
-		for (String s : sevMgmt.getSeverities()) {
-			if (findingsSev.get(s) != null) {
-				sevOverview = sevOverview + separator + findingsSev.get(s) + " x " + s;
-
-				separator = "; ";
+		List<String> severities = new ArrayList<>();
+		for (String severity : sevMgmt.getSeverities()) {
+			if (findingsSev.get(severity) != null) {
+				severities.add(findingsSev.get(severity) + " x " + severity);
 			}
 		}
+		labelNumOfFindings.setToolTipText(GUITools.getTextAsHtml(StringUtils.join(severities, "; ")));
 
-		labelNumOfFindings.setToolTipText(GUITools.getTextAsHtml(sevOverview));
-
-		/*
-		 * Update the button state
-		 */
+		// Update the button state
 		boolean isComplete = true;
-
 		for (Finding find : findMgmt.getFindings(protocol)) {
 			if (findMgmt.isFindingNotComplete(find)) {
 				isComplete = false;
+				break;
 			}
 		}
-
 		buttonAddFinding.setEnabled(isComplete);
 
 		UI.getInstance().getProtocolFrame().update(null, null);
@@ -206,7 +194,6 @@ public class FindingsTab extends JPanel {
 		currentGridBagPosition++;
 
 		GUITools.scrollToBottom(scrollFindingsList);
-		// panelFindingsList.scrollRectToVisible(currentFindingPanel.getBounds());
 
 		panelFindingsList.revalidate();
 

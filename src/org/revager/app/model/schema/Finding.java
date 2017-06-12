@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * A finding is some error or comment on the product in order of its examination
  * against an aspect.
@@ -113,8 +115,10 @@ public class Finding extends Observable {
 	 * 
 	 */
 	public void setSeverity(String value) {
+		if (!StringUtils.equals(this.severity, value)) {
+			setChanged();
+		}
 		this.severity = value;
-		setChanged();
 		notifyObservers();
 	}
 
@@ -140,8 +144,10 @@ public class Finding extends Observable {
 	 * 
 	 */
 	public void setDescription(String value) {
+		if (!StringUtils.equals(this.description, value)) {
+			setChanged();
+		}
 		this.description = value;
-		setChanged();
 		notifyObservers();
 	}
 

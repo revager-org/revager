@@ -186,7 +186,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JSpinner endMSpinner;
 	private JSpinner endHSpinner;
 	private ObservingTextField dateTxtFld;
-	private JComboBox recBx;
+	private JComboBox<String> recBx;
 	private JTextArea impTxtArea;
 	private JTextArea meetCommTxtArea;
 	private JTextArea protCommTxtArea;
@@ -822,7 +822,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		protCommTxtArea.setFont(UI.VERY_LARGE_FONT);
 		GUITools.addPlaceholderSupport(protCommTxtArea, translate("TRANSLATE"));
 
-		recBx = new JComboBox();
+		recBx = new JComboBox<>();
 		recBx.setEditable(true);
 		recBx.setFont(UI.VERY_LARGE_FONT);
 

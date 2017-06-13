@@ -1,5 +1,7 @@
 package org.revager.gui.autocomplete;
 
+import java.util.ArrayList;
+
 /*
  * Copyright (c) 2006 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -34,9 +36,10 @@ package org.revager.gui.autocomplete;
  * nuclear facility.
  */
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
@@ -44,11 +47,11 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 import org.apache.commons.lang3.StringUtils;
-import org.revager.app.model.schema.Finding;
-import org.revager.app.model.schema.Protocol;
-import org.revager.gui.UI;
 
-public class Java2sAutoTextField extends JTextField {
+/*
+ * Based on http://www.java2s.com/Code/Java/Swing-Components/AutocompleteComboBox.htm
+ */
+public abstract class Java2sAutoTextField extends JTextField {
 	private static final long serialVersionUID = 9061181066044572705L;
 
 	class AutoDocument extends PlainDocument {
@@ -66,6 +69,11 @@ public class Java2sAutoTextField extends JTextField {
 			if (StringUtils.isEmpty(s)) {
 				return;
 			}
+			if (s.length() != 1) {
+				super.insertString(i, s, attributeset);
+				return;
+			}
+
 			String s1 = getText(0, i);
 			String s2 = getMatch(s1 + s);
 			int j = (i + s.length()) - 1;
@@ -84,6 +92,14 @@ public class Java2sAutoTextField extends JTextField {
 
 		@Override
 		public void remove(int i, int j) throws BadLocationException {
+			if (getSelectedText() != null) {
+				super.remove(i, j);
+				return;
+			}
+			if (i + j == getLength()) {
+				super.remove(i, j);
+				return;
+			}
 			int k = getSelectionStart();
 			if (k > 0) {
 				k--;
@@ -103,34 +119,48 @@ public class Java2sAutoTextField extends JTextField {
 		}
 	}
 
-	private static List<String> dataList = Collections.synchronizedList(new ArrayList<>());
-	
+	private static final Map<Class<?>, List<String>> map = Collections.synchronizedMap(new HashMap<>());
+
 	private boolean isCaseSensitive = true;
 	private boolean isStrict = false;
+	private final Class<?> clazz;
 
-	public Java2sAutoTextField() {
+	public Java2sAutoTextField(Class<?> clazz) {
+		this.clazz = clazz;
+		map.put(clazz, new ArrayList<>());
 		setDocument(new AutoDocument());
-		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
-		for (Finding finding : protocol.getFindings()) {
-			for (String reference : finding.getReferences()) {
-				if (!dataList.contains(reference)) {
-					dataList.add(reference);
-				}
-			}
-		}
+		loadData();
 		sortList();
 	}
-	
+
+	protected abstract void loadData();
+
+	protected void addSuggestion(String suggestion) {
+		if (!getList().contains(suggestion.trim())) {
+			directAdd(suggestion.trim());
+		}
+	}
+
+	private void directAdd(String suggestion) {
+		if (!StringUtils.isBlank(suggestion)) {
+			getList().add(suggestion.trim());
+		}
+	}
+
+	private List<String> getList() {
+		return map.get(clazz);
+	}
+
 	private void sortList() {
-		dataList.sort((o1, o2) -> o2.length() - o1.length());
+		getList().sort((o1, o2) -> o2.length() - o1.length());
 	}
 
 	private String getMatch(String s) {
 		if (StringUtils.isBlank(s)) {
 			return s;
 		}
-		for (int i = 0; i < dataList.size(); i++) {
-			String s1 = dataList.get(i);
+		for (int i = 0; i < getList().size(); i++) {
+			String s1 = getList().get(i);
 			if (s1 != null) {
 				if (!isCaseSensitive && s1.toLowerCase().startsWith(s.toLowerCase()))
 					return s1;
@@ -138,7 +168,7 @@ public class Java2sAutoTextField extends JTextField {
 					return s1;
 			}
 		}
-		dataList.add(s);
+		directAdd(s);
 		sortList();
 		return s;
 	}

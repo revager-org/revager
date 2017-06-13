@@ -55,7 +55,7 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
-import org.revager.gui.autocomplete.Java2sAutoTextField;
+import org.revager.gui.autocomplete.ReferenceAutoComplete;
 import org.revager.gui.findings_list.AddAspToFindPopupWindow.ButtonClicked;
 import org.revager.gui.helpers.DefaultTableHeaderCellRenderer;
 import org.revager.gui.helpers.FileChooser;
@@ -446,7 +446,7 @@ public class FindingPanel extends JPanel {
 		tableExtReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
 
 		TableColumn column = tableReferences.getColumnModel().getColumn(0);
-		column.setCellEditor(new DefaultCellEditor(new Java2sAutoTextField()));
+		column.setCellEditor(new DefaultCellEditor(new ReferenceAutoComplete()));
 
 		tableAspects.setRowHeight(29);
 		tableReferences.setRowHeight(29);
@@ -459,6 +459,7 @@ public class FindingPanel extends JPanel {
 		tableAspects.addMouseListener(mouseListener);
 		tableReferences.addMouseListener(mouseListener);
 		tableExtReferences.addMouseListener(new MouseListener() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				updateTableButtons();
@@ -951,6 +952,7 @@ public class FindingPanel extends JPanel {
 			UI.getInstance().getProtocolFrame().notifySwitchToEditMode();
 
 			SwingUtilities.invokeLater(new Runnable() {
+
 				@Override
 				public void run() {
 					UI.getInstance().getProtocolFrame().switchToEditMode();

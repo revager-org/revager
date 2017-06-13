@@ -26,6 +26,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.List;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,6 +43,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
@@ -53,6 +55,7 @@ import org.revager.app.model.schema.Aspect;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
+import org.revager.gui.autocomplete.Java2sAutoTextField;
 import org.revager.gui.findings_list.AddAspToFindPopupWindow.ButtonClicked;
 import org.revager.gui.helpers.DefaultTableHeaderCellRenderer;
 import org.revager.gui.helpers.FileChooser;
@@ -441,6 +444,9 @@ public class FindingPanel extends JPanel {
 		tableAspects.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
 		tableReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
 		tableExtReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
+
+		TableColumn column = tableReferences.getColumnModel().getColumn(0);
+		column.setCellEditor(new DefaultCellEditor(new Java2sAutoTextField()));
 
 		tableAspects.setRowHeight(29);
 		tableReferences.setRowHeight(29);

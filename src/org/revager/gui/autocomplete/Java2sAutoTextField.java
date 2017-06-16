@@ -119,15 +119,23 @@ public abstract class Java2sAutoTextField extends JTextField {
 		}
 	}
 
-	private static final Map<Class<?>, List<String>> map = Collections.synchronizedMap(new HashMap<>());
+	private static final Map<Object, List<String>> map = Collections.synchronizedMap(new HashMap<>());
 
 	private boolean isCaseSensitive = true;
 	private boolean isStrict = false;
-	private final Class<?> clazz;
+	private transient final Object object;
 
-	public Java2sAutoTextField(Class<?> clazz) {
-		this.clazz = clazz;
-		map.put(clazz, new ArrayList<>());
+	/**
+	 * Initialize the auto suggestion text field.
+	 * 
+	 * @param type
+	 *            All {@link Java2sAutoTextField} instances of the same type
+	 *            share the same suggestions. This allows to suggest a word
+	 *            already typed in another field.
+	 */
+	public Java2sAutoTextField(Object type) {
+		this.object = type;
+		map.put(type, new ArrayList<>());
 		setDocument(new AutoDocument());
 		loadData();
 		sortList();
@@ -148,7 +156,7 @@ public abstract class Java2sAutoTextField extends JTextField {
 	}
 
 	private List<String> getList() {
-		return map.get(clazz);
+		return map.get(object);
 	}
 
 	private void sortList() {

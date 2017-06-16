@@ -32,6 +32,7 @@ import org.revager.tools.GUITools;
 public class CurrentFindingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1898465156775918217L;
+	private static final int ROW_HEIGHT = 32;
 
 	private transient Finding finding = new Finding();
 	private GridBagLayout layout = new GridBagLayout();
@@ -72,9 +73,9 @@ public class CurrentFindingPanel extends JPanel {
 		tableReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
 		tableExtReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
 
-		tableAspects.setRowHeight(29);
-		tableReferences.setRowHeight(29);
-		tableExtReferences.setRowHeight(29);
+		tableAspects.setRowHeight(ROW_HEIGHT);
+		tableReferences.setRowHeight(ROW_HEIGHT);
+		tableExtReferences.setRowHeight(ROW_HEIGHT);
 
 		scrollAspects = new JScrollPane(tableAspects);
 		scrollReferences = new JScrollPane(tableReferences);
@@ -84,22 +85,22 @@ public class CurrentFindingPanel extends JPanel {
 		scrollReferences.getViewport().setBackground(Color.WHITE);
 		scrollExtReferences.getViewport().setBackground(Color.WHITE);
 
-		labelFindingSeverity.setFont(UI.VERY_LARGE_FONT);
+		labelFindingSeverity.setFont(UI.VERY_HUGE_HUGE_FONT_BOLD);
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
 
-		labelFindingTitle.setFont(UI.VERY_LARGE_FONT_BOLD);
+		labelFindingTitle.setFont(UI.VERY_HUGE_HUGE_FONT_BOLD);
 
 		scrollDescription = GUITools.setIntoScrllPn(textDescription);
 		GUITools.scrollToTop(scrollDescription);
 
 		textDescription.setEditable(false);
-		textDescription.setFont(UI.VERY_LARGE_FONT);
+		textDescription.setFont(UI.VERY_HUGE_HUGE_FONT);
 
 		GUITools.addComponent(this, layout, labelFindingTitle,    0, 0, 1, 1, 0.7, 0.0, 10, 10, 0, 10, NONE, WEST);
 		GUITools.addComponent(this, layout, labelFindingSeverity, 1, 0, 1, 1, 0.3, 0.0, 10, 10, 0, 10, NONE, EAST);
 		GUITools.addComponent(this, layout, scrollDescription,    0, 1, 1, REMAINDER, 1.0, 1.0, 10, 10, 10, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, scrollReferences,     1, 1, 1, 1, 0.5, 0.4, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollExtReferences,  1, 2, 1, 1, 0.5, 0.4, 10, 10, 10, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollExtReferences,  1, 2, 1, 1, 0.5, 0.3, 10, 10, 10, 10, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, scrollAspects,        1, 3, 1, 1, 0.5, 0.4, 10, 10, 10, 10, BOTH, NORTHWEST);
 	}
 
@@ -113,7 +114,7 @@ public class CurrentFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		Dimension size = new Dimension(200, (int) labelFindingTitle.getPreferredSize().getHeight());
+		Dimension size = new Dimension(500, (int) labelFindingTitle.getPreferredSize().getHeight());
 		labelFindingSeverity.setHorizontalAlignment(JLabel.RIGHT);
 		labelFindingSeverity.setMaximumSize(size);
 		labelFindingSeverity.setMinimumSize(size);

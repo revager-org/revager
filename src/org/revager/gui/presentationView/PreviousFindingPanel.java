@@ -34,17 +34,17 @@ public class PreviousFindingPanel extends JPanel {
 		setBackground(UI.COMPACT_VIEW_BG);
 		setBorder(UI.STANDARD_BORDER);
 
-		severityLable.setFont(UI.VERY_LARGE_FONT);
+		severityLable.setFont(UI.HUGE_FONT_BOLD);
 		severityLable.setForeground(Color.DARK_GRAY);
 
 		titleLable.setText(translate("Previous Finding:"));
-		titleLable.setFont(UI.VERY_LARGE_FONT_BOLD);
+		titleLable.setFont(UI.HUGE_FONT_BOLD);
 
 		descriptionTextField = GUITools.setIntoScrllPn(descriptionTextArea);
 		GUITools.scrollToTop(descriptionTextField);
 
 		descriptionTextArea.setEditable(false);
-		descriptionTextArea.setFont(UI.VERY_LARGE_FONT);
+		descriptionTextArea.setFont(UI.HUGE_FONT);
 
 		GUITools.addComponent(this, layout, titleLable, 0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, EAST);
 		GUITools.addComponent(this, layout, severityLable, 1, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, NONE, EAST);

@@ -7,7 +7,6 @@ import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static org.revager.app.model.Data.translate;
 
-import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -21,14 +20,12 @@ import org.revager.app.model.Data;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
 import org.revager.app.model.schema.Review;
+import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
 public class PresentationProtocolTab extends JPanel {
 
 	private static final long serialVersionUID = 1377208308219097378L;
-
-	public static final Font LABLE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
-	public static final Font TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 
 	private GridBagLayout layout = new GridBagLayout();
 	private HighlightedTextArea impressionTextArea;
@@ -44,23 +41,23 @@ public class PresentationProtocolTab extends JPanel {
 		this.setLayout(layout);
 
 		JLabel impressionLabel = new JLabel(translate("General impression of the product:"));
-		impressionLabel.setFont(LABLE_FONT);
+		impressionLabel.setFont(UI.HUGE_HUGE_FONT_BOLD);
 		impressionTextArea = createTextArea(
 				translate("What is your general impression of the prodcut? Write this down before documenting "
 						+ "findings. When you finished with documenting findings, continue with "
 						+ "the recommendation and the comments of the meeting and of the list of findings."));
 
 		JLabel recommendationLabel = new JLabel(translate("Final recommendation for the product:"));
-		recommendationLabel.setFont(LABLE_FONT);
+		recommendationLabel.setFont(UI.HUGE_HUGE_FONT_BOLD);
 		recommendationField = createTextArea(StringUtils.join(Data.getDefaultRecommendations(), ", "));
 		recommendationField.setRows(2);
 
 		JLabel meetingCommentLabel = new JLabel(translate("Comments on the meeting:"));
-		meetingCommentLabel.setFont(LABLE_FONT);
+		meetingCommentLabel.setFont(UI.HUGE_HUGE_FONT_BOLD);
 		meetingCommentTextArea = createTextArea(translate("Is there anything to say about the meeting?"));
 
 		JLabel protocalCommentLabel = new JLabel(translate("Comments on the list of findings:"));
-		protocalCommentLabel.setFont(LABLE_FONT);
+		protocalCommentLabel.setFont(UI.HUGE_HUGE_FONT_BOLD);
 		protocolCommentTextArea = createTextArea(translate("Is there anything to say about the findings?"));
 
 		impressionField = new JScrollPane(impressionTextArea, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
@@ -108,7 +105,7 @@ public class PresentationProtocolTab extends JPanel {
 	}
 
 	private HighlightedTextArea createTextArea(String placeholderText) {
-		HighlightedTextArea textArea = new HighlightedTextArea(TEXT_FONT, placeholderText);
+		HighlightedTextArea textArea = new HighlightedTextArea(UI.HUGE_HUGE_FONT, placeholderText);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);

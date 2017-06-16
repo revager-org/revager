@@ -87,9 +87,16 @@ public class UI implements Observer {
 	public static final Font LARGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
 	public static final Font VERY_LARGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 	public static final Font VERY_LARGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 18);
+	public static final Font HUGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 22);
 	public static final Font HUGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 22);
 	public static final Font VERY_HUGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
 	public static final Font VERY_HUGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 25);
+	public static final Font HUGE_HUGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 28);
+	public static final Font HUGE_HUGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 28);
+	public static final Font VERY_HUGE_HUGE_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 30);
+	public static final Font VERY_HUGE_HUGE_FONT_BOLD = new Font(Font.SANS_SERIF, Font.BOLD, 30);
+	
+	
 
 	public static final int TABLE_ROW_HEIGHT = 22;
 

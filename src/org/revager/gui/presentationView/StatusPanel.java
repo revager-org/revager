@@ -75,7 +75,7 @@ public class StatusPanel extends JPanel {
 		try {
 			maxFindingSeconds = Integer.parseInt(appData.getSetting(AppSettingKey.APP_FINDING_WARNING_TIME)) * 60;
 		} catch (DataException | NumberFormatException e) {
-			maxFindingSeconds = 5 * 60;
+			maxFindingSeconds = 3 * 60;
 		}
 
 		totalDurationProgress.setMaximum(maxProtocolSeconds);

@@ -15,10 +15,12 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.StringUtils;
+import org.revager.gamecontroller.FindingStatus;
 
 /**
  * A finding is some error or comment on the product in order of its examination
@@ -71,6 +73,8 @@ public class Finding extends Observable {
 	@XmlElement(name = "external-reference")
 	@XmlSchemaType(name = "anyURI")
 	protected List<String> externalReferences = new ArrayList<>();
+	@XmlTransient
+	private final FindingStatus findingStatus = new FindingStatus();
 
 	/**
 	 * Gets the value of the id property.
@@ -297,7 +301,7 @@ public class Finding extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	public boolean isSetExternalReferences() {
 		return ((this.externalReferences != null) && (!this.externalReferences.isEmpty()));
 	}
@@ -306,4 +310,9 @@ public class Finding extends Observable {
 		this.externalReferences = null;
 	}
 
+	public FindingStatus getFindingStatus() {
+		return findingStatus;
+	}
+
 }
+

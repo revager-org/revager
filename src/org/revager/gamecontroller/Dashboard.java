@@ -2,22 +2,19 @@ package org.revager.gamecontroller;
 
 import static org.revager.app.model.Data.translate;
 
-import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.List;
 
 import org.revager.app.model.schema.Finding;
 import org.revager.gui.UI;
 
 public class Dashboard {
 
-	private final HashMap<Finding, FindingStatus> findingStatuses = new HashMap<>();
-
+	private final List<Finding> findings = new ArrayList<>();
 	private int breaks = 0;
 	private int maxVotes = 0;
-	private Finding finding;
+	private Finding finding = new Finding();
 	private ControllerManager controllerManager;
 
 	public Dashboard() {
@@ -32,7 +29,7 @@ public class Dashboard {
 					if (oldSeconds == 0 || newSeconds == 0) {
 						resetTime();
 					} else if (oldSeconds < newSeconds) {
-						getFindingStatus().addFindingTime(newSeconds - oldSeconds);
+						finding.getFindingStatus().addFindingTime(newSeconds - oldSeconds);
 					}
 				}
 			}
@@ -44,7 +41,9 @@ public class Dashboard {
 	}
 
 	public void setFinding(Finding finding) {
-		findingStatuses.putIfAbsent(finding, new FindingStatus());
+		if (!findings.contains(finding)) {
+			findings.add(finding);
+		}
 		this.finding = finding;
 	}
 
@@ -53,11 +52,11 @@ public class Dashboard {
 	}
 
 	public Vote getVoteForOwner(Finding eventFinding, int owner) {
-		return getFindingStatus(eventFinding).getVoteForOwner(owner);
+		return eventFinding.getFindingStatus().getVoteForOwner(owner);
 	}
 
 	public synchronized void addOrRemoveVote(Finding eventFinding, int owner, Vote vote) {
-		getFindingStatus(eventFinding).addOrRemoveVote(owner, vote);
+		eventFinding.getFindingStatus().addOrRemoveVote(owner, vote);
 	}
 
 	public synchronized void addBreak() {
@@ -69,11 +68,7 @@ public class Dashboard {
 	}
 
 	public void addYawn(Finding eventFinding) {
-		getFindingStatus(eventFinding).addYawn();
-	}
-
-	public synchronized boolean isVotingComplete(Finding eventFinding) {
-		return getFindingStatus(eventFinding).isVotingComplete(maxVotes);
+		eventFinding.getFindingStatus().addYawn();
 	}
 
 	private void resetBreak() {
@@ -81,11 +76,12 @@ public class Dashboard {
 	}
 
 	public int getContinue() {
-		return getFindingStatus().getYawn();
+		return finding.getFindingStatus().getYawn();
 	}
 
 	public String getVotingsDetails() {
-		Collection<Vote> votings = getFindingStatus().getVotings();
+		FindingStatus findingStatus = finding.getFindingStatus();
+		Collection<Vote> votings = findingStatus.getVotings();
 		int numberOfVotes = votings.size();
 		if (numberOfVotes != maxVotes) {
 			StringBuilder builder = new StringBuilder();
@@ -96,11 +92,11 @@ public class Dashboard {
 			builder.append(")</em><html>");
 			return builder.toString();
 		}
-		return buildVoteCountString(votings).toString();
+		return findingStatus.buildVoteCountString();
 	}
 
 	public int getFindingTime() {
-		return getFindingStatus().getFindingTime();
+		return finding.getFindingStatus().getFindingTime();
 	}
 
 	public String getBreakText() {
@@ -113,58 +109,9 @@ public class Dashboard {
 
 	private void resetTime() {
 		resetBreak();
-		for (FindingStatus findingStatus : findingStatuses.values()) {
-			findingStatus.resetFindingTime();
+		for (Finding finding : findings) {
+			finding.getFindingStatus().resetFindingTime();
 		}
-	}
-
-	private StringBuilder buildVoteCountString(Collection<Vote> votings) {
-		EnumMap<Vote, Integer> voteCountMap = createVoteCountMap(votings);
-		StringBuilder builder = new StringBuilder();
-		builder.append("<html>");
-		float sizeLevel = 1.5f;
-		int lastCount = Integer.MAX_VALUE;
-		while (!voteCountMap.isEmpty()) {
-			Entry<Vote, Integer> max = new SimpleEntry<>(null, 0);
-			for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
-				if (entry.getValue() > max.getValue()) {
-					max = entry;
-				}
-			}
-			builder.append("<span style=\"font-size:");
-			if (lastCount != max.getValue()) {
-				lastCount = Math.min(lastCount, max.getValue());
-				sizeLevel = 2 * sizeLevel / 3;
-			}
-			builder.append(sizeLevel);
-			builder.append("em;\">");
-			builder.append(max.getValue());
-			builder.append("x");
-			builder.append(max.getKey());
-			builder.append("; ");
-			builder.append("</span>");
-			voteCountMap.remove(max.getKey());
-		}
-		builder.append("</html>");
-		return builder;
-	}
-
-	private EnumMap<Vote, Integer> createVoteCountMap(Collection<Vote> votings) {
-		EnumMap<Vote, Integer> map = new EnumMap<>(Vote.class);
-		for (Vote vote : votings) {
-			int count = map.getOrDefault(vote, 0);
-			count++;
-			map.put(vote, count);
-		}
-		return map;
-	}
-
-	private FindingStatus getFindingStatus() {
-		return getFindingStatus(finding);
-	}
-
-	private FindingStatus getFindingStatus(Finding finding) {
-		return findingStatuses.getOrDefault(finding, new FindingStatus());
 	}
 
 }

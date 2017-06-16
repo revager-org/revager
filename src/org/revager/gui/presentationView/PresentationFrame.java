@@ -86,6 +86,7 @@ public class PresentationFrame extends JFrame {
 	}
 
 	private void addObjectListeners() {
+		// TODO: move this to another place to get controllers working without presentation view.
 		Review review = Data.getInstance().getResiData().getReview();
 		Meeting meeting = UI.getInstance().getProtocolFrame().getMeeting();
 		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();

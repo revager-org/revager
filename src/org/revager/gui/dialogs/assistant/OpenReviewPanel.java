@@ -110,7 +110,6 @@ public class OpenReviewPanel extends AbstractDialogPanel {
 
 				GUITools.executeSwingWorker(new LoadReviewWorker(revPath));
 			} catch (DataException exc) {
-				// TODO Auto-generated catch block
 				exc.printStackTrace();
 			}
 

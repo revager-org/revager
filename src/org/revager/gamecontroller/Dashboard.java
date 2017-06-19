@@ -18,7 +18,6 @@ public class Dashboard {
 
 	private final List<Finding> findings = new ArrayList<>();
 	private int breaks = 0;
-	private int maxVotes = 0;
 	private Finding finding = new Finding();
 	private ControllerManager controllerManager;
 	private final Observer findingListener = (Observable o, Object arg) -> setFinding((Finding) o);;
@@ -56,10 +55,6 @@ public class Dashboard {
 			}
 		});
 		addListener();
-	}
-
-	public void setNumberControllers(int length) {
-		this.maxVotes = length;
 	}
 
 	private void addListener() {
@@ -114,7 +109,7 @@ public class Dashboard {
 		FindingStatus findingStatus = finding.getFindingStatus();
 		Collection<Vote> votings = findingStatus.getVotings();
 		int numberOfVotes = votings.size();
-		if (numberOfVotes != maxVotes) {
+		if (numberOfVotes < controllerManager.getControllerCount()) {
 			StringBuilder builder = new StringBuilder();
 			builder.append("<html>");
 			builder.append(numberOfVotes);

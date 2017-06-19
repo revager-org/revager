@@ -20,18 +20,18 @@ public class ControllerManager {
 	public ControllerManager(Dashboard dashboard) {
 		this.dashboard = dashboard;
 		ControllerEnvironment defaultEnvironment = ControllerEnvironment.getDefaultEnvironment();
-		int controllerCounter = 0;
-		controllers = Arrays.asList(defaultEnvironment.getControllers());
-		for (Controller controller : controllers) {
+		for (Controller controller : Arrays.asList(defaultEnvironment.getControllers())) {
 			if (controller.getType() == Type.STICK) {
-				controllerCounter++;
-				dashboard.setNumberControllers(controllerCounter);
+				controllers.add(controller);
 				setupControllerQueue(controller);
 			} else {
 				System.out.println("filtered out : " + controller.getType());
-
 			}
 		}
+	}
+
+	public int getControllerCount() {
+		return controllers.size();
 	}
 
 	public synchronized void rumble() {
@@ -62,6 +62,7 @@ public class ControllerManager {
 		Thread thread = new Thread(() -> {
 			while (true) {
 				if (!controller.poll()) {
+					controllers.remove(controller);
 					return;
 				}
 				EventQueue eventQueue = controller.getEventQueue();

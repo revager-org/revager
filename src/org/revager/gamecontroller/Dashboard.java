@@ -129,10 +129,6 @@ public class Dashboard {
 		return Integer.toString(breaks);
 	}
 
-	public void rumble() {
-		controllerManager.rumble();
-	}
-
 	private void resetTime() {
 		resetBreak();
 		for (Finding finding : findings) {

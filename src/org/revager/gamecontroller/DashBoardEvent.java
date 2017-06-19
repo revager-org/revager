@@ -24,7 +24,6 @@ public abstract class DashBoardEvent {
 				}
 			}
 			callback();
-			dashboard.rumble();
 		});
 		thread.start();
 	}

@@ -34,30 +34,6 @@ public class ControllerManager {
 		return controllers.size();
 	}
 
-	public synchronized void rumble() {
-		Thread thread = new Thread(() -> {
-			try {
-				float intensity = 1.0f;
-				for (int i = 0; i < 4; i++) {
-					for (Controller controller : controllers) {
-						for (Rumbler rumbler : controller.getRumblers()) {
-							rumbler.rumble(intensity);
-						}
-						intensity *= 0.98f;
-					}
-					Thread.sleep(40);
-				}
-				for (Controller controller : controllers) {
-					for (Rumbler rumbler : controller.getRumblers()) {
-						rumbler.rumble(0.0f);
-					}
-				}
-			} catch (InterruptedException e) {
-			}
-		});
-		thread.start();
-	}
-
 	private void setupControllerQueue(Controller controller) {
 		Thread thread = new Thread(() -> {
 			while (true) {

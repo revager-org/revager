@@ -72,7 +72,6 @@ public class ControllerManager {
 
 	private void reactOnEvent(Controller controller, Event event) {
 		Component component = event.getComponent();
-		System.out.println(component.getName() + ";" + component.getIdentifier().getName() + ";" + event.getValue());
 		switch (component.getIdentifier().getName()) {
 		case "2":
 		case "Top":
@@ -108,6 +107,9 @@ public class ControllerManager {
 		case "x":
 			new YawnEvent(dashboard);
 			break;
+		default:
+			System.out
+					.println(component.getName() + ";" + component.getIdentifier().getName() + ";" + event.getValue());
 		}
 	}
 

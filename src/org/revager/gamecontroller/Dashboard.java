@@ -73,6 +73,11 @@ public class Dashboard {
 		this.finding = finding;
 	}
 
+	public boolean controllersConnected() {
+		return controllerManager.controllersConnected();
+	}
+
+	
 	public Finding getFinding() {
 		return finding;
 	}

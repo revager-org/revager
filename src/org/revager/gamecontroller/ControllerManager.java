@@ -16,6 +16,7 @@ public class ControllerManager {
 
 	private Dashboard dashboard;
 	private List<Controller> controllers = new ArrayList<>();
+	private final boolean controllersConnected;
 
 	public ControllerManager(Dashboard dashboard) {
 		this.dashboard = dashboard;
@@ -28,10 +29,16 @@ public class ControllerManager {
 				System.out.println("filtered out : " + controller.getType());
 			}
 		}
+		controllersConnected = !controllers.isEmpty();
+		
 	}
 
 	public int getControllerCount() {
 		return controllers.size();
+	}
+	
+	public boolean controllersConnected() {
+		return controllersConnected;
 	}
 
 	private void setupControllerQueue(Controller controller) {

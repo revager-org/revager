@@ -156,7 +156,8 @@ public class StatusPanel extends JPanel {
 		continueDiscussionLabelGridConstraints.gridy = 3;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(breakLabel, continueDiscussionLabelGridConstraints);
-
+		breakLabel.setVisible(dashboard.controllersConnected());
+		
 		breakField = new JLabel();
 		breakField.setFont(STANDARD_STATUS_FONT);
 		GridBagConstraints breakFieldGridConstraints = new GridBagConstraints();
@@ -164,6 +165,7 @@ public class StatusPanel extends JPanel {
 		breakFieldGridConstraints.gridy = 3;
 		breakFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(breakField, breakFieldGridConstraints);
+		breakField.setVisible(dashboard.controllersConnected());
 	}
 
 	private void addContinueDiscussion() {
@@ -175,6 +177,7 @@ public class StatusPanel extends JPanel {
 		continueDiscussionLabelGridConstraints.gridy = 4;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(continueDiscussionLabel, continueDiscussionLabelGridConstraints);
+		continueDiscussionLabel.setVisible(dashboard.controllersConnected());
 
 		continueDiscussionField = new JLabel();
 		continueDiscussionField.setFont(STANDARD_STATUS_FONT);
@@ -183,6 +186,7 @@ public class StatusPanel extends JPanel {
 		continueDiscussionFieldGridConstraints.gridy = 4;
 		continueDiscussionFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(continueDiscussionField, continueDiscussionFieldGridConstraints);
+		continueDiscussionField.setVisible(dashboard.controllersConnected());
 	}
 
 	private void addVotings() {
@@ -194,6 +198,7 @@ public class StatusPanel extends JPanel {
 		votingLabelGridConstraints.gridy = 5;
 		votingLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(votingsLabel, votingLabelGridConstraints);
+		votingsLabel.setVisible(dashboard.controllersConnected());
 
 		votingsField = new JLabel();
 		votingsField.setFont(STANDARD_STATUS_FONT);
@@ -202,6 +207,7 @@ public class StatusPanel extends JPanel {
 		votingsFieldGridConstraints.gridy = 5;
 		votingsFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(votingsField, votingsFieldGridConstraints);
+		votingsField.setVisible(dashboard.controllersConnected());
 	}
 
 }

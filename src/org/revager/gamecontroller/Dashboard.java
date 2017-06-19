@@ -5,19 +5,40 @@ import static org.revager.app.model.Data.translate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.revager.app.model.schema.Finding;
+import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
 
 public class Dashboard {
+
+	private static Dashboard instance;
 
 	private final List<Finding> findings = new ArrayList<>();
 	private int breaks = 0;
 	private int maxVotes = 0;
 	private Finding finding = new Finding();
 	private ControllerManager controllerManager;
+	private final Observer findingListener = (Observable o, Object arg) -> setFinding((Finding) o);;
+	private final Observer protocolListener = (Observable o, Object arg) -> {
+		if (arg instanceof Finding) {
+			// A finding was added to the protocol. We don't care, that the
+			// protocol "changed".
+			Finding finding = (Finding) arg;
+			finding.addObserver(findingListener);
+		}
+	};
 
-	public Dashboard() {
+	public static Dashboard getInstance() {
+		if (instance == null) {
+			instance = new Dashboard();
+		}
+		return instance;
+	}
+
+	private Dashboard() {
 		controllerManager = new ControllerManager(this);
 		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
 			Object newValue = evt.getNewValue();
@@ -34,13 +55,23 @@ public class Dashboard {
 				}
 			}
 		});
+		addListener();
 	}
 
 	public void setNumberControllers(int length) {
 		this.maxVotes = length;
 	}
 
-	public void setFinding(Finding finding) {
+	private void addListener() {
+		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
+		protocol.addObserver(protocolListener);
+		for (Finding finding : protocol.getFindings()) {
+			finding.addObserver(findingListener);
+		}
+
+	}
+
+	private void setFinding(Finding finding) {
 		if (!findings.contains(finding)) {
 			findings.add(finding);
 		}

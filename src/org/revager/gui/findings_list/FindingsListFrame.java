@@ -90,6 +90,7 @@ import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Meeting;
 import org.revager.app.model.schema.Protocol;
+import org.revager.gamecontroller.Dashboard;
 import org.revager.gui.AbstractFrame;
 import org.revager.gui.UI;
 import org.revager.gui.actions.ActionRegistry;
@@ -1093,6 +1094,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		boolean protFrameVisible = UI.getInstance().getProtocolFrame().isVisible();
 
 		UI.getInstance().getMainFrame().setVisible(!protFrameVisible);
+		Dashboard.getInstance();
 	}
 
 	public void updateAttButtons() {

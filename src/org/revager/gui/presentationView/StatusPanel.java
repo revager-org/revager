@@ -35,7 +35,7 @@ public class StatusPanel extends JPanel {
 	private transient Dashboard dashboard;
 
 	public StatusPanel() {
-		dashboard = new Dashboard();
+		dashboard = Dashboard.getInstance();
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 1.0 };
@@ -59,7 +59,6 @@ public class StatusPanel extends JPanel {
 	}
 
 	public void setFinding(Finding finding) {
-		dashboard.setFinding(finding);
 		updateDisplay();
 	}
 

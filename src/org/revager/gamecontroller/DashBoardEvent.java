@@ -7,7 +7,7 @@ import org.revager.app.model.schema.Finding;
 public abstract class DashBoardEvent {
 
 	private static final Random RANDOM = new Random();
-	private static final long MINIMUM_WAIT_MILLIS = 1000 * 2L;
+	private static final long MINIMUM_WAIT_MILLIS = 1000L;
 
 	protected final Finding eventFinding;
 	protected final Dashboard dashboard;

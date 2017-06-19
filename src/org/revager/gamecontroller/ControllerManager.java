@@ -10,7 +10,6 @@ import net.java.games.input.Controller.Type;
 import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
-import net.java.games.input.Rumbler;
 
 public class ControllerManager {
 
@@ -30,13 +29,13 @@ public class ControllerManager {
 			}
 		}
 		controllersConnected = !controllers.isEmpty();
-		
+
 	}
 
 	public int getControllerCount() {
 		return controllers.size();
 	}
-	
+
 	public boolean controllersConnected() {
 		return controllersConnected;
 	}
@@ -73,6 +72,7 @@ public class ControllerManager {
 
 	private void reactOnEvent(Controller controller, Event event) {
 		Component component = event.getComponent();
+		System.out.println(component.getName() + ";" + component.getIdentifier().getName() + ";" + event.getValue());
 		switch (component.getIdentifier().getName()) {
 		case "2":
 		case "Top":
@@ -97,7 +97,9 @@ public class ControllerManager {
 			new VoteEvent(dashboard, controller.hashCode(), Vote.CRITICAL_ERROR);
 			break;
 		case "4":
+		case "6":
 		case "5":
+		case "7":
 		case "Top 2":
 		case "Pinkie":
 			new BreakEvent(dashboard);
@@ -106,9 +108,6 @@ public class ControllerManager {
 		case "x":
 			new YawnEvent(dashboard);
 			break;
-		default:
-			System.out
-					.println(component.getName() + ";" + component.getIdentifier().getName() + ";" + event.getValue());
 		}
 	}
 

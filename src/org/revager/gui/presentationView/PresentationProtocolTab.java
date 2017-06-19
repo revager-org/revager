@@ -114,22 +114,29 @@ public class PresentationProtocolTab extends JPanel {
 
 	private void updateFontSizes(JTextArea area, JScrollPane scrollPane) {
 		// TODO: check what to do.
-		// SwingUtilities.invokeLater(() -> {
+		// try {
+		// SwingUtilities.invokeAndWait(() -> {
 		// area.setFont(TEXT_FONT);
 		// Thread thread = new Thread(() -> {
 		// int size = area.getFont().getSize();
 		// while (scrollPane.getVerticalScrollBar().isVisible() && size > 0) {
-		// size = Math.max(1, size - 5);
-		// area.setText(area.getText());
+		// size = Math.max(1, size - 1);
+		// // area.setText(area.getText());
 		// area.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
 		// try {
 		// Thread.sleep(5);
 		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
 		// }
 		// }
 		//
 		// });
 		// thread.start();
 		// });
+		// } catch (InvocationTargetException | InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 	}
 }

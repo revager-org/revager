@@ -30,7 +30,7 @@ public class Dashboard {
 		}
 	};
 
-	public static Dashboard getInstance() {
+	public static synchronized Dashboard getInstance() {
 		if (instance == null) {
 			instance = new Dashboard();
 		}

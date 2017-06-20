@@ -424,7 +424,7 @@ public class FindingManagement {
 
 		String extRef = revMgmt.getExtRefURI(file.getName());
 		file.delete();
-		find.addExternalReferences(extRef);
+		find.removeExternalReferences(extRef);
 		resiData.fireDataChanged();
 	}
 

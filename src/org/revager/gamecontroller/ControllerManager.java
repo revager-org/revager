@@ -101,6 +101,8 @@ public class ControllerManager {
 		case "7":
 		case "Top 2":
 		case "Pinkie":
+		case "Base":
+		case "Base 2":
 			new BreakEvent(dashboard);
 			break;
 		case "y":

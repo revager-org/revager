@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.Controller.Type;
@@ -21,7 +23,7 @@ public class ControllerManager {
 		this.dashboard = dashboard;
 		ControllerEnvironment defaultEnvironment = ControllerEnvironment.getDefaultEnvironment();
 		for (Controller controller : Arrays.asList(defaultEnvironment.getControllers())) {
-			if (controller.getType() == Type.STICK) {
+			if (isController(controller)) {
 				controllers.add(controller);
 				setupControllerQueue(controller);
 			} else {
@@ -29,7 +31,6 @@ public class ControllerManager {
 			}
 		}
 		controllersConnected = !controllers.isEmpty();
-
 	}
 
 	public int getControllerCount() {
@@ -38,6 +39,11 @@ public class ControllerManager {
 
 	public boolean controllersConnected() {
 		return controllersConnected;
+	}
+
+	private boolean isController(Controller controller) {
+		String name = StringUtils.defaultString(controller.getName());
+		return controller.getType() == Type.STICK && !name.contains("eyboard");
 	}
 
 	private void setupControllerQueue(Controller controller) {

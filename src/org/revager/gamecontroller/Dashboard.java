@@ -16,10 +16,12 @@ public class Dashboard {
 
 	private static Dashboard instance;
 
-	private final List<Finding> findings = new ArrayList<>();
 	private int breaks = 0;
 	private Finding finding = new Finding();
 	private ControllerManager controllerManager;
+
+	private final List<Finding> findings = new ArrayList<>();
+	private final Timeout breakResetTimeout;
 	private final Observer findingListener = (Observable o, Object arg) -> setFinding((Finding) o);;
 	private final Observer protocolListener = (Observable o, Object arg) -> {
 		if (arg instanceof Finding) {
@@ -39,6 +41,14 @@ public class Dashboard {
 
 	private Dashboard() {
 		controllerManager = new ControllerManager(this);
+		breakResetTimeout = new Timeout(3) {
+
+			@Override
+			public void timeout() {
+				Dashboard.this.resetBreak();
+			}
+		};
+
 		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
 			Object newValue = evt.getNewValue();
 			if (newValue instanceof Integer) {
@@ -50,6 +60,7 @@ public class Dashboard {
 						resetTime();
 					} else if (oldSeconds < newSeconds) {
 						finding.getFindingStatus().addFindingTime(newSeconds - oldSeconds);
+						breakResetTimeout.reset();
 					}
 				}
 			}
@@ -77,7 +88,6 @@ public class Dashboard {
 		return controllerManager.controllersConnected();
 	}
 
-	
 	public Finding getFinding() {
 		return finding;
 	}

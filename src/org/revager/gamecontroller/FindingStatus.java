@@ -1,12 +1,9 @@
 package org.revager.gamecontroller;
 
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Observable;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -18,50 +15,32 @@ public class FindingStatus extends Observable {
 
 	public String buildVoteCountString() {
 		EnumMap<Vote, Integer> voteCountMap = createVoteCountMap();
-		float sizeLevel = 1.5f;
-		int lastCount = Integer.MAX_VALUE;
-		final EnumMap<Vote, String> m = new EnumMap<>(Vote.class);
-		final Set<Vote> keySet = new HashSet<>(voteCountMap.keySet());
-		while (!voteCountMap.isEmpty()) {
-			Entry<Vote, Integer> max = getMax(voteCountMap);
-			StringBuilder builder = new StringBuilder();
-			builder.append("<span style=\"font-size:");
-			if (lastCount != max.getValue()) {
-				lastCount = Math.min(lastCount, max.getValue());
-				sizeLevel = 2 * sizeLevel / 3;
-			}
-			addVoteString(sizeLevel, max, builder);
-			m.put(max.getKey(), builder.toString());
-			voteCountMap.remove(max.getKey());
-		}
-		return buildHTMLString(m, keySet);
-	}
-
-	private Entry<Vote, Integer> getMax(EnumMap<Vote, Integer> voteCountMap) {
-		Entry<Vote, Integer> max = new SimpleEntry<>(null, 0);
+		int maxCount = -1;
 		for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
-			if (entry.getValue() > max.getValue()) {
-				max = entry;
-			}
+			maxCount = Math.max(maxCount, entry.getValue());
 		}
-		return max;
-	}
 
-	private void addVoteString(float sizeLevel, Entry<Vote, Integer> max, StringBuilder builder) {
-		builder.append(sizeLevel);
-		builder.append("em;\">");
-		builder.append(max.getValue());
-		builder.append("x");
-		builder.append(max.getKey());
-		builder.append("; ");
-		builder.append("</span>");
-	}
-
-	private String buildHTMLString(EnumMap<Vote, String> m, Set<Vote> keySet) {
+		if (maxCount == 1) {
+			maxCount = -1;
+		}
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html>");
-		for (Vote vote : keySet) {
-			builder.append(m.get(vote));
+
+		for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
+			if (maxCount == entry.getValue()) {
+				if (maxCount == 1) {
+					builder.append("<span style=\"font-size:1em;\">");
+				} else {
+					builder.append("<span style=\"font-size:1em;font-weight: bold;\">");
+				}
+			} else {
+				builder.append("<span style=\"font-size:0.8em;\">");
+			}
+			builder.append(entry.getValue());
+			builder.append("x");
+			builder.append(entry.getKey());
+			builder.append("; ");
+			builder.append("</span>");
 		}
 		builder.append("</html>");
 		return builder.toString();

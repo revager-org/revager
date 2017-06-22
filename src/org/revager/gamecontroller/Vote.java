@@ -8,7 +8,7 @@ public enum Vote {
 	CRITICAL_ERROR("Critical error"),
 	MAIN_ERROR("Main error"),
 	MINOR_ERROR("Minor error"),
-	POSSIBLE_NO_ERROR("(Possible) no error"),
+	RATHER_NO_ERROR("rather no error"),
 	GOOD("Good");
 	// @formatter:on
 

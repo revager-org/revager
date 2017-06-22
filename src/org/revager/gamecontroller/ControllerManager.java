@@ -81,7 +81,7 @@ public class ControllerManager {
 		case "8":
 		case "Base 4":
 		case "Base 3":
-			new VoteEvent(dashboard, controller.hashCode(), Vote.POSSIBLE_NO_ERROR);
+			new VoteEvent(dashboard, controller.hashCode(), Vote.RATHER_NO_ERROR);
 			break;
 		case "1":
 		case "Trigger":

@@ -280,8 +280,8 @@ public class Data {
 		list.add("Minor error");
 		translate("Minor error");
 
-		list.add("(Possible) no error");
-		translate("(Possible) no error");
+		list.add("Rather no error");
+		translate("Rather no error");
 
 		list.add("Good");
 		translate("Good");

@@ -341,8 +341,8 @@ msgid "Minor error"
 msgstr "Nebenfehler"
 
 #: src/org/revager/app/model/Data.java:285
-msgid "(Possible) no error"
-msgstr "(Wahrscheinlich) kein Fehler"
+msgid "rather no error"
+msgstr "eher kein Fehler"
 
 #: src/org/revager/app/model/Data.java:286
 msgid "Good"

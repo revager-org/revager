@@ -59,6 +59,7 @@ public class StatusPanel extends JPanel {
 	}
 
 	public void setFinding(Finding finding) {
+		dashboard.setFinding(finding);
 		updateDisplay();
 	}
 

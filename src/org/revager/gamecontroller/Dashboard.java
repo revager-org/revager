@@ -77,7 +77,7 @@ public class Dashboard {
 
 	}
 
-	private void setFinding(Finding finding) {
+	public void setFinding(Finding finding) {
 		if (!findings.contains(finding)) {
 			findings.add(finding);
 		}

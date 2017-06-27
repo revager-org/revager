@@ -2,6 +2,7 @@ package org.revager.gamecontroller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +17,7 @@ import net.java.games.input.EventQueue;
 public class ControllerManager {
 
 	private Dashboard dashboard;
-	private List<Controller> controllers = new ArrayList<>();
+	private List<Controller> controllers = Collections.synchronizedList(new ArrayList<>());
 	private final boolean controllersConnected;
 
 	public ControllerManager(Dashboard dashboard) {

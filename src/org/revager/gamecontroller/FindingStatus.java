@@ -57,9 +57,7 @@ public class FindingStatus extends Observable {
 	}
 
 	public void addOrRemoveVote(int owner, Vote vote) {
-		if (!votes.remove(owner, vote)) {
-			votes.put(owner, vote);
-		}
+        votes.put(owner, vote);
 		setChanged();
 		notifyObservers();
 	}

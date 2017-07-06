@@ -28,8 +28,8 @@ public class StatusPanel extends JPanel {
 	private JProgressBar totalDurationProgress;
 	private JLabel findingTimeField;
 	private HurryUpImage hurryUpImage;
-	private JLabel breakField;
-	private JLabel continueDiscussionField;
+	private HighlightedLable breakField;
+	private HighlightedLable continueDiscussionField;
 	private JLabel votingsField;
 	private int totalProtocolSeconds;
 	private transient Dashboard dashboard;
@@ -159,8 +159,7 @@ public class StatusPanel extends JPanel {
 		add(breakLabel, continueDiscussionLabelGridConstraints);
 		breakLabel.setVisible(dashboard.controllersConnected());
 		
-		breakField = new JLabel();
-		breakField.setFont(STANDARD_STATUS_FONT);
+		breakField = new HighlightedLable(STANDARD_STATUS_FONT);
 		GridBagConstraints breakFieldGridConstraints = new GridBagConstraints();
 		breakFieldGridConstraints.gridx = 1;
 		breakFieldGridConstraints.gridy = 3;
@@ -180,8 +179,7 @@ public class StatusPanel extends JPanel {
 		add(continueDiscussionLabel, continueDiscussionLabelGridConstraints);
 		continueDiscussionLabel.setVisible(dashboard.controllersConnected());
 
-		continueDiscussionField = new JLabel();
-		continueDiscussionField.setFont(STANDARD_STATUS_FONT);
+		continueDiscussionField = new HighlightedLable(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionFieldGridConstraints = new GridBagConstraints();
 		continueDiscussionFieldGridConstraints.gridx = 1;
 		continueDiscussionFieldGridConstraints.gridy = 4;

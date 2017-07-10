@@ -2527,6 +2527,14 @@ msgstr "Gibt es etwas zum Protokoll anzumerken?"
 msgid "Previous Finding:"
 msgstr "Vorheriger Befund:"
 
+#: src/org/revager/gui/presentationView/StatusPanel.java:95
+msgid "Gamecontroller not connected..."
+msgstr "Gamecontroller nicht angeschlossen..."
+
+#: src/org/revager/gui/presentationView/StatusPanel.java:96
+msgid "Please connect them and restart application."
+msgstr "Bitte schließen Sie welche an, und starten Sie die Anwendung neu."
+
 #: src/org/revager/gui/presentationView/StatusPanel.java:89
 msgid "min"
 msgstr "min"

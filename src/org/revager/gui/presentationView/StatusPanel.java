@@ -83,10 +83,19 @@ public class StatusPanel extends JPanel {
 		totalDurationProgress.setString(intTimeToString(totalProtocolSeconds));
 		int findingTime = dashboard.getFindingTime();
 		findingTimeField.setText(intTimeToString(findingTime));
-		breakField.setText(dashboard.getBreakText());
 		hurryUpImage.setImageOpacity((float) findingTime / maxFindingSeconds);
-		continueDiscussionField.setText(Integer.toString(dashboard.getContinue()));
-		votingsField.setText(dashboard.getVotingsDetails());
+
+		if (dashboard.controllersConnected()) {
+			breakField.setText(dashboard.getBreakText());
+			continueDiscussionField.setText(Integer.toString(dashboard.getContinue()));
+			votingsField.setText(dashboard.getVotingsDetails());
+		} else {
+			String htmlStart = "<html><span style=\"font-size:0.8em;\">";
+			String htmlEnd = "</span></html>";
+			continueDiscussionField.setText(htmlStart + translate("Gamecontroller not connected...") + htmlEnd);
+			votingsField.setText(htmlStart+translate("Please connect them and restart application.")+htmlEnd);
+			breakField.setText("-");
+		}
 	}
 
 	private String intTimeToString(int seconds) {
@@ -157,15 +166,13 @@ public class StatusPanel extends JPanel {
 		continueDiscussionLabelGridConstraints.gridy = 3;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(breakLabel, continueDiscussionLabelGridConstraints);
-		breakLabel.setVisible(dashboard.controllersConnected());
-		
+
 		breakField = new HighlightedLable(STANDARD_STATUS_FONT);
 		GridBagConstraints breakFieldGridConstraints = new GridBagConstraints();
 		breakFieldGridConstraints.gridx = 1;
 		breakFieldGridConstraints.gridy = 3;
 		breakFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(breakField, breakFieldGridConstraints);
-		breakField.setVisible(dashboard.controllersConnected());
 	}
 
 	private void addContinueDiscussion() {
@@ -177,7 +184,6 @@ public class StatusPanel extends JPanel {
 		continueDiscussionLabelGridConstraints.gridy = 4;
 		continueDiscussionLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(continueDiscussionLabel, continueDiscussionLabelGridConstraints);
-		continueDiscussionLabel.setVisible(dashboard.controllersConnected());
 
 		continueDiscussionField = new HighlightedLable(STANDARD_STATUS_FONT);
 		GridBagConstraints continueDiscussionFieldGridConstraints = new GridBagConstraints();
@@ -185,7 +191,6 @@ public class StatusPanel extends JPanel {
 		continueDiscussionFieldGridConstraints.gridy = 4;
 		continueDiscussionFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(continueDiscussionField, continueDiscussionFieldGridConstraints);
-		continueDiscussionField.setVisible(dashboard.controllersConnected());
 	}
 
 	private void addVotings() {
@@ -197,7 +202,6 @@ public class StatusPanel extends JPanel {
 		votingLabelGridConstraints.gridy = 5;
 		votingLabelGridConstraints.anchor = GridBagConstraints.EAST;
 		add(votingsLabel, votingLabelGridConstraints);
-		votingsLabel.setVisible(dashboard.controllersConnected());
 
 		votingsField = new JLabel();
 		votingsField.setFont(STANDARD_STATUS_FONT);
@@ -206,7 +210,6 @@ public class StatusPanel extends JPanel {
 		votingsFieldGridConstraints.gridy = 5;
 		votingsFieldGridConstraints.anchor = GridBagConstraints.WEST;
 		add(votingsField, votingsFieldGridConstraints);
-		votingsField.setVisible(dashboard.controllersConnected());
 	}
 
 }

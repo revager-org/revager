@@ -7,6 +7,8 @@ import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.revager.gui.UI;
+
 public class FindingStatus extends Observable {
 
 	private final ConcurrentHashMap<Integer, Vote> votes = new ConcurrentHashMap<>();

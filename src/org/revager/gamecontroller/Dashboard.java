@@ -19,6 +19,7 @@ public class Dashboard {
 	private int breaks = 0;
 	private Finding finding = new Finding();
 	private ControllerManager controllerManager;
+	private boolean timingActive;
 
 	private final List<Finding> findings = new ArrayList<>();
 	private final Timeout breakResetTimeout;
@@ -59,7 +60,9 @@ public class Dashboard {
 					if (oldSeconds == 0 || newSeconds == 0) {
 						resetTime();
 					} else if (oldSeconds < newSeconds) {
-						finding.getFindingStatus().addFindingTime(newSeconds - oldSeconds);
+						if (timingActive) {
+							finding.getFindingStatus().addFindingTime(newSeconds - oldSeconds);
+						}
 						breakResetTimeout.reset();
 					}
 				}
@@ -142,6 +145,14 @@ public class Dashboard {
 
 	public String getBreakText() {
 		return Integer.toString(breaks);
+	}
+
+	public void startTiming() {
+		timingActive = true;
+	}
+
+	public void stopTiming() {
+		timingActive = false;
 	}
 
 	private void resetTime() {

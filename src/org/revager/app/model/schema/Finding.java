@@ -77,6 +77,14 @@ public class Finding extends Observable {
 	private final FindingStatus findingStatus = new FindingStatus();
 
 	/**
+	 * Can be called when the Finding is focused.
+	 */
+	public void focus() {
+		setChanged();
+		notifyObservers();
+	}
+	
+	/**
 	 * Gets the value of the id property.
 	 * 
 	 * @return possible object is {@link String }

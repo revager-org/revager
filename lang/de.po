@@ -2501,15 +2501,15 @@ msgstr "Review-Protokoll als CSV-Datei exportieren"
 
 #: src/org/revager/gui/findings_list/FindingsListFrame.java:433
 msgid "Open Presentation View"
-msgstr "Presentationsansicht öffnen"
+msgstr "Präsentationsansicht öffnen"
 
 #: src/org/revager/gui/dialogs/SettingsDialog.java:267
 msgid "Automatically open presentation view for data projector."
-msgstr "Öffne Presentationsansicht für den Beamer automatisch."
+msgstr "Öffne Präsentationsansicht für den Beamer automatisch."
 
 #: src/org/revager/gui/presentationView/PresentationFrame.java:102
 msgid "Presentation View"
-msgstr "Presentationsansicht"
+msgstr "Präsentationsansicht"
 
 #: src/org/revager/gui/presentationView/PresentationProtocolTab.java:51
 msgid "What is your general impression of the prodcut? Write this down before documenting findings. When you finished with documenting findings, continue with the recommendation and the comments of the meeting and of the list of findings."

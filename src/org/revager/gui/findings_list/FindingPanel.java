@@ -696,15 +696,10 @@ public class FindingPanel extends JPanel {
 		type = Type.EDIT_VIEW;
 
 		this.setPreferredSize(EDIT_VIEW_SIZE);
-
 		this.setToolTipText(null);
-
 		this.removeAll();
-
 		this.removeMouseListener(mouseListenerCompact);
-
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 		if (findMgmt.isFindingNotComplete(finding)) {
 			scrollDescription.setBorder(UI.MARKED_BORDER);
 		} else {
@@ -713,9 +708,6 @@ public class FindingPanel extends JPanel {
 
 		updateFindingButtons();
 
-		/*
-		 * Create finding control buttons like push etc.
-		 */
 		GUITools.addComponent(this, layout, buttonPushTop, 0, 0, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
 				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, BOTH, NORTHWEST);
 		GUITools.addComponent(this, layout, buttonPushUp, 0, 1, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
@@ -729,14 +721,8 @@ public class FindingPanel extends JPanel {
 		GUITools.addComponent(this, layout, buttonPushBottom, 0, 5, 1, 1, 0.0, 0.0, CONTROL_BUTTONS_PADDING,
 				CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, CONTROL_BUTTONS_PADDING, BOTH, NORTHWEST);
 
-		/*
-		 * Add content panel to root panel
-		 */
 		GUITools.addComponent(this, layout, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20, BOTH, NORTHWEST);
 
-		/*
-		 * Get the focus
-		 */
 		SwingUtilities.invokeLater(() -> textDescription.requestFocusInWindow());
 	}
 

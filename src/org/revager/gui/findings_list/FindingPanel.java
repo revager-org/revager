@@ -724,6 +724,7 @@ public class FindingPanel extends JPanel {
 		GUITools.addComponent(this, layout, panelEditView, 1, 0, 1, 6, 1.0, 0.0, 0, 0, 0, 20, BOTH, NORTHWEST);
 
 		SwingUtilities.invokeLater(() -> textDescription.requestFocusInWindow());
+		this.finding.focus();
 	}
 
 	private void setCompactView() {

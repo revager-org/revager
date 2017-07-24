@@ -127,7 +127,7 @@ public class FindingPanel extends JPanel {
 	private JPanel panelCompactView = new JPanel(layoutCompactView);
 
 	private JLabel labelFindingNumber = new JLabel();
-	private JLabel labelVotes = new JLabel();
+	private JLabel labelClassifications = new JLabel();
 	private JLabel labelFindingSeverity = new JLabel();
 	private JLabel labelFindingDescription = new JLabel();
 
@@ -235,8 +235,8 @@ public class FindingPanel extends JPanel {
 
 		this.finding = finding;
 		finding.getFindingStatus().addObserver((o, arg) -> {
-			String buildVoteCountString = ((FindingStatus) o).buildVoteCountString();
-			labelVotes.setText(buildVoteCountString);
+			String classificationsString = ((FindingStatus) o).buildClassificationCountString();
+			labelClassifications.setText(classificationsString);
 		});
 		this.findingsTab = findingsTab;
 		this.protocol = findingsTab.getProtocol();
@@ -531,7 +531,7 @@ public class FindingPanel extends JPanel {
 		labelFindingDescription.setFont(UI.VERY_LARGE_FONT);
 
 		labelFindingNumber.setFont(UI.VERY_LARGE_FONT_BOLD);
-		labelVotes.setFont(UI.VERY_LARGE_FONT);
+		labelClassifications.setFont(UI.VERY_LARGE_FONT);
 
 		labelFindingSeverity.setFont(UI.VERY_LARGE_FONT);
 		labelFindingSeverity.setForeground(Color.DARK_GRAY);
@@ -658,7 +658,7 @@ public class FindingPanel extends JPanel {
 		firstLinePanel.setBackground(UI.EDIT_VIEW_BG);
 		
 		GUITools.addComponent(firstLinePanel, gridBagLayout, labelFindingTitle, 0, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(firstLinePanel, gridBagLayout, labelVotes,        1, 0, 2, 1, 1.0, 0.0, 10, 10, 0, 10, BOTH, NORTHEAST);
+		GUITools.addComponent(firstLinePanel, gridBagLayout, labelClassifications,        1, 0, 2, 1, 1.0, 0.0, 10, 10, 0, 10, BOTH, NORTHEAST);
 		GUITools.addComponent(firstLinePanel, gridBagLayout, comboSeverity,     3, 0, 1, 1, 0.0, 0.0, 10, 10, 0, 10, BOTH, NORTHEAST);				
 		
 		GUITools.addComponent(panelEditView, layoutEditView, firstLinePanel, 0, 0, 4, 1, 1.0, 0.0, 0, 0, 0, 0, BOTH,

@@ -2,7 +2,7 @@ package org.revager.gamecontroller;
 
 import static org.revager.app.model.Data.translate;
 
-public enum Vote {
+public enum Classification {
 	// @formatter:off
 	// Order has impact on sorting.
 	CRITICAL_ERROR("Critical error"),
@@ -14,7 +14,7 @@ public enum Vote {
 
 	private String i18nKey;
 
-	private Vote(String i18nKey) {
+	private Classification(String i18nKey) {
 		this.i18nKey = i18nKey;
 	}
 

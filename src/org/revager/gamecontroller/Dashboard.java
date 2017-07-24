@@ -77,7 +77,6 @@ public class Dashboard {
 		for (Finding finding : protocol.getFindings()) {
 			finding.addObserver(findingListener);
 		}
-
 	}
 
 	public void setFinding(Finding finding) {
@@ -95,12 +94,8 @@ public class Dashboard {
 		return finding;
 	}
 
-	public Vote getVoteForOwner(Finding eventFinding, int owner) {
-		return eventFinding.getFindingStatus().getVoteForOwner(owner);
-	}
-
-	public synchronized void addOrRemoveVote(Finding eventFinding, int owner, Vote vote) {
-		eventFinding.getFindingStatus().addOrRemoveVote(owner, vote);
+	public synchronized void addClassification(Finding eventFinding, int owner, Classification classification) {
+		eventFinding.getFindingStatus().addClassification(owner, classification);
 	}
 
 	public synchronized void addBreak() {
@@ -111,32 +106,32 @@ public class Dashboard {
 		return breaks;
 	}
 
-	public void addYawn(Finding eventFinding) {
-		eventFinding.getFindingStatus().addYawn();
+	public void addFocus(Finding eventFinding) {
+		eventFinding.getFindingStatus().addFocus();
 	}
 
 	private void resetBreak() {
 		breaks = 0;
 	}
 
-	public int getContinue() {
-		return finding.getFindingStatus().getYawn();
+	public int getFocusNumber() {
+		return finding.getFindingStatus().getFocusNumber();
 	}
 
-	public String getVotingsDetails() {
+	public String getClassificationDetails() {
 		FindingStatus findingStatus = finding.getFindingStatus();
-		Collection<Vote> votings = findingStatus.getVotings();
-		int numberOfVotes = votings.size();
-		if (numberOfVotes < controllerManager.getControllerCount()) {
+		Collection<Classification> votings = findingStatus.getClassifications();
+		int numberOfClassifications = votings.size();
+		if (numberOfClassifications < controllerManager.getControllerCount()) {
 			StringBuilder builder = new StringBuilder();
 			builder.append("<html>");
-			builder.append(numberOfVotes);
+			builder.append(numberOfClassifications);
 			builder.append("x <em>(");
 			builder.append(translate("waiting for all votes..."));
 			builder.append(")</em><html>");
 			return builder.toString();
 		}
-		return findingStatus.buildVoteCountString();
+		return findingStatus.buildClassificationCountString();
 	}
 
 	public int getFindingTime() {

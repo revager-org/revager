@@ -7,18 +7,16 @@ import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.revager.gui.UI;
-
 public class FindingStatus extends Observable {
 
-	private final ConcurrentHashMap<Integer, Vote> votes = new ConcurrentHashMap<>();
-	private AtomicInteger yawns = new AtomicInteger(0);
+	private final ConcurrentHashMap<Integer, Classification> classifications = new ConcurrentHashMap<>();
+	private AtomicInteger focuses = new AtomicInteger(0);
 	private AtomicInteger findingTime = new AtomicInteger(0);
 
-	public String buildVoteCountString() {
-		EnumMap<Vote, Integer> voteCountMap = createVoteCountMap();
+	public String buildClassificationCountString() {
+		EnumMap<Classification, Integer> classificationCountMap = createClassificationCountMap();
 		int maxCount = -1;
-		for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
+		for (Entry<Classification, Integer> entry : classificationCountMap.entrySet()) {
 			maxCount = Math.max(maxCount, entry.getValue());
 		}
 
@@ -28,7 +26,7 @@ public class FindingStatus extends Observable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html>");
 
-		for (Entry<Vote, Integer> entry : voteCountMap.entrySet()) {
+		for (Entry<Classification, Integer> entry : classificationCountMap.entrySet()) {
 			if (maxCount == entry.getValue()) {
 				if (maxCount == 1) {
 					builder.append("<span style=\"font-size:1em;\">");
@@ -48,32 +46,32 @@ public class FindingStatus extends Observable {
 		return builder.toString();
 	}
 
-	private EnumMap<Vote, Integer> createVoteCountMap() {
-		EnumMap<Vote, Integer> map = new EnumMap<>(Vote.class);
-		for (Vote vote : getVotings()) {
-			int count = map.getOrDefault(vote, 0);
+	private EnumMap<Classification, Integer> createClassificationCountMap() {
+		EnumMap<Classification, Integer> map = new EnumMap<>(Classification.class);
+		for (Classification classification : getClassifications()) {
+			int count = map.getOrDefault(classification, 0);
 			count++;
-			map.put(vote, count);
+			map.put(classification, count);
 		}
 		return map;
 	}
 
-	public void addOrRemoveVote(int owner, Vote vote) {
-        votes.put(owner, vote);
+	public void addClassification(int owner, Classification classification) {
+		classifications.put(owner, classification);
 		setChanged();
 		notifyObservers();
 	}
 
-	public void addYawn() {
-		yawns.getAndIncrement();
+	public void addFocus() {
+		focuses.getAndIncrement();
 	}
 
-	public int getYawn() {
-		return yawns.intValue();
+	public int getFocusNumber() {
+		return focuses.intValue();
 	}
 
-	public Collection<Vote> getVotings() {
-		return votes.values();
+	public Collection<Classification> getClassifications() {
+		return classifications.values();
 	}
 
 	public void addFindingTime(int findingTime) {
@@ -88,8 +86,8 @@ public class FindingStatus extends Observable {
 		return findingTime.intValue();
 	}
 
-	public Vote getVoteForOwner(int owner) {
-		return votes.getOrDefault(owner, null);
+	public Classification getClassificationForOwner(int owner) {
+		return classifications.getOrDefault(owner, null);
 	}
 
 }

@@ -87,8 +87,8 @@ public class StatusPanel extends JPanel {
 
 		if (dashboard.controllersConnected()) {
 			breakField.setText(dashboard.getBreakText());
-			continueDiscussionField.setText(Integer.toString(dashboard.getContinue()));
-			votingsField.setText(dashboard.getVotingsDetails());
+			continueDiscussionField.setText(Integer.toString(dashboard.getFocusNumber()));
+			votingsField.setText(dashboard.getClassificationDetails());
 		} else {
 			String htmlStart = "<html><span style=\"font-size:0.8em;\">";
 			String htmlEnd = "</span></html>";

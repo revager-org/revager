@@ -82,24 +82,24 @@ public class ControllerManager {
 		switch (component.getIdentifier().getName()) {
 		case "2":
 		case "Top":
-			new VoteEvent(dashboard, controller.hashCode(), Vote.CRITICAL_ERROR);
+			new ClassificationEvent(dashboard, controller.hashCode(), Classification.CRITICAL_ERROR);
 			break;
 		case "9":
 		case "Base 4":
 		case "Base 3":
-			new VoteEvent(dashboard, controller.hashCode(), Vote.RATHER_NO_ERROR);
+			new ClassificationEvent(dashboard, controller.hashCode(), Classification.RATHER_NO_ERROR);
 			break;
 		case "1":
 		case "Trigger":
-			new VoteEvent(dashboard, controller.hashCode(), Vote.MAIN_ERROR);
+			new ClassificationEvent(dashboard, controller.hashCode(), Classification.MAIN_ERROR);
 			break;
 		case "0":
 		case "Thumb":
-			new VoteEvent(dashboard, controller.hashCode(), Vote.MINOR_ERROR);
+			new ClassificationEvent(dashboard, controller.hashCode(), Classification.MINOR_ERROR);
 			break;
 		case "3":
 		case "Thumb 2":
-			new VoteEvent(dashboard, controller.hashCode(), Vote.GOOD);
+			new ClassificationEvent(dashboard, controller.hashCode(), Classification.GOOD);
 			break;
 		case "4":
 		case "6":
@@ -114,7 +114,7 @@ public class ControllerManager {
 		case "y":
 		case "8":
 		case "x":
-			new YawnEvent(dashboard);
+			new FocusEvent(dashboard);
 			break;
 		default:
 			System.out

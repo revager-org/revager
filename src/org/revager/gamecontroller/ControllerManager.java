@@ -18,6 +18,9 @@ public class ControllerManager {
 
 	private Dashboard dashboard;
 	private List<Controller> controllers = Collections.synchronizedList(new ArrayList<>());
+	/**
+	 * Was any controller ever connected?
+	 */
 	private final boolean controllersConnected;
 
 	public ControllerManager(Dashboard dashboard) {
@@ -26,11 +29,12 @@ public class ControllerManager {
 		for (Controller controller : Arrays.asList(defaultEnvironment.getControllers())) {
 			if (isController(controller)) {
 				controllers.add(controller);
-				setupControllerQueue(controller);
 			} else {
 				System.out.println("filtered out : " + controller.getType());
 			}
 		}
+		Thread thread = new Thread(() -> setupControllersQueue());
+		thread.start();
 		controllersConnected = !controllers.isEmpty();
 	}
 
@@ -47,29 +51,25 @@ public class ControllerManager {
 		return controller.getType() == Type.STICK && !name.contains("eyboard");
 	}
 
-	private void setupControllerQueue(Controller controller) {
-		Thread thread = new Thread(() -> {
-			while (true) {
+	private void setupControllersQueue() {
+		while (true) {
+			for (Controller controller : controllers) {
 				if (!controller.poll()) {
 					controllers.remove(controller);
-					return;
+					continue;
 				}
 				EventQueue eventQueue = controller.getEventQueue();
 				Event event = new Event();
-				while (eventQueue.getNextEvent(event)) {
-					if (isReleaseEvent(event)) {
-						continue;
-					}
+				if (eventQueue.getNextEvent(event) && !isReleaseEvent(event)) {
 					reactOnEvent(controller, event);
 				}
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
-		});
-		thread.start();
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// Ignore
+			}
+		}
 	}
 
 	private boolean isReleaseEvent(Event event) {

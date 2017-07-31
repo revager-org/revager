@@ -93,7 +93,7 @@ public class StatusPanel extends JPanel {
 			String htmlStart = "<html><span style=\"font-size:0.8em;\">";
 			String htmlEnd = "</span></html>";
 			continueDiscussionField.setText(htmlStart + translate("Gamecontroller not connected...") + htmlEnd);
-			votingsField.setText(htmlStart+translate("Please connect them and restart application.")+htmlEnd);
+			votingsField.setText(htmlStart + translate("Please connect them and restart application.") + htmlEnd);
 			breakField.setText("-");
 		}
 	}

@@ -59,12 +59,6 @@ public abstract class Java2sAutoTextField extends JTextField {
 		private static final long serialVersionUID = 2276955569199309661L;
 
 		@Override
-		public void replace(int i, int j, String s, AttributeSet attributeset) throws BadLocationException {
-			super.remove(i, j);
-			insertString(i, s, attributeset);
-		}
-
-		@Override
 		public void insertString(int i, String s, AttributeSet attributeset) throws BadLocationException {
 			if (StringUtils.isEmpty(s)) {
 				return;
@@ -73,20 +67,19 @@ public abstract class Java2sAutoTextField extends JTextField {
 				super.insertString(i, s, attributeset);
 				return;
 			}
-
-			String s1 = getText(0, i);
-			String s2 = getMatch(s1 + s);
-			int j = (i + s.length()) - 1;
-			if (isStrict && StringUtils.equals(s2, s)) {
-				s2 = getMatch(s1);
-				j--;
-			} else if (!isStrict && StringUtils.equals(s2, s)) {
+			if (getLength() != i) {
+				super.insertString(i, s, attributeset);
+				return;
+			}
+			String text = getText(0, getLength()) + s;
+			String match = getMatch(text);
+			if (match == null) {
 				super.insertString(i, s, attributeset);
 				return;
 			}
 			super.remove(0, getLength());
-			super.insertString(0, s2, attributeset);
-			setSelectionStart(j + 1);
+			super.insertString(0, match, attributeset);
+			setSelectionStart(i + 1);
 			setSelectionEnd(getLength());
 		}
 
@@ -178,7 +171,7 @@ public abstract class Java2sAutoTextField extends JTextField {
 		}
 		directAdd(s);
 		sortList();
-		return s;
+		return null;
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 
 import org.revager.app.model.schema.Finding;
 import org.revager.gui.UI;
@@ -66,21 +67,9 @@ public class CurrentFindingPanel extends JPanel {
 		modelExtReferences = new FindExtRefTableModel(finding);
 		modelAspects = new FindAspTableModel(finding);
 
-		tableAspects = GUITools.newStandardTable(modelAspects, true);
-		tableReferences = GUITools.newStandardTable(modelReferences, true);
-		tableExtReferences = GUITools.newStandardTable(modelExtReferences, true);
-
-		tableAspects.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
-		tableReferences.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
-		tableExtReferences.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
-
-		tableAspects.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
-		tableReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
-		tableExtReferences.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
-
-		tableAspects.setRowHeight(ROW_HEIGHT);
-		tableReferences.setRowHeight(ROW_HEIGHT);
-		tableExtReferences.setRowHeight(ROW_HEIGHT);
+		tableAspects = setupTable(modelAspects);
+		tableReferences = setupTable(modelReferences);
+		tableExtReferences = setupTable(modelExtReferences);
 
 		scrollAspects = new JScrollPane(tableAspects);
 		scrollReferences = new JScrollPane(tableReferences);
@@ -117,6 +106,14 @@ public class CurrentFindingPanel extends JPanel {
 
 	public Finding getFinding() {
 		return finding;
+	}
+
+	private JTable setupTable(TableModel tableModel) {
+		JTable table = GUITools.newStandardTable(tableModel, true);
+		table.getColumnModel().getColumn(0).setHeaderRenderer(new FindingPanelHeadRenderer());
+		table.getColumnModel().getColumn(0).setCellRenderer(new FindingPanelCellRenderer());
+		table.setRowHeight(ROW_HEIGHT);
+		return table;
 	}
 
 	private void updateDisplay() {

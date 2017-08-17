@@ -15,7 +15,6 @@ public class OpenPresentationView extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		GUITools.executeSwingWorker(new OpenPresentationFrameWorker());
 	}
 

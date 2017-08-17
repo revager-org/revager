@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.model.Data;
 import org.revager.app.model.ResiData;
 import org.revager.app.model.schema.Aspect;
@@ -44,9 +45,6 @@ public class FindingManagement {
 		super();
 	}
 
-	/**
-	 * The resi data.
-	 */
 	private ResiData resiData = Data.getInstance().getResiData();
 
 	/**
@@ -142,14 +140,8 @@ public class FindingManagement {
 	 */
 	public Finding addFinding(String description, String severity, Protocol prot) {
 		Finding finding = new Finding();
-		if (description == null) {
-			description = "";
-		}
-		if (severity == null) {
-			severity = "";
-		}
-		finding.setDescription(description);
-		setLocalizedSeverity(finding, severity);
+		finding.setDescription(StringUtils.defaultString(description));
+		setLocalizedSeverity(finding, StringUtils.defaultString(severity));
 		return addFinding(finding, prot);
 	}
 
@@ -185,32 +177,6 @@ public class FindingManagement {
 		resiData.fireDataChanged();
 	}
 
-	// /**
-	// * Replaces a finding in the given protocol by another one.
-	// *
-	// * @param oldFind
-	// * the old finding
-	// * @param newFind
-	// * the new finding
-	// * @param prot
-	// * the protocol
-	// */
-	// public void editFinding(Finding oldFind, Finding newFind, Protocol prot)
-	// {
-	// if (prot.getFindings().contains(oldFind)) {
-	// // TODO: continue
-	// int id = oldFind.getId();
-	// int index = prot.getFindings().indexOf(oldFind);
-	//
-	// prot.removeFinding(oldFind);
-	//
-	// newFind.setId(id);
-	// prot.getFindings().add(index, newFind);
-	//
-	// resiData.fireDataChanged();
-	// }
-	// }
-
 	/**
 	 * Checks if the given finding is empty.
 	 * 
@@ -221,15 +187,11 @@ public class FindingManagement {
 	 */
 	public boolean isFindingEmpty(Finding find) {
 		boolean noAspects = find.getAspects().isEmpty();
-		boolean noDesc = find.getDescription() == null || find.getDescription().trim().equals("");
+		boolean noDesc = StringUtils.isBlank(find.getDescription());
 		boolean noExtRefs = find.getExternalReferences().isEmpty();
 		boolean noRefs = find.getReferences().isEmpty();
 
-		if (noAspects && noDesc && noExtRefs && noRefs) {
-			return true;
-		} else {
-			return false;
-		}
+		return noAspects && noDesc && noExtRefs && noRefs;
 	}
 
 	/**
@@ -241,13 +203,7 @@ public class FindingManagement {
 	 * @return true, if the given finding is not complete
 	 */
 	public boolean isFindingNotComplete(Finding find) {
-		boolean noDesc = find.getDescription() == null || find.getDescription().trim().equals("");
-
-		if (noDesc) {
-			return true;
-		} else {
-			return false;
-		}
+		return StringUtils.isBlank(find.getDescription());
 	}
 
 	/**
@@ -271,7 +227,6 @@ public class FindingManagement {
 	 */
 	public void setLocalizedSeverity(Finding find, String severity) {
 		String defLangSev = Data.getDefLangSeverity(severity);
-
 		find.setSeverity(defLangSev);
 	}
 
@@ -311,7 +266,6 @@ public class FindingManagement {
 	 */
 	public void removeReference(String ref, Finding find) {
 		find.removeReference(ref);
-
 		resiData.fireDataChanged();
 	}
 
@@ -341,7 +295,7 @@ public class FindingManagement {
 	 */
 	public List<File> getExtReferences(Finding find) {
 		ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
-		List<File> list = new ArrayList<File>();
+		List<File> list = new ArrayList<>();
 		for (String ref : find.getExternalReferences()) {
 			File extRefFile = new File(EXTREF_DIRECTORY + revMgmt.getExtRefFileName(ref));
 			list.add(extRefFile);
@@ -365,13 +319,9 @@ public class FindingManagement {
 		ReviewManagement revMgmt = Application.getInstance().getReviewMgmt();
 
 		String extRefFile = revMgmt.addExtRefFile(file);
-
 		if (extRefFile != null) {
-
 			find.addExternalReferences(extRefFile);
-
 			resiData.fireDataChanged();
-
 			return true;
 		} else {
 			/*
@@ -489,13 +439,12 @@ public class FindingManagement {
 	 *            the protocol
 	 */
 	public boolean areAllFindingsComplete(Protocol prot) {
-		boolean comp = true;
 		for (Finding find : prot.getFindings()) {
-			if (find.getDescription() == null || find.getDescription().trim().equals("")) {
-				comp = false;
+			if (StringUtils.isBlank(find.getDescription())) {
+				return false;
 			}
 		}
-		return comp;
+		return true;
 	}
 
 	/**
@@ -508,12 +457,9 @@ public class FindingManagement {
 	 */
 	public void pushUpFinding(Finding find, Protocol prot) {
 		if (!isTopFinding(find, prot)) {
-			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
-
 			prot.getFindings().remove(index);
 			prot.getFindings().add(index - 1, find);
-
 			resiData.fireDataChanged();
 		}
 	}
@@ -528,12 +474,9 @@ public class FindingManagement {
 	 */
 	public void pushDownFinding(Finding find, Protocol prot) {
 		if (!isBottomFinding(find, prot)) {
-			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
-
 			prot.getFindings().remove(index);
 			prot.getFindings().add(index + 1, find);
-
 			resiData.fireDataChanged();
 		}
 	}
@@ -548,12 +491,9 @@ public class FindingManagement {
 	 */
 	public void pushTopFinding(Finding find, Protocol prot) {
 		if (!isTopFinding(find, prot)) {
-			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
-
 			prot.getFindings().remove(index);
 			prot.getFindings().add(0, find);
-
 			resiData.fireDataChanged();
 		}
 	}
@@ -568,12 +508,9 @@ public class FindingManagement {
 	 */
 	public void pushBottomFinding(Finding find, Protocol prot) {
 		if (!isTopFinding(find, prot)) {
-			// TODO: continue
 			int index = prot.getFindings().indexOf(find);
-
 			prot.getFindings().remove(index);
 			prot.getFindings().add(prot.getFindings().size(), find);
-
 			resiData.fireDataChanged();
 		}
 	}
@@ -589,13 +526,7 @@ public class FindingManagement {
 	 * @return true, if the finding is at the top
 	 */
 	public boolean isTopFinding(Finding find, Protocol prot) {
-		int index = prot.getFindings().indexOf(find);
-
-		if (index == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return 0 == prot.getFindings().indexOf(find);
 	}
 
 	/**
@@ -610,12 +541,7 @@ public class FindingManagement {
 	 */
 	public boolean isBottomFinding(Finding find, Protocol prot) {
 		int index = prot.getFindings().indexOf(find);
-
-		if (index == prot.getFindings().size() - 1) {
-			return true;
-		} else {
-			return false;
-		}
+		return index == prot.getFindings().size() - 1;
 	}
 
 }

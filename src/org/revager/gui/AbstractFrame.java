@@ -350,44 +350,19 @@ public class AbstractFrame extends JFrame {
 	}
 
 	public void setHints(List<HintItem> hints) {
-		setHints(hints, false);
-	}
-
-	/**
-	 * Sets the hints.
-	 * 
-	 * @param hints
-	 *            the new hints
-	 * @param forceRefresh
-	 *            forces the hints to refresh
-	 */
-	public void setHints(List<HintItem> hints, boolean forceRefresh) {
-		if (hints != null) {
-			if (hints.isEmpty()) {
-				hints = null;
-			}
-		}
-
-		/*
-		 * Check if the hints are the same
-		 */
 		boolean hintsAreTheSame = false;
-
 		if (currentHints != null && currentHints.size() == hints.size()) {
 			hintsAreTheSame = true;
-
 			Iterator<HintItem> iterCurHints = currentHints.iterator();
-
 			for (HintItem hint : hints) {
 				if (iterCurHints.hasNext() && hint != iterCurHints.next()) {
 					hintsAreTheSame = false;
-
 					break;
 				}
 			}
 		}
 
-		if (hintsAreTheSame && !forceRefresh) {
+		if (hintsAreTheSame) {
 			return;
 		}
 

@@ -72,7 +72,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -201,12 +200,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private DateFormat dateF = SimpleDateFormat.getDateInstance(DateFormat.LONG);
 
-	private ChangeListener tabChangeListener = new ChangeListener() {
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			SwingUtilities.invokeLater(() -> updateHints());
-		}
-	};
+	private transient ChangeListener tabChangeListener = e -> SwingUtilities.invokeLater(this::updateHints);
 
 	public PresentAttendeesTableModel getPatm() {
 		return patm;

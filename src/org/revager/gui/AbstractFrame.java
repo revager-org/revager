@@ -32,8 +32,6 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -285,12 +283,7 @@ public class AbstractFrame extends JFrame {
 		buttonHints.setRolloverIcon(ICON_CLOSE_HINTS_ROLLOVER);
 		buttonHints.setRolloverSelectedIcon(ICON_OPEN_HINTS_ROLLOVER);
 
-		buttonHints.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				toggleHints();
-			}
-		});
+		buttonHints.addActionListener(e -> toggleHints());
 
 		/*
 		 * Build the bottom panel

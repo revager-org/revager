@@ -252,10 +252,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		return dateTxtFld;
 	}
 
-	// //////////////////////////
-	// creating whole component//
-	// //////////////////////////
-
 	private void createBody() {
 		SwingUtilities.invokeLater(() -> {
 			try {

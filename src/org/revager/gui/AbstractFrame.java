@@ -583,57 +583,12 @@ public class AbstractFrame extends JFrame {
 
 		setHints(null);
 
-		// pack();
-
 		setMinimumSize(new Dimension(800, 650));
 
 		/*
 		 * Behaviour when closing this dialog.
 		 */
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
-		// addWindowListener(new WindowAdapter() {
-		// @Override public void windowClosing(WindowEvent e) { // buttonClicked
-		// = ButtonClicked.CANCEL; setVisible(false); } });
-
-		/*
-		 * Add window listeners. (Workaround)
-		 */
-		/*
-		 * addWindowListener(new WindowListener() {
-		 * 
-		 * @Override public void windowOpened(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowIconified(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowDeiconified(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowDeactivated(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowClosing(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowClosed(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowActivated(WindowEvent e) {
-		 * setHints(currentHints, true); } }); addWindowStateListener(new
-		 * WindowStateListener() {
-		 * 
-		 * @Override public void windowStateChanged(WindowEvent e) {
-		 * setHints(currentHints, true); } }); addWindowFocusListener(new
-		 * WindowFocusListener() {
-		 * 
-		 * @Override public void windowLostFocus(WindowEvent e) {
-		 * setHints(currentHints, true); }
-		 * 
-		 * @Override public void windowGainedFocus(WindowEvent e) {
-		 * setHints(currentHints, true); } });
-		 */
 	}
 
 	/**
@@ -764,34 +719,6 @@ public class AbstractFrame extends JFrame {
 						GridBagConstraints.WEST, GridBagConstraints.WEST, 0.0, 1.0);
 				gblAdd(gblHints, panelHints, text, 1, 2 * i, 1, 1, new Insets(10, 15, 5, 15), GridBagConstraints.BOTH,
 						GridBagConstraints.WEST, 1.0, 1.0);
-
-				// TODO HELP IS CURRENTLY DISABLED!
-				/*
-				 * if (HINT.getHelpChapter() != null) { JButton helpButton =
-				 * GUITools.newImageButton(); helpButton.setIcon(ICON_HELP);
-				 * helpButton.setRolloverIcon(ICON_HELP_ROLLOVER);
-				 * helpButton.setBackground(Color.WHITE);
-				 * helpButton.setFocusable(false);
-				 * 
-				 * helpButton.addActionListener(new ActionListener() {
-				 * 
-				 * @Override public void actionPerformed(ActionEvent e) {
-				 * GUITools.executeSwingWorker(new LoadHelpWorker(HINT
-				 * .getHelpChapter(), HINT .getHelpChapterAnchor())); }
-				 * 
-				 * });
-				 * 
-				 * try { helpButton .setToolTipText(translate("Open help chapter") + " "
-				 * + Data.getInstance() .getHelpData() .getChapterTitle(
-				 * HINT.getHelpChapter())); } catch (DataException e) {
-				 * helpButton.setVisible(false); }
-				 * 
-				 * //Minor margin for Mac int ins = 15;
-				 * 
-				 * gblAdd(gblHints, panelHints, helpButton, 2, 2 * i, 1, 1, new
-				 * Insets(ins / 2, 0, ins, 8), GridBagConstraints.EAST,
-				 * GridBagConstraints.EAST, 0.0, 1.0); }
-				 */
 
 				i++;
 			}

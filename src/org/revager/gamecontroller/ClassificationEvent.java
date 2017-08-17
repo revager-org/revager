@@ -1,5 +1,8 @@
 package org.revager.gamecontroller;
 
+/**
+ * React on classification key press events.
+ */
 public class ClassificationEvent extends DashboardEvent {
 
 	private final Classification classification;
@@ -12,7 +15,7 @@ public class ClassificationEvent extends DashboardEvent {
 	}
 
 	@Override
-	public boolean waitWithCallback() {
+	public boolean delayCallback() {
 		return false;
 	}
 

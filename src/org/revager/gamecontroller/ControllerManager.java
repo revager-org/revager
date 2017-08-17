@@ -14,6 +14,12 @@ import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
 
+/**
+ * Manages the available gamecontroller and generates the appropriate actions
+ * when keys are pressed.
+ * 
+ * @see DashboardEvent
+ */
 public class ControllerManager {
 
 	private Dashboard dashboard;
@@ -29,8 +35,6 @@ public class ControllerManager {
 		for (Controller controller : Arrays.asList(defaultEnvironment.getControllers())) {
 			if (isController(controller)) {
 				controllers.add(controller);
-			} else {
-				System.out.println("filtered out : " + controller.getType());
 			}
 		}
 		Thread thread = new Thread(() -> setupControllersQueue());
@@ -38,10 +42,16 @@ public class ControllerManager {
 		controllersConnected = !controllers.isEmpty();
 	}
 
+	/**
+	 * Returns the number <em>currently</em> connected controllers.
+	 */
 	public int getControllerCount() {
 		return controllers.size();
 	}
 
+	/**
+	 * Tells whether any controllers was connected in this session.
+	 */
 	public boolean controllersConnected() {
 		return controllersConnected;
 	}
@@ -78,6 +88,7 @@ public class ControllerManager {
 	}
 
 	private void reactOnEvent(Controller controller, Event event) {
+		// The keys are hard coded.
 		Component component = event.getComponent();
 		switch (component.getIdentifier().getName()) {
 		case "2":

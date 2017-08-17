@@ -20,6 +20,9 @@ import org.revager.app.model.schema.Finding;
 import org.revager.gamecontroller.Dashboard;
 import org.revager.gui.UI;
 
+/**
+ * GUI element displayed in the presentation view.
+ */
 public class StatusPanel extends JPanel {
 
 	private static final long serialVersionUID = 4044468994799470896L;
@@ -64,26 +67,12 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		ApplicationData appData = Data.getInstance().getAppData();
-		int maxProtocolSeconds;
-		try {
-			maxProtocolSeconds = Integer.parseInt(appData.getSetting(APP_PROTOCOL_WARNING_TIME)) * 60;
-		} catch (DataException | NumberFormatException e) {
-			maxProtocolSeconds = 120 * 60;
-		}
-		int maxFindingSeconds;
-		try {
-			maxFindingSeconds = Integer.parseInt(appData.getSetting(AppSettingKey.APP_FINDING_WARNING_TIME)) * 60;
-		} catch (DataException | NumberFormatException e) {
-			maxFindingSeconds = 3 * 60;
-		}
-
-		totalDurationProgress.setMaximum(maxProtocolSeconds);
+		totalDurationProgress.setMaximum(getMaxProtocolSeconds());
 		totalDurationProgress.setValue(totalProtocolSeconds);
 		totalDurationProgress.setString(intTimeToString(totalProtocolSeconds));
 		int findingTime = dashboard.getFindingTime();
 		findingTimeField.setText(intTimeToString(findingTime));
-		hurryUpImage.setImageOpacity((float) findingTime / maxFindingSeconds);
+		hurryUpImage.setImageOpacity((float) findingTime / getMaxFindingSeconds());
 
 		if (dashboard.controllersConnected()) {
 			breakField.setText(dashboard.getBreakText());
@@ -95,6 +84,24 @@ public class StatusPanel extends JPanel {
 			continueDiscussionField.setText(htmlStart + translate("Gamecontroller not connected...") + htmlEnd);
 			votingsField.setText(htmlStart + translate("Please connect them and restart application.") + htmlEnd);
 			breakField.setText("-");
+		}
+	}
+
+	private int getMaxFindingSeconds() {
+		ApplicationData appData = Data.getInstance().getAppData();
+		try {
+			return Integer.parseInt(appData.getSetting(AppSettingKey.APP_FINDING_WARNING_TIME)) * 60;
+		} catch (DataException | NumberFormatException e) {
+			return 3 * 60;
+		}
+	}
+
+	private int getMaxProtocolSeconds() {
+		ApplicationData appData = Data.getInstance().getAppData();
+		try {
+			return Integer.parseInt(appData.getSetting(APP_PROTOCOL_WARNING_TIME)) * 60;
+		} catch (DataException | NumberFormatException e) {
+			return 120 * 60;
 		}
 	}
 

@@ -12,6 +12,11 @@ import javax.swing.JPanel;
 import org.revager.app.model.schema.Finding;
 import org.revager.tools.GUITools;
 
+/**
+ * Gui tab element which displays the findings and the dashboard.
+ * 
+ * @see PresentationProtocolTab
+ */
 public class PresentationFindingsTab extends JPanel {
 
 	private static final long serialVersionUID = -7499170906423144396L;

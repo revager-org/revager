@@ -14,7 +14,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
-import org.hamcrest.core.DescribedAs;
 import org.revager.app.model.Data;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
@@ -23,6 +22,10 @@ import org.revager.app.model.schema.Review;
 import org.revager.gamecontroller.Dashboard;
 import org.revager.gui.UI;
 
+/**
+ * Frame which either displays {@link PresentationProtocolTab} or
+ * {@link PresentationFindingsTab} at the same time.
+ */
 public class PresentationFrame extends JFrame {
 
 	public static final int FINDINGS_TAB_ID = 0;

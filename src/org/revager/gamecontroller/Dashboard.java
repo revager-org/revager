@@ -11,7 +11,15 @@ import java.util.Observer;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Protocol;
 import org.revager.gui.UI;
+import org.revager.gui.presentationView.StatusPanel;
 
+/**
+ * This gives access to the state of the current classification process, breaks
+ * and focus feedback.
+ * 
+ * @see StatusPanel
+ * @see DashboardEvent
+ */
 public class Dashboard {
 
 	private static Dashboard instance;
@@ -22,6 +30,9 @@ public class Dashboard {
 	private boolean timingActive;
 
 	private final List<Finding> findings = new ArrayList<>();
+	/**
+	 * This timeout object is used to detect when the pause button is clicked.
+	 */
 	private final Timeout breakResetTimeout;
 	private final Observer findingListener = (Observable o, Object arg) -> setFinding((Finding) o);;
 	private final Observer protocolListener = (Observable o, Object arg) -> {
@@ -79,6 +90,9 @@ public class Dashboard {
 		}
 	}
 
+	/**
+	 * Update the current {@link Finding}.
+	 */
 	public void setFinding(Finding finding) {
 		if (!findings.contains(finding)) {
 			findings.add(finding);
@@ -102,10 +116,6 @@ public class Dashboard {
 		breaks++;
 	}
 
-	public int getBreaks() {
-		return breaks;
-	}
-
 	public void addFocus(Finding eventFinding) {
 		eventFinding.getFindingStatus().addFocus();
 	}
@@ -118,6 +128,11 @@ public class Dashboard {
 		return finding.getFindingStatus().getFocusNumber();
 	}
 
+	/**
+	 * Returns the classification result or the number of classifications.
+	 * 
+	 * @see FindingStatus#buildClassificationCountString()
+	 */
 	public String getClassificationDetails() {
 		FindingStatus findingStatus = finding.getFindingStatus();
 		Collection<Classification> votings = findingStatus.getClassifications();

@@ -23,6 +23,11 @@ import org.revager.app.model.schema.Review;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
+/**
+ * GUI tab element which displays comments about the protocol etc.
+ * 
+ * @see PresentationFindingsTab
+ */
 public class PresentationProtocolTab extends JPanel {
 
 	private static final long serialVersionUID = 1377208308219097378L;

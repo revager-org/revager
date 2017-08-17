@@ -5,7 +5,10 @@ import java.util.Random;
 import org.revager.app.model.schema.Finding;
 
 /**
- * Subclass this class to react on game controller events.
+ * This class allows to react on key press events from controller. Subclass this
+ * class to react with a <em>delay</em> on game controller events.
+ * 
+ * @see ControllerManager
  */
 public abstract class DashboardEvent {
 
@@ -19,7 +22,7 @@ public abstract class DashboardEvent {
 		this.dashboard = dashboard;
 		this.eventFinding = dashboard.getFinding();
 		Thread thread = new Thread(() -> {
-			if (waitWithCallback()) {
+			if (delayCallback()) {
 				long millis = MINIMUM_WAIT_MILLIS + RANDOM.nextInt(1000 * 4);
 				try {
 					Thread.sleep(millis);
@@ -34,7 +37,7 @@ public abstract class DashboardEvent {
 	/**
 	 * Specifies whether the {@link #callback()} should be called immediately.
 	 */
-	public boolean waitWithCallback() {
+	public boolean delayCallback() {
 		return true;
 	}
 

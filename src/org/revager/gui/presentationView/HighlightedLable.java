@@ -6,6 +6,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+/**
+ * Subclass of an {@link JLabel} which changes the font to <em>bold</em> for a
+ * few seconds when the text was changed.
+ * 
+ * @see #setText(String)
+ */
 public class HighlightedLable extends JLabel {
 
 	private static final long serialVersionUID = 1971998633005799712L;

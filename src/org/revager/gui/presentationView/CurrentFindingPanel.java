@@ -29,6 +29,11 @@ import org.revager.gui.models.FindExtRefTableModel;
 import org.revager.gui.models.FindRefTableModel;
 import org.revager.tools.GUITools;
 
+/**
+ * GUI element which displays the current {@link Finding}.
+ * 
+ * @see PresentationFindingsTab
+ */
 public class CurrentFindingPanel extends JPanel {
 
 	private static final long serialVersionUID = 1898465156775918217L;
@@ -96,12 +101,13 @@ public class CurrentFindingPanel extends JPanel {
 		textDescription.setEditable(false);
 		textDescription.setFont(UI.VERY_HUGE_HUGE_FONT);
 
-		GUITools.addComponent(this, layout, labelFindingTitle,    0, 0, 1, 1, 0.7, 0.0, 10, 10, 0, 10, NONE, WEST);
+		GUITools.addComponent(this, layout, labelFindingTitle, 0, 0, 1, 1, 0.7, 0.0, 10, 10, 0, 10, NONE, WEST);
 		GUITools.addComponent(this, layout, labelFindingSeverity, 1, 0, 1, 1, 0.3, 0.0, 10, 10, 0, 10, NONE, EAST);
-		GUITools.addComponent(this, layout, scrollDescription,    0, 1, 1, REMAINDER, 1.0, 1.0, 10, 10, 10, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollReferences,     1, 1, 1, 1, 0.5, 0.4, 10, 10, 0, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollExtReferences,  1, 2, 1, 1, 0.5, 0.3, 10, 10, 10, 10, BOTH, NORTHWEST);
-		GUITools.addComponent(this, layout, scrollAspects,        1, 3, 1, 1, 0.5, 0.4, 10, 10, 10, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollDescription, 0, 1, 1, REMAINDER, 1.0, 1.0, 10, 10, 10, 10, BOTH,
+				NORTHWEST);
+		GUITools.addComponent(this, layout, scrollReferences, 1, 1, 1, 1, 0.5, 0.4, 10, 10, 0, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollExtReferences, 1, 2, 1, 1, 0.5, 0.3, 10, 10, 10, 10, BOTH, NORTHWEST);
+		GUITools.addComponent(this, layout, scrollAspects, 1, 3, 1, 1, 0.5, 0.4, 10, 10, 10, 10, BOTH, NORTHWEST);
 	}
 
 	public void setFinding(Finding finding) {

@@ -17,6 +17,11 @@ import org.revager.app.model.schema.Finding;
 import org.revager.gui.UI;
 import org.revager.tools.GUITools;
 
+/**
+ * GUI element which displays the previous {@link Finding}.
+ * 
+ * @see PresentationFindingsTab
+ */
 public class PreviousFindingPanel extends JPanel {
 
 	private static final long serialVersionUID = 110372565207228520L;
@@ -57,7 +62,7 @@ public class PreviousFindingPanel extends JPanel {
 	}
 
 	private void updateDisplay() {
-		titleLable.setText(translate("Previous Finding:") + " "+ translate("Finding") + " " + finding.getId());
+		titleLable.setText(translate("Previous Finding:") + " " + translate("Finding") + " " + finding.getId());
 		severityLable.setText(translate(finding.getSeverity()));
 		descriptionTextArea.setText(finding.getDescription());
 	}

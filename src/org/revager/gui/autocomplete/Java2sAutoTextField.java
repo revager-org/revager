@@ -48,8 +48,12 @@ import javax.swing.text.PlainDocument;
 
 import org.apache.commons.lang3.StringUtils;
 
-/*
- * Based on http://www.java2s.com/Code/Java/Swing-Components/AutocompleteComboBox.htm
+/**
+ * Field, based on {@link JTextField}, which remembers all entered values. Based
+ * on these values autocompletion is suggested.
+ * 
+ * Based on
+ * http://www.java2s.com/Code/Java/Swing-Components/AutocompleteComboBox.htm
  */
 public abstract class Java2sAutoTextField extends JTextField {
 	private static final long serialVersionUID = 9061181066044572705L;
@@ -98,7 +102,7 @@ public abstract class Java2sAutoTextField extends JTextField {
 				k--;
 			}
 			String s = getMatch(getText(0, k));
-			if (!isStrict && StringUtils.equals(s, getText(0, k))) {
+			if (StringUtils.equals(s, getText(0, k))) {
 				super.remove(i, j);
 			} else {
 				super.remove(0, getLength());
@@ -114,8 +118,6 @@ public abstract class Java2sAutoTextField extends JTextField {
 
 	private static final Map<Object, List<String>> map = Collections.synchronizedMap(new HashMap<>());
 
-	private boolean isCaseSensitive = true;
-	private boolean isStrict = false;
 	private transient final Object object;
 
 	/**
@@ -162,12 +164,8 @@ public abstract class Java2sAutoTextField extends JTextField {
 		}
 		for (int i = 0; i < getList().size(); i++) {
 			String s1 = getList().get(i);
-			if (s1 != null) {
-				if (!isCaseSensitive && s1.toLowerCase().startsWith(s.toLowerCase()))
-					return s1;
-				if (isCaseSensitive && s1.startsWith(s))
-					return s1;
-			}
+			if (s1 != null && s1.startsWith(s))
+				return s1;
 		}
 		directAdd(s);
 		sortList();
@@ -184,22 +182,6 @@ public abstract class Java2sAutoTextField extends JTextField {
 				_lb.replace(i, j - i, s, null);
 			} catch (Exception exception) {
 			}
-	}
-
-	public boolean isCaseSensitive() {
-		return isCaseSensitive;
-	}
-
-	public void setCaseSensitive(boolean flag) {
-		isCaseSensitive = flag;
-	}
-
-	public boolean isStrict() {
-		return isStrict;
-	}
-
-	public void setStrict(boolean flag) {
-		isStrict = flag;
 	}
 
 }

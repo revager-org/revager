@@ -2,6 +2,9 @@ package org.revager.gamecontroller;
 
 import static org.revager.app.model.Data.translate;
 
+/**
+ * Default classifications supported by gamecontrollers.
+ */
 public enum Classification {
 	// @formatter:off
 	// Order has impact on sorting.

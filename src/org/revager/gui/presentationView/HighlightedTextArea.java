@@ -9,6 +9,11 @@ import javax.swing.SwingUtilities;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Subclass of {@link JTextArea} which is highlighted when its text is changed.
+ * 
+ * @see #setText(String)
+ */
 public class HighlightedTextArea extends JTextArea {
 
 	private static final long serialVersionUID = 1971998633005799712L;

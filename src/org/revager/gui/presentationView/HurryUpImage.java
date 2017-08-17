@@ -8,7 +8,11 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 import org.revager.app.model.Data;
+import org.revager.gui.findings_list.FindingPanel;
 
+/**
+ * Gui element which is display in a {@link FindingPanel}.
+ */
 public class HurryUpImage extends JPanel {
 
 	private static final long serialVersionUID = 6404510395755481196L;
@@ -36,9 +40,8 @@ public class HurryUpImage extends JPanel {
 		if (opacity < 0.0f) {
 			throw new IllegalArgumentException("Opacity must not be smaller than 0.");
 		}
-        this.opacity = Math.min(0.50f, opacity);
-        repaint();
+		this.opacity = Math.min(0.50f, opacity);
+		repaint();
 	}
 
 }
-

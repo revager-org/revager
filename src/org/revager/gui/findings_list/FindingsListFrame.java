@@ -135,10 +135,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JPanel tabGenImp = new JPanel(gbl);
 	private JPanel bottomOrgPanel = new JPanel(gbl);
 
-	private JButton tbConfirmProt;
-	private JButton tbPdfExport;
-	private JButton tbCsvExport;
-	private JButton tbPresenationView;
 	private JButton tbFullscreen;
 
 	private JPanel attPanel = new JPanel(gbl);
@@ -167,8 +163,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JLabel clockLabel = new JLabel();
 	private JLabel clockCurrentTime = new JLabel();
 	private JButton clockButtonStart;
-	private JButton clockButtonReset;
-
 	private PresentAttendeesTableModel patm;
 	private JTable presentAttTable;
 
@@ -185,7 +179,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JTextArea meetCommTxtArea;
 	private JTextArea protCommTxtArea;
 	private JScrollPane impScrllPn;
-	private JScrollPane meetCommScrllPn;
 	private JScrollPane protCommScrllPn;
 
 	private transient ProtocolManagement protMgmt = Application.getInstance().getProtocolMgmt();
@@ -194,7 +187,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	 * attendee buttons
 	 */
 	private JButton addResiAtt;
-	private JButton addAttendee;
 	private JButton removeAttendee;
 	private JButton editAttendee;
 
@@ -291,7 +283,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private void createToolBar() {
 
-		tbConfirmProt = GUITools.newImageButton(Data.getInstance().getIcon("confirmProtocol_50x50_0.png"),
+		JButton tbConfirmProt = GUITools.newImageButton(Data.getInstance().getIcon("confirmProtocol_50x50_0.png"),
 				Data.getInstance().getIcon("confirmProtocol_50x50.png"));
 		tbConfirmProt.setToolTipText(translate("Confirm and close list of findings"));
 		tbConfirmProt.addActionListener(e -> {
@@ -312,21 +304,21 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		sepBttn.setEnabled(false);
 		addTopComponent(sepBttn);
 
-		tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon("PDFExport_50x50_0.png"),
+		JButton tbPdfExport = GUITools.newImageButton(Data.getInstance().getIcon("PDFExport_50x50_0.png"),
 				Data.getInstance().getIcon("PDFExport_50x50.png"));
 		tbPdfExport.setToolTipText(translate("Export List of Findings as PDF File"));
 		tbPdfExport.addActionListener(e -> UI.getInstance().getExportPDFProtocolDialog().setVisible(true));
 
 		addTopComponent(tbPdfExport);
 
-		tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon("CSVExport_50x50_0.png"),
+		JButton tbCsvExport = GUITools.newImageButton(Data.getInstance().getIcon("CSVExport_50x50_0.png"),
 				Data.getInstance().getIcon("CSVExport_50x50.png"));
 		tbCsvExport.setToolTipText(translate("Export List of Findings as CSV File"));
 		tbCsvExport.addActionListener(e -> UI.getInstance().getExportCSVDialog().setVisible(true));
 
 		addTopComponent(tbCsvExport);
 
-		tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("tv_50x50_0.png"),
+		JButton tbPresenationView = GUITools.newImageButton(Data.getInstance().getIcon("tv_50x50_0.png"),
 				Data.getInstance().getIcon("tv_50x50.png"));
 		tbPresenationView.setToolTipText(translate("Open Presentation View"));
 		tbPresenationView.addActionListener((ActionEvent e) -> {
@@ -377,7 +369,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			updateClockButtons();
 		});
 
-		clockButtonReset = GUITools.newImageButton(Data.getInstance().getIcon("clockReset_24x24_0.png"),
+		JButton clockButtonReset = GUITools.newImageButton(Data.getInstance().getIcon("clockReset_24x24_0.png"),
 				Data.getInstance().getIcon("clockReset_24x24.png"));
 		clockButtonReset.setToolTipText(translate("Reset Stop Watch"));
 		clockButtonReset.addActionListener(e -> {
@@ -422,7 +414,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		addResiAtt.addActionListener(ActionRegistry.getInstance().get(AddResiAttToProtAction.class.getName()));
 		attendeeButtons.add(addResiAtt);
 
-		addAttendee = GUITools.newImageButton();
+		JButton addAttendee = GUITools.newImageButton();
 		addAttendee.setIcon(Data.getInstance().getIcon("addAttendee_25x25_0.png"));
 		addAttendee.setRolloverIcon(Data.getInstance().getIcon("addAttendee_25x25.png"));
 		addAttendee.setToolTipText(translate("Add Attendee"));
@@ -809,7 +801,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		meetCommTxtArea.setText(Application.getInstance().getMeetingMgmt().getMeetingComment(currentMeet).trim());
 		protCommTxtArea.setText(protMgmt.getProtocolComment(currentProt).trim());
 
-		meetCommScrllPn = GUITools.setIntoScrllPn(meetCommTxtArea);
+		JScrollPane meetCommScrllPn = GUITools.setIntoScrllPn(meetCommTxtArea);
 		meetCommScrllPn.setMinimumSize(meetCommScrllPn.getPreferredSize());
 		GUITools.scrollToTop(meetCommScrllPn);
 

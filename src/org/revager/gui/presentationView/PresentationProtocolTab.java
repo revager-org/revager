@@ -12,7 +12,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.lang3.StringUtils;
@@ -96,17 +95,14 @@ public class PresentationProtocolTab extends JPanel {
 	public void updateTabData(Review review) {
 		impressionTextArea.setText(review.getImpression());
 		recommendationField.setText(Data.translate(review.getRecommendation()));
-		updateFontSizes(impressionTextArea, impressionField);
 	}
 
 	public void updateTabData(Protocol protocol) {
 		protocolCommentTextArea.setText(protocol.getComments());
-		updateFontSizes(protocolCommentTextArea, protocolCommentField);
 	}
 
 	public void updateTabData(Meeting meeting) {
 		meetingCommentTextArea.setText(meeting.getComments());
-		updateFontSizes(meetingCommentTextArea, meetingCommentField);
 	}
 
 	private HighlightedTextArea createTextArea(String placeholderText) {
@@ -117,31 +113,4 @@ public class PresentationProtocolTab extends JPanel {
 		return textArea;
 	}
 
-	private void updateFontSizes(JTextArea area, JScrollPane scrollPane) {
-		// TODO: check what to do.
-		// try {
-		// SwingUtilities.invokeAndWait(() -> {
-		// area.setFont(TEXT_FONT);
-		// Thread thread = new Thread(() -> {
-		// int size = area.getFont().getSize();
-		// while (scrollPane.getVerticalScrollBar().isVisible() && size > 0) {
-		// size = Math.max(1, size - 1);
-		// // area.setText(area.getText());
-		// area.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
-		// try {
-		// Thread.sleep(5);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// }
-		//
-		// });
-		// thread.start();
-		// });
-		// } catch (InvocationTargetException | InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-	}
 }

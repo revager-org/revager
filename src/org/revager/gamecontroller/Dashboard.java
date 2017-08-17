@@ -60,34 +60,8 @@ public class Dashboard {
 				Dashboard.this.resetBreak();
 			}
 		};
-
-		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
-			Object newValue = evt.getNewValue();
-			if (newValue instanceof Integer) {
-				Object oldValue = evt.getOldValue();
-				if (oldValue instanceof Integer) {
-					int newSeconds = (int) newValue;
-					int oldSeconds = (int) oldValue;
-					if (oldSeconds == 0 || newSeconds == 0) {
-						resetTime();
-					} else if (oldSeconds < newSeconds) {
-						if (timingActive) {
-							finding.getFindingStatus().addFindingTime(newSeconds - oldSeconds);
-						}
-						breakResetTimeout.reset();
-					}
-				}
-			}
-		});
+		addClockListener();
 		addListener();
-	}
-
-	private void addListener() {
-		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
-		protocol.addObserver(protocolListener);
-		for (Finding finding : protocol.getFindings()) {
-			finding.addObserver(findingListener);
-		}
 	}
 
 	/**
@@ -118,10 +92,6 @@ public class Dashboard {
 
 	public void addFocus(Finding eventFinding) {
 		eventFinding.getFindingStatus().addFocus();
-	}
-
-	private void resetBreak() {
-		breaks = 0;
 	}
 
 	public int getFocusNumber() {
@@ -165,11 +135,48 @@ public class Dashboard {
 		timingActive = false;
 	}
 
+	private void resetBreak() {
+		breaks = 0;
+	}
+
 	private void resetTime() {
 		resetBreak();
 		for (Finding finding : findings) {
 			finding.getFindingStatus().resetFindingTime();
 		}
+	}
+
+	private void addListener() {
+
+		Protocol protocol = UI.getInstance().getProtocolFrame().getMeeting().getProtocol();
+		protocol.addObserver(protocolListener);
+		for (Finding finding : protocol.getFindings()) {
+			finding.addObserver(findingListener);
+		}
+	}
+
+	private void addClockListener() {
+		UI.getInstance().getProtocolClockWorker().addPropertyChangeListener(evt -> {
+			Object newValue = evt.getNewValue();
+			if (newValue instanceof Integer) {
+				Object oldValue = evt.getOldValue();
+				if (oldValue instanceof Integer) {
+					updateTime((int) oldValue, (int) newValue);
+				}
+			}
+		});
+	}
+
+	private void updateTime(int oldSeconds, int newSeconds) {
+		if (oldSeconds == 0 || newSeconds == 0) {
+			resetTime();
+		} else if (oldSeconds < newSeconds) {
+			if (timingActive) {
+				finding.getFindingStatus().addFindingTime(newSeconds - oldSeconds);
+			}
+			breakResetTimeout.reset();
+		}
+
 	}
 
 }

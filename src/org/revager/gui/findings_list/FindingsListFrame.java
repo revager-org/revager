@@ -122,16 +122,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private Map<String, ImageEditorDialog> imageEditors = new HashMap<>();
 
 	private boolean componentMarked = false;
-
 	private boolean fullscreen = false;
 	private boolean nativeFullscrSupported = false;
-
 	private boolean bodyCreated = false;
 
 	private transient GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
 	private transient FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
-
 	private transient ApplicationData appData = Data.getInstance().getAppData();
 
 	private GridBagLayout gbl = new GridBagLayout();
@@ -167,7 +163,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private transient Protocol currentProt;
 
 	private FindingsTab tabPanelFindings;
-
 	private SimpleDateFormat sdfCurrentTime = new SimpleDateFormat("d. MMMM yyyy | HH:mm");
 	private transient ProtocolClockWorker clockWorker = UI.getInstance().getProtocolClockWorker();
 	private JLabel clockLabel = new JLabel();
@@ -176,12 +171,11 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 	private JButton clockButtonReset;
 
 	private PresentAttendeesTableModel patm;
-
 	private JTable presentAttTable;
 
 	private transient List<Attendee> presentAttList;
-
 	private transient Meeting currentMeet = null;
+
 	private JSpinner beginMSpinner;
 	private JSpinner beginHSpinner;
 	private JSpinner endMSpinner;
@@ -286,25 +280,17 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		});
 
 		SwingUtilities.invokeLater(() -> {
-			// Set current list of findings
 			tabPanelFindings = new FindingsTab(currentProt);
-			// Create tab panel
 			tabbedPane.removeAll();
 			tabbedPane.removeChangeListener(tabChangeListener);
-
 			tabbedPane.setTabPlacement(SwingConstants.TOP);
-
 			tabbedPane.add(translate("Organizational"), tabPanelOrg);
 			tabbedPane.add(translate("Impression"), tabGenImp);
 			tabbedPane.add(translate("Findings"), tabPanelFindings);
 			tabbedPane.add(translate("Comments & Recommendation"), tabPanelCommAndRec);
-
 			tabbedPane.addChangeListener(tabChangeListener);
 
-			// Add tab panel to content area
 			add(tabbedPane);
-
-			// Indicate that body has been created
 			bodyCreated = true;
 		});
 	}
@@ -1050,9 +1036,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			}
 		}
 
-		/*
-		 * Show fullscreen button in toolbar
-		 */
+		// Show fullscreen button in toolbar
 		try {
 			if (appData.getSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN) == AppSettingValue.TRUE) {
 				tbFullscreen.setVisible(true);
@@ -1060,9 +1044,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				tbFullscreen.setVisible(false);
 			}
 		} catch (DataException exc) {
-			/*
-			 * Ignore
-			 */
+			// Ignore
 		}
 
 		if (vis) {
@@ -1111,7 +1093,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -1227,7 +1208,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 	private void markComponent(JComponent comp) {
 		boolean mark = false;
-
 		try {
 			if (Data.getInstance().getAppData()
 					.getSettingValue(AppSettingKey.APP_HIGHLIGHT_FIELDS) == AppSettingValue.TRUE) {
@@ -1243,7 +1223,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			} else {
 				comp.setBorder(UI.MARKED_BORDER);
 			}
-
 			componentMarked = true;
 		}
 	}
@@ -1330,22 +1309,17 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 		if (!warningErrorHints) {
 			hints.add(hintOk);
 		}
-
 		hints.add(hintInfoNewFinding);
 		setHints(hints);
 	}
 
 	public ImageEditorDialog getImageEditor(File image) {
 		String imagePath = image.getAbsolutePath();
-
 		ImageEditorDialog editor = imageEditors.get(imagePath);
-
 		if (editor == null) {
 			editor = new ImageEditorDialog(UI.getInstance().getProtocolFrame(), image);
-
 			imageEditors.put(imagePath, editor);
 		}
-
 		return editor;
 	}
 

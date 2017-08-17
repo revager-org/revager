@@ -41,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -59,7 +60,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
@@ -67,6 +67,7 @@ import javax.swing.table.TableModel;
 import javax.swing.text.InternationalFormatter;
 import javax.swing.text.JTextComponent;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
@@ -88,11 +89,7 @@ public class GUITools {
 	 * @param worker
 	 */
 	public static void executeSwingWorker(final SwingWorker<?, ?> worker) {
-		// SwingUtilities.invokeLater(new Runnable() {
-		// public void run() {
-		java.util.concurrent.Executors.newCachedThreadPool().execute(worker);
-		// }
-		// });
+		Executors.newCachedThreadPool().execute(worker);
 	}
 
 	/**
@@ -291,20 +288,7 @@ public class GUITools {
 
 		rollOverRowIndex.put(keyIdx, -1);
 
-		/*
-		 * The table
-		 */
 		final JTable table = new JTable(model) {
-			@Override
-			public void editingStopped(final ChangeEvent e) {
-				int selRow = this.getSelectedRow();
-
-				if (selRow == -1) {
-					selRow = this.getRowCount() - 1;
-				}
-
-				super.editingStopped(e);
-			}
 
 			@Override
 			public boolean editCellAt(int row, int column, java.util.EventObject e) {
@@ -356,7 +340,7 @@ public class GUITools {
 				JComponent jcomp = (JComponent) comp;
 				if (renderer instanceof DefaultTableCellRenderer) {
 					String toolTip = ((DefaultTableCellRenderer) renderer).getToolTipText();
-					if (toolTip != null && !"".equals(toolTip.trim())) {
+					if (!StringUtils.isEmpty(toolTip)) {
 						jcomp.setToolTipText(toolTip);
 					}
 				}
@@ -409,7 +393,6 @@ public class GUITools {
 	public static JScrollPane setIntoScrollPane(JTable table) {
 		JScrollPane scrollPn = new JScrollPane(table);
 		scrollPn.getViewport().setBackground(Color.WHITE);
-
 		return scrollPn;
 	}
 

@@ -160,8 +160,7 @@ public class AbstractFrame extends JFrame {
 
 	public void setStatusMessage(String message, boolean inProgress) {
 		this.statusMessage.setText(this.formatTime.format(new Date().getTime()) + " | " + message);
-
-		if (inProgress == true) {
+		if (inProgress) {
 			this.statusInProgress.setIcon(ICON_WAIT_SMALL);
 		} else {
 			this.statusInProgress.setIcon(ICON_BLANK);
@@ -404,7 +403,7 @@ public class AbstractFrame extends JFrame {
 			buttonHints.setSelectedIcon(ICON_BLANK);
 			buttonHints.setEnabled(false);
 
-			if (hintsOpened == true) {
+			if (hintsOpened) {
 				toggleHints();
 			}
 		} else {

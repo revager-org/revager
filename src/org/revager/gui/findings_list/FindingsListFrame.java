@@ -1236,7 +1236,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			return;
 		}
 
-		boolean warningErrorHints = false;
 		List<HintItem> hints = new ArrayList<>();
 		unmarkAllComponents();
 		if (protMgmt.getAttendees(currentProt).isEmpty()) {
@@ -1244,7 +1243,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			if (tabPanelOrg.isVisible()) {
 				markComponent(scrllP);
 			}
-			warningErrorHints = true;
 			tabbedPane.setIconAt(0, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(0, ICON_TAB_OK);
@@ -1254,7 +1252,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			if (tabGenImp.isVisible() && StringUtils.isBlank(revMgmt.getImpression())) {
 				markComponent(impScrllPn);
 			}
-			warningErrorHints = true;
 			tabbedPane.setIconAt(1, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(1, ICON_TAB_OK);
@@ -1262,7 +1259,6 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 
 		if (!findMgmt.areAllFindingsComplete(currentProt)) {
 			hints.add(hintFind);
-			warningErrorHints = true;
 			tabbedPane.setIconAt(2, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(2, ICON_TAB_OK);
@@ -1273,15 +1269,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			if (tabPanelCommAndRec.isVisible() && StringUtils.isBlank(revMgmt.getRecommendation())) {
 				markComponent(recBx);
 			}
-
-			warningErrorHints = true;
-
 			tabbedPane.setIconAt(3, ICON_TAB_WARN);
 		} else {
 			tabbedPane.setIconAt(3, ICON_TAB_OK);
 		}
 
-		if (!warningErrorHints) {
+		if (hints.isEmpty()) {
 			hints.add(hintOk);
 		}
 		hints.add(hintInfoNewFinding);

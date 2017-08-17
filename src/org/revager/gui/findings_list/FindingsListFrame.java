@@ -492,19 +492,12 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			if (isSelected) {
 				label.setBackground(presentAttTable.getSelectionBackground());
 			} else {
-				int localRow = row;
-
-				while (localRow > 0) {
-					localRow = localRow - 2;
-				}
-
-				if (localRow == 0) {
+				if (row % 2 == 0) {
 					label.setBackground(UI.TABLE_ALT_COLOR);
 				} else {
 					label.setBackground(presentAttTable.getBackground());
 				}
 			}
-
 			return label;
 		};
 
@@ -519,11 +512,7 @@ public class FindingsListFrame extends AbstractFrame implements Observer {
 			if (isSelected) {
 				localPnl.setBackground(presentAttTable.getSelectionBackground());
 			} else {
-				int localRow = row;
-				while (localRow > 0) {
-					localRow = localRow - 2;
-				}
-				if (localRow == 0) {
+				if (row % 2 == 0) {
 					localPnl.setBackground(UI.TABLE_ALT_COLOR);
 				} else {
 					localPnl.setBackground(presentAttTable.getBackground());

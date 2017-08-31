@@ -10,6 +10,7 @@ package org.revager.app.model.schema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -52,7 +53,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "protocolType", propOrder = { "date", "start", "end", "location", "attendeeReferences", "findings",
 		"comments" })
-public class Protocol {
+public class Protocol extends Observable {
 
 	@XmlElement(required = true, type = String.class)
 	@XmlJavaTypeAdapter(Adapter5.class)
@@ -71,7 +72,7 @@ public class Protocol {
 	@XmlElement(name = "attendee", required = true)
 	protected List<AttendeeReference> attendeeReferences;
 	@XmlElement(name = "finding", required = true)
-	protected List<Finding> findings;
+	protected List<Finding> findings = new ArrayList<>();
 	@XmlElement(required = true)
 	protected String comments;
 
@@ -232,13 +233,8 @@ public class Protocol {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link Finding }
-	 * 
-	 * 
 	 */
 	public List<Finding> getFindings() {
-		if (findings == null) {
-			findings = new ArrayList<Finding>();
-		}
 		return this.findings;
 	}
 
@@ -269,10 +265,26 @@ public class Protocol {
 	 */
 	public void setComments(String value) {
 		this.comments = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetComments() {
 		return (this.comments != null);
 	}
 
+	public boolean addFinding(Finding finding) {
+		if (!findings.contains(finding)) {
+			findings.add(finding);
+			setChanged();
+			notifyObservers(finding);
+			return true;
+		}
+		return false;
+	}
+	
+	public void removeFinding(Finding finding) {
+		findings.remove(finding);
+	}
+	
 }

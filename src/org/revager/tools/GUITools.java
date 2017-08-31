@@ -41,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -59,7 +60,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
@@ -67,6 +67,7 @@ import javax.swing.table.TableModel;
 import javax.swing.text.InternationalFormatter;
 import javax.swing.text.JTextComponent;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.model.Data;
 import org.revager.gui.UI;
 
@@ -78,7 +79,7 @@ public class GUITools {
 	/**
 	 * Map for storing rollover row indexes for the standard tables
 	 */
-	private static Map<Integer, Integer> rollOverRowIndex = new HashMap<Integer, Integer>();
+	private static Map<Integer, Integer> rollOverRowIndex = new HashMap<>();
 
 	private static int lastRolloverKey = 0;
 
@@ -88,11 +89,7 @@ public class GUITools {
 	 * @param worker
 	 */
 	public static void executeSwingWorker(final SwingWorker<?, ?> worker) {
-		// SwingUtilities.invokeLater(new Runnable() {
-		// public void run() {
-		java.util.concurrent.Executors.newCachedThreadPool().execute(worker);
-		// }
-		// });
+		Executors.newCachedThreadPool().execute(worker);
 	}
 
 	/**
@@ -173,7 +170,6 @@ public class GUITools {
 		button.setRolloverIcon(rolloverIcon);
 		button.setRolloverSelectedIcon(rolloverIcon);
 		button.setSelectedIcon(rolloverIcon);
-
 		return button;
 	}
 
@@ -292,23 +288,7 @@ public class GUITools {
 
 		rollOverRowIndex.put(keyIdx, -1);
 
-		/*
-		 * The table
-		 */
 		final JTable table = new JTable(model) {
-			@Override
-			public void editingStopped(final ChangeEvent e) {
-				int selRow = this.getSelectedRow();
-
-				if (selRow == -1) {
-					selRow = this.getRowCount() - 1;
-				}
-
-				super.editingStopped(e);
-				// >> the following statement would be useful, but is still
-				// problematic <<
-				// this.setRowSelectionInterval(selRow, selRow);
-			}
 
 			@Override
 			public boolean editCellAt(int row, int column, java.util.EventObject e) {
@@ -316,108 +296,78 @@ public class GUITools {
 				final Component editor = getEditorComponent();
 
 				TableCellRenderer renderer = this.getColumnModel().getColumn(column).getCellRenderer();
-
 				Font cellFont = null;
-
 				if (renderer instanceof DefaultTableCellRenderer) {
 					cellFont = ((DefaultTableCellRenderer) renderer).getFont();
 				}
-
 				if (editor != null && editor instanceof JTextComponent) {
+					JTextComponent jTextComponent = (JTextComponent) editor;
 					if (e == null) {
-						((JTextComponent) editor).selectAll();
+						jTextComponent.selectAll();
 					} else {
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-							public void run() {
-								((JTextComponent) editor).selectAll();
-							}
-						});
+						SwingUtilities.invokeLater(jTextComponent::selectAll);
 					}
-
-					((JTextComponent) editor).setBorder(UI.MARKED_BORDER_INLINE);
-
+					jTextComponent.setBorder(UI.MARKED_BORDER_INLINE);
 					if (cellFont != null) {
-						((JTextComponent) editor).setFont(cellFont);
+						jTextComponent.setFont(cellFont);
 					}
-
 					editor.requestFocusInWindow();
 				}
-
 				return result;
 			}
 
 			@Override
 			public TableCellRenderer getCellRenderer(int row, int column) {
 				TableCellRenderer renderer = super.getCellRenderer(row, column);
-
 				if (renderer instanceof DefaultTableCellRenderer) {
 					((DefaultTableCellRenderer) renderer).setBorder(new EmptyBorder(3, 3, 3, 3));
 				}
-
 				return renderer;
 			}
 
 			@Override
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component comp = super.prepareRenderer(renderer, row, col);
-
-				/*
-				 * Rollover
-				 */
+				// Rollover
 				comp.setBackground(getBackground());
-
 				comp = super.prepareRenderer(renderer, row, col);
-
 				if (!isRowSelected(row) && row == rollOverRowIndex.get(keyIdx)) {
 					comp.setForeground(getForeground());
 					comp.setBackground(UI.BLUE_BACKGROUND_COLOR);
 				}
 
-				/*
-				 * Tooltips
-				 */
+				// Tooltips
 				JComponent jcomp = (JComponent) comp;
-
-				if (comp == jcomp && renderer instanceof DefaultTableCellRenderer) {
+				if (renderer instanceof DefaultTableCellRenderer) {
 					String toolTip = ((DefaultTableCellRenderer) renderer).getToolTipText();
-
-					if (toolTip != null && !toolTip.trim().equals("")) {
+					if (!StringUtils.isEmpty(toolTip)) {
 						jcomp.setToolTipText(toolTip);
 					}
 				}
-
 				return comp;
 			}
 		};
 
-		/*
-		 * Table properties
-		 */
+		// Table properties
 		table.setRowHeight(UI.TABLE_ROW_HEIGHT);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowGrid(false);
 		table.setShowHorizontalLines(true);
 		table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-		/*
-		 * Rollover
-		 */
+		// Rollover
 		MouseInputAdapter rolloverListener = new MouseInputAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				rollOverRowIndex.put(keyIdx, -1);
-
 				table.repaint();
 			}
 
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				int row = table.rowAtPoint(e.getPoint());
-
 				if (row != rollOverRowIndex.get(keyIdx)) {
 					rollOverRowIndex.put(keyIdx, row);
-
 					table.repaint();
 				}
 			}
@@ -425,13 +375,10 @@ public class GUITools {
 		table.addMouseMotionListener(rolloverListener);
 		table.addMouseListener(rolloverListener);
 
-		/*
-		 * Header
-		 */
+		// Header
 		if (!showHeader) {
 			table.setTableHeader(null);
 		}
-
 		return table;
 	}
 
@@ -446,7 +393,6 @@ public class GUITools {
 	public static JScrollPane setIntoScrollPane(JTable table) {
 		JScrollPane scrollPn = new JScrollPane(table);
 		scrollPn.getViewport().setBackground(Color.WHITE);
-
 		return scrollPn;
 	}
 
@@ -458,9 +404,7 @@ public class GUITools {
 	public static JPanel newPopupBasePanel() {
 		JPanel panelBase = new JPanel();
 		panelBase.setLayout(new BorderLayout());
-		// panelBase.setBorder(UI.POPUP_BORDER);
 		panelBase.setBackground(UI.POPUP_BACKGROUND);
-
 		return panelBase;
 	}
 
@@ -482,7 +426,6 @@ public class GUITools {
 		textTitle.setWrapStyleWord(true);
 		textTitle.setFocusable(false);
 		textTitle.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		return textTitle;
 	}
 
@@ -497,10 +440,8 @@ public class GUITools {
 	public static JScrollPane setIntoScrllPn(JTextArea txt) {
 		txt.setLineWrap(true);
 		txt.setWrapStyleWord(true);
-		JScrollPane scrllPn = new JScrollPane(txt, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+		return new JScrollPane(txt, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-		return scrllPn;
 	}
 
 	/**
@@ -513,30 +454,12 @@ public class GUITools {
 	 */
 	public static JLabel getMessagePane(String message) {
 		if (message == null) {
-			message = "";
+			return new JLabel(getTextAsHtml(""));
 		}
-
 		if (message.endsWith("null")) {
-			message = message.substring(0, message.length() - 5);
+			return new JLabel(getTextAsHtml(message.substring(0, message.length() - 5)));
 		}
-
 		return new JLabel(getTextAsHtml(message));
-
-		/*
-		 * Deprecated implementation
-		 */
-		// JTextArea textArea = new JTextArea(message);
-		// textArea.setLineWrap(true);
-		// textArea.setWrapStyleWord(true);
-		// textArea.setMargin(new Insets(4, 4, 4, 4));
-		// textArea.setEditable(false);
-		// textArea.setFocusable(false);
-		// textArea.setFont(new Font(Font.DIALOG, Font.PLAIN, 12));
-		// textArea.setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
-		// JScrollPane scrollPane = new JScrollPane();
-		// scrollPane.setPreferredSize(new Dimension(350, 100));
-		// scrollPane.getViewport().setView(textArea);
-		// scrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 	}
 
 	/**
@@ -549,19 +472,14 @@ public class GUITools {
 	 */
 	public static String getTextAsHtml(String text) {
 		final int CHARS_PER_LINE = 60;
-
 		int currPos = 0;
 		int endPos = 0;
-
 		while (text.length() - 1 > endPos) {
 			endPos = currPos + CHARS_PER_LINE;
-
 			if (endPos >= text.length()) {
 				break;
 			}
-
 			String part = text.substring(currPos, endPos);
-
 			if (part.lastIndexOf('\n') != -1) {
 				currPos = currPos + part.lastIndexOf('\n') + 1;
 			} else {
@@ -570,17 +488,13 @@ public class GUITools {
 				} else {
 					currPos = currPos + part.lastIndexOf(' ');
 				}
-
 				text = text.substring(0, currPos) + "\n" + text.substring(currPos + 1);
-
 				currPos++;
 			}
 		}
-
 		text = text.trim();
 		text = text.replace("\n", "<br>");
 		text = "<html>" + text + "</html>";
-
 		return text;
 	}
 
@@ -645,18 +559,13 @@ public class GUITools {
 
 		int winPosX = (int) cursorPosX;
 		int winPosY = (int) cursorPosY;
-
-		/*
-		 * If the window would break the screen size
-		 */
+		// If the window would break the screen size
 		if (cursorPosX + winWidth > screenWidth) {
 			winPosX = (int) (screenWidth - winWidth);
 		}
-
 		if (cursorPosY + winHeight > screenHeight) {
 			winPosY = (int) (screenHeight - winHeight);
 		}
-
 		win.setLocation(new Point(winPosX, winPosY));
 	}
 
@@ -666,12 +575,8 @@ public class GUITools {
 	 * @param scrollPane
 	 */
 	public static void scrollToTop(final JScrollPane scrollPane) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMinimum());
-			}
-		});
+		SwingUtilities.invokeLater(
+				() -> scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMinimum()));
 	}
 
 	/**
@@ -680,11 +585,8 @@ public class GUITools {
 	 * @param scrollPane
 	 */
 	public static void scrollToBottom(final JScrollPane scrollPane) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
-			}
-		});
+		SwingUtilities.invokeLater(
+				() -> scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum()));
 	}
+
 }

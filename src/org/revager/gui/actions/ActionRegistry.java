@@ -161,6 +161,7 @@ public class ActionRegistry {
 		register(new GoToFirstScreenPnlAction());
 		register(new SelectAttOutOfDirAction());
 		register(new OpenFindingsListAction());
+		register(new OpenPresentationView());
 		register(new AddResiAttToProtAction());
 
 		register(new RemAttFromProtAction());

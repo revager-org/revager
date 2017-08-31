@@ -20,66 +20,28 @@ package org.revager.gui.models;
 
 import static org.revager.app.model.Data.translate;
 
-import javax.swing.table.AbstractTableModel;
-
-import org.revager.app.Application;
-import org.revager.app.FindingManagement;
 import org.revager.app.model.schema.Finding;
 
 /**
  * The Class FindExRefTableModel.
  */
 @SuppressWarnings("serial")
-public class FindExtRefTableModel extends AbstractTableModel {
+public class FindExtRefTableModel extends AbstractFindingTableModel {
 
-	private FindingManagement findingMgmt = Application.getInstance().getFindingMgmt();
-	private Finding localFind;
-
-	/**
-	 * Instantiates a new find ex ref table model.
-	 * 
-	 * @param currentFinding
-	 *            the current finding
-	 */
 	public FindExtRefTableModel(Finding currentFinding) {
-		localFind = currentFinding;
+		super(currentFinding);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getColumnCount()
-	 */
-	@Override
-	public int getColumnCount() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getRowCount()
-	 */
 	@Override
 	public int getRowCount() {
 		return findingMgmt.getExtReferences(localFind).size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
 	@Override
 	public Object getValueAt(int row, int col) {
 		return findingMgmt.getExtReferences(localFind).get(row).getName();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
-	 */
 	@Override
 	public String getColumnName(int column) {
 		return translate("Files");

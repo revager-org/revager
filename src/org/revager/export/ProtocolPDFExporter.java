@@ -505,20 +505,14 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 				 * list the meetings of this review (for review protocols)
 				 */
 				for (Meeting m : meetings) {
-					int i = 0;
-
 					Protocol protocol = m.getProtocol();
-
 					if (protocol != null) {
 						String meetingDate = sdfDate.format(protocol.getDate().getTime());
 
 						String meetingTime = sdfTime.format(protocol.getStart().getTime()) + " - "
 								+ sdfTime.format(protocol.getEnd().getTime()) + " ["
 								+ protocol.getEnd().getTimeZone().getDisplayName() + "]";
-						;
-
 						String protLoc = protocol.getLocation();
-
 						if (protLoc.trim().equals("")) {
 							protLoc = "--";
 						}
@@ -544,18 +538,9 @@ public abstract class ProtocolPDFExporter extends PDFExporter {
 
 						tableInfos.addCell(cellMeet);
 					}
-
-					i++;
 				}
 			} else {
-				/*
-				 * list information of the meeting (for meeting protocols)
-				 */
 				Protocol prot = meetings.get(0).getProtocol();
-
-				/*
-				 * meeting duration
-				 */
 				Duration meetDur = DatatypeFactory.newInstance()
 						.newDuration(prot.getEnd().getTimeInMillis() - prot.getStart().getTimeInMillis());
 

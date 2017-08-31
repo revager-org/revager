@@ -280,6 +280,9 @@ public class Data {
 		list.add("Minor error");
 		translate("Minor error");
 
+		list.add("Rather no error");
+		translate("Rather no error");
+
 		list.add("Good");
 		translate("Good");
 
@@ -326,7 +329,7 @@ public class Data {
 	 * @return the list of default recommendations in the default language
 	 */
 	public static List<String> getDefLangRecommendations() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 
 		list.add("Accepted");
 		translate("Accepted");
@@ -355,7 +358,7 @@ public class Data {
 	 * @return list of default recommendations
 	 */
 	public static List<String> getDefaultRecommendations() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 
 		for (String rec : getDefLangRecommendations()) {
 			list.add(translate(rec));
@@ -400,7 +403,7 @@ public class Data {
 	 * @return list of default catalogs
 	 */
 	public static List<String> getDefaultCatalogs() {
-		List catalogs = new ArrayList<String>();
+		ArrayList<String> catalogs = new ArrayList<>();
 
 		String pathCatalogs = getInstance().getResource("path.catalogs") + getInstance().getLocale().getLanguage()
 				+ "/";

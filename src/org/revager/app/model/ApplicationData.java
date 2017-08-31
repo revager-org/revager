@@ -478,12 +478,20 @@ public class ApplicationData extends Observable {
 		ps.setString(2, AppSettingValue.FALSE.toString());
 		ps.executeUpdate();
 
+		ps.setString(1, AppSettingKey.APP_AUTO_OPEN_PRESENTATION_VIEW.toString());
+		ps.setString(2, AppSettingValue.TRUE.toString());
+		ps.executeUpdate();
+
 		ps.setString(1, AppSettingKey.APP_SHOW_PROTOCOL_WARNING.toString());
 		ps.setString(2, AppSettingValue.TRUE.toString());
 		ps.executeUpdate();
 
 		ps.setString(1, AppSettingKey.APP_PROTOCOL_WARNING_TIME.toString());
 		ps.setInt(2, 120);
+		ps.executeUpdate();
+
+		ps.setString(1, AppSettingKey.APP_FINDING_WARNING_TIME.toString());
+		ps.setInt(2, 3);
 		ps.executeUpdate();
 
 		ps.setString(1, AppSettingKey.APP_FONT_SIZE.toString());

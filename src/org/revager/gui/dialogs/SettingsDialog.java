@@ -88,6 +88,7 @@ public class SettingsDialog extends AbstractDialog {
 	private JCheckBox checkboxAutoSave = null;
 	private JCheckBox checkboxCheckUpdates = null;
 	private JCheckBox checkboxShowHints = null;
+	private JCheckBox checkboxAutoPresentationView = null;
 	private JCheckBox checkboxFullscreen = null;
 	private JCheckBox checkboxProtWarn = null;
 	private JCheckBox checkboxHighlightFields = null;
@@ -262,6 +263,15 @@ public class SettingsDialog extends AbstractDialog {
 		GUITools.addComponent(panelHighlightFields, gblHighlightFields, checkboxHighlightFields, 0, 0, 1, 1, 0.0, 0.0,
 				5, 20, 5, 0, GridBagConstraints.NONE, GridBagConstraints.WEST);
 
+		checkboxAutoPresentationView = new JCheckBox(
+				translate("Automatically open presentation view for data projector."));
+		checkboxAutoPresentationView.setFocusPainted(false);
+		GridBagLayout gblPresentationView = new GridBagLayout();
+		JPanel panelPresentationView = new JPanel(gblPresentationView);
+
+		GUITools.addComponent(panelPresentationView, gblPresentationView, checkboxAutoPresentationView, 0, 0, 1, 1, 0.0,
+				0.0, 5, 20, 5, 0, GridBagConstraints.NONE, GridBagConstraints.WEST);
+
 		/*
 		 * Allow usage of fullscreen mode
 		 */
@@ -376,9 +386,11 @@ public class SettingsDialog extends AbstractDialog {
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
 		GUITools.addComponent(panelGeneral, gblGeneral, panelFullscreen, 0, 4, 1, 1, 1.0, 1.0, 5, 5, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
-		GUITools.addComponent(panelGeneral, gblGeneral, panelProtWarn, 0, 5, 1, 1, 1.0, 1.0, 5, 5, 5, 5,
+		GUITools.addComponent(panelGeneral, gblGeneral, panelPresentationView, 0, 5, 1, 1, 1.0, 1.0, 5, 5, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
-		GUITools.addComponent(panelGeneral, gblGeneral, panelLanguage, 0, 6, 1, 1, 1.0, 1.0, 5, 5, 5, 5,
+		GUITools.addComponent(panelGeneral, gblGeneral, panelProtWarn, 0, 6, 1, 1, 1.0, 1.0, 5, 5, 5, 5,
+				GridBagConstraints.NONE, GridBagConstraints.WEST);
+		GUITools.addComponent(panelGeneral, gblGeneral, panelLanguage, 0, 7, 1, 1, 1.0, 1.0, 5, 5, 5, 5,
 				GridBagConstraints.NONE, GridBagConstraints.WEST);
 
 		/*
@@ -589,6 +601,12 @@ public class SettingsDialog extends AbstractDialog {
 				appData.setSettingValue(AppSettingKey.APP_ALLOW_FULLSCREEN, AppSettingValue.FALSE);
 			}
 
+			if (checkboxAutoPresentationView.isSelected()) {
+				appData.setSettingValue(AppSettingKey.APP_AUTO_OPEN_PRESENTATION_VIEW, AppSettingValue.TRUE);
+			} else {
+				appData.setSettingValue(AppSettingKey.APP_AUTO_OPEN_PRESENTATION_VIEW, AppSettingValue.FALSE);
+			}
+
 			if (checkboxProtWarn.isSelected()) {
 				appData.setSettingValue(AppSettingKey.APP_SHOW_PROTOCOL_WARNING, AppSettingValue.TRUE);
 
@@ -697,6 +715,12 @@ public class SettingsDialog extends AbstractDialog {
 				checkboxFullscreen.setSelected(true);
 			} else {
 				checkboxFullscreen.setSelected(false);
+			}
+
+			if (appData.getSettingValue(AppSettingKey.APP_AUTO_OPEN_PRESENTATION_VIEW) == AppSettingValue.FALSE) {
+				checkboxAutoPresentationView.setSelected(false);
+			} else {
+				checkboxAutoPresentationView.setSelected(true);
 			}
 
 			if (appData.getSettingValue(AppSettingKey.APP_SHOW_PROTOCOL_WARNING) == AppSettingValue.TRUE) {

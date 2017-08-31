@@ -9,6 +9,7 @@ package org.revager.app.model.schema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -54,7 +55,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "reviewType", propOrder = { "name", "description", "product", "attendees", "aspects", "severities",
 		"meetings", "impression", "recommendation", "comments" })
-public class Review {
+public class Review extends Observable {
 
 	@XmlElement(required = true)
 	protected String name;
@@ -308,6 +309,8 @@ public class Review {
 	 */
 	public void setImpression(String value) {
 		this.impression = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetImpression() {
@@ -333,6 +336,8 @@ public class Review {
 	 */
 	public void setRecommendation(String value) {
 		this.recommendation = value;
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetRecommendation() {

@@ -9,13 +9,18 @@ package org.revager.app.model.schema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.apache.commons.lang3.StringUtils;
+import org.revager.gamecontroller.FindingStatus;
 
 /**
  * A finding is some error or comment on the product in order of its examination
@@ -51,7 +56,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "findingType", propOrder = { "id", "severity", "description", "references", "aspects",
 		"externalReferences" })
-public class Finding {
+public class Finding extends Observable {
 
 	@XmlElement(required = true, type = String.class)
 	@XmlJavaTypeAdapter(Adapter4.class)
@@ -62,13 +67,23 @@ public class Finding {
 	@XmlElement(required = true)
 	protected String description;
 	@XmlElement(name = "reference")
-	protected List<String> references;
+	protected List<String> references = new ArrayList<>();
 	@XmlElement(name = "aspect")
-	protected List<String> aspects;
+	protected List<String> aspects = new ArrayList<>();
 	@XmlElement(name = "external-reference")
 	@XmlSchemaType(name = "anyURI")
-	protected List<String> externalReferences;
+	protected List<String> externalReferences = new ArrayList<>();
+	@XmlTransient
+	private final FindingStatus findingStatus = new FindingStatus();
 
+	/**
+	 * Can be called when the Finding is focused.
+	 */
+	public void focus() {
+		setChanged();
+		notifyObservers();
+	}
+	
 	/**
 	 * Gets the value of the id property.
 	 * 
@@ -112,7 +127,11 @@ public class Finding {
 	 * 
 	 */
 	public void setSeverity(String value) {
+		if (!StringUtils.equals(this.severity, value)) {
+			setChanged();
+		}
 		this.severity = value;
+		notifyObservers();
 	}
 
 	public boolean isSetSeverity() {
@@ -137,7 +156,11 @@ public class Finding {
 	 * 
 	 */
 	public void setDescription(String value) {
+		if (!StringUtils.equals(this.description, value)) {
+			setChanged();
+		}
 		this.description = value;
+		notifyObservers();
 	}
 
 	public boolean isSetDescription() {
@@ -163,14 +186,36 @@ public class Finding {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
-	 * 
-	 * 
 	 */
 	public List<String> getReferences() {
-		if (references == null) {
-			references = new ArrayList<String>();
-		}
 		return this.references;
+	}
+
+	public boolean addReference(String reference) {
+		if (!references.contains(reference)) {
+			references.add(reference);
+			setChanged();
+			notifyObservers();
+			return true;
+		}
+		return false;
+	}
+
+	public void removeReference(String ref) {
+		references.remove(ref);
+		setChanged();
+		notifyObservers();
+	}
+
+	public boolean updateReference(String oldReference, String newReference) {
+		if (references.contains(oldReference)) {
+			int index = references.lastIndexOf(oldReference);
+			references.set(index, newReference);
+			setChanged();
+			notifyObservers();
+			return true;
+		}
+		return false;
 	}
 
 	public boolean isSetReferences() {
@@ -200,14 +245,25 @@ public class Finding {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
-	 * 
-	 * 
 	 */
 	public List<String> getAspects() {
-		if (aspects == null) {
-			aspects = new ArrayList<String>();
-		}
 		return this.aspects;
+	}
+
+	public boolean addAspect(String aspect) {
+		if (!this.aspects.contains(aspect)) {
+			aspects.add(aspect);
+			setChanged();
+			notifyObservers();
+			return true;
+		}
+		return false;
+	}
+
+	public void removeAspect(String asp) {
+		aspects.remove(asp);
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetAspects() {
@@ -237,14 +293,21 @@ public class Finding {
 	 * 
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
-	 * 
-	 * 
 	 */
 	public List<String> getExternalReferences() {
-		if (externalReferences == null) {
-			externalReferences = new ArrayList<String>();
-		}
 		return this.externalReferences;
+	}
+
+	public void addExternalReferences(String extRefFile) {
+		externalReferences.add(extRefFile);
+		setChanged();
+		notifyObservers();
+	}
+
+	public void removeExternalReferences(String extRef) {
+		externalReferences.remove(extRef);
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean isSetExternalReferences() {
@@ -255,4 +318,9 @@ public class Finding {
 		this.externalReferences = null;
 	}
 
+	public FindingStatus getFindingStatus() {
+		return findingStatus;
+	}
+
 }
+

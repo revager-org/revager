@@ -20,66 +20,28 @@ package org.revager.gui.models;
 
 import static org.revager.app.model.Data.translate;
 
-import javax.swing.table.AbstractTableModel;
-
-import org.revager.app.Application;
-import org.revager.app.FindingManagement;
 import org.revager.app.model.schema.Finding;
 
 /**
  * The Class FindRefTableModel.
  */
 @SuppressWarnings("serial")
-public class FindRefTableModel extends AbstractTableModel {
-	private FindingManagement findingMgmt = Application.getInstance().getFindingMgmt();
-	private Finding localFind;
+public class FindRefTableModel extends AbstractFindingTableModel {
 
-	/**
-	 * Instantiates a new find ref table model.
-	 * 
-	 * @param currentFinding
-	 *            the current finding
-	 */
 	public FindRefTableModel(Finding currentFinding) {
-		localFind = currentFinding;
+		super(currentFinding);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getColumnCount()
-	 */
-	@Override
-	public int getColumnCount() {
-		return 1;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getRowCount()
-	 */
 	@Override
 	public int getRowCount() {
 		return findingMgmt.getReferences(localFind).size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		return findingMgmt.getReferences(localFind).get(arg0);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object,
-	 * int, int)
-	 */
 	@Override
 	public void setValueAt(Object insertion, int row, int column) {
 		String oldRef = this.getValueAt(row, 0).toString();
@@ -87,21 +49,11 @@ public class FindRefTableModel extends AbstractTableModel {
 		this.fireTableDataChanged();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
-	 */
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
-	 */
 	@Override
 	public String getColumnName(int column) {
 		return translate("References");

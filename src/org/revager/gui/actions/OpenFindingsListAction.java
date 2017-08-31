@@ -39,7 +39,11 @@ import org.revager.app.FindingManagement;
 import org.revager.app.MeetingManagement;
 import org.revager.app.ProtocolManagement;
 import org.revager.app.SeverityManagement;
+import org.revager.app.model.ApplicationData;
 import org.revager.app.model.Data;
+import org.revager.app.model.DataException;
+import org.revager.app.model.appdata.AppSettingKey;
+import org.revager.app.model.appdata.AppSettingValue;
 import org.revager.app.model.schema.Attendee;
 import org.revager.app.model.schema.Finding;
 import org.revager.app.model.schema.Meeting;
@@ -82,6 +86,20 @@ public class OpenFindingsListAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		GUITools.executeSwingWorker(new OpenProtocolFrameWorker());
+		openPresentationView();
+	}
+
+	private void openPresentationView() {
+		ApplicationData appData = Data.getInstance().getAppData();
+		AppSettingValue value;
+		try {
+			value = appData.getSettingValue(AppSettingKey.APP_AUTO_OPEN_PRESENTATION_VIEW);
+		} catch (DataException e1) {
+			value = AppSettingValue.TRUE;
+		}
+		if (value == AppSettingValue.TRUE) {
+			ActionRegistry.getInstance().get(OpenPresentationView.class.getName()).actionPerformed(null);
+		}
 	}
 
 	public void performActionDirectly() {

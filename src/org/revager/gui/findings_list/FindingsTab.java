@@ -6,18 +6,26 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.lang3.StringUtils;
 import org.revager.app.Application;
 import org.revager.app.FindingManagement;
 import org.revager.app.SeverityManagement;
@@ -31,10 +39,10 @@ public class FindingsTab extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
-	private SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
+	private transient FindingManagement findMgmt = Application.getInstance().getFindingMgmt();
+	private transient SeverityManagement sevMgmt = Application.getInstance().getSeverityMgmt();
 
-	private Protocol protocol = null;
+	private transient Protocol protocol = null;
 
 	private FindingPanel currentFindingPanel = null;
 
@@ -49,8 +57,8 @@ public class FindingsTab extends JPanel {
 	private JButton buttonAddFinding = new JButton(translate("Add Finding"));
 	private JLabel labelNumOfFindings = new JLabel();
 
-	private Map<Finding, Integer> gridBagPositions = new HashMap<Finding, Integer>();
-	private Map<Finding, FindingPanel> findingPanels = new HashMap<Finding, FindingPanel>();
+	private transient Map<Finding, Integer> gridBagPositions = new HashMap<>();
+	private transient Map<Finding, FindingPanel> findingPanels = new HashMap<>();
 
 	private int currentGridBagPosition = 0;
 
@@ -72,29 +80,21 @@ public class FindingsTab extends JPanel {
 		 */
 		JPanel panelFoot = new JPanel(new BorderLayout());
 
-		labelNumOfFindings.setFont(UI.PROTOCOL_FONT);
+		labelNumOfFindings.setFont(UI.VERY_LARGE_FONT);
 
 		buttonAddFinding.setIcon(Data.getInstance().getIcon("add_25x25.png"));
-		buttonAddFinding.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (currentFindingPanel != null) {
-					currentFindingPanel.storeFindingData();
-				}
-
-				// int listIdLastFinding =
-				// findMgmt.getNumberOfFindings(protocol) - 1;
-
-				// if (!findMgmt.isFindingEmpty(findMgmt.getFindings(protocol)
-				// .get(listIdLastFinding))) {
-				Finding newFind = new Finding();
-				findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
-				newFind = findMgmt.addFinding(newFind, protocol);
-
-				addFinding(newFind);
-				// }
+		buttonAddFinding.addActionListener(e -> {
+			if (currentFindingPanel != null) {
+				currentFindingPanel.storeFindingData();
 			}
+			Finding newFind = new Finding();
+			findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
+			newFind = findMgmt.addFinding(newFind, protocol);
+
+			addFinding(newFind);
 		});
+
+		addShortcuts();
 
 		panelFoot.setBorder(BorderFactory.createMatteBorder(5, 35, 5, 35, panelFoot.getBackground()));
 
@@ -112,6 +112,22 @@ public class FindingsTab extends JPanel {
 		}
 	}
 
+	private void addShortcuts() {
+		String actionName = "new-finding-shortcut";
+		Action action = new AbstractAction(actionName) {
+			private static final long serialVersionUID = -6152661043135947261L;
+
+			public void actionPerformed(ActionEvent e) {
+				buttonAddFinding.doClick();
+			}
+		};
+		action.putValue(Action.ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		buttonAddFinding.getActionMap().put(actionName, action);
+		buttonAddFinding.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+				.put((KeyStroke) action.getValue(Action.ACCELERATOR_KEY), actionName);
+	}
+
 	public Protocol getProtocol() {
 		return protocol;
 	}
@@ -123,45 +139,30 @@ public class FindingsTab extends JPanel {
 
 		labelNumOfFindings.setText(findMgmt.getNumberOfFindings(protocol) + " " + translate("Findings"));
 
-		/*
-		 * Update the tooltip
-		 */
-		Map<String, Integer> findingsSev = new HashMap<String, Integer>();
-
+		// Update the tooltip
+		Map<String, Integer> findingsSev = new HashMap<>();
 		for (Finding f : findMgmt.getFindings(protocol)) {
 			String severity = findMgmt.getLocalizedSeverity(f);
-
-			if (findingsSev.get(severity) == null) {
-				findingsSev.put(severity, 1);
-			} else {
-				findingsSev.put(severity, findingsSev.get(severity) + 1);
-			}
+			int severityCount = findingsSev.getOrDefault(severity, 0) + 1;
+			findingsSev.put(severity, severityCount);
 		}
 
-		String sevOverview = "";
-		String separator = "";
-
-		for (String s : sevMgmt.getSeverities()) {
-			if (findingsSev.get(s) != null) {
-				sevOverview = sevOverview + separator + findingsSev.get(s) + " x " + s;
-
-				separator = "; ";
+		List<String> severities = new ArrayList<>();
+		for (String severity : sevMgmt.getSeverities()) {
+			if (findingsSev.get(severity) != null) {
+				severities.add(findingsSev.get(severity) + " x " + severity);
 			}
 		}
+		labelNumOfFindings.setToolTipText(GUITools.getTextAsHtml(StringUtils.join(severities, "; ")));
 
-		labelNumOfFindings.setToolTipText(GUITools.getTextAsHtml(sevOverview));
-
-		/*
-		 * Update the button state
-		 */
+		// Update the button state
 		boolean isComplete = true;
-
 		for (Finding find : findMgmt.getFindings(protocol)) {
 			if (findMgmt.isFindingNotComplete(find)) {
 				isComplete = false;
+				break;
 			}
 		}
-
 		buttonAddFinding.setEnabled(isComplete);
 
 		UI.getInstance().getProtocolFrame().update(null, null);
@@ -193,7 +194,6 @@ public class FindingsTab extends JPanel {
 		currentGridBagPosition++;
 
 		GUITools.scrollToBottom(scrollFindingsList);
-		// panelFindingsList.scrollRectToVisible(currentFindingPanel.getBounds());
 
 		panelFindingsList.revalidate();
 
@@ -204,24 +204,18 @@ public class FindingsTab extends JPanel {
 		if (currentFindingPanel != null && currentFindingPanel.getFinding() == finding) {
 			return;
 		}
-
 		if (currentFindingPanel != null) {
 			currentFindingPanel.switchView();
 		}
-
 		currentFindingPanel = findingPanels.get(finding);
-
 		currentFindingPanel.switchView();
-
 		panelFindingsList.revalidate();
 	}
 
 	public void closeCurrentFinding() {
 		if (currentFindingPanel != null) {
 			currentFindingPanel.switchView();
-
 			currentFindingPanel = null;
-
 			panelFindingsList.revalidate();
 		}
 	}
@@ -229,30 +223,21 @@ public class FindingsTab extends JPanel {
 	public void removeCurrentFinding() {
 		if (currentFindingPanel != null) {
 			Finding currentFinding = currentFindingPanel.getFinding();
-
 			panelFindingsList.remove(currentFindingPanel);
-
 			currentFindingPanel = null;
-
 			gridBagPositions.remove(currentFinding);
 			findingPanels.remove(currentFinding);
-
 			findMgmt.removeFinding(currentFinding, protocol);
-
 			panelFindingsList.revalidate();
 		}
 
-		/*
-		 * Add new finding, if there are no findings present
-		 */
+		// Add new finding, if there are no findings present
 		if (findMgmt.getNumberOfFindings(protocol) == 0) {
 			Finding newFind = new Finding();
 			findMgmt.setLocalizedSeverity(newFind, sevMgmt.getSeverities().get(0));
 			newFind = findMgmt.addFinding(newFind, protocol);
-
 			addFinding(newFind);
 		}
-
 		updateTab();
 	}
 
@@ -262,10 +247,7 @@ public class FindingsTab extends JPanel {
 
 			int predecPos = -1;
 			int currPos = gridBagPositions.get(currentFindingPanel.getFinding());
-
-			/*
-			 * Find predecessor
-			 */
+			// Find predecessor
 			for (Finding find : gridBagPositions.keySet()) {
 				if (gridBagPositions.get(find) < currPos && gridBagPositions.get(find) > predecPos) {
 					predecPos = gridBagPositions.get(find);
@@ -308,9 +290,7 @@ public class FindingsTab extends JPanel {
 			int succPos = currentGridBagPosition + 1;
 			int currPos = gridBagPositions.get(currentFindingPanel.getFinding());
 
-			/*
-			 * Find successor
-			 */
+			// Find successor
 			for (Finding find : gridBagPositions.keySet()) {
 				if (gridBagPositions.get(find) > currPos && gridBagPositions.get(find) < succPos) {
 					succPos = gridBagPositions.get(find);
@@ -351,41 +331,6 @@ public class FindingsTab extends JPanel {
 			while (!findMgmt.isTopFinding(currentFindingPanel.getFinding(), protocol)) {
 				pushUpCurrentFinding();
 			}
-			/*
-			 * FindingPanel firstFindPanel = null;
-			 * 
-			 * int firstPos = currentGridBagPosition + 1; int currPos =
-			 * gridBagPositions .get(currentFindingPanel.getFinding());
-			 * 
-			 * 
-			 * 
-			 * for (Finding find : gridBagPositions.keySet()) { if
-			 * (gridBagPositions.get(find) < firstPos) { firstPos =
-			 * gridBagPositions.get(find); firstFindPanel =
-			 * findingPanels.get(find); } }
-			 * 
-			 * gridBagPositions.put(currentFindingPanel.getFinding(), firstPos);
-			 * gridBagPositions.put(firstFindPanel.getFinding(), currPos);
-			 * 
-			 * panelFindingsList.remove(currentFindingPanel);
-			 * panelFindingsList.remove(firstFindPanel);
-			 * 
-			 * GUITools.addComponent(panelFindingsList, layoutFindingsList,
-			 * currentFindingPanel, 0, firstPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-			 * GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-			 * GUITools.addComponent(panelFindingsList, layoutFindingsList,
-			 * firstFindPanel, 0, currPos, 1, 1, 1.0, 0.0, 5, 5, 5, 5,
-			 * GridBagConstraints.BOTH, GridBagConstraints.NORTHWEST);
-			 * 
-			 * findMgmt.pushTopFinding(currentFindingPanel.getFinding(),
-			 * protocol);
-			 * 
-			 * panelFindingsList.revalidate();
-			 * 
-			 * GUITools.scrollToTop(scrollFindingsList);
-			 * 
-			 * currentFindingPanel.updateFindingButtons();
-			 */
 		}
 	}
 

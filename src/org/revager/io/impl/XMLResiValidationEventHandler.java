@@ -18,9 +18,9 @@
  */
 package org.revager.io.impl;
 
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventHandler;
-import javax.xml.bind.ValidationEventLocator;
+import jakarta.xml.bind.ValidationEvent;
+import jakarta.xml.bind.ValidationEventHandler;
+import jakarta.xml.bind.ValidationEventLocator;
 
 /**
  * This class implements the ValidationEventHandler interface to provide an
@@ -36,7 +36,7 @@ public class XMLResiValidationEventHandler implements ValidationEventHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seejavax.xml.bind.ValidationEventHandler#handleEvent(javax.xml.bind.
+	 * @seejakarta.xml.bind.ValidationEventHandler#handleEvent(jakarta.xml.bind.
 	 * ValidationEvent)
 	 */
 	@Override

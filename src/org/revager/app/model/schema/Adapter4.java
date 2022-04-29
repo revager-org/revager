@@ -7,13 +7,13 @@
 
 package org.revager.app.model.schema;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class Adapter4 extends XmlAdapter<String, Integer> {
 
 	@Override
 	public Integer unmarshal(String value) {
-		return (javax.xml.bind.DatatypeConverter.parseInt(value));
+		return (jakarta.xml.bind.DatatypeConverter.parseInt(value));
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class Adapter4 extends XmlAdapter<String, Integer> {
 		if (value == null) {
 			return null;
 		}
-		return (javax.xml.bind.DatatypeConverter.printInt(value));
+		return (jakarta.xml.bind.DatatypeConverter.printInt(value));
 	}
 
 }

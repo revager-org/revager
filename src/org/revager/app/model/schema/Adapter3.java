@@ -9,13 +9,13 @@ package org.revager.app.model.schema;
 
 import java.util.Calendar;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class Adapter3 extends XmlAdapter<String, Calendar> {
 
 	@Override
 	public Calendar unmarshal(String value) {
-		return (javax.xml.bind.DatatypeConverter.parseTime(value));
+		return (jakarta.xml.bind.DatatypeConverter.parseTime(value));
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class Adapter3 extends XmlAdapter<String, Calendar> {
 		if (value == null) {
 			return null;
 		}
-		return (javax.xml.bind.DatatypeConverter.printTime(value));
+		return (jakarta.xml.bind.DatatypeConverter.printTime(value));
 	}
 
 }

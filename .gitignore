@@ -5,9 +5,20 @@
 
 # Package Files #
 *.jar
+!/lib/*.jar
 *.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /bin/
+
+# build artifacts
+/build/
+/dist/
+
+# unpacked archive files
+/lib-dev/launch4j/launch4j/**
+!/lib-dev/launch4j/launch4j-*.tgz
+!/lib-dev/launch4j/launch4j-*.zip
+

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Checklist for buying a used vehicle  (Author: Daniel Kulesz)</description>
+    <aspects>
+        <aspect>
+            <id>2683</id>
+            <category>Engine</category>
+            <directive>Engine gasket</directive>
+            <description>Is the engine smeared with oil? Are deposits on the oil pan, the spark plugs in the engine compartment or elsewhere? (in particular: valve cover gasket, Simmering for transmission)</description>
+        </aspect>
+        <aspect>
+            <id>2684</id>
+            <category>Engine</category>
+            <directive>Idle</directive>
+            <description>The engine should  run quietly and with constant speed (according to the vehicle specification).</description>
+        </aspect>
+        <aspect>
+            <id>2685</id>
+            <category>Engine</category>
+            <directive>Speed range</directive>
+            <description>Is it possible to run the engine until the specified speed range is reached?</description>
+        </aspect>
+        <aspect>
+            <id>2686</id>
+            <category>Engine</category>
+            <directive>Spark plugs</directive>
+            <description>How is the condition and the age? Is there any unburned carbon visible?</description>
+        </aspect>
+        <aspect>
+            <id>2687</id>
+            <category>Engine</category>
+            <directive>Engine oil</directive>
+            <description>How old is the oil? Is the oil level all right? Are deposits visible (e.g. coolant)?
+Hint: Look for white traces under the oil filler cap.</description>
+        </aspect>
+        <aspect>
+            <id>2688</id>
+            <category>Owner</category>
+            <directive>Willingness to negotiate</directive>
+            <description>Seems the owner to be consent to negotiate the price?</description>
+        </aspect>
+        <aspect>
+            <id>2689</id>
+            <category>Owner</category>
+            <directive>Car owner</directive>
+            <description>Is the seller the real car owner? Be careful with stolen goods or the like.</description>
+        </aspect>
+        <aspect>
+            <id>2690</id>
+            <category>Owner</category>
+            <directive>Duration of ownership</directive>
+            <description>Is the duration of ownership longer than a few months or even weeks? Be careful with too short periods!</description>
+        </aspect>
+        <aspect>
+            <id>2691</id>
+            <category>Owner</category>
+            <directive>Identity</directive>
+            <description>Is the seller the one he claims to be?</description>
+        </aspect>
+        <aspect>
+            <id>2692</id>
+            <category>Sale contract and formal things</category>
+            <directive>Chassis number</directive>
+            <description>Does the chassis number on the registration certificate match the real chassis number of the vehicle?</description>
+        </aspect>
+        <aspect>
+            <id>2693</id>
+            <category>Sale contract and formal things</category>
+            <directive>Completion of a contract</directive>
+            <description>Is the owner consent to sign a decent written sales contract?</description>
+        </aspect>
+        <aspect>
+            <id>2694</id>
+            <category>Sale contract and formal things</category>
+            <directive>Car keys</directive>
+            <description>Are there at least two working keys for the vehicle? You should check the engine immobilizer.</description>
+        </aspect>
+        <aspect>
+            <id>2695</id>
+            <category>Sale contract and formal things</category>
+            <directive>Car usage</directive>
+            <description>Has the vehicle been used for private purposes only? You should keep an eye on the corresponding part in the sales contract.</description>
+        </aspect>
+        <aspect>
+            <id>2696</id>
+            <category>Registration documents</category>
+            <directive>Authenticity</directive>
+            <description>Are the registration documents genuine?</description>
+        </aspect>
+        <aspect>
+            <id>2697</id>
+            <category>Registration documents</category>
+            <directive>Completeness of service history</directive>
+            <description>Is there a complete service history for the car?</description>
+        </aspect>
+        <aspect>
+            <id>2698</id>
+            <category>Registration documents</category>
+            <directive>Last service</directive>
+            <description>When was the car serviced the last time? Is there a bill for this service?</description>
+        </aspect>
+        <aspect>
+            <id>2699</id>
+            <category>Registration documents</category>
+            <directive>General inspection</directive>
+            <description>Is there the recent report of the last general inspection? Are there defects listed which have not been repaired?</description>
+        </aspect>
+        <aspect>
+            <id>2700</id>
+            <category>Registration documents</category>
+            <directive>Emissions test</directive>
+            <description>Is there the recent report of the last emissions test?</description>
+        </aspect>
+        <aspect>
+            <id>2701</id>
+            <category>Registration documents</category>
+            <directive>Security codes</directive>
+            <description>Are all the security codes (radio, ignition, ...) available?</description>
+        </aspect>
+        <aspect>
+            <id>2702</id>
+            <category>Skin</category>
+            <directive>Dents and scratches</directive>
+            <description>Has the vehicle visible dents or scratches?
+Hint: Look for scratches and dents from a distance.</description>
+        </aspect>
+        <aspect>
+            <id>2703</id>
+            <category>Skin</category>
+            <directive>Originality</directive>
+            <description>Is the car paint the original one? Have there been any reworks?
+Note: Can indicate an accident - possibly measure paint thickness!</description>
+        </aspect>
+        <aspect>
+            <id>2704</id>
+            <category>Skin</category>
+            <directive>Stone chip</directive>
+            <description>Are stone chips visible?</description>
+        </aspect>
+        <aspect>
+            <id>2705</id>
+            <category>Skin</category>
+            <directive>Glass</directive>
+            <description>Are all windows, side windows and mirrors all right (no major scratches, no stone chips)?</description>
+        </aspect>
+        <aspect>
+            <id>2706</id>
+            <category>Wheels</category>
+            <directive>Tread pattern</directive>
+            <description>Have the tires enough profile? (summer tires at least 1.6 mm, winter tires at least 4 mm)</description>
+        </aspect>
+        <aspect>
+            <id>2707</id>
+            <category>Wheels</category>
+            <directive>Age</directive>
+            <description>Aren't the tires older than 5 years?</description>
+        </aspect>
+        <aspect>
+            <id>2708</id>
+            <category>Wheels</category>
+            <directive>Flaws</directive>
+            <description>Are there cracks, scratches or other visible signs of wear or age?</description>
+        </aspect>
+        <aspect>
+            <id>2709</id>
+            <category>Wheels</category>
+            <directive>Tires manufacturer</directive>
+            <description>Are the tires from a reputable manufacturer, or are they cheap goods?</description>
+        </aspect>
+        <aspect>
+            <id>2710</id>
+            <category>Wheels</category>
+            <directive>Rims</directive>
+            <description>Are the rims free of cracks and rust?</description>
+        </aspect>
+        <aspect>
+            <id>2711</id>
+            <category>Wheels</category>
+            <directive>Hubcaps</directive>
+            <description>Are the hubcaps original and complete? Are any damages or scratches visible? Missing emblems?</description>
+        </aspect>
+        <aspect>
+            <id>2712</id>
+            <category>Rust</category>
+            <directive>Door frame</directive>
+            <description>Inner and outer edges</description>
+        </aspect>
+        <aspect>
+            <id>2713</id>
+            <category>Rust</category>
+            <directive>Tailgate and bootlid</directive>
+            <description>Be sure to check inside and under the rubber washer as well.</description>
+        </aspect>
+        <aspect>
+            <id>2714</id>
+            <category>Rust</category>
+            <directive>Sill</directive>
+            <description>Are the sills rusted?</description>
+        </aspect>
+        <aspect>
+            <id>2715</id>
+            <category>Rust</category>
+            <directive>Non-bearing car body parts</directive>
+            <description>e.g. fenders, bonnet (caution with permanently installed and not removable parts such as rear fender)</description>
+        </aspect>
+        <aspect>
+            <id>2716</id>
+            <category>Chassis</category>
+            <directive>Damper</directive>
+            <description>Are the shock absorbers all right? (dense, no bouncing, optical condition, ...)</description>
+        </aspect>
+        <aspect>
+            <id>2717</id>
+            <category>Chassis</category>
+            <directive>Springs</directive>
+            <description>Are all the springs all right?
+Hint: Listen for strange sounds.</description>
+        </aspect>
+        <aspect>
+            <id>2718</id>
+            <category>Chassis</category>
+            <directive>Suspension mounts</directive>
+            <description>Is bearing clearance or worn out bearing recognizable?</description>
+        </aspect>
+        <aspect>
+            <id>2719</id>
+            <category>Electronics</category>
+            <directive>Headlight and other lights</directive>
+            <description>Do all the lights work properly and are they bright enough?</description>
+        </aspect>
+        <aspect>
+            <id>2720</id>
+            <category>Electronics</category>
+            <directive>Car battery</directive>
+            <description>How old is the battery? Is the acid level all right? Is corrosion visible at the poles? Plus-pole coverage available?</description>
+        </aspect>
+        <aspect>
+            <id>2721</id>
+            <category>Electronics</category>
+            <directive>Direction indicator</directive>
+            <description>Do all of the indicators and hazard lights work? Is the flashing speed all right?</description>
+        </aspect>
+        <aspect>
+            <id>2722</id>
+            <category>Electronics</category>
+            <directive>Peripheral equipment</directive>
+            <description>Does all the electrical peripheral equipment work? (windows, sunroof, heated seats, ...)</description>
+        </aspect>
+        <aspect>
+            <id>2723</id>
+            <category>Electronics</category>
+            <directive>Radio</directive>
+            <description>Does the radio work (and media shank)? Is the reception ok? Are there signs of wear visible? Is the radio properly secured?</description>
+        </aspect>
+        <aspect>
+            <id>2724</id>
+            <category>Gear change</category>
+            <directive>Clutch</directive>
+            <description>Does the clutch work well?</description>
+        </aspect>
+        <aspect>
+            <id>2725</id>
+            <category>Gear change</category>
+            <directive>Leakproofness</directive>
+            <description>Is the transmission sealed?</description>
+        </aspect>
+        <aspect>
+            <id>2726</id>
+            <category>Gear change</category>
+            <directive>Ease of movement</directive>
+            <description>Can all the gears be switched with adequate resistance?</description>
+        </aspect>
+        <aspect>
+            <id>2727</id>
+            <category>Gear change</category>
+            <directive>Synchronizers</directive>
+            <description>Does the synchronization of the gears work properly (e.g. is it possible to switch to the second gear at 60 mph without using intermediate gas)?</description>
+        </aspect>
+        <aspect>
+            <id>2728</id>
+            <category>Gear change</category>
+            <directive>Oil level</directive>
+            <description>Is there enough oil in the gearbox?</description>
+        </aspect>
+        <aspect>
+            <id>2729</id>
+            <category>Cooling system</category>
+            <directive>Liquidity</directive>
+            <description>Is the liquid level all right? Are deposits (e.g. oil) visible? Is the amount of the coolant all right?</description>
+        </aspect>
+        <aspect>
+            <id>2730</id>
+            <category>Cooling system</category>
+            <directive>Heater</directive>
+            <description>Does the heater work well?</description>
+        </aspect>
+        <aspect>
+            <id>2731</id>
+            <category>Cooling system</category>
+            <directive>Leakproofness</directive>
+            <description>Are there any leaks on the hoses or on the connections visible? (Does anything drip? Are there any white deposites visible?)</description>
+        </aspect>
+        <aspect>
+            <id>2732</id>
+            <category>Cooling system</category>
+            <directive>Thermostat</directive>
+            <description>Is the thermostat all right?</description>
+        </aspect>
+        <aspect>
+            <id>2733</id>
+            <category>Cooling system</category>
+            <directive>Ventilators</directive>
+            <description>Does the engine ventilator turn on after a longer idle time?</description>
+        </aspect>
+        <aspect>
+            <id>2734</id>
+            <category>Brakes</category>
+            <directive>Liquidity</directive>
+            <description>Is the liquid level ok? How old is the liquid? Are there any bubbles visible?</description>
+        </aspect>
+        <aspect>
+            <id>2735</id>
+            <category>Brakes</category>
+            <directive>Discs and drums</directive>
+            <description>Are the brake drums and discs thick enough and not glassed? Is there much rust visible?</description>
+        </aspect>
+        <aspect>
+            <id>2736</id>
+            <category>Brakes</category>
+            <directive>Pads and shoes</directive>
+            <description>Do the brake pads and shoes have enough lining?</description>
+        </aspect>
+        <aspect>
+            <id>2737</id>
+            <category>Brakes</category>
+            <directive>Balance</directive>
+            <description>Does the vehicle brake evenly, or does it break out to the side?</description>
+        </aspect>
+        <aspect>
+            <id>2738</id>
+            <category>Brakes</category>
+            <directive>Leakproofness</directive>
+            <description>Is the braking system ok?</description>
+        </aspect>
+        <aspect>
+            <id>2739</id>
+            <category>Brakes</category>
+            <directive>Connections and hoses</directive>
+            <description>Are the brake lines free of corrosion? Are the brake hose porous or old?</description>
+        </aspect>
+    </aspects>
+</catalog>

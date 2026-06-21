@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Catalog example</description>
+    <aspects>
+        <aspect>
+            <id>2585</id>
+            <category>Completeness</category>
+            <directive>Introduction</directive>
+            <description>Introduction (purpose of the document, audience, name of the product, overview of the document, restrictions)</description>
+        </aspect>
+        <aspect>
+            <id>2586</id>
+            <category>Completeness</category>
+            <directive>Use Cases / Processes</directive>
+            <description>Use Cases / Processes (Is the expected behaviour specified for every possible input? Are all processes which have been detected in the problem analysis covered by the use cases?)</description>
+        </aspect>
+        <aspect>
+            <id>2587</id>
+            <category>Completeness</category>
+            <directive>Statements about quality</directive>
+            <description>Statements about the following qualities: usability, security, maintainability, portability, performance requirements  (runtime and ressource consumption)</description>
+        </aspect>
+        <aspect>
+            <id>2588</id>
+            <category>Completeness</category>
+            <directive>Numerical data</directive>
+            <description>Numerical data (e.g. number of users, size and complexity of the data)</description>
+        </aspect>
+        <aspect>
+            <id>2589</id>
+            <category>Completeness</category>
+            <directive>User interface</directive>
+            <description>User interface (for all actors)</description>
+        </aspect>
+        <aspect>
+            <id>2590</id>
+            <category>Completeness</category>
+            <directive>Statements about the systems environment/actors</directive>
+            <description>Statements about the systems environment/actors (knowledge, skills)</description>
+        </aspect>
+        <aspect>
+            <id>2591</id>
+            <category>Completeness</category>
+            <directive>Restrictions for the design and the implementation</directive>
+            <description>Design and implementation restrictions (statements about development tools and environment, work environment (hardware, software, operating system))</description>
+        </aspect>
+        <aspect>
+            <id>2592</id>
+            <category>Completeness</category>
+            <directive>Extensibility of the system</directive>
+            <description>Extensibility of the system (requirements for further versions of the system)</description>
+        </aspect>
+        <aspect>
+            <id>2593</id>
+            <category>General characteristics of the entire specification</category>
+            <directive>Conflicting statements</directive>
+            <description>Are there any conflicting statements in the specification?</description>
+        </aspect>
+        <aspect>
+            <id>2594</id>
+            <category>General characteristics of the entire specification</category>
+            <directive>Grouping of use cases</directive>
+            <description>Is the grouping of use cases in the use case diagrams based on verifiable criteria?</description>
+        </aspect>
+        <aspect>
+            <id>2595</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Actors in use cases</directive>
+            <description>Are the actors really actors in the sense of the use case paradigm?</description>
+        </aspect>
+        <aspect>
+            <id>2596</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Actions und reactions</directive>
+            <description>Does each Use-Case describe a sequence of actions and reactions between the system and the actor?</description>
+        </aspect>
+        <aspect>
+            <id>2597</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Description of each component in the diagram</directive>
+            <description>Is there a description for each component in the diagrams (use case, actors, system, use case diagram)?</description>
+        </aspect>
+        <aspect>
+            <id>2598</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Requirements recognizable</directive>
+            <description>Is every requirement recognizable as requirement, so that it is distinguishable from other requirements, descriptions, facts, examples, ... ?</description>
+        </aspect>
+        <aspect>
+            <id>2599</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Clear statements</directive>
+            <description>Are the statements of the specification clear? Are all potentially ambiguous terms defined in the glossary?</description>
+        </aspect>
+        <aspect>
+            <id>2600</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Terms of the glossary</directive>
+            <description>Are the terms used which are defined in the glossary? Aren't any synonyms for this terms used? Is the context of the terms correct?</description>
+        </aspect>
+        <aspect>
+            <id>2601</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Verifiability of the statements</directive>
+            <description>Are all statements and use cases written in a way that they can be verified? Is it possible to create a test case for each requirement?</description>
+        </aspect>
+        <aspect>
+            <id>2602</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Correctness of the statements</directive>
+            <description>Are the described requirements and use cases correct? Do they correspond to the problem analysis?</description>
+        </aspect>
+        <aspect>
+            <id>2603</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Error handling</directive>
+            <description>Are the alternatives, possible errors and exceptions defined for every use case?</description>
+        </aspect>
+        <aspect>
+            <id>2604</id>
+            <category>Properties of individual components of the specification</category>
+            <directive>Spelling</directive>
+            <description>Is the spelling and punctuation correct?</description>
+        </aspect>
+    </aspects>
+</catalog>

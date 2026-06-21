@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$" dumb="true">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+  </component>
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/lib/derby.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/iText-2.1.7.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/commons-lang3-3.6.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib-dev/junit-4.7.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/lablib-checkboxtree-3.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jinput-2.0.7.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jutils-1.0.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/swingx-1.6.1.jar!/" />
+    <libelement value="file://$MODULE_DIR$/lib/jinput-native-files" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+    </src_description>
+  </component>
+</module>

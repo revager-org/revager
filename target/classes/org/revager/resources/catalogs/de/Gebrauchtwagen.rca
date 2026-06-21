@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Checkliste zum Kauf eines gebrauchten Fahrzeugs (Autor: Daniel Kulesz)</description>
+    <aspects>
+        <aspect>
+            <id>317</id>
+            <category>Motor</category>
+            <directive>Dichtheit</directive>
+            <description>Ist der Motor ölverschmiert? Sind Ablagerungen an der Ölwanne, an den Zündkerzen oder anderswo im Motorraum erkennbar? (hier insbesondere: Ventildeckeldichtung, Simmering zum Getriebe)</description>
+        </aspect>
+        <aspect>
+            <id>318</id>
+            <category>Motor</category>
+            <directive>Leerlauf</directive>
+            <description>Der Motor sollte ruhig und mit konstanter Drehzahl (lt. Fahrzeugspezifikation) laufen.</description>
+        </aspect>
+        <aspect>
+            <id>320</id>
+            <category>Motor</category>
+            <directive>Drehband</directive>
+            <description>Lässt sich der Motor bis zum spezifizierten Drehzahlbereich ausdrehen? (sonst evtl. Nockenwelle verschlissen)</description>
+        </aspect>
+        <aspect>
+            <id>369</id>
+            <category>Motor</category>
+            <directive>Zündkerzen</directive>
+            <description>Wie ist der Zustand und das Alter? Ist Ruß erkennbar?</description>
+        </aspect>
+        <aspect>
+            <id>370</id>
+            <category>Motor</category>
+            <directive>Öl</directive>
+            <description>Wie alt ist das Öl? Stimmt der Ölstand? Sind Ablagerungen (z.B. Kühlmittel) erkennbar? (Tipp: unter dem Einfülldecken nach weissen Spuren schauen)</description>
+        </aspect>
+        <aspect>
+            <id>321</id>
+            <category>Besitzer</category>
+            <directive>Besichtigungsort</directive>
+            <description>Ist der Besichtigungsort vertrauenserweckend? (Vorsicht bei Tiefgaragen und verlassenen Industriegebieten!)</description>
+        </aspect>
+        <aspect>
+            <id>322</id>
+            <category>Besitzer</category>
+            <directive>Handelsbereitschaft</directive>
+            <description>Signalisiert der Besitzer was den Preis angeht grundsätzlich Handelsbereitschaft?</description>
+        </aspect>
+        <aspect>
+            <id>324</id>
+            <category>Besitzer</category>
+            <directive>Wirklicher Halter</directive>
+            <description>Ist der aktuelle Besitzer tatsächlich Halter des angebotenen Fahrzeugs? (Vorsicht bei &quot;Schwiegersöhnen&quot; und Opa-Fahrzeugen mit Sportauspuff o.ä.)</description>
+        </aspect>
+        <aspect>
+            <id>325</id>
+            <category>Besitzer</category>
+            <directive>Haltedauer</directive>
+            <description>Besitzt der aktuelle Halter das Fahrzeug eine angemessene Zeit? (Vorsicht bei kurzer Haltedauer von wenigen Monaten oder gar Wochen!)</description>
+        </aspect>
+        <aspect>
+            <id>328</id>
+            <category>Besitzer</category>
+            <directive>Identität</directive>
+            <description>Ist der Besitzer tatsächlich der, als der er sich angibt? (Ausweis verlangen!)</description>
+        </aspect>
+        <aspect>
+            <id>329</id>
+            <category>Kaufvertrag und Formales</category>
+            <directive>Fahrgestellnummer</directive>
+            <description>Stimmt die Fahrgestellnummer im Fahrzeugschein mit der echten Fahrgestellnummer des Fahrzeugs überein?</description>
+        </aspect>
+        <aspect>
+            <id>332</id>
+            <category>Kaufvertrag und Formales</category>
+            <directive>Vertragsabschluss</directive>
+            <description>Ist der Besitzer bereit, einen anständigen schriftlichen Kaufvertrag abzuschließen?</description>
+        </aspect>
+        <aspect>
+            <id>333</id>
+            <category>Kaufvertrag und Formales</category>
+            <directive>Schlüssel</directive>
+            <description>Existieren für das Fahrzeug mindestens zwei funktionierende Schlüssel? (Achtung: Ggf. Wegfahrsperre prüfen!)</description>
+        </aspect>
+        <aspect>
+            <id>334</id>
+            <category>Kaufvertrag und Formales</category>
+            <directive>Gewerbliche Nutzung</directive>
+            <description>Wurde das Fahrzeug nur privat genutzt? (Vorsicht wenn das Fahrzeug angeblich nur privat genutzt wurde, der Verkäufer das entsprechende Feld aber nicht ankreuzen will)</description>
+        </aspect>
+        <aspect>
+            <id>335</id>
+            <category>Papiere</category>
+            <directive>Authenzität</directive>
+            <description>Sind die Papiere echt?</description>
+        </aspect>
+        <aspect>
+            <id>336</id>
+            <category>Papiere</category>
+            <directive>Scheckheftvollständigkeit</directive>
+            <description>Wurde ein ausführliches Scheckheft für das Fahrzeug gepflegt?</description>
+        </aspect>
+        <aspect>
+            <id>337</id>
+            <category>Papiere</category>
+            <directive>Letzte Inspektion</directive>
+            <description>Wann fand die letzte Inspektion statt? Gibt es hierzu eine Rechnung, die die durchgeführten Arbeiten dokumentiert? (Mit Herstellervorgaben vergleichen)</description>
+        </aspect>
+        <aspect>
+            <id>352</id>
+            <category>Papiere</category>
+            <directive>HU</directive>
+            <description>Letzter HU Bericht vorhanden? Sind Mängel aufgeführt, die u.U. nicht behoben wurden?</description>
+        </aspect>
+        <aspect>
+            <id>353</id>
+            <category>Papiere</category>
+            <directive>AU</directive>
+            <description>Letzter Bericht vorhanden?</description>
+        </aspect>
+        <aspect>
+            <id>354</id>
+            <category>Papiere</category>
+            <directive>Sicherheitscodes</directive>
+            <description>Sind alle Sicherheitscodes (Radio, Zündung, ...) vorhanden?</description>
+        </aspect>
+        <aspect>
+            <id>338</id>
+            <category>Aussenhaut</category>
+            <directive>Dellen und Kratzer</directive>
+            <description>Hat das Fahrzeug sichtbare Dellen oder Kratzer? (Tipp: auch von etwas weiter weg betrachten)</description>
+        </aspect>
+        <aspect>
+            <id>339</id>
+            <category>Aussenhaut</category>
+            <directive>Originalität</directive>
+            <description>Ist der Lack original? Wurden seitdem Lackierarbeiten vorgenommen? (Achtung: Könnte auf Unfall hindeuten! - ggf. Lackdicke messen)</description>
+        </aspect>
+        <aspect>
+            <id>340</id>
+            <category>Aussenhaut</category>
+            <directive>Steinschlag</directive>
+            <description>Sind Anzeichen von Steinschlag sichtbar?</description>
+        </aspect>
+        <aspect>
+            <id>341</id>
+            <category>Aussenhaut</category>
+            <directive>Glas</directive>
+            <description>Sind alle Scheiben, Seitenfenster und Spiegel in Ordnung? (keine größeren Kratzer, kein Steinschlag)</description>
+        </aspect>
+        <aspect>
+            <id>342</id>
+            <category>Räder</category>
+            <directive>Profil</directive>
+            <description>Haben die Räder ausreichend Profil? (Sommerreifen mind. 1,6mm, Winterreifen mind. 4mm)</description>
+        </aspect>
+        <aspect>
+            <id>343</id>
+            <category>Räder</category>
+            <directive>Alter</directive>
+            <description>Sind die Reifen jünger als 5 Jahre?</description>
+        </aspect>
+        <aspect>
+            <id>344</id>
+            <category>Räder</category>
+            <directive>Risse</directive>
+            <description>Sind Risse, Kratzer oder ähnliche Alters- oder Nutzungsspuren sichtbar?</description>
+        </aspect>
+        <aspect>
+            <id>345</id>
+            <category>Räder</category>
+            <directive>Hersteller</directive>
+            <description>Stammt die Bereifung von einem seriösen Hersteller, oder handelt es sich um Billigware oder runderneuerte Reifen?</description>
+        </aspect>
+        <aspect>
+            <id>346</id>
+            <category>Räder</category>
+            <directive>Felgen</directive>
+            <description>Sind die Felgen frei von Kratzern oder Rost?</description>
+        </aspect>
+        <aspect>
+            <id>347</id>
+            <category>Räder</category>
+            <directive>Raddeckel</directive>
+            <description>Sind die Raddeckel original und komplett? Sind Beschädigungen oder Kratzer sichtbar? Fehlen evtl. Embleme?</description>
+        </aspect>
+        <aspect>
+            <id>348</id>
+            <category>Rost</category>
+            <directive>Türkanten</directive>
+            <description>Innen- und Aussenkanten</description>
+        </aspect>
+        <aspect>
+            <id>349</id>
+            <category>Rost</category>
+            <directive>Heckklappe / Kofferraumdeckel</directive>
+            <description>Unbedingt auch innen und unter dem Scheibengummi prüfen</description>
+        </aspect>
+        <aspect>
+            <id>350</id>
+            <category>Rost</category>
+            <directive>Schweller</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>351</id>
+            <category>Rost</category>
+            <directive>Nicht-tragende Karosserieteile</directive>
+            <description>z.B. Kotflügel, Motorhaube (Vorsicht bei fest verbauten und nicht demontierbaren Teilen, wie z.B. hinterer Kotflügel)</description>
+        </aspect>
+        <aspect>
+            <id>355</id>
+            <category>Fahrwerk</category>
+            <directive>Stoßdämpfer</directive>
+            <description>Sind die Stoßdämpfer in Ordnung? (dicht, kein Nachfedern, optischer Zustand ...)</description>
+        </aspect>
+        <aspect>
+            <id>356</id>
+            <category>Fahrwerk</category>
+            <directive>Federn</directive>
+            <description>Sind alle Federn ganz und nicht gebrochen? (Auf Knarzgeräusche achten)</description>
+        </aspect>
+        <aspect>
+            <id>357</id>
+            <category>Fahrwerk</category>
+            <directive>Lager</directive>
+            <description>Sind Lagerspiel oder ausgeschlagene Lager erkennbar?</description>
+        </aspect>
+        <aspect>
+            <id>359</id>
+            <category>Elektrik</category>
+            <directive>Funktion Licht</directive>
+            <description>Funktionieren alle Lichter und sind ausreichend hell?</description>
+        </aspect>
+        <aspect>
+            <id>360</id>
+            <category>Elektrik</category>
+            <directive>Batterie</directive>
+            <description>Wie alt ist die Batterie? Ist der Säurestand in Ordnung? Korrossion an den Polen sichtbar? Plus-Pol Abdeckung vorhanden?</description>
+        </aspect>
+        <aspect>
+            <id>361</id>
+            <category>Elektrik</category>
+            <directive>Blinker</directive>
+            <description>Funktionieren alle Blinker und der Warnblinker? Stimmt die Blinkgeschwindigkeit?</description>
+        </aspect>
+        <aspect>
+            <id>362</id>
+            <category>Elektrik</category>
+            <directive>Zusatzausstattung</directive>
+            <description>Funktioniert sämtliche elektrische Zusatzausstattung? (Fensterheber, Schiebedach, Sitzheizung ...)</description>
+        </aspect>
+        <aspect>
+            <id>363</id>
+            <category>Elektrik</category>
+            <directive>Radio</directive>
+            <description>Funktioniert das Radio? (auch der Medienschaft) Ist der Empfang in Ordnung? Sind stärkere Gebrauchsspuren sichtbar? Ist das Radio ordnungsgemäß befestigt?</description>
+        </aspect>
+        <aspect>
+            <id>364</id>
+            <category>Schaltung</category>
+            <directive>Kupplung</directive>
+            <description>Trennt die Kupplung sauber?</description>
+        </aspect>
+        <aspect>
+            <id>365</id>
+            <category>Schaltung</category>
+            <directive>Dichtheit</directive>
+            <description>Ist das Getriebe dicht?</description>
+        </aspect>
+        <aspect>
+            <id>366</id>
+            <category>Schaltung</category>
+            <directive>Leichtgängigkeit</directive>
+            <description>Lassen sich alle Gänge mit üblichem Widerstand schalten?</description>
+        </aspect>
+        <aspect>
+            <id>367</id>
+            <category>Schaltung</category>
+            <directive>Synchronisatoren</directive>
+            <description>Funktioniert die Synchronisierung der Gänge ordnungsgemäß? (z.B. bei 60km/h in den zweiten Gang ohne Zwischengas schalten)</description>
+        </aspect>
+        <aspect>
+            <id>368</id>
+            <category>Schaltung</category>
+            <directive>Ölstand</directive>
+            <description>Ist ausreichend Getriebe im Öl vorhanden?</description>
+        </aspect>
+        <aspect>
+            <id>371</id>
+            <category>Kühlsystem</category>
+            <directive>Flüssigkeit</directive>
+            <description>Stimmt der Füllstand der Flüssigkeit? Sind Ablagerungen (z.B. Öl) sichtbar? Stimmt der werksteitig vorgeschriebene Kühlmittelanteil?</description>
+        </aspect>
+        <aspect>
+            <id>372</id>
+            <category>Kühlsystem</category>
+            <directive>Heizung</directive>
+            <description>funktioniert die Heizung ordnungsgemäß und stark?</description>
+        </aspect>
+        <aspect>
+            <id>373</id>
+            <category>Kühlsystem</category>
+            <directive>Dichtheit</directive>
+            <description>Sind Lecks an Schläuchen oder Verbindungen erkennbar? (Tropft etwas oder sind weisse Spuren erkennbar?)</description>
+        </aspect>
+        <aspect>
+            <id>374</id>
+            <category>Kühlsystem</category>
+            <directive>Thermostat</directive>
+            <description>Funktioniert der Thermostat ordnungsgemäß?</description>
+        </aspect>
+        <aspect>
+            <id>375</id>
+            <category>Kühlsystem</category>
+            <directive>Ventilator</directive>
+            <description>Geht der Motorventilator bei längerer Standzeit an?</description>
+        </aspect>
+        <aspect>
+            <id>376</id>
+            <category>Bremsen</category>
+            <directive>Flüssigkeit</directive>
+            <description>Stimmt der Füllstand? Wie alt ist die Flüssigkeit? Sind Bläschen erkennbar?</description>
+        </aspect>
+        <aspect>
+            <id>377</id>
+            <category>Bremsen</category>
+            <directive>Scheiben und Trommeln</directive>
+            <description>Sind die Bremsscheiben und Trommeln ausreichend dick und nicht verglast? Sind stärkere Rostspuren erkennbar?</description>
+        </aspect>
+        <aspect>
+            <id>378</id>
+            <category>Bremsen</category>
+            <directive>Klötze und Backen</directive>
+            <description>Haben die Bremsklötze und Bremsbacken ausreichend Belagdicke?</description>
+        </aspect>
+        <aspect>
+            <id>380</id>
+            <category>Bremsen</category>
+            <directive>Balance</directive>
+            <description>Bremst das Fahrzeug gleichmäßig, oder bricht es zur Seite aus?</description>
+        </aspect>
+        <aspect>
+            <id>382</id>
+            <category>Bremsen</category>
+            <directive>Dichtheit</directive>
+            <description>Ist das Bremssystem dicht?</description>
+        </aspect>
+        <aspect>
+            <id>383</id>
+            <category>Bremsen</category>
+            <directive>Leitungen und Schläuche</directive>
+            <description>Sind die Bremsleitungen frei von Korrosion? Sind die Bremsschläuche porös oder alt?</description>
+        </aspect>
+    </aspects>
+</catalog>

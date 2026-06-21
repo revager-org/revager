@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<review xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.team-neos.de/site/sites/default/files/Resi%20XML%20Schema%20-%20V1.3%20Maiensas.xsd">
+    <name>Review der Spezifikation XYZ</name>
+    <description>Es wird die Spezifikation XYZ des Projekts ABC begutachtet.</description>
+    <product>
+        <name>Spezifikation XYZ</name>
+        <reference>im Konfigurationsmanagement</reference>
+        <reference>svn://subversion.repository.de/project_007/spezi.pdf</reference>
+        <version>1.0 Beta 2</version>
+    </product>
+    <attendee>
+        <id>1</id>
+        <name>Hans Müller</name>
+        <contact>eMail: Hans.Mueller@company.de; Tel: 0711-123455667</contact>
+        <role>reviewer</role>
+        <aspects>
+            <aspect-id>1</aspect-id>
+        </aspects>
+    </attendee>
+    <attendee>
+        <id>2</id>
+        <name>Heinz Faller</name>
+        <contact>eMail: Heinz.Faller@aeb.de; Tel: 0711-123455688</contact>
+        <role>reviewer</role>
+        <aspects>
+            <aspect-id>1</aspect-id>
+            <aspect-id>2</aspect-id>
+        </aspects>
+    </attendee>
+    <aspect>
+        <id>1</id>
+        <category>Grafische Oberfläche</category>
+        <directive>Sind alle Use-Cases beschrieben?</directive>
+        <description>Wenn ein Use-Case angegeben wurde, dann muss er auch beschrieben werden. Falls nicht, dann ist die Spezifikation unvollständig.</description>
+    </aspect>
+    <aspect>
+        <id>2</id>
+        <category>Grafische Oberfläche</category>
+        <directive>Ist alles richtig?</directive>
+        <description>Bla...</description>
+    </aspect>
+    <severities>
+        <severity>Kritischer Fehler</severity>
+        <severity>Hauptfehler</severity>
+        <severity>Nebenfehler</severity>
+    </severities>
+    <meeting>
+        <planned-date>2009-02-16+01:00</planned-date>
+        <planned-start>09:00:00+01:00</planned-start>
+        <planned-end>11:00:00+01:00</planned-end>
+        <planned-location>Sitzungsraum 255</planned-location>
+        <protocol>
+            <date>2009-02-16+01:00</date>
+            <start>09:34:00+01:00</start>
+            <end>11:31:00+01:00</end>
+            <location>Sitzungsraum 255</location>
+            <attendee>
+                <attendee>1</attendee>
+                <preparation-time>PT0H45M</preparation-time>
+            </attendee>
+            <attendee>
+                <attendee>2</attendee>
+                <preparation-time>PT1H15M</preparation-time>
+            </attendee>
+            <finding>
+                <id>1</id>
+                <severity>Nebenfehler</severity>
+                <description>Rechtschreibfehler: &quot;dass&quot; statt &quot;das&quot;</description>
+                <reference>Seite 23, zweiter Abschnitt, erster Satz</reference>
+                <aspect>Aspekt bla</aspect>
+                <aspect>Aspekt blub</aspect>
+                <aspect>Aspekt blabla</aspect>
+            </finding>
+            <finding>
+                <id>2</id>
+                <severity>Nebenfehler</severity>
+                <description>Rechtschreibfehler: &quot;dass&quot; statt &quot;das&quot;</description>
+                <reference>Seite 23, Zeile 6</reference>
+                <aspect>Ein Aspekt</aspect>
+            </finding>
+            <comments>Herr XYZ über die Sitzung benachrichtigen.</comments>
+        </protocol>
+        <canceled>Sitzung abgesagt, da alle Gutachter nicht kommen können.</canceled>
+        <comments>Es gab hitzige Diskussionen wegen den Rechtschreibfehlern des Kapitel 9.</comments>
+    </meeting>
+    <impression>Prüfling macht einen sehr soliden Eindruck.</impression>
+    <recommendation>Akzeptiert mit Änderungen. Keine fatalen Fehler im Prüfling vorhanden, lediglich kleinere Ausbesserungen sind nötig.</recommendation>
+    <comments>Wegen engem Zeitplan, sollte das Review möglichst innerhalb von einer Sitzung durchgeführt werden.</comments>
+</review>

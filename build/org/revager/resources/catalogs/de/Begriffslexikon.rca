@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Eine einfache Checkliste zur Prüfung eines Begriffslexikons in einer Spezifikation</description>
+    <aspects>
+        <aspect>
+            <id>181</id>
+            <category>Auswahl</category>
+            <directive>Notwendigkeit</directive>
+            <description>Der Begriff wird vom Kunden anders oder nur eingeschränkt verstanden. (Anmerkung: Die Aufnahme von Begriffen, die direkt auch so im Lexikon stehen, sind unnötig.)</description>
+        </aspect>
+        <aspect>
+            <id>182</id>
+            <category>Auswahl</category>
+            <directive>Mehrdeutigkeit</directive>
+            <description>Der Begriff ist potentiell mehrdeutig und kann von unterschiedlichen Parteien unterschiedlich verstanden werden.</description>
+        </aspect>
+        <aspect>
+            <id>180</id>
+            <category>Beschreibung</category>
+            <directive>Korrektheit Bedeutung</directive>
+            <description>Die Beschreibung spiegelt die Bedeutung des Begriffs aus Sicht und im Kontext des Kunden wieder.</description>
+        </aspect>
+        <aspect>
+            <id>184</id>
+            <category>Beschreibung</category>
+            <directive>Anforderungsferne</directive>
+            <description>Die Beschreibung enthält keine Anforderungen an das künftige System. (Hinweis: Anforderungen gehören in den Hauptteil der Spezifikation.)</description>
+        </aspect>
+        <aspect>
+            <id>185</id>
+            <category>Beschreibung</category>
+            <directive>Orientierung Ist-Zustand</directive>
+            <description>Die Beschreibung orientiert sich an einem Zustand, in dem das künftige System noch nicht existiert.</description>
+        </aspect>
+        <aspect>
+            <id>186</id>
+            <category>Beschreibung</category>
+            <directive>Vollständigkeit</directive>
+            <description>Die Beschreibung gibt alle wesentlichen Merkmale des Begriffs vollständig wider.</description>
+        </aspect>
+        <aspect>
+            <id>187</id>
+            <category>Querverweise</category>
+            <directive>Sinnhaftigkeit</directive>
+            <description>Der Hauptteil des Begriffseintrags nimmt Bezug auf den referenzierten anderen Begriff.</description>
+        </aspect>
+        <aspect>
+            <id>188</id>
+            <category>Querverweise</category>
+            <directive>Vorhandensein</directive>
+            <description>Der referenzierte Begriff existiert im Begriffslexikon</description>
+        </aspect>
+        <aspect>
+            <id>189</id>
+            <category>Unklarheiten</category>
+            <directive>Rechtfertigung</directive>
+            <description>Die Unklarheit wird nicht an anderer Stelle der Spezifikation oder in einem anderen Eintrag des Begriffslexikons bereits geklärt.</description>
+        </aspect>
+        <aspect>
+            <id>191</id>
+            <category>Bezeichnung</category>
+            <directive>Identifizierbarkeit</directive>
+            <description>Die dargestellte Bezeichnung erlaubt die eindeutige Identifizierbarkeit eines Vorkommens dieses Begriffs und die Unterscheidbarkeit gegenüber einem anderen Vorkommen.</description>
+        </aspect>
+        <aspect>
+            <id>194</id>
+            <category>Allgemein</category>
+            <directive>Vollständigkeit</directive>
+            <description>Das Begriffslexikon enthält alle im Kontext des Kunden wichtigen Begriffe.</description>
+        </aspect>
+        <aspect>
+            <id>195</id>
+            <category>Allgemein</category>
+            <directive>Sortierung</directive>
+            <description>Die Begriffe im Begriffslexikon sind alphabetisch sortiert.</description>
+        </aspect>
+    </aspects>
+</catalog>

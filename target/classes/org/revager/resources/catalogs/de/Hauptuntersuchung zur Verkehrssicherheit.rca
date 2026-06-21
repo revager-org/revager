@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog xmlns="http://www.informatik.uni-stuttgart.de/iste/se" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.informatik.uni-stuttgart.de/iste/se http://www.revager.org/application/Resi%20XML%20Schema%20-%20V1.4%20Fengg.xsd">
+    <description>Pflichtuntersuchungengem.  §29 Abs. 1 STVZO; Beispiele für Ergänzungsuntersuchungen sind zusätzlich in Klammern angegeben</description>
+    <aspects>
+        <aspect>
+            <id>123</id>
+            <category>Bremsanlage</category>
+            <directive>Gesamtanlage</directive>
+            <description>Betriebsbremswirkung, Feststellbremswirkung, Gleichmäßigkeit, Funktion der Dauerbremsanlage, Abstufbarkeit / Zeitverhalten, Löseverhalten, Dichtheit, Einhaltung von Systemdaten, Auffälligkeiten, (Hilfsbremswirkung), (Funktion des automatischen Blockierverhinderers)</description>
+        </aspect>
+        <aspect>
+            <id>126</id>
+            <category>Bremsanlage</category>
+            <directive>Einrichtungen zur Energiebeschaffung</directive>
+            <description>Füllzeit, Auffälligkeiten</description>
+        </aspect>
+        <aspect>
+            <id>127</id>
+            <category>Bremsanlage</category>
+            <directive>Einrichtungen zur Energiebevorratung</directive>
+            <description>Zustand, Auffälligkeiten, Funktion der Entwässerungseinrichtung, (Ausführung)</description>
+        </aspect>
+        <aspect>
+            <id>128</id>
+            <category>Bremsanlage</category>
+            <directive>Betätigungs- und Übertragungseinrichtungen</directive>
+            <description>Zustand, Auffälligkeiten</description>
+        </aspect>
+        <aspect>
+            <id>129</id>
+            <category>Bremsanlage</category>
+            <directive>Auslaufeinrichtung</directive>
+            <description>Zustand, Auffälligkeiten, Funktion, (Ausführung), (Zulässigkeit)</description>
+        </aspect>
+        <aspect>
+            <id>130</id>
+            <category>Bremsanlage</category>
+            <directive>Steuer- und Regeleinrichtungen (Ventile)</directive>
+            <description>Zustandm Auffälligkeiten bei Druckluftbremsanlagen, Einstellung und Funktion des automatisch lastabhängigen Bremskraftreglers, Funktion der Drucksicherung, Funktion der Abreißsicherung, Funktion der selbsttätigen Bremsung, Funktion des Löseventiles am Anhänger, (Ausführung), (Funktion des Bremskraftverstärkers)</description>
+        </aspect>
+        <aspect>
+            <id>131</id>
+            <category>Bremsanlage</category>
+            <directive>Radbremse / Zuspanneinrichtung</directive>
+            <description>Zustand, Auffälligkeiten, Funktion, (Funktion der Nachstelleinrichtung), (Einstellung), (Ausführung)</description>
+        </aspect>
+        <aspect>
+            <id>132</id>
+            <category>Bremsanlage</category>
+            <directive>Prüfungseinrichtungen und Prüfanschlüsse</directive>
+            <description>Zustand, Auffälligkeiten</description>
+        </aspect>
+        <aspect>
+            <id>133</id>
+            <category>Bremsanlage</category>
+            <directive>Kontroll- und Warneinrichtungen</directive>
+            <description>Funktion</description>
+        </aspect>
+        <aspect>
+            <id>134</id>
+            <category>Lenkanlage</category>
+            <directive>Gesamtanlage</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>135</id>
+            <category>Sichtverhältnisse</category>
+            <directive>Scheiben</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>136</id>
+            <category>Lichttechnische Einrichtungen und andere Teile der elektrischen Anlage</category>
+            <directive>Aktive lichttechnische Einrichtungen</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>137</id>
+            <category>Achsen, Räder, Reifen, Aufhängungen</category>
+            <directive>Achsen</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>138</id>
+            <category>Fahrgestell, Rahmen, aufbau, daran befestigte Teile</category>
+            <directive>Rahmen / tragende Teile</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>139</id>
+            <category>Sonstige Ausstattungen</category>
+            <directive>Sicherheitsgurte oder andere Rückhaltesysteme</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>140</id>
+            <category>Umweltbelastung</category>
+            <directive>Geräusche</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>141</id>
+            <category>Zusätzliche Untersuchungen an KFZ, die zur gewerblichen Personenbeförderung eingesetzt sind</category>
+            <directive>Kraftfahrzeuge zur Personenbeförderung mit mehr als 8 Fahrgastsitzplätzen: Ein-, Aus- und Notausstiege</directive>
+            <description></description>
+        </aspect>
+        <aspect>
+            <id>142</id>
+            <category>Identifizierung und Einstufung des Fahrzeugs</category>
+            <directive>Fahrzeug-Identifizierungsnummer</directive>
+            <description></description>
+        </aspect>
+    </aspects>
+</catalog>

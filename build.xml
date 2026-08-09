@@ -28,6 +28,7 @@
 	<property name="lib.jinput" location="${dir.lib}/jinput-2.0.7.jar" />
 	<property name="lib.jinput.naive" location="${dir.lib}/jinput-native-files/" />
 	<property name="lib.jutils" location="${dir.lib}/jutils-1.0.0.jar" />
+	<property name="lib.jakarta-xml" location="${dir.lib}/jakarta.xml.bind-api-4.0.0.jar" />
 	<property name="lib.junit" location="${dir.lib.dev}/junit-4.7.jar" />
 	<property name="lib.swingx" location="${dir.lib.dev}/swingx-1.6.1.jar" />
 	<property name="lib.gettexttasks" location="${dir.lib.dev}/gettext-ant-tasks-0.9.7.jar" />
@@ -46,6 +47,7 @@
 		<pathelement location="${lib.jutils}" />
 		<pathelement location="${lib.junit}" />
 		<pathelement location="${lib.swingx}" />
+		<pathelement location="${lib.jakarta-xml}" />
 	</path>
 
 	<!--                                          -->

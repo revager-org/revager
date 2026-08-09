@@ -5,5 +5,5 @@
 // Generated on: 2009.05.29 at 10:25:38 PM MESZ 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.informatik.uni-stuttgart.de/iste/se", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.informatik.uni-stuttgart.de/iste/se", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package org.revager.app.model.schema;
